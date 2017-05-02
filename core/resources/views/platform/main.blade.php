@@ -12,16 +12,16 @@
 
       <div id="navigation">
         <ul class="navigation-menu">
-           <li class="has-submenu" id="tour-dashboard"><a href="#/">{{ trans('global.dashboard') }}</a></li>
-            <li class="has-submenu"><a href="#/create">{{ trans('global.create') }}</a></li>
-            <li class="has-submenu"><a href="#/landing/editor">{{ trans('global.editor') }}</a></li>
+          <li class="has-submenu" id="tour-dashboard"><a href="#/" class="waves-effect waves-light">{{ trans('global.dashboard') }}</a></li>
+          <li class="has-submenu"><a href="#/create" class="waves-effect waves-light">{{ trans('global.create') }}</a></li>
+          <li class="has-submenu"><a href="#/landing/editor" class="waves-effect waves-light">{{ trans('global.editor') }}</a></li>
 <?php if (1==2 && Gate::allows('limitation', 'media.visible')) { ?>
-          <li class="has-submenu"><a href="#/media">{{ trans('global.media') }}</a></li>
+          <li class="has-submenu"><a href="#/media" class="waves-effect waves-light">{{ trans('global.media') }}</a></li>
 <?php } ?>
-          <li class="has-submenu"> <a href="#/profile">{{ trans('global.account') }}</a></li>
+          <li class="has-submenu"> <a href="#/profile" class="waves-effect waves-light">{{ trans('global.account') }}</a></li>
 
 <?php if (Gate::allows('admin-management')) { ?>
-          <li class="has-submenu last-elements"> <a href="javascript:void(0);">{{ trans('global.admin') }}</a>
+          <li class="has-submenu last-elements"> <a href="javascript:void(0);" class="waves-effect waves-light">{{ trans('global.admin') }}</a>
             <ul class="submenu">
               <li class="has-submenu">
                 <a href="javascript:void(0);">{{ trans('global.users') }}</a>
@@ -66,6 +66,12 @@
               <li><a href="{{ url('logout') }}"><i class="ti-power-off m-r-5"></i> {{ trans('global.logout') }}</a></li>
             </ul>
           </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right pull-right" id="device_selector">
+          <li class="menu-icon-button" id="desktop_mode"><a href="javascript:void(0);" class="waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE30C;</i></a></li>
+          <li class="menu-icon-button" id="desktop_tablet"><a href="javascript:void(0);" class="waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE330;</i></a></li>
+          <li class="menu-icon-button" id="desktop_phone"><a href="javascript:void(0);" class="waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE32C;</i></a></li>
         </ul>
 <?php
 // Only show language dropdown if there's more than one language available

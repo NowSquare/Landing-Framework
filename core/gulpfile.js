@@ -56,6 +56,9 @@ gulp.task('watch_styles', function() {
   // Watch .scss files
   gulp.watch('resources/assets/sass/**/*.scss', ['styles']);
 
+  // Watch .less files
+  gulp.watch('resources/assets/less/**/*.less', ['styles']);
+
 });
 
 gulp.task('watch_editor_styles', function() {

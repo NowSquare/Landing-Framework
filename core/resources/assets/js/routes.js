@@ -81,6 +81,12 @@ $(function() {
       $('#view').load(url, function() {
         onPartialLoaded();
 
+        if (url == 'platform/landing/editor') {
+          $('#device_selector').fadeIn(100);
+        } else {
+          $('#device_selector').fadeOut(100);
+        }
+
         $('.navigation-menu li').removeClass('active');
         initNavbarMenuActive(route);
       });
