@@ -31,79 +31,39 @@ tinymce.init({
 
 $(function() {
 
-  $('#export_html').on('click', function() {
-
-    // Get a cloned version of the html object
-    var $html = $('html').clone();
-
-    // Remove all classes starting with -lf-data-
-    $html.find('[class*=-lf-data-]').each(function() {
-      this.className = this.className.replace(/(^| )-lf[^ ]*/g, '');
-
-      // Remove all attributes starting with 
-      removeAttributesStartingWith($(this), 'data-lf-');
-    });
-
-    console.log($html.html());
-  });
-
-  function removeAttributesStartingWith(target, starts_with) {
-
-    var i,
-        $target = $(target),
-        attrName,
-        dataAttrsToDelete = [],
-        dataAttrs = $target.get(0).attributes,
-        dataAttrsLen = dataAttrs.length;
-
-    // loop through attributes and make a list of those
-    // that begin with 'data-'
-    for (i=0; i<dataAttrsLen; i++) {
-        if ( starts_with === dataAttrs[i].name.substring(0,starts_with.length) ) {
-            // Why don't you just delete the attributes here?
-            // Deleting an attribute changes the indices of the
-            // others wreaking havoc on the loop we are inside
-            // b/c dataAttrs is a NamedNodeMap (not an array or obj)
-            dataAttrsToDelete.push(dataAttrs[i].name);
-        }
-    }
-    // delete each of the attributes we found above
-    // i.e. those that start with "data-"
-    $.each( dataAttrsToDelete, function( index, attrName ) {
-        $target.removeAttr( attrName );
-    })
-};
-
   /*
-    Loop through all images, generate semi-unique class
-    to reference images for use in the editor. Add `-clone`
+    Loop through all links, generate semi-unique class
+    to reference links for use in the editor. Add `-clone`
     suffix to class to prevent cloning to the power and
-    link settings button with dropdown to image (Tether).
+    link settings link with dropdown to link (Tether).
   */
 
-  $('.-lf-img').each(function() {
+  $('.-lf-link').each(function() {
     // Attribute settings
     var attachment = $(this).attr('data-attachment');
     attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
 
     var targetAttachment = $(this).attr('data-taget-attachment');
-    targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
+    targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'bottom left';
 
     var offset = $(this).attr('data-offset');
-    offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
+    offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px 0';
 
-    var $el = $('.-lf-el-img-edit').clone().appendTo('body');
+    var $el = $('.-lf-el-link-edit').clone().appendTo('body');
 
     // Set unique class
     var timestamp = new Date().getTime();
-    var unique_class = '-lf-data-img-' + timestamp;
+    var unique_class = '-lf-data-link-' + timestamp;
 
     $(this).addClass(unique_class);
     $(this).attr('data-lf-el', unique_class);
     $el.attr('data-lf-el', unique_class);
 
+    // Set reference to parent block
+    $el.attr('data-lf-parent-block', $(this).parents('.-lf-block').attr('data-lf-el'));
+
     // Replace class so it won't be cloned in next loop
-    $el.removeClass('-lf-el-img-edit').addClass('-lf-el-img-edit-clone -lf-el-inline-button-clone');
+    $el.removeClass('-lf-el-link-edit').addClass('-lf-el-link-edit-clone -lf-el-inline-button-clone');
 
     new Tether({
       element: $el,
@@ -123,43 +83,43 @@ $(function() {
     });
   });
 
-  lf_ParseImages(true);
+  lf_ParseLinks(true);
 });
 
 /* 
-  Duplicate image buttons and references
+  Duplicate links and references
 */
 
-function lf_DuplicateBlockImages($new_block) {
-  // Loop through all images in new block
-  $new_block.find('.-lf-img').each(function() {
+function lf_DuplicateBlockLinks($new_block) {
+  // Loop through all links in new block
+  $new_block.find('.-lf-link').each(function() {
     var timestamp = new Date().getTime();
-    var $new_img = $(this);
-    var img_class = $new_img.attr('data-lf-el');
+    var $new_btn = $(this);
+    var btn_class = $new_btn.attr('data-lf-el');
 
-    if (typeof img_class !== typeof undefined && img_class !== false) {
+    if (typeof btn_class !== typeof undefined && btn_class !== false) {
       // Attribute settings
-      var attachment = $new_img.attr('data-attachment');
+      var attachment = $new_btn.attr('data-attachment');
       attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
 
-      var targetAttachment = $new_img.attr('data-taget-attachment');
+      var targetAttachment = $new_btn.attr('data-taget-attachment');
       targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
 
-      var offset = $new_img.attr('data-offset');
+      var offset = $new_btn.attr('data-offset');
       offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
 
-      // Clone img and replace with new class
-      $new_img.removeClass(img_class);
-      $new_img.addClass('-lf-data-img-' + timestamp);
-      $new_img.attr('data-lf-el', '-lf-data-img-' + timestamp);
+      // Clone btn and replace with new class
+      $new_btn.removeClass(btn_class);
+      $new_btn.addClass('-lf-data-link-' + timestamp);
+      $new_btn.attr('data-lf-el', '-lf-data-link-' + timestamp);
 
       // Settings
-      var $new_img_settings = $('.-lf-el-img-edit-clone[data-lf-el=' + img_class + ']').clone().insertAfter('.-lf-el-img-edit-clone[data-lf-el=' + img_class + ']');
-      $new_img_settings.attr('data-lf-el', '-lf-data-img-' + timestamp);
+      var $new_btn_settings = $('.-lf-el-link-edit-clone[data-lf-el=' + btn_class + ']').clone().insertAfter('.-lf-el-link-edit-clone[data-lf-el=' + btn_class + ']');
+      $new_btn_settings.attr('data-lf-el', '-lf-data-link-' + timestamp);
 
       new Tether({
-        element: $new_img_settings,
-        target: $new_img,
+        element: $new_btn_settings,
+        target: $new_btn,
         attachment: attachment,
         offset: offset,
         targetAttachment: targetAttachment,
@@ -178,29 +138,29 @@ function lf_DuplicateBlockImages($new_block) {
   });
 
   // Timeout to make sure dom has changed
-  setTimeout(lf_ParseImages, 70);
+  setTimeout(lf_ParseLinks, 70);
 }
 
 /* 
-  Loop through img settings to set attributes
+  Loop through link settings to set attributes
   and fix z-index overlapping. 
 */
 
-function lf_ParseImages(init) {
-  var zIndex = 100;
+function lf_ParseLinks(init) {
+  var zIndex = 200;
   
-  $('.-lf-img').each(function() {
-    var img_class = $(this).attr('data-lf-el');
-    var $img_settings = $('.-lf-el-img-edit-clone[data-lf-el=' + img_class + ']');
+  $('.-lf-link').each(function() {
+    var btn_class = $(this).attr('data-lf-el');
+    var $btn_settings = $('.-lf-el-link-edit-clone[data-lf-el=' + btn_class + ']');
 
     // Set z-index to prevent overlapping of dropdown menus
-    $img_settings.css('cssText', 'z-index: ' + zIndex + ' !important;');
-    $img_settings.find('.-lf-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
+    $btn_settings.css('cssText', 'z-index: ' + zIndex + ' !important;');
+    $btn_settings.find('.-lf-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
     zIndex--;
   });
 
   // Always reposition tethered elements.
-  // Also initially because $img_settings.css('cssText', ...); 
+  // Also initially because $btn_settings.css('cssText', ...); 
   // seems to reset position
   Tether.position();
 }
@@ -224,23 +184,28 @@ function lf_ParseImages(init) {
     onMouseOut="this.src = '{{ url('assets/images/editor/icons/settings.svg') }}';"
   >
   <ul class="-lf-el-dropdown -lf-el-reset">
-    <li class="-lf-el-background"><a href="javascript:void(0);">Background</a></li>
+    <li class="-lf-el-block-background"><a href="javascript:void(0);">Background</a></li>
     <li class="separator"><hr></li>
-    <li class="-lf-el-move"><a href="javascript:void(0);">Move <div class="-lf-el-caret"></div></a>
+    <li class="-lf-el-block-move"><a href="javascript:void(0);">Move <div class="-lf-el-caret"></div></a>
       <ul>
-        <li class="-lf-el-move-up"><a href="javascript:void(0);">Move up</a></li>
-        <li class="-lf-el-move-down"><a href="javascript:void(0);">Move down</a></li>
+        <li class="-lf-el-block-move-up"><a href="javascript:void(0);">Move up</a></li>
+        <li class="-lf-el-block-move-down"><a href="javascript:void(0);">Move down</a></li>
       </ul>
     </li>
-    <li class="-lf-el-edit"><a href="javascript:void(0);">Edit <div class="-lf-el-caret"></div></a>
+    <li class="-lf-el-block-insert"><a href="javascript:void(0);">Insert <div class="-lf-el-caret"></div></a>
       <ul>
-        <li class="-lf-el-edit-delete"><a href="javascript:void(0);">Delete</a></li>
-        <li class="-lf-el-edit-duplicate"><a href="javascript:void(0);">Duplicate</a></li>
+        <li class="-lf-el-block-insert-above"><a href="javascript:void(0);">Above</a></li>
+        <li class="-lf-el-block-insert-below"><a href="javascript:void(0);">Below</a></li>
+      </ul>
+    </li>
+    <li class="-lf-el-block-edit-menu"><a href="javascript:void(0);">Edit <div class="-lf-el-caret"></div></a>
+      <ul>
+        <li class="-lf-el-block-edit-duplicate"><a href="javascript:void(0);">Duplicate</a></li>
+        <li class="-lf-el-block-edit-delete"><a href="javascript:void(0);">Delete</a></li>
       </ul>
     </li>
   </ul>
 </div>
-
 
 <div class="-lf-el-inline-button -lf-el-img-edit -lf-el-reset">
   <img src="{{ url('assets/images/editor/icons/image.svg') }}" class="-lf-el-icon"
@@ -248,10 +213,20 @@ function lf_ParseImages(init) {
     onMouseOut="this.src = '{{ url('assets/images/editor/icons/image.svg') }}';"
   >
   <ul class="-lf-el-dropdown -lf-el-reset">
-    <li class="-lf-el-background"><a href="javascript:void(0);">Select image</a></li>
-    <li class="-lf-el-background"><a href="javascript:void(0);">Link</a></li>
+    <li class="-lf-el-img-select"><a href="javascript:void(0);">Browse...</a></li>
+    <li class="-lf-el-img-link"><a href="javascript:void(0);">Link...</a></li>
     <li class="separator"><hr></li>
-    <li class="-lf-el-edit-delete"><a href="javascript:void(0);">Hide image</a></li>
+    <li class="-lf-el-img-hide"><a href="javascript:void(0);">Hide image</a></li>
+  </ul>
+</div>
+
+<div class="-lf-el-inline-button -lf-el-link-edit -lf-el-reset">
+  <img src="{{ url('assets/images/editor/icons/link.svg') }}" class="-lf-el-icon"
+    onMouseOver="this.src = '{{ url('assets/images/editor/icons/link-hover.svg') }}';"
+    onMouseOut="this.src = '{{ url('assets/images/editor/icons/link.svg') }}';"
+  >
+  <ul class="-lf-el-dropdown -lf-el-reset">
+    <li class="-lf-el-link-link"><a href="javascript:void(0);">Link...</a></li>
   </ul>
 </div>
 
@@ -280,7 +255,7 @@ function lf_ParseImages(init) {
               <h1 class="display-2 text-md-left my-3 no-margin-smb">Creative<br>Studio</h1>
               <p class="lead">We help entrepreneurs achieving their goal faster with <span class="typed" data-text="['development', 'marketing', 'design']"></span>.</p>
               <div class="btn-container my-3 btn-stack-lg">
-                <a class="btn btn-outline-ghost btn-xlg btn-pill" href="#" role="button">Contact Us</a>
+                <a class="btn btn-outline-ghost btn-xlg btn-pill -lf-link" href="#" role="button">Contact Us</a>
               </div>
             </div>
             <!-- /.col -->
@@ -328,7 +303,7 @@ function lf_ParseImages(init) {
           <div class="container">
             <div class="row">
               <div class="col-md-12 editable">
-                <h1><a href="index.html" style="color: #ccc">Home</a> &rsaquo; Content</h1>
+                <h1><a href="index.html" style="color: #ccc" class="-lf-link">Home</a> &rsaquo; Content</h1>
               </div>
             </div>
           </div>

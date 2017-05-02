@@ -263,8 +263,11 @@ gulp.task('editor_scripts', function() {
       'bower_components/tinymce/themes/inlite/theme.js',
       'bower_components/tinymce/themes/modern/theme.js',
       'resources/assets/js/editor/helpers.js',
-      'resources/assets/js/editor/buttons.js',
-      'resources/assets/js/editor/blocks.js'
+      'resources/assets/js/editor/dropdown.js',
+      'resources/assets/js/editor/blocks.js',
+      'resources/assets/js/editor/images.js',
+      'resources/assets/js/editor/link.js',
+      'resources/assets/js/editor/export.js'
     ])
 //    .pipe(jshint('.jshintrc'))
 //    .pipe(jshint.reporter('default'))

@@ -84476,6 +84476,10 @@ $(function() {
     if (typeof $block_edit_dropdown !== typeof undefined && $block_edit_dropdown !== false) {
       $block_edit_dropdown.css('cssText', 'display: block !important;');
 
+      // Set z-index of all buttons temporary to a high value
+      $(this).attr('data-lf-zIndex', $(this).css('z-index'));
+      $(this).css('cssText', 'z-index: 1000000 !important;');
+
       // Reposition tethered elements because $block_settings.css('cssText', ...); seems to reset position
       Tether.position();
     }
@@ -84492,6 +84496,11 @@ $(function() {
 
     lfMouseLeaveDropDown = setTimeout( function(){
       $(that).css('cssText', 'display: none !important;');
+
+      // Set z-index back to old value
+      var $button = $(that).parents('.-lf-el-inline-button-clone');
+      $button.css('cssText', 'z-index: ' + $button.attr('data-lf-zIndex') + ' !important;');
+      $button.attr('data-lf-zIndex', null);
 
       // Reposition tethered elements because $block_settings.css('cssText', ...); seems to reset position
       Tether.position();
@@ -84582,7 +84591,7 @@ $(function() {
     Move block one position up
   */
 
-  $('body').on('click', '.-lf-el-move-up', function() {
+  $('body').on('click', '.-lf-block-el-move-up', function() {
     var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
     var block_prev = $('.' + block_class).attr('data-lf-prev');
 
@@ -84598,7 +84607,7 @@ $(function() {
     Move block one position down
   */
 
-  $('body').on('click', '.-lf-move-el-down', function() {
+  $('body').on('click', '.-lf-el-block-move-down', function() {
     var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
     var block_next = $('.' + block_class).attr('data-lf-next');
 
@@ -84614,12 +84623,17 @@ $(function() {
     Delete block
   */
 
-  $('body').on('click', '.-lf-el-edit-delete', function() {
+  $('body').on('click', '.-lf-el-block-edit-delete', function() {
     var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
 
     if (typeof block_class !== typeof undefined && block_class !== false) {
       $('.-lf-el-block-edit-clone[data-lf-el=' + block_class + ']').remove();
       $('.' + block_class).remove();
+
+      // Delete other elements
+      $('[data-lf-parent-block=' + block_class + ']').each(function() {
+        $(this).remove();
+      });
 
       // Timeout to make sure dom has changed
       setTimeout(lf_ParseBlocks, 70);
@@ -84630,7 +84644,7 @@ $(function() {
     Duplicate block
   */
 
-  $('body').on('click', '.-lf-el-edit-duplicate', function() {
+  $('body').on('click', '.-lf-el-block-edit-duplicate', function() {
     var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
 
     if (typeof block_class !== typeof undefined && block_class !== false) {
@@ -84668,7 +84682,7 @@ $(function() {
 
       // Duplicate other elements
       lf_DuplicateBlockImages($new_block);
-
+      lf_DuplicateBlockLinks($new_block);
     }
   });
 
@@ -84693,10 +84707,10 @@ function lf_ParseBlocks(init) {
     var first = ! prev.length;
 
     if (first) {
-      $block_settings.find('.-lf-el-move-up').addClass('-lf-el-disabled');
+      $block_settings.find('.-lf-el-block-move-up').addClass('-lf-el-disabled');
       $('.' + block_class).attr('data-lf-prev', null);
     } else {
-      $block_settings.find('.-lf-el-move-up').removeClass('-lf-el-disabled');
+      $block_settings.find('.-lf-el-block-move-up').removeClass('-lf-el-disabled');
       $('.' + block_class).attr('data-lf-prev', prev.attr('data-lf-el'));
     }
 
@@ -84705,10 +84719,10 @@ function lf_ParseBlocks(init) {
     var last = ! next.length;
 
     if (last) {
-      $block_settings.find('.-lf-el-move-down').addClass('-lf-el-disabled');
+      $block_settings.find('.-lf-el-block-move-down').addClass('-lf-el-disabled');
       $('.' + block_class).attr('data-lf-next', null);
     } else {
-      $block_settings.find('.-lf-el-move-down').removeClass('-lf-el-disabled');
+      $block_settings.find('.-lf-el-block-move-down').removeClass('-lf-el-disabled');
       $('.' + block_class).attr('data-lf-next', next.attr('data-lf-el'));
     }
 
@@ -84723,3 +84737,181 @@ function lf_ParseBlocks(init) {
   // seems to reset position
   Tether.position();
 }
+
+$(function() {
+  /*
+    Loop through all images, generate semi-unique class
+    to reference images for use in the editor. Add `-clone`
+    suffix to class to prevent cloning to the power and
+    link settings button with dropdown to image (Tether).
+  */
+
+  $('.-lf-img').each(function() {
+    // Attribute settings
+    var attachment = $(this).attr('data-attachment');
+    attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
+
+    var targetAttachment = $(this).attr('data-taget-attachment');
+    targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
+
+    var offset = $(this).attr('data-offset');
+    offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
+
+    var $el = $('.-lf-el-img-edit').clone().appendTo('body');
+
+    // Set unique class
+    var timestamp = new Date().getTime();
+    var unique_class = '-lf-data-img-' + timestamp;
+
+    $(this).addClass(unique_class);
+    $(this).attr('data-lf-el', unique_class);
+    $el.attr('data-lf-el', unique_class);
+
+    // Set reference to parent block
+    $el.attr('data-lf-parent-block', $(this).parents('.-lf-block').attr('data-lf-el'));
+
+    // Replace class so it won't be cloned in next loop
+    $el.removeClass('-lf-el-img-edit').addClass('-lf-el-img-edit-clone -lf-el-inline-button-clone');
+
+    new Tether({
+      element: $el,
+      target: $(this),
+      attachment: attachment,
+      offset: offset,
+      targetAttachment: targetAttachment,
+      classPrefix: '-lf-data',
+      constraints: [{
+        to: 'scrollParent',
+        attachment: 'together'
+      }],
+      optimizations: {
+        moveElement: true,
+        gpu: true
+      }
+    });
+  });
+
+  lf_ParseImages(true);
+});
+
+/* 
+  Duplicate image buttons and references
+*/
+
+function lf_DuplicateBlockImages($new_block) {
+  // Loop through all images in new block
+  $new_block.find('.-lf-img').each(function() {
+    var timestamp = new Date().getTime();
+    var $new_img = $(this);
+    var img_class = $new_img.attr('data-lf-el');
+
+    if (typeof img_class !== typeof undefined && img_class !== false) {
+      // Attribute settings
+      var attachment = $new_img.attr('data-attachment');
+      attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
+
+      var targetAttachment = $new_img.attr('data-taget-attachment');
+      targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
+
+      var offset = $new_img.attr('data-offset');
+      offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
+
+      // Clone img and replace with new class
+      $new_img.removeClass(img_class);
+      $new_img.addClass('-lf-data-img-' + timestamp);
+      $new_img.attr('data-lf-el', '-lf-data-img-' + timestamp);
+
+      // Settings
+      var $new_img_settings = $('.-lf-el-img-edit-clone[data-lf-el=' + img_class + ']').clone().insertAfter('.-lf-el-img-edit-clone[data-lf-el=' + img_class + ']');
+      $new_img_settings.attr('data-lf-el', '-lf-data-img-' + timestamp);
+
+      new Tether({
+        element: $new_img_settings,
+        target: $new_img,
+        attachment: attachment,
+        offset: offset,
+        targetAttachment: targetAttachment,
+        classPrefix: '-lf-data',
+        constraints: [{
+          to: 'scrollParent',
+          attachment: 'together'
+        }],
+        optimizations: {
+          moveElement: true,
+          gpu: true
+        }
+      });
+    }
+
+  });
+
+  // Timeout to make sure dom has changed
+  setTimeout(lf_ParseImages, 70);
+}
+
+/* 
+  Loop through img settings to set attributes
+  and fix z-index overlapping. 
+*/
+
+function lf_ParseImages(init) {
+  var zIndex = 100;
+  
+  $('.-lf-img').each(function() {
+    var img_class = $(this).attr('data-lf-el');
+    var $img_settings = $('.-lf-el-img-edit-clone[data-lf-el=' + img_class + ']');
+
+    // Set z-index to prevent overlapping of dropdown menus
+    $img_settings.css('cssText', 'z-index: ' + zIndex + ' !important;');
+    $img_settings.find('.-lf-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
+    zIndex--;
+  });
+
+  // Always reposition tethered elements.
+  // Also initially because $img_settings.css('cssText', ...); 
+  // seems to reset position
+  Tether.position();
+}
+$(function() {
+  $('#export_html').on('click', function() {
+
+    // Get a cloned version of the html object
+    var $html = $('html').clone();
+
+    // Remove all classes starting with -lf-data-
+    $html.find('[class*=-lf-data-]').each(function() {
+      this.className = this.className.replace(/(^| )-lf[^ ]*/g, '');
+
+      // Remove all attributes starting with 
+      removeAttributesStartingWith($(this), 'data-lf-');
+    });
+
+    console.log($html.html());
+  });
+});
+
+function removeAttributesStartingWith(target, starts_with) {
+  var i,
+      $target = $(target),
+      attrName,
+      dataAttrsToDelete = [],
+      dataAttrs = $target.get(0).attributes,
+      dataAttrsLen = dataAttrs.length;
+
+  // loop through attributes and make a list of those
+  // that begin with 'data-'
+  for (i=0; i<dataAttrsLen; i++) {
+      if ( starts_with === dataAttrs[i].name.substring(0,starts_with.length) ) {
+          // Why don't you just delete the attributes here?
+          // Deleting an attribute changes the indices of the
+          // others wreaking havoc on the loop we are inside
+          // b/c dataAttrs is a NamedNodeMap (not an array or obj)
+          dataAttrsToDelete.push(dataAttrs[i].name);
+      }
+  }
+  // delete each of the attributes we found above
+  // i.e. those that start with "data-"
+  $.each( dataAttrsToDelete, function( index, attrName ) {
+      $target.removeAttr( attrName );
+  })
+};

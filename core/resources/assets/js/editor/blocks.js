@@ -78,7 +78,7 @@ $(function() {
     Move block one position up
   */
 
-  $('body').on('click', '.-lf-el-move-up', function() {
+  $('body').on('click', '.-lf-block-el-move-up', function() {
     var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
     var block_prev = $('.' + block_class).attr('data-lf-prev');
 
@@ -94,7 +94,7 @@ $(function() {
     Move block one position down
   */
 
-  $('body').on('click', '.-lf-move-el-down', function() {
+  $('body').on('click', '.-lf-el-block-move-down', function() {
     var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
     var block_next = $('.' + block_class).attr('data-lf-next');
 
@@ -110,12 +110,17 @@ $(function() {
     Delete block
   */
 
-  $('body').on('click', '.-lf-el-edit-delete', function() {
+  $('body').on('click', '.-lf-el-block-edit-delete', function() {
     var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
 
     if (typeof block_class !== typeof undefined && block_class !== false) {
       $('.-lf-el-block-edit-clone[data-lf-el=' + block_class + ']').remove();
       $('.' + block_class).remove();
+
+      // Delete other elements
+      $('[data-lf-parent-block=' + block_class + ']').each(function() {
+        $(this).remove();
+      });
 
       // Timeout to make sure dom has changed
       setTimeout(lf_ParseBlocks, 70);
@@ -126,7 +131,7 @@ $(function() {
     Duplicate block
   */
 
-  $('body').on('click', '.-lf-el-edit-duplicate', function() {
+  $('body').on('click', '.-lf-el-block-edit-duplicate', function() {
     var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
 
     if (typeof block_class !== typeof undefined && block_class !== false) {
@@ -164,7 +169,7 @@ $(function() {
 
       // Duplicate other elements
       lf_DuplicateBlockImages($new_block);
-
+      lf_DuplicateBlockLinks($new_block);
     }
   });
 
@@ -189,10 +194,10 @@ function lf_ParseBlocks(init) {
     var first = ! prev.length;
 
     if (first) {
-      $block_settings.find('.-lf-el-move-up').addClass('-lf-el-disabled');
+      $block_settings.find('.-lf-el-block-move-up').addClass('-lf-el-disabled');
       $('.' + block_class).attr('data-lf-prev', null);
     } else {
-      $block_settings.find('.-lf-el-move-up').removeClass('-lf-el-disabled');
+      $block_settings.find('.-lf-el-block-move-up').removeClass('-lf-el-disabled');
       $('.' + block_class).attr('data-lf-prev', prev.attr('data-lf-el'));
     }
 
@@ -201,10 +206,10 @@ function lf_ParseBlocks(init) {
     var last = ! next.length;
 
     if (last) {
-      $block_settings.find('.-lf-el-move-down').addClass('-lf-el-disabled');
+      $block_settings.find('.-lf-el-block-move-down').addClass('-lf-el-disabled');
       $('.' + block_class).attr('data-lf-next', null);
     } else {
-      $block_settings.find('.-lf-el-move-down').removeClass('-lf-el-disabled');
+      $block_settings.find('.-lf-el-block-move-down').removeClass('-lf-el-disabled');
       $('.' + block_class).attr('data-lf-next', next.attr('data-lf-el'));
     }
 
