@@ -1,0 +1,25 @@
+.shadow-box {
+  position: relative;
+  box-shadow: $mdl-shadow--4dp;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    box-shadow: $mdl-shadow--16dp;
+    margin-top: -3px;
+    margin-bottom: 23px;
+  }
+
+  .box-icon {
+    height: 100px;
+    margin: 20px 0;
+  }
+
+  &.box-option {
+    .portlet-body {
+      text-align: center;
+      font-size: 1.5rem;
+      min-height: 100px;
+    }
+  }
+}
+

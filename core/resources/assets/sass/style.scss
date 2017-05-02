@@ -1,0 +1,198 @@
+$mdl-shadow--2dp: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !default;
+$mdl-shadow--3dp: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12) !default;
+$mdl-shadow--4dp: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--6dp: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--8dp: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2) !default;
+
+@import "spinthatshit";
+@import "colorbox";
+@import "jvectormap";
+@import "bootstrap-editable";
+@import "notifyjs";
+@import "shadow-boxes";
+
+// Fix close button Colorbox
+#cboxClose {
+  background: url(../images/colorbox/controls.png) no-repeat -52px -3px!important;
+  margin-top: 4px!important;
+  width: 17px!important;
+  height: 17px!important;
+}
+
+#cboxContent {
+  overflow: visible !important;
+}
+
+abbr[title], acronym[title] {
+  text-decoration: none !important;
+}
+
+// Equal height columns
+.flex-holder {
+  display: flex;
+}
+
+.flex-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-eq-height {
+  flex: 1;
+}
+
+.mdl-shadow--2dp { box-shadow: $mdl-shadow--2dp; }
+.mdl-shadow--3dp { box-shadow: $mdl-shadow--3dp; }
+.mdl-shadow--4dp { box-shadow: $mdl-shadow--4dp; }
+.mdl-shadow--6dp { box-shadow: $mdl-shadow--6dp; }
+.mdl-shadow--8dp { box-shadow: $mdl-shadow--8dp; }
+.mdl-shadow--16dp { box-shadow: $mdl-shadow--16dp; }
+
+// Tables
+.table-selectable {
+  tbody tr {
+    cursor: pointer;
+  }
+}
+
+.table {
+  &.table-cutoff {
+    table-layout: fixed;
+  }
+
+  &.table-cutoff td,
+  &.table-cutoff th {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  tbody tr td:last-child {
+    padding: 7px !important;
+  }
+
+  tbody tr.success td {
+    background-color: #3bafda !important;
+    color: #fff !important;
+  }
+
+  tbody tr.success:hover td {
+    background-color: darken(#3bafda, 10) !important;
+  }
+
+  .link {
+    text-decoration: underline;
+  }
+
+  .success {
+    .link {
+      color: #fff;
+    }
+  }
+}
+
+.dataTables_processing {
+  border: 0;
+}
+
+.card-box.table-responsive {
+  padding: 20px 20px 12px !important;
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+  left: 6px !important;
+}
+
+// Make expaneded rows 100% wide
+.dataTable.collapsed {
+  ul.dtr-details {
+    width: 100%;
+  }
+}
+
+.label-table {
+  background-color: #a9b3bc;
+  font-weight: normal;
+  font-size: 12px;
+  float: left;
+  margin: 1px 2px 1px 0px;
+  padding: 4px 6px;
+}
+
+.btn-table {
+  float: left;
+  font-size: 11px;
+  margin: 1px 2px 1px;
+  padding: 1px 3px;
+  max-width: 160px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+// Flot chart legend
+td.legendColorBox {
+  padding: 2px 0 0 0;
+}
+
+td.legendLabel {
+  line-height: 15px;
+  font-size:14px;
+  padding: 3px 10px 3px 0;
+}
+
+// Google maps
+.gmap {
+  border: 1px solid #eee;
+}
+
+.gcontrols {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+// Image selector
+.image-preview {
+background-color: #ffffff;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1'%3E %3Cpattern id='pattern' x='0' y='0' width='16' height='16' patternUnits='userSpaceOnUse' %3E %3Crect fill='rgba(159, 159, 159, 0.25)' x='0' width='8' height='8' y='0'/%3E %3Crect fill='rgba(159, 159, 159, 0.25)' x='8' width='8' height='8' y='8'/%3E %3C/pattern%3E %3Crect fill='url(#pattern)' x='0' y='0' width='100%' height='100%'/%3E %3C/svg%3E");
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+#target {
+  width: 345px;
+}

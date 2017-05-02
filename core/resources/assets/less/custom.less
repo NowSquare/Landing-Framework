@@ -1,0 +1,415 @@
+@import "variables.less";
+@import "elements.less";
+@import "hopscotch/hopscotch.less";
+
+html {
+  overflow: visible;
+}
+
+body {
+  padding-bottom: 0 !important;
+}
+
+#topnav .navigation-menu>li>a {
+  font-size:16px;
+}
+
+#topnav .navigation-menu>li>a i {
+  top: 4px;
+  position: relative;
+  margin-right: 3px !important;
+  font-size: 20px !important;
+}
+
+#topnav .topbar-main .logo i {
+  position: relative;
+  top: 6px;
+}
+
+#topnav .topbar-main .logo {
+  margin-top: 14px !important;
+}
+
+.wrapper {
+    margin-top: 60px !important;
+}
+
+.m-t {
+  margin-top: 20px;
+}
+
+.no-link {
+  cursor: default;
+}
+
+.pricing-column {
+  h4, 
+  .plan-stats li {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.ellipsis {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-box.selected {
+  -webkit-box-shadow: 2px 2px 20px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 2px 2px 20px 0px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 20px 0px rgba(0,0,0,0.2);
+}
+
+i.help-icon {
+  color: #cacaca;
+  font-size: 19px!important;
+  cursor: help;
+  margin: 0px 0 0 2px;
+  position: relative;
+  top: 4px;
+  line-height: 10px !important;
+}
+
+i.help-icon:hover {
+  color: #bbb;
+}
+
+// Navbar, fix issues with menu.less
+.sub-navbar {
+  border: 0 !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+
+  .container-fluid {
+    padding-left: 10px;
+    padding-right: 5px;
+  }
+
+  .navbar-brand {
+    padding: 15px 10px;
+
+    &.link {
+      color: @primary;
+    }
+  }
+
+  .navbar-collapse.collapsing,
+  .navbar-collapse.in {
+    .btn {
+      width: 100%;
+    }
+    .navbar-form {
+      border: 0;
+      padding: 5px 0;
+    }
+    .dropdown-menu {
+      position: relative;
+      border-bottom: 1px solid #e5e5e5;
+      box-shadow: none;
+      border-radius: 0;
+    }
+    .caret {
+      transform: rotate(-90deg);
+    }
+    .dropdown.open {
+      .caret {
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  .navbar-toggle {
+    border: none;
+    margin-right: 5px;
+    margin-top: 9px;
+    background: transparent !important;
+
+    &:hover {
+      background: transparent !important;
+    }
+
+    // Animated close button
+    .icon-bar {
+      width: 22px;
+      transition: all 0.2s;
+    }
+
+    .icon-bar:nth-of-type(2) {
+      transform: rotate(45deg);
+      transform-origin: 10% 10%;
+    }
+    .icon-bar:nth-of-type(3) {
+      opacity: 0;
+    }
+    .icon-bar:nth-of-type(4) {
+      transform: rotate(-45deg);
+      transform-origin: 10% 90%;
+    }
+
+    &.collapsed {
+      .icon-bar:nth-of-type(2) {
+        transform: rotate(0);      
+      }
+      .icon-bar:nth-of-type(3) {
+        opacity: 1;
+      }
+      .icon-bar:nth-of-type(4) {
+        transform: rotate(0);
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .sub-navbar {
+    .navbar-toggle {
+      display: none !important;
+    }
+  }
+
+  .navbar-form.navbar-right {
+    margin-right: -35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sub-navbar {
+    .navbar-brand {
+      padding: 15px 2px;
+    }
+  }
+
+  .navbar-header {
+    margin-left: -12px !important;
+  }
+
+  .container-fluid {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .sub-navbar .navbar-toggle {
+      margin-right: 0px;
+  }
+}
+
+// Select2
+.select2-container.select2-container--open {
+  border-width: 0px !important;
+}
+
+.form-group {
+  .select2-container.select2-container--open {
+    border-width: 1px !important;
+  }
+}
+
+.select2-container {
+  width: 100% !important;
+  display: inline-block;
+  border: 1px solid #eee !important;
+  border-radius: 0px;
+
+  &.select2-container--below,
+  &.select2-container--above {
+    border: 1px solid fade(@dark, 10%) !important;
+  }
+  
+  .select2-dropdown {
+    border-color: fade(@dark, 10%) !important;
+    .border-radius(0px)  !important;
+
+    &.select2-dropdown--above {
+      //margin-top: 0;
+    }
+
+    &.select2-dropdown--below {
+      //margin-top: 0;
+    }
+  }
+  
+  .select2-selection,
+  .select2-selection__rendered {
+    background-image: none !important;
+    border: none !important;
+    height: auto  !important;
+    padding: 0px !important;
+    line-height: 22px !important;
+    background-color: #fafafa !important;
+    box-shadow: none !important;
+    color: @dark !important;
+
+    .select2-arrow {
+      background-image: none !important;
+      background: transparent;
+      border: none;
+      width: 14px;
+      top: -2px;
+    }
+  }
+
+  &.select2-container--focus,
+  &.select2-container--open {
+    .select2-selection,
+    .select2-selection__rendered {
+      background-color: #fff !important;
+    }
+  }
+  
+  .selection .select2-selection--single {
+    padding: 5px 20px 5px 12px !important;
+    
+    .select2-selection__arrow {
+      top: 3px;
+    }
+  }
+  
+  .selection .select2-selection--multiple {
+    padding: 0 4px 0 4px !important;
+    line-height: 15px !important;
+
+    .select2-selection__choice {
+      margin-top: 4px;
+      margin-right: 4px;
+    }
+  }
+
+  .select2-container-multi.form-control {
+    height: auto;
+  }
+}
+.select2-results .select2-highlighted {
+  color: #ffffff;
+  background-color: @primary;
+}
+.select2-drop-active {
+  border: 1px solid #e3e3e3 !important;
+  padding-top: 5px;
+  .box-shadow( 0 2px 2px rgba(0, 0, 0, .15));
+}
+.select2-search {
+  input{
+    border: 1px solid #e3e3e3;
+  }
+}
+.select2-container-multi {
+  width: 100%;
+
+  .select2-choices {
+    border: 2px solid fade(@dark,20%)  !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    background-image: none  !important;
+    min-height: 38px;
+
+    .select2-search-choice {
+      padding: 6px 8px 7px 19px;
+      margin: 5px 0 3px 5px;
+      color: @dark;
+      background: fade(@dark,20%);
+      border: none;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+    .select2-search-field {
+      input {
+        padding: 7px 7px 7px 10px;
+        font-family: inherit;
+      }
+    }
+    .select2-search-choice-close {
+      top: 6px;
+    }
+  }
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  font-size: 13px;
+  .border-radius(0px)  !important;
+/*    background-color: #e4e4e4;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: default;
+    float: left;
+    margin-right: 5px;
+    margin-top: 5px;
+    padding: 0 5px;*/
+}
+
+// Hide selected option from multi select
+.select2-container--open {
+  [aria-multiselectable=true] {
+    [aria-selected=true] {
+      display:  none;
+    }
+  }
+}
+
+// Tabs
+.navtab-custom li {
+    margin-bottom: 0px !important;
+}
+
+.nav.nav-tabs {
+  box-shadow: none !important;
+}
+
+// Date Picker
+.datepicker {
+  z-index: 10000 !important;
+}
+
+// Date Range Picker
+.daterangepicker .input-mini.active,
+.daterangepicker td.off, .daterangepicker td.off.end-date, .daterangepicker td.off.in-range, .daterangepicker td.off.start-date,
+.daterangepicker .calendar-table {
+  background: none !important;
+  border-color: hsla(0,0%,93%,.1) !important;
+}
+
+.daterangepicker td {
+  border: 0 !important;
+}
+
+.daterangepicker td.available:hover, .daterangepicker th.available:hover {
+  background-color: #3bafda !important;
+  color: #fff !important;
+}
+
+.daterangepicker button, .daterangepicker input, .daterangepicker optgroup, .daterangepicker select, .daterangepicker textarea,
+.daterangepicker .input-mini {
+  color: #aaa !important;
+}
+
+.daterangepicker .input-mini {
+  border-radius: 0px;
+}
+
+.daterangepicker .btn {
+  color: #fff !important;
+}
+
+.daterangepicker:after {
+  border-bottom-color: #fff !important;
+}
+
+.daterangepicker .ranges li.active, .daterangepicker .ranges li:hover {
+  color: #fff;
+}
+/*
+.daterangepicker td.in-range {
+  background-color: #000000;
+  color: #fff;
+}
+*/
+
+// TinyMCE
+.mce-tinymce.mce-container.mce-panel {
+  border-top-width: 1px !important;
+  border-bottom-width: 1px !important;
+}

@@ -1,0 +1,15 @@
+{
+    "name": "landingframework/form",
+    "description": "",
+    "authors": [
+        {
+            "name": "Landing Framework",
+            "email": "landingframework.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Form\\": ""
+        }
+    }
+}

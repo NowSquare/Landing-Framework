@@ -1,0 +1,16 @@
+{
+    "name": "Form",
+    "alias": "form",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\Form\\Providers\\FormServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

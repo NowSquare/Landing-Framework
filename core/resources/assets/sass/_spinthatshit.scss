@@ -1,0 +1,20 @@
+@import '../../../bower_components/spinthatshit/src/variables';
+@import '../../../bower_components/spinthatshit/src/animations';
+
+$loader-color:                #0080FF;
+$loader-size:                 96px;
+$loader-height:               20px;
+$loader-border-size:          6px;
+$loader-gap:                  12px;
+$loader-animation-duration:   1s;
+
+@import '../../../bower_components/spinthatshit/src/loaders/loader02';
+
+.loader {
+  @include loader02($align: middle);
+}
+
+.loader.loader-xs {
+  width: 32px;
+  height: 32px;
+}

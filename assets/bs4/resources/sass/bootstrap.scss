@@ -1,0 +1,19 @@
+/*!
+ * Bootstrap v4 (http://getbootstrap.com)
+ */
+
+$enable-flex: true;
+
+$gray-dark:                 #373a3c !default;
+$gray:                      #55595c !default;
+$gray-light:                #818a91 !default;
+$gray-lighter:              #eceeef !default;
+$gray-lightest:             #f7f7f9 !default;
+
+$brand-primary:             #0275d8 !default;
+$brand-success:             #5cb85c !default;
+$brand-info:                #42a5f5 !default;
+$brand-warning:             #f0ad4e !default;
+$brand-danger:              #d9534f !default;
+
+@import "../../bower_components/bootstrap/scss/bootstrap";

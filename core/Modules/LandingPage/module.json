@@ -1,0 +1,16 @@
+{
+    "name": "LandingPage",
+    "alias": "landingpage",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 0,
+    "providers": [
+        "Modules\\LandingPage\\Providers\\LandingPageServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

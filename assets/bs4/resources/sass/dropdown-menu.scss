@@ -1,0 +1,540 @@
+/* -------------------------------- 
+
+ Header
+
+-------------------------------- */
+.morph-dropdown-wrapper {
+
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        list-style: none;
+      }
+    }
+}
+
+.navbar.bg-transparent .cd-morph-dropdown .dropdown-list {
+  a,a:link,a:visited {
+    color: #555555 !important;
+  }
+
+  a:hover,a:active,a:focus {
+    text-decoration: none !important;
+  }
+}
+
+
+.navbar.bg-light {
+  .cd-morph-dropdown .nav-trigger span, .cd-morph-dropdown .nav-trigger span::after, .cd-morph-dropdown .nav-trigger span::before {
+    /* these are the 3 lines of the menu icon */
+    background-color: #333;
+  }
+  .cd-morph-dropdown.nav-open .nav-trigger span {
+    /* these are the 3 lines of the menu icon */
+    background-color: transparent;
+  }
+}
+
+.cd-morph-dropdown {
+  height: 60px;
+
+  li.selected a {
+    background-color: #0b286e;
+  }
+
+  .alt-link {
+    a,a:link,a:visited {
+      font-weight:bold !important;
+    }
+    a:hover,a:active,a:focus {
+      text-decoration: none !important;
+    }
+  }
+
+  .content {
+    background:#fff!important;
+    color: #555555;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 5px;
+
+    a,a:link,a:visited {
+      color: #555555 !important;
+    }
+
+    a:hover,a:active,a:focus {
+      text-decoration: none !important;
+    }
+
+    em {
+      font-style: normal !important;
+    }
+  }
+
+}
+.cd-morph-dropdown::before {
+  /* never visible - used in JS to check mq */
+  content: 'mobile';
+  display: none;
+}
+.cd-morph-dropdown .nav-trigger {
+  /* menu icon - visible on small screens only */
+  position: absolute;
+  top: 6px;
+  right: 0;
+  height: 60px;
+  width: 60px;
+  /* replace text with icon */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  color: transparent;
+}
+.cd-morph-dropdown .nav-trigger span, .cd-morph-dropdown .nav-trigger span::after, .cd-morph-dropdown .nav-trigger span::before {
+  /* these are the 3 lines of the menu icon */
+  position: absolute;
+  background-color: #fff;
+  height: 3px;
+  width: 26px;
+}
+.cd-morph-dropdown .nav-trigger span {
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  right: auto;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+  -webkit-transition: background-color .3s;
+  transition: background-color .3s;
+}
+.cd-morph-dropdown .nav-trigger span::after, .cd-morph-dropdown .nav-trigger span::before {
+  content: '';
+  left: 0;
+  -webkit-transition: -webkit-transform .3s;
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s, -webkit-transform .3s;
+}
+.cd-morph-dropdown .nav-trigger span::before {
+  -webkit-transform: translateY(-9px);
+      -ms-transform: translateY(-9px);
+          transform: translateY(-9px);
+}
+.cd-morph-dropdown .nav-trigger span::after {
+  -webkit-transform: translateY(9px);
+      -ms-transform: translateY(9px);
+          transform: translateY(9px);
+}
+.cd-morph-dropdown.nav-open .nav-trigger span {
+  background-color: transparent;
+}
+.cd-morph-dropdown.nav-open .nav-trigger span::before {
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.cd-morph-dropdown.nav-open .nav-trigger span::after {
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.cd-morph-dropdown .main-nav {
+  display: none;
+}
+.cd-morph-dropdown .morph-dropdown-wrapper {
+  display: none;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1.2em 5%;
+  background-color: #FFFFFF;
+  overflow: auto;
+}
+.cd-morph-dropdown.nav-open .morph-dropdown-wrapper {
+  display: block;
+-webkit-box-shadow: 0px 1px 40px 0px rgba(0,0,0,0.3);
+-moz-box-shadow: 0px 1px 40px 0px rgba(0,0,0,0.3);
+box-shadow: 0px 1px 40px 0px rgba(0,0,0,0.3);
+}
+.cd-morph-dropdown .dropdown-list > ul > li {
+  margin-bottom: 2em;
+}
+.cd-morph-dropdown .label {
+  display: block;
+  font-size: 18px;
+  text-transform:uppercase;
+  margin-bottom: .9em;
+  color:#333;
+  text-align:left;
+    font-weight:bold;
+
+}
+.cd-morph-dropdown .content li::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+.cd-morph-dropdown .gallery .content li {
+  margin-bottom: 1.4em;
+}
+.cd-morph-dropdown .gallery .content a {
+  display: block;
+}
+.cd-morph-dropdown .gallery .content a::before {
+  /* icon on the left */
+  content:'';
+  display: inline-block;
+  float: left;
+  height: 54px;
+  width: 54px;
+  margin-right: .6em;
+  border-radius: 10px;
+  -webkit-transition: background .2s;
+  transition: background .2s;
+  color:rgba(28,50,95, 1);
+  font-style: normal !important;
+  font-weight: normal !important;
+  padding:14px;
+  font-size:25px;
+}
+.cd-morph-dropdown .gallery .content a span, .cd-morph-dropdown .gallery .content a em {
+  display: block;
+  line-height: 1.2;
+}
+.cd-morph-dropdown .gallery .content a em {
+  font-size: 14px;
+  padding: .4em 0 .2em;
+  color: #1c325f;
+  /*text-transform:uppercase;*/
+  font-weight:bold;
+  letter-spacing:0.5px;
+    -moz-transition: all 450ms linear;
+    -ms-transition: all 450ms linear;
+    -o-transition: all 450ms linear;
+    transition: all 450ms linear;
+  
+}
+.cd-morph-dropdown:hover .gallery .content a:hover em,
+.cd-morph-dropdown .gallery .content a:hover span {
+    color: #000;
+}
+
+.cd-morph-dropdown:hover .gallery .content a:hover i {
+    color: #fff;
+}
+
+.cd-morph-dropdown .gallery .content a span {
+  font-size: 13px;
+  color: #a6a6a6;
+  font-weight:300;
+}
+.cd-morph-dropdown .gallery .content a:hover::before {
+ box-shadow: inset 0px 0px 0px 30px rgba(28,50,95, 0.5)!important;
+    -webkit-transition: all 250ms linear;
+    -moz-transition: all 250ms linear;
+    -ms-transition: all 250ms linear;
+    -o-transition: all 250ms linear;
+    transition: all 250ms linear;
+  color:#fff!important;
+}
+/*
+.cd-morph-dropdown .gallery li:nth-of-type(1) a::before {
+  content: "\63";
+}
+.cd-morph-dropdown .gallery li:nth-of-type(2) a::before {
+   content: "\61";
+}
+.cd-morph-dropdown .gallery li:nth-of-type(3) a::before {
+    content: "\62";
+}
+.cd-morph-dropdown .gallery li:nth-of-type(4) a::before {
+   content: "\64";
+}
+.cd-morph-dropdown .links .content > ul > li {
+  margin-top: 1em;
+}*/
+.cd-morph-dropdown .links-list a,
+.cd-morph-dropdown .btn {
+  display: block;
+  margin-left: 15px;
+  font-size: 16px;
+  line-height: 1.6;
+    color: #555555;
+  font-weight:300;
+  
+}
+.cd-morph-dropdown .links-list a:hover,
+.cd-morph-dropdown .btn:hover {
+  color: #5bcaff;
+}
+.cd-morph-dropdown .content h2 {
+  color: #5bcaff;
+  text-transform: uppercase;
+ text-transform:uppercase;
+  font-weight:bold;
+  letter-spacing:0.5px;
+  margin: 20px 0 10px 14px;
+}
+@media only screen and (min-width: 770px) {
+  .cd-morph-dropdown {
+    padding: 0;
+    text-align: right;
+    z-index: 0;
+  }
+  .cd-morph-dropdown::before {
+    content: 'desktop';
+  }
+  .cd-morph-dropdown .nav-trigger {
+    display: none;
+  }
+  .cd-morph-dropdown .main-nav {
+    display: inline-block;
+  }
+  .cd-morph-dropdown .main-nav > ul > li {
+    display: inline-block;
+    float: left;
+  }
+  .cd-morph-dropdown .main-nav > ul > li > a {
+    display: block;
+    padding: 0 1em;
+    height: 72px;
+    line-height: 72px;
+    color: #fff;
+    font-size: 16px;
+    font-weight:300;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transition: opacity .2s;
+    transition: opacity .2s;
+  }
+  .navbar-light {
+    .cd-morph-dropdown .main-nav > ul > li > a {
+      color: #333;
+    }
+  }
+  .cd-morph-dropdown.is-dropdown-visible .main-nav > ul > li > a {
+    /* main navigation hover effect - on hover, reduce opacity of elements not hovered over */
+    opacity: .6;
+  }
+  .cd-morph-dropdown.is-dropdown-visible .main-nav > ul > li.active > a {
+    opacity: 1;
+  }
+  .cd-morph-dropdown .morph-dropdown-wrapper {
+    position: fixed;
+    /* dropdown wrapper - used to create the slide up/slide down effect when dropdown is revealed/hidden */
+    display: block;
+    top: 72px;
+    /* overwrite mobile style */
+    width: auto;
+    height: auto;
+    overflow: inherit;
+    padding: 0;
+    box-shadow: none;
+    background-color: transparent;
+    /* Force Hardware acceleration */
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    will-change: transform;
+    -webkit-transform: translateY(20px);
+        -ms-transform: translateY(20px);
+            transform: translateY(20px);
+    -webkit-transition: -webkit-transform .3s;
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s, -webkit-transform .3s;
+  }
+  .cd-morph-dropdown.is-dropdown-visible .morph-dropdown-wrapper {
+
+    -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0);
+  }
+  .cd-morph-dropdown .dropdown-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    will-change: transform, width, height;
+    -webkit-transition: visibility .3s;
+    transition: visibility .3s;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.08);
+  }
+  .no-csstransitions .cd-morph-dropdown .dropdown-list {
+    display: none;
+  }
+  .cd-morph-dropdown .dropdown-list::before {
+    /* dropdown top triangle */
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    right: auto;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    height: 0;
+    width: 0;
+    border: 8px solid transparent;
+    border-bottom-color: #FFFFFF;
+    opacity: 0;
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
+  }
+  .cd-morph-dropdown .dropdown-list > ul {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+  .cd-morph-dropdown.is-dropdown-visible .dropdown-list {
+    visibility: visible;
+    -webkit-transition: width .3s, height .3s, -webkit-transform .3s;
+    transition: width .3s, height .3s, -webkit-transform .3s;
+    transition: transform .3s, width .3s, height .3s;
+    transition: transform .3s, width .3s, height .3s, -webkit-transform .3s;
+  }
+  .cd-morph-dropdown.is-dropdown-visible .dropdown-list::before {
+    opacity: 1;
+  }
+  .cd-morph-dropdown .dropdown {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    visibility: hidden;
+    width: 100%;
+    -webkit-transition: opacity .3s, visibility .3s;
+    transition: opacity .3s, visibility .3s;
+  }
+  .cd-morph-dropdown .dropdown.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  .cd-morph-dropdown .dropdown.move-left .content {
+    -webkit-transform: translateX(-100px);
+        -ms-transform: translateX(-100px);
+            transform: translateX(-100px);
+  }
+  .cd-morph-dropdown .dropdown.move-right .content {
+    -webkit-transform: translateX(100px);
+        -ms-transform: translateX(100px);
+            transform: translateX(100px);
+  }
+  .cd-morph-dropdown .label {
+    /* hide the label on bigger devices */
+    display: none;
+  }
+  .cd-morph-dropdown .content {
+    padding: 2.2em 1.8em;
+    -webkit-transition: -webkit-transform .3s;
+    transition: -webkit-transform .3s;
+    transition: transform .3s;
+    transition: transform .3s, -webkit-transform .3s;
+    text-align: left;
+  }
+  .cd-morph-dropdown .content > ul::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+  .cd-morph-dropdown .content > ul > li {
+    width: 48%;
+    float: left;
+    margin-right: 4%;
+    margin-top: 0;
+  }
+  .cd-morph-dropdown .content > ul > li:nth-of-type(2n) {
+    margin-right: 0;
+  }
+  .cd-morph-dropdown .gallery .content {
+    /* you need to set a width for the .content elements because they have a position absolute */
+    width: 450px;
+    padding-bottom: .8em;
+  }
+  .cd-morph-dropdown .gallery .content li {
+    margin-bottom: 1.8em;
+  }
+  .cd-morph-dropdown .links .content > ul > li {
+    margin-top: 0;
+  }
+  .cd-morph-dropdown .links .content,
+  .cd-morph-dropdown .button .content {
+    width: 390px;
+  }
+  .cd-morph-dropdown .links-list a {
+    font-size: 14px;
+    margin-left: 0;
+  }
+  .cd-morph-dropdown .btn {
+    display: block;
+    width: 100%;
+    height: 35px;
+    margin: 1.5em 0 0;
+    font-size: 15px;
+    text-align: center;
+    color: #5bcaff;
+    line-height: 35px;
+    border:1px solid #5bcaff;
+    background: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-border-radius: 30px;
+-moz-border-radius: 30px;
+border-radius: 30px;
+    -webkit-transition: all 200ms linear;
+-moz-transition: all 200ms linear;
+-ms-transition: all 200ms linear;
+-o-transition: all 200ms linear;
+transition: all 200ms linear;
+  }
+  .cd-morph-dropdown .btn:hover {
+    background: #5bcaff;
+    color: #FFFFFF;
+  }
+  .cd-morph-dropdown .content h2 {
+    font-size: 14px;
+    text-transform: none;
+ text-transform:uppercase;
+  font-weight:bold;
+  letter-spacing:0.5px;
+    color: #5bcaff;
+    margin: 0 0 .6em;
+    
+  }
+  .cd-morph-dropdown .bg-layer {
+    /* morph dropdown background */
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 1px;
+    width: 1px;
+    border-radius:20px!important;
+    opacity: 0; 
+    -webkit-transition: opacity .3s;
+    transition: opacity .3s;
+    -webkit-transform-origin: top left;
+        -ms-transform-origin: top left;
+            transform-origin: top left;
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+  }
+  .cd-morph-dropdown.is-dropdown-visible .bg-layer {
+    opacity: 1;
+    -webkit-transition: opacity .3s, -webkit-transform .3s;
+    transition: opacity .3s, -webkit-transform .3s;
+    transition: transform .3s, opacity .3s;
+    transition: transform .3s, opacity .3s, -webkit-transform .3s;
+  }
+}
