@@ -84591,7 +84591,7 @@ $(function() {
     Move block one position up
   */
 
-  $('body').on('click', '.-lf-block-el-move-up', function() {
+  $('body').on('click', '.-lf-el-block-move-up', function() {
     var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
     var block_prev = $('.' + block_class).attr('data-lf-prev');
 
