@@ -211,6 +211,7 @@ gulp.task('scripts', function() {
       'bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js',
       'bower_components/hopscotch/dist/js/hopscotch.js',
       'bower_components/circliful/js/jquery.circliful.js',
+      'bower_components/jquery-throttle-debounce/jquery.ba-throttle-debounce.js',
 
       'bower_components/tinymce/tinymce.js',
       /*'bower_components/tinymce/plugins/** /*.js',*/

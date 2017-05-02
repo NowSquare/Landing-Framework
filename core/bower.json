@@ -38,6 +38,7 @@
     "bootstrap-timepicker": "^0.5.2",
     "hopscotch": "^0.2.7",
     "datatables-rowreorder": "^1.2.0",
-    "circliful": "^1.0.2"
+    "circliful": "^1.0.2",
+    "jquery-throttle-debounce": "*"
   }
 }
