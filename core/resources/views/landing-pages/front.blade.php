@@ -6,49 +6,13 @@
 
     <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
 
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/css/styles.editor.min.css') }}" />
-    <script src="{{ url('assets/js/scripts.editor.min.js') }}"></script>
+    <link id="editor_style" rel="stylesheet" type="text/css" href="{{ url('assets/css/styles.editor.min.css') }}" />
+    <script id="editor_scripts" src="{{ url('assets/js/scripts.editor.min.js') }}"></script>
 <script>
 
 </script>
 <style type="text/css">
-  .mce-edit-focus {
-    outline: 1px solid #0080FF !important;
-  }
 
-</style><style type="text/css">
-::-webkit-scrollbar {
-  width: 10px;
-  height: 2px;
-}
-::-webkit-scrollbar-button {
-  width: 0px;
-  height: 0px;
-}
-::-webkit-scrollbar-thumb {
-  background: #3c424e;
-  border: 0px none #ffffff;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #3c424e;
-}
-::-webkit-scrollbar-thumb:active {
-  background: #3c424e;
-}
-::-webkit-scrollbar-track {
-  background: #282c34;
-  border: 0px none #ffffff;
-  border-radius: 50px;
-}
-::-webkit-scrollbar-track:hover {
-  background: #282c34;
-}
-::-webkit-scrollbar-track:active {
-  background: #282c34;
-}
-::-webkit-scrollbar-corner {
-  background: transparent;
-}
 </style>
     <title>Editor</title>
 </head>
