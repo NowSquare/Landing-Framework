@@ -11,31 +11,51 @@ use Modules\LandingPages\Http\Models;
 class LandingPagesController extends Controller
 {
     /**
-     * Landing page home
+     * Landing page public home
      */
     public function homePage($local_domain, $edit = false)
     {
-        return view('landingpages::index');
-    }
-
-    /**
-     * Landing page editor
-     */
-    public function editor()
-    {
       $sl = request()->input('sl', '');
 
-      if($sl != '') {
-        $qs = Core\Secure::string2array($sl);
+      if(1==1 || $sl != '') {
+        //$qs = Core\Secure::string2array($sl);
         //$landing_site = Pages::where('user_id', Core\Secure::userId())->where('id', $qs['landing_site_id'])->first();
 
-        return view('landingpages::editor');
+        // Create a namespace for the templates/landingpages
+        // dir to easily access it.
+        view()->addNamespace('template', base_path('../templates/landingpages/'));
+
+        // Put template html into variable.
+        $template = view('template::_boilerplate.index');
+
+        // Suppress libxml errors
+        // Resolves an issue with some servers.
+        libxml_use_internal_errors(true);
+
+        // Create a new PHPQuery object to manipulate
+        // the DOM in a similar way as jQuery.
+        $dom = \phpQuery::newDocumentHTML($template);
+        \phpQuery::selectDocument($dom);
+
+        // Insert scripts right after last js include
+        // to make sure jQuery and Bootstrap 4 js are
+        // included in template, while inline <script>'s
+        // can safely run below.
+        pq('head')->find('script[src]:last')->after('<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
+        pq('head')->find('script[src]:last')->after('<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js') . '"></script>');
+
+        // End stylesheet right before </head> to make
+        // sure it overrides other stylesheets.
+        pq('head')->append('<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css') . '" />');
+
+        return $dom;
+      } else {
+        return view('landingpages::index');
       }
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Response
+     * Create a new landing page step 1
      */
     public function create()
     {
@@ -73,46 +93,26 @@ class LandingPagesController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
+     * Landing page editor
      */
-    public function store(Request $request)
+    public function editor()
     {
+      $sl = request()->input('sl', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        //$landing_site = Pages::where('user_id', Core\Secure::userId())->where('id', $qs['landing_site_id'])->first();
+
+        return view('landingpages::editor');
+      }
     }
 
     /**
-     * Show the specified resource.
-     * @return Response
+     * Editor modal to configure background (color, image)
      */
-    public function show()
+    public function editorModalBackground(Request $request)
     {
-        return view('landingpages::show');
+      return view('landingpages::modals.background');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('landingpages::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
-    }
 }

@@ -1,56 +1,54 @@
-$(function() {
-  $('#export_html').on('click', function() {
+function lf_getHtml() {
 
-    // Get a cloned version of the html object
-    var $html = $('html').clone();
+  // Get a cloned version of the html object
+  var $html = $('html').clone();
 
-    // Remove editor elements
-    $html.find('.-x-el-inline-button, .-x-editor-asset').remove();
+  // Remove editor elements
+  $html.find('.-x-el-inline-button, .-x-editor-asset').remove();
 
-    // Remove all classes starting with -x-data-
-    $html.find('[class*=-x-data-]').each(function() {
-      this.className = this.className.replace(/(^| )-x-data-[^ ]*/g, '');
+  // Remove all classes starting with -x-data-
+  $html.find('[class*=-x-data-]').each(function() {
+    this.className = this.className.replace(/(^| )-x-data-[^ ]*/g, '');
 
-      // Remove all attributes starting with 
-      removeAttributesStartingWith($(this), 'data-x-');
-    });
-
-    // Remove TinyMCE  style="position: relative;"
-    //$html.find('[class*=mce-]').each(function() {
-    //  $(this).attr('id', null);
-    //});
-
-    // Remove TinyMCE attributes
-    $html.find('[contenteditable]').attr('contenteditable', null);
-    $html.find('[spellcheck]').attr('spellcheck', null);
-
-    // Remove all TinyMCE classes starting with mce-
-    $html.find('[class*=mce-]').each(function() {
-      this.className = this.className.replace(/(^| )mce-[^ ]*/g, '');
-    });
-
-    // Remove attributes starting with data-mce
-    $html.find('div,span,img').each(function() {
-      removeAttributesStartingWith($(this), 'data-mce-');
-    });
-
-    // Remove TinyMCE ids + attributes starting with data-mce
-    $html.find('[id*=mce_]').each(function() {
-      $(this).attr('id', null);
-    });
-
-    /*$html.find('[id*=mce_]').attr('id', null);*/
-
-    // Remove TinyMCE style
-    $html.find('[id*=mceDefaultStyles]').remove();
-    $html.find('[id*=mce]').remove();
-
-    // Various
-    $html.find('[data-tether-id]').remove();
-
-    console.log($html.html());
+    // Remove all attributes starting with 
+    removeAttributesStartingWith($(this), 'data-x-');
   });
-});
+
+  // Remove TinyMCE  style="position: relative;"
+  //$html.find('[class*=mce-]').each(function() {
+  //  $(this).attr('id', null);
+  //});
+
+  // Remove TinyMCE attributes
+  $html.find('[contenteditable]').attr('contenteditable', null);
+  $html.find('[spellcheck]').attr('spellcheck', null);
+
+  // Remove all TinyMCE classes starting with mce-
+  $html.find('[class*=mce-]').each(function() {
+    this.className = this.className.replace(/(^| )mce-[^ ]*/g, '');
+  });
+
+  // Remove attributes starting with data-mce
+  $html.find('div,span,img').each(function() {
+    removeAttributesStartingWith($(this), 'data-mce-');
+  });
+
+  // Remove TinyMCE ids + attributes starting with data-mce
+  $html.find('[id*=mce_]').each(function() {
+    $(this).attr('id', null);
+  });
+
+  /*$html.find('[id*=mce_]').attr('id', null);*/
+
+  // Remove TinyMCE style
+  $html.find('[id*=mceDefaultStyles]').remove();
+  $html.find('[id*=mce]').remove();
+
+  // Various
+  $html.find('[data-tether-id]').remove();
+
+  console.log($html.html());
+}
 
 function removeAttributesStartingWith(target, starts_with) {
   var i,

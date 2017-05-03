@@ -10,5 +10,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'landingpages', 'namespace' => 
     Route::get('create', 'LandingPagesController@create');
     Route::get('editor', 'LandingPagesController@editor');
 
+    Route::get('editor/modal/background', 'LandingPagesController@editorModalBackground');
+
   });
 });

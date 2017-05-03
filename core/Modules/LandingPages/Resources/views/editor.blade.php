@@ -3,9 +3,7 @@
     background-color: #21252b;
   }
   .topbar-main {
- 
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.04), 0 1px 18px 0 rgba(0, 0, 0, 0.02), 0 3px 5px -1px rgba(0, 0, 0, 0.1);
-       /*border-bottom: 1px solid #282c34;*/
   }
   #editor_frame {
     display:block;
@@ -24,8 +22,6 @@
 </style>
 <iframe id="editor_frame" class="desktop_mode" src="{{ url('lp/1') }}" frameborder="0" allowtransparency="true" seamless></iframe>
 <script>
-
-
 $('#editor_frame').removeClass('desktop_mode tablet_mode phone_mode');
 $('#editor_frame').addClass($('#device_selector li.active').attr('id'));
 
