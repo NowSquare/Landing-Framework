@@ -369,7 +369,12 @@ gulp.task('copy', function(){
  */
 
 gulp.task('clean', function() {
-    return del(['../assets/css', '../assets/js', '../assets/images']);
+    return del([
+      '../assets/css/*.css', '!../assets/css/*.min.css',
+      '../assets/js/*.js', '!../assets/js/*.min.js'
+    ], {
+      force: true
+    });
 });
 
 /*
