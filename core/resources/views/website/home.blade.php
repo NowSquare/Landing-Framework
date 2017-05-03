@@ -15,32 +15,29 @@
   <link href="{{ asset('assets/css/styles.min.css') }}" rel="stylesheet">
   <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <!-- Scripts -->
-  <script src="{{ url('assets/js/modernizr.min.js') }}"></script>
+  <style type="text/css">
+  html, body {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    display: table;
+  }
 
-<style type="text/css">
-html, body {
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  display: table;
-}
+  #box {
+    display: table-cell;
+    vertical-align: middle;
+  }
 
-#box {
-  display: table-cell;
-  vertical-align: middle;
-}
+  #logo {
+    font-size: 5rem;
+  }
 
-#logo {
-  font-size: 5rem;
-}
-
-#logo i {
-  font-size: 5rem;
-  top: 6px;
-  position: relative;
-}
-</style>
+  #logo i {
+    font-size: 5rem;
+    top: 6px;
+    position: relative;
+  }
+  </style>
 
 </head>
 <body>
@@ -50,6 +47,6 @@ html, body {
   </div>
 
   <!-- Scripts -->
-  <script src="<?php echo (env('APP_DEBUG', false)) ? url('assets/js/scripts.js'): url('assets/js/scripts.min.js'); ?>"></script>
+  <script src="{{ url('assets/js/scripts.min.js') }}"></script>
 </body>
 </html>
