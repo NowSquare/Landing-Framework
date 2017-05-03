@@ -84470,14 +84470,14 @@ $(function() {
     Show dropdown on click
   */
   
-  $('body').on('click', '.-lf-el-inline-button-clone', function() {
-    var $block_edit_dropdown = $(this).find('.-lf-el-dropdown');
+  $('body').on('click', '.-x-el-inline-button-clone', function() {
+    var $block_edit_dropdown = $(this).find('.-x-el-dropdown');
 
     if (typeof $block_edit_dropdown !== typeof undefined && $block_edit_dropdown !== false) {
       $block_edit_dropdown.css('cssText', 'display: block !important;');
 
       // Set z-index of all buttons temporary to a high value
-      $(this).attr('data-lf-zIndex', $(this).css('z-index'));
+      $(this).attr('data-x-zIndex', $(this).css('z-index'));
       $(this).css('cssText', 'z-index: 1000000 !important;');
 
       // Reposition tethered elements because $block_settings.css('cssText', ...); seems to reset position
@@ -84491,23 +84491,23 @@ $(function() {
 
   var lfMouseLeaveDropDown;
 
-  $('body').on('mouseleave', '.-lf-el-dropdown', function() {
+  $('body').on('mouseleave', '.-x-el-dropdown', function() {
     var that = this;
 
     lfMouseLeaveDropDown = setTimeout( function(){
       $(that).css('cssText', 'display: none !important;');
 
       // Set z-index back to old value
-      var $button = $(that).parents('.-lf-el-inline-button-clone');
-      $button.css('cssText', 'z-index: ' + $button.attr('data-lf-zIndex') + ' !important;');
-      $button.attr('data-lf-zIndex', null);
+      var $button = $(that).parents('.-x-el-inline-button-clone');
+      $button.css('cssText', 'z-index: ' + $button.attr('data-x-zIndex') + ' !important;');
+      $button.attr('data-x-zIndex', null);
 
       // Reposition tethered elements because $block_settings.css('cssText', ...); seems to reset position
       Tether.position();
     }, 200);
   });
 
-  $('body').on('mouseenter', '.-lf-el-dropdown', function() {
+  $('body').on('mouseenter', '.-x-el-dropdown', function() {
     clearTimeout(lfMouseLeaveDropDown);
   });
 });
@@ -84519,19 +84519,19 @@ $(function() {
     link settings button with dropdown to block (Tether).
   */
 
-  $('.-lf-block').each(function() {
-    var $el = $('.-lf-el-block-edit').clone().appendTo('body');
+  $('.-x-block').each(function() {
+    var $el = $('.-x-el-block-edit').clone().appendTo('body');
 
     // Set unique class
     var timestamp = new Date().getTime();
-    var unique_class = '-lf-data-block-' + timestamp;
+    var unique_class = '-x-data-block-' + timestamp;
 
     $(this).addClass(unique_class);
-    $(this).attr('data-lf-el', unique_class);
-    $el.attr('data-lf-el', unique_class);
+    $(this).attr('data-x-el', unique_class);
+    $el.attr('data-x-el', unique_class);
 
     // Replace class so it won't be cloned in next loop
-    $el.removeClass('-lf-el-block-edit').addClass('-lf-el-block-edit-clone -lf-el-inline-button-clone');
+    $el.removeClass('-x-el-block-edit').addClass('-x-el-block-edit-clone -x-el-inline-button-clone');
 
     new Tether({
       element: $el,
@@ -84539,7 +84539,7 @@ $(function() {
       attachment: 'top left',
       offset: '-5px -5px',
       targetAttachment: 'top left',
-      classPrefix: '-lf-data',
+      classPrefix: '-x-data',
       constraints: [{
         to: 'scrollParent',
         attachment: 'together'
@@ -84558,11 +84558,11 @@ $(function() {
     open menu on click, etc.
   */
 /*
-  $('body').on('mouseenter', '.-lf-block', function() {
-    var block_class = $(this).attr('data-lf-el');
+  $('body').on('mouseenter', '.-x-block', function() {
+    var block_class = $(this).attr('data-x-el');
 
     if (typeof block_class !== typeof undefined && block_class !== false) {
-      var $block_settings = $('.-lf-block-edit-clone[data-lf-el=' + block_class + ']');
+      var $block_settings = $('.-x-block-edit-clone[data-x-el=' + block_class + ']');
       $block_settings.css('cssText', 'display: block !important;');
 
       // Reposition tethered elements because $block_settings.css('cssText', ...); seems to reset position
@@ -84570,13 +84570,13 @@ $(function() {
     }
   });
 
-  $('body').on('mouseleave', '.-lf-block', function() {
-    var isHovered = $(':hover').filter($('.-lf-block-edit-clone'));
+  $('body').on('mouseleave', '.-x-block', function() {
+    var isHovered = $(':hover').filter($('.-x-block-edit-clone'));
     if (isHovered.length == 0) {
-      var block_class = $(this).attr('data-lf-el');
+      var block_class = $(this).attr('data-x-el');
 
       if (typeof block_class !== typeof undefined && block_class !== false) {
-        var $block_settings = $('.-lf-block-edit-clone[data-lf-el=' + block_class + ']');
+        var $block_settings = $('.-x-block-edit-clone[data-x-el=' + block_class + ']');
         $block_settings.css('cssText', 'display: none !important;');
 
         // Reposition tethered elements because $block_settings.css('cssText', ...); seems to reset position
@@ -84591,9 +84591,9 @@ $(function() {
     Move block one position up
   */
 
-  $('body').on('click', '.-lf-el-block-move-up', function() {
-    var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
-    var block_prev = $('.' + block_class).attr('data-lf-prev');
+  $('body').on('click', '.-x-el-block-move-up', function() {
+    var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
+    var block_prev = $('.' + block_class).attr('data-x-prev');
 
     if (typeof block_prev !== typeof undefined && block_prev !== false && typeof block_class !== typeof undefined && block_class !== false) {
       lf_SwapElements($('.' + block_prev)[0], $('.' + block_class)[0]);
@@ -84607,9 +84607,9 @@ $(function() {
     Move block one position down
   */
 
-  $('body').on('click', '.-lf-el-block-move-down', function() {
-    var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
-    var block_next = $('.' + block_class).attr('data-lf-next');
+  $('body').on('click', '.-x-el-block-move-down', function() {
+    var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
+    var block_next = $('.' + block_class).attr('data-x-next');
 
     if (typeof block_next !== typeof undefined && block_next !== false && typeof block_class !== typeof undefined && block_class !== false) {
       lf_SwapElements($('.' + block_class)[0], $('.' + block_next)[0]);
@@ -84623,15 +84623,15 @@ $(function() {
     Delete block
   */
 
-  $('body').on('click', '.-lf-el-block-edit-delete', function() {
-    var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
+  $('body').on('click', '.-x-el-block-edit-delete', function() {
+    var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
 
     if (typeof block_class !== typeof undefined && block_class !== false) {
-      $('.-lf-el-block-edit-clone[data-lf-el=' + block_class + ']').remove();
+      $('.-x-el-block-edit-clone[data-x-el=' + block_class + ']').remove();
       $('.' + block_class).remove();
 
       // Delete other elements
-      $('[data-lf-parent-block=' + block_class + ']').each(function() {
+      $('[data-x-parent-block=' + block_class + ']').each(function() {
         $(this).remove();
       });
 
@@ -84644,8 +84644,8 @@ $(function() {
     Duplicate block
   */
 
-  $('body').on('click', '.-lf-el-block-edit-duplicate', function() {
-    var block_class = $(this).parents('.-lf-el-block-edit-clone').attr('data-lf-el');
+  $('body').on('click', '.-x-el-block-edit-duplicate', function() {
+    var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
 
     if (typeof block_class !== typeof undefined && block_class !== false) {
       var timestamp = new Date().getTime();
@@ -84653,12 +84653,12 @@ $(function() {
       // Clone block and replace with new class
       var $new_block = $('.' + block_class).clone().insertAfter('.' + block_class);
       $new_block.removeClass(block_class);
-      $new_block.addClass('-lf-data-block-' + timestamp);
-      $new_block.attr('data-lf-el', '-lf-data-block-' + timestamp);
+      $new_block.addClass('-x-data-block-' + timestamp);
+      $new_block.attr('data-x-el', '-x-data-block-' + timestamp);
 
       // Settings
-      var $new_block_settings = $('.-lf-el-block-edit-clone[data-lf-el=' + block_class + ']').clone().insertAfter('.-lf-el-block-edit-clone[data-lf-el=' + block_class + ']');
-      $new_block_settings.attr('data-lf-el', '-lf-data-block-' + timestamp);
+      var $new_block_settings = $('.-x-el-block-edit-clone[data-x-el=' + block_class + ']').clone().insertAfter('.-x-el-block-edit-clone[data-x-el=' + block_class + ']');
+      $new_block_settings.attr('data-x-el', '-x-data-block-' + timestamp);
 
       new Tether({
         element: $new_block_settings,
@@ -84666,7 +84666,7 @@ $(function() {
         attachment: 'top left',
         offset: '-5px -5px',
         targetAttachment: 'top left',
-        classPrefix: '-lf-data',
+        classPrefix: '-x-data',
         constraints: [{
           to: 'scrollParent',
           attachment: 'together'
@@ -84698,37 +84698,37 @@ $(function() {
 function lf_ParseBlocks(init) {
   var zIndex = 200;
   
-  $('.-lf-block').each(function() {
-    var block_class = $(this).attr('data-lf-el');
-    var $block_settings = $('.-lf-el-block-edit-clone[data-lf-el=' + block_class + ']');
+  $('.-x-block').each(function() {
+    var block_class = $(this).attr('data-x-el');
+    var $block_settings = $('.-x-el-block-edit-clone[data-x-el=' + block_class + ']');
 
     // Check if block is first
-    var prev = $('.' + block_class).prevAll('.-lf-block').first();
+    var prev = $('.' + block_class).prevAll('.-x-block').first();
     var first = ! prev.length;
 
     if (first) {
-      $block_settings.find('.-lf-el-block-move-up').addClass('-lf-el-disabled');
-      $('.' + block_class).attr('data-lf-prev', null);
+      $block_settings.find('.-x-el-block-move-up').addClass('-x-el-disabled');
+      $('.' + block_class).attr('data-x-prev', null);
     } else {
-      $block_settings.find('.-lf-el-block-move-up').removeClass('-lf-el-disabled');
-      $('.' + block_class).attr('data-lf-prev', prev.attr('data-lf-el'));
+      $block_settings.find('.-x-el-block-move-up').removeClass('-x-el-disabled');
+      $('.' + block_class).attr('data-x-prev', prev.attr('data-x-el'));
     }
 
     // Check if block is last
-    var next = $('.' + block_class).nextAll('.-lf-block').first();
+    var next = $('.' + block_class).nextAll('.-x-block').first();
     var last = ! next.length;
 
     if (last) {
-      $block_settings.find('.-lf-el-block-move-down').addClass('-lf-el-disabled');
-      $('.' + block_class).attr('data-lf-next', null);
+      $block_settings.find('.-x-el-block-move-down').addClass('-x-el-disabled');
+      $('.' + block_class).attr('data-x-next', null);
     } else {
-      $block_settings.find('.-lf-el-block-move-down').removeClass('-lf-el-disabled');
-      $('.' + block_class).attr('data-lf-next', next.attr('data-lf-el'));
+      $block_settings.find('.-x-el-block-move-down').removeClass('-x-el-disabled');
+      $('.' + block_class).attr('data-x-next', next.attr('data-x-el'));
     }
 
     // Set z-index to prevent overlapping of dropdown menus
     $block_settings.css('cssText', 'z-index: ' + zIndex + ' !important;');
-    $block_settings.find('.-lf-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
+    $block_settings.find('.-x-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
     zIndex--;
   });
 
@@ -84746,7 +84746,7 @@ $(function() {
     link settings button with dropdown to image (Tether).
   */
 
-  $('.-lf-img').each(function() {
+  $('.-x-img').each(function() {
     // Attribute settings
     var attachment = $(this).attr('data-attachment');
     attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
@@ -84757,21 +84757,21 @@ $(function() {
     var offset = $(this).attr('data-offset');
     offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
 
-    var $el = $('.-lf-el-img-edit').clone().appendTo('body');
+    var $el = $('.-x-el-img-edit').clone().appendTo('body');
 
     // Set unique class
     var timestamp = new Date().getTime();
-    var unique_class = '-lf-data-img-' + timestamp;
+    var unique_class = '-x-data-img-' + timestamp;
 
     $(this).addClass(unique_class);
-    $(this).attr('data-lf-el', unique_class);
-    $el.attr('data-lf-el', unique_class);
+    $(this).attr('data-x-el', unique_class);
+    $el.attr('data-x-el', unique_class);
 
     // Set reference to parent block
-    $el.attr('data-lf-parent-block', $(this).parents('.-lf-block').attr('data-lf-el'));
+    $el.attr('data-x-parent-block', $(this).parents('.-x-block').attr('data-x-el'));
 
     // Replace class so it won't be cloned in next loop
-    $el.removeClass('-lf-el-img-edit').addClass('-lf-el-img-edit-clone -lf-el-inline-button-clone');
+    $el.removeClass('-x-el-img-edit').addClass('-x-el-img-edit-clone -x-el-inline-button-clone');
 
     new Tether({
       element: $el,
@@ -84779,7 +84779,7 @@ $(function() {
       attachment: attachment,
       offset: offset,
       targetAttachment: targetAttachment,
-      classPrefix: '-lf-data',
+      classPrefix: '-x-data',
       constraints: [{
         to: 'scrollParent',
         attachment: 'together'
@@ -84800,10 +84800,10 @@ $(function() {
 
 function lf_DuplicateBlockImages($new_block) {
   // Loop through all images in new block
-  $new_block.find('.-lf-img').each(function() {
+  $new_block.find('.-x-img').each(function() {
     var timestamp = new Date().getTime();
     var $new_img = $(this);
-    var img_class = $new_img.attr('data-lf-el');
+    var img_class = $new_img.attr('data-x-el');
 
     if (typeof img_class !== typeof undefined && img_class !== false) {
       // Attribute settings
@@ -84818,12 +84818,12 @@ function lf_DuplicateBlockImages($new_block) {
 
       // Clone img and replace with new class
       $new_img.removeClass(img_class);
-      $new_img.addClass('-lf-data-img-' + timestamp);
-      $new_img.attr('data-lf-el', '-lf-data-img-' + timestamp);
+      $new_img.addClass('-x-data-img-' + timestamp);
+      $new_img.attr('data-x-el', '-x-data-img-' + timestamp);
 
       // Settings
-      var $new_img_settings = $('.-lf-el-img-edit-clone[data-lf-el=' + img_class + ']').clone().insertAfter('.-lf-el-img-edit-clone[data-lf-el=' + img_class + ']');
-      $new_img_settings.attr('data-lf-el', '-lf-data-img-' + timestamp);
+      var $new_img_settings = $('.-x-el-img-edit-clone[data-x-el=' + img_class + ']').clone().insertAfter('.-x-el-img-edit-clone[data-x-el=' + img_class + ']');
+      $new_img_settings.attr('data-x-el', '-x-data-img-' + timestamp);
 
       new Tether({
         element: $new_img_settings,
@@ -84831,7 +84831,7 @@ function lf_DuplicateBlockImages($new_block) {
         attachment: attachment,
         offset: offset,
         targetAttachment: targetAttachment,
-        classPrefix: '-lf-data',
+        classPrefix: '-x-data',
         constraints: [{
           to: 'scrollParent',
           attachment: 'together'
@@ -84857,13 +84857,13 @@ function lf_DuplicateBlockImages($new_block) {
 function lf_ParseImages(init) {
   var zIndex = 100;
   
-  $('.-lf-img').each(function() {
-    var img_class = $(this).attr('data-lf-el');
-    var $img_settings = $('.-lf-el-img-edit-clone[data-lf-el=' + img_class + ']');
+  $('.-x-img').each(function() {
+    var img_class = $(this).attr('data-x-el');
+    var $img_settings = $('.-x-el-img-edit-clone[data-x-el=' + img_class + ']');
 
     // Set z-index to prevent overlapping of dropdown menus
     $img_settings.css('cssText', 'z-index: ' + zIndex + ' !important;');
-    $img_settings.find('.-lf-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
+    $img_settings.find('.-x-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
     zIndex--;
   });
 
@@ -84878,12 +84878,12 @@ $(function() {
     // Get a cloned version of the html object
     var $html = $('html').clone();
 
-    // Remove all classes starting with -lf-data-
-    $html.find('[class*=-lf-data-]').each(function() {
+    // Remove all classes starting with -x-data-
+    $html.find('[class*=-x-data-]').each(function() {
       this.className = this.className.replace(/(^| )-lf[^ ]*/g, '');
 
       // Remove all attributes starting with 
-      removeAttributesStartingWith($(this), 'data-lf-');
+      removeAttributesStartingWith($(this), 'data-x-');
     });
 
     console.log($html.html());

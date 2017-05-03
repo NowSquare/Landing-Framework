@@ -4,12 +4,12 @@ $(function() {
     // Get a cloned version of the html object
     var $html = $('html').clone();
 
-    // Remove all classes starting with -lf-data-
-    $html.find('[class*=-lf-data-]').each(function() {
+    // Remove all classes starting with -x-data-
+    $html.find('[class*=-x-data-]').each(function() {
       this.className = this.className.replace(/(^| )-lf[^ ]*/g, '');
 
       // Remove all attributes starting with 
-      removeAttributesStartingWith($(this), 'data-lf-');
+      removeAttributesStartingWith($(this), 'data-x-');
     });
 
     console.log($html.html());

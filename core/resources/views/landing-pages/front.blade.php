@@ -38,7 +38,7 @@ $(function() {
     link settings link with dropdown to link (Tether).
   */
 
-  $('.-lf-link').each(function() {
+  $('.-x-link').each(function() {
     // Attribute settings
     var attachment = $(this).attr('data-attachment');
     attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
@@ -49,21 +49,21 @@ $(function() {
     var offset = $(this).attr('data-offset');
     offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px 0';
 
-    var $el = $('.-lf-el-link-edit').clone().appendTo('body');
+    var $el = $('.-x-el-link-edit').clone().appendTo('body');
 
     // Set unique class
     var timestamp = new Date().getTime();
-    var unique_class = '-lf-data-link-' + timestamp;
+    var unique_class = '-x-data-link-' + timestamp;
 
     $(this).addClass(unique_class);
-    $(this).attr('data-lf-el', unique_class);
-    $el.attr('data-lf-el', unique_class);
+    $(this).attr('data-x-el', unique_class);
+    $el.attr('data-x-el', unique_class);
 
     // Set reference to parent block
-    $el.attr('data-lf-parent-block', $(this).parents('.-lf-block').attr('data-lf-el'));
+    $el.attr('data-x-parent-block', $(this).parents('.-x-block').attr('data-x-el'));
 
     // Replace class so it won't be cloned in next loop
-    $el.removeClass('-lf-el-link-edit').addClass('-lf-el-link-edit-clone -lf-el-inline-button-clone');
+    $el.removeClass('-x-el-link-edit').addClass('-x-el-link-edit-clone -x-el-inline-button-clone');
 
     new Tether({
       element: $el,
@@ -71,7 +71,7 @@ $(function() {
       attachment: attachment,
       offset: offset,
       targetAttachment: targetAttachment,
-      classPrefix: '-lf-data',
+      classPrefix: '-x-data',
       constraints: [{
         to: 'scrollParent',
         attachment: 'together'
@@ -92,10 +92,10 @@ $(function() {
 
 function lf_DuplicateBlockLinks($new_block) {
   // Loop through all links in new block
-  $new_block.find('.-lf-link').each(function() {
+  $new_block.find('.-x-link').each(function() {
     var timestamp = new Date().getTime();
     var $new_btn = $(this);
-    var btn_class = $new_btn.attr('data-lf-el');
+    var btn_class = $new_btn.attr('data-x-el');
 
     if (typeof btn_class !== typeof undefined && btn_class !== false) {
       // Attribute settings
@@ -110,12 +110,12 @@ function lf_DuplicateBlockLinks($new_block) {
 
       // Clone btn and replace with new class
       $new_btn.removeClass(btn_class);
-      $new_btn.addClass('-lf-data-link-' + timestamp);
-      $new_btn.attr('data-lf-el', '-lf-data-link-' + timestamp);
+      $new_btn.addClass('-x-data-link-' + timestamp);
+      $new_btn.attr('data-x-el', '-x-data-link-' + timestamp);
 
       // Settings
-      var $new_btn_settings = $('.-lf-el-link-edit-clone[data-lf-el=' + btn_class + ']').clone().insertAfter('.-lf-el-link-edit-clone[data-lf-el=' + btn_class + ']');
-      $new_btn_settings.attr('data-lf-el', '-lf-data-link-' + timestamp);
+      var $new_btn_settings = $('.-x-el-link-edit-clone[data-x-el=' + btn_class + ']').clone().insertAfter('.-x-el-link-edit-clone[data-x-el=' + btn_class + ']');
+      $new_btn_settings.attr('data-x-el', '-x-data-link-' + timestamp);
 
       new Tether({
         element: $new_btn_settings,
@@ -123,7 +123,7 @@ function lf_DuplicateBlockLinks($new_block) {
         attachment: attachment,
         offset: offset,
         targetAttachment: targetAttachment,
-        classPrefix: '-lf-data',
+        classPrefix: '-x-data',
         constraints: [{
           to: 'scrollParent',
           attachment: 'together'
@@ -149,13 +149,13 @@ function lf_DuplicateBlockLinks($new_block) {
 function lf_ParseLinks(init) {
   var zIndex = 200;
   
-  $('.-lf-link').each(function() {
-    var btn_class = $(this).attr('data-lf-el');
-    var $btn_settings = $('.-lf-el-link-edit-clone[data-lf-el=' + btn_class + ']');
+  $('.-x-link').each(function() {
+    var btn_class = $(this).attr('data-x-el');
+    var $btn_settings = $('.-x-el-link-edit-clone[data-x-el=' + btn_class + ']');
 
     // Set z-index to prevent overlapping of dropdown menus
     $btn_settings.css('cssText', 'z-index: ' + zIndex + ' !important;');
-    $btn_settings.find('.-lf-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
+    $btn_settings.find('.-x-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
     zIndex--;
   });
 
@@ -171,71 +171,103 @@ function lf_ParseLinks(init) {
     outline: 1px solid #0080FF !important;
   }
 
+</style><style type="text/css">
+::-webkit-scrollbar {
+  width: 10px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #3c424e;
+  border: 0px none #ffffff;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3c424e;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #3c424e;
+}
+::-webkit-scrollbar-track {
+  background: #282c34;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #282c34;
+}
+::-webkit-scrollbar-track:active {
+  background: #282c34;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
 </style>
     <title>Editor</title>
 </head>
 <body>
 
-<button type="button" id="export_html">Export HTML</button>
 
-<div class="-lf-el-inline-button -lf-el-block-edit -lf-el-reset">
-  <img src="{{ url('assets/images/editor/icons/settings.svg') }}" class="-lf-el-icon"
+<div class="-x-el-inline-button -x-el-block-edit -x-el-reset">
+  <img src="{{ url('assets/images/editor/icons/settings.svg') }}" class="-x-el-icon"
     onMouseOver="this.src = '{{ url('assets/images/editor/icons/settings-hover.svg') }}';"
     onMouseOut="this.src = '{{ url('assets/images/editor/icons/settings.svg') }}';"
   >
-  <ul class="-lf-el-dropdown -lf-el-reset">
-    <li class="-lf-el-block-background"><a href="javascript:void(0);">Background</a></li>
+  <ul class="-x-el-dropdown -x-el-reset">
+    <li class="-x-el-block-background"><a href="javascript:void(0);">Background</a></li>
     <li class="separator"><hr></li>
-    <li class="-lf-el-block-move"><a href="javascript:void(0);">Move <div class="-lf-el-caret"></div></a>
+    <li class="-x-el-block-move"><a href="javascript:void(0);">Move <div class="-x-el-caret"></div></a>
       <ul>
-        <li class="-lf-el-block-move-up"><a href="javascript:void(0);">Move up</a></li>
-        <li class="-lf-el-block-move-down"><a href="javascript:void(0);">Move down</a></li>
+        <li class="-x-el-block-move-up"><a href="javascript:void(0);">Move up</a></li>
+        <li class="-x-el-block-move-down"><a href="javascript:void(0);">Move down</a></li>
       </ul>
     </li>
-    <li class="-lf-el-block-insert"><a href="javascript:void(0);">Insert <div class="-lf-el-caret"></div></a>
+    <li class="-x-el-block-insert"><a href="javascript:void(0);">Insert <div class="-x-el-caret"></div></a>
       <ul>
-        <li class="-lf-el-block-insert-above"><a href="javascript:void(0);">Above</a></li>
-        <li class="-lf-el-block-insert-below"><a href="javascript:void(0);">Below</a></li>
+        <li class="-x-el-block-insert-above"><a href="javascript:void(0);">Above</a></li>
+        <li class="-x-el-block-insert-below"><a href="javascript:void(0);">Below</a></li>
       </ul>
     </li>
-    <li class="-lf-el-block-edit-menu"><a href="javascript:void(0);">Edit <div class="-lf-el-caret"></div></a>
+    <li class="-x-el-block-edit-menu"><a href="javascript:void(0);">Edit <div class="-x-el-caret"></div></a>
       <ul>
-        <li class="-lf-el-block-edit-duplicate"><a href="javascript:void(0);">Duplicate</a></li>
-        <li class="-lf-el-block-edit-delete"><a href="javascript:void(0);">Delete</a></li>
+        <li class="-x-el-block-edit-duplicate"><a href="javascript:void(0);">Duplicate</a></li>
+        <li class="-x-el-block-edit-delete"><a href="javascript:void(0);">Delete</a></li>
       </ul>
     </li>
   </ul>
 </div>
 
-<div class="-lf-el-inline-button -lf-el-img-edit -lf-el-reset">
-  <img src="{{ url('assets/images/editor/icons/image.svg') }}" class="-lf-el-icon"
+<div class="-x-el-inline-button -x-el-img-edit -x-el-reset">
+  <img src="{{ url('assets/images/editor/icons/image.svg') }}" class="-x-el-icon"
     onMouseOver="this.src = '{{ url('assets/images/editor/icons/image-hover.svg') }}';"
     onMouseOut="this.src = '{{ url('assets/images/editor/icons/image.svg') }}';"
   >
-  <ul class="-lf-el-dropdown -lf-el-reset">
-    <li class="-lf-el-img-select"><a href="javascript:void(0);">Browse...</a></li>
-    <li class="-lf-el-img-link"><a href="javascript:void(0);">Link...</a></li>
+  <ul class="-x-el-dropdown -x-el-reset">
+    <li class="-x-el-img-select"><a href="javascript:void(0);">Browse...</a></li>
+    <li class="-x-el-img-link"><a href="javascript:void(0);">Link...</a></li>
     <li class="separator"><hr></li>
-    <li class="-lf-el-img-hide"><a href="javascript:void(0);">Hide image</a></li>
+    <li class="-x-el-img-hide"><a href="javascript:void(0);">Hide image</a></li>
   </ul>
 </div>
 
-<div class="-lf-el-inline-button -lf-el-link-edit -lf-el-reset">
-  <img src="{{ url('assets/images/editor/icons/link.svg') }}" class="-lf-el-icon"
+<div class="-x-el-inline-button -x-el-link-edit -x-el-reset">
+  <img src="{{ url('assets/images/editor/icons/link.svg') }}" class="-x-el-icon"
     onMouseOver="this.src = '{{ url('assets/images/editor/icons/link-hover.svg') }}';"
     onMouseOut="this.src = '{{ url('assets/images/editor/icons/link.svg') }}';"
   >
-  <ul class="-lf-el-dropdown -lf-el-reset">
-    <li class="-lf-el-link-link"><a href="javascript:void(0);">Link...</a></li>
+  <ul class="-x-el-dropdown -x-el-reset">
+    <li class="-x-el-link-link"><a href="javascript:void(0);">Link...</a></li>
   </ul>
 </div>
 
-<div class="container" id="page">
+<div class="container2" id="page">
         <!-- Header dark, text left, visual right
   ================================================== -->
-<section class="typography-1 -lf-block">
-  <div class="header text-light img-bottom-lg -lf-block-bg-img" style="background-image:url('assets/bs4/images/headers/landscape-mountains-nature-sky.jpg')">
-    <div id="particles-js-connect" class="header-overlay -lf-block-bg-color" style="background-color:rgba(37,75,98,0.7)">
+<section class="typography-1 -x-block">
+  <div class="header text-light img-bottom-lg -x-block-bg-img" style="background-image:url('assets/bs4/images/headers/landscape-mountains-nature-sky.jpg')">
+    <div id="particles-js-connect" class="header-overlay -x-block-bg-color" style="background-color:rgba(37,75,98,0.7)">
       <div class="container">
         <div class="header-padding no-padding-b">
           <div class="row">
@@ -253,14 +285,15 @@ function lf_ParseLinks(init) {
           <div class="row">
             <div class="col-sm-12 col-md-6 editable">
               <h1 class="display-2 text-md-left my-3 no-margin-smb">Creative<br>Studio</h1>
-              <p class="lead">We help entrepreneurs achieving their goal faster with <span class="typed" data-text="['development', 'marketing', 'design']"></span>.</p>
+              <p class="lead">We help entrepreneurs achieving their goal faster.</p>
               <div class="btn-container my-3 btn-stack-lg">
-                <a class="btn btn-outline-ghost btn-xlg btn-pill -lf-link" href="#" role="button">Contact Us</a>
+                <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">Contact Us</a>
+<button type="button" id="export_html">Export HTML</button>
               </div>
             </div>
             <!-- /.col -->
             <div class="col-sm-12 col-md-6 push-lg-1 col-lg-5 text-xs-center text-md-right img-container my-2">
-              <img src="assets/bs4/images/visuals/iWatch-White-2.png" alt="" class="-lf-img img-fluid">
+              <img src="assets/bs4/images/visuals/iWatch-White-2.png" alt="" class="-x-img img-fluid">
             </div>
             <!-- /.col -->
           </div>
@@ -276,10 +309,10 @@ function lf_ParseLinks(init) {
 </section>
 
 
-    <section class="typography-1 -lf-block">
+    <section class="typography-1 -x-block">
       <nav class="navbar navbar-dark bg-inverse">
         <div class="container editable">
-            <a class="navbar-brand" href="#" target="_blank"><img src="assets/bs4/images/logos/ns-light.svg" class="-lf-img" data-offset="10px 10px" alt="" style="height:42px"></a>
+            <a class="navbar-brand" href="#" target="_blank"><img src="assets/bs4/images/logos/ns-light.svg" class="-x-img" data-offset="10px 10px" alt="" style="height:42px"></a>
             <button class="navbar-toggler pull-right hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsingNavbarGlobal" aria-controls="collapsingNavbarGlobal" aria-expanded="false" aria-label="Toggle navigation">
               &#9776;
             </button>
@@ -297,13 +330,13 @@ function lf_ParseLinks(init) {
       </nav>
     </section>
 
-    <section class="-lf-block">
+    <section class="-x-block">
       <div class="content text-light">
         <div class="content-overlay polygon-bg" data-color-bg="47306b" data-color-light="57407d" style="background-color:#503778">
           <div class="container">
             <div class="row">
               <div class="col-md-12 editable">
-                <h1><a href="index.html" style="color: #ccc" class="-lf-link">Home</a> &rsaquo; Content</h1>
+                <h1><a href="index.html" style="color: #ccc" class="-x-link">Home</a> &rsaquo; Content</h1>
               </div>
             </div>
           </div>
@@ -315,7 +348,7 @@ function lf_ParseLinks(init) {
 
     <!-- Callout, left aligned text, call to action right, dark background
       ================================================== -->
-    <section class="typography-1 -lf-block">
+    <section class="typography-1 -x-block">
       <div class="content text-light">
         <div class="content-overlay polygon-bg" data-color-bg="111111" data-color-light="cccccc">
           <div class="container">
@@ -342,9 +375,9 @@ function lf_ParseLinks(init) {
 
     <!-- Callout, left aligned text, call to action right, light background
       ================================================== -->
-    <section class="typography-2 -lf-block">
-      <div class="content -lf-block-bg-img" style="background-image:url()">
-        <div class="content-overlay -lf-block-bg-color" style="background-color:rgba(0,0,0,0.15)">
+    <section class="typography-2 -x-block">
+      <div class="content -x-block-bg-img" style="background-image:url()">
+        <div class="content-overlay -x-block-bg-color" style="background-color:rgba(0,0,0,0.15)">
           <div class="container">
             <div class="row">
               <div class="col-md-8">
@@ -370,7 +403,7 @@ function lf_ParseLinks(init) {
 
     <!-- Callout, left aligned text, call to action right, dark background
       ================================================== -->
-    <section class="typography-2 -lf-block">
+    <section class="typography-2 -x-block">
       <div class="content text-light" style="background-image:url(assets/bs4/images/headers/bokeh-blurred-blurry-lights.jpg)">
         <div class="content-overlay" style="background-color:rgba(0,0,0,0.85)">
           <div class="container">
@@ -398,7 +431,7 @@ function lf_ParseLinks(init) {
 
     <!-- Callout, centered text, call to action center, light background
       ================================================== -->
-    <section class="typography-1 -lf-block">
+    <section class="typography-1 -x-block">
       <div class="content" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(0,0,0,0.15)">
           <div class="container">
@@ -423,14 +456,14 @@ function lf_ParseLinks(init) {
 
     <!-- Photo on the right with lightbox, light background, text aligned left
       ================================================== -->
-    <section class="typography-1 -lf-block">
+    <section class="typography-1 -x-block">
       <div class="content" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
             <div class="row">
               <div class="col-md-5 push-md-7">
                 <!-- image -->
-                <a href="assets/bs4/images/photos/laptop-technology-ipad-tablet.jpg" data-toggle="lightbox"><img src="assets/bs4/images/photos/laptop-technology-ipad-tablet.jpg" alt="" class="-lf-img img-fluid mdl-shadow--8dp"></a>
+                <a href="assets/bs4/images/photos/laptop-technology-ipad-tablet.jpg" data-toggle="lightbox"><img src="assets/bs4/images/photos/laptop-technology-ipad-tablet.jpg" alt="" class="-x-img img-fluid mdl-shadow--8dp"></a>
               </div>
               <!-- /.col -->
               <div class="col-md-7 pull-md-5">
@@ -462,14 +495,14 @@ function lf_ParseLinks(init) {
 
     <!-- Visual right, text aligned right
       ================================================== -->
-    <section class="typography-1 -lf-block">
+    <section class="typography-1 -x-block">
       <div class="content content-padding-l" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
             <div class="row">
               <div class="col-md-6 push-md-6">
                 <!-- image -->
-                <img src="assets/bs4/images/visuals/iPhone-6S---isometric-view-right.png" alt="" class="-lf-img img-fluid">
+                <img src="assets/bs4/images/visuals/iPhone-6S---isometric-view-right.png" alt="" class="-x-img img-fluid">
               </div>
               <!-- /.col -->
               <div class="col-md-6 pull-md-6 text-xs-center text-md-right">
@@ -495,7 +528,7 @@ function lf_ParseLinks(init) {
 
     <!-- Visual center, text left and right
       ================================================== -->
-    <section class="typography-1 -lf-block">
+    <section class="typography-1 -x-block">
       <div class="content content-padding-l" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
@@ -519,7 +552,7 @@ function lf_ParseLinks(init) {
               <!-- /.col -->
               <div class="col-sm-12 col-md-4">
                 <!-- image -->
-                <img src="assets/bs4/images/visuals/iPhone-6-4,7-inch-Mockup.png" alt="" class="-lf-img img-fluid">
+                <img src="assets/bs4/images/visuals/iPhone-6-4,7-inch-Mockup.png" alt="" class="-x-img img-fluid">
               </div>
               <!-- /.col -->
               <div class="col-sm-12 col-md-4 text-xs-center text-lg-left mt-3 no-margin-md-t">
@@ -551,14 +584,14 @@ function lf_ParseLinks(init) {
 
     <!-- One column with responsive image on top
       ================================================== -->
-    <section class="typography-1 -lf-block">
+    <section class="typography-1 -x-block">
       <div class="content content-padding-l" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
             <div class="row">
               <div class="col-xs-6 push-xs-3 col-sm-4 push-sm-4 col-md-4 push-md-4 col-xl-4 push-xl-4 text-xs-center">
                 <!-- image -->
-                <img src="assets/bs4/images/icons/biotech.svg" alt="" class="-lf-img img-fluid">
+                <img src="assets/bs4/images/icons/biotech.svg" alt="" class="-x-img img-fluid">
               </div>
               <!-- /.col -->
             </div>
@@ -585,7 +618,7 @@ function lf_ParseLinks(init) {
 
     <!-- Two columns with responsive image on top
       ================================================== -->
-    <section class="typography-1 -lf-block">
+    <section class="typography-1 -x-block">
       <div class="content content-padding-l" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
@@ -594,7 +627,7 @@ function lf_ParseLinks(init) {
                 <div class="row">
                   <div class="col-xs-12 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-xs-center">
                     <!-- image -->
-                    <img src="assets/bs4/images/icons/assistant.svg" alt="" class="-lf-img img-fluid">
+                    <img src="assets/bs4/images/icons/assistant.svg" alt="" class="-x-img img-fluid">
                   </div>
                   <!-- /.col -->
                   <div class="col-xs-12">
@@ -614,7 +647,7 @@ function lf_ParseLinks(init) {
                 <div class="row">
                   <div class="col-xs-12 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-xs-center">
                     <!-- image -->
-                    <img src="assets/bs4/images/icons/landscape.svg" alt="" class="-lf-img img-fluid">
+                    <img src="assets/bs4/images/icons/landscape.svg" alt="" class="-x-img img-fluid">
                   </div>
                   <!-- /.col -->
                   <div class="col-xs-12">
@@ -641,7 +674,7 @@ function lf_ParseLinks(init) {
 
     <!-- Three columns with responsive image on top
       ================================================== -->
-    <section class="typography-1 -lf-block">
+    <section class="typography-1 -x-block">
       <div class="content content-padding-l" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">

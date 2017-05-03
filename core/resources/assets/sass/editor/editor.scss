@@ -7,14 +7,14 @@ $mdl-shadow--6dp: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0
 $mdl-shadow--8dp: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2) !default;
 $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2) !default;
 
-.-lf-el-inline-button {
+.-x-el-inline-button {
   width: 20px !important;
   height: 20px !important;
   position: absolute !important;
   z-index: 90000 !important;
   display: none !important;
 
-  img.-lf-el-icon {
+  img.-x-el-icon {
     width: 20px !important;
     height: 20px !important;
     vertical-align: top !important;
@@ -24,16 +24,16 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
     box-shadow: $mdl-shadow--2dp !important;
   }
 
-  &:hover .-lf-el-dropdown {
+  &:hover .-x-el-dropdown {
     /*display: block !important;*/
   }
 }
 
-.-lf-el-inline-button-clone {
+.-x-el-inline-button-clone {
   display: block !important;
 }
 
-.-lf-el-dropdown {
+.-x-el-dropdown {
   &, ul {
     top: 0 !important;
     position: absolute !important;
@@ -84,7 +84,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
       display: block !important;
     }
 
-    .-lf-el-caret {
+    .-x-el-caret {
       top: 22px;
       right: 10px;
       position: absolute !important;
@@ -95,7 +95,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
       border-color: transparent transparent transparent #6b6b6b !important;
     }
 
-    &.-lf-el-disabled {
+    &.-x-el-disabled {
       a {
         color: #ccc !important;
       }
@@ -107,7 +107,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
         cursor: default !important;
       }
 
-      .-lf-el-caret {
+      .-x-el-caret {
         border-color: transparent transparent transparent #ccc !important;
       }
 
@@ -118,7 +118,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
   }
 }
 
-.-lf-el-reset {
+.-x-el-reset {
   animation : none;
   animation-delay : 0;
   animation-direction : normal;
