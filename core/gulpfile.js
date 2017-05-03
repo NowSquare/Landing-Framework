@@ -272,7 +272,8 @@ gulp.task('editor_scripts', function() {
       'resources/assets/js/editor/elements/blocks.js',
       'resources/assets/js/editor/elements/images.js',
       'resources/assets/js/editor/elements/links.js',
-      'resources/assets/js/editor/elements/lists.js'
+      'resources/assets/js/editor/elements/lists.js',
+      'resources/assets/js/editor/elements/text.js'
     ])
 //    .pipe(jshint('.jshintrc'))
 //    .pipe(jshint.reporter('default'))
