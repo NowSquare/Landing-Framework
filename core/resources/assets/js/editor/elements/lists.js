@@ -18,7 +18,7 @@ $(function() {
     var offset = $(this).attr('data-offset');
     offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '0 0';
 
-    var $el = $('.-x-el-list-edit').clone().appendTo('body');
+    var $el = $(xTplListButton).clone().appendTo('body');
 
     // Set unique class
     var timestamp = new Date().getTime();

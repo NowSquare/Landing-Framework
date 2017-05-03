@@ -7,7 +7,7 @@ $(function() {
   */
 
   $('.-x-block').each(function() {
-    var $el = $('.-x-el-block-edit').clone().appendTo('body');
+    var $el = $(xTplBlockButton).clone().appendTo('body');
 
     // Set unique class
     var timestamp = new Date().getTime();

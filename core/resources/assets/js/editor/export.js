@@ -5,9 +5,7 @@ $(function() {
     var $html = $('html').clone();
 
     // Remove editor elements
-    $html.find('.-x-el-inline-button').remove();
-    $html.find('#editor_styles').remove();
-    $html.find('#editor_scripts').remove();
+    $html.find('.-x-el-inline-button, .-x-editor-asset').remove();
 
     // Remove all classes starting with -x-data-
     $html.find('[class*=-x-data-]').each(function() {

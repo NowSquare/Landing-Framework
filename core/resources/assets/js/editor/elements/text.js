@@ -2,9 +2,9 @@
   TinyMCE file browser
 */
 
-function elFinderBrowser (field_name, url, type, win) {
+function lf_elFinderBrowser(field_name, url, type, win) {
   tinyMCE.activeEditor.windowManager.open({
-    file: '/elfinder/tinymce',
+    file: _lang["url"] + '/elfinder/tinymce',
     title: 'Files',
     width: 940,
     height: 450,
@@ -25,12 +25,12 @@ tinymce.init({
   selector: '.-x-text',
   inline: true,
   menubar: false,
-  schema: "html5",
+  schema: 'html5',
   relative_urls: false,
   apply_source_formatting: false, 
   extended_valid_elements: 'span[style,class],script[charset|defer|language|src|type]',
   verify_html: false, 
-  file_browser_callback: elFinderBrowser,
+  file_browser_callback: lf_elFinderBrowser,
   plugins: [
     'advlist autolink lists link image anchor',
     'code',

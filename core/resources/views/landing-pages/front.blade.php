@@ -1,85 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/bs4/css/style.min.css') }}" />
+  <title>Editor</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" type="text/css" href="{{ url('assets/bs4/css/style.min.css') }}" />
 
-    <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
+  <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
 
-    <link id="editor_styles" rel="stylesheet" type="text/css" href="{{ url('assets/css/styles.editor.min.css') }}" />
-    <script id="editor_scripts" src="{{ url('assets/js/scripts.editor.min.js') }}"></script>
+  <script class="-x-editor-asset">var app_root = "{{ url('') }}";</script>
+  <script src="{{ url('assets/javascript?lang=' . \App::getLocale()) }}"></script>
+  <link class="-x-editor-asset" rel="stylesheet" type="text/css" href="{{ url('assets/css/styles.editor.min.css') }}" />
+  <script class="-x-editor-asset" src="{{ url('assets/js/scripts.editor.min.js') }}"></script>
+
 <script>
-
 </script>
 <style type="text/css">
-
 </style>
-    <title>Editor</title>
+
 </head>
 <body>
 
-
-<div class="-x-el-inline-button -x-el-block-edit -x-el-reset">
-  <img src="{{ url('assets/images/editor/icons/settings.svg') }}" class="-x-el-icon"
-    onMouseOver="this.src = '{{ url('assets/images/editor/icons/settings-hover.svg') }}';"
-    onMouseOut="this.src = '{{ url('assets/images/editor/icons/settings.svg') }}';"
-  >
-  <ul class="-x-el-dropdown -x-el-reset">
-    <li class="-x-el-block-background"><a href="javascript:void(0);">Background</a></li>
-    <li class="separator"><hr></li>
-    <li class="-x-el-block-move"><a href="javascript:void(0);">Move <div class="-x-el-caret"></div></a>
-      <ul>
-        <li class="-x-el-block-move-up"><a href="javascript:void(0);">Move up</a></li>
-        <li class="-x-el-block-move-down"><a href="javascript:void(0);">Move down</a></li>
-      </ul>
-    </li>
-    <li class="-x-el-block-insert"><a href="javascript:void(0);">Insert <div class="-x-el-caret"></div></a>
-      <ul>
-        <li class="-x-el-block-insert-above"><a href="javascript:void(0);">Above</a></li>
-        <li class="-x-el-block-insert-below"><a href="javascript:void(0);">Below</a></li>
-      </ul>
-    </li>
-    <li class="-x-el-block-edit-menu"><a href="javascript:void(0);">Edit <div class="-x-el-caret"></div></a>
-      <ul>
-        <li class="-x-el-block-edit-duplicate"><a href="javascript:void(0);">Duplicate</a></li>
-        <li class="-x-el-block-edit-delete"><a href="javascript:void(0);">Delete</a></li>
-      </ul>
-    </li>
-  </ul>
+<div class="-x-editor-inline-modal-bg">
+<iframe id="-x-editor-modal" class="-x-el-inline-modal -x-sm -x-el-reset" src="about:blank" frameborder="0" allowtransparency="true" seamless></iframe>
 </div>
 
-<div class="-x-el-inline-button -x-el-img-edit -x-el-reset">
-  <img src="{{ url('assets/images/editor/icons/image.svg') }}" class="-x-el-icon"
-    onMouseOver="this.src = '{{ url('assets/images/editor/icons/image-hover.svg') }}';"
-    onMouseOut="this.src = '{{ url('assets/images/editor/icons/image.svg') }}';"
-  >
-  <ul class="-x-el-dropdown -x-el-reset">
-    <li class="-x-el-img-select"><a href="javascript:void(0);">Browse...</a></li>
-    <li class="-x-el-img-link"><a href="javascript:void(0);">Link...</a></li>
-    <li class="separator"><hr></li>
-    <li class="-x-el-img-hide"><a href="javascript:void(0);">Hide image</a></li>
-  </ul>
-</div>
-
-<div class="-x-el-inline-button -x-el-link-edit -x-el-reset">
-  <img src="{{ url('assets/images/editor/icons/link.svg') }}" class="-x-el-icon"
-    onMouseOver="this.src = '{{ url('assets/images/editor/icons/link-hover.svg') }}';"
-    onMouseOut="this.src = '{{ url('assets/images/editor/icons/link.svg') }}';"
-  >
-  <ul class="-x-el-dropdown -x-el-reset">
-    <li class="-x-el-link-link"><a href="javascript:void(0);">Link...</a></li>
-  </ul>
-</div>
-
-<div class="-x-el-inline-button -x-el-list-edit -x-el-reset">
-  <img src="{{ url('assets/images/editor/icons/layers.svg') }}" class="-x-el-icon"
-    onMouseOver="this.src = '{{ url('assets/images/editor/icons/layers-hover.svg') }}';"
-    onMouseOut="this.src = '{{ url('assets/images/editor/icons/layers.svg') }}';"
-  >
-  <ul class="-x-el-dropdown -x-el-reset">
-    <li class="-x-el-list-edit"><a href="javascript:void(0);">Edit...</a></li>
-  </ul>
-</div>
 
 <div class="container2" id="page">
         <!-- Header dark, text left, visual right

@@ -17,7 +17,7 @@ $(function() {
     var offset = $(this).attr('data-offset');
     offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
 
-    var $el = $('.-x-el-img-edit').clone().appendTo('body');
+    var $el = $(xTplImgButton).clone().appendTo('body');
 
     // Set unique class
     var timestamp = new Date().getTime();

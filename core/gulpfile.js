@@ -269,6 +269,7 @@ gulp.task('editor_scripts', function() {
       'resources/assets/js/editor/helpers.js',
       'resources/assets/js/editor/dropdown.js',
       'resources/assets/js/editor/export.js',
+      'resources/assets/js/editor/templates.js',
       'resources/assets/js/editor/elements/blocks.js',
       'resources/assets/js/editor/elements/images.js',
       'resources/assets/js/editor/elements/links.js',
