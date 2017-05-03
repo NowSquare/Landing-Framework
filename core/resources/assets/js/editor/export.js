@@ -6,6 +6,8 @@ $(function() {
 
     // Remove editor elements
     $html.find('.-x-el-inline-button').remove();
+    $html.find('#editor_styles').remove();
+    $html.find('#editor_scripts').remove();
 
     // Remove all classes starting with -x-data-
     $html.find('[class*=-x-data-]').each(function() {

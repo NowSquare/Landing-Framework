@@ -6,7 +6,7 @@
 
     <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
 
-    <link id="editor_style" rel="stylesheet" type="text/css" href="{{ url('assets/css/styles.editor.min.css') }}" />
+    <link id="editor_styles" rel="stylesheet" type="text/css" href="{{ url('assets/css/styles.editor.min.css') }}" />
     <script id="editor_scripts" src="{{ url('assets/js/scripts.editor.min.js') }}"></script>
 <script>
 
