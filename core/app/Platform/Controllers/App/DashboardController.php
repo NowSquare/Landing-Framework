@@ -59,7 +59,7 @@ class DashboardController extends \App\Http\Controllers\Controller {
       $enabled = config($namespace . '.enabled');
       $creatable = config($namespace . '.creatable');
 
-      if ($enabled && $creatable) {
+      if ($enabled && $creatable && \Gate::allows('limitation', $namespace . '.visible')) {
         $items[] = [
           "icon" => config($namespace . '.icon'),
           "order" => config($namespace . '.order'),
