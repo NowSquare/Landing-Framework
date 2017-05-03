@@ -1,3 +1,7 @@
+var xTplModal = '<div class="-x-editor-inline-modal-bg" style="z-index: 999990 !important;">' +
+  '  <iframe id="-x-editor-modal" class="-x-el-inline-modal -x-sm -x-el-reset" src="about:blank" frameborder="0" allowtransparency="true" seamless></iframe>' +
+  '</div>';
+
 var xTplBlockButton = '<div class="-x-el-inline-button -x-el-block-edit -x-el-reset">' +
   '  <img src="' + _lang["url"] + '/assets/images/editor/icons/settings.svg" class="-x-el-icon"' +
   '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/settings-hover.svg\';"' +

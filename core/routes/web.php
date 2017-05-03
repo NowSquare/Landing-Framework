@@ -9,9 +9,6 @@
 // Public website
 Route::get('/', '\Platform\Controllers\Website\WebsiteController@home')->name('home');
 
-// Public landing page
-Route::get('/p', '\Platform\Controllers\Landing\FrontController@showPage')->name('landingPage');
-
 /*
  |--------------------------------------------------------------------------
  | Platform routes

@@ -40,14 +40,10 @@ $(function() {
 
       '/create': function () { loadRoute('platform/module/create'); },
 
-      '/form/create': function () { loadRoute('platform/form/create', 'create'); },
-      '/landingpage/create': function () { loadRoute('platform/landingpage/create', 'create'); },
+      '/forms/create': function () { loadRoute('forms/create', 'create'); },
 
-      '/landing/editor': function () { loadRoute('platform/landing/editor'); },
-
-      '/cards': function () { loadRoute('platform/cards'); },
-      '/card/new': function () { loadRoute('platform/card/new', 'cards'); },
-      '/card/edit/:sl': function (sl) { loadRoute('platform/card/edit?sl=' + sl, 'cards'); },
+      '/landingpages/create': function () { loadRoute('landingpages/create', 'create'); },
+      '/landingpages/editor/:sl': function (sl) { loadRoute('landingpages/editor?sl=' + sl, 'landingpage/editor'); },
 
       '/members': function () { loadRoute('platform/members'); },
       '/member/:sl': function (sl) { loadRoute('platform/member/edit?sl=' + sl, 'members'); },
@@ -81,7 +77,7 @@ $(function() {
       $('#view').load(url, function() {
         onPartialLoaded();
 
-        if (url == 'platform/landing/editor') {
+        if (route == 'landingpage/editor') {
           $('#device_selector').fadeIn(100);
         } else {
           $('#device_selector').fadeOut(100);
