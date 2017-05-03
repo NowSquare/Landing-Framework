@@ -9,161 +9,89 @@
     <link rel="stylesheet" type="text/css" href="{{ url('assets/css/styles.editor.min.css') }}" />
     <script src="{{ url('assets/js/scripts.editor.min.js') }}"></script>
     <script>
-/*
-tinymce.init({
-  selector: 'h2.editable',
-  inline: true,
-  toolbar: 'undo redo',
-  menubar: false
-});
 
+/*
+ * Show inline TinyMCE editor when creating a new editor
+ * /
+
+tinyMCE.on('AddEditor', function(e) {
+  e.editor.on('NodeChange', function(e) {  // now that we know the editor set a callback at "NodeChange."
+    e.target.fire("focusin");     // NodeChange is at the end of editor create. Fire focusin to render and show it
+  });
+});
+*/
+      
+/*
+ * TinyMCE browser
+ */
+
+function elFinderBrowser (field_name, url, type, win) {
+  tinyMCE.activeEditor.windowManager.open({
+  file: '/elfinder/tinymce',
+  title: 'Files',
+  width: 940,
+  height: 450,
+  resizable: 'yes',
+  inline: 'yes',  // This parameter only has an effect if you use the inlinepopups plugin!
+  popup_css: false, // Disable TinyMCE's default popup CSS
+  close_previous: 'no'
+  }, {
+  setUrl: function (url) {
+    win.document.getElementById(field_name).value = url;
+  }
+  });
+  return false;
+}
+
+      
 tinymce.init({
-  selector: 'div.editable',
+  skin: 'dark',
+  selector: '.-x-text',
   inline: true,
+  menubar: false,
+  schema: "html5",
+  relative_urls: false,
+  apply_source_formatting: false, 
+  extended_valid_elements: 'span[style,class],script[charset|defer|language|src|type]',
+  verify_html: false, 
+  file_browser_callback: elFinderBrowser,
   plugins: [
     'advlist autolink lists link image anchor',
     'code',
     'media table contextmenu paste'
   ],
-  toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image'
-});
-*/
+  toolbar: 'styleselect | bold italic | alignleft aligncenter alignright | bullist | link image',
+  init_instance_callback : function(editor) {
+    editor.serializer.addNodeFilter('script,style', function(nodes, name) {
+        var i = nodes.length, node, value, type;
 
-$(function() {
+        function trim(value) {
+            return value.replace(/(<!--\[CDATA\[|\]\]-->)/g, '\n')
+                    .replace(/^[\r\n]*|[\r\n]*$/g, '')
+                    .replace(/^\s*((<!--)?(\s*\/\/)?\s*<!\[CDATA\[|(<!--\s*)?\/\*\s*<!\[CDATA\[\s*\*\/|(\/\/)?\s*<!--|\/\*\s*<!--\s*\*\/)\s*[\r\n]*/gi, '')
+                    .replace(/\s*(\/\*\s*\]\]>\s*\*\/(-->)?|\s*\/\/\s*\]\]>(-->)?|\/\/\s*(-->)?|\]\]>|\/\*\s*-->\s*\*\/|\s*-->\s*)\s*$/g, '');
+        }
+        while (i--) {
+            node = nodes[i];
+            value = node.firstChild ? node.firstChild.value : '';
 
-  /*
-    Loop through all links, generate semi-unique class
-    to reference links for use in the editor. Add `-clone`
-    suffix to class to prevent cloning to the power and
-    link settings link with dropdown to link (Tether).
-  */
-
-  $('.-x-link').each(function() {
-    // Attribute settings
-    var attachment = $(this).attr('data-attachment');
-    attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
-
-    var targetAttachment = $(this).attr('data-taget-attachment');
-    targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'bottom left';
-
-    var offset = $(this).attr('data-offset');
-    offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px 0';
-
-    var $el = $('.-x-el-link-edit').clone().appendTo('body');
-
-    // Set unique class
-    var timestamp = new Date().getTime();
-    var unique_class = '-x-data-link-' + timestamp;
-
-    $(this).addClass(unique_class);
-    $(this).attr('data-x-el', unique_class);
-    $el.attr('data-x-el', unique_class);
-
-    // Set reference to parent block
-    $el.attr('data-x-parent-block', $(this).parents('.-x-block').attr('data-x-el'));
-
-    // Replace class so it won't be cloned in next loop
-    $el.removeClass('-x-el-link-edit').addClass('-x-el-link-edit-clone -x-el-inline-button-clone');
-
-    new Tether({
-      element: $el,
-      target: $(this),
-      attachment: attachment,
-      offset: offset,
-      targetAttachment: targetAttachment,
-      classPrefix: '-x-data',
-      constraints: [{
-        to: 'scrollParent',
-        attachment: 'together'
-      }],
-      optimizations: {
-        moveElement: true,
-        gpu: true
+            if (value.length > 0) {
+                node.firstChild.value = trim(value);
+            }
+        }
+    });
+  },
+  setup: function (editor) {
+    editor.on('Change', function (e) {
+      if (typeof Tether !== 'undefined') {
+        Tether.position();
       }
     });
-  });
-
-  lf_ParseLinks(true);
+  }
 });
 
-/* 
-  Duplicate links and references
-*/
 
-function lf_DuplicateBlockLinks($new_block) {
-  // Loop through all links in new block
-  $new_block.find('.-x-link').each(function() {
-    var timestamp = new Date().getTime();
-    var $new_btn = $(this);
-    var btn_class = $new_btn.attr('data-x-el');
 
-    if (typeof btn_class !== typeof undefined && btn_class !== false) {
-      // Attribute settings
-      var attachment = $new_btn.attr('data-attachment');
-      attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
-
-      var targetAttachment = $new_btn.attr('data-taget-attachment');
-      targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
-
-      var offset = $new_btn.attr('data-offset');
-      offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
-
-      // Clone btn and replace with new class
-      $new_btn.removeClass(btn_class);
-      $new_btn.addClass('-x-data-link-' + timestamp);
-      $new_btn.attr('data-x-el', '-x-data-link-' + timestamp);
-
-      // Settings
-      var $new_btn_settings = $('.-x-el-link-edit-clone[data-x-el=' + btn_class + ']').clone().insertAfter('.-x-el-link-edit-clone[data-x-el=' + btn_class + ']');
-      $new_btn_settings.attr('data-x-el', '-x-data-link-' + timestamp);
-
-      new Tether({
-        element: $new_btn_settings,
-        target: $new_btn,
-        attachment: attachment,
-        offset: offset,
-        targetAttachment: targetAttachment,
-        classPrefix: '-x-data',
-        constraints: [{
-          to: 'scrollParent',
-          attachment: 'together'
-        }],
-        optimizations: {
-          moveElement: true,
-          gpu: true
-        }
-      });
-    }
-
-  });
-
-  // Timeout to make sure dom has changed
-  setTimeout(lf_ParseLinks, 70);
-}
-
-/* 
-  Loop through link settings to set attributes
-  and fix z-index overlapping. 
-*/
-
-function lf_ParseLinks(init) {
-  var zIndex = 200;
-  
-  $('.-x-link').each(function() {
-    var btn_class = $(this).attr('data-x-el');
-    var $btn_settings = $('.-x-el-link-edit-clone[data-x-el=' + btn_class + ']');
-
-    // Set z-index to prevent overlapping of dropdown menus
-    $btn_settings.css('cssText', 'z-index: ' + zIndex + ' !important;');
-    $btn_settings.find('.-x-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
-    zIndex--;
-  });
-
-  // Always reposition tethered elements.
-  // Also initially because $btn_settings.css('cssText', ...); 
-  // seems to reset position
-  Tether.position();
-}
 
 </script>
 <style type="text/css">
@@ -262,6 +190,16 @@ function lf_ParseLinks(init) {
   </ul>
 </div>
 
+<div class="-x-el-inline-button -x-el-list-edit -x-el-reset">
+  <img src="{{ url('assets/images/editor/icons/layers.svg') }}" class="-x-el-icon"
+    onMouseOver="this.src = '{{ url('assets/images/editor/icons/layers-hover.svg') }}';"
+    onMouseOut="this.src = '{{ url('assets/images/editor/icons/layers.svg') }}';"
+  >
+  <ul class="-x-el-dropdown -x-el-reset">
+    <li class="-x-el-list-edit"><a href="javascript:void(0);">Edit...</a></li>
+  </ul>
+</div>
+
 <div class="container2" id="page">
         <!-- Header dark, text left, visual right
   ================================================== -->
@@ -272,7 +210,7 @@ function lf_ParseLinks(init) {
         <div class="header-padding no-padding-b">
           <div class="row">
             <div class="col-xs-12 text-xs-center text-md-right">
-              <div class="mb-1 mt-2 hor-spacing-md-a">
+              <div class="mb-1 mt-2 hor-spacing-md-a -x-list">
                 <a href="#" role="button" class="color-light"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                 <a href="#" role="button" class="color-light"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                 <a href="#" role="button" class="color-light"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
@@ -285,7 +223,7 @@ function lf_ParseLinks(init) {
           <div class="row">
             <div class="col-sm-12 col-md-6 editable">
               <h1 class="display-2 text-md-left my-3 no-margin-smb">Creative<br>Studio</h1>
-              <p class="lead">We help entrepreneurs achieving their goal faster.</p>
+              <p class="lead -x-text">We help entrepreneurs achieving their goal faster.</p>
               <div class="btn-container my-3 btn-stack-lg">
                 <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">Contact Us</a>
 <button type="button" id="export_html">Export HTML</button>
@@ -471,9 +409,9 @@ function lf_ParseLinks(init) {
                   <h2>First make it work, then make it better</h2>
                   <p class="lead">NowSquare provides high quality assets/bs4 for your business. We help <a href="#" class="link">entrepreneurs</a> with great ideas achieving their goals faster with self-hosted, white label software.</p>
                   <div class="btn-container">
-                    <a class="btn btn-outline-pink btn-pill" href="#" role="button">More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                    <a class="btn btn-outline-pink btn-pill -x-link" data-offset="5px 0px" data-attachment="right top" data-target-attachment="left top" href="#" role="button">More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                   </div>
-                  <div class="mt-2 hor-spacing-sm-a">
+                  <div class="mt-2 hor-spacing-sm-a -x-list">
                     <a href="#" role="button" class="color-pink"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                     <a href="#" role="button" class="color-pink"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                     <a href="#" role="button" class="color-pink"><i class="fa fa-linkedin" aria-hidden="true"></i></a>

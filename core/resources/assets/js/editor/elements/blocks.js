@@ -170,6 +170,7 @@ $(function() {
       // Duplicate other elements
       lf_DuplicateBlockImages($new_block);
       lf_DuplicateBlockLinks($new_block);
+      lf_DuplicateBlockLists($new_block);
     }
   });
 

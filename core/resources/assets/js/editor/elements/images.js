@@ -11,7 +11,7 @@ $(function() {
     var attachment = $(this).attr('data-attachment');
     attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
 
-    var targetAttachment = $(this).attr('data-taget-attachment');
+    var targetAttachment = $(this).attr('data-target-attachment');
     targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
 
     var offset = $(this).attr('data-offset');
@@ -70,7 +70,7 @@ function lf_DuplicateBlockImages($new_block) {
       var attachment = $new_img.attr('data-attachment');
       attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
 
-      var targetAttachment = $new_img.attr('data-taget-attachment');
+      var targetAttachment = $new_img.attr('data-target-attachment');
       targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
 
       var offset = $new_img.attr('data-offset');
