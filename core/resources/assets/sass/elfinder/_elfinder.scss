@@ -431,8 +431,8 @@ div.elfinder-cwd-wrapper-list tr.ui-state-default td span.ui-icon {
 /*********************************************/
 
 /* for old jQuery UI */
-.ui-front {
-    z-index: 100;
+#elfinder div.ui-resizable-handle.ui-resizable-e.ui-front {
+    z-index: 1 !important;
 }
 
 /* common container */
