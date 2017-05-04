@@ -36,9 +36,9 @@ var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset">' +
   '</div>';
 
 var xTplBlockButton = '<div class="-x-el-inline-button -x-el-block-edit -x-el-reset">' +
-  '  <img src="' + _lang["url"] + '/assets/images/editor/icons/settings.svg" class="-x-el-icon"' +
-  '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/settings-hover.svg\';"' +
-  '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/settings.svg\';"' +
+  '  <img src="' + _lang["url"] + '/assets/images/editor/icons/dots-horizontal.svg" class="-x-el-icon"' +
+  '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-horizontal-hover.svg\';"' +
+  '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-horizontal.svg\';"' +
   '  >' +
   '  <ul class="-x-el-dropdown -x-el-reset">' +
   '    <li class="-x-el-block-background"><a href="javascript:void(0);">Background</a></li>' +

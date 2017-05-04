@@ -415,9 +415,23 @@ function bindMediaBrowser() {
         fastIframe: true,
         overlayClose: false,
         iframe: true,
-        width: '90%',
-        height: '90%'
+        width: '100%',
+        transition: 'none', 
+        fadeOut: 0,
+        height: parseInt($(window).height()) + 42, 
+        onLoad:function() {
+            $('html, body').css('overflow', 'hidden'); // page scrollbars off
+        }, 
+        onClosed:function() {
+            $('html, body').css('overflow', ''); // page scrollbars on
+        }
       });
+    });
+  });
+
+  $(window).on("resize", function(){
+    $.fn.colorbox.resize({
+      height: parseInt($(window).height()) + 42
     });
   });
 

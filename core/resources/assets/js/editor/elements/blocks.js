@@ -172,6 +172,10 @@ function lf_initBlocks() {
       lf_DuplicateBlockLinks($new_block);
       lf_DuplicateBlockLists($new_block);
       lf_DuplicateBlockText($new_block);
+
+      if (typeof lf_DuplicateBlockHook === 'function') {
+        lf_DuplicateBlockHook($new_block);
+      }
     }
   });
 

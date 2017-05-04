@@ -1,65 +1,41 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <link rel="stylesheet" type="text/css" href="{{ url('assets/bs4/css/style.min.css') }}" />
-  <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
-  <script src="{{ url('assets/javascript?lang=' . \App::getLocale()) }}"></script>
-  <link class="-x-editor-asset" rel="stylesheet" type="text/css" href="{{ url('assets/css/styles.editor.min.css') }}" />
-  <script class="-x-editor-asset" src="{{ url('assets/js/scripts.editor.min.js') }}"></script>
+@extends('landingpages::layouts.modal')
 
-<script>
-
-</script>
-<style type="text/css">
-  body {
-    margin: 20px;
-  }
-</style>
-
-</head>
-
-<body>
-<div class="container">
+@section('content') 
+<div class="container-fluid">
   <div class="row">
-    <div class="col-12">
+    <div class="col-xs-12">
+      <h1>Background</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-8">
       <form>
+
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <label for="logo_square">{{ trans('global.logo_square') }}</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="logo_square" name="logo_square" autocomplete="off" value="">
+            <div class="input-group-btn add-on">
+              <button type="button" class="btn btn-primary" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="logo_square" data-preview="logo_square-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
+              <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="logo_square-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bg-image">Background image</label>
+          <input type="text" class="form-control" id="bg-image">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <label for="exampleInputPassword1">Background color</label>
+          <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
         </div>
-        <div class="form-group">
-          <label for="exampleSelect1">Example select</label>
-          <select class="form-control" id="exampleSelect1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleSelect2">Example multiple select</label>
-          <select multiple class="form-control" id="exampleSelect2">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="exampleTextarea">Example textarea</label>
-          <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <button type="submit" class="btn btn-primary btn-material" onclick="parent.$modal">Cancel</button>
+        <button type="submit" class="btn btn-primary btn-material">Save</button>
       </form>
     </div>
   </div>
 </div>
-</body>
+
+@endsection

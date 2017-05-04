@@ -9,11 +9,9 @@
 
 
 $(function() {
-/*
   var $modal = $(xTplModal).clone().appendTo('body');
   $modal.find('.-x-el-inline-modal').attr('src', '{{ url('landingpages/editor/modal/background') }}');
-  $modal.find('.-x-el-inline-modal').removeClass('-x-md -x-sm').addClass('-x-md');
-*/
+  $modal.find('.-x-el-inline-modal').removeClass('-x-md -x-sm').addClass('-x-full');
 
 
 });
@@ -21,6 +19,29 @@ $(function() {
 </script>
 </head>
 <body>
+
+
+  <section class="typography-1 -x-block">
+    <nav class="navbar navbar-dark bg-inverse">
+      <div class="container editable">
+          <a class="navbar-brand" href="#" target="_blank"><img src="/templates/landingpages/_boilerplate/images/logos/ns-light.svg" class="-x-img" data-offset="10px 10px" alt="" style="height:42px"></a>
+          <button class="navbar-toggler pull-right hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsingNavbarGlobal" aria-controls="collapsingNavbarGlobal" aria-expanded="false" aria-label="Toggle navigation">
+            &#9776;
+          </button>
+          <div class="collapse navbar-toggleable-sm" id="collapsingNavbarGlobal">
+          <ul class="nav navbar-nav pull-right">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://bootstrap-ui-kit.com" target="_blank">Bootstrap UI Kit</a>
+            </li>
+          </ul>
+          </div>
+      </div>
+    </nav>
+  </section>
+
  
    <section class="typography-1 -x-block">
   <div class="header text-light img-bottom-lg -x-block-bg-img" style="background-image:url('/templates/landingpages/_boilerplate/images/headers/landscape-mountains-nature-sky.jpg')">
@@ -28,7 +49,7 @@ $(function() {
       <div class="container">
         <div class="header-padding no-padding-b">
           <div class="row">
-            <div class="col-xs-12 text-xs-center text-md-right">
+            <div class="col-12 text-center text-md-right">
               <div class="mb-1 mt-2 hor-spacing-md-a -x-list">
                 <a href="#" role="button" class="color-light"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                 <a href="#" role="button" class="color-light"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -48,7 +69,7 @@ $(function() {
               </div>
             </div>
             <!-- /.col -->
-            <div class="col-sm-12 col-md-6 push-lg-1 col-lg-5 text-xs-center text-md-right img-container my-2">
+            <div class="col-sm-12 col-md-6 push-lg-1 col-lg-5 text-center text-md-right img-container my-2">
               <img src="/templates/landingpages/_boilerplate/images/visuals/iWatch-White-2.png" alt="" class="-x-img img-fluid">
             </div>
             <!-- /.col -->
@@ -65,41 +86,6 @@ $(function() {
 </section>
 
 
-    <section class="typography-1 -x-block">
-      <nav class="navbar navbar-dark bg-inverse">
-        <div class="container editable">
-            <a class="navbar-brand" href="#" target="_blank"><img src="/templates/landingpages/_boilerplate/images/logos/ns-light.svg" class="-x-img" data-offset="10px 10px" alt="" style="height:42px"></a>
-            <button class="navbar-toggler pull-right hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsingNavbarGlobal" aria-controls="collapsingNavbarGlobal" aria-expanded="false" aria-label="Toggle navigation">
-              &#9776;
-            </button>
-            <div class="collapse navbar-toggleable-sm" id="collapsingNavbarGlobal">
-            <ul class="nav navbar-nav pull-right">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://bootstrap-ui-kit.com" target="_blank">Bootstrap UI Kit</a>
-              </li>
-            </ul>
-            </div>
-        </div>
-      </nav>
-    </section>
-
-    <section class="-x-block">
-      <div class="content text-light">
-        <div class="content-overlay polygon-bg" data-color-bg="47306b" data-color-light="57407d" style="background-color:#503778">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-12 editable">
-                <h1><a href="index.html" style="color: #ccc" class="-x-link">Home</a> &rsaquo; Content</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-   
 
 
     <!-- Callout, left aligned text, call to action right, dark background
@@ -143,7 +129,7 @@ $(function() {
               <!-- /.col -->
               <div class="col-md-4 text-sm-left text-md-right">
                 <div class="btn-container mt-sm-1">
-                  <a class="btn btn-xlg btn-deep-orange" href="#" role="button"><i class="fa fa-coffee" aria-hidden="true"></i> Contact Us</a>
+                  <a class="btn btn-xlg btn-outline-ghost" href="#" role="button"><i class="fa fa-coffee" aria-hidden="true"></i> Contact Us</a>
                 </div>
               </div>
               <!-- /.col -->
@@ -157,58 +143,6 @@ $(function() {
       <!-- /.content -->
     </section>
 
-    <!-- Callout, left aligned text, call to action right, dark background
-      ================================================== -->
-    <section class="typography-2 -x-block">
-      <div class="content text-light" style="background-image:url(/templates/landingpages/_boilerplate/images/headers/bokeh-blurred-blurry-lights.jpg)">
-        <div class="content-overlay" style="background-color:rgba(0,0,0,0.85)">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-8">
-                <h1>Get Support</h1>
-                <p class="lead no-margin-b">Contact us with any questions you may have!</p>
-              </div>
-              <!-- /.col -->
-              <div class="col-md-4 text-sm-left text-md-right">
-                <div class="btn-container mt-sm-1">
-                  <a class="btn btn-xlg btn-outline-deep-orange btn-pill" href="#" role="button"><i class="fa fa-support" aria-hidden="true"></i> Support</a>
-                </div>
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
-          </div>
-          <!-- /.container -->
-        </div>
-        <!-- /.content-overlay -->
-      </div>
-      <!-- /.content -->
-    </section>
-
-    <!-- Callout, centered text, call to action center, light background
-      ================================================== -->
-    <section class="typography-1 -x-block">
-      <div class="content" style="background-image:url()">
-        <div class="content-overlay" style="background-color:rgba(0,0,0,0.15)">
-          <div class="container">
-            <div class="row">
-              <div class="col-xs-12 text-xs-center">
-                <h1>Let's talk Business</h1>
-                <p class="lead">Let's chat and see how we can help each other.</p>
-                <div class="btn-container mt-sm-1">
-                  <a class="btn btn-lg btn-blue btn-pill" href="#" role="button"><i class="fa fa-phone" aria-hidden="true"></i> Call Us</a>
-                </div>
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
-          </div>
-          <!-- /.container -->
-        </div>
-        <!-- /.content-overlay -->
-      </div>
-      <!-- /.content -->
-    </section>
 
     <!-- Photo on the right with lightbox, light background, text aligned left
       ================================================== -->
@@ -261,7 +195,7 @@ $(function() {
                 <img src="/templates/landingpages/_boilerplate/images/visuals/iPhone-6S---isometric-view-right.png" alt="" class="-x-img img-fluid">
               </div>
               <!-- /.col -->
-              <div class="col-md-6 pull-md-6 text-xs-center text-md-right">
+              <div class="col-md-6 pull-md-6 text-center text-md-right">
                 <div class="content-padding">
                   <h2>Awesome Features</h2>
                   <p class="lead">NowSquare provides high quality assets/bs4 for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
@@ -289,7 +223,7 @@ $(function() {
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
             <div class="row">
-              <div class="col-sm-12 col-md-4 text-xs-center text-lg-right mt-3 no-margin-md-t">
+              <div class="col-sm-12 col-md-4 text-center text-lg-right mt-3 no-margin-md-t">
                 <div class="content-padding">
                   <!-- icon -->
                   <i class="material-icons icon-xs color-deep-purple">&#xE922;</i>
@@ -311,7 +245,7 @@ $(function() {
                 <img src="/templates/landingpages/_boilerplate/images/visuals/iPhone-6-4,7-inch-Mockup.png" alt="" class="-x-img img-fluid">
               </div>
               <!-- /.col -->
-              <div class="col-sm-12 col-md-4 text-xs-center text-lg-left mt-3 no-margin-md-t">
+              <div class="col-sm-12 col-md-4 text-center text-lg-left mt-3 no-margin-md-t">
                 <div class="content-padding">
                   <!-- icon -->
                   <i class="material-icons icon-xs color-deep-purple">&#xE913;</i>
@@ -345,7 +279,7 @@ $(function() {
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
             <div class="row">
-              <div class="col-xs-6 push-xs-3 col-sm-4 push-sm-4 col-md-4 push-md-4 col-xl-4 push-xl-4 text-xs-center">
+              <div class="col-6 push-3 col-sm-4 push-sm-4 col-md-4 push-md-4 col-xl-4 push-xl-4 text-center">
                 <!-- image -->
                 <img src="/templates/landingpages/_boilerplate/images/icons/biotech.svg" alt="" class="-x-img img-fluid">
               </div>
@@ -353,7 +287,7 @@ $(function() {
             </div>
             <!-- /.row -->
             <div class="row">
-              <div class="col-md-12 col-lg-6 push-lg-3 text-xs-center">
+              <div class="col-md-12 col-lg-6 push-lg-3 text-center">
                 <h1 class="mt-1">Science News</h1>
                 <p class="lead">NowSquare provides high quality assets/bs4 for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                 <p class="btn-container">
@@ -379,18 +313,18 @@ $(function() {
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
             <div class="row">
-              <div class="col-xs-12 col-sm-6 col-lg-4 push-lg-2 text-xs-center">
+              <div class="col-12 col-sm-6 col-lg-4 push-lg-2 text-center">
                 <div class="row">
-                  <div class="col-xs-12 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-xs-center">
+                  <div class="col-12 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-center">
                     <!-- image -->
                     <img src="/templates/landingpages/_boilerplate/images/icons/assistant.svg" alt="" class="-x-img img-fluid">
                   </div>
                   <!-- /.col -->
-                  <div class="col-xs-12">
+                  <div class="col-12">
                     <h2 class="mt-1">Support</h2>
                     <p class="lead">NowSquare provides high quality assets/bs4 for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                     <p class="btn-container">
-                      <a class="btn btn-outline-green btn-pill" href="#" role="button">More</a>
+                      <a class="btn btn-blue btn-pill" href="#" role="button">More</a>
                     </p>
                   </div>
                   <!-- /.col -->
@@ -398,19 +332,19 @@ $(function() {
                 <!-- /.row -->
               </div>
               <!-- /.col -->
-              <div class="col-xs-12 col-sm-6 col-lg-4 push-lg-2 text-xs-center">
+              <div class="col-12 col-sm-6 col-lg-4 push-lg-2 text-center">
   
                 <div class="row">
-                  <div class="col-xs-12 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-xs-center">
+                  <div class="col-12 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-center">
                     <!-- image -->
                     <img src="/templates/landingpages/_boilerplate/images/icons/landscape.svg" alt="" class="-x-img img-fluid">
                   </div>
                   <!-- /.col -->
-                  <div class="col-xs-12">
+                  <div class="col-12">
                     <h2 class="mt-1">Reports</h2>
                     <p class="lead">NowSquare provides high quality assets/bs4 for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                     <p class="btn-container">
-                      <a class="btn btn-outline-green btn-pill" href="#" role="button">More</a>
+                      <a class="btn btn-blue btn-pill" href="#" role="button">More</a>
                     </p>
                   </div>
                   <!-- /.col -->
@@ -436,18 +370,18 @@ $(function() {
           <div class="container">
             <div class="row">
               <!-- /.col -->
-              <div class="col-xs-12 col-md-4 text-xs-center">
+              <div class="col-12 col-md-4 text-center">
                 <div class="row">
-                  <div class="col-xs-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-xs-center">
+                  <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
                     <!-- image -->
                     <img src="/templates/landingpages/_boilerplate/images/icons/electrical_sensor.svg" alt="" class="img-fluid">
                   </div>
                   <!-- /.col -->
-                  <div class="col-xs-12">
+                  <div class="col-12">
                     <h2 class="mt-1">Customize</h2>
                     <p class="lead">NowSquare provides high quality assets/bs4 for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                     <p class="btn-container">
-                      <a class="btn btn-light-blue btn-pill" href="#" role="button">More</a>
+                      <a class="btn btn-blue btn-pill" href="#" role="button">More</a>
                     </p>
                   </div>
                   <!-- /.col -->
@@ -455,18 +389,18 @@ $(function() {
                 <!-- /.row -->
               </div>
               <!-- /.col -->
-              <div class="col-xs-12 col-md-4 text-xs-center">
+              <div class="col-12 col-md-4 text-center">
                 <div class="row">
-                  <div class="col-xs-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-xs-center">
+                  <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
                     <!-- image -->
                     <img src="/templates/landingpages/_boilerplate/images/icons/camcorder.svg" alt="" class="img-fluid">
                   </div>
                   <!-- /.col -->
-                  <div class="col-xs-12">
+                  <div class="col-12">
                     <h2 class="mt-1">Purchase</h2>
                     <p class="lead">NowSquare provides high quality assets/bs4 for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                     <p class="btn-container">
-                      <a class="btn btn-light-blue btn-pill" href="#" role="button">More</a>
+                      <a class="btn btn-blue btn-pill" href="#" role="button">More</a>
                     </p>
                   </div>
                   <!-- /.col -->
@@ -474,18 +408,18 @@ $(function() {
                 <!-- /.row -->
               </div>
               <!-- /.col -->
-              <div class="col-xs-12 col-md-4 text-xs-center">
+              <div class="col-12 col-md-4 text-center">
                 <div class="row">
-                  <div class="col-xs-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-xs-center">
+                  <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
                     <!-- image -->
                     <img src="/templates/landingpages/_boilerplate/images/icons/mind_map.svg" alt="" class="img-fluid">
                   </div>
                   <!-- /.col -->
-                  <div class="col-xs-12">
+                  <div class="col-12">
                     <h2 class="mt-1">Documentation</h2>
                     <p class="lead">NowSquare provides high quality assets/bs4 for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                     <p class="btn-container">
-                      <a class="btn btn-light-blue btn-pill" href="#" role="button">More</a>
+                      <a class="btn btn-blue btn-pill" href="#" role="button">More</a>
                     </p>
                   </div>
                   <!-- /.col -->
