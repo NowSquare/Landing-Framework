@@ -1,4 +1,4 @@
-$(function() {
+function lf_initImages() {
   /*
     Loop through all images, generate semi-unique class
     to reference images for use in the editor. Add `-clone`
@@ -52,7 +52,7 @@ $(function() {
   });
 
   lf_ParseImages(true);
-});
+}
 
 /* 
   Duplicate image buttons and references

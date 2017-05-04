@@ -109,6 +109,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
   position: absolute !important;
   z-index: 90000 !important;
   display: none !important;
+  user-select: none !important;
 
   img.-x-el-icon {
     width: 20px !important;
@@ -168,12 +169,18 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
     display: none !important;
   }
 
-  &.-x-el-dropdown-top-left {
-    top: 0 !important;
-  }
-
   ul {
     left: 150px !important;
+  }
+
+  &.-x-el-dropdown-top-left {
+    ul {
+      left: -150px !important;
+    }
+    .-x-el-caret {
+      border-width: 5px 5px 5px 0 !important;
+      border-color: transparent #6b6b6b transparent transparent !important;
+    }
   }
 
   li {
@@ -228,7 +235,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
       a:hover,
       a:active,
       a:focus {
-        background-color: transparent!important;
+        background-color: transparent !important;
         cursor: default !important;
       }
 

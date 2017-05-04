@@ -1,4 +1,4 @@
-$(function() {
+function lf_initLists() {
 
   /*
     Loop through all lists, generate semi-unique class
@@ -53,7 +53,7 @@ $(function() {
   });
 
   lf_ParseLists(true);
-});
+}
 
 /* 
   Duplicate lists and references
@@ -68,14 +68,14 @@ function lf_DuplicateBlockLists($new_block) {
 
     if (typeof btn_class !== typeof undefined && btn_class !== false) {
       // Attribute settings
-      var attachment = $new_btn.attr('data-attachment');
+      var attachment = $(this).attr('data-attachment');
       attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
 
-      var targetAttachment = $new_btn.attr('data-target-attachment');
-      targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
+      var targetAttachment = $(this).attr('data-target-attachment');
+      targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'bottom left';
 
-      var offset = $new_btn.attr('data-offset');
-      offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
+      var offset = $(this).attr('data-offset');
+      offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '0 0';
 
       // Clone btn and replace with new class
       $new_btn.removeClass(btn_class);

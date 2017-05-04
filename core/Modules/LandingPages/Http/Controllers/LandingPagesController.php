@@ -48,6 +48,9 @@ class LandingPagesController extends Controller
         // sure it overrides other stylesheets.
         pq('head')->append('<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css') . '" />');
 
+        // Init editor
+        pq('head')->append('<script class="-x-editor-asset">$(function(){ lf_initEditor(); });</script>');
+
         return $dom;
       } else {
         return view('landingpages::index');

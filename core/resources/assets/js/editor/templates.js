@@ -30,6 +30,8 @@ var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset">' +
   '        <li class="-x-el-fab-edit-delete"><a href="javascript:void(0);">Delete</a></li>' +
   '      </ul>' +
   '    </li>' +
+  '    <li class="separator"><hr></li>' +
+  '    <li class="-x-el-img-hide"><a href="javascript:void(0);">Hide image</a></li>' +
   '  </ul>' +
   '</div>';
 

@@ -61,6 +61,17 @@ gulp.task('watch_styles', function() {
 
 });
 
+gulp.task('watch_scripts', function() {
+
+  // Create LiveReload server
+  livereload.listen();
+
+  // Watch .js files
+  gulp.watch('resources/assets/js/**/*.js', ['scripts']);
+
+});
+
+
 gulp.task('watch_editor_styles', function() {
 
   // Create LiveReload server
@@ -71,13 +82,13 @@ gulp.task('watch_editor_styles', function() {
 
 });
 
-gulp.task('watch_scripts', function() {
+gulp.task('watch_editor_scripts', function() {
 
   // Create LiveReload server
   livereload.listen();
 
-  // Watch .js files
-  gulp.watch('resources/assets/js/**/*.js', ['scripts']);
+  // Watch editor .js files
+  gulp.watch('resources/assets/js/editor/**/*.js', ['editor_scripts']);
 
 });
 
@@ -243,7 +254,6 @@ gulp.task('scripts', function() {
     .pipe(notify({ message: 'Scripts task complete' }));
 });
 
-
 gulp.task('editor_scripts', function() {
   return gulp.src([
       'bower_components/jquery-ui/jquery-ui.js',
@@ -263,18 +273,18 @@ gulp.task('editor_scripts', function() {
       'bower_components/tinymce/plugins/autolink/plugin.js',
       'bower_components/tinymce/plugins/image/plugin.js',
       'bower_components/tinymce/plugins/code/plugin.js',
-
       'bower_components/tinymce/themes/inlite/theme.js',
       'bower_components/tinymce/themes/modern/theme.js',
-      'resources/assets/js/editor/helpers.js',
-      'resources/assets/js/editor/dropdown.js',
-      'resources/assets/js/editor/export.js',
+
+      'resources/assets/js/editor/functions.js',
       'resources/assets/js/editor/templates.js',
       'resources/assets/js/editor/elements/blocks.js',
       'resources/assets/js/editor/elements/images.js',
       'resources/assets/js/editor/elements/links.js',
       'resources/assets/js/editor/elements/lists.js',
-      'resources/assets/js/editor/elements/text.js'
+      'resources/assets/js/editor/elements/text.js',
+      'resources/assets/js/editor/elements/fab.js',
+      'resources/assets/js/editor/init.js'
     ])
 //    .pipe(jshint('.jshintrc'))
 //    .pipe(jshint.reporter('default'))

@@ -1,4 +1,4 @@
-$(function() {
+function lf_initBlocks() {
   /*
     Loop through all blocks, generate semi-unique class
     to reference block for use in the editor. Add `-clone`
@@ -171,10 +171,11 @@ $(function() {
       lf_DuplicateBlockImages($new_block);
       lf_DuplicateBlockLinks($new_block);
       lf_DuplicateBlockLists($new_block);
+      lf_DuplicateBlockText($new_block);
     }
   });
 
-});
+}
 
 /* 
   Loop through block settings to set attributes
