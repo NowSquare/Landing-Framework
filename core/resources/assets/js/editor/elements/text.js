@@ -1,4 +1,4 @@
-function lf_initText() {
+function lfInitText() {
   /*
    * Show and focus inline TinyMCE editor when creating a new editor
    */
@@ -9,7 +9,7 @@ function lf_initText() {
     });
   });
 
-  function lf_elFinderBrowser(field_name, url, type, win) {
+  function lfelFinderBrowser(field_name, url, type, win) {
     tinyMCE.activeEditor.windowManager.open({
       file: _lang["url"] + '/elfinder/tinymce',
       title: 'Files',
@@ -49,7 +49,7 @@ function lf_initText() {
         apply_source_formatting: false, 
         extended_valid_elements: 'span[style,class],script[charset|defer|language|src|type]',
         verify_html: false, 
-        file_browser_callback: lf_elFinderBrowser,
+        file_browser_callback: lfelFinderBrowser,
         plugins: [
           'advlist autolink lists link image anchor',
           'code',
@@ -92,7 +92,7 @@ function lf_initText() {
   Duplicate wysiwyg, remove TinyMCE references
 */
 
-function lf_DuplicateBlockText($new_block) {
+function lfDuplicateBlockText($new_block) {
   // Remove TinyMCE attributes
   $new_block.find('[contenteditable]').attr('contenteditable', null);
   $new_block.find('[spellcheck]').attr('spellcheck', null);
@@ -104,7 +104,7 @@ function lf_DuplicateBlockText($new_block) {
 
   // Remove attributes starting with data-mce
   $new_block.find('div,span,img').each(function() {
-    lf_removeAttributesStartingWith($(this), 'data-mce-');
+    lfRemoveAttributesStartingWith($(this), 'data-mce-');
   });
 
   // Remove TinyMCE ids + attributes starting with data-mce

@@ -8,7 +8,7 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	"module_name" => "Forms",
+	"module_name" => "Form",
 	"module_desc" => "Collect information. Make reservations, proposals, downloads, contact and more.",
 
 	/*

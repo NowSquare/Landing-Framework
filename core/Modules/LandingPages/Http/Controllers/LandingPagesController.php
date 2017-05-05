@@ -49,7 +49,7 @@ class LandingPagesController extends Controller
         pq('head')->append('<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css') . '" />');
 
         // Init editor
-        pq('head')->append('<script class="-x-editor-asset">$(function(){ lf_initEditor(); });</script>');
+        pq('head')->append('<script class="-x-editor-asset">$(function(){ lfInitEditor(); });</script>');
 
         return $dom;
       } else {
@@ -115,7 +115,11 @@ class LandingPagesController extends Controller
      */
     public function editorModalBackground(Request $request)
     {
-      return view('landingpages::modals.background');
+      $el_class = request()->input('el_class', '');
+      $bg_img = (boolean) request()->input('bg_img', false);
+      $bg_color = (boolean) request()->input('bg_color', false);
+
+      return view('landingpages::modals.background', compact('el_class', 'bg_img', 'bg_color'));
     }
 
 }

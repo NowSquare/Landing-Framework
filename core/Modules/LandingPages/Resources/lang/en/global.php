@@ -19,4 +19,15 @@ return array(
   "food_drinks_desc" => "Food, drinks, delivery. Culinary landing pages.",
   "digital_tech" => "Digital & Tech",
   "digital_tech_desc" => "Landing pages for ventures in the digital world.",
+
+  "background" => "Background",
+  "image" => "Image",
+  "color" => "Color",
+  "" => "",
+  "" => "",
+  "" => "",
+  "" => "",
+  "" => "",
+  "" => "",
+  "" => "",
 );

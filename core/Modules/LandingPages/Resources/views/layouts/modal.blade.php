@@ -9,12 +9,17 @@
   <link href="{{ asset('assets/css/styles.min.css') }}" rel="stylesheet">
   <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+  <!-- Scripts -->
+  <script src="{{ url('assets/javascript?lang=' . \App::getLocale()) }}"></script>
+
   <script>
     var app_root = "{{ url('/') }}";
+
     window.Laravel = <?php echo json_encode([
       'csrfToken' => csrf_token(),
     ]); ?>
   </script>
+
 </head>
 
 <body>
@@ -22,9 +27,18 @@
 
   <!-- Scripts -->
   <script src="{{ url('assets/js/scripts.min.js') }}"></script>
-  <script src="{{ url('assets/javascript?lang=' . \App::getLocale()) }}"></script>
 
-  <script>onPartialLoaded();</script>
+  <script>
+    $(function() {
+      onPartialLoaded();
+
+      $('.onClickClose').on('click', function() {
+        window.parent.lfCloseModal();
+      });
+    });
+  </script>
+
+@yield('script')
 
   <!-- Fonts -->
   <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">

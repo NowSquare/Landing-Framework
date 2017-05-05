@@ -1,23 +1,28 @@
 /*
-  Generic button related functions.
+  Button dropdown open on click and delay
+  with temporary z-index change to make sure
+  the dropdown isn't blocked.
 */
 
-function lf_initDropdowns() {
+function lfInitDropdowns() {
   /*
     Show dropdown on click
   */
   
   $('body').on('click', '.-x-el-inline-button-clone', function() {
-    var $block_edit_dropdown = $(this).find('.-x-el-dropdown');
+    var $button = $(this);
+    var $block_edit_dropdown = $button.find('.-x-el-dropdown');
 
     if (typeof $block_edit_dropdown !== typeof undefined && $block_edit_dropdown !== false) {
       $block_edit_dropdown.css('cssText', 'display: block !important;');
 
-      // Set z-index of all buttons temporary to a high value
-      $(this).attr('data-x-zIndex', $(this).css('z-index'));
-      $(this).css('cssText', 'z-index: 1000000 !important;');
+      // Set z-index of button temporary to a high value
+      if ($button.css('z-index') != 1000000) {
+        $button.attr('data-x-zIndex', $button.css('z-index'));
+        $button.css('cssText', 'z-index: 1000000 !important;');
+      }
 
-      // Reposition tethered elements because $block_settings.css('cssText', ...); seems to reset position
+      // Reposition tethered elements because $block_edit_dropdown.css('cssText', ...); seems to reset position
       Tether.position();
     }
   });
@@ -29,17 +34,17 @@ function lf_initDropdowns() {
   var lfMouseLeaveDropDown;
 
   $('body').on('mouseleave', '.-x-el-dropdown', function() {
-    var that = this;
+    var $dropdown = $(this);
 
-    lfMouseLeaveDropDown = setTimeout( function(){
-      $(that).css('cssText', 'display: none !important;');
+    lfMouseLeaveDropDown = setTimeout(function() {
+      $dropdown.css('cssText', 'display: none !important;');
 
       // Set z-index back to old value
-      var $button = $(that).parents('.-x-el-inline-button-clone');
+      var $button = $dropdown.parents('.-x-el-inline-button-clone');
       $button.css('cssText', 'z-index: ' + $button.attr('data-x-zIndex') + ' !important;');
       $button.attr('data-x-zIndex', null);
 
-      // Reposition tethered elements because $block_settings.css('cssText', ...); seems to reset position
+      // Reposition tethered elements because $dropdown.css('cssText', ...); seems to reset position
       Tether.position();
     }, 200);
   });
@@ -54,14 +59,14 @@ function lf_initDropdowns() {
   http://stackoverflow.com/a/8034949
 */
 
-function lf_SwapElements(elm1, elm2) {
+function lfSwapElements(elm1, elm2) {
   var parent1, next1,
       parent2, next2;
 
   parent1 = elm1.parentNode;
-  next1   = elm1.nextSibling;
+  next1 = elm1.nextSibling;
   parent2 = elm2.parentNode;
-  next2   = elm2.nextSibling;
+  next2 = elm2.nextSibling;
 
   parent1.insertBefore(elm2, next1);
   parent2.insertBefore(elm1, next2);
@@ -71,7 +76,7 @@ function lf_SwapElements(elm1, elm2) {
   Get clean HTML for export and saving
 */
 
-function lf_getHtml() {
+function lfGetHtml() {
 
   // Get a cloned version of the html object
   var $html = $('html').clone();
@@ -84,7 +89,7 @@ function lf_getHtml() {
     this.className = this.className.replace(/(^| )-x-data-[^ ]*/g, '');
 
     // Remove all attributes starting with 
-    lf_removeAttributesStartingWith($(this), 'data-x-');
+    lfRemoveAttributesStartingWith($(this), 'data-x-');
   });
 
   // Remove TinyMCE  style="position: relative;"
@@ -103,7 +108,7 @@ function lf_getHtml() {
 
   // Remove attributes starting with data-mce
   $html.find('div,span,img').each(function() {
-    lf_removeAttributesStartingWith($(this), 'data-mce-');
+    lfRemoveAttributesStartingWith($(this), 'data-mce-');
   });
 
   // Remove TinyMCE ids + attributes starting with data-mce
@@ -127,7 +132,7 @@ function lf_getHtml() {
   Remove html attributes starting with string
 */
 
-function lf_removeAttributesStartingWith(target, starts_with) {
+function lfRemoveAttributesStartingWith(target, starts_with) {
   var i,
       $target = $(target),
       attrName,

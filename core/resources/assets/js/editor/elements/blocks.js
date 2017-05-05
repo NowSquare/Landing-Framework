@@ -1,4 +1,4 @@
-function lf_initBlocks() {
+function lfInitBlocks() {
   /*
     Loop through all blocks, generate semi-unique class
     to reference block for use in the editor. Add `-clone`
@@ -7,22 +7,30 @@ function lf_initBlocks() {
   */
 
   $('.-x-block').each(function() {
-    var $el = $(xTplBlockButton).clone().appendTo('body');
+    var $block = $(this);
+    var $button = $(xTplBlockButton).clone().appendTo('body');
 
     // Set unique class
     var timestamp = new Date().getTime();
     var unique_class = '-x-data-block-' + timestamp;
 
-    $(this).addClass(unique_class);
-    $(this).attr('data-x-el', unique_class);
-    $el.attr('data-x-el', unique_class);
+    $block.addClass(unique_class);
+    $block.attr('data-x-el', unique_class);
+    $button.attr('data-x-el', unique_class);
 
     // Replace class so it won't be cloned in next loop
-    $el.removeClass('-x-el-block-edit').addClass('-x-el-block-edit-clone -x-el-inline-button-clone');
+    $button.removeClass('-x-el-block-edit').addClass('-x-el-block-edit-clone -x-el-inline-button-clone');
+
+    // Check background image and/or color is available
+    if ($block.find('.-x-block-bg-img').length || $block.find('.-x-block-bg-color').length) {
+      $button.find('.-x-el-block-background').removeClass('-x-el-disabled');
+    } else {
+      $button.find('.-x-el-block-background').addClass('-x-el-disabled');
+    }
 
     new Tether({
-      element: $el,
-      target: $(this),
+      element: $button,
+      target: $block,
       attachment: 'top left',
       offset: '-5px -5px',
       targetAttachment: 'top left',
@@ -38,40 +46,26 @@ function lf_initBlocks() {
     });
   });
 
-  lf_ParseBlocks(true);
+  lfParseBlocks(true);
 
   /* 
-    Block settings UI. Show button on hover,
-    open menu on click, etc.
+    Open modal to configure background options
   */
-/*
-  $('body').on('mouseenter', '.-x-block', function() {
-    var block_class = $(this).attr('data-x-el');
 
-    if (typeof block_class !== typeof undefined && block_class !== false) {
-      var $block_settings = $('.-x-block-edit-clone[data-x-el=' + block_class + ']');
-      $block_settings.css('cssText', 'display: block !important;');
+  $('body').on('click', '.-x-el-block-background', function() {
+    var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
 
-      // Reposition tethered elements because $block_settings.css('cssText', ...); seems to reset position
-      Tether.position();
+    if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
+      $(this).parents('.-x-el-dropdown').css('cssText', 'display: none !important;');
+
+      // Check what settings can be configured in the modal
+      var $block = $('.' + block_class);
+      var bg_img = ($block.find('.-x-block-bg-img').length) ? 1 : 0;
+      var bg_color = ($block.find('.-x-block-bg-color').length) ? 1 : 0;
+
+      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/background?bg_img=' + bg_img + '&bg_color=' + bg_color + '', block_class);
     }
   });
-
-  $('body').on('mouseleave', '.-x-block', function() {
-    var isHovered = $(':hover').filter($('.-x-block-edit-clone'));
-    if (isHovered.length == 0) {
-      var block_class = $(this).attr('data-x-el');
-
-      if (typeof block_class !== typeof undefined && block_class !== false) {
-        var $block_settings = $('.-x-block-edit-clone[data-x-el=' + block_class + ']');
-        $block_settings.css('cssText', 'display: none !important;');
-
-        // Reposition tethered elements because $block_settings.css('cssText', ...); seems to reset position
-        Tether.position();
-      }
-    }
-  });
-*/
 
 
   /* 
@@ -82,11 +76,11 @@ function lf_initBlocks() {
     var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
     var block_prev = $('.' + block_class).attr('data-x-prev');
 
-    if (typeof block_prev !== typeof undefined && block_prev !== false && typeof block_class !== typeof undefined && block_class !== false) {
-      lf_SwapElements($('.' + block_prev)[0], $('.' + block_class)[0]);
+    if (! $(this).hasClass('-x-el-disabled') && typeof block_prev !== typeof undefined && block_prev !== false && typeof block_class !== typeof undefined && block_class !== false) {
+      lfSwapElements($('.' + block_prev)[0], $('.' + block_class)[0]);
 
       // Timeout to make sure dom has changed
-      setTimeout(lf_ParseBlocks, 70);
+      setTimeout(lfParseBlocks, 70);
     }
   });
 
@@ -98,11 +92,11 @@ function lf_initBlocks() {
     var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
     var block_next = $('.' + block_class).attr('data-x-next');
 
-    if (typeof block_next !== typeof undefined && block_next !== false && typeof block_class !== typeof undefined && block_class !== false) {
-      lf_SwapElements($('.' + block_class)[0], $('.' + block_next)[0]);
+    if (! $(this).hasClass('-x-el-disabled') && typeof block_next !== typeof undefined && block_next !== false && typeof block_class !== typeof undefined && block_class !== false) {
+      lfSwapElements($('.' + block_class)[0], $('.' + block_next)[0]);
 
       // Timeout to make sure dom has changed
-      setTimeout(lf_ParseBlocks, 70);
+      setTimeout(lfParseBlocks, 70);
     }
   });
 
@@ -113,7 +107,7 @@ function lf_initBlocks() {
   $('body').on('click', '.-x-el-block-edit-delete', function() {
     var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
 
-    if (typeof block_class !== typeof undefined && block_class !== false) {
+    if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
       $('.-x-el-block-edit-clone[data-x-el=' + block_class + ']').remove();
       $('.' + block_class).remove();
 
@@ -123,7 +117,7 @@ function lf_initBlocks() {
       });
 
       // Timeout to make sure dom has changed
-      setTimeout(lf_ParseBlocks, 70);
+      setTimeout(lfParseBlocks, 70);
     }
   });
 
@@ -134,7 +128,7 @@ function lf_initBlocks() {
   $('body').on('click', '.-x-el-block-edit-duplicate', function() {
     var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
 
-    if (typeof block_class !== typeof undefined && block_class !== false) {
+    if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
       var timestamp = new Date().getTime();
  
       // Clone block and replace with new class
@@ -165,16 +159,16 @@ function lf_initBlocks() {
       });
 
       // Timeout to make sure dom has changed
-      setTimeout(lf_ParseBlocks, 70);
+      setTimeout(lfParseBlocks, 70);
 
       // Duplicate other elements
-      lf_DuplicateBlockImages($new_block);
-      lf_DuplicateBlockLinks($new_block);
-      lf_DuplicateBlockLists($new_block);
-      lf_DuplicateBlockText($new_block);
+      lfDuplicateBlockImages($new_block);
+      lfDuplicateBlockLinks($new_block);
+      lfDuplicateBlockLists($new_block);
+      lfDuplicateBlockText($new_block);
 
-      if (typeof lf_DuplicateBlockHook === 'function') {
-        lf_DuplicateBlockHook($new_block);
+      if (typeof lfDuplicateBlockHook === 'function') {
+        lfDuplicateBlockHook($new_block);
       }
     }
   });
@@ -188,7 +182,7 @@ function lf_initBlocks() {
   later after layout changes like moving blocks.
 */
 
-function lf_ParseBlocks(init) {
+function lfParseBlocks(init) {
   var zIndex = 200;
   
   $('.-x-block').each(function() {

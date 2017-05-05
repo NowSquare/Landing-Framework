@@ -59,7 +59,7 @@ html.editor-modal {
 }
 
 html.editor-modal body {
-  padding: 20px !important;
+  padding: 15px !important;
   font-weight: 400;
   font-size: 16px;
   color: rgba(0,0,0,.5);
@@ -69,9 +69,39 @@ html.editor-modal body {
     font-weight: 500;
     font-size: 20px;
     line-height: 28px;
-    margin-top: 0;
+    margin-top: 5px;
     margin-bottom: 24px;
   }
+}
+
+.btn-close {
+  z-index: 100;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 24px;
+  height: 24px;
+  opacity: 0.3;
+}
+
+.btn-close:hover {
+  opacity: 1;
+}
+
+.btn-close:before, .btn-close:after {
+  position: absolute;
+  content: ' ';
+  height: 24px;
+  width: 2px;
+  left: 12px;
+  background-color: #333;
+}
+.btn-close:before {
+  transform: rotate(45deg);
+}
+
+.btn-close:after {
+  transform: rotate(-45deg);
 }
 
 .btn-material {
@@ -139,8 +169,6 @@ html.editor-modal body {
   transform: rotate(-45deg);
 }
 
-
-
 #colorbox,
 #cboxWrapper {
   width: 100% !important;
@@ -156,6 +184,11 @@ html.editor-modal body {
 
 abbr[title], acronym[title] {
   text-decoration: none !important;
+}
+
+// Colorpicker fixes
+.colorpicker.dropdown-menu {
+  padding: 4px;
 }
 
 // Equal height columns

@@ -1,4 +1,4 @@
-function lf_initFab() {
+function lfInitFab() {
   var $el = $(xTplFab).clone().appendTo('body');
 
   /*
@@ -6,19 +6,17 @@ function lf_initFab() {
   */
   
   $('body').on('click', '.-x-el-fab', function() {
+    var $fab_button = $(this);
     var $fab_dropdown = $('.-x-el-dropdown-fab');
 
     if (typeof $fab_dropdown !== typeof undefined && $fab_dropdown !== false) {
-      $fab_dropdown.css('cssText', 'position: fixed !important;display: block !important;');
 
-      // Set z-index of all buttons temporary to a high value
-      //$(this).attr('data-x-zIndex', $(this).css('z-index'));
-      //$(this).css('cssText', 'z-index: 1000000 !important;');
+      $fab_dropdown.css('cssText', 'position: fixed !important;display: block !important;z-index: 1000000 !important;');
 
-      if (! $(this).hasClass('-x-data-enabled')) {
+      if (! $fab_button.hasClass('-x-data-enabled')) {
         new Tether({
           element: $fab_dropdown,
-          target: $(this),
+          target: $fab_button,
           attachment: 'bottom left',
           offset: '-60px -60px',
           targetAttachment: 'top right',
@@ -45,6 +43,6 @@ function lf_initFab() {
   */
 
   $('body').on('click', '.-x-el-fab-export', function() {
-    lf_getHtml();
+    lfGetHtml();
   });
 }

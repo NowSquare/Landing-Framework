@@ -1,4 +1,4 @@
-function lf_initImages() {
+function lfInitImages() {
   /*
     Loop through all images, generate semi-unique class
     to reference images for use in the editor. Add `-clone`
@@ -7,14 +7,15 @@ function lf_initImages() {
   */
 
   $('.-x-img').each(function() {
+    var $img = $(this);
     // Attribute settings
-    var attachment = $(this).attr('data-attachment');
+    var attachment = $img.attr('data-attachment');
     attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
 
-    var targetAttachment = $(this).attr('data-target-attachment');
+    var targetAttachment = $img.attr('data-target-attachment');
     targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
 
-    var offset = $(this).attr('data-offset');
+    var offset = $img.attr('data-offset');
     offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
 
     var $el = $(xTplImgButton).clone().appendTo('body');
@@ -23,19 +24,19 @@ function lf_initImages() {
     var timestamp = new Date().getTime();
     var unique_class = '-x-data-img-' + timestamp;
 
-    $(this).addClass(unique_class);
-    $(this).attr('data-x-el', unique_class);
+    $img.addClass(unique_class);
+    $img.attr('data-x-el', unique_class);
     $el.attr('data-x-el', unique_class);
 
     // Set reference to parent block
-    $el.attr('data-x-parent-block', $(this).parents('.-x-block').attr('data-x-el'));
+    $el.attr('data-x-parent-block', $img.parents('.-x-block').attr('data-x-el'));
 
     // Replace class so it won't be cloned in next loop
     $el.removeClass('-x-el-img-edit').addClass('-x-el-img-edit-clone -x-el-inline-button-clone');
 
     new Tether({
       element: $el,
-      target: $(this),
+      target: $img,
       attachment: attachment,
       offset: offset,
       targetAttachment: targetAttachment,
@@ -51,14 +52,14 @@ function lf_initImages() {
     });
   });
 
-  lf_ParseImages(true);
+  lfParseImages(true);
 }
 
 /* 
   Duplicate image buttons and references
 */
 
-function lf_DuplicateBlockImages($new_block) {
+function lfDuplicateBlockImages($new_block) {
   // Loop through all images in new block
   $new_block.find('.-x-img').each(function() {
     var timestamp = new Date().getTime();
@@ -106,7 +107,7 @@ function lf_DuplicateBlockImages($new_block) {
   });
 
   // Timeout to make sure dom has changed
-  setTimeout(lf_ParseImages, 70);
+  setTimeout(lfParseImages, 70);
 }
 
 /* 
@@ -114,7 +115,7 @@ function lf_DuplicateBlockImages($new_block) {
   and fix z-index overlapping. 
 */
 
-function lf_ParseImages(init) {
+function lfParseImages(init) {
   var zIndex = 100;
   
   $('.-x-img').each(function() {
