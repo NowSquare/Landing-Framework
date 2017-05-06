@@ -78,6 +78,7 @@ function lfInitText() {
         file_browser_callback: lfelFinderBrowser,
         plugins: [
           'advlist autolink lists link image anchor',
+          'code',
           'media table contextmenu paste colorpicker'
         ],
         toolbar: toolbar,
