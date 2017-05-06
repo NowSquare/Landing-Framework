@@ -69,9 +69,9 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right pull-right" id="device_selector">
-          <li class="menu-icon-button active" id="desktop_mode"><a href="javascript:void(0);" class="waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE30C;</i></a></li>
-          <li class="menu-icon-button" id="tablet_mode"><a href="javascript:void(0);" class="waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE330;</i></a></li>
-          <li class="menu-icon-button" id="phone_mode"><a href="javascript:void(0);" class="waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE32C;</i></a></li>
+          <li class="menu-icon-button active" id="desktop_mode"><a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE30C;</i></a></li>
+          <li class="menu-icon-button" id="tablet_mode"><a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE330;</i></a></li>
+          <li class="menu-icon-button" id="phone_mode"><a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE32C;</i></a></li>
         </ul>
 <?php
 // Only show language dropdown if there's more than one language available
