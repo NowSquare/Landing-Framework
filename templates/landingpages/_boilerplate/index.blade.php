@@ -27,10 +27,7 @@
     <style type="text/css">
     .header-gradient-software .header-overlay {
       background: #4776e6;
-      background: -moz-linear-gradient(top,  #4776e6 0%, #8e54e9 100%);
-      background: -webkit-linear-gradient(top,  #4776e6 0%,#8e54e9 100%);
       background: linear-gradient(to bottom,  #4776e6 0%,#8e54e9 100%);
-      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4776e6', endColorstr='#8e54e9',GradientType=0 );
     }
     </style>
 

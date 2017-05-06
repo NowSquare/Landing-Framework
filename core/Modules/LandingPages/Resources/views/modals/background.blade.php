@@ -161,12 +161,9 @@ Update settings
   var bg_gradient_start = $('#bg_gradient_start').val();
   var bg_gradient_end = $('#bg_gradient_end').val();
 
-  var bgWebKit = '-webkit-linear-gradient(top,  ' + bg_gradient_start + ' 0%, ' + bg_gradient_end + ' 100%)';
-  var bgMoz = '-moz-linear-gradient(top, ' + bg_gradient_start + ' 0%, ' + bg_gradient_end + ' 100%)';
-
   $el.find('.-x-block-bg-gradient')
-    .css('background-image', bgWebKit)
-    .css('background-image', bgMoz);
+    .css('background-color', bg_gradient_start)
+    .css('background-image', 'linear-gradient(to bottom, ' + bg_gradient_start + ' 0%, ' + bg_gradient_end + ' 100%)');
 <?php } ?>
 
     // Changes detected
