@@ -19,6 +19,9 @@ function lfInitLinks() {
     var offset = $link.attr('data-offset');
     offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px 0';
 
+    var dropdownPosition = $list.attr('data-dropdown-position');
+    dropdownPosition = (typeof dropdownPosition !== typeof undefined && dropdownPosition !== false) ? dropdownPosition : 'right';
+
     var $el = $(xTplLinkButton).clone().appendTo('body');
 
     // Set unique class
@@ -34,6 +37,11 @@ function lfInitLinks() {
 
     // Replace class so it won't be cloned in next loop
     $el.removeClass('-x-el-link-edit').addClass('-x-el-link-edit-clone -x-el-inline-button-clone');
+
+    // Add class so dropdown opens on the left side
+    if (dropdownPosition == 'left') {
+      $el.find('.-x-el-dropdown').addClass('-x-el-dropdown-left');
+    }
 
     new Tether({
       element: $el,

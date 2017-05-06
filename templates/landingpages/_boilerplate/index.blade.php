@@ -29,7 +29,7 @@
         <div class="header-padding no-padding-b">
           <div class="row">
             <div class="col-12 text-center text-md-right">
-              <div class="mb-1 mt-2 hor-spacing-md-a -x-list" data-attachment="right bottom" data-target-attachment="top right">
+              <div class="mb-1 mt-2 hor-spacing-md-a -x-list" data-attachment="bottom right" data-target-attachment="top right" data-dropdown-position="left">
                 <a href="#" role="button" class="color-light"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                 <a href="#" role="button" class="color-light"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                 <a href="#" role="button" class="color-light"><i class="fa fa-linkedin" aria-hidden="true"></i></a>

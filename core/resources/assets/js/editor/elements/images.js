@@ -18,6 +18,9 @@ function lfInitImages() {
     var offset = $img.attr('data-offset');
     offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
 
+    var dropdownPosition = $list.attr('data-dropdown-position');
+    dropdownPosition = (typeof dropdownPosition !== typeof undefined && dropdownPosition !== false) ? dropdownPosition : 'right';
+
     var $el = $(xTplImgButton).clone().appendTo('body');
 
     // Set unique class
@@ -33,6 +36,11 @@ function lfInitImages() {
 
     // Replace class so it won't be cloned in next loop
     $el.removeClass('-x-el-img-edit').addClass('-x-el-img-edit-clone -x-el-inline-button-clone');
+
+    // Add class so dropdown opens on the left side
+    if (dropdownPosition == 'left') {
+      $el.find('.-x-el-dropdown').addClass('-x-el-dropdown-left');
+    }
 
     new Tether({
       element: $el,
