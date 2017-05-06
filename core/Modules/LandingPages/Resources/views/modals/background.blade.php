@@ -14,7 +14,7 @@
 
 <?php if ($bg_img) { ?>
       <div class="form-group">
-        <label for="bg_image">{{ trans('landingpages::global.image') }}</label>
+        <label for="bg_img">{{ trans('landingpages::global.image') }}</label>
         <div class="input-group">
           <input type="text" class="form-control" id="bg_img" name="bg_img" autocomplete="off" value="">
           <div class="input-group-btn add-on">
@@ -96,6 +96,9 @@ Update settings
 <?php if ($bg_color) { ?>
     $el.find('.-x-block-bg-color').css('background-color', $('#bg_color').val());
 <?php } ?>
+
+    // Changes detected
+    window.parent.lfSetPageIsDirty();
 
 <?php } ?>
 

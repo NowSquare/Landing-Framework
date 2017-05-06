@@ -16,20 +16,7 @@
   <section class="typography-1 -x-block">
     <nav class="navbar navbar-dark bg-inverse">
       <div class="container">
-          <a class="navbar-brand" href="#" target="_blank"><img src="/templates/landingpages/_boilerplate/images/logos/ns-light.svg" class="-x-img" data-offset="10px 10px" alt="" style="height:42px"></a>
-          <button class="navbar-toggler pull-right hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsingNavbarGlobal" aria-controls="collapsingNavbarGlobal" aria-expanded="false" aria-label="Toggle navigation">
-            &#9776;
-          </button>
-          <div class="collapse navbar-toggleable-sm" id="collapsingNavbarGlobal">
-          <ul class="nav navbar-nav pull-right">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://bootstrap-ui-kit.com" target="_blank">Bootstrap UI Kit</a>
-            </li>
-          </ul>
-          </div>
+          <a class="navbar-brand" href="#"><img src="/templates/landingpages/_boilerplate/images/logos/ns-light.svg" class="-x-img" data-offset="10px 10px" alt="" style="height:42px"></a>
       </div>
     </nav>
   </section>
