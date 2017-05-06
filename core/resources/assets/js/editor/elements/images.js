@@ -18,7 +18,7 @@ function lfInitImages() {
     var offset = $img.attr('data-offset');
     offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
 
-    var dropdownPosition = $list.attr('data-dropdown-position');
+    var dropdownPosition = $img.attr('data-dropdown-position');
     dropdownPosition = (typeof dropdownPosition !== typeof undefined && dropdownPosition !== false) ? dropdownPosition : 'right';
 
     var $el = $(xTplImgButton).clone().appendTo('body');

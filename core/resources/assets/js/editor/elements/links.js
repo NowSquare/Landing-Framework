@@ -19,7 +19,7 @@ function lfInitLinks() {
     var offset = $link.attr('data-offset');
     offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px 0';
 
-    var dropdownPosition = $list.attr('data-dropdown-position');
+    var dropdownPosition = $link.attr('data-dropdown-position');
     dropdownPosition = (typeof dropdownPosition !== typeof undefined && dropdownPosition !== false) ? dropdownPosition : 'right';
 
     var $el = $(xTplLinkButton).clone().appendTo('body');
