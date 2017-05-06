@@ -56,6 +56,19 @@ html.editor-modal {
   body, input, textarea, button, h1, h2, h3 {
     font-family: 'Roboto', sans-serif;
   }
+
+  .editor-modal-footer {
+    z-index: 9;
+    text-align: right;
+    position: fixed;
+    right: 20px;
+    bottom: 10px;
+    width: 100%;
+
+    .btn-material {
+      background-color: #fff !important;
+    }
+  }
 }
 
 html.editor-modal body {

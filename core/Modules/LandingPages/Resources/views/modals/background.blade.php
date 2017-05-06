@@ -78,8 +78,10 @@
 
 <?php } ?>
 
-      <button type="button" class="btn btn-primary btn-material onClickClose">{{ trans('global.cancel') }}</button>
-      <button type="button" class="btn btn-primary btn-material onClickUpdate">{{ trans('global.update') }}</button>
+      <div class="editor-modal-footer">
+        <button type="button" class="btn btn-primary btn-material onClickClose">{{ trans('global.cancel') }}</button>
+        <button type="button" class="btn btn-primary btn-material onClickUpdate">{{ trans('global.update') }}</button>
+      </div>
 
     </div>
   </div>
