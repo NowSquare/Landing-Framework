@@ -111,15 +111,55 @@ class LandingPagesController extends Controller
     }
 
     /**
-     * Editor modal to configure background (color, image)
+     * Editor modal to configure background (color, image, etc)
      */
     public function editorModalBackground(Request $request)
     {
-      $el_class = request()->input('el_class', '');
-      $bg_img = (boolean) request()->input('bg_img', false);
-      $bg_color = (boolean) request()->input('bg_color', false);
+      $el_class = $request->input('el_class', '');
+      $bg_img = (boolean) $request->input('bg_img', false);
+      $bg_color = (boolean) $request->input('bg_color', false);
 
       return view('landingpages::modals.background', compact('el_class', 'bg_img', 'bg_color'));
     }
 
+    /**
+     * Editor modal to insert a new block
+     */
+    public function editorModalInsertBlock(Request $request)
+    {
+      $el_class = $request->input('el_class', '');
+      $position = $request->input('position', 'below');
+
+      return view('landingpages::modals.insert-block', compact('el_class', 'position'));
+    }
+
+    /**
+     * Editor modal to configure link
+     */
+    public function editorModalLink(Request $request)
+    {
+      $el_class = $request->input('el_class', '');
+
+      return view('landingpages::modals.link', compact('el_class'));
+    }
+
+    /**
+     * Editor modal to configure list
+     */
+    public function editorModalList(Request $request)
+    {
+      $el_class = $request->input('el_class', '');
+
+      return view('landingpages::modals.list', compact('el_class'));
+    }
+
+    /**
+     * Editor modal to configure image
+     */
+    public function editorModalImage(Request $request)
+    {
+      $el_class = $request->input('el_class', '');
+
+      return view('landingpages::modals.image', compact('el_class'));
+    }
 }

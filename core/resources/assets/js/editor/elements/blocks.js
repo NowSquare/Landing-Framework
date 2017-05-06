@@ -56,6 +56,7 @@ function lfInitBlocks() {
     var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
+      // Hide dropdown after option has been clicked
       $(this).parents('.-x-el-dropdown').css('cssText', 'display: none !important;');
 
       // Check what settings can be configured in the modal
@@ -67,6 +68,21 @@ function lfInitBlocks() {
     }
   });
 
+  /* 
+    Open modal to insert block
+  */
+
+  $('body').on('click', '.-x-el-block-insert-above, .-x-el-block-insert-below', function() {
+    var position = $(this).hasClass('.-x-el-block-insert-above') ? 'above' : 'below';
+    var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').css('cssText', 'display: none !important;');
+
+      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/insert-block?position=' + position + '', block_class);
+    }
+  });
 
   /* 
     Move block one position up
@@ -108,16 +124,18 @@ function lfInitBlocks() {
     var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
-      $('.-x-el-block-edit-clone[data-x-el=' + block_class + ']').remove();
-      $('.' + block_class).remove();
+      if (confirm(_lang['confirm'])) {
+        $('.-x-el-block-edit-clone[data-x-el=' + block_class + ']').remove();
+        $('.' + block_class).remove();
 
-      // Delete other elements
-      $('[data-x-parent-block=' + block_class + ']').each(function() {
-        $(this).remove();
-      });
+        // Delete other elements
+        $('[data-x-parent-block=' + block_class + ']').each(function() {
+          $(this).remove();
+        });
 
-      // Timeout to make sure dom has changed
-      setTimeout(lfParseBlocks, 70);
+        // Timeout to make sure dom has changed
+        setTimeout(lfParseBlocks, 70);
+      }
     }
   });
 

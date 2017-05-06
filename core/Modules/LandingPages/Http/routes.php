@@ -10,7 +10,12 @@ Route::group(['middleware' => 'web', 'prefix' => 'landingpages', 'namespace' => 
     Route::get('create', 'LandingPagesController@create');
     Route::get('editor', 'LandingPagesController@editor');
 
+    // Editor modals
+    Route::get('editor/modal/insert-block', 'LandingPagesController@editorModalInsertBlock');
     Route::get('editor/modal/background', 'LandingPagesController@editorModalBackground');
+    Route::get('editor/modal/link', 'LandingPagesController@editorModalLink');
+    Route::get('editor/modal/list', 'LandingPagesController@editorModalList');
+    Route::get('editor/modal/image', 'LandingPagesController@editorModalImage');
 
   });
 });

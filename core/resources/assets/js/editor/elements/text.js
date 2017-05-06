@@ -32,16 +32,42 @@ function lfInitText() {
    */
   $(function() {
     $('body').on('click', '.-x-text', function() {
-      var el = this;
+      var $el = $(this);
 
       // Check if TinyMCE already is attached
-      if ($(this).hasClass('mce-content-body')) return false;
+      if ($el.hasClass('mce-content-body')) return false;
 
-       // $(this).attr('contenteditable', true);
+      // Check if element has id, if not generate a semi-unique id.
+      // This is needed for TinyMCE to have separate inline editors
+      // per element.
+      var id = $el.attr('id');
+
+      if (typeof id == 'undefined') {
+        var timestamp = new Date().getTime();
+        var id = 'mce_' + timestamp;
+        $el.attr('id', id);
+      }
+
+      // Set toolbar based on element
+      var tag = $el.prop('tagName').toLowerCase();
+
+      switch (tag) {
+        case 'h1':
+        case 'h2':
+        case 'h3':
+        case 'h4':
+        case 'h5':
+        case 'p':
+          var toolbar = 'undo redo | bold italic link | image | forecolor'; break;
+        default: 
+          var toolbar = 'undo redo | bold italic link | styleselect | image | bullist | forecolor';
+      }
+
+      // $el.attr('contenteditable', true);
 
       tinymce.init({
+        selector: '#' + id,
         skin: 'dark',
-        selector: '.-x-text',
         inline: true,
         menubar: false,
         schema: 'html5',
@@ -53,9 +79,9 @@ function lfInitText() {
         plugins: [
           'advlist autolink lists link image anchor',
           'code',
-          'media table contextmenu paste'
+          'media table contextmenu paste colorpicker'
         ],
-        toolbar: 'bold italic | bullist | link image',
+        toolbar: toolbar,
         init_instance_callback : function(editor) {
           editor.serializer.addNodeFilter('script,style', function(nodes, name) {
             var i = nodes.length, node, value, type;

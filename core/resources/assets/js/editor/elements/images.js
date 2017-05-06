@@ -53,6 +53,24 @@ function lfInitImages() {
   });
 
   lfParseImages(true);
+
+  /* 
+    Open modal to configure image
+  */
+
+  $('body').on('click', '.-x-el-img-update', function() {
+    var el_class = $(this).parents('.-x-el-img-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').css('cssText', 'display: none !important;');
+
+      // Check what settings can be configured in the modal
+      //var $el = $('.' + el_class);
+
+      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/image', el_class);
+    }
+  });
 }
 
 /* 

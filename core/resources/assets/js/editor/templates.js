@@ -16,6 +16,7 @@ var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset">' +
   '      </ul>' +
   '    </li>' + 
   '    <li class="separator"><hr></li>' +
+  '    <li class="-x-el-fab-domain"><a href="javascript:void(0);">Domain</a></li>' +
   '    <li class="-x-el-fab-seo"><a href="javascript:void(0);">SEO</a></li>' +
   '    <li class="-x-el-fab-view"><a href="javascript:void(0);">View online</a></li>' +
   '    <li class="-x-el-fab-save"><a href="javascript:void(0);">Save page</a></li>' +
@@ -67,18 +68,18 @@ var xTplImgButton = '<div class="-x-el-inline-button -x-el-img-edit -x-el-reset"
 '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/image.svg\';"' +
 '  >' +
 '  <ul class="-x-el-dropdown -x-el-reset">' +
-'    <li class="-x-el-img-select"><a href="javascript:void(0);">Update image</a></li>' +
+'    <li class="-x-el-img-update"><a href="javascript:void(0);">Update image</a></li>' +
 '    <li class="separator"><hr></li>' +
 '    <li class="-x-el-img-hide"><a href="javascript:void(0);">Hide</a></li>' +
 '  </ul>' +
 '</div>';
 
-var xTplLinkButton = '<div class="-x-el-inline-button -x-el-list-edit -x-el-reset">' + 
+var xTplLinkButton = '<div class="-x-el-inline-button -x-el-link-edit -x-el-reset">' + 
   ' <img src="' + _lang["url"] + '/assets/images/editor/icons/link.svg" class="-x-el-icon"' +
   '   onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/link-hover.svg\';"' +
   '   onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/link.svg\';"' +
   ' >' +
   ' <ul class="-x-el-dropdown -x-el-reset">' +
-  '   <li class="-x-el-list-edit"><a href="javascript:void(0);">Configure link</a></li>' +
+  '   <li class="-x-el-link-edit"><a href="javascript:void(0);">Link settings</a></li>' +
   ' </ul>' +
   '</div>';
