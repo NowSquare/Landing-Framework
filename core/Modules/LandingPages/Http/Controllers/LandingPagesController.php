@@ -118,8 +118,9 @@ class LandingPagesController extends Controller
       $el_class = $request->input('el_class', '');
       $bg_img = (boolean) $request->input('bg_img', false);
       $bg_color = (boolean) $request->input('bg_color', false);
+      $bg_gradient = (boolean) $request->input('bg_gradient', false);
 
-      return view('landingpages::modals.background', compact('el_class', 'bg_img', 'bg_color'));
+      return view('landingpages::modals.background', compact('el_class', 'bg_img', 'bg_color', 'bg_gradient'));
     }
 
     /**

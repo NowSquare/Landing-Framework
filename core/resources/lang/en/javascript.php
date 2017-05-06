@@ -16,6 +16,7 @@ return array(
 	"cancel" => "Cancel",
 	"ok" => "OK",
 	"confirm" => "Are you sure?",
+	"confirm_delete_block" => "Are you sure you want to delete this block?",
 	"confirm_follow_link" => "You've clicked a link that will take you to another url. Unsaved changes will be lost. Do you want to continue?",
 	"confirm_leaving_page" => "It looks like you have been editing something. If you leave before saving, your changes will be lost.",
 	"yes_delete" => "Yes, delete",

@@ -31,12 +31,51 @@
         <div class="colorpicker-rgba input-group colorpicker-element colorpicker-component">
           <input type="text" id="bg_color" value="" class="form-control">
           <span class="input-group-btn add-on">
-            <button class="btn btn-white" type="button" style="padding:0; background-color:#fff; border:0;">
-              <i style="background-color: rgb(255, 255, 255);height:34px;width:34px"></i>
+            <button class="btn btn-white" type="button" style="padding:0; background-color:#fff; border:1px solid #eee;">
+              <i style="background-color: rgb(255, 255, 255);height:32px;width:32px"></i>
             </button>
           </span>
         </div>
       </div>
+<?php } ?>
+
+<?php if ($bg_gradient) { ?>
+
+      <div class="form-group">
+        <label for="bg_gradient_start">{{ trans('landingpages::global.gradient') }}</label>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-6">
+
+          <div class="form-group">
+            <div class="colorpicker-gradient-start input-group colorpicker-element colorpicker-component">
+              <input type="text" id="bg_gradient_start" value="" class="form-control">
+              <span class="input-group-btn add-on">
+                <button class="btn btn-white" type="button" style="padding:0; background-color:#fff; border:1px solid #eee;">
+                  <i style="background-color: rgb(255, 255, 255);height:32px;width:32px"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-xs-6">
+
+          <div class="form-group">
+            <div class="colorpicker-gradient-end input-group colorpicker-element colorpicker-component">
+              <input type="text" id="bg_gradient_end" value="" class="form-control">
+              <span class="input-group-btn add-on">
+                <button class="btn btn-white" type="button" style="padding:0; background-color:#fff; border:1px solid #eee;">
+                  <i style="background-color: rgb(255, 255, 255);height:32px;width:32px"></i>
+                </button>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
 <?php } ?>
 
       <button type="button" class="btn btn-primary btn-material onClickClose">{{ trans('global.cancel') }}</button>
@@ -52,6 +91,14 @@
 $(function() {
   var $colorpicker = $('.colorpicker-rgba').colorpicker({
     format: 'rgba'
+  });
+
+  var $colorpicker_gradient_start = $('.colorpicker-gradient-start').colorpicker({
+    format: 'hex'
+  });
+
+  var $colorpicker_gradient_end = $('.colorpicker-gradient-end').colorpicker({
+    format: 'hex'
   });
 
 <?php /* ----------------------------------------------------------------------------
@@ -79,6 +126,19 @@ Set settings
   $colorpicker.colorpicker('setValue', bg_color);
 <?php } ?>
 
+<?php if ($bg_gradient) { ?>
+  var bg_gradient = $el.find('.-x-block-bg-gradient').css('background-image');
+
+  var bg_gradient_start = bg_gradient.split('0%, ')[1].split('100%)')[0];
+  var bg_gradient_end = bg_gradient.split('0%')[0].split('linear-gradient(')[1];
+
+  $('#bg_gradient_start').val(bg_gradient_start);
+  $('#bg_gradient_end').val(bg_gradient_end);
+
+  $colorpicker_gradient_start.colorpicker('setValue', bg_gradient_start);
+  $colorpicker_gradient_end.colorpicker('setValue', bg_gradient_end);
+<?php } ?>
+
 <?php } ?>
 
 <?php /* ----------------------------------------------------------------------------
@@ -95,6 +155,18 @@ Update settings
 
 <?php if ($bg_color) { ?>
     $el.find('.-x-block-bg-color').css('background-color', $('#bg_color').val());
+<?php } ?>
+
+<?php if ($bg_gradient) { ?>
+  var bg_gradient_start = $('#bg_gradient_start').val();
+  var bg_gradient_end = $('#bg_gradient_end').val();
+
+  var bgWebKit = '-webkit-linear-gradient(top,  ' + bg_gradient_start + ' 0%, ' + bg_gradient_end + ' 100%)';
+  var bgMoz = '-moz-linear-gradient(top, ' + bg_gradient_start + ' 0%, ' + bg_gradient_end + ' 100%)';
+
+  $el.find('.-x-block-bg-gradient')
+    .css('background-image', bgWebKit)
+    .css('background-image', bgMoz);
 <?php } ?>
 
     // Changes detected

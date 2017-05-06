@@ -23,11 +23,13 @@ return array(
   "background" => "Background",
   "image" => "Image",
   "color" => "Color",
+  "gradient" => "Gradient",
   "link" => "Link",
   "text" => "Text",
   "url" => "Url",
   "target" => "Target",
   "none" => "None",
   "new_window" => "New window",
+  "" => "",
   "" => "",
 );

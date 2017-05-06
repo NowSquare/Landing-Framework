@@ -13,13 +13,54 @@
 <body>
 
 
-  <section class="typography-1 -x-block">
+  <section class="-x-block">
     <nav class="navbar navbar-dark bg-inverse">
       <div class="container">
           <a class="navbar-brand" href="#"><img src="/templates/landingpages/_boilerplate/images/logos/ns-light.svg" class="-x-img" data-offset="10px 10px" alt="" style="height:42px"></a>
       </div>
     </nav>
   </section>
+
+
+    <!-- Header dark, text centered, gradient, visual bottom
+      ================================================== -->
+    <style type="text/css">
+    .header-gradient-software .header-overlay {
+      background: #4776e6;
+      background: -moz-linear-gradient(top,  #4776e6 0%, #8e54e9 100%);
+      background: -webkit-linear-gradient(top,  #4776e6 0%,#8e54e9 100%);
+      background: linear-gradient(to bottom,  #4776e6 0%,#8e54e9 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4776e6', endColorstr='#8e54e9',GradientType=0 );
+    }
+    </style>
+
+    <section class="header-gradient-software -x-block">
+      <div class="header text-light">
+        <div class="header-overlay -x-block-bg-gradient">
+          <div class="container">
+            <div class="header-padding-xl text-center no-padding-b">
+              <div class="row">
+                <div class="col-12">
+                  <h1 class="display-3">Online Platform</h1>
+                  <p class="lead">NowSquare provides high quality assets for your business. We help entrepreneurs with great ideas moving faster.</p>
+                  <div class="btn-container mt-3 mb-1">
+                    <a class="btn btn-outline-ghost btn-xlg btn-pill" href="#" role="button">Get Started Now</a>
+                  </div>
+                  <img src="/templates/landingpages/_boilerplate/images//visuals/software01.png" alt="" class="img-fluid -x-img" style="margin:auto">
+                </div>
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.header-padding -->
+          </div>
+          <!-- /.container -->
+        </div>
+        <!-- /.header-overlay -->
+      </div>
+      <!-- /.header -->
+    </section>
+
 
  
    <section class="typography-1 -x-block">

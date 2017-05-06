@@ -22,7 +22,7 @@ function lfInitBlocks() {
     $button.removeClass('-x-el-block-edit').addClass('-x-el-block-edit-clone -x-el-inline-button-clone');
 
     // Check background image and/or color is available
-    if ($block.find('.-x-block-bg-img').length || $block.find('.-x-block-bg-color').length) {
+    if ($block.find('.-x-block-bg-img').length || $block.find('.-x-block-bg-color').length || $block.find('.-x-block-bg-gradient').length) {
       $button.find('.-x-el-block-background').removeClass('-x-el-disabled');
     } else {
       $button.find('.-x-el-block-background').addClass('-x-el-disabled');
@@ -63,8 +63,9 @@ function lfInitBlocks() {
       var $block = $('.' + block_class);
       var bg_img = ($block.find('.-x-block-bg-img').length) ? 1 : 0;
       var bg_color = ($block.find('.-x-block-bg-color').length) ? 1 : 0;
+      var bg_gradient = ($block.find('.-x-block-bg-gradient').length) ? 1 : 0;
 
-      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/background?bg_img=' + bg_img + '&bg_color=' + bg_color + '', block_class);
+      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/background?bg_img=' + bg_img + '&bg_color=' + bg_color + '&bg_gradient=' + bg_gradient, block_class);
     }
   });
 
@@ -77,6 +78,7 @@ function lfInitBlocks() {
     var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
+
       // Hide dropdown after option has been clicked
       $(this).parents('.-x-el-dropdown').css('cssText', 'display: none !important;');
 
@@ -130,7 +132,7 @@ function lfInitBlocks() {
     var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
-      if (confirm(_lang['confirm'])) {
+      if (confirm(_lang['confirm_delete_block'])) {
         $('.-x-el-block-edit-clone[data-x-el=' + block_class + ']').remove();
         $('.' + block_class).remove();
 
