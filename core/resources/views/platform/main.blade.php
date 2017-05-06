@@ -14,8 +14,6 @@
         <ul class="navigation-menu">
           <li class="has-submenu" id="tour-dashboard"><a href="#/" class="waves-effect waves-light">{{ trans('global.dashboard') }}</a></li>
           <li class="has-submenu"><a href="#/create" class="waves-effect waves-light">{{ trans('global.create') }}</a></li>
-          <li class="has-submenu"><a href="#/edit" class="waves-effect waves-light">{{ trans('global.edit') }}</a></li>
-          <li class="has-submenu"><a href="#/analytics" class="waves-effect waves-light">{{ trans('global.analytics') }}</a></li>
           <li class="has-submenu"><a href="#/landingpages/editor/{{ \Platform\Controllers\Core\Secure::array2string(array('landing_site_id' => 1))  }}" class="waves-effect waves-light">{{ trans('global.editor') }}</a></li>
 <?php if (1==2 && Gate::allows('limitation', 'media.visible')) { ?>
           <li class="has-submenu"><a href="#/media" class="waves-effect waves-light">{{ trans('global.media') }}</a></li>

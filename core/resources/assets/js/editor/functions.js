@@ -81,8 +81,8 @@ function lfGetHtml() {
   // Get a cloned version of the html object
   var $html = $('html').clone();
 
-  // Remove editor elements
-  $html.find('.-x-el-inline-button, .-x-editor-asset').remove();
+  // Remove editor  and plugin elements
+  $html.find('.-x-el-inline-button, .-x-editor-asset, .-x-el-dropdown, .-x-editor-inline-modal-bg, #window-resizer-tooltip').remove();
 
   // Remove all classes starting with -x-data-
   $html.find('[class*=-x-data-]').each(function() {
@@ -125,7 +125,7 @@ function lfGetHtml() {
   // Various
   $html.find('[data-tether-id]').remove();
 
-  console.log($html.html());
+  return $html.html();
 }
 
 /* 

@@ -6,15 +6,26 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12">
-      <h1>{{ trans('landingpages::global.link') }}</h1>
+      <h1>{{ trans('landingpages::global.image') }}</h1>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-10 col-sm-6">
 
       <div class="form-group">
-        <label for="text">{{ trans('landingpages::global.text') }}</label>
-          <input type="text" class="form-control" id="text" name="text" autocomplete="off" value="">
+        <label for="img">{{ trans('landingpages::global.image') }}</label>
+        <div class="input-group">
+          <input type="text" class="form-control" id="img" name="img" autocomplete="off" value="">
+          <div class="input-group-btn add-on">
+            <button type="button" class="btn btn-primary" id="select_img" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="img" data-preview="img-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
+            <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="img-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="alt">{{ trans('landingpages::global.alt') }}</label>
+          <input type="text" class="form-control" id="alt" name="alt" autocomplete="off" value="">
       </div>
 
       <div class="form-group">
@@ -46,9 +57,6 @@ echo Former::select('target')
 @section('script') 
 <script>
 $(function() {
-  var $colorpicker = $('.colorpicker-rgba').colorpicker({
-    format: 'rgba'
-  });
 
 <?php /* ----------------------------------------------------------------------------
 Set settings
@@ -58,9 +66,9 @@ Set settings
 
   var $el = $('.{{ $el_class }}', window.parent.document);
 
-  $('#text').val($el.html());
-  $('#url').val($el.attr('href'));
-  $('#target').val($el.attr('target'));
+  $('#img').val($el.attr('src'));
+  //$('#url').val($el.attr('href'));
+  //$('#target').val($el.attr('target'));
 
 <?php } ?>
 
@@ -71,9 +79,12 @@ Update settings
   $('.onClickUpdate').on('click', function() {
 <?php if ($el_class != '') { ?>
 
-  $el.html($('#text').val());
-  $el.attr('href', $('#url').val());
-  $el.attr('target', $('#target').val());
+  $el.attr('src', $('#img').val());
+  //$el.attr('href', $('#url').val());
+  //$el.attr('target', $('#target').val());
+
+  // Changes detected
+  window.parent.lfSetPageIsDirty();
 
 <?php } ?>
 

@@ -46,9 +46,6 @@ echo Former::select('target')
 @section('script') 
 <script>
 $(function() {
-  var $colorpicker = $('.colorpicker-rgba').colorpicker({
-    format: 'rgba'
-  });
 
 <?php /* ----------------------------------------------------------------------------
 Set settings
@@ -75,6 +72,8 @@ Update settings
   $el.attr('href', $('#url').val());
   $el.attr('target', $('#target').val());
 
+  // Changes detected
+  window.parent.lfSetPageIsDirty();
 <?php } ?>
 
     window.parent.lfCloseModal();

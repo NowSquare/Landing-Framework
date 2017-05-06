@@ -78,7 +78,6 @@ function lfInitText() {
         file_browser_callback: lfelFinderBrowser,
         plugins: [
           'advlist autolink lists link image anchor',
-          'code',
           'media table contextmenu paste colorpicker'
         ],
         toolbar: toolbar,
@@ -104,6 +103,7 @@ function lfInitText() {
         },
         setup: function (editor) {
           editor.on('Change', function (e) {
+            lfSetPageIsDirty();
             if (typeof Tether !== 'undefined') {
               Tether.position();
             }

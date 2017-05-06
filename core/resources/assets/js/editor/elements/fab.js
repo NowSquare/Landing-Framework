@@ -39,10 +39,12 @@ function lfInitFab() {
   });  
   
   /* 
-    Export html
+    Save page
   */
 
-  $('body').on('click', '.-x-el-fab-export', function() {
-    lfGetHtml();
+  $('body').on('click', '.-x-el-fab-save', function() {
+    var html = lfGetHtml();
+    console.log(html);
+    alert(html);
   });
 }

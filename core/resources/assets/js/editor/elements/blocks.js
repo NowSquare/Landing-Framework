@@ -95,6 +95,9 @@ function lfInitBlocks() {
     if (! $(this).hasClass('-x-el-disabled') && typeof block_prev !== typeof undefined && block_prev !== false && typeof block_class !== typeof undefined && block_class !== false) {
       lfSwapElements($('.' + block_prev)[0], $('.' + block_class)[0]);
 
+      // Changes detected
+      lfSetPageIsDirty();
+
       // Timeout to make sure dom has changed
       setTimeout(lfParseBlocks, 70);
     }
@@ -110,6 +113,9 @@ function lfInitBlocks() {
 
     if (! $(this).hasClass('-x-el-disabled') && typeof block_next !== typeof undefined && block_next !== false && typeof block_class !== typeof undefined && block_class !== false) {
       lfSwapElements($('.' + block_class)[0], $('.' + block_next)[0]);
+
+      // Changes detected
+      lfSetPageIsDirty();
 
       // Timeout to make sure dom has changed
       setTimeout(lfParseBlocks, 70);
@@ -132,6 +138,9 @@ function lfInitBlocks() {
         $('[data-x-parent-block=' + block_class + ']').each(function() {
           $(this).remove();
         });
+
+        // Changes detected
+        lfSetPageIsDirty();
 
         // Timeout to make sure dom has changed
         setTimeout(lfParseBlocks, 70);
@@ -175,6 +184,9 @@ function lfInitBlocks() {
           gpu: true
         }
       });
+
+      // Changes detected
+      lfSetPageIsDirty();
 
       // Timeout to make sure dom has changed
       setTimeout(lfParseBlocks, 70);

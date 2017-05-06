@@ -22,7 +22,7 @@ function lfOpenModal(src, el_class, size) {
       if (typeof el_class !== 'undefined') {
         qs += (qs == '' && src.indexOf('?') == -1) ? '?' : '&';
         qs += 'el_class=' + el_class;
-        var $button = $('[data-x-el=' + el_class + ']');
+        var $button = $('.-x-el-inline-button-clone[data-x-el=' + el_class + ']');
         var $dropdown = $button.find('.-x-el-dropdown');
         $dropdown.css('cssText', 'display: none !important;');
 
@@ -58,4 +58,8 @@ function lfOpenModal(src, el_class, size) {
 function lfCloseModal() {
   $lfModal.find('.-x-el-inline-modal').attr('src', 'about:blank');
   $lfModal.css('cssText', 'z-index: 999990 !important;display: none !important;');
+
+  // Reposition tethered elements in case element height or width have changed
+  // after changing settings.
+  setTimeout(function() { Tether.position(); }, 100);
 }

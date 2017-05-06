@@ -15,7 +15,7 @@
 
   <section class="typography-1 -x-block">
     <nav class="navbar navbar-dark bg-inverse">
-      <div class="container editable">
+      <div class="container">
           <a class="navbar-brand" href="#" target="_blank"><img src="/templates/landingpages/_boilerplate/images/logos/ns-light.svg" class="-x-img" data-offset="10px 10px" alt="" style="height:42px"></a>
           <button class="navbar-toggler pull-right hidden-md-up" type="button" data-toggle="collapse" data-target="#collapsingNavbarGlobal" aria-controls="collapsingNavbarGlobal" aria-expanded="false" aria-label="Toggle navigation">
             &#9776;
@@ -53,7 +53,7 @@
           </div>
           <!-- /.row -->
           <div class="row">
-            <div class="col-sm-12 col-md-6 editable">
+            <div class="col-sm-12 col-md-6">
               <h1 class="display-2 text-md-left my-3 no-margin-smb -x-text">Creative<br>Studio</h1>
               <p class="lead -x-text">We help entrepreneurs achieving their goal faster.</p>
               <div class="btn-container my-3 btn-stack-lg">
