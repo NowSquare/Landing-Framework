@@ -56,7 +56,8 @@ var admin_resellers_table = $('#dt-table-admin_resellers').DataTable({
   }, {
     data: "user_email"
   }, {
-    data: "created_at"
+    data: "created_at",
+    width: 90
   }, {
     data: "active",
     width: 60

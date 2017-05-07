@@ -63,7 +63,7 @@ var admin_plans_table = $('#dt-table-admin_plans').DataTable({
     sortable: false
   }, {
     data: "created_at",
-    width: 120,
+    width: 90,
     sortable: false
   }, {
     data: "default",

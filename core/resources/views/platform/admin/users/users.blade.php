@@ -69,10 +69,10 @@ var admin_users_table = $('#dt-table-admin_users').DataTable({
     data: "logins"
   }, {
     data: "last_login",
-    width: 120
+    width: 90
   }, {
     data: "created_at",
-    width: 120
+    width: 90
   }, {
     data: "active",
     width: 60
