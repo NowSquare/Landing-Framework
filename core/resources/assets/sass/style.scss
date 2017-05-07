@@ -334,6 +334,7 @@ td.legendLabel {
 }
 
 // Image selector
+/* blocked background to show tranparency */
 .image-preview {
 background-color: #ffffff;
 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1'%3E %3Cpattern id='pattern' x='0' y='0' width='16' height='16' patternUnits='userSpaceOnUse' %3E %3Crect fill='rgba(159, 159, 159, 0.25)' x='0' width='8' height='8' y='0'/%3E %3Crect fill='rgba(159, 159, 159, 0.25)' x='8' width='8' height='8' y='8'/%3E %3C/pattern%3E %3Crect fill='url(#pattern)' x='0' y='0' width='100%' height='100%'/%3E %3C/svg%3E");
@@ -371,4 +372,32 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 }
 #target {
   width: 345px;
+}
+
+/* Show device warning when viewport is small */
+
+#deviceWarning {
+  position: fixed;
+  display: none;
+  background-color: #222; 
+  color:#fff; 
+  width:100%;
+  height: 100%;
+  z-index:99999999;
+  top: 0;
+}
+
+#deviceWarning div {
+  padding: 2rem;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  width: 100%;
+  margin-top: -8em;
+}
+
+@media only screen and (max-width : 1024px) {
+  #deviceWarning {
+  display:table-cell;
+  }
 }

@@ -39,5 +39,12 @@
   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:600,400,700" rel="stylesheet">
 
 @yield('bottom')
+
+  <div id="deviceWarning">
+    <div>
+      <p class="lead">{{ trans('global.device_warning1') }}</p>
+      <p class="lead">{{ trans('global.device_warning2') }}</p>
+    </div>
+  </div>
 </body>
 </html>

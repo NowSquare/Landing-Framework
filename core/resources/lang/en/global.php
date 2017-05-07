@@ -76,6 +76,8 @@ return array(
   "dashboard" => "Dashboard",
   "hi" => ["Hi", "Hola", "Hello", "Hallo", "Aloha", "Heya"],
   "welcome_name" => "Welcome, :name!",
+  "device_warning1" => "We don't currently support mobile browsers. You can only log in and edit your full site from a desktop or laptop.",
+  "device_warning2" => "While we only support site editing on desktop and laptop computers, all sites are optimized for responsive design so they look great in common mobile web browsers.",
 
   /*
    |--------------------------------------------------------------------------
