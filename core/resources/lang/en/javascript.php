@@ -45,5 +45,9 @@ return array(
   "update_image" => "Update image",
   "remove" => "Remove",
   "link_settings" => "Link settings",
+  "button" => "Button",
+  "regular" => "Regular",
+  "pill" => "Pill",
+  "" => "",
   "" => ""
 );

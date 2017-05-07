@@ -14,7 +14,7 @@
 
 
   <section class="-x-block">
-    <nav class="navbar navbar-dark bg-inverse">
+    <nav class="navbar navbar-dark bg-inverse -x-block-bg-gradient">
       <div class="container">
           <a class="navbar-brand" href="#"><img src="/templates/landingpages/_boilerplate/images/logos/ns-light.svg" class="-x-img" data-offset="10px 10px" alt="" style="height:42px"></a>
       </div>
@@ -308,8 +308,8 @@
                 <h1 class="mt-1">Science News</h1>
                 <p class="lead">NowSquare provides high quality assets/bs4 for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                 <p class="btn-container">
-                  <a class="btn btn-outline-purple btn-pill" href="#" role="button"><i class="fa fa-play-circle-o" aria-hidden="true"></i> Watch Video</a>
-                  <a class="btn btn-purple btn-pill" href="#" role="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Tickets</a>
+                  <a class="btn btn-outline-blue btn-pill" href="#" role="button"><i class="fa fa-play-circle-o" aria-hidden="true"></i> Watch Video</a>
+                  <a class="btn btn-outline-blue btn-pill" href="#" role="button"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Tickets</a>
                 </p>
               </div>
               <!-- /.col -->

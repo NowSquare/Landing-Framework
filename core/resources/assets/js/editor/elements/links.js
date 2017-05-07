@@ -9,6 +9,7 @@ function lfInitLinks() {
 
   $('.-x-link').each(function() {
     var $link = $(this);
+
     // Attribute settings
     var attachment = $link.attr('data-attachment');
     attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
@@ -43,6 +44,13 @@ function lfInitLinks() {
       $el.find('.-x-el-dropdown').addClass('-x-el-dropdown-left');
     }
 
+    // Check if button option is available
+    if ($link.hasClass('btn')) {
+      $el.find('.-x-el-link-button').removeClass('-x-el-disabled');
+    } else {
+      $el.find('.-x-el-link-button').addClass('-x-el-disabled');
+    }
+
     new Tether({
       element: $el,
       target: $link,
@@ -71,6 +79,7 @@ function lfInitLinks() {
     var el_class = $(this).parents('.-x-el-link-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
       // Hide dropdown after option has been clicked
       $(this).parents('.-x-el-dropdown').trigger('mouseleave');
 
@@ -80,6 +89,43 @@ function lfInitLinks() {
       lfOpenModal(_lang["url"] + '/landingpages/editor/modal/link', el_class);
     }
   });
+
+  /* 
+    Button regular
+  */
+
+  $('body').on('click', '.-x-el-link-button-regular', function() {
+    var el_class = $(this).parents('.-x-el-link-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+
+      // Remove pill class
+      var $el = $('.' + el_class);
+      $el.removeClass('btn-pill');
+    }
+  });
+
+  /* 
+    Button pill
+  */
+
+  $('body').on('click', '.-x-el-link-button-pill', function() {
+    var el_class = $(this).parents('.-x-el-link-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+
+      // First remove pill class to prevent double,
+      // then add again.
+      var $el = $('.' + el_class);
+      $el.removeClass('btn-pill').addClass('btn-pill');
+    }
+  });
 }
 
 /* 
@@ -87,6 +133,7 @@ function lfInitLinks() {
 */
 
 function lfDuplicateBlockLinks($new_block) {
+
   // Loop through all links in new block
   $new_block.find('.-x-link').each(function() {
     var timestamp = new Date().getTime();
@@ -94,6 +141,7 @@ function lfDuplicateBlockLinks($new_block) {
     var link_class = $new_link.attr('data-x-el');
 
     if (typeof link_class !== typeof undefined && link_class !== false) {
+
       // Attribute settings
       var attachment = $(this).attr('data-attachment');
       attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
