@@ -452,25 +452,35 @@ function updateImagePreview(self) {
   var filePath = $('#' + image_input).val();
   var previewButton = $(self).next();
 
-  if (filePath != '') {
-    var image = new Image();
-    image.src = filePath;
+  IsValidImageUrl(filePath, function(isValid) {
+    if (isValid) {
+      var image = new Image();
+      image.src = filePath;
 
-    var extra_style = (filePath.match(/.svg$/)) ? 'min-height:64px;min-width:64px;' : '';
+      var extra_style = (filePath.match(/.svg$/)) ? 'min-height:64px;min-width:64px;' : '';
 
-    $(previewButton).removeClass('disabled');
-    $(previewButton).attr('data-toggle', 'popover');
-    $(previewButton).attr('data-original-title', null);
-    $(previewButton).css('cursor', 'help');
-    $(previewButton).attr('data-content', '<img src="' + filePath + '" style="max-width:240px;max-height:280px;' + extra_style + '">');
+      $(previewButton).removeClass('disabled');
+      $(previewButton).attr('data-toggle', 'popover');
+      $(previewButton).attr('data-original-title', null);
+      $(previewButton).css('cursor', 'help');
+      $(previewButton).attr('data-content', '<img src="' + filePath + '" style="max-width:240px;max-height:280px;' + extra_style + '">');
 
-    $(previewButton).popover({
-      container: 'body',
-      trigger: 'hover',
-      template: '<div class="popover" role="tooltip"><div class="popover-arrow"></div><div class="popover-content image-preview" style="padding:0;"></div></div>',
-      html: true
-    });
-  }
+      $(previewButton).popover({
+        container: 'body',
+        trigger: 'hover',
+        template: '<div class="popover" role="tooltip"><div class="popover-arrow"></div><div class="popover-content image-preview" style="padding:0;"></div></div>',
+        html: true
+      });
+    }
+  });
+}
+
+function IsValidImageUrl(url, callback) {
+  $('<img>', {
+    src: url, 
+    load: function() { callback(true); }, 
+    error: function() { callback(false); }
+  });
 }
 
 // Callback after elfinder selection
@@ -483,20 +493,28 @@ window.processSelectedFile = function(filePath, requestingField, previewButton) 
 
     var extra_style = (filePath.match(/.svg$/)) ? 'min-height:64px;min-width:64px;' : '';
 
-    $('#' + previewButton).removeClass('disabled');
-    $('#' + previewButton).attr('data-toggle', 'popover');
-    $('#' + previewButton).attr('data-original-title', null);
-    $('#' + previewButton).css('cursor', 'help');
-    $('#' + previewButton).attr('data-content', '<img src="' + decodeURI(filePath) + '" style="max-width:240px;max-height:280px;' + extra_style + '">');
+    IsValidImageUrl(filePath, function(isValid) {
+      if (isValid) {
+        $('#' + previewButton).removeClass('disabled');
+        $('#' + previewButton).attr('data-toggle', 'popover');
+        $('#' + previewButton).attr('data-original-title', null);
+        $('#' + previewButton).css('cursor', 'help');
+        $('#' + previewButton).attr('data-content', '<img src="' + decodeURI(filePath) + '" style="max-width:240px;max-height:280px;' + extra_style + '">');
 
-    $('[data-toggle~=popover]').popover({
-      container: 'body',
-      trigger: 'hover',
-      template: '<div class="popover" role="tooltip"><div class="popover-arrow"></div><div class="popover-content" style="padding:0"></div></div>',
-      html: true
+        $('[data-toggle~=popover]').popover({
+          container: 'body',
+          trigger: 'hover',
+          template: '<div class="popover" role="tooltip"><div class="popover-arrow"></div><div class="popover-content" style="padding:0"></div></div>',
+          html: true
+        });
+      } else {
+        $('#' + previewButton).addClass('disabled');
+        $('#' + previewButton).attr('data-toggle', null);
+        $('#' + previewButton).attr('data-original-title', null);
+        $('#' + previewButton).css('cursor', 'not-allowed');
+        $('#' + previewButton).attr('data-content', null);
+      }
     });
-
-    //bsTooltipsPopovers();
   }
 }
 
