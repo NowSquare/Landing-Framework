@@ -137,6 +137,22 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
   Inline buttons
 */
 
+
+@keyframes bounceIn{
+  0%{
+    transform: scale(1.5) translate3d(0,0,0);
+  }
+  50%{
+    transform: scale(0.8);
+  }
+  80%{
+    transform: scale(1.2);
+  }
+  100%{
+    transform: scale(1) translate3d(0,0,0);
+  }
+}
+
 .-x-el-inline-button {
   width: 20px !important;
   height: 20px !important;
@@ -146,8 +162,6 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
   user-select: none !important;
 
   img.-x-el-icon {
-    width: 20px !important;
-    height: 20px !important;
     vertical-align: top !important;
     z-index: 90000 !important;
     cursor: pointer !important;
@@ -155,8 +169,16 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
     box-shadow: $mdl-shadow--2dp !important;
   }
 
-  &:hover .-x-el-dropdown {
-    /*display: block !important;*/
+  &:not(.-x-el-fab) img.-x-el-icon {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  &:not(.-x-el-fab) img.-x-el-icon:hover {
+    animation-name: bounceIn;
+    animation-duration: 350ms;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
   }
 
   /* 
@@ -178,6 +200,11 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
 
   &.-x-el-fab .-x-el-icon {
     box-shadow: $mdl-shadow--6dp !important;
+    transition: 0.2s ease-in-out;
+  }
+
+  &.-x-el-fab:hover .-x-el-icon {
+    transform: rotate(180deg);
   }
 }
 
