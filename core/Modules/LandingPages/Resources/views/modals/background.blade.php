@@ -131,8 +131,8 @@ Set settings
 <?php if ($bg_gradient) { ?>
   var bg_gradient = $el.find('.-x-block-bg-gradient').css('background-image');
 
-  var bg_gradient_start = bg_gradient.split('0%, ')[1].split('100%)')[0];
-  var bg_gradient_end = bg_gradient.split('0%')[0].split('linear-gradient(')[1];
+  var bg_gradient_start = bg_gradient.split('0%')[0].split('linear-gradient(')[1];
+  var bg_gradient_end = bg_gradient.split('0%, ')[1].split('100%)')[0];
 
   $('#bg_gradient_start').val(bg_gradient_start);
   $('#bg_gradient_end').val(bg_gradient_end);
