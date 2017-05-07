@@ -57,7 +57,7 @@ function lfInitBlocks() {
 
     if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
       // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').css('cssText', 'display: none !important;');
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
 
       // Check what settings can be configured in the modal
       var $block = $('.' + block_class);
@@ -80,7 +80,7 @@ function lfInitBlocks() {
     if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
 
       // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').css('cssText', 'display: none !important;');
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
 
       lfOpenModal(_lang["url"] + '/landingpages/editor/modal/insert-block?position=' + position + '', block_class);
     }

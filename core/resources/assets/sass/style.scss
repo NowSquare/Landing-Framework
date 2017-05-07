@@ -351,9 +351,9 @@ td.legendLabel {
 
 .nav .profile:hover img {
   animation-name: bounceIn;
-  animation-duration: 300ms !important;
-  animation-timing-function: linear !important;
-  animation-fill-mode: forwards !important;
+  animation-duration: 300ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
 // Image selector

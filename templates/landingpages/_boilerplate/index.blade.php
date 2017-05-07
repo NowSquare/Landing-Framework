@@ -39,7 +39,7 @@
               <div class="row">
                 <div class="col-12">
                   <h1 class="display-3 -x-text">Online Platform</h1>
-                  <p class="lead -x-text">NowSquare provides high quality assets for your business. We help entrepreneurs with great ideas moving faster.</p>
+                  <p class="lead -x-text">We provide high quality assets for your business. We help entrepreneurs with great ideas moving faster.</p>
                   <div class="btn-container mt-3 mb-1">
                     <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">Get Started Now</a>
                   </div>

@@ -32,7 +32,13 @@
 
       <div class="form-group">
         <label for="url">{{ trans('landingpages::global.link') }}</label>
-          <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="" placeholder="http://">
+        <div class="input-group">
+          <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="">
+          <div class="input-group-btn add-on">
+            <button type="button" class="btn btn-primary" id="select_url" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="url" data-preview="url-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
+            <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="url-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+          </div>
+        </div>
       </div>
 
       <div class="form-group">
@@ -75,9 +81,23 @@ Set settings
   $('#alt').val($el.attr('alt'));
 
 <?php if ($link) { ?>
-  
-  $('#url').val($el.parent('a').attr('href'));
-  $('#target').val($el.parent('a').attr('target'));
+
+  var url = $el.parent('a').attr('href');
+  $('#url').val(url);
+
+  if (url != '') {
+    updateImagePreview($('#select_url'));
+  }
+
+  $('#target').val($el.parent('a').attr('target')).trigger('change.select2');
+
+  function IsValidImageUrl(url, callback) {
+    $('<img>', {
+      src: url, 
+      load: function() { callback(true); }, 
+      error: function() { callback(false); }
+    });
+  }
 
 <?php } ?>
 

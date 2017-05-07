@@ -19,7 +19,13 @@
 
       <div class="form-group">
         <label for="url">{{ trans('landingpages::global.url') }}</label>
+        <div class="input-group">
           <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="" placeholder="http://">
+          <div class="input-group-btn add-on">
+            <button type="button" class="btn btn-primary" id="select_url" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="url" data-preview="url-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
+            <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="url-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+          </div>
+        </div>
       </div>
 
       <div class="form-group">
@@ -58,8 +64,14 @@ Set settings
   var $el = $('.{{ $el_class }}', window.parent.document);
 
   $('#text').val($el.html());
-  $('#url').val($el.attr('href'));
-  $('#target').val($el.attr('target'));
+  $('#target').val($el.attr('target')).trigger('change.select2');
+
+  var url = $el.attr('href');
+  $('#url').val(url);
+
+  if (url != '') {
+    updateImagePreview($('#select_url'));
+  }
 
 <?php } ?>
 

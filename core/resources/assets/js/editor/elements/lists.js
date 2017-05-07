@@ -72,7 +72,7 @@ function lfInitLists() {
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
       // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').css('cssText', 'display: none !important;');
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
 
       // Check what settings can be configured in the modal
       //var $el = $('.' + el_class);

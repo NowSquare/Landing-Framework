@@ -8,6 +8,7 @@ function lfInitImages() {
 
   $('.-x-img').each(function() {
     var $img = $(this);
+
     // Attribute settings
     var attachment = $img.attr('data-attachment');
     attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
@@ -70,15 +71,39 @@ function lfInitImages() {
     var el_class = $(this).parents('.-x-el-img-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
       // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').css('cssText', 'display: none !important;');
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
 
       // Check what settings can be configured in the modal
       var $el = $('.' + el_class);
+
       // Is immediate parent a link?
       var link = ($el.parent('a').length > 0) ? 1 : 0;
 
       lfOpenModal(_lang["url"] + '/landingpages/editor/modal/image?link=' + link, el_class);
+    }
+  });
+
+  /* 
+    Toggle image visibility
+  */
+
+  $('body').on('click', '.-x-el-img-hide', function() {
+    var el_class = $(this).parents('.-x-el-img-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+
+      // Toggle visibility
+      var $el = $('.' + el_class);
+
+      $el.attr('src', 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
+
+      // Changes detected
+      lfSetPageIsDirty();
     }
   });
 }
@@ -88,6 +113,7 @@ function lfInitImages() {
 */
 
 function lfDuplicateBlockImages($new_block) {
+
   // Loop through all images in new block
   $new_block.find('.-x-img').each(function() {
     var timestamp = new Date().getTime();
@@ -95,6 +121,7 @@ function lfDuplicateBlockImages($new_block) {
     var img_class = $new_img.attr('data-x-el');
 
     if (typeof img_class !== typeof undefined && img_class !== false) {
+
       // Attribute settings
       var attachment = $new_img.attr('data-attachment');
       attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
