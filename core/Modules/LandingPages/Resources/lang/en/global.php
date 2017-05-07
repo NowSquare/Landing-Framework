@@ -30,6 +30,10 @@ return array(
   "target" => "Target",
   "none" => "None",
   "new_window" => "New window",
+  "title" => "Title",
+  "title_help" => "The title is used for SEO (alt attribute).",
   "" => "",
   "" => "",
+  "" => "",
+  "" => ""
 );
