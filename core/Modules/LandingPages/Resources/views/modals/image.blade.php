@@ -31,8 +31,8 @@
 <?php if ($link) { ?>
 
       <div class="form-group">
-        <label for="url">{{ trans('landingpages::global.url') }}</label>
-          <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="">
+        <label for="url">{{ trans('landingpages::global.link') }}</label>
+          <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="" placeholder="http://">
       </div>
 
       <div class="form-group">
@@ -75,6 +75,10 @@ Set settings
   $('#alt').val($el.attr('alt'));
 
 <?php if ($link) { ?>
+  
+  $('#url').val($el.parent('a').attr('href'));
+  $('#target').val($el.parent('a').attr('target'));
+
 <?php } ?>
 
   var img = $el.attr('src');
@@ -91,16 +95,18 @@ Update settings
 */ ?>
 
   $('.onClickUpdate').on('click', function() {
+
 <?php if ($el_class != '') { ?>
 
   $el.attr('src', $('#img').val());
   $el.attr('alt', $('#alt').val());
 
 <?php if ($link) { ?>
-<?php } ?>
 
-  //$el.attr('href', $('#url').val());
-  //$el.attr('target', $('#target').val());
+  $el.parent('a').attr('href', $('#url').val());
+  $el.parent('a').attr('target', $('#target').val());
+
+<?php } ?>
 
   // Changes detected
   window.parent.lfSetPageIsDirty();

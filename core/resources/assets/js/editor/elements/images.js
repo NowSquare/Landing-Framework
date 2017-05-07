@@ -74,9 +74,11 @@ function lfInitImages() {
       $(this).parents('.-x-el-dropdown').css('cssText', 'display: none !important;');
 
       // Check what settings can be configured in the modal
-      //var $el = $('.' + el_class);
+      var $el = $('.' + el_class);
+      // Is immediate parent a link?
+      var link = ($el.parent('a').length > 0) ? 1 : 0;
 
-      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/image', el_class);
+      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/image?link=' + link, el_class);
     }
   });
 }

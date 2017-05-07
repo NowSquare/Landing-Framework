@@ -19,7 +19,7 @@
 
       <div class="form-group">
         <label for="url">{{ trans('landingpages::global.url') }}</label>
-          <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="">
+          <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="" placeholder="http://">
       </div>
 
       <div class="form-group">

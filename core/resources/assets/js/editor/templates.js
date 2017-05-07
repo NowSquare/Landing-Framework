@@ -2,7 +2,7 @@ var xTplModal = '<div class="-x-editor-inline-modal-bg" style="z-index: 999990 !
   '  <iframe class="-x-el-inline-modal -x-full -x-el-reset" src="about:blank" frameborder="0" allowtransparency="true" seamless></iframe>' +
   '</div>';
 
-var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset">' +
+var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-index: 999990 !important;">' +
   '  <img src="' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg" class="-x-el-icon"' +
   '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical-hover.svg\';"' +
   '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg\';"' +

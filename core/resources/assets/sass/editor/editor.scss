@@ -142,7 +142,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
   0%{
     transform: scale(1.5) translate3d(0,0,0);
   }
-  50%{
+  30%{
     transform: scale(0.8);
   }
   80%{
@@ -176,7 +176,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
 
   &:not(.-x-el-fab) img.-x-el-icon:hover {
     animation-name: bounceIn;
-    animation-duration: 350ms !important;
+    animation-duration: 300ms !important;
     animation-timing-function: linear !important;
     animation-fill-mode: forwards !important;
   }
