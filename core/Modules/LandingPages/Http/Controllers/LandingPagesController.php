@@ -160,7 +160,8 @@ class LandingPagesController extends Controller
     public function editorModalImage(Request $request)
     {
       $el_class = $request->input('el_class', '');
+      $link = (boolean) $request->input('link', false);
 
-      return view('landingpages::modals.image', compact('el_class'));
+      return view('landingpages::modals.image', compact('el_class', 'link'));
     }
 }

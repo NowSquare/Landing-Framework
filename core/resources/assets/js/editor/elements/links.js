@@ -149,7 +149,6 @@ function lfParseLinks(init) {
     var link_class = $(this).attr('data-x-el');
     var $link_settings = $('.-x-el-link-edit-clone[data-x-el=' + link_class + ']');
 
-
     // Set z-index to prevent overlapping of dropdown menus
     $link_settings.css('cssText', 'z-index: ' + zIndex + ' !important;');
     $link_settings.find('.-x-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');

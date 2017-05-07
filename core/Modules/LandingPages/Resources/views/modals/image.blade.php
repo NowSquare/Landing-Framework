@@ -24,9 +24,11 @@
       </div>
 
       <div class="form-group">
-        <label for="alt">{{ trans('landingpages::global.alt') }}</label>
+        <label for="alt">{{ trans('landingpages::global.title') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('landingpages::global.title_help') }}">&#xE887;</i></label>
           <input type="text" class="form-control" id="alt" name="alt" autocomplete="off" value="">
       </div>
+
+<?php if ($link) { ?>
 
       <div class="form-group">
         <label for="url">{{ trans('landingpages::global.url') }}</label>
@@ -45,6 +47,8 @@ echo Former::select('target')
   ->label(trans('landingpages::global.target'));
 ?>
       </div>
+
+<?php } ?>
 
       <div class="editor-modal-footer">
         <button type="button" class="btn btn-primary btn-material onClickClose">{{ trans('global.cancel') }}</button>
@@ -68,9 +72,17 @@ Set settings
 
   var $el = $('.{{ $el_class }}', window.parent.document);
 
-  $('#img').val($el.attr('src'));
-  //$('#url').val($el.attr('href'));
-  //$('#target').val($el.attr('target'));
+  $('#alt').val($el.attr('alt'));
+
+<?php if ($link) { ?>
+<?php } ?>
+
+  var img = $el.attr('src');
+  $('#img').val(img);
+
+  if (img != '') {
+    updateImagePreview($('#select_img'));
+  }
 
 <?php } ?>
 
@@ -82,6 +94,11 @@ Update settings
 <?php if ($el_class != '') { ?>
 
   $el.attr('src', $('#img').val());
+  $el.attr('alt', $('#alt').val());
+
+<?php if ($link) { ?>
+<?php } ?>
+
   //$el.attr('href', $('#url').val());
   //$el.attr('target', $('#target').val());
 
