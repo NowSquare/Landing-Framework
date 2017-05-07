@@ -176,9 +176,9 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
 
   &:not(.-x-el-fab) img.-x-el-icon:hover {
     animation-name: bounceIn;
-    animation-duration: 350ms;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
+    animation-duration: 350ms !important;
+    animation-timing-function: linear !important;
+    animation-fill-mode: forwards !important;
   }
 
   /* 

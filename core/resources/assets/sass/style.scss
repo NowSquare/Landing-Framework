@@ -202,6 +202,7 @@ abbr[title], acronym[title] {
 // Colorpicker fixes
 .colorpicker.dropdown-menu {
   padding: 4px;
+  min-width: 127px !important;
 }
 
 // Equal height columns
