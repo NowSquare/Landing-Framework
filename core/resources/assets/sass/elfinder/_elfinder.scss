@@ -2325,6 +2325,7 @@ embed.elfinder-quicklook-preview-audio {
 	filter: alpha(opacity=90);
 	background-color: #030303;
 	text-align: center;
+  z-index:99999999;
 }
 
 .elfinder .elfinder-toast > .toast-info {
