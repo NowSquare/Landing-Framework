@@ -66,7 +66,30 @@ html.editor-modal {
     width: 100%;
 
     .btn-material {
-      background-color: #fff !important;
+      &.btn-primary {
+        display: inline-block;
+        height: 36px;
+        background-color: rgba(9,9,9,0) !important;
+        border: 0 !important;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        color: rgba(33,150,243,0.9) !important;
+        line-height: 36px;
+        text-align: center;
+        letter-spacing: 0.4px;
+        padding: 0 8px 0 8px;
+        margin: 6px 0px;
+        text-transform: uppercase;
+      }
+
+      &.btn-primary:hover,
+      &.btn-primary:active,
+      &.btn-primary:focus,
+      &.active {
+        background-color: rgba(0,0,0,0.15) !important;
+        box-shadow: none !important;
+      }
     }
   }
 }
@@ -115,33 +138,6 @@ html.editor-modal body {
 
 .btn-close:after {
   transform: rotate(-45deg);
-}
-
-.btn-material {
-  &.btn-primary {
-    display: inline-block;
-    height: 36px;
-    background-color: rgba(9,9,9,0) !important;
-    border: 0 !important;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 14px;
-    color: rgba(33,150,243,0.9) !important;
-    line-height: 36px;
-    text-align: center;
-    letter-spacing: 0.4px;
-    padding: 0 8px 0 8px;
-    margin: 6px 0px;
-    text-transform: uppercase;
-  }
-
-  &.btn-primary:hover,
-  &.btn-primary:active,
-  &.btn-primary:focus,
-  &.active {
-    background-color: rgba(0,0,0,0.15) !important;
-    box-shadow: none !important;
-  }
 }
 
 // Fix close button Colorbox
