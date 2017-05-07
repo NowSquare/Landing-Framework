@@ -89,7 +89,7 @@ function lfInitImages() {
     Toggle image visibility
   */
 
-  $('body').on('click', '.-x-el-img-hide', function() {
+  $('body').on('click', '.-x-el-img-remove', function() {
     var el_class = $(this).parents('.-x-el-img-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
@@ -100,7 +100,14 @@ function lfInitImages() {
       // Toggle visibility
       var $el = $('.' + el_class);
 
+      // Remove title
+      $el.attr('alt', null);
+
+      // Replace image with transparent pixel
       $el.attr('src', 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=');
+
+      // Replace link if exists
+      if ($el.parent('a').length > 0) $el.parent('a').attr('href', 'javascript:void(0);');
 
       // Changes detected
       lfSetPageIsDirty();

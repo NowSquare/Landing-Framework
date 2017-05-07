@@ -43,7 +43,7 @@ return array(
   "unpublish" => "Unpublish",
   "update_list" => "Update list",
   "update_image" => "Update image",
-  "hide" => "Hide",
+  "remove" => "Remove",
   "link_settings" => "Link settings",
   "" => ""
 );

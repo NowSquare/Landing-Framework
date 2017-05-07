@@ -78,7 +78,7 @@ var xTplImgButton = '<div class="-x-el-inline-button -x-el-img-edit -x-el-reset"
 '  <ul class="-x-el-dropdown -x-el-reset">' +
 '    <li class="-x-el-img-update"><a href="javascript:void(0);">' + _lang["update_image"] + '</a></li>' +
 '    <li class="separator"><hr></li>' +
-'    <li class="-x-el-img-hide"><a href="javascript:void(0);">' + _lang["hide"] + '</a></li>' +
+'    <li class="-x-el-img-remove"><a href="javascript:void(0);">' + _lang["remove"] + '</a></li>' +
 '  </ul>' +
 '</div>';
 
