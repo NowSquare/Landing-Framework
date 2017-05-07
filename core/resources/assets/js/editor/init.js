@@ -34,8 +34,14 @@ function lfInitEditor() {
   */
 
   $('body').on('click', 'a:parents(.-x-el-dropdown)', function(e) {
-    if (! confirm(_lang['confirm_follow_link'])) {
-      e.preventDefault();
+    if ($(this).attr('data-toggle') != 'lightbox') {
+      if ($(this).attr('href') == '#') {
+        return false;
+      } else {
+        if (! confirm(_lang['confirm_follow_link'])) {
+          e.preventDefault();
+        }
+      }
     }
   });
 
