@@ -392,11 +392,11 @@ class UserController extends \App\Http\Controllers\Controller {
         \File::deleteDirectory($user_dir);
 
         // Delete user landing stats table if exist
-        $tbl_name = 'landing_stats_' . $qs['user_id'];
+        $tbl_name = 'x_landing_stats_' . $qs['user_id'];
         Schema::dropIfExists($tbl_name);
 
         // Delete user form entries table if exist
-        $tbl_name = 'form_entries_' . $qs['user_id'];
+        $tbl_name = 'x_form_entries_' . $qs['user_id'];
         Schema::dropIfExists($tbl_name);
       }
       else

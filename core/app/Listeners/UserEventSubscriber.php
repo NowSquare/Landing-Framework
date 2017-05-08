@@ -37,8 +37,10 @@ class UserEventSubscriber {
     $event->user->last_login = Carbon::now();
     $event->user->save();
 
+    // Create user tables, prefix with `x_` to have them grouped
+
     // Create user landing stats table if not exist
-    $tbl_name = 'landing_stats_' . $event->user->id;
+    $tbl_name = 'x_landing_stats_' . $event->user->id;
 
     if (! Schema::hasTable($tbl_name)) {
       Schema::create($tbl_name, function(Blueprint $table) {
@@ -61,7 +63,7 @@ class UserEventSubscriber {
     }
 
     // Create user form entries table if not exist
-    $tbl_name = 'form_entries_' . $event->user->id;
+    $tbl_name = 'x_form_entries_' . $event->user->id;
 
     if (! Schema::hasTable($tbl_name)) {
       Schema::create($tbl_name, function(Blueprint $table) {
