@@ -46,9 +46,9 @@ function lfInitLinks() {
 
     // Check if button option is available
     if ($link.hasClass('btn')) {
-      $el.find('.-x-el-link-button').removeClass('-x-el-disabled');
+      $el.find('.-x-el-link-shape').removeClass('-x-el-disabled');
     } else {
-      $el.find('.-x-el-link-button').addClass('-x-el-disabled');
+      $el.find('.-x-el-link-shape').addClass('-x-el-disabled');
     }
 
     new Tether({
@@ -94,7 +94,7 @@ function lfInitLinks() {
     Button regular
   */
 
-  $('body').on('click', '.-x-el-link-button-regular', function() {
+  $('body').on('click', '.-x-el-link-shape-regular', function() {
     var el_class = $(this).parents('.-x-el-link-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
@@ -112,7 +112,7 @@ function lfInitLinks() {
     Button pill
   */
 
-  $('body').on('click', '.-x-el-link-button-pill', function() {
+  $('body').on('click', '.-x-el-link-shape-pill', function() {
     var el_class = $(this).parents('.-x-el-link-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {

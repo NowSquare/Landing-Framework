@@ -16,9 +16,9 @@ return array(
 	"business_services" => "Business & Services",
 	"business_services_desc" => "Landing pages for businesses to showcase a product or service.",
   "food_drinks" => "Food & Drinks",
-  "food_drinks_desc" => "Food, drinks, delivery. Culinary landing pages.",
+  "food_drinks_desc" => "Food, drinks, delivery. Tasty landing pages.",
   "digital_tech" => "Digital & Tech",
-  "digital_tech_desc" => "Landing pages for ventures in the digital world.",
+  "digital_tech_desc" => "Landing pages for ventures in the world of technology.",
 
   "background" => "Background",
   "image" => "Image",

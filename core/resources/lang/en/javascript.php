@@ -46,6 +46,7 @@ return array(
   "remove" => "Remove",
   "link_settings" => "Link settings",
   "button" => "Button",
+  "shape" => "Shape",
   "regular" => "Regular",
   "pill" => "Pill",
   "" => "",
