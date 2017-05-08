@@ -7,6 +7,51 @@
   <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
 <script>
 
+function lfDuplicateBlockHook($new_block) {
+  /*
+   * Flat Surface Shader
+   * http://matthew.wagerfield.com/flat-surface-shader/
+   */
+
+	if ($('.polygon-bg').length) {
+    $('.polygon-bg').each(function() {
+
+      var color_bg = ($(this).is('[data-color-bg]')) ? $(this).attr('data-color-bg') : '29a9e1';
+      var color_light = ($(this).is('[data-color-light]')) ? $(this).attr('data-color-light') : '2db674';
+
+      var container = $(this)[0];
+      var renderer = new FSS.CanvasRenderer();
+      var scene = new FSS.Scene();
+      var light = new FSS.Light(color_bg, color_light);
+      var geometry = new FSS.Plane(3000, 1000, 60, 22);
+      var material = new FSS.Material('FFFFFF', 'FFFFFF');
+      var mesh = new FSS.Mesh(geometry, material);
+      var now, start = Date.now();
+
+      function initialiseFss() {
+        scene.add(mesh);
+        scene.add(light);
+        container.appendChild(renderer.element);
+        window.addEventListener('resize', resizeFss);
+      }
+
+      function resizeFss() {
+        renderer.setSize(container.offsetWidth, container.offsetHeight);
+      }
+
+      function animateFss() {
+        now = Date.now() - start;
+        light.setPosition(300*Math.sin(now*0.001), 200*Math.cos(now*0.0005), 60);
+        renderer.render(scene);
+        requestAnimationFrame(animateFss);
+      }
+
+      initialiseFss();
+      resizeFss();
+      animateFss();
+    });
+	}
+}
 
 </script>
 </head>
