@@ -15,6 +15,7 @@ return array(
 	"no" => "No",
 	"cancel" => "Cancel",
 	"ok" => "OK",
+	"accept" => "Accept",
 	"confirm" => "Are you sure?",
 	"confirm_delete_block" => "Are you sure you want to delete this block?",
 	"confirm_follow_link" => "You've clicked a link that will take you to another url. Unsaved changes will be lost. Do you want to continue?",
@@ -49,6 +50,8 @@ return array(
   "shape" => "Shape",
   "regular" => "Regular",
   "pill" => "Pill",
+  "type_to_filter" => "Type to filter",
+  "" => "",
   "" => "",
   "" => ""
 );

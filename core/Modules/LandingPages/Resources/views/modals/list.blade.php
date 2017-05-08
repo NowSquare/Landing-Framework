@@ -13,10 +13,11 @@
       <table class="table" id="tbl-list">
         <thead>
           <tr>
-            <th>Order</th>
-            <th>Icon</th>
-            <th>Title</th>
-            <th>Link</th>
+            <th style="width:49px"></th>
+            <th style="width:60px" class="text-center">{{ trans('landingpages::global.icon') }}</th>
+            <th>{{ trans('landingpages::global.title') }}</th>
+            <th>{{ trans('landingpages::global.link') }}</th>
+            <th style="width:50px"></th>
           </tr>
         </thead>
 
@@ -24,8 +25,10 @@
         </tbody>
 
         <tfoot style="border: 1px solid #f3f3f3 !important">
-          <tr colspan="4">
-            <button type="button" class="btn btn-block btn-success add_item">Add</button>
+          <tr>
+            <td colspan="5">
+              <button type="button" class="btn btn-lg btn-block btn-success add_item"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('global.add') }}</button>
+            </td>
           </tr>
         </tfoot>
         
@@ -42,31 +45,54 @@
 </div>
 
 <script id="list_row" type="x-tmpl-mustache">
-<tr data-i="@{{ i }}">
+<tr data-i="@{{ i }}" id="row@{{ i }}">
   <td>
-    -
+    <div class="order-handle">
+      <i class="material-icons">&#xE5D2;</i>
+    </div>
   </td>
   <td>
-    Icon
+    <button type="button" class="btn btn-block btn-lg btn-default icon-picker iconpicker-component" data-toggle="dropdown" data-selected="@{{ icon }}"><i class="fa @{{ icon }}"></i></button>
   </td>
   <td>
-    <input type="text" class="form-control" id="title@{{ i }}" name="title[]" autocomplete="off" value="">
+    <input type="text" class="form-control input-lg" id="title@{{ i }}" name="title" autocomplete="off" value="@{{ title }}">
   </td>
   <td>
-    <input type="text" class="form-control" id="url@{{ i }}" name="url[]" autocomplete="off" value="">
+    <input type="text" class="form-control input-lg" id="url@{{ i }}" name="url" autocomplete="off" value="@{{ url }}" placeholder="http://">
   </td>
   <td align="right">
-    <button type="button" class="btn btn-danger btn-delete" title="{{ trans('global.delete') }}" data-toggle="tooltip" title="{{ trans('global.delete') }}"><i class="fa fa-times"></i></button>
+    <button type="button" class="btn btn-lg btn-danger btn-delete" title="{{ trans('global.delete') }}" data-toggle="tooltip" title="{{ trans('global.delete') }}" style="margin-top:1px;"><i class="fa fa-times"></i></button>
   </td>
 </tr>
 </script>
 
 @endsection
 
-@section('script') 
+@section('script')
+<style type="text/css">
+  .el-dragging {
+    background-color: #fff;
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  }
+  .el-placeholder {
+    background-color:#efefef;
+    height: 63px;
+    box-shadow: inset 0 6px 10px 0 rgba(0, 0, 0, 0.14), inset 0 1px 18px 0 rgba(0, 0, 0, 0.12), inset 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+  }
+  .order-handle {
+    padding: 11px 0 0;
+    text-align: right;
+    cursor: ns-resize;
+  }
+  .table .btn-lg {
+    padding: 11px 16px 12px;
+  }
+  .table .icon-picker.btn-lg {
+    padding: 11px 1px 12px;
+  }
+</style>
 <script>
 $(function() {
-
 <?php /* ----------------------------------------------------------------------------
 Set settings
 */ ?>
@@ -74,6 +100,34 @@ Set settings
 <?php if ($el_class != '') { ?>
 
   var $el = $('.{{ $el_class }}', window.parent.document);
+
+  // Parse template for speed optimization
+  // Initialize before inserting existing rows
+  var list_row = $('#list_row').html();
+  Mustache.parse(list_row);
+
+<?php if ($repeat == 'a') { ?>
+
+  $el.find('a').each(function (i) {
+    var $row = $(this);
+    var data = {};
+
+    var icon = $row.find('i').attr('class');
+    icon = icon.replace('fa ', '');
+    var title = $row.attr('title');
+    title = (typeof title !== typeof undefined && title !== false) ? title : '';
+    var url = $row.attr('href');
+    url = (typeof url !== typeof undefined && url !== false) ? url : '';
+
+    data.i = i;
+    data.icon = icon;
+    data.title = title;
+    data.url = url;
+
+    addRepeaterRow('insert', data);
+  });
+
+<?php } ?>
 
 <?php } ?>
 
@@ -83,6 +137,39 @@ Update settings
 
   $('.onClickUpdate').on('click', function() {
 <?php if ($el_class != '') { ?>
+
+
+<?php if ($repeat == 'a') { ?>
+
+  // Get one element for cloning, remove class
+  var $item = $el.find('a').first()
+
+  var icon = $item.find('i').attr('class');
+  icon = icon.replace('fa ', '');
+  $item.find('i').removeClass(icon);
+  $item = $item.clone();
+
+  // Make empty before inserting new
+  $el.html('');
+
+  $('#tbl-list tbody tr').each(function (i) {
+    var $row = $(this);
+
+    var icon = $row.find('.icon-picker i').attr('class');
+    icon = icon.replace('fa ', '').replace('iconpicker-component', '');
+    var title = $row.find('[name=title]').val();
+    var url = $row.find('[name=url]').val();
+
+    var $new_item = $item.clone();
+
+    $new_item.find('i').addClass(icon);
+    $new_item.attr('title', title);
+    $new_item.attr('href', url);
+
+    $el.append($new_item);
+  });
+
+<?php } ?>
 
   // Changes detected
   window.parent.lfSetPageIsDirty();
@@ -95,10 +182,30 @@ Update settings
 <?php /* ----------------------------------------------------------------------------
 List template
 */ ?>
-  var i = 0;
-  var list_row = $('#list_row').html();
 
-  Mustache.parse(list_row); // optional, speeds up future uses
+  $('#tbl-list tbody').sortable({
+    handle: '.order-handle',
+    placeholder: {
+      element: function(currentItem) {
+        return $('<tr class="el-placeholder"><td colspan="5"></td></tr>')[0];
+      },
+      update: function(container, p) {
+        return;
+      }
+    },
+    helper: function(e, tr) {
+      var $originals = tr.children();
+      var $helper = tr.clone();
+      $helper.addClass('el-dragging');
+      $helper.children().each(function(index) {
+        $(this).width(parseInt($originals.eq(index).width()) + 21);
+        $(this).height($originals.eq(index).height());
+      });
+      return $helper;
+    }
+  });
+
+  var i = 0;
 
   $('.add_item').on('click', function() {
     addRepeaterRow('new', null);
@@ -118,12 +225,13 @@ List template
 
       var html = Mustache.render(list_row, mustacheBuildOptions({
         i: i++,
-        icon: null,
+        icon: 'fa-envelope-o',
         title: '',
-        url: ''
+        url: '#'
       }));
 
       $('#tbl-list tbody').append(html);
+      rowBindings();
 
     } else if (action == 'insert'){
 
@@ -135,8 +243,35 @@ List template
       }));
 
       $('#tbl-list tbody').append(html);
+      rowBindings();
     }
   }
+
+  $('#tbl-list').on('click', '.btn-delete', function() {
+    $(this).parents('tr').remove();
+  });
 });
+
+function rowBindings() {
+  $('.icon-picker').iconpicker({
+      showFooter: true,
+      searchInFooter: true,
+      hideOnSelect: true,
+      animation: true,
+      placement: 'auto',
+      templates: {
+        popover: '<div class="iconpicker-popover popover"><div class="arrow"></div>' +
+          '<div class="popover-title"></div><div class="popover-content"></div></div>',
+        footer: '<div class="popover-footer"></div>',
+        buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">' + _lang['cancel'] + '</button>' +
+          ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">' + _lang['accept'] + '</button>',
+        search: '',
+        iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
+        iconpickerItem: '<a role="button" href="#" class="iconpicker-item"><i></i></a>',
+      }
+  });
+
+  bsTooltipsPopovers();
+}
 </script>
 @endsection

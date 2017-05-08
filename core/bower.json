@@ -39,6 +39,7 @@
     "hopscotch": "^0.2.7",
     "datatables-rowreorder": "^1.2.0",
     "circliful": "^1.0.2",
-    "jquery-throttle-debounce": "*"
+    "jquery-throttle-debounce": "*",
+    "fontawesome-iconpicker": "^1.3.0"
   }
 }

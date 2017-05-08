@@ -150,8 +150,9 @@ class LandingPagesController extends Controller
     public function editorModalList(Request $request)
     {
       $el_class = $request->input('el_class', '');
+      $repeat = $request->input('repeat', 'a');
 
-      return view('landingpages::modals.list', compact('el_class'));
+      return view('landingpages::modals.list', compact('el_class', 'repeat'));
     }
 
     /**

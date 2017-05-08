@@ -33,7 +33,7 @@ return array(
   "title" => "Title",
   "title_help" => "The title is used for SEO (alt attribute).",
   "list" => "List",
-  "" => "",
+  "icon" => "Icon",
   "" => "",
   "" => ""
 );
