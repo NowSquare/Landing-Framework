@@ -31,6 +31,15 @@ class AppServiceProvider extends ServiceProvider
               '--force' => true,
           ]);
 
+          // Install modules
+          \Artisan::call('module:migrate', [
+              '--force' => true,
+          ]);
+
+          \Artisan::call('module:seed', [
+              '--force' => true,
+          ]);
+
           //\Artisan::call('key:generate');
 
           // If demo

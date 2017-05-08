@@ -4,6 +4,7 @@ use \Platform\Controllers\Core;
 use Illuminate\Http\Request;
 use App\Notifications\PasswordUpdated;
 use App\Notifications\UserCreated;
+use Illuminate\Support\Facades\Schema;
 
 class UserController extends \App\Http\Controllers\Controller {
 
@@ -389,6 +390,14 @@ class UserController extends \App\Http\Controllers\Controller {
         // Delete user uploads
         $user_dir = public_path() . '/uploads/' . Core\Secure::staticHash($qs['user_id']);
         \File::deleteDirectory($user_dir);
+
+        // Delete user landing stats table if exist
+        $tbl_name = 'landing_stats_' . $qs['user_id'];
+        Schema::dropIfExists($tbl_name);
+
+        // Delete user form entries table if exist
+        $tbl_name = 'form_entries_' . $qs['user_id'];
+        Schema::dropIfExists($tbl_name);
       }
       else
       {

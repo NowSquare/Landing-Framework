@@ -7,6 +7,9 @@ use \Platform\Controllers\Core;
 use Platform\Controllers\Helper;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+
 class UserEventSubscriber {
   /**
    * Handle user login events.
@@ -33,6 +36,52 @@ class UserEventSubscriber {
     $event->user->last_ip =  Helper\Client::ip();
     $event->user->last_login = Carbon::now();
     $event->user->save();
+
+    // Create user landing stats table if not exist
+    $tbl_name = 'landing_stats_' . $event->user->id;
+
+    if (! Schema::hasTable($tbl_name)) {
+      Schema::create($tbl_name, function(Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->bigInteger('landing_site_id')->unsigned();
+        $table->foreign('landing_site_id')->references('id')->on('landing_sites')->onDelete('cascade');
+        $table->bigInteger('landing_page_id')->unsigned();
+        $table->foreign('landing_page_id')->references('id')->on('landing_pages')->onDelete('cascade');
+        $table->string('ip', 40)->nullable();
+        $table->string('language', 5)->nullable();
+        $table->string('os', 24)->nullable();
+        $table->string('device', 32)->nullable();
+        $table->string('brand', 32)->nullable();
+        $table->string('modal', 32)->nullable();
+        $table->decimal('lat', 10, 8)->nullable();
+        $table->decimal('lng', 11, 8)->nullable();
+        $table->json('meta')->nullable();
+        $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+      });
+    }
+
+    // Create user form entries table if not exist
+    $tbl_name = 'form_entries_' . $event->user->id;
+
+    if (! Schema::hasTable($tbl_name)) {
+      Schema::create($tbl_name, function(Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->bigInteger('form_id')->unsigned();
+        $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
+        $table->string('email', 64)->nullable();
+        $table->string('ip', 40)->nullable();
+        $table->string('language', 5)->nullable();
+        $table->string('os', 24)->nullable();
+        $table->string('device', 32)->nullable();
+        $table->string('brand', 32)->nullable();
+        $table->string('modal', 32)->nullable();
+        $table->decimal('lat', 10, 8)->nullable();
+        $table->decimal('lng', 11, 8)->nullable();
+        $table->json('entry')->nullable();
+        $table->json('meta')->nullable();
+        $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+      });
+    }
   }
 
   /**

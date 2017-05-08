@@ -18,6 +18,8 @@ class CreateFormsTable extends Migration
       $table->bigInteger('order');
       $table->integer('user_id')->unsigned()->nullable();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+      $table->boolean('active')->default(true);
+      $table->string('category', 32)->nullable();
       $table->string('name', 64)->nullable();
       $table->json('meta')->nullable();
       $table->boolean('active')->default(true);
