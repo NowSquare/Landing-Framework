@@ -75,9 +75,11 @@ function lfInitLists() {
       $(this).parents('.-x-el-dropdown').trigger('mouseleave');
 
       // Check what settings can be configured in the modal
-      //var $el = $('.' + el_class);
+      var $el = $('.' + el_class);
+      var repeat = $el.attr('data-repeat');
+      if (repeat === typeof undefined || repeat === false) repeat = 'a';
 
-      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/list', el_class);
+      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/list?repeat=' + repeat, el_class);
     }
   });
 }
