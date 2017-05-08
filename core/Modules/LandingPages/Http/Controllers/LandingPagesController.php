@@ -68,28 +68,28 @@ class LandingPagesController extends Controller
         "icon" => 'presentation.svg',
         "name" => trans('landingpages::global.business_services'),
         "desc" => trans('landingpages::global.business_services_desc'),
-        "url" => "#/platform/landingpages/business_services"
+        "url" => "#/landingpages/business_services"
       ];
 
       $items[] = [
         "icon" => 'chefavatar-food-grocery-kitchen-restaurant-drink.svg',
         "name" => trans('landingpages::global.food_drinks'),
         "desc" => trans('landingpages::global.food_drinks_desc'),
-        "url" => "#/platform/landingpages/food_drink"
+        "url" => "#/landingpages/food_drink"
       ];
 
       $items[] = [
         "icon" => 'plan.svg',
         "name" => trans('landingpages::global.digital_tech'),
         "desc" => trans('landingpages::global.digital_tech_desc'),
-        "url" => "#/platform/landingpages/digital_tech"
+        "url" => "#/landingpages/digital_tech"
       ];
 
       $items[] = [
         "icon" => 'pictureprofile.svg',
         "name" => trans('landingpages::global.personal'),
         "desc" => trans('landingpages::global.personal_desc'),
-        "url" => "#/platform/landingpages/personal"
+        "url" => "#/landingpages/personal"
       ];
 
       return view('landingpages::create', compact('items'));

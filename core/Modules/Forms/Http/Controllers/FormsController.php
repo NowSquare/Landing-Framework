@@ -29,14 +29,14 @@ class FormsController extends Controller
         "icon" => 'handshake.svg',
         "name" => trans('forms::global.contact_form'),
         "desc" => trans('forms::global.contact_form_desc'),
-        "url" => "#/platform/forms/contact"
+        "url" => "#/forms/contact"
       ];
 
       $items[] = [
         "icon" => 'attachmentadd.svg',
         "name" => trans('forms::global.download_form'),
         "desc" => trans('forms::global.download_form_desc'),
-        "url" => "#/platform/forms/contact"
+        "url" => "#/forms/contact"
       ];
 
       return view('forms::create', compact('items'));
