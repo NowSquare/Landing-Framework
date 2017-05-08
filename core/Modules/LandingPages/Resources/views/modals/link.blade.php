@@ -1,14 +1,12 @@
 @extends('landingpages::layouts.modal')
 
-@section('content') 
-<a href="javascript:void(0);" class="btn-close onClickClose"></a>
-
+@section('content')
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12">
-      <h1>{{ trans('landingpages::global.link') }}</h1>
-    </div>
+  <div class="editor-modal-header">
+    <a href="javascript:void(0);" class="btn-close onClickClose"></a>
+    <h1>{{ trans('landingpages::global.link') }}</h1>
   </div>
+
   <div class="row">
     <div class="col-xs-10 col-sm-6">
 

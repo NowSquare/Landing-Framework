@@ -57,6 +57,20 @@ html.editor-modal {
     font-family: 'Roboto', sans-serif;
   }
 
+  padding-top: 52px;
+  padding-bottom: 52px;
+
+  .editor-modal-header {
+    z-index: 9;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 5px 30px;
+    background-color: #fff;
+    width: 100%;
+    height: 52px;
+  }
+
   .editor-modal-footer {
     z-index: 9;
     text-align: right;
@@ -69,7 +83,7 @@ html.editor-modal {
       &.btn-primary {
         display: inline-block;
         height: 36px;
-        background-color: rgba(9,9,9,0) !important;
+        background-color: #fff !important;
         border: 0 !important;
         font-family: 'Roboto', sans-serif;
         font-weight: 500;
@@ -105,8 +119,8 @@ html.editor-modal body {
     font-weight: 500;
     font-size: 20px;
     line-height: 28px;
-    margin-top: 5px;
-    margin-bottom: 24px;
+    margin-top: 15px;
+    margin-bottom: 10px;
   }
 }
 

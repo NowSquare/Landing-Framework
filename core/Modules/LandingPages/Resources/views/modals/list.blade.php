@@ -1,39 +1,36 @@
 @extends('landingpages::layouts.modal')
 
 @section('content') 
-<a href="javascript:void(0);" class="btn-close onClickClose"></a>
 
 <div class="container-fluid">
-  <div class="row">
-    <div class="col-xs-12">
-      <h1>{{ trans('landingpages::global.link') }}</h1>
-    </div>
+  <div class="editor-modal-header">
+    <a href="javascript:void(0);" class="btn-close onClickClose"></a>
+    <h1>{{ trans('landingpages::global.list') }}</h1>
   </div>
   <div class="row">
-    <div class="col-xs-10 col-sm-6">
+    <div class="col-xs-12">
 
-      <div class="form-group">
-        <label for="text">{{ trans('landingpages::global.text') }}</label>
-          <input type="text" class="form-control" id="text" name="text" autocomplete="off" value="">
-      </div>
+      <table class="table" id="tbl-list">
+        <thead>
+          <tr>
+            <th>Order</th>
+            <th>Icon</th>
+            <th>Title</th>
+            <th>Link</th>
+          </tr>
+        </thead>
 
-      <div class="form-group">
-        <label for="url">{{ trans('landingpages::global.url') }}</label>
-          <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="">
-      </div>
+        <tbody style="border: 1px solid #f3f3f3 !important">
+        </tbody>
 
-      <div class="form-group">
-<?php
-echo Former::select('target')
-  ->class('select2-required form-control')
-  ->name('target')
-  ->options([
-    '' => trans('landingpages::global.none'), 
-    '_blank' => trans('landingpages::global.new_window')
-  ])
-  ->label(trans('landingpages::global.target'));
-?>
-      </div>
+        <tfoot style="border: 1px solid #f3f3f3 !important">
+          <tr colspan="4">
+            <button type="button" class="btn btn-block btn-success add_item">Add</button>
+          </tr>
+        </tfoot>
+        
+      </table>
+
 
       <div class="editor-modal-footer">
         <button type="button" class="btn btn-primary btn-material onClickClose">{{ trans('global.cancel') }}</button>
@@ -43,6 +40,27 @@ echo Former::select('target')
     </div>
   </div>
 </div>
+
+<script id="list_row" type="x-tmpl-mustache">
+<tr data-i="@{{ i }}">
+  <td>
+    -
+  </td>
+  <td>
+    Icon
+  </td>
+  <td>
+    <input type="text" class="form-control" id="title@{{ i }}" name="title[]" autocomplete="off" value="">
+  </td>
+  <td>
+    <input type="text" class="form-control" id="url@{{ i }}" name="url[]" autocomplete="off" value="">
+  </td>
+  <td align="right">
+    <button type="button" class="btn btn-danger btn-delete" title="{{ trans('global.delete') }}" data-toggle="tooltip" title="{{ trans('global.delete') }}"><i class="fa fa-times"></i></button>
+  </td>
+</tr>
+</script>
+
 @endsection
 
 @section('script') 
@@ -57,10 +75,6 @@ Set settings
 
   var $el = $('.{{ $el_class }}', window.parent.document);
 
-  $('#text').val($el.html());
-  $('#url').val($el.attr('href'));
-  $('#target').val($el.attr('target'));
-
 <?php } ?>
 
 <?php /* ----------------------------------------------------------------------------
@@ -70,10 +84,6 @@ Update settings
   $('.onClickUpdate').on('click', function() {
 <?php if ($el_class != '') { ?>
 
-  $el.html($('#text').val());
-  $el.attr('href', $('#url').val());
-  $el.attr('target', $('#target').val());
-
   // Changes detected
   window.parent.lfSetPageIsDirty();
 
@@ -81,6 +91,52 @@ Update settings
 
     window.parent.lfCloseModal();
   });
+
+<?php /* ----------------------------------------------------------------------------
+List template
+*/ ?>
+  var i = 0;
+  var list_row = $('#list_row').html();
+
+  Mustache.parse(list_row); // optional, speeds up future uses
+
+  $('.add_item').on('click', function() {
+    addRepeaterRow('new', null);
+  });
+
+  function addRepeaterRow(action, data) {
+    if(action == 'update') {
+      var html = Mustache.render(list_row, mustacheBuildOptions({
+        icon: data.icon,
+        title: data.title,
+        url: data.url
+      }));
+
+      $('tbl-list #row' + data.i).replaceWith(html);
+
+    } else if(action == 'new') {
+
+      var html = Mustache.render(list_row, mustacheBuildOptions({
+        i: i++,
+        icon: null,
+        title: '',
+        url: ''
+      }));
+
+      $('#tbl-list tbody').append(html);
+
+    } else if (action == 'insert'){
+
+      var html = Mustache.render(list_row, mustacheBuildOptions({
+        i: i++,
+        icon: data.icon,
+        title: data.title,
+        url: data.url
+      }));
+
+      $('#tbl-list tbody').append(html);
+    }
+  }
 });
 </script>
 @endsection
