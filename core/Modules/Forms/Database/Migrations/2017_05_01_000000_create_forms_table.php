@@ -22,7 +22,6 @@ class CreateFormsTable extends Migration
       $table->string('category', 32)->nullable();
       $table->string('name', 64)->nullable();
       $table->json('meta')->nullable();
-      $table->boolean('active')->default(true);
       $table->timestamps();
     });
 
