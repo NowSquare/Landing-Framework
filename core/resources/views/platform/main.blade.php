@@ -96,10 +96,6 @@ if (count($languages) > 1) {
   <section id="view">
   </section>
 </div>
-
-<script async defer
-src="https://maps.googleapis.com/maps/api/js?key={{ env('GMAPS_KEY') }}&libraries=places,visualization">
-</script>
 @endsection 
 
 @section('bottom')
