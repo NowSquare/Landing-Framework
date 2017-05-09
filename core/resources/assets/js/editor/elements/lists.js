@@ -9,6 +9,7 @@ function lfInitLists() {
 
   $('.-x-list').each(function() {
     var $list = $(this);
+
     // Attribute settings
     var attachment = $list.attr('data-attachment');
     attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
@@ -71,6 +72,7 @@ function lfInitLists() {
     var el_class = $(this).parents('.-x-el-list-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
       // Hide dropdown after option has been clicked
       $(this).parents('.-x-el-dropdown').trigger('mouseleave');
 
@@ -89,6 +91,7 @@ function lfInitLists() {
 */
 
 function lfDuplicateBlockLists($new_block) {
+
   // Loop through all lists in new block
   $new_block.find('.-x-list').each(function() {
     var timestamp = new Date().getTime();
@@ -96,6 +99,7 @@ function lfDuplicateBlockLists($new_block) {
     var list_class = $new_list.attr('data-x-el');
 
     if (typeof list_class !== typeof undefined && list_class !== false) {
+
       // Attribute settings
       var attachment = $(this).attr('data-attachment');
       attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';

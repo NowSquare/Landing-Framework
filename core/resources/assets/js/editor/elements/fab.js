@@ -36,7 +36,7 @@ function lfInitFab() {
         Tether.position();
       }
     }
-  });  
+  });
   
   /* 
     Save page
@@ -44,7 +44,35 @@ function lfInitFab() {
 
   $('body').on('click', '.-x-el-fab-save', function() {
     var html = lfGetHtml();
+
     console.log(html);
-    alert(html);
+
+    $.notify({
+        title: _lang['notification'],
+        text: _lang['save_succes'] + "&nbsp;&nbsp;",
+        image: '<i class="fa fa-bell-o" aria-hidden="true"></i>'
+      }, {
+        style: 'metro',
+        className: 'white', /* white, black, error, success, warning, info */
+        globalPosition: 'top right',
+        autoHide: true,
+        clickToHide: true,
+        autoHideDelay: 5000,
+        showAnimation: 'fadeIn',
+        showDuration: 200,
+        hideAnimation: 'fadeOut',
+        hideDuration: 200
+    });
+  });
+  
+  /* 
+    Preview, toggle buttons
+  */
+
+  $('body').on('click', '.-x-el-fab-preview', function() {
+    $('.-x-el-inline-button-clone .-x-el-icon').toggle();
+
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave');
   });
 }
