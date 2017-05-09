@@ -62,13 +62,10 @@ gulp.task('styles', function() {
   return sass([
       'resources/sass/style.scss', 
       'resources/sass/bootstrap.scss',
-      'resources/sass/fonts/font-awesome.scss',
       'resources/sass/sweetalert.scss',
-      'resources/sass/fonts/iconsmind-line.scss',
       'bower_components/tether/src/css/tether.sass',
       'bower_components/owl.carousel/src/scss/owl.carousel.scss',
-      'bower_components/ladda/css/ladda.scss',
-      'bower_components/simple-line-icons/scss/simple-line-icons.scss'
+      'bower_components/ladda/css/ladda.scss'
     ], {
       style: 'expanded',
       loadPath: [ 
