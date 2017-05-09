@@ -67,7 +67,7 @@ var xTplListButton = '<div class="-x-el-inline-button -x-el-list-edit -x-el-rese
   '   onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/layers.svg\';"' +
   ' >' +
   ' <ul class="-x-el-dropdown -x-el-reset">' +
-  '   <li class="-x-el-list-edit"><a href="javascript:void(0);">' + _lang["update_list"] + '</a></li>' +
+  '   <li class="-x-el-list-edit"><a href="javascript:void(0);">' + _lang["modify_list"] + '</a></li>' +
   ' </ul>' +
   '</div>';
 
@@ -77,7 +77,7 @@ var xTplIconButton = '<div class="-x-el-inline-button -x-el-icon-edit -x-el-rese
   '   onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/vector.svg\';"' +
   ' >' +
   ' <ul class="-x-el-dropdown -x-el-reset">' +
-  '   <li class="-x-el-icon-edit"><a href="javascript:void(0);">' + _lang["update_icon"] + '</a></li>' +
+  '   <li class="-x-el-icon-edit"><a href="javascript:void(0);">' + _lang["modify_icon"] + '</a></li>' +
   ' </ul>' +
   '</div>';
 
@@ -87,7 +87,7 @@ var xTplImgButton = '<div class="-x-el-inline-button -x-el-img-edit -x-el-reset"
 '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/image.svg\';"' +
 '  >' +
 '  <ul class="-x-el-dropdown -x-el-reset">' +
-'    <li class="-x-el-img-update"><a href="javascript:void(0);">' + _lang["update_image"] + '</a></li>' +
+'    <li class="-x-el-img-update"><a href="javascript:void(0);">' + _lang["modify_image"] + '</a></li>' +
 '    <li class="separator"><hr></li>' +
 '    <li class="-x-el-img-remove"><a href="javascript:void(0);">' + _lang["remove"] + '</a></li>' +
 '  </ul>' +
@@ -99,7 +99,7 @@ var xTplLinkButton = '<div class="-x-el-inline-button -x-el-link-edit -x-el-rese
   '   onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/link.svg\';"' +
   ' >' +
   ' <ul class="-x-el-dropdown -x-el-reset">' +
-  '   <li class="-x-el-link-edit"><a href="javascript:void(0);">' + _lang["link_settings"] + '</a></li>' +
+  '   <li class="-x-el-link-edit"><a href="javascript:void(0);">' + _lang["modify_link"] + '</a></li>' +
   '   <li class="-x-el-link-shape"><a href="javascript:void(0);">' + _lang["shape"] + ' <div class="-x-el-caret"></div></a>' +
   '     <ul>' +
   '       <li class="-x-el-link-shape-regular"><a href="javascript:void(0);">' + _lang["regular"] + '</a></li>' +

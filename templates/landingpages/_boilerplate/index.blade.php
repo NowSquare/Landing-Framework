@@ -166,7 +166,7 @@
               <div class="col-md-7 pull-md-5">
                 <div class="content-padding">
                   <h2>First make it work, then make it better</h2>
-                  <p class="lead">We provides high quality assets for your business. We help <a href="#" class="link">entrepreneurs</a> with great ideas achieving their goals faster with self-hosted, white label software.</p>
+                  <p class="lead">We provide high quality assets for your business. We help <a href="#" class="link">entrepreneurs</a> with great ideas achieving their goals faster with self-hosted, white label software.</p>
                   <div class="btn-container">
                     <a class="btn btn-outline-pink btn-pill -x-link" data-offset="5px 0px" data-attachment="right top" data-target-attachment="left top" href="#" role="button">More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                   </div>
@@ -205,7 +205,7 @@
               <div class="col-md-6 pull-md-6 text-center text-md-right">
                 <div class="content-padding">
                   <h2>Awesome Features</h2>
-                  <p class="lead">We provides high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
+                  <p class="lead">We provide high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                   <div class="btn-container">
                     <a class="btn btn-blue btn-pill" href="#" role="button"><i class="fa fa-search" aria-hidden="true"></i> Details</a>
                   </div>
@@ -329,7 +329,7 @@
                   <!-- /.col -->
                   <div class="col-12">
                     <h2 class="mt-1">Support</h2>
-                    <p class="lead">We provides high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
+                    <p class="lead">We provide high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                     <p class="btn-container">
                       <a class="btn btn-blue btn-pill" href="#" role="button">More</a>
                     </p>
@@ -349,7 +349,7 @@
                   <!-- /.col -->
                   <div class="col-12">
                     <h2 class="mt-1">Reports</h2>
-                    <p class="lead">We provides high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
+                    <p class="lead">We provide high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                     <p class="btn-container">
                       <a class="btn btn-blue btn-pill" href="#" role="button">More</a>
                     </p>
@@ -386,7 +386,7 @@
                   <!-- /.col -->
                   <div class="col-12">
                     <h2 class="mt-1">Customize</h2>
-                    <p class="lead">We provides high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
+                    <p class="lead">We provide high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                     <p class="btn-container">
                       <a class="btn btn-blue btn-pill" href="#" role="button">More</a>
                     </p>
@@ -405,7 +405,7 @@
                   <!-- /.col -->
                   <div class="col-12">
                     <h2 class="mt-1">Purchase</h2>
-                    <p class="lead">We provides high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
+                    <p class="lead">We provide high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                     <p class="btn-container">
                       <a class="btn btn-blue btn-pill" href="#" role="button">More</a>
                     </p>
@@ -424,7 +424,7 @@
                   <!-- /.col -->
                   <div class="col-12">
                     <h2 class="mt-1">Documentation</h2>
-                    <p class="lead">We provides high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
+                    <p class="lead">We provide high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with self-hosted, white label software.</p>
                     <p class="btn-container">
                       <a class="btn btn-blue btn-pill" href="#" role="button">More</a>
                     </p>
