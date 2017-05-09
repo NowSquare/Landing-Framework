@@ -36,6 +36,7 @@ return array(
   "online" => "Online",
   "qr" => "QR",
   "view" => "View",
+  "preview" => "Preview",
   "page" => "Page",
   "seo" => "SEO",
   "domain" => "Domain",
