@@ -116,7 +116,9 @@ gulp.task('scripts', function() {
     .pipe(concat('scripts.js'))
     .pipe(gulp.dest('js'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
+    .pipe(uglify({
+      mangle: true
+    }))
     .pipe(gulp.dest('js'))
     .pipe(livereload())
     .pipe(notify({ message: 'Scripts task complete' }));
