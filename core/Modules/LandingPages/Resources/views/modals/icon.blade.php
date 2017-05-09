@@ -2,7 +2,7 @@
 
 @section('content') 
 
-<script src="{{ url('assets/js/material-icons.js') }}"></script>
+<script src="{{ url('assets/js/material-icons.min.js') }}"></script>
 
 <div class="container-fluid">
   <div class="editor-modal-header">
