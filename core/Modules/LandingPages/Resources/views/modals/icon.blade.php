@@ -13,8 +13,8 @@
     <div class="col-xs-8 col-sm-6">
 
       <div class="input-group input-group-lg">
-        <input data-placement="bottomRight" class="form-control icon-picker" value="" type="text" />
-        <span class="input-group-addon"></span>
+        <input i class="form-control icon-picker" value="" type="text" />
+        <span class="input-group-addon" id="icon"></span>
       </div>
 <?php /*
       <div class="form-group">
@@ -49,11 +49,9 @@ Set settings
   var $el = $('.{{ $el_class }}', window.parent.document);
 
   var icon = parent.lfExtractIconClass($el.attr('class'));
-console.log(icon);
-
 
   $('.icon-picker').iconpicker({
-    selected: icon,
+    selected: icon.class,
     showFooter: true,
     searchInFooter: true,
     hideOnSelect: true,
@@ -73,8 +71,6 @@ console.log(icon);
     fullClassFormatter: function(val) {
       if(val.match(/^fa-/)) {
         return 'fa ' + val;
-      } else if(val.match(/^iml-/)){
-        return 'iml ' + val;
       } else {
         return 'mi ' + val;
       }
@@ -100,8 +96,10 @@ Update settings
   $('.onClickUpdate').on('click', function() {
 <?php if ($el_class != '') { ?>
 
-
-  var icon = $el.attr('class');
+  var new_icon = $('#icon i').attr('class');
+  $el.removeClass(icon.font);
+  $el.removeClass(icon.class);
+  $el.addClass(new_icon);
 
   // Changes detected
   window.parent.lfSetPageIsDirty();

@@ -170,6 +170,10 @@ html.editor-modal body {
   padding: 6px;
   i {
     font-size: 24px;
+
+    &.mi {
+      top: 0;
+    }
   }
 }
 

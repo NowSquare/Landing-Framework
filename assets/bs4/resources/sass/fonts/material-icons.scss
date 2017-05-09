@@ -30,13 +30,16 @@ $mi_path: "../fonts/material-icons" !default;
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 14px;  /* Preferred icon size */
   line-height: 1;
   display: inline-block;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transform: translate(0, 0);
+
+  font-size: 17px;  /* Preferred icon size */
+  top: 3px;
+  position: relative;
 }
 
 /* Rules for sizing the icon. */

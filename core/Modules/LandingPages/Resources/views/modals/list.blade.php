@@ -54,7 +54,7 @@
     </div>
   </td>
   <td>
-    <button type="button" class="btn btn-block btn-lg btn-default icon-picker iconpicker-component" data-toggle="dropdown" data-selected="@{{ icon }}"><i class="fa @{{ icon }}"></i></button>
+    <button type="button" class="btn btn-block btn-lg btn-default icon-picker icon-picker@{{ i }} iconpicker-component" data-toggle="dropdown" data-selected="@{{ icon }}"><i class="fa @{{ icon }}"></i></button>
   </td>
   <td>
     <input type="text" class="form-control input-lg" id="title@{{ i }}" name="title" autocomplete="off" value="@{{ title }}">
@@ -92,15 +92,14 @@ Set settings
     var $row = $(this);
     var data = {};
 
-    var icon = $row.find('i').attr('class');
-    icon = icon.replace('fa ', '');
+    var icon = parent.lfExtractIconClass($row.find('i').attr('class'));
     var title = $row.attr('title');
     title = (typeof title !== typeof undefined && title !== false) ? title : '';
     var url = $row.attr('href');
     url = (typeof url !== typeof undefined && url !== false) ? url : '';
 
     data.i = i;
-    data.icon = icon;
+    data.icon = icon.class;
     data.title = title;
     data.url = url;
 
@@ -136,12 +135,16 @@ Update settings
     var $row = $(this);
 
     var icon = $row.find('.icon-picker i').attr('class');
-    icon = icon.replace('fa ', '').replace('iconpicker-component', '');
+    icon = icon.replace('iconpicker-component', '');
     var title = $row.find('[name=title]').val();
     var url = $row.find('[name=url]').val();
 
     var $new_item = $item.clone();
 
+    // Get font vendor
+    var new_icon = parent.lfExtractIconClass($new_item.find('i').attr('class'));
+
+    $new_item.find('i').removeClass(new_icon.font);
     $new_item.find('i').addClass(icon);
     $new_item.attr('title', title);
     $new_item.attr('href', url);
@@ -211,7 +214,7 @@ List template
       }));
 
       $('#tbl-list tbody').append(html);
-      rowBindings();
+      rowBindings(i);
 
     } else if (action == 'insert'){
 
@@ -223,7 +226,7 @@ List template
       }));
 
       $('#tbl-list tbody').append(html);
-      rowBindings();
+      rowBindings(i);
     }
   }
 
@@ -232,8 +235,8 @@ List template
   });
 });
 
-function rowBindings() {
-  $('.icon-picker').iconpicker({
+function rowBindings(i) {
+  $('.icon-picker' + i + '').iconpicker({
       showFooter: true,
       searchInFooter: true,
       hideOnSelect: true,
@@ -253,8 +256,6 @@ function rowBindings() {
       fullClassFormatter: function(val) {
         if(val.match(/^fa-/)) {
           return 'fa ' + val;
-        } else if(val.match(/^iml-/)){
-          return 'iml ' + val;
         } else {
           return 'mi ' + val;
         }
