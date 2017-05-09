@@ -5,6 +5,11 @@ $mdl-shadow--6dp: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0
 $mdl-shadow--8dp: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2) !default;
 $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2) !default;
 
+//@import "../../../../assets/bs4/resources/sass/fonts/iconsmind-line";
+
+$mi_path: "../bs4/fonts/material-icons" !default;
+@import "../../../../assets/bs4/resources/sass/fonts/material-icons";
+
 @import "spinthatshit";
 @import "colorbox";
 @import "jvectormap";
@@ -152,6 +157,46 @@ html.editor-modal body {
 
 .btn-close:after {
   transform: rotate(-45deg);
+}
+
+// fontawesome iconpicker
+.iconpicker-popover.popover {
+  width: 458px;
+}
+
+.iconpicker-items .iconpicker-item {
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+  i {
+    font-size: 24px;
+  }
+}
+
+// drag/drop list
+.el-dragging {
+  background-color: #fff;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.el-placeholder {
+  background-color:#efefef;
+  height: 63px;
+  box-shadow: inset 0 6px 10px 0 rgba(0, 0, 0, 0.14), inset 0 1px 18px 0 rgba(0, 0, 0, 0.12), inset 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.table-list {
+  .order-handle {
+    padding: 11px 0 0;
+    text-align: right;
+    cursor: ns-resize;
+  }
+  .btn-lg {
+    padding: 11px 16px 12px;
+  }
+  .icon-picker.btn-lg {
+    padding: 11px 1px 12px;
+  }
 }
 
 // Fix close button Colorbox

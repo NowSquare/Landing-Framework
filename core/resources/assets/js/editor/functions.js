@@ -54,6 +54,75 @@ function lfInitDropdowns() {
   });
 };
 
+/*
+  Extracts icon class from css class.
+  Requires a parent window to test classes.
+*/
+
+function lfExtractIconClass(css_class) {
+  var icon = {};
+
+  icon.font = '';
+  icon.class = '';
+
+  if (typeof css_class !== typeof undefined && css_class !== false) {
+    var font_classes = ['fa', 'mi', 'iml'];
+    var css_classes = css_class.split(/ +/);
+    var css_classes_new = [];
+
+    // Filter classes starting with -x-
+    for (var i = 0, len = css_classes.length; i < len; i++) {
+      if (css_classes[i].substring(0, 3) != '-x-') {
+        css_classes_new.push(css_classes[i]);
+      }
+    }
+
+    css_classes = css_classes_new;
+
+    var icon_class_found = '';
+    var font_found = '';
+
+    // Check for service class
+    for (var i = 0, len = font_classes.length; i < len; i++) {
+      var font = font_classes[i];
+      if ($.inArray(font, css_classes) != -1) {
+        font_found = font;
+        break;
+      }
+    }
+
+    icon.font = font_found;
+
+    // Check for icon class
+    for (var i = 0, len = css_classes.length; i < len; i++) {
+      var css_class = css_classes[i];
+
+      if (font_found != css_class) {
+        var $dummy = $('<i>', {class: font_found + ' ' + css_class}).appendTo(parent.$('body'));
+
+        // Check if there is a class with ":before content" set
+        var el = $dummy[0];// window.parent.document.getElementsByClassName(css_class);
+        var before_content = window.parent.getComputedStyle(el, ':before').getPropertyValue('content');
+
+        if (before_content && before_content !== 'none') {
+          //console.log(window.getMatchedCSSRules(el, '::before'));
+          icon_class_found = css_class;
+          break;
+        }
+
+        // Cleanup
+        $dummy.remove();
+      }
+    }
+
+    icon.class = icon_class_found;
+
+    return icon;
+  } else {
+    return icon;
+  }
+}
+
 /* 
   Swap two elements.
   http://stackoverflow.com/a/8034949

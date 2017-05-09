@@ -2,19 +2,19 @@
 
 @section('content') 
 
+<script src="{{ url('assets/js/material-icons.js') }}"></script>
+
 <div class="container-fluid">
   <div class="editor-modal-header">
     <a href="javascript:void(0);" class="btn-close onClickClose"></a>
     <h1>{{ trans('landingpages::global.icon') }}</h1>
   </div>
   <div class="row">
-    <div class="col-xs-12">
-
-
+    <div class="col-xs-8 col-sm-6">
 
       <div class="input-group input-group-lg">
         <input data-placement="bottomRight" class="form-control icon-picker" value="" type="text" />
-        <span class="input-group-addon iconpicker-component"></span>
+        <span class="input-group-addon"></span>
       </div>
 <?php /*
       <div class="form-group">
@@ -45,11 +45,12 @@ Set settings
 
 <?php if ($el_class != '') { ?>
 
+
   var $el = $('.{{ $el_class }}', window.parent.document);
 
-  var icon = $el.attr('class');
-  icon = (typeof icon !== typeof undefined && icon !== false) ? icon : '';
-  icon = icon.replace('fa ', '');
+  var icon = parent.lfExtractIconClass($el.attr('class'));
+console.log(icon);
+
 
   $('.icon-picker').iconpicker({
     selected: icon,
@@ -64,11 +65,31 @@ Set settings
       footer: '<div class="popover-footer"></div>',
       buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">' + _lang['cancel'] + '</button>' +
         ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">' + _lang['accept'] + '</button>',
-      search: '',
+      search: '<input type="search" class="form-control iconpicker-search" placeholder="' + _lang['type_to_filter'] + '" />',
       iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
       iconpickerItem: '<a role="button" href="#" class="iconpicker-item"><i></i></a>',
+    },
+    icons: $.merge(materialIcons, $.iconpicker.defaultOptions.icons),
+    fullClassFormatter: function(val) {
+      if(val.match(/^fa-/)) {
+        return 'fa ' + val;
+      } else if(val.match(/^iml-/)){
+        return 'iml ' + val;
+      } else {
+        return 'mi ' + val;
+      }
     }
   });
+
+/*
+fontawesome-iconpicker.js
+
+replace:
+
+var b = a(this);
+
+var b = $(this);
+*/
 
 <?php } ?>
 
@@ -81,7 +102,6 @@ Update settings
 
 
   var icon = $el.attr('class');
-  icon = icon.replace('fa ', '');
 
   // Changes detected
   window.parent.lfSetPageIsDirty();

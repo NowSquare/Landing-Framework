@@ -250,7 +250,9 @@ gulp.task('scripts', function() {
     .pipe(concat('scripts.js'))
     .pipe(gulp.dest('../assets/js'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
+    .pipe(uglify({
+      mangle: true
+    }))
     .pipe(gulp.dest('../assets/js'))
     .pipe(livereload())
     .pipe(notify({ message: 'Scripts task complete' }));
@@ -296,7 +298,9 @@ gulp.task('editor_scripts', function() {
     .pipe(concat('scripts.editor.js'))
     .pipe(gulp.dest('../assets/js'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
+    .pipe(uglify({
+      mangle: true
+    }))
     .pipe(gulp.dest('../assets/js'))
     .pipe(livereload())
     .pipe(notify({ message: 'Scripts task complete' }));
@@ -343,7 +347,9 @@ gulp.task('scripts_map', function() {
     .pipe(concat('jvectormap.js'))
     .pipe(gulp.dest('../assets/js'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
+    .pipe(uglify({
+      mangle: true
+    }))
     .pipe(gulp.dest('../assets/js'))
     .pipe(livereload())
     .pipe(notify({ message: 'Scripts task complete' }));

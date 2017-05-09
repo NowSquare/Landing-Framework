@@ -2,6 +2,8 @@
 
 @section('content') 
 
+<script src="{{ url('assets/js/material-icons.js') }}"></script>
+
 <div class="container-fluid">
   <div class="editor-modal-header">
     <a href="javascript:void(0);" class="btn-close onClickClose"></a>
@@ -10,7 +12,7 @@
   <div class="row">
     <div class="col-xs-12">
 
-      <table class="table" id="tbl-list">
+      <table class="table table-list" id="tbl-list">
         <thead>
           <tr>
             <th style="width:49px"></th>
@@ -69,28 +71,6 @@
 @endsection
 
 @section('script')
-<style type="text/css">
-  .el-dragging {
-    background-color: #fff;
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
-  }
-  .el-placeholder {
-    background-color:#efefef;
-    height: 63px;
-    box-shadow: inset 0 6px 10px 0 rgba(0, 0, 0, 0.14), inset 0 1px 18px 0 rgba(0, 0, 0, 0.12), inset 0 3px 5px -1px rgba(0, 0, 0, 0.2);
-  }
-  .order-handle {
-    padding: 11px 0 0;
-    text-align: right;
-    cursor: ns-resize;
-  }
-  .table .btn-lg {
-    padding: 11px 16px 12px;
-  }
-  .table .icon-picker.btn-lg {
-    padding: 11px 1px 12px;
-  }
-</style>
 <script>
 $(function() {
 <?php /* ----------------------------------------------------------------------------
@@ -265,9 +245,19 @@ function rowBindings() {
         footer: '<div class="popover-footer"></div>',
         buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">' + _lang['cancel'] + '</button>' +
           ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">' + _lang['accept'] + '</button>',
-        search: '',
+        search: '<input type="search" class="form-control iconpicker-search" placeholder="' + _lang['type_to_filter'] + '" />',
         iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
         iconpickerItem: '<a role="button" href="#" class="iconpicker-item"><i></i></a>',
+      },
+      icons: $.merge(materialIcons, $.iconpicker.defaultOptions.icons),
+      fullClassFormatter: function(val) {
+        if(val.match(/^fa-/)) {
+          return 'fa ' + val;
+        } else if(val.match(/^iml-/)){
+          return 'iml ' + val;
+        } else {
+          return 'mi ' + val;
+        }
       }
   });
 

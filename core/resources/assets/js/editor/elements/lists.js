@@ -52,7 +52,7 @@ function lfInitLists() {
       targetAttachment: targetAttachment,
       classPrefix: '-x-data',
       constraints: [{
-        to: 'window',
+        to: 'scrollParent',
         attachment: 'together'
       }],
       optimizations: {

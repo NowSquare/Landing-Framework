@@ -46,6 +46,9 @@ function lfInitFab() {
     var html = lfGetHtml();
 
     console.log(html);
+  
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave');
 
     $.notify({
         title: _lang['notification'],
