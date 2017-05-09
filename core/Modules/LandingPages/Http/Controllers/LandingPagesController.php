@@ -165,4 +165,14 @@ class LandingPagesController extends Controller
 
       return view('landingpages::modals.image', compact('el_class', 'link'));
     }
+
+    /**
+     * Editor modal to configure icon
+     */
+    public function editorModalIcon(Request $request)
+    {
+      $el_class = $request->input('el_class', '');
+
+      return view('landingpages::modals.icon', compact('el_class'));
+    }
 }

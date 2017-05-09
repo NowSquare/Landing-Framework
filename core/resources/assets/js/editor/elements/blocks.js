@@ -195,6 +195,7 @@ function lfInitBlocks() {
 
       // Duplicate other elements
       lfDuplicateBlockImages($new_block);
+      lfDuplicateBlockIcons($new_block);
       lfDuplicateBlockLinks($new_block);
       lfDuplicateBlockLists($new_block);
       lfDuplicateBlockText($new_block);

@@ -1,43 +1,43 @@
-function lfInitLists() {
+function lfInitIcons() {
 
   /*
-    Loop through all lists, generate semi-unique class
-    to reference lists for use in the editor. Add `-clone`
+    Loop through all icons, generate semi-unique class
+    to reference icons for use in the editor. Add `-clone`
     suffix to class to prevent cloning to the power and
-    link dropdown to list (Tether).
+    link dropdown to icon (Tether).
   */
 
-  $('.-x-list').each(function() {
-    var $list = $(this);
+  $('.-x-icon').each(function() {
+    var $icon = $(this);
 
     // Attribute settings
-    var attachment = $list.attr('data-attachment');
+    var attachment = $icon.attr('data-attachment');
     attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
 
-    var targetAttachment = $list.attr('data-target-attachment');
+    var targetAttachment = $icon.attr('data-target-attachment');
     targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'bottom left';
 
-    var offset = $list.attr('data-offset');
+    var offset = $icon.attr('data-offset');
     offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '0 0';
 
-    var dropdownPosition = $list.attr('data-dropdown-position');
+    var dropdownPosition = $icon.attr('data-dropdown-position');
     dropdownPosition = (typeof dropdownPosition !== typeof undefined && dropdownPosition !== false) ? dropdownPosition : 'right';
 
-    var $el = $(xTplListButton).clone().appendTo('body');
+    var $el = $(xTplIconButton).clone().appendTo('body');
 
     // Set unique class
     var timestamp = new Date().getTime();
-    var unique_class = '-x-data-list-' + timestamp;
+    var unique_class = '-x-data-icon-' + timestamp;
 
-    $list.addClass(unique_class);
-    $list.attr('data-x-el', unique_class);
+    $icon.addClass(unique_class);
+    $icon.attr('data-x-el', unique_class);
     $el.attr('data-x-el', unique_class);
 
     // Set reference to parent block
-    $el.attr('data-x-parent-block', $list.parents('.-x-block').attr('data-x-el'));
+    $el.attr('data-x-parent-block', $icon.parents('.-x-block').attr('data-x-el'));
 
     // Replace class so it won't be cloned in next loop
-    $el.removeClass('-x-el-list-edit').addClass('-x-el-list-edit-clone -x-el-inline-button-clone');
+    $el.removeClass('-x-el-icon-edit').addClass('-x-el-icon-edit-clone -x-el-inline-button-clone');
 
     // Add class so dropdown opens on the left side
     if (dropdownPosition == 'left') {
@@ -46,7 +46,7 @@ function lfInitLists() {
 
     new Tether({
       element: $el,
-      target: $list,
+      target: $icon,
       attachment: attachment,
       offset: offset,
       targetAttachment: targetAttachment,
@@ -62,14 +62,14 @@ function lfInitLists() {
     });
   });
 
-  lfParseLists(true);
+  lfParseIcons(true);
 
   /* 
-    Open modal to configure list
+    Open modal to configure icon
   */
 
-  $('body').on('click', '.-x-el-list-edit', function() {
-    var el_class = $(this).parents('.-x-el-list-edit-clone').attr('data-x-el');
+  $('body').on('click', '.-x-el-icon-edit', function() {
+    var el_class = $(this).parents('.-x-el-icon-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
 
@@ -77,28 +77,26 @@ function lfInitLists() {
       $(this).parents('.-x-el-dropdown').trigger('mouseleave');
 
       // Check what settings can be configured in the modal
-      var $el = $('.' + el_class);
-      var repeat = $el.attr('data-repeat');
-      if (repeat === typeof undefined || repeat === false) repeat = 'a';
+      //var $el = $('.' + el_class);
 
-      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/list?repeat=' + repeat, el_class);
+      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/icon', el_class);
     }
   });
 }
 
 /* 
-  Duplicate lists and references
+  Duplicate icons and references
 */
 
-function lfDuplicateBlockLists($new_block) {
+function lfDuplicateBlockIcons($new_block) {
 
-  // Loop through all lists in new block
-  $new_block.find('.-x-list').each(function() {
+  // Loop through all icons in new block
+  $new_block.find('.-x-icon').each(function() {
     var timestamp = new Date().getTime();
-    var $new_list = $(this);
-    var list_class = $new_list.attr('data-x-el');
+    var $new_icon = $(this);
+    var icon_class = $new_icon.attr('data-x-el');
 
-    if (typeof list_class !== typeof undefined && list_class !== false) {
+    if (typeof icon_class !== typeof undefined && icon_class !== false) {
 
       // Attribute settings
       var attachment = $(this).attr('data-attachment');
@@ -111,17 +109,17 @@ function lfDuplicateBlockLists($new_block) {
       offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '0 0';
 
       // Clone btn and replace with new class
-      $new_list.removeClass(list_class);
-      $new_list.addClass('-x-data-list-' + timestamp);
-      $new_list.attr('data-x-el', '-x-data-list-' + timestamp);
+      $new_icon.removeClass(icon_class);
+      $new_icon.addClass('-x-data-icon-' + timestamp);
+      $new_icon.attr('data-x-el', '-x-data-icon-' + timestamp);
 
       // Settings
-      var $new_list_settings = $('.-x-el-list-edit-clone[data-x-el=' + list_class + ']').clone().insertAfter('.-x-el-list-edit-clone[data-x-el=' + list_class + ']');
-      $new_list_settings.attr('data-x-el', '-x-data-list-' + timestamp);
+      var $new_icon_settings = $('.-x-el-icon-edit-clone[data-x-el=' + icon_class + ']').clone().insertAfter('.-x-el-icon-edit-clone[data-x-el=' + icon_class + ']');
+      $new_icon_settings.attr('data-x-el', '-x-data-icon-' + timestamp);
 
       new Tether({
-        element: $new_list_settings,
-        target: $new_list,
+        element: $new_icon_settings,
+        target: $new_icon,
         attachment: attachment,
         offset: offset,
         targetAttachment: targetAttachment,
@@ -140,29 +138,29 @@ function lfDuplicateBlockLists($new_block) {
   });
 
   // Timeout to make sure dom has changed
-  setTimeout(lfParseLists, 70);
+  setTimeout(lfParseIcons, 70);
 }
 
 /* 
-  Loop through list settings to set attributes
+  Loop through icon settings to set attributes
   and fix z-index overlapping. 
 */
 
-function lfParseLists(init) {
+function lfParseIcons(init) {
   var zIndex = 200;
   
-  $('.-x-list').each(function() {
-    var list_class = $(this).attr('data-x-el');
-    var $list_settings = $('.-x-el-list-edit-clone[data-x-el=' + list_class + ']');
+  $('.-x-icon').each(function() {
+    var icon_class = $(this).attr('data-x-el');
+    var $icon_settings = $('.-x-el-icon-edit-clone[data-x-el=' + icon_class + ']');
 
     // Set z-index to prevent overlapping of dropdown menus
-    $list_settings.css('cssText', 'z-index: ' + zIndex + ' !important;');
-    $list_settings.find('.-x-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
+    $icon_settings.css('cssText', 'z-index: ' + zIndex + ' !important;');
+    $icon_settings.find('.-x-el-dropdown').css('cssText', 'z-index: ' + zIndex + ' !important;');
     zIndex--;
   });
 
   // Always reposition tethered elements.
-  // Also initially because $list_settings.css('cssText', ...); 
+  // Also initially because $icon_settings.css('cssText', ...); 
   // seems to reset position
   Tether.position();
 }

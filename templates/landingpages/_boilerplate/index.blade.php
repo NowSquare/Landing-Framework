@@ -51,7 +51,7 @@
   </section>
 
   <section class="typography-1 -x-block">
-    <div class="header text-light img-bottom-lg -x-block-bg-img" style="background-image:url('/templates/assets/images/headers/landscape-mountains-nature-sky.jpg')">
+    <div class="header text-light -x-block-bg-img" style="background-image:url('/templates/assets/images/headers/landscape-mountains-nature-sky.jpg')">
       <div id="particles-js-connect" class="header-overlay -x-block-bg-color" style="background-color:rgba(37,75,98,0.7)">
         <div class="container">
           <div class="header-padding no-padding-b">
@@ -103,12 +103,12 @@
           <div class="container">
             <div class="row">
               <div class="col-md-8">
-                <h1 class="mt-1">Let's Discuss the Plan</h1>
+                <h1 class="mt-1 -x-text">Let's Discuss the Plan</h1>
               </div>
               <!-- /.col -->
               <div class="col-md-4 text-sm-left text-md-right">
                 <div class="btn-container mt-sm-1">
-                  <a class="btn btn-xlg btn-outline-ghost btn-pill" href="#" role="button"><i class="fa fa-coffee" aria-hidden="true"></i> Contact Us</a>
+                  <a class="btn btn-xlg btn-outline-ghost btn-pill -x-link" href="#" role="button"><i class="fa fa-coffee" aria-hidden="true"></i> Contact Us</a>
                 </div>
               </div>
               <!-- /.col -->
@@ -136,7 +136,7 @@
               <!-- /.col -->
               <div class="col-md-4 text-sm-left text-md-right">
                 <div class="btn-container mt-sm-1">
-                  <a class="btn btn-xlg btn-outline-ghost" href="#" role="button"><i class="fa fa-coffee" aria-hidden="true"></i> Contact Us</a>
+                  <a class="btn btn-xlg btn-outline-ghost -x-link" href="#" role="button"><i class="fa fa-coffee" aria-hidden="true"></i> Contact Us</a>
                 </div>
               </div>
               <!-- /.col -->
@@ -233,14 +233,14 @@
               <div class="col-sm-12 col-md-4 text-center text-lg-right mt-3 no-margin-md-t">
                 <div class="content-padding">
                   <!-- icon -->
-                  <i class="material-icons icon-xs color-deep-purple">&#xE922;</i>
+                  <i class="icon-xs color-deep-purple -x-icon mi timeline" data-attachment="bottom left" data-target-attachment="top left"></i>
                   <h2>Feature</h2>
                   <p class="lead">This is an awesome feature.</p>
                 </div>
                 <!-- /.content-padding -->
                 <div class="content-padding">
                   <!-- icon -->
-                  <i class="material-icons icon-xs color-deep-purple">&#xE90F;</i>
+                  <i class="icon-xs color-deep-purple -x-icon mi lightbulb_outline" data-attachment="bottom left" data-target-attachment="top left"></i>
                   <h2>Feature</h2>
                   <p class="lead">This is an awesome feature.</p>
                 </div>
@@ -255,14 +255,14 @@
               <div class="col-sm-12 col-md-4 text-center text-lg-left mt-3 no-margin-md-t">
                 <div class="content-padding">
                   <!-- icon -->
-                  <i class="material-icons icon-xs color-deep-purple">&#xE913;</i>
+                  <i class="icon-xs color-deep-purple -x-icon mi touch_app" data-attachment="bottom left" data-target-attachment="top right"></i>
                   <h2>Feature</h2>
                   <p class="lead">This is an awesome feature.</p>
                 </div>
                 <!-- /.content-padding -->
                 <div class="content-padding">
                   <!-- icon -->
-                  <i class="material-icons icon-xs color-deep-purple">&#xE90D;</i>
+                  <i class="icon-xs color-deep-purple -x-icon mi fingerprint" data-attachment="bottom left" data-target-attachment="top right"></i>
                   <h2>Feature</h2>
                   <p class="lead">This is an awesome feature.</p>
                 </div>

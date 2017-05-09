@@ -27,15 +27,15 @@ var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-i
   '      </ul>' +
   '    </li>' + 
   '    <li class="separator"><hr></li>' +
-  '    <li class="-x-el-fab-preview"><a href="javascript:void(0);">' + _lang["preview"] + '</a></li>' +
+  '    <li class="-x-el-fab-preview"><a href="javascript:void(0);">' + _lang["preview"] + ' <span class="-x-el-fab-preview-toggle">' + _lang["on"] + '</span><span class="-x-el-fab-preview-toggle" style="display:none">' + _lang["off"] + '</span></a></li>' +
   '    <li class="-x-el-fab-save"><a href="javascript:void(0);">' + _lang["save_page"] + '</a></li>' +
   '  </ul>' +
   '</div>';
 
 var xTplBlockButton = '<div class="-x-el-inline-button -x-el-block-edit -x-el-reset">' +
-  '  <img src="' + _lang["url"] + '/assets/images/editor/icons/dots-horizontal.svg" class="-x-el-icon"' +
-  '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-horizontal-hover.svg\';"' +
-  '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-horizontal.svg\';"' +
+  '  <img src="' + _lang["url"] + '/assets/images/editor/icons/cube.svg" class="-x-el-icon"' +
+  '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/cube-hover.svg\';"' +
+  '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/cube.svg\';"' +
   '  >' +
   '  <ul class="-x-el-dropdown -x-el-reset">' +
   '    <li class="-x-el-block-background"><a href="javascript:void(0);">' + _lang["background"] + '</a></li>' +
@@ -68,6 +68,16 @@ var xTplListButton = '<div class="-x-el-inline-button -x-el-list-edit -x-el-rese
   ' >' +
   ' <ul class="-x-el-dropdown -x-el-reset">' +
   '   <li class="-x-el-list-edit"><a href="javascript:void(0);">' + _lang["update_list"] + '</a></li>' +
+  ' </ul>' +
+  '</div>';
+
+var xTplIconButton = '<div class="-x-el-inline-button -x-el-icon-edit -x-el-reset">' + 
+  ' <img src="' + _lang["url"] + '/assets/images/editor/icons/vector.svg" class="-x-el-icon"' +
+  '   onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/vector-hover.svg\';"' +
+  '   onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/vector.svg\';"' +
+  ' >' +
+  ' <ul class="-x-el-dropdown -x-el-reset">' +
+  '   <li class="-x-el-icon-edit"><a href="javascript:void(0);">' + _lang["update_icon"] + '</a></li>' +
   ' </ul>' +
   '</div>';
 

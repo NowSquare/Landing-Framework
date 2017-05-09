@@ -16,6 +16,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'landingpages', 'namespace' => 
     Route::get('editor/modal/link', 'LandingPagesController@editorModalLink');
     Route::get('editor/modal/list', 'LandingPagesController@editorModalList');
     Route::get('editor/modal/image', 'LandingPagesController@editorModalImage');
+    Route::get('editor/modal/icon', 'LandingPagesController@editorModalIcon');
 
   });
 });
