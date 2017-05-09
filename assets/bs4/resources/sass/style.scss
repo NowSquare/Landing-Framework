@@ -10,7 +10,7 @@
 
 @import "../../../bower_components/material-color/material-color";
 
-/* Generic UI Kit variables */
+/* Generic variables */
 
 $btn-ghost-color: rgba(255,255,255,0.8) !default;
 $btn-dark-ghost-color: rgba(0,0,0,0.8) !default;
@@ -23,7 +23,7 @@ $link-color-dark: $clr-blue-700 !default;
 
 
 /* Available colors, you can remove unused colors to reduce CSS file size */
-/*
+
 $color-list: (
   "red":         $clr-red,
   "pink":        $clr-pink,
@@ -45,14 +45,14 @@ $color-list: (
   "grey":        $clr-grey,
   "blue-grey":   $clr-blue-grey
 );
-*/
+
 
 $primary-color: $clr-blue-400 !default;
-
+/*
 $color-list: (
   "pink":        $clr-pink,
   "blue":        $primary-color
-);
+);*/
 
 /*
  * Bootstrap mixins
@@ -80,22 +80,25 @@ $enable-transitions: false;
 @import "components/jumbotron";
 @import "components/content";
 @import "components/photos";
-@import "components/navbar";
-@import "components/form";
+//@import "components/navbar";
+//@import "components/form";
 @import "components/footer";
 @import "components/buttons";
 @import "components/lists";
-@import "components/breadcrumbs";
-@import "components/cards";
-@import "components/pricing";
-@import "dropdown-menu";
+//@import "components/breadcrumbs";
+//@import "components/cards";
+//@import "components/pricing";
 
 /*
  * Plugins
  */
 
-@import "plugins/typed";
+//@import "plugins/typed";
 @import "plugins/fss";
+@import "plugins/notify-metro";
+@import "plugins/ekko-lightbox";
+@import "plugins/owl.carousel.theme";
+@import "plugins/sweetalert";
 
 /*
  * Animate with Sass

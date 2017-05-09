@@ -62,12 +62,9 @@ gulp.task('styles', function() {
   return sass([
       'resources/sass/style.scss', 
       'resources/sass/bootstrap.scss',
-      'resources/sass/ekko-lightbox.scss',
-      'resources/sass/owl.carousel.theme.scss',
       'resources/sass/fonts/font-awesome.scss',
+      'resources/sass/sweetalert.scss',
       'resources/sass/fonts/iconsmind-line.scss',
-      /*'resources/sass/fonts/simple-line-icons.scss',*/
-      'resources/sass/prettyprint.scss',
       'bower_components/tether/src/css/tether.sass',
       'bower_components/owl.carousel/src/scss/owl.carousel.scss',
       'bower_components/ladda/css/ladda.scss',
@@ -101,20 +98,22 @@ gulp.task('styles', function() {
 gulp.task('scripts', function() {
   return gulp.src([
       'bower_components/jquery/dist/jquery.js',
-      'bower_components/jquery-color/jquery.color.js',
       'bower_components/tether/dist/js/tether.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/owl.carousel/dist/owl.carousel.js',
       'bower_components/particles.js/particles.js',
       'bower_components/flat-surface-shader/deploy/fss.js',
 		  'bower_components/jquery.scrollTo/jquery.scrollTo.js',
-		  'bower_components/google-code-prettify/src/prettify.js',
-  		'bower_components/jquery-form/jquery.form.js',
       'bower_components/ladda/js/spin.js',
       'bower_components/ladda/js/ladda.js',
       'bower_components/ladda/js/ladda.jquery.js',
+  		'bower_components/jquery-form/jquery.form.js',
       'bower_components/bootstrap-sweetalert/dist/sweetalert.js',
       'bower_components/bootstrap-validator/dist/validator.js',
+      'bower_components/jquery-form/src/jquery.form.js',
+      'bower_components/H5F/src/H5F.js',
+      'bower_components/notifyjs/dist/notify.js',
+      'bower_components/parsleyjs/dist/parsley.js',
       'resources/scripts/**/*.js'
     ])
     .pipe(concat('scripts.js'))
@@ -152,6 +151,7 @@ gulp.task('copy', function(){
     .pipe(gulp.dest('fonts/font-awesome'));
 });
 
+
 /*
  |--------------------------------------------------------------------------
  | Cleanup
@@ -159,5 +159,10 @@ gulp.task('copy', function(){
  */
 
 gulp.task('clean', function() {
-    return del(['css', 'js', 'images']);
+    return del([
+      'css/*.css', '!css/*.min.css',
+      'js/*.js', '!js/*.min.js'
+    ], {
+      force: true
+    });
 });

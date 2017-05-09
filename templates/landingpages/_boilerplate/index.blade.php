@@ -1,151 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Landing Page Boilerplate</title>
+  <title>Landing Page</title>
+
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
   <link rel="stylesheet" type="text/css" href="{{ url('assets/bs4/css/style.min.css') }}" />
   <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
-<script>
 
-function lfDuplicateBlockHook($new_block) {
-  /*
-   * Flat Surface Shader
-   * http://matthew.wagerfield.com/flat-surface-shader/
-   */
+  <link href="https://fonts.googleapis.com/css?family=Dosis:200,400|Open+Sans:300,400,700" rel="stylesheet">
+  <style type="text/css">
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+    }
 
-	if ($('.polygon-bg').length) {
-    $('.polygon-bg').each(function() {
-
-      var color_bg = ($(this).is('[data-color-bg]')) ? $(this).attr('data-color-bg') : '29a9e1';
-      var color_light = ($(this).is('[data-color-light]')) ? $(this).attr('data-color-light') : '2db674';
-
-      var container = $(this)[0];
-      var renderer = new FSS.CanvasRenderer();
-      var scene = new FSS.Scene();
-      var light = new FSS.Light(color_bg, color_light);
-      var geometry = new FSS.Plane(3000, 1000, 60, 22);
-      var material = new FSS.Material('FFFFFF', 'FFFFFF');
-      var mesh = new FSS.Mesh(geometry, material);
-      var now, start = Date.now();
-
-      function initialiseFss() {
-        scene.add(mesh);
-        scene.add(light);
-        container.appendChild(renderer.element);
-        window.addEventListener('resize', resizeFss);
-      }
-
-      function resizeFss() {
-        renderer.setSize(container.offsetWidth, container.offsetHeight);
-      }
-
-      function animateFss() {
-        now = Date.now() - start;
-        light.setPosition(300*Math.sin(now*0.001), 200*Math.cos(now*0.0005), 60);
-        renderer.render(scene);
-        requestAnimationFrame(animateFss);
-      }
-
-      initialiseFss();
-      resizeFss();
-      animateFss();
-    });
-	}
-}
-
-</script>
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Dosis', sans-serif;
+      font-weight: 300 !important;
+    }
+  </style>
 </head>
 <body>
 
-
-  <section class="-x-block">
-    <nav class="navbar navbar-dark bg-inverse -x-block-bg-gradient">
-      <div class="container">
-          <a class="navbar-brand" href="#"><img src="/templates/landingpages/_boilerplate/images/logos/ns-light.svg" class="-x-img" data-offset="10px 10px" alt="" style="height:42px"></a>
+  <section class="header-gradient-software -x-block">
+    <div class="header text-light">
+      <div class="header-overlay -x-block-bg-gradient" style="background: #4776e6; background: linear-gradient(to bottom,  #4776e6 0%,#8e54e9 100%);">
+        <div class="container">
+          <div class="header-padding-xl text-center no-padding-b">
+            <div class="row">
+              <div class="col-12">
+                <h1 class="display-3 -x-text">Online Platform</h1>
+                <p class="lead -x-text">We provide high quality assets for your business. We help entrepreneurs with great ideas moving faster.</p>
+                <div class="btn-container mt-3 mb-1">
+                  <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">Get Started Now</a>
+                </div>
+                <img src="/templates/assets/images//visuals/software01.png" alt="" class="img-fluid -x-img" style="margin:auto">
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+          </div>
+          <!-- /.header-padding -->
+        </div>
+        <!-- /.container -->
       </div>
-    </nav>
+      <!-- /.header-overlay -->
+    </div>
+    <!-- /.header -->
   </section>
 
-
-    <!-- Header dark, text centered, gradient, visual bottom
-      ================================================== -->
-    <style type="text/css">
-    .header-gradient-software .header-overlay {
-      background: #4776e6;
-      background: linear-gradient(to bottom,  #4776e6 0%,#8e54e9 100%);
-    }
-    </style>
-
-    <section class="header-gradient-software -x-block">
-      <div class="header text-light">
-        <div class="header-overlay -x-block-bg-gradient">
-          <div class="container">
-            <div class="header-padding-xl text-center no-padding-b">
-              <div class="row">
-                <div class="col-12">
-                  <h1 class="display-3 -x-text">Online Platform</h1>
-                  <p class="lead -x-text">We provide high quality assets for your business. We help entrepreneurs with great ideas moving faster.</p>
-                  <div class="btn-container mt-3 mb-1">
-                    <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">Get Started Now</a>
-                  </div>
-                  <img src="/templates/landingpages/_boilerplate/images//visuals/software01.png" alt="" class="img-fluid -x-img" style="margin:auto">
+  <section class="typography-1 -x-block">
+    <div class="header text-light img-bottom-lg -x-block-bg-img" style="background-image:url('/templates/assets/images/headers/landscape-mountains-nature-sky.jpg')">
+      <div id="particles-js-connect" class="header-overlay -x-block-bg-color" style="background-color:rgba(37,75,98,0.7)">
+        <div class="container">
+          <div class="header-padding no-padding-b">
+            <div class="row">
+              <div class="col-12 text-center text-md-right">
+                <div class="mb-1 mt-2 hor-spacing-md-a -x-list" data-repeat="a" data-attachment="bottom right" data-target-attachment="top right" data-dropdown-position="left">
+                  <a href="#" role="button" class="color-light"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                  <a href="#" role="button" class="color-light"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                  <a href="#" role="button" class="color-light"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                  <a href="#" role="button" class="color-light"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
                 </div>
-                <!-- /.col -->
               </div>
-              <!-- /.row -->
+              <!-- /.col -->
             </div>
-            <!-- /.header-padding -->
+            <!-- /.row -->
+            <div class="row">
+              <div class="col-sm-12 col-md-6">
+                <h1 class="display-2 text-md-left my-3 no-margin-smb -x-text">Creative<br>Studio</h1>
+                <p class="lead -x-text">We help entrepreneurs achieving their goal faster.</p>
+                <div class="btn-container my-3 btn-stack-lg">
+                  <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">Contact Us</a>
+                </div>
+              </div>
+              <!-- /.col -->
+              <div class="col-sm-12 col-md-6 push-lg-1 col-lg-5 text-center text-md-right img-container my-2">
+                <img src="/templates/assets/images/visuals/iWatch-White-2.png" alt="" class="-x-img img-fluid">
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
           </div>
-          <!-- /.container -->
+          <!-- /.header-padding -->
         </div>
-        <!-- /.header-overlay -->
+        <!-- /.container -->
       </div>
-      <!-- /.header -->
-    </section>
-
-
- 
-   <section class="typography-1 -x-block">
-  <div class="header text-light img-bottom-lg -x-block-bg-img" style="background-image:url('/templates/landingpages/_boilerplate/images/headers/landscape-mountains-nature-sky.jpg')">
-    <div id="particles-js-connect" class="header-overlay -x-block-bg-color" style="background-color:rgba(37,75,98,0.7)">
-      <div class="container">
-        <div class="header-padding no-padding-b">
-          <div class="row">
-            <div class="col-12 text-center text-md-right">
-              <div class="mb-1 mt-2 hor-spacing-md-a -x-list" data-repeat="a" data-attachment="bottom right" data-target-attachment="top right" data-dropdown-position="left">
-                <a href="#" role="button" class="color-light"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                <a href="#" role="button" class="color-light"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                <a href="#" role="button" class="color-light"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                <a href="#" role="button" class="color-light"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-              </div>
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-          <div class="row">
-            <div class="col-sm-12 col-md-6">
-              <h1 class="display-2 text-md-left my-3 no-margin-smb -x-text">Creative<br>Studio</h1>
-              <p class="lead -x-text">We help entrepreneurs achieving their goal faster.</p>
-              <div class="btn-container my-3 btn-stack-lg">
-                <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">Contact Us</a>
-              </div>
-            </div>
-            <!-- /.col -->
-            <div class="col-sm-12 col-md-6 push-lg-1 col-lg-5 text-center text-md-right img-container my-2">
-              <img src="/templates/landingpages/_boilerplate/images/visuals/iWatch-White-2.png" alt="" class="-x-img img-fluid">
-            </div>
-            <!-- /.col -->
-          </div>
-          <!-- /.row -->
-        </div>
-        <!-- /.header-padding -->
-      </div>
-      <!-- /.container -->
+      <!-- /.header-overlay -->
     </div>
-    <!-- /.header-overlay -->
-  </div>
-  <!-- /.header -->
-</section>
+    <!-- /.header -->
+  </section>
 
 
 
@@ -215,7 +160,7 @@ function lfDuplicateBlockHook($new_block) {
             <div class="row">
               <div class="col-md-5 push-md-7">
                 <!-- image -->
-                <a href="/templates/landingpages/_boilerplate/images/photos/laptop-technology-ipad-tablet.jpg" data-toggle="lightbox"><img src="/templates/landingpages/_boilerplate/images/photos/laptop-technology-ipad-tablet.jpg" alt="" class="-x-img img-fluid mdl-shadow--8dp"></a>
+                <a href="/templates/assets/images/photos/laptop-technology-ipad-tablet.jpg" data-toggle="lightbox"><img src="/templates/assets/images/photos/laptop-technology-ipad-tablet.jpg" alt="" class="-x-img img-fluid mdl-shadow--8dp"></a>
               </div>
               <!-- /.col -->
               <div class="col-md-7 pull-md-5">
@@ -225,7 +170,7 @@ function lfDuplicateBlockHook($new_block) {
                   <div class="btn-container">
                     <a class="btn btn-outline-pink btn-pill -x-link" data-offset="5px 0px" data-attachment="right top" data-target-attachment="left top" href="#" role="button">More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                   </div>
-                  <div class="mt-2 hor-spacing-sm-a -x-list">
+                  <div class="mt-2 hor-spacing-sm-a -x-list" data-repeat="a">
                     <a href="#" role="button" class="color-pink"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                     <a href="#" role="button" class="color-pink"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                     <a href="#" role="button" class="color-pink"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
@@ -254,7 +199,7 @@ function lfDuplicateBlockHook($new_block) {
             <div class="row">
               <div class="col-md-6 push-md-6">
                 <!-- image -->
-                <img src="/templates/landingpages/_boilerplate/images/visuals/iPhone-6S---isometric-view-right.png" alt="" class="-x-img img-fluid">
+                <img src="/templates/assets/images/visuals/iPhone-6S---isometric-view-right.png" alt="" class="-x-img img-fluid">
               </div>
               <!-- /.col -->
               <div class="col-md-6 pull-md-6 text-center text-md-right">
@@ -304,7 +249,7 @@ function lfDuplicateBlockHook($new_block) {
               <!-- /.col -->
               <div class="col-sm-12 col-md-4">
                 <!-- image -->
-                <img src="/templates/landingpages/_boilerplate/images/visuals/iPhone-6-4,7-inch-Mockup.png" alt="" class="-x-img img-fluid">
+                <img src="/templates/assets/images/visuals/iPhone-6-4,7-inch-Mockup.png" alt="" class="-x-img img-fluid">
               </div>
               <!-- /.col -->
               <div class="col-sm-12 col-md-4 text-center text-lg-left mt-3 no-margin-md-t">
@@ -343,7 +288,7 @@ function lfDuplicateBlockHook($new_block) {
             <div class="row">
               <div class="col-6 push-3 col-sm-4 push-sm-4 col-md-4 push-md-4 col-xl-4 push-xl-4 text-center">
                 <!-- image -->
-                <img src="/templates/landingpages/_boilerplate/images/icons/biotech.svg" alt="" class="-x-img img-fluid">
+                <img src="/templates/assets/images/icons/biotech.svg" alt="" class="-x-img img-fluid">
               </div>
               <!-- /.col -->
             </div>
@@ -379,7 +324,7 @@ function lfDuplicateBlockHook($new_block) {
                 <div class="row">
                   <div class="col-12 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-center">
                     <!-- image -->
-                    <img src="/templates/landingpages/_boilerplate/images/icons/assistant.svg" alt="" class="-x-img img-fluid">
+                    <img src="/templates/assets/images/icons/assistant.svg" alt="" class="-x-img img-fluid">
                   </div>
                   <!-- /.col -->
                   <div class="col-12">
@@ -399,7 +344,7 @@ function lfDuplicateBlockHook($new_block) {
                 <div class="row">
                   <div class="col-12 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-center">
                     <!-- image -->
-                    <img src="/templates/landingpages/_boilerplate/images/icons/landscape.svg" alt="" class="-x-img img-fluid">
+                    <img src="/templates/assets/images/icons/landscape.svg" alt="" class="-x-img img-fluid">
                   </div>
                   <!-- /.col -->
                   <div class="col-12">
@@ -436,7 +381,7 @@ function lfDuplicateBlockHook($new_block) {
                 <div class="row">
                   <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
                     <!-- image -->
-                    <img src="/templates/landingpages/_boilerplate/images/icons/electrical_sensor.svg" alt="" class="img-fluid">
+                    <img src="/templates/assets/images/icons/electrical_sensor.svg" alt="" class="img-fluid">
                   </div>
                   <!-- /.col -->
                   <div class="col-12">
@@ -455,7 +400,7 @@ function lfDuplicateBlockHook($new_block) {
                 <div class="row">
                   <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
                     <!-- image -->
-                    <img src="/templates/landingpages/_boilerplate/images/icons/camcorder.svg" alt="" class="img-fluid">
+                    <img src="/templates/assets/images/icons/camcorder.svg" alt="" class="img-fluid">
                   </div>
                   <!-- /.col -->
                   <div class="col-12">
@@ -474,7 +419,7 @@ function lfDuplicateBlockHook($new_block) {
                 <div class="row">
                   <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
                     <!-- image -->
-                    <img src="/templates/landingpages/_boilerplate/images/icons/mind_map.svg" alt="" class="img-fluid">
+                    <img src="/templates/assets/images/icons/mind_map.svg" alt="" class="img-fluid">
                   </div>
                   <!-- /.col -->
                   <div class="col-12">

@@ -5,34 +5,11 @@
 
 /* Typography fonts */
 
-/* Default */
+/* Default, should be set in template */
 
 body {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Dosis', sans-serif;
-    font-weight: 300;
-  }
-}
-
-.typography-1 {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Dosis', sans-serif;
-    font-weight: 300;
-  }
-}
-
-.typography-2 {
-  font-family: 'Open Sans', sans-serif;
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 600;
   }
 }
 
