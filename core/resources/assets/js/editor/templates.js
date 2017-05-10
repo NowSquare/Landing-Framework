@@ -102,8 +102,8 @@ var xTplLinkButton = '<div class="-x-el-inline-button -x-el-link-edit -x-el-rese
   '   <li class="-x-el-link-edit"><a href="javascript:void(0);">' + _lang["modify_link"] + '</a></li>' +
   '   <li class="-x-el-link-shape"><a href="javascript:void(0);">' + _lang["shape"] + ' <div class="-x-el-caret"></div></a>' +
   '     <ul>' +
-  '       <li class="-x-el-link-shape-regular"><a href="javascript:void(0);">' + _lang["regular"] + '</a></li>' +
-  '       <li class="-x-el-link-shape-pill"><a href="javascript:void(0);">' + _lang["pill"] + '</a></li>' +
+  '       <li class="-x-el-link-shape-regular"><a href="javascript:void(0);">' + _lang["regular"] + ' <div class="-x-el-checkmark"></a></li>' +
+  '       <li class="-x-el-link-shape-pill"><a href="javascript:void(0);">' + _lang["pill"] + ' <div class="-x-el-checkmark"></a></li>' +
   '     </ul>' +
   '   </li>' +
   ' </ul>' +

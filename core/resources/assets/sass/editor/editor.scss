@@ -185,6 +185,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
   */
 
   &.-x-el-fab {
+    font-family: Helvetica, Arial, "sans-serif" !important;
     display: block !important;
     position: fixed !important;
     bottom: 40px !important;
@@ -217,6 +218,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
 
 .-x-el-dropdown {
   &, ul {
+    font-family: Helvetica, Arial, "sans-serif" !important;
     top: 0 !important;
     position: absolute !important;
     list-style: none !important;
@@ -281,9 +283,32 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
       display: block !important;
     }
 
+    .-x-el-checkmark {
+      display: none !important;
+    }
+
+    .-x-el-checkmark.-x-checked {
+      display: inline-block !important;
+      top: -15px !important;
+      right: 20px !important;
+      position: absolute !important;
+      width: 0 !important;
+      height: 0 !important;
+
+      &:after{
+        content: '' !important;
+        display: block !important;
+        width: 3px !important;
+        height: 6px !important;
+        border: solid #6b6b6b !important;
+        border-width: 0 2px 2px 0 !important;
+        transform: rotate(45deg) !important;
+      }
+    }
+
     .-x-el-caret {
-      top: 22px;
-      right: 10px;
+      top: 22px !important;
+      right: 10px !important;
       position: absolute !important;
       width: 0 !important;
       height: 0 !important;

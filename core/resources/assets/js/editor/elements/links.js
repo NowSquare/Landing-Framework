@@ -47,6 +47,14 @@ function lfInitLinks() {
     // Check if button option is available
     if ($link.hasClass('btn')) {
       $el.find('.-x-el-link-shape').removeClass('-x-el-disabled');
+      // Check selected shape
+      if ($link.hasClass('btn-pill')) {
+        $el.find('.-x-el-link-shape-pill .-x-el-checkmark').addClass('-x-checked');
+        $el.find('.-x-el-link-shape-regular .-x-el-checkmark').removeClass('-x-checked');
+      } else {
+        $el.find('.-x-el-link-shape-pill .-x-el-checkmark').removeClass('-x-checked');
+        $el.find('.-x-el-link-shape-regular .-x-el-checkmark').addClass('-x-checked');
+      }
     } else {
       $el.find('.-x-el-link-shape').addClass('-x-el-disabled');
     }
@@ -99,6 +107,10 @@ function lfInitLinks() {
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
 
+      // Checkmark selected shape
+      $(this).parents('ul').find('.-x-el-link-shape-pill .-x-el-checkmark').removeClass('-x-checked');
+      $(this).parents('ul').find('.-x-el-link-shape-regular .-x-el-checkmark').addClass('-x-checked');
+
       // Hide dropdown after option has been clicked
       $(this).parents('.-x-el-dropdown').trigger('mouseleave');
 
@@ -116,6 +128,10 @@ function lfInitLinks() {
     var el_class = $(this).parents('.-x-el-link-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      // Checkmark selected shape
+      $(this).parents('ul').find('.-x-el-link-shape-pill .-x-el-checkmark').addClass('-x-checked');
+      $(this).parents('ul').find('.-x-el-link-shape-regular .-x-el-checkmark').removeClass('-x-checked');
 
       // Hide dropdown after option has been clicked
       $(this).parents('.-x-el-dropdown').trigger('mouseleave');
