@@ -1,17 +1,19 @@
 <section class="-x-block">
-  <div class="header text-light">
-    <div class="header-overlay -x-block-bg-gradient" style="background: #4776e6; background: linear-gradient(to bottom, #4776e6 0%,#8e54e9 100%);">
+  <div class="content content-padding-l" style="background-image:url()">
+    <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
       <div class="container">
-        <div class="header-padding-xl text-center no-padding-b">
-          <div class="row">
-            <div class="col-12">
-              <h1 class="display-3 -x-text">{!! trans('landingpages::block.header_01_01_head') !!}</h1>
-              <p class="lead -x-text">{!! trans('landingpages::block.header_01_01_line') !!}</p>
-              <div class="btn-container mt-3 mb-1">
-                <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.header_01_01_button') !!}</a>
-              </div>
-              <img src="{{ url('templates/assets/images/visuals/software01.png') }}" alt="" class="img-fluid -x-img" style="margin:auto">
-            </div>
+        <div class="row">
+          <div class="col-6 push-3 col-sm-4 push-sm-4 col-md-4 push-md-4 col-xl-4 push-xl-4 text-center">
+            <img src="{{ url('templates/assets/images/icons/biotech.svg') }}" alt="" class="-x-img img-fluid">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-lg-6 push-lg-3 text-center">
+            <h1 class="mt-1 -x-text">{!! trans('landingpages::block.content_01_01_head') !!}</h1>
+            <p class="lead -x-text">{!! trans('landingpages::block.content_01_01_line') !!}</p>
+            <p class="btn-container">
+              <a class="btn btn-outline-blue btn-pill -x-link" href="#" role="button">Order Tickets</a>
+            </p>
           </div>
         </div>
       </div>
