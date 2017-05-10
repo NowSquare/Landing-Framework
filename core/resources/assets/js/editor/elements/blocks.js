@@ -74,7 +74,7 @@ function lfInitBlocks() {
   */
 
   $('body').on('click', '.-x-el-block-insert-above, .-x-el-block-insert-below', function() {
-    var position = $(this).hasClass('.-x-el-block-insert-above') ? 'above' : 'below';
+    var position = $(this).hasClass('-x-el-block-insert-above') ? 'above' : 'below';
     var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
@@ -158,54 +158,80 @@ function lfInitBlocks() {
     var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
-      var timestamp = new Date().getTime();
  
-      // Clone block and replace with new class
+      // Clone block and remove class
       var $new_block = $('.' + block_class).clone().insertAfter('.' + block_class);
       $new_block.removeClass(block_class);
-      $new_block.addClass('-x-data-block-' + timestamp);
-      $new_block.attr('data-x-el', '-x-data-block-' + timestamp);
 
-      // Settings
-      var $new_block_settings = $('.-x-el-block-edit-clone[data-x-el=' + block_class + ']').clone().insertAfter('.-x-el-block-edit-clone[data-x-el=' + block_class + ']');
-      $new_block_settings.attr('data-x-el', '-x-data-block-' + timestamp);
+      // Make new block editable
+      lfMakeNewBlockEditable($new_block, block_class, 'after', block_class);
+    }
+  });
+}
 
-      new Tether({
-        element: $new_block_settings,
-        target: $new_block,
-        attachment: 'top left',
-        offset: '-5px -5px',
-        targetAttachment: 'top left',
-        classPrefix: '-x-data',
-        constraints: [{
-          to: 'scrollParent',
-          attachment: 'together'
-        }],
-        optimizations: {
-          moveElement: true,
-          gpu: true
-        }
-      });
+/* 
+  Duplicate block
+*/
 
-      // Changes detected
-      lfSetPageIsDirty();
+function lfMakeNewBlockEditable($new_block, previous_el, position, block_class) {
+  var timestamp = new Date().getTime();
 
-      // Timeout to make sure dom has changed
-      setTimeout(lfParseBlocks, 70);
+  $new_block.addClass('-x-data-block-' + timestamp);
+  $new_block.attr('data-x-el', '-x-data-block-' + timestamp);
 
-      // Duplicate other elements
-      lfDuplicateBlockImages($new_block);
-      lfDuplicateBlockIcons($new_block);
-      lfDuplicateBlockLinks($new_block);
-      lfDuplicateBlockLists($new_block);
-      lfDuplicateBlockText($new_block);
+  // Settings
+  if (typeof block_class !== 'undefined' && block_class != null) {
+    var $new_block_settings = $('.-x-el-block-edit-clone[data-x-el=' + block_class + ']').clone().insertAfter('.-x-el-block-edit-clone[data-x-el=' + block_class + ']');
+  } else {
+    if (position == 'after') {
+      var $new_block_settings = $(xTplBlockButton).clone().insertAfter('.-x-el-block-edit-clone[data-x-el=' + previous_el + ']');
+    } else {
+      var $new_block_settings = $(xTplBlockButton).clone().insertBefore('.-x-el-block-edit-clone[data-x-el=' + previous_el + ']');
+    }
 
-      if (typeof lfDuplicateBlockHook === 'function') {
-        lfDuplicateBlockHook($new_block);
-      }
+    // Replace class
+    $new_block_settings.removeClass('-x-el-block-edit').addClass('-x-el-block-edit-clone -x-el-inline-button-clone');
+  }
+console.log($new_block_settings);
+console.log('-x-data-block-' + timestamp);
+console.log(previous_el);
+console.log($new_block);
+
+  $new_block_settings.attr('data-x-el', '-x-data-block-' + timestamp);
+
+  new Tether({
+    element: $new_block_settings,
+    target: $new_block,
+    attachment: 'top left',
+    offset: '-5px -5px',
+    targetAttachment: 'top left',
+    classPrefix: '-x-data',
+    constraints: [{
+      to: 'scrollParent',
+      attachment: 'together'
+    }],
+    optimizations: {
+      moveElement: true,
+      gpu: true
     }
   });
 
+  // Changes detected
+  lfSetPageIsDirty();
+
+  // Timeout to make sure dom has changed
+  setTimeout(lfParseBlocks, 70);
+
+  // Duplicate other elements
+  lfDuplicateBlockImages($new_block);
+  lfDuplicateBlockIcons($new_block);
+  lfDuplicateBlockLinks($new_block);
+  lfDuplicateBlockLists($new_block);
+  lfDuplicateBlockText($new_block);
+
+  if (typeof lfDuplicateBlockHook === 'function') {
+    lfDuplicateBlockHook($new_block);
+  }
 }
 
 /* 

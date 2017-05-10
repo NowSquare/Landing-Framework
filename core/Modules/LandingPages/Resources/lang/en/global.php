@@ -34,6 +34,7 @@ return array(
   "title_help" => "The title is used for SEO (alt attribute).",
   "list" => "List",
   "icon" => "Icon",
+  "insert_block" => "Insert block",
   "" => "",
   "" => ""
 );

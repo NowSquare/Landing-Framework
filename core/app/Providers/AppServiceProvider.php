@@ -73,6 +73,10 @@ class AppServiceProvider extends ServiceProvider
         if ($reseller->avangate_key != '') config(['avangate.key' => $reseller->avangate_key]);
       }
 
+      // Namespaces
+      view()->addNamespace('template.landingpages', base_path('../templates/landingpages/'));
+      view()->addNamespace('block.landingpages', base_path('../blocks/landingpages/'));
+
       // Collection::mapWithKeys() works incorrectly for keys with integer values
       // https://github.com/laravel/framework/issues/15409
       collect()->macro('mapWithKeys_v2', function ($callback) {

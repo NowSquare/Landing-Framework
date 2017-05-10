@@ -1,64 +1,83 @@
+function lfInitImage($img, unique_class) {
+  var timestamp = new Date().getTime();
+
+  if (typeof unique_class === 'undefined') {
+
+    // Set unique class
+    var unique_class = '-x-data-img-' + timestamp;
+
+    // Clone edit button
+    var $edit_button = $(xTplImgButton).clone().appendTo('body');
+  } else {
+    var img_class = unique_class;
+
+    // New unique class
+    var unique_class = '-x-data-img-' + timestamp;
+
+    // Clone img and replace with new class
+    $img.removeClass(img_class);
+    $img.addClass(unique_class);
+    $img.attr('data-x-el', unique_class);
+
+    // Settings
+    var $edit_button = $('.-x-el-img-edit-clone[data-x-el=' + img_class + ']').clone().insertAfter('.-x-el-img-edit-clone[data-x-el=' + img_class + ']');
+    $edit_button.attr('data-x-el', unique_class);
+  }
+
+  // Attribute settings
+  var attachment = $img.attr('data-attachment');
+  attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
+
+  var targetAttachment = $img.attr('data-target-attachment');
+  targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
+
+  var offset = $img.attr('data-offset');
+  offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
+
+  var dropdownPosition = $img.attr('data-dropdown-position');
+  dropdownPosition = (typeof dropdownPosition !== typeof undefined && dropdownPosition !== false) ? dropdownPosition : 'right';
+
+  $img.addClass(unique_class);
+  $img.attr('data-x-el', unique_class);
+  $edit_button.attr('data-x-el', unique_class);
+
+  // Set reference to parent block
+  $edit_button.attr('data-x-parent-block', $img.parents('.-x-block').attr('data-x-el'));
+
+  // Replace class so it won't be cloned in next loop
+  $edit_button.removeClass('-x-el-img-edit').addClass('-x-el-img-edit-clone -x-el-inline-button-clone');
+
+  // Add class so dropdown opens on the left side
+  if (dropdownPosition == 'left') {
+    $edit_button.find('.-x-el-dropdown').addClass('-x-el-dropdown-left');
+  }
+
+  new Tether({
+    element: $edit_button,
+    target: $img,
+    attachment: attachment,
+    offset: offset,
+    targetAttachment: targetAttachment,
+    classPrefix: '-x-data',
+    constraints: [{
+      to: 'scrollParent',
+      attachment: 'together'
+    }],
+    optimizations: {
+      moveElement: true,
+      gpu: true
+    }
+  });
+}
+
 function lfInitImages() {
   /*
-    Loop through all images, generate semi-unique class
-    to reference images for use in the editor. Add `-clone`
-    suffix to class to prevent cloning to the power and
-    link settings button with dropdown to image (Tether).
+    Loop through all images
   */
 
   $('.-x-img').each(function() {
     var $img = $(this);
-
-    // Attribute settings
-    var attachment = $img.attr('data-attachment');
-    attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
-
-    var targetAttachment = $img.attr('data-target-attachment');
-    targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
-
-    var offset = $img.attr('data-offset');
-    offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
-
-    var dropdownPosition = $img.attr('data-dropdown-position');
-    dropdownPosition = (typeof dropdownPosition !== typeof undefined && dropdownPosition !== false) ? dropdownPosition : 'right';
-
-    var $el = $(xTplImgButton).clone().appendTo('body');
-
-    // Set unique class
-    var timestamp = new Date().getTime();
-    var unique_class = '-x-data-img-' + timestamp;
-
-    $img.addClass(unique_class);
-    $img.attr('data-x-el', unique_class);
-    $el.attr('data-x-el', unique_class);
-
-    // Set reference to parent block
-    $el.attr('data-x-parent-block', $img.parents('.-x-block').attr('data-x-el'));
-
-    // Replace class so it won't be cloned in next loop
-    $el.removeClass('-x-el-img-edit').addClass('-x-el-img-edit-clone -x-el-inline-button-clone');
-
-    // Add class so dropdown opens on the left side
-    if (dropdownPosition == 'left') {
-      $el.find('.-x-el-dropdown').addClass('-x-el-dropdown-left');
-    }
-
-    new Tether({
-      element: $el,
-      target: $img,
-      attachment: attachment,
-      offset: offset,
-      targetAttachment: targetAttachment,
-      classPrefix: '-x-data',
-      constraints: [{
-        to: 'scrollParent',
-        attachment: 'together'
-      }],
-      optimizations: {
-        moveElement: true,
-        gpu: true
-      }
-    });
+    lfInitImage($img);
   });
 
   lfParseImages(true);
@@ -127,45 +146,7 @@ function lfDuplicateBlockImages($new_block) {
     var $new_img = $(this);
     var img_class = $new_img.attr('data-x-el');
 
-    if (typeof img_class !== typeof undefined && img_class !== false) {
-
-      // Attribute settings
-      var attachment = $new_img.attr('data-attachment');
-      attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
-
-      var targetAttachment = $new_img.attr('data-target-attachment');
-      targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'top left';
-
-      var offset = $new_img.attr('data-offset');
-      offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '-5px -5px';
-
-      // Clone img and replace with new class
-      $new_img.removeClass(img_class);
-      $new_img.addClass('-x-data-img-' + timestamp);
-      $new_img.attr('data-x-el', '-x-data-img-' + timestamp);
-
-      // Settings
-      var $new_img_settings = $('.-x-el-img-edit-clone[data-x-el=' + img_class + ']').clone().insertAfter('.-x-el-img-edit-clone[data-x-el=' + img_class + ']');
-      $new_img_settings.attr('data-x-el', '-x-data-img-' + timestamp);
-
-      new Tether({
-        element: $new_img_settings,
-        target: $new_img,
-        attachment: attachment,
-        offset: offset,
-        targetAttachment: targetAttachment,
-        classPrefix: '-x-data',
-        constraints: [{
-          to: 'scrollParent',
-          attachment: 'together'
-        }],
-        optimizations: {
-          moveElement: true,
-          gpu: true
-        }
-      });
-    }
-
+    lfInitImage($new_img, img_class);
   });
 
   // Timeout to make sure dom has changed

@@ -1,3 +1,82 @@
+/*
+  Generate semi-unique class
+  to reference lists for use in the editor. Add `-clone`
+  suffix to class to prevent cloning to the power and
+  link dropdown to list (Tether).
+*/
+
+function lfInitList($list, unique_class) {
+  var timestamp = new Date().getTime();
+
+  if (typeof unique_class === 'undefined') {
+
+    // Set unique class
+    var unique_class = '-x-data-list-' + timestamp;
+
+    // Clone edit button
+    var $edit_button = $(xTplListButton).clone().appendTo('body');
+  } else {
+    var list_class = unique_class;
+
+    // New unique class
+    var unique_class = '-x-data-list-' + timestamp;
+
+    // Clone list and replace with new class
+    $list.removeClass(list_class);
+    $list.addClass(unique_class);
+    $list.attr('data-x-el', unique_class);
+
+    // Settings
+    var $edit_button = $('.-x-el-list-edit-clone[data-x-el=' + list_class + ']').clone().insertAfter('.-x-el-list-edit-clone[data-x-el=' + list_class + ']');
+    $edit_button.attr('data-x-el', unique_class);
+  }
+
+  // Attribute settings
+  var attachment = $list.attr('data-attachment');
+  attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
+
+  var targetAttachment = $list.attr('data-target-attachment');
+  targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'bottom left';
+
+  var offset = $list.attr('data-offset');
+  offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '0 0';
+
+  var dropdownPosition = $list.attr('data-dropdown-position');
+  dropdownPosition = (typeof dropdownPosition !== typeof undefined && dropdownPosition !== false) ? dropdownPosition : 'right';
+
+  $list.addClass(unique_class);
+  $list.attr('data-x-el', unique_class);
+  $edit_button.attr('data-x-el', unique_class);
+
+  // Set reference to parent block
+  $edit_button.attr('data-x-parent-block', $list.parents('.-x-block').attr('data-x-el'));
+
+  // Replace class so it won't be cloned in next loop
+  $edit_button.removeClass('-x-el-list-edit').addClass('-x-el-list-edit-clone -x-el-inline-button-clone');
+
+  // Add class so dropdown opens on the left side
+  if (dropdownPosition == 'left') {
+    $edit_button.find('.-x-el-dropdown').addClass('-x-el-dropdown-left');
+  }
+
+  new Tether({
+    element: $edit_button,
+    target: $list,
+    attachment: attachment,
+    offset: offset,
+    targetAttachment: targetAttachment,
+    classPrefix: '-x-data',
+    constraints: [{
+      to: 'scrollParent',
+      attachment: 'together'
+    }],
+    optimizations: {
+      moveElement: true,
+      gpu: true
+    }
+  });
+}
+
 function lfInitLists() {
 
   /*
@@ -9,57 +88,7 @@ function lfInitLists() {
 
   $('.-x-list').each(function() {
     var $list = $(this);
-
-    // Attribute settings
-    var attachment = $list.attr('data-attachment');
-    attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
-
-    var targetAttachment = $list.attr('data-target-attachment');
-    targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'bottom left';
-
-    var offset = $list.attr('data-offset');
-    offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '0 0';
-
-    var dropdownPosition = $list.attr('data-dropdown-position');
-    dropdownPosition = (typeof dropdownPosition !== typeof undefined && dropdownPosition !== false) ? dropdownPosition : 'right';
-
-    var $el = $(xTplListButton).clone().appendTo('body');
-
-    // Set unique class
-    var timestamp = new Date().getTime();
-    var unique_class = '-x-data-list-' + timestamp;
-
-    $list.addClass(unique_class);
-    $list.attr('data-x-el', unique_class);
-    $el.attr('data-x-el', unique_class);
-
-    // Set reference to parent block
-    $el.attr('data-x-parent-block', $list.parents('.-x-block').attr('data-x-el'));
-
-    // Replace class so it won't be cloned in next loop
-    $el.removeClass('-x-el-list-edit').addClass('-x-el-list-edit-clone -x-el-inline-button-clone');
-
-    // Add class so dropdown opens on the left side
-    if (dropdownPosition == 'left') {
-      $el.find('.-x-el-dropdown').addClass('-x-el-dropdown-left');
-    }
-
-    new Tether({
-      element: $el,
-      target: $list,
-      attachment: attachment,
-      offset: offset,
-      targetAttachment: targetAttachment,
-      classPrefix: '-x-data',
-      constraints: [{
-        to: 'scrollParent',
-        attachment: 'together'
-      }],
-      optimizations: {
-        moveElement: true,
-        gpu: true
-      }
-    });
+    lfInitList($list);
   });
 
   lfParseLists(true);
@@ -98,45 +127,7 @@ function lfDuplicateBlockLists($new_block) {
     var $new_list = $(this);
     var list_class = $new_list.attr('data-x-el');
 
-    if (typeof list_class !== typeof undefined && list_class !== false) {
-
-      // Attribute settings
-      var attachment = $(this).attr('data-attachment');
-      attachment = (typeof attachment !== typeof undefined && attachment !== false) ? attachment : 'top left';
-
-      var targetAttachment = $(this).attr('data-target-attachment');
-      targetAttachment = (typeof targetAttachment !== typeof undefined && targetAttachment !== false) ? targetAttachment : 'bottom left';
-
-      var offset = $(this).attr('data-offset');
-      offset = (typeof offset !== typeof undefined && offset !== false) ? offset : '0 0';
-
-      // Clone btn and replace with new class
-      $new_list.removeClass(list_class);
-      $new_list.addClass('-x-data-list-' + timestamp);
-      $new_list.attr('data-x-el', '-x-data-list-' + timestamp);
-
-      // Settings
-      var $new_list_settings = $('.-x-el-list-edit-clone[data-x-el=' + list_class + ']').clone().insertAfter('.-x-el-list-edit-clone[data-x-el=' + list_class + ']');
-      $new_list_settings.attr('data-x-el', '-x-data-list-' + timestamp);
-
-      new Tether({
-        element: $new_list_settings,
-        target: $new_list,
-        attachment: attachment,
-        offset: offset,
-        targetAttachment: targetAttachment,
-        classPrefix: '-x-data',
-        constraints: [{
-          to: 'scrollParent',
-          attachment: 'together'
-        }],
-        optimizations: {
-          moveElement: true,
-          gpu: true
-        }
-      });
-    }
-
+    lfInitList($new_list, list_class);
   });
 
   // Timeout to make sure dom has changed

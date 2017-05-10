@@ -1,6 +1,10 @@
 <?php
-// Public landing page
-Route::get('lp/{local_domain}', 'Modules\LandingPages\Http\Controllers\LandingPagesController@homePage');
+
+Route::group(['middleware' => 'web', 'prefix' => 'lp', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
+
+  // Public landing page
+  Route::get('{local_domain}', 'LandingPagesController@homePage');
+});
 
 Route::group(['middleware' => 'web', 'prefix' => 'landingpages', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
 
@@ -10,8 +14,12 @@ Route::group(['middleware' => 'web', 'prefix' => 'landingpages', 'namespace' => 
     Route::get('create', 'LandingPagesController@create');
     Route::get('editor', 'LandingPagesController@editor');
 
+    // Previews
+    Route::get('editor/block-preview', 'LandingPagesController@editorBlockPreview');
+
     // Editor modals
     Route::get('editor/modal/insert-block', 'LandingPagesController@editorModalInsertBlock');
+    Route::get('editor/modal/insert-block-select', 'LandingPagesController@editorModalInsertBlockSelect');
     Route::get('editor/modal/background', 'LandingPagesController@editorModalBackground');
     Route::get('editor/modal/link', 'LandingPagesController@editorModalLink');
     Route::get('editor/modal/list', 'LandingPagesController@editorModalList');

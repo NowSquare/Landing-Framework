@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="{{ url('assets/bs4/css/style.min.css') }}" />
   <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
 
-  <link href="https://fonts.googleapis.com/css?family=Dosis:200,400|Open+Sans:300,400,700" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Dosis:200,400|Open+Sans:300,400,700" rel="stylesheet">
   <style type="text/css">
     body {
       font-family: 'Open Sans', sans-serif;
@@ -23,7 +23,7 @@
 </head>
 <body>
 
-  <section class="header-gradient-software -x-block">
+  <section class="-x-block">
     <div class="header text-light">
       <div class="header-overlay -x-block-bg-gradient" style="background: #4776e6; background: linear-gradient(to bottom,  #4776e6 0%,#8e54e9 100%);">
         <div class="container">
@@ -31,26 +31,20 @@
             <div class="row">
               <div class="col-12">
                 <h1 class="display-3 -x-text">Online Platform</h1>
-                <p class="lead -x-text">We provide high quality assets for your business. We help entrepreneurs with great ideas moving faster.</p>
+                <p class="lead -x-text">High quality services for your business. We help entrepreneurs with great ideas.</p>
                 <div class="btn-container mt-3 mb-1">
                   <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">Get Started Now</a>
                 </div>
-                <img src="/templates/assets/images//visuals/software01.png" alt="" class="img-fluid -x-img" style="margin:auto">
+                <img src="{{ url('/templates/assets/images/visuals/software01.png') }}" alt="" class="img-fluid -x-img" style="margin:auto">
               </div>
-              <!-- /.col -->
             </div>
-            <!-- /.row -->
           </div>
-          <!-- /.header-padding -->
         </div>
-        <!-- /.container -->
       </div>
-      <!-- /.header-overlay -->
     </div>
-    <!-- /.header -->
   </section>
 
-  <section class="typography-1 -x-block">
+  <section class="-x-block">
     <div class="header text-light -x-block-bg-img" style="background-image:url('/templates/assets/images/headers/landscape-mountains-nature-sky.jpg')">
       <div id="particles-js-connect" class="header-overlay -x-block-bg-color" style="background-color:rgba(37,75,98,0.7)">
         <div class="container">
@@ -77,7 +71,7 @@
               </div>
               <!-- /.col -->
               <div class="col-sm-12 col-md-6 push-lg-1 col-lg-5 text-center text-md-right img-container my-2">
-                <img src="/templates/assets/images/visuals/iWatch-White-2.png" alt="" class="-x-img img-fluid">
+                <img src="{{ url('/templates/assets/images/visuals/iWatch-White-2.png') }}" alt="" class="-x-img img-fluid">
               </div>
               <!-- /.col -->
             </div>
@@ -97,7 +91,7 @@
 
     <!-- Callout, left aligned text, call to action right, dark background
       ================================================== -->
-    <section class="typography-1 -x-block">
+    <section class="-x-block">
       <div class="content text-light">
         <div class="content-overlay polygon-bg" data-color-bg="111111" data-color-light="cccccc">
           <div class="container">
@@ -153,7 +147,7 @@
 
     <!-- Photo on the right with lightbox, light background, text aligned left
       ================================================== -->
-    <section class="typography-1 -x-block">
+    <section class="-x-block">
       <div class="content" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
@@ -192,7 +186,7 @@
 
     <!-- Visual right, text aligned right
       ================================================== -->
-    <section class="typography-1 -x-block">
+    <section class="-x-block">
       <div class="content content-padding-l" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
@@ -225,7 +219,7 @@
 
     <!-- Visual center, text left and right
       ================================================== -->
-    <section class="typography-1 -x-block">
+    <section class="-x-block">
       <div class="content content-padding-l" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
@@ -233,14 +227,14 @@
               <div class="col-sm-12 col-md-4 text-center text-lg-right mt-3 no-margin-md-t">
                 <div class="content-padding">
                   <!-- icon -->
-                  <i class="icon-xs color-deep-purple -x-icon mi timeline" data-attachment="bottom left" data-target-attachment="top left"></i>
+                  <i class="mb-3 icon-xs color-deep-purple -x-icon mi timeline" data-attachment="bottom left" data-target-attachment="top left"></i>
                   <h2>Feature</h2>
                   <p class="lead">This is an awesome feature.</p>
                 </div>
                 <!-- /.content-padding -->
                 <div class="content-padding">
                   <!-- icon -->
-                  <i class="icon-xs color-deep-purple -x-icon mi lightbulb_outline" data-attachment="bottom left" data-target-attachment="top left"></i>
+                  <i class="mb-3 icon-xs color-deep-purple -x-icon mi lightbulb_outline" data-attachment="bottom left" data-target-attachment="top left"></i>
                   <h2>Feature</h2>
                   <p class="lead">This is an awesome feature.</p>
                 </div>
@@ -255,14 +249,14 @@
               <div class="col-sm-12 col-md-4 text-center text-lg-left mt-3 no-margin-md-t">
                 <div class="content-padding">
                   <!-- icon -->
-                  <i class="icon-xs color-deep-purple -x-icon mi touch_app" data-attachment="bottom left" data-target-attachment="top right"></i>
+                  <i class="mb-3 icon-xs color-deep-purple -x-icon mi touch_app" data-attachment="bottom left" data-target-attachment="top right"></i>
                   <h2>Feature</h2>
                   <p class="lead">This is an awesome feature.</p>
                 </div>
                 <!-- /.content-padding -->
                 <div class="content-padding">
                   <!-- icon -->
-                  <i class="icon-xs color-deep-purple -x-icon mi fingerprint" data-attachment="bottom left" data-target-attachment="top right"></i>
+                  <i class="mb-3 icon-xs color-deep-purple -x-icon mi fingerprint" data-attachment="bottom left" data-target-attachment="top right"></i>
                   <h2>Feature</h2>
                   <p class="lead">This is an awesome feature.</p>
                 </div>
@@ -281,7 +275,7 @@
 
     <!-- One column with responsive image on top
       ================================================== -->
-    <section class="typography-1 -x-block">
+    <section class="-x-block">
       <div class="content content-padding-l" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
@@ -315,7 +309,7 @@
 
     <!-- Two columns with responsive image on top
       ================================================== -->
-    <section class="typography-1 -x-block">
+    <section class="-x-block">
       <div class="content content-padding-l" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">
@@ -371,7 +365,7 @@
 
     <!-- Three columns with responsive image on top
       ================================================== -->
-    <section class="typography-1 -x-block">
+    <section class="-x-block">
       <div class="content content-padding-l" style="background-image:url()">
         <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
           <div class="container">

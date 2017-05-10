@@ -21,12 +21,8 @@ class LandingPagesController extends Controller
         //$qs = Core\Secure::string2array($sl);
         //$landing_site = Pages::where('user_id', Core\Secure::userId())->where('id', $qs['landing_site_id'])->first();
 
-        // Create a namespace for the templates/landingpages
-        // dir to easily access it.
-        view()->addNamespace('template', base_path('../templates/landingpages/'));
-
         // Put template html into variable.
-        $template = view('template::_boilerplate.index');
+        $template = view('template.landingpages::_boilerplate.index');
 
         // Suppress libxml errors
         // Resolves an issue with some servers.
@@ -131,7 +127,70 @@ class LandingPagesController extends Controller
       $el_class = $request->input('el_class', '');
       $position = $request->input('position', 'below');
 
-      return view('landingpages::modals.insert-block', compact('el_class', 'position'));
+      // Get all categories
+      $categories = [];
+
+      $block_categories = \File::directories(base_path('../blocks/landingpages/'));
+
+      foreach ($block_categories as $block_category) {
+        $category = basename($block_category);
+
+        $categories[] = [
+          'dir' => $category,
+          'name' => trans('landingpages::block.' . $category),
+          'desc' => trans('landingpages::block.' . $category . '_desc'),
+          'icon' => url('blocks/landingpages/' . $category . '/icon.svg')
+        ];
+      }
+
+      return view('landingpages::modals.insert-block', compact('el_class', 'position', 'categories'));
+    }
+
+    /**
+     * Editor modal to select a block
+     */
+    public function editorModalInsertBlockSelect(Request $request)
+    {
+      $el_class = $request->input('el_class', '');
+      $position = $request->input('position', 'below');
+      $category = $request->input('c', '');
+
+      $category_dir = base_path('../blocks/landingpages/' . $category);
+
+      if (\File::exists($category_dir)) {
+    
+        // Get all blocks
+        $blocks = [];
+
+        $category_blocks = \File::files($category_dir);
+
+        foreach ($category_blocks as $category_block) {
+          if (ends_with($category_block, '.blade.php')) {
+            $block = basename($category_block);
+
+            $blocks[] = [
+              'file' => $block,
+              'preview' => url('landingpages/editor/block-preview?c=' . $category . '&b=' . str_replace('.blade.php', '', $block)),
+              'blocks' => $blocks
+            ];
+          }
+        }
+
+        return view('landingpages::modals.insert-block-select', compact('el_class', 'position', 'blocks', 'category'));
+      }
+    }
+
+    /**
+     * Block preview
+     */
+    public function editorBlockPreview(Request $request)
+    {
+      $category = $request->input('c', '');
+      $block = $request->input('b', '');
+
+      $html = view('block.landingpages::' . $category . '.' . $block);
+
+      return view('landingpages::block-preview', compact('html'));
     }
 
     /**

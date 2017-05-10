@@ -21,6 +21,10 @@ class CreateFormsTable extends Migration
       $table->boolean('active')->default(true);
       $table->string('category', 32)->nullable();
       $table->string('name', 64)->nullable();
+      $table->string('language', 5)->default('en');
+      $table->string('timezone', 32)->default('UTC');
+      $table->dateTime('last_followup')->nullable();
+      $table->dateTime('last_response')->nullable();
       $table->json('meta')->nullable();
       $table->timestamps();
     });

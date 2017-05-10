@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="columnlayoutui" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+	 y="0px" viewBox="0 0 224 168" enable-background="new 0 0 224 168" xml:space="preserve">
+<g>
+	<path fill="none" d="M96,144V28H32v16v8v92H96z M44,72h40v8H44V72z M44,88h40v8H44V88z M44,104h40v8H44V104z M44,120h40v8H44V120z"
+		/>
+	<path fill="none" d="M200,148c0,2.2108-1.7912,4-4,4h-72c-2.2088,0-4-1.7892-4-4V52h-16v96c0,2.2108-1.7912,4-4,4H28
+		c-2.2088,0-4-1.7892-4-4V52H8v108h208V52h-16V148z"/>
+	<path fill="none" d="M8,8v36h16V24c0-2.2108,1.7912-4,4-4h72c2.2088,0,4,1.7892,4,4v20h16V24c0-2.2108,1.7912-4,4-4h72
+		c2.2088,0,4,1.7892,4,4v20h16V8H8z"/>
+	<path fill="none" d="M192,144V28h-64v16v8v92H192z M140,72h40v8h-40V72z M140,88h40v8h-40V88z M140,104h40v8h-40V104z M140,120h40
+		v8h-40V120z"/>
+	<path d="M220,0H4C1.7912,0,0,1.7892,0,4v160c0,2.2108,1.7912,4,4,4h216c2.2088,0,4-1.7892,4-4V52v-8V4C224,1.7892,222.2088,0,220,0
+		z M216,160H8V52h16v96c0,2.2108,1.7912,4,4,4h72c2.2088,0,4-1.7892,4-4V52h16v96c0,2.2108,1.7912,4,4,4h72c2.2088,0,4-1.7892,4-4
+		V52h16V160z M32,44V28h64v116H32V52V44z M128,44V28h64v116h-64V52V44z M200,44V24c0-2.2108-1.7912-4-4-4h-72
+		c-2.2088,0-4,1.7892-4,4v20h-16V24c0-2.2108-1.7912-4-4-4H28c-2.2088,0-4,1.7892-4,4v20H8V8h208v36H200z"/>
+	<rect x="44" y="72" width="40" height="8"/>
+	<rect x="44" y="88" width="40" height="8"/>
+	<rect x="44" y="104" width="40" height="8"/>
+	<rect x="44" y="120" width="40" height="8"/>
+	<rect x="140" y="72" width="40" height="8"/>
+	<rect x="140" y="88" width="40" height="8"/>
+	<rect x="140" y="104" width="40" height="8"/>
+	<rect x="140" y="120" width="40" height="8"/>
+</g>
+</svg>
