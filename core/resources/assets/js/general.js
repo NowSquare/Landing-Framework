@@ -626,7 +626,8 @@ function blockUI(el) {
       fadeOut: 100,
       baseZ: 21000,
       overlayCSS: {
-        backgroundColor: '#000'
+        backgroundColor: '#000',
+        opacity: 0.1,
       },
       css: {
         border: 'none',

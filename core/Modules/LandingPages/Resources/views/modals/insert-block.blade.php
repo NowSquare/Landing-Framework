@@ -13,19 +13,19 @@ foreach($categories as $category) {
 ?>
     <div class="col-xs-12 col-sm-4 col-lg-3">
 
-      <div class="portlet shadow-box">
-        <div class="portlet-heading portlet-default" style="padding-bottom: 0">
-          <h3 class="portlet-title text-dark text-center" style="float: none">{{ $category['name'] }}</h3>
-        </div>
-        <div>
-          <div class="text-center" style="margin-bottom: 1rem">
-            <a href="{{ url('landingpages/editor/modal/insert-block-select?el_class=' . $el_class . '&position=' . $position . '&c=' . $category['dir']) }}">
-              <img src="{{ $category['icon'] }}" class="box-icon" alt="{{ $category['name'] }}">
-            </a>
+      <a href="{{ url('landingpages/editor/modal/insert-block-select?el_class=' . $el_class . '&position=' . $position . '&c=' . $category['dir']) }}">
+        <div class="portlet shadow-box">
+          <div class="portlet-heading portlet-default" style="padding-bottom: 0">
+            <h3 class="portlet-title text-dark text-center" style="float: none">{{ $category['name'] }}</h3>
           </div>
-          <div class="clearfix"></div>
+          <div>
+            <div class="text-center" style="margin-bottom: 1rem">
+              <img src="{{ $category['icon'] }}" class="box-icon" alt="{{ $category['name'] }}">
+            </div>
+            <div class="clearfix"></div>
+          </div>
         </div>
-      </div>
+      </a>
 
     </div>
 <?php
