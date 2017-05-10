@@ -27,7 +27,7 @@ var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-i
   '      </ul>' +
   '    </li>' + 
   '    <li class="separator"><hr></li>' +
-  '    <li class="-x-el-fab-preview"><a href="javascript:void(0);">' + _lang["preview"] + ' <span class="-x-el-fab-preview-toggle">' + _lang["on"] + '</span><span class="-x-el-fab-preview-toggle" style="display:none">' + _lang["off"] + '</span></a></li>' +
+  '    <li class="-x-el-fab-preview"><a href="javascript:void(0);">' + _lang["preview"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '    <li class="-x-el-fab-save"><a href="javascript:void(0);">' + _lang["save_page"] + '</a></li>' +
   '  </ul>' +
   '</div>';
@@ -102,8 +102,8 @@ var xTplLinkButton = '<div class="-x-el-inline-button -x-el-link-edit -x-el-rese
   '   <li class="-x-el-link-edit"><a href="javascript:void(0);">' + _lang["modify_link"] + '</a></li>' +
   '   <li class="-x-el-link-shape"><a href="javascript:void(0);">' + _lang["shape"] + ' <div class="-x-el-caret"></div></a>' +
   '     <ul>' +
-  '       <li class="-x-el-link-shape-regular"><a href="javascript:void(0);">' + _lang["regular"] + ' <div class="-x-el-checkmark"></a></li>' +
-  '       <li class="-x-el-link-shape-pill"><a href="javascript:void(0);">' + _lang["pill"] + ' <div class="-x-el-checkmark"></a></li>' +
+  '       <li class="-x-el-link-shape-regular"><a href="javascript:void(0);">' + _lang["regular"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-link-shape-pill"><a href="javascript:void(0);">' + _lang["pill"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '     </ul>' +
   '   </li>' +
   ' </ul>' +

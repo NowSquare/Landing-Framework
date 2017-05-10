@@ -76,9 +76,9 @@ function lfInitFab() {
     $('.-x-el-inline-button-clone .-x-el-icon').toggle();
 
     // Wait a little to prevent flashing of text before dropdown is closed
-    setTimeout(function() {
-      $('.-x-el-fab-preview-toggle').toggle();
-    }, 200);
+    //setTimeout(function() {
+      $(this).find('.-x-el-checkmark').toggleClass('-x-checked');
+    //}, 200);
   
     // Hide dropdown
     $(this).parents('.-x-el-dropdown').trigger('mouseleave');
