@@ -278,6 +278,7 @@ gulp.task('editor_scripts', function() {
       'bower_components/tinymce/plugins/image/plugin.js',
       'bower_components/tinymce/plugins/code/plugin.js',
       'bower_components/tinymce/plugins/colorpicker/plugin.js',
+      'bower_components/tinymce/plugins/textcolor/plugin.js',
       'bower_components/tinymce/themes/inlite/theme.js',
       'bower_components/tinymce/themes/modern/theme.js',
 

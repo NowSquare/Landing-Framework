@@ -79,7 +79,7 @@ function lfInitText() {
         plugins: [
           'advlist autolink lists link image anchor',
           'code',
-          'media table contextmenu paste colorpicker'
+          'media table contextmenu paste colorpicker textcolor'
         ],
         toolbar: toolbar,
         init_instance_callback : function(editor) {
