@@ -50,7 +50,7 @@ return array(
   "modify_link" => "Modify link",
   "button" => "Button",
   "shape" => "Shape",
-  "regular" => "Regular",
+  "default" => "Default",
   "pill" => "Pill",
   "type_to_filter" => "Type to filter",
   "notification" => "Notification",
