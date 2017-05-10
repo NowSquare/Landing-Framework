@@ -14,7 +14,12 @@ $loader-animation-duration:   1s;
   @include loader02($align: middle);
 }
 
+$loader-size:                 48px;
+$loader-height:               20px;
+$loader-border-size:          4px;
+$loader-gap:                  12px;
+$loader-animation-duration:   1s;
+
 .loader.loader-xs {
-  width: 32px;
-  height: 32px;
+  @include loader02($align: middle);
 }

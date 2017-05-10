@@ -43,6 +43,10 @@ foreach($blocks as $block) {
   overflow: hidden;
   display: block;
   width:100%;
+  height: 120px;
+}
+.loader.loader-xs {
+  margin: -6px auto 0;
 }
 .preview_frame {
   pointer-events: none;
