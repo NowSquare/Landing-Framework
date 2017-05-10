@@ -158,12 +158,12 @@ Update settings
 <?php } ?>
 
 <?php if ($bg_gradient) { ?>
-  var bg_gradient_start = $('#bg_gradient_start').val();
-  var bg_gradient_end = $('#bg_gradient_end').val();
+    var bg_gradient_start = $('#bg_gradient_start').val();
+    var bg_gradient_end = $('#bg_gradient_end').val();
 
-  $el.find('.-x-block-bg-gradient')
-    .css('background-color', bg_gradient_start)
-    .css('background-image', 'linear-gradient(to bottom, ' + bg_gradient_start + ' 0%, ' + bg_gradient_end + ' 100%)');
+    $el.find('.-x-block-bg-gradient')
+      .css('background-color', bg_gradient_start)
+      .css('background-image', 'linear-gradient(to bottom, ' + bg_gradient_start + ' 0%, ' + bg_gradient_end + ' 100%)');
 <?php } ?>
 
     // Changes detected
@@ -172,6 +172,15 @@ Update settings
 <?php } ?>
 
     window.parent.lfCloseModal();
+  });
+
+  // Focus window and bind escape to close
+  $(window).focus();
+
+  $(document).keyup(function(e) {
+    if(e.keyCode === 27) {
+      window.parent.lfCloseModal();
+    }
   });
 });
 </script>

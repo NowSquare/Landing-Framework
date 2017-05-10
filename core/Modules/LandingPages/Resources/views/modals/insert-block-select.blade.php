@@ -17,7 +17,7 @@ foreach($blocks as $block) {
       <div class="portlet shadow-box">
         <div>
           <a href="javascript:void(0);" class="preview-container onClickInsert" data-category="{{ $category }}" data-block="{{ $block['file'] }}" id="container{{ $i }}">
-            <iframe src="{{ $block['preview'] }}" id="frame{{ $i }}" class="preview_frame" frameborder="0" seamless="1"></iframe>
+            <iframe src="{{ $block['preview'] }}" id="frame{{ $i }}" class="preview_frame" frameborder="0" seamless></iframe>
           </a>
         </div>
       </div>
@@ -117,6 +117,15 @@ Insert block
 <?php } ?>
 
     window.parent.lfCloseModal();
+  });
+
+  // Focus window and bind escape to close
+  $(window).focus();
+
+  $(document).keyup(function(e) {
+    if(e.keyCode === 27) {
+      window.parent.lfCloseModal();
+    }
   });
 });
 </script>

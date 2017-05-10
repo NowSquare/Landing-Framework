@@ -96,17 +96,26 @@ Update settings
   $('.onClickUpdate').on('click', function() {
 <?php if ($el_class != '') { ?>
 
-  var new_icon = $('#icon i').attr('class');
-  $el.removeClass(icon.font);
-  $el.removeClass(icon.class);
-  $el.addClass(new_icon);
+    var new_icon = $('#icon i').attr('class');
+    $el.removeClass(icon.font);
+    $el.removeClass(icon.class);
+    $el.addClass(new_icon);
 
-  // Changes detected
-  window.parent.lfSetPageIsDirty();
+    // Changes detected
+    window.parent.lfSetPageIsDirty();
 
 <?php } ?>
 
     window.parent.lfCloseModal();
+  });
+
+  // Focus window and bind escape to close
+  $(window).focus();
+
+  $(document).keyup(function(e) {
+    if(e.keyCode === 27) {
+      window.parent.lfCloseModal();
+    }
   });
 });
 </script>
