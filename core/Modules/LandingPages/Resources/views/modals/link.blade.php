@@ -39,6 +39,16 @@ echo Former::select('target')
 ?>
       </div>
 
+<?php if ($color) { ?>
+      <div class="form-group">
+        <label for="color">{{ trans('landingpages::global.color') }}</label>
+
+        <input type="hidden" id="btn_color">
+        <div id="btn_color_frame_holder"></div>
+
+      </div>
+<?php } ?>
+
       <div class="editor-modal-footer">
         <button type="button" class="btn btn-primary btn-material onClickClose">{{ trans('global.cancel') }}</button>
         <button type="button" class="btn btn-primary btn-material onClickUpdate">{{ trans('global.update') }}</button>
@@ -49,7 +59,7 @@ echo Former::select('target')
 </div>
 @endsection
 
-@section('script') 
+@section('script')
 <script>
 $(function() {
 
@@ -71,6 +81,24 @@ Set settings
     updateImagePreview($('#select_url'));
   }
 
+<?php if ($color) { ?>
+
+  var color_class = '';
+  var lfArrBtnClasses = window.parent.lfArrBtnClasses;
+
+  for (var i = 0, len = lfArrBtnClasses.length; i < len; i++) {
+    if ($el.hasClass(lfArrBtnClasses[i])) {
+      color_class = lfArrBtnClasses[i];
+      break;
+    }
+  }
+
+  $('#btn_color_frame_holder').html('<iframe seamless="1" id="btn_color_frame" frameborder="0" src="{{ url('landingpages/editor/picker/button?input_id=btn_color') }}&selected=' + color_class + '" style="width:100%;height:0"></iframe>');
+
+  $('#btn_color').val(color_class);
+
+<?php } ?>
+
 <?php } ?>
 
 <?php /* ----------------------------------------------------------------------------
@@ -83,6 +111,13 @@ Update settings
     $el.html($('#text').val());
     $el.attr('href', $('#url').val());
     $el.attr('target', $('#target').val());
+
+<?php if ($color) { ?>
+
+  $el.removeClass(window.parent.lfBtnClasses);
+  $el.addClass($('#btn_color').val());
+
+<?php } ?>
 
       // Changes detected
     window.parent.lfSetPageIsDirty();

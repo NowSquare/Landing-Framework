@@ -17,6 +17,9 @@ Route::group(['middleware' => 'web', 'prefix' => 'landingpages', 'namespace' => 
     // Previews
     Route::get('editor/block-preview', 'LandingPagesController@editorBlockPreview');
 
+    // Pickers
+    Route::get('editor/picker/button', 'LandingPagesController@editorPickerButton');
+
     // Editor modals
     Route::get('editor/modal/insert-block', 'LandingPagesController@editorModalInsertBlock');
     Route::get('editor/modal/insert-block-select', 'LandingPagesController@editorModalInsertBlockSelect');

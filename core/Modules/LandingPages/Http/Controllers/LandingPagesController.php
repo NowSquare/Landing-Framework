@@ -201,8 +201,9 @@ class LandingPagesController extends Controller
     public function editorModalLink(Request $request)
     {
       $el_class = $request->input('el_class', '');
+      $color = (boolean) $request->input('color', false);
 
-      return view('landingpages::modals.link', compact('el_class'));
+      return view('landingpages::modals.link', compact('el_class', 'color'));
     }
 
     /**
@@ -235,5 +236,15 @@ class LandingPagesController extends Controller
       $el_class = $request->input('el_class', '');
 
       return view('landingpages::modals.icon', compact('el_class'));
+    }
+    /**
+     * Editor button picker
+     */
+    public function editorPickerButton(Request $request)
+    {
+      $input_id = $request->input('input_id', '');
+      $selected = $request->input('selected', '');
+
+      return view('landingpages::pickers.button', compact('input_id', 'selected'));
     }
 }

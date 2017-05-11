@@ -7,7 +7,6 @@
   <title>{{ \Platform\Controllers\Core\Reseller::get()->name }}</title>
 
   <link href="{{ asset('assets/css/styles.min.css') }}" rel="stylesheet">
-  <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <!-- Scripts -->
   <script src="{{ url('assets/javascript?lang=' . \App::getLocale()) }}"></script>

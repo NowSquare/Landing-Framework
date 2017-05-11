@@ -40,6 +40,7 @@ class CreateLandingPagesTable extends Migration
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->boolean('active')->default(true);
+      $table->boolean('show_in_menu')->default(true);
       $table->string('name', 32);
       $table->string('slug', 128)->nullable();
       $table->mediumText('content')->nullable();

@@ -18,12 +18,6 @@
           <span class="input-group-addon" id="icon"></span>
         </div>
       </div>
-<?php /*
-      <div class="form-group">
-          <input type="text" class="form-control" id="alt" name="alt" autocomplete="off" value="">
-          <button type="button" class="btn btn-block btn-lg btn-default icon-picker iconpicker-component" data-toggle="dropdown"><i class="fa"></i></button>
-      </div>
-*/ ?>
 
       <div class="form-group">
         <label for="color">{{ trans('landingpages::global.color') }}</label>
@@ -61,7 +55,6 @@ Set settings
 */ ?>
 
 <?php if ($el_class != '') { ?>
-
 
   var $el = $('.{{ $el_class }}', window.parent.document);
 

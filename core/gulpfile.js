@@ -282,6 +282,7 @@ gulp.task('editor_scripts', function() {
       'bower_components/tinymce/themes/inlite/theme.js',
       'bower_components/tinymce/themes/modern/theme.js',
 
+      'resources/assets/js/editor/constants.js',
       'resources/assets/js/editor/functions.js',
       'resources/assets/js/editor/templates.js',
       'resources/assets/js/editor/elements/blocks.js',
