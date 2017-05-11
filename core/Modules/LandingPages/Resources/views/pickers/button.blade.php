@@ -15,10 +15,22 @@
     margin: 0 2px 2px 0;
     padding: 4px;
   }
+  .select-holder .inside {
+    display: none;
+  }
+  .select-holder:hover .inside {
+    display: block;
+  }
+  .select-holder a {
+    float: left;
+    width: 28px;
+    height: 28px;
+  }
   .select-holder.selected {
     border: 2px solid #000;
-    margin: 0px 0px 1px 0;
-    padding: 2px 3px 3px;
+    border-radius: 4px;
+    margin: -1px 0px 1px 0;
+    padding: 3px 3px 3px;
   }
 </style>
 <script>
@@ -31,12 +43,12 @@ Generate button color picker
   var btnColorPicker = '';
   for (var i = 0, len = lfColors.length; i < len; i++) {
     var selected = ('btn-' + lfColors[i] == '{{ $selected }}') ? ' selected' : '';
-    btnColorPicker += '<div class="select-holder ' + selected + '"><a href="javascript:void(0);" data-class="btn-' + lfColors[i] + '" class="color-sample btn btn-sm btn-' + lfColors[i] + '">&#10004;</a></div>';
+    btnColorPicker += '<div class="select-holder ' + selected + '"><a href="javascript:void(0);" title="' + lfColors[i] + '" data-class="btn-' + lfColors[i] + '" class="color-sample btn btn-sm btn-' + lfColors[i] + '"><span class="inside">&#10004;</span></a></div>';
   }
 
   for (var i = 0, len = lfColors.length; i < len; i++) {
     var selected = ('btn-outline-' + lfColors[i] == '{{ $selected }}') ? ' selected' : '';
-    btnColorPicker += '<div class="select-holder ' + selected + '"><a href="javascript:void(0);" data-class="btn-outline-' + lfColors[i] + '" class="color-sample btn btn-sm btn-outline-' + lfColors[i] + '">&#10004;</a></div>';
+    btnColorPicker += '<div class="select-holder ' + selected + '"><a href="javascript:void(0);" title="' + lfColors[i] + ' outline" data-class="btn-outline-' + lfColors[i] + '" class="color-sample btn btn-sm btn-outline-' + lfColors[i] + '"><span class="inside">&#10004;</span></a></div>';
   }
 
   $('#btn-color-picker').html(btnColorPicker);
