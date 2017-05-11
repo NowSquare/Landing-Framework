@@ -37,15 +37,15 @@ class LandingPagesController extends Controller
         // to make sure jQuery and Bootstrap 4 js are
         // included in template, while inline <script>'s
         // can safely run below.
-        pq('head')->find('script[src]:last')->after('<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
-        pq('head')->find('script[src]:last')->after('<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js') . '"></script>');
+        pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
+        pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js') . '"></script>');
 
         // End stylesheet right before </head> to make
         // sure it overrides other stylesheets.
-        pq('head')->append('<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css') . '" />');
+        pq('head')->append(PHP_EOL . '<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css') . '" />');
 
         // Init editor
-        pq('head')->append('<script class="-x-editor-asset">$(function(){ lfInitEditor(); });</script>');
+        pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ lfInitEditor(); });</script>');
 
         return $dom;
       } else {

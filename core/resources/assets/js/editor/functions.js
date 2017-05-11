@@ -150,8 +150,20 @@ function lfGetHtml() {
   // Get a cloned version of the html object
   var $html = $('html').clone();
 
-  // Remove editor  and plugin elements
-  $html.find('.-x-el-inline-button, .-x-editor-asset, .-x-el-dropdown, .-x-editor-inline-modal-bg, #window-resizer-tooltip').remove();
+  // Remove editor and plugin elements
+  $html.find('.-x-el-inline-button, .-x-editor-asset, .-x-el-dropdown, .-x-editor-inline-modal-bg, #window-resizer-tooltip, #core-notify, #notify-bootstrap, #notify-metro, .notifyjs-corner').remove();
+
+  // Remove all localhost script
+  $html.find('script[src]').each(function() {
+    var src = $(this).attr('src');
+    var remove_src_starting_with = ['http://127.0.0.1', 'https://127.0.0.1', 'http://localhost', 'https://localhost', '//localhost', '//127.0.0.1'];
+
+    for (var i = 0, len = remove_src_starting_with.length; i < len; i++) {
+      if (src.substr(0, remove_src_starting_with[i].length) == remove_src_starting_with[i]) {
+        $(this).remove();
+      }
+    }
+  });
 
   // Remove all classes starting with -x-data-
   $html.find('[class*=-x-data-]').each(function() {
