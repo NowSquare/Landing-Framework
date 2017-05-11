@@ -116,31 +116,22 @@ Update settings
 
 <?php if ($el_class != '') { ?>
 
-  $el.attr('src', $('#img').val());
-  $el.attr('alt', $('#alt').val());
+    $el.attr('src', $('#img').val());
+    $el.attr('alt', $('#alt').val());
 
 <?php if ($link) { ?>
 
-  $el.parent('a').attr('href', $('#url').val());
-  $el.parent('a').attr('target', $('#target').val());
+    $el.parent('a').attr('href', $('#url').val());
+    $el.parent('a').attr('target', $('#target').val());
 
 <?php } ?>
 
-  // Changes detected
-  window.parent.lfSetPageIsDirty();
+    // Changes detected
+    window.parent.lfSetPageIsDirty();
 
 <?php } ?>
 
     window.parent.lfCloseModal();
-  });
-
-  // Focus window and bind escape to close
-  $(window).focus();
-
-  $(document).keyup(function(e) {
-    if(e.keyCode === 27) {
-      window.parent.lfCloseModal();
-    }
   });
 });
 </script>

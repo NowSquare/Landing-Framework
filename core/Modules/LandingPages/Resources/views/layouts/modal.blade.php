@@ -35,6 +35,15 @@
       $('.onClickClose').on('click', function() {
         window.parent.lfCloseModal();
       });
+
+      // Focus window and bind escape to close
+      $(window).focus();
+
+      $(document).keyup(function(e) {
+        if(e.keyCode === 27) {
+          window.parent.lfCloseModal();
+        }
+      });
     });
   </script>
 

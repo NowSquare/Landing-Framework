@@ -80,25 +80,16 @@ Update settings
   $('.onClickUpdate').on('click', function() {
 <?php if ($el_class != '') { ?>
 
-  $el.html($('#text').val());
-  $el.attr('href', $('#url').val());
-  $el.attr('target', $('#target').val());
+    $el.html($('#text').val());
+    $el.attr('href', $('#url').val());
+    $el.attr('target', $('#target').val());
 
-    // Changes detected
-  window.parent.lfSetPageIsDirty();
+      // Changes detected
+    window.parent.lfSetPageIsDirty();
 
 <?php } ?>
 
     window.parent.lfCloseModal();
-  });
-
-  // Focus window and bind escape to close
-  $(window).focus();
-
-  $(document).keyup(function(e) {
-    if(e.keyCode === 27) {
-      window.parent.lfCloseModal();
-    }
   });
 });
 </script>

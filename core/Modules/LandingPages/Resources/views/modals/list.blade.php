@@ -233,15 +233,6 @@ List template
   $('#tbl-list').on('click', '.btn-delete', function() {
     $(this).parents('tr').remove();
   });
-
-  // Focus window and bind escape to close
-  $(window).focus();
-
-  $(document).keyup(function(e) {
-    if(e.keyCode === 27) {
-      window.parent.lfCloseModal();
-    }
-  });
 });
 
 function rowBindings(i) {

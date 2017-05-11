@@ -40,19 +40,3 @@ foreach($categories as $category) {
   </div>
 </div>
 @endsection
-
-@section('script')
-<script>
-$(function() {
-
-  // Focus window and bind escape to close
-  $(window).focus();
-
-  $(document).keyup(function(e) {
-    if(e.keyCode === 27) {
-      window.parent.lfCloseModal();
-    }
-  });
-});
-</script>
-@endsection
