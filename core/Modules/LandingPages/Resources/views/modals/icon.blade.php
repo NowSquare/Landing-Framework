@@ -12,9 +12,11 @@
   <div class="row">
     <div class="col-xs-8 col-sm-6">
 
-      <div class="input-group input-group-lg">
-        <input i class="form-control icon-picker" value="" type="text" />
-        <span class="input-group-addon" id="icon"></span>
+      <div class="form-group">
+        <div class="input-group input-group-lg">
+          <input i class="form-control icon-picker" value="" type="text" />
+          <span class="input-group-addon" id="icon"></span>
+        </div>
       </div>
 <?php /*
       <div class="form-group">
@@ -22,6 +24,18 @@
           <button type="button" class="btn btn-block btn-lg btn-default icon-picker iconpicker-component" data-toggle="dropdown"><i class="fa"></i></button>
       </div>
 */ ?>
+
+      <div class="form-group">
+        <label for="color">{{ trans('landingpages::global.color') }}</label>
+        <div class="colorpicker-icon input-group colorpicker-element colorpicker-component input-group-lg">
+          <input type="text" id="color" value="" class="form-control">
+          <span class="input-group-btn add-on">
+            <button class="btn btn-white" type="button" style="padding:0; background-color:#fff; border:1px solid #eee;">
+              <i style="background-color: rgb(255, 255, 255);height:44px;width:44px"></i>
+            </button>
+          </span>
+        </div>
+      </div>
 
       <div class="editor-modal-footer">
         <button type="button" class="btn btn-primary btn-material onClickClose">{{ trans('global.cancel') }}</button>
@@ -38,6 +52,9 @@
 <script>
 $(function() {
 
+  var $colorpicker_icon = $('.colorpicker-icon').colorpicker({
+    format: 'hex'
+  });
 
 <?php /* ----------------------------------------------------------------------------
 Set settings
@@ -47,6 +64,10 @@ Set settings
 
 
   var $el = $('.{{ $el_class }}', window.parent.document);
+
+  var color = $el.css('color');
+  $('#color').val(color);
+  $colorpicker_icon.colorpicker('setValue', color);
 
   var icon = parent.lfExtractIconClass($el.attr('class'));
 
@@ -96,6 +117,8 @@ Update settings
   $('.onClickUpdate').on('click', function() {
 <?php if ($el_class != '') { ?>
 
+    $el.css('color', $('#color').val());
+
     var new_icon = $('#icon i').attr('class');
     $el.removeClass(icon.font);
     $el.removeClass(icon.class);
@@ -107,15 +130,6 @@ Update settings
 <?php } ?>
 
     window.parent.lfCloseModal();
-  });
-
-  // Focus window and bind escape to close
-  $(window).focus();
-
-  $(document).keyup(function(e) {
-    if(e.keyCode === 27) {
-      window.parent.lfCloseModal();
-    }
   });
 });
 </script>

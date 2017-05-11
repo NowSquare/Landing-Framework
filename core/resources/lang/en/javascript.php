@@ -54,6 +54,6 @@ return array(
   "pill" => "Pill",
   "type_to_filter" => "Type to filter",
   "notification" => "Notification",
-  "" => "",
+  "color" => "Color",
   "" => ""
 );
