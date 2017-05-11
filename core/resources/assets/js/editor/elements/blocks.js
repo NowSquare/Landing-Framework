@@ -192,10 +192,6 @@ function lfMakeNewBlockEditable($new_block, previous_el, position, block_class) 
     // Replace class
     $new_block_settings.removeClass('-x-el-block-edit').addClass('-x-el-block-edit-clone -x-el-inline-button-clone');
   }
-console.log($new_block_settings);
-console.log('-x-data-block-' + timestamp);
-console.log(previous_el);
-console.log($new_block);
 
   $new_block_settings.attr('data-x-el', '-x-data-block-' + timestamp);
 
