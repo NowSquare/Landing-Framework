@@ -62,6 +62,7 @@ function lfInitLink($link, unique_class) {
   // Check if button option is available
   if ($link.hasClass('btn')) {
     $edit_button.find('.-x-el-link-shape').removeClass('-x-el-disabled');
+
     // Check selected shape
     if ($link.hasClass('btn-pill')) {
       $edit_button.find('.-x-el-link-shape-pill .-x-el-checkmark').addClass('-x-checked');
@@ -70,8 +71,24 @@ function lfInitLink($link, unique_class) {
       $edit_button.find('.-x-el-link-shape-pill .-x-el-checkmark').removeClass('-x-checked');
       $edit_button.find('.-x-el-link-shape-regular .-x-el-checkmark').addClass('-x-checked');
     }
+
+    $edit_button.find('.-x-el-link-size').removeClass('-x-el-disabled');
+
+    // Check selected size
+    $edit_button.find('.-x-el-link-size-select .-x-el-checkmark').removeClass('-x-checked');
+
+    if ($link.hasClass('btn-sm')) {
+      $edit_button.find('.-x-el-link-size-select[data-x-size=s] .-x-el-checkmark').addClass('-x-checked');
+    } else if ($link.hasClass('btn-lg')) {
+      $edit_button.find('.-x-el-link-size-select[data-x-size=l] .-x-el-checkmark').addClass('-x-checked');
+    } else if ($link.hasClass('btn-xlg')) {
+      $edit_button.find('.-x-el-link-size-select[data-x-size=xl] .-x-el-checkmark').addClass('-x-checked');
+    } else {
+      $edit_button.find('.-x-el-link-size-select[data-x-size=m] .-x-el-checkmark').addClass('-x-checked');
+    }
   } else {
     $edit_button.find('.-x-el-link-shape').addClass('-x-el-disabled');
+    $edit_button.find('.-x-el-link-size').addClass('-x-el-disabled');
   }
 
   new Tether({
@@ -168,6 +185,41 @@ function lfInitLinks() {
       // then add again.
       var $el = $('.' + el_class);
       $el.removeClass('btn-pill').addClass('btn-pill');
+    }
+  });
+
+  /* 
+    Button size
+  */
+
+  $('body').on('click', '.-x-el-link-size-select', function() {
+    var el_class = $(this).parents('.-x-el-link-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      var selected_size = $(this).attr('data-x-size');
+
+      // Unselect all
+      $(this).parents('ul').find('.-x-el-link-size-select .-x-el-checkmark').removeClass('-x-checked');
+
+      // Select size
+      $(this).parents('ul').find('.-x-el-link-size-select[data-x-size=' + selected_size + '] .-x-el-checkmark').addClass('-x-checked');
+
+      // Remove all size classes
+      var $el = $('.' + el_class);
+      $el.removeClass('btn-sm btn-lg btn-xlg');
+
+      // Add size class
+      if (selected_size == 's') {
+        $el.addClass('btn-sm');
+      } else if (selected_size == 'l') {
+        $el.addClass('btn-lg');
+      } else if (selected_size == 'xl') {
+        $el.addClass('btn-xlg');
+      }
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
     }
   });
 }

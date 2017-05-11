@@ -55,5 +55,10 @@ return array(
   "type_to_filter" => "Type to filter",
   "notification" => "Notification",
   "color" => "Color",
+  "size" => "Size",
+  "S" => "S",
+  "M" => "M",
+  "L" => "L",
+  "XL" => "XL",
   "" => ""
 );
