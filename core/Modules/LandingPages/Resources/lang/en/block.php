@@ -11,9 +11,10 @@ return array(
   "content_title1" => "Consultancy",
   "content_title2" => "Results",
   "content_title3" => "Marketing",
+  "content_title4" => "Connect",
   "content_lead1" => "High quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster.",
-  "" => "",
-  "" => "",
+  "content_feature" => "Feature",
+  "content_feature_line" => "This is an awesome feature.",
   "" => "",
 
   // Specific content
