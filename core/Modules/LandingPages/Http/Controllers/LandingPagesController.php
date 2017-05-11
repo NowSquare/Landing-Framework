@@ -134,10 +134,11 @@ class LandingPagesController extends Controller
 
       foreach ($block_categories as $block_category) {
         $category = basename($block_category);
+        $category_name = explode('-', $block_category)[1];
 
         $categories[] = [
           'dir' => $category,
-          'name' => trans('landingpages::block.' . $category),
+          'name' => trans('landingpages::block.' . $category_name),
           'desc' => trans('landingpages::block.' . $category . '_desc'),
           'icon' => url('blocks/landingpages/' . $category . '/icon.svg')
         ];
@@ -154,6 +155,7 @@ class LandingPagesController extends Controller
       $el_class = $request->input('el_class', '');
       $position = $request->input('position', 'below');
       $category = $request->input('c', '');
+      $category_name = explode('-', $category)[1];
 
       $category_dir = base_path('../blocks/landingpages/' . $category);
 
@@ -176,7 +178,7 @@ class LandingPagesController extends Controller
           }
         }
 
-        return view('landingpages::modals.insert-block-select', compact('el_class', 'position', 'blocks', 'category'));
+        return view('landingpages::modals.insert-block-select', compact('el_class', 'position', 'blocks', 'category', 'category_name'));
       }
     }
 

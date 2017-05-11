@@ -4,7 +4,7 @@
 <div class="container-fluid">
   <div class="editor-modal-header">
     <a href="javascript:void(0);" class="btn-close onClickClose"></a>
-    <h1>{{ trans('landingpages::block.' . $category) }} |  <a href="{{ url('landingpages/editor/modal/insert-block?el_class=' . $el_class . '&position=' . $position) }}">{{ trans('global.back') }}</a></h1>
+    <h1>{{ trans('landingpages::block.' . $category_name) }} |  <a href="{{ url('landingpages/editor/modal/insert-block?el_class=' . $el_class . '&position=' . $position) }}">{{ trans('global.back') }}</a></h1>
   </div>
 
   <div class="row">
