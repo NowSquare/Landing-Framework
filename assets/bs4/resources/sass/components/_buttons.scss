@@ -194,7 +194,9 @@
   $color-name: nth($color, 1);
   $color-value: nth($color, 2);
 
-  .btn-#{$color-name} {
+  .btn-#{$color-name},
+  .btn-#{$color-name}:active,
+  .btn-#{$color-name}:focus {
     @if $color-name == "yellow" {
       @include button-variant($dark-color, $color-value, $color-value);
     } @else {
@@ -202,7 +204,9 @@
     }
   }
 
-  .btn-outline-#{$color-name} {
+  .btn-outline-#{$color-name},
+  .btn-outline-#{$color-name}:active,
+  .btn-outline-#{$color-name}:focus {
     @include button-outline-variant($color-value);
 
     @if $color-name == "yellow" {
