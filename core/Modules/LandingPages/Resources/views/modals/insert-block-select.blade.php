@@ -7,14 +7,15 @@
     <h1>{{ trans('landingpages::block.' . $category_name) }} |  <a href="{{ url('landingpages/editor/modal/insert-block?el_class=' . $el_class . '&position=' . $position) }}">{{ trans('global.back') }}</a></h1>
   </div>
 
-  <div class="row">
+  <div class="row grid">
+    <div class="grid-sizer col-xs-4" style="display:none"></div>
 <?php
 $i = 1;
 foreach($blocks as $block) {
 ?>
-    <div class="col-xs-12 col-sm-4 col-lg-3">
+    <div class="grid-item col-xs-12 col-sm-4 col-lg-3">
 
-      <div class="portlet shadow-box">
+      <div class="grid-item-content portlet shadow-box">
         <div>
           <a href="javascript:void(0);" class="preview-container onClickInsert" data-category="{{ $category }}" data-block="{{ $block['file'] }}" id="container{{ $i }}">
             <iframe src="{{ $block['preview'] }}" id="frame{{ $i }}" class="preview_frame" frameborder="0" seamless></iframe>
@@ -40,7 +41,6 @@ foreach($blocks as $block) {
 @section('script') 
 <style type="text/css">
 .preview-container {
-  overflow: hidden;
   display: block;
   width:100%;
   height: 120px;
@@ -50,7 +50,7 @@ foreach($blocks as $block) {
 }
 .preview_frame {
   pointer-events: none;
-  width:400%;
+  width: 400%;
   -ms-zoom: 0.25;
   -moz-transform: scale(0.25);
   -moz-transform-origin: 0 0;
@@ -63,31 +63,42 @@ foreach($blocks as $block) {
 <script>
 $(function() {
 
-blockUI('.preview-container');
+  blockUI('.preview-container');
+  $(window).resize(resizeEditFrame);
 
-$(window).resize(resizeEditFrame);
+  function resizeEditFrame() {
+    $('.preview_frame').each(function() {
+      var frame_height = parseInt($(this).contents().find('html').height());
+      var frame_width = parseInt($(this).contents().find('html').width());
 
-function resizeEditFrame() {
-  $('.preview_frame').each(function() {
-    var frame_height = parseInt($(this).contents().find('html').height());
-    var frame_width = parseInt($(this).contents().find('html').width());
+      $(this).height(frame_height);
 
-    $(this).height(frame_height);
-
-    $(this).parent().height(frame_height / 4);
-    //$(this).parent().width(frame_width / 4);
-    $(this).parent().width('100%');
-  });
-}
+      $(this).parent().height(frame_height / 4);
+      //$(this).parent().width(frame_width / 4);
+      $(this).parent().width('100%');
+    });
+  }
 
 <?php
 $i = 1;
 foreach($blocks as $block) {
 ?>
-$('#frame{{ $i }}').load(function() {
-  resizeEditFrame();
-  unblockUI('#container{{ $i }}');
-});
+  $('#frame{{ $i }}').load(function() {
+    resizeEditFrame();
+    unblockUI('#container{{ $i }}');
+<?php if ($i == count($blocks)) { ?>
+  var $grid = $('.grid').masonry({
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+    transitionDuration: '0.2s'
+  });
+
+  $grid.on('layoutComplete', function() {
+    
+  });
+<?php } ?>
+  });
 <?php
   $i++;
 }

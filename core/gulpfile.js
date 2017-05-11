@@ -143,7 +143,7 @@ gulp.task('styles', function() {
       'bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css',
       'bower_components/jquery-colorbox/example1/colorbox.css',
       'bower_components/circliful/css/jquery.circliful.css',
-      'bower_components/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.css',
+      'bower_components/fontawesome-iconpicker/dist/css/fontawesome-iconpicker.css'
 /*
       'bower_components/tinymce/skins/lightgray/content.inline.min.css',
       'bower_components/tinymce/skins/lightgray/content.min.css',
@@ -228,6 +228,7 @@ gulp.task('scripts', function() {
       'bower_components/circliful/js/jquery.circliful.js',
       'bower_components/jquery-throttle-debounce/jquery.ba-throttle-debounce.js',
       'bower_components/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.js',
+      'bower_components/masonry/dist/masonry.pkgd.js',
 
       'bower_components/tinymce/tinymce.js',
       /*'bower_components/tinymce/plugins/** /*.js',*/
