@@ -9,7 +9,8 @@ return array(
   // Generic content
   "content_button" => "More",
   "content_title1" => "Consultancy",
-  "content_title2" => "Reports",
+  "content_title2" => "Results",
+  "content_title3" => "Marketing",
   "content_lead1" => "High quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster.",
   "" => "",
   "" => "",

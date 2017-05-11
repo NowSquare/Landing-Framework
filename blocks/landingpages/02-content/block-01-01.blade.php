@@ -12,7 +12,7 @@
             <h1 class="mt-1 -x-text">{!! trans('landingpages::block.content_01_head') !!}</h1>
             <p class="lead -x-text">{!! trans('landingpages::block.content_01_line') !!}</p>
             <p class="btn-container">
-              <a class="btn btn-outline-blue btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.content_01_button') !!}</a>
+              <a class="btn btn-outline-pink btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.content_01_button') !!}</a>
             </p>
           </div>
         </div>
