@@ -3,7 +3,7 @@
     <div class="content-overlay -x-block-bg-color" style="background-color:rgba(0,0,0,0.9)">
       <div class="container">
         <div class="row">
-          <div class="col-6 push-3 col-sm-4 push-sm-4 col-md-4 push-md-4 col-xl-4 push-xl-4 text-center">
+          <div class="col-6 push-3 col-sm-4 push-sm-4 col-md-4 push-md-4 col-xl-2 push-xl-5 text-center">
             <img src="{{ url('templates/assets/images/icons/biotech.svg') }}" alt="" class="-x-img img-fluid">
           </div>
         </div>
