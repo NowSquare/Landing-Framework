@@ -1,6 +1,6 @@
 <section class="-x-block">
   <div class="content content-padding-l -x-block-bg-img" style="">
-    <div class="content-overlay -x-block-bg-color" style="background-color:rgba(255,255,255,0)">
+    <div class="content-overlay -x-block-bg-color" style="background-color:rgba(255,255,255,1)">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-4 text-center text-lg-right mt-3 no-margin-md-t">
@@ -20,12 +20,12 @@
           </div>
           <div class="col-sm-12 col-md-4 text-center text-lg-left mt-3 no-margin-md-t">
             <div class="content-padding">
-              <i class="mb-3 icon-xs color-deep-purple -x-icon mi touch_app" data-attachment="bottom left" data-target-attachment="top right"></i>
+              <i class="mb-3 icon-xs color-deep-purple -x-icon mi touch_app" data-attachment="bottom left" data-target-attachment="top right" data-dropdown-position="left"></i>
               <h2 class="-x-text">{!! trans('landingpages::block.content_feature') !!}</h2>
               <p class="lead -x-text">{!! trans('landingpages::block.content_feature_line') !!}</p>
             </div>
             <div class="content-padding">
-              <i class="mb-3 icon-xs color-deep-purple -x-icon mi fingerprint" data-attachment="bottom left" data-target-attachment="top right"></i>
+              <i class="mb-3 icon-xs color-deep-purple -x-icon mi fingerprint" data-attachment="bottom left" data-target-attachment="top right" data-dropdown-position="left"></i>
               <h2 class="-x-text">{!! trans('landingpages::block.content_feature') !!}</h2>
               <p class="lead -x-text">{!! trans('landingpages::block.content_feature_line') !!}</p>
             </div>

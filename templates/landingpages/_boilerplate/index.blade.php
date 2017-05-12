@@ -23,6 +23,57 @@
 </head>
 <body>
 
+<section class="-x-block">
+  <div class="header text-light -x-block-bg-img" style="background-image:url('{{ url('templates/assets/images/headers/city-landmark-lights-night.jpg') }}')">
+    <div class="header-overlay -x-block-bg-color" style="background-color:rgba(64,46,84,0.6)">
+      <div class="container">
+        <div class="header-padding-xl no-padding-b">
+          <div class="row">
+            <div class="col-md-12 col-lg-7 push-lg-5 text-center text-lg-right">
+              <img src="{{ url('templates/assets/images/logos/logo-icon-light.svg') }}" alt="" style="height:160px" class="mb-3 -x-img" data-offset="0px 0px" data-attachment="bottom left" data-target-attachment="top right" data-dropdown-position="left">
+              <h1 class="display-3 -x-text">{!! trans('landingpages::block.header_03_head') !!}</h1>
+              <p class="lead -x-text">{!! trans('landingpages::block.header_01_line') !!}</p>
+              <div class="btn-container btn-stack-md hor-spacing-md-a mb-3">
+                <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.learn_more') !!}</a>
+                <span class="-x-list" data-repeat="a" data-attachment="bottom right" data-target-attachment="top right" data-dropdown-position="left">
+                  <a href="#" class="color-light text-l"><i class="fa fa-apple" aria-hidden="true"></i></a>
+                  <a href="#" class="color-light text-l"><i class="fa fa-android" aria-hidden="true"></i></a>
+                </span>
+              </div>
+            </div>
+            <div class="col-6 push-3 push-lg-0 col-lg-4 pull-lg-6 img-container">
+              <img src="{{ url('templates/assets/images/visuals/iPhone-CutOff.png') }}" alt="" class="img-fluid -x-img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="-x-block">
+  <div class="footer text-light flex-center-md -x-block-bg-img" style="">
+    <div class="footer-overlay -x-block-bg-color" style="background-color:rgba(0,0,0,0.9)">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center col-lg-3 text-lg-left text-secondary my-1">
+            <a href="#"><img src="{{ url('templates/assets/images/logos/logo-icon-light.svg') }}" class="-x-img" style="height:64px" data-offset="0px 0px" data-attachment="bottom left" data-target-attachment="top right"></a>
+          </div>
+          <div class="col-md-12 text-center col-lg-9 text-lg-right text-secondary my-1">
+            <p class="-x-text">&copy; {!! trans('landingpages::block.copyright') !!} {{ date('Y') }} &bull; {!! trans('landingpages::block.all_right_reserved') !!} | <a href="#">{!! trans('landingpages::block.disclaimer') !!}</a> | <a href="#">{!! trans('landingpages::block.contact') !!}</a></p>
+            <div class="mt-1 hor-spacing-sm-a -x-list" data-repeat="a" data-attachment="bottom right" data-target-attachment="top right" data-dropdown-position="left">
+              <a href="#" role="button" class="color-dark"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+              <a href="#" role="button" class="color-dark"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              <a href="#" role="button" class="color-dark"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              <a href="#" role="button" class="color-dark"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  
   <section class="-x-block">
     <div class="header text-light">
       <div class="header-overlay -x-block-bg-gradient" style="background: #4776e6; background: linear-gradient(to bottom,  #4776e6 0%,#8e54e9 100%);">
@@ -87,6 +138,37 @@
   </section>
 
 
+<section class="-x-block">
+  <div class="content -x-block-bg-img" style="">
+    <div class="content-overlay -x-block-bg-color" style="background-color:rgba(255,255,255,1)">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 push-md-7">
+            <a href="{{ url('templates/assets/images/photos/laptop-technology-ipad-tablet.jpg') }}" data-toggle="lightbox"><img src="{{ url('templates/assets/images/photos/laptop-technology-ipad-tablet.jpg') }}" alt="" class="-x-img img-fluid mdl-shadow--8dp"></a>
+          </div>
+          <div class="col-md-7 pull-md-5">
+            <div class="content-padding">
+              <h2 class="-x-text">{!! trans('landingpages::block.photo_01_head') !!}</h2>
+              <div class="-x-text mt-4">
+                <p class="lead">{!! trans('landingpages::block.photo_p1') !!}</p>
+                <p class="lead">{!! trans('landingpages::block.photo_p2') !!}</p>
+              </div>
+              <div class="btn-container">
+                <a class="btn btn-outline-pink btn-pill -x-link" data-offset="5px 0px" data-attachment="right top" data-target-attachment="right bottom" href="#" role="button">More</i></a>
+              </div>
+              <div class="mt-2 hor-spacing-sm-a -x-list" data-repeat="a">
+                <a href="#" role="button" class="color-pink"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="#" role="button" class="color-pink"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#" role="button" class="color-pink"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a href="#" role="button" class="color-pink"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
     <!-- Callout, left aligned text, call to action right, dark background
@@ -144,45 +226,6 @@
       <!-- /.content -->
     </section>
 
-
-    <!-- Photo on the right with lightbox, light background, text aligned left
-      ================================================== -->
-    <section class="-x-block">
-      <div class="content" style="background-image:url()">
-        <div class="content-overlay" style="background-color:rgba(255,255,255,0)">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-5 push-md-7">
-                <!-- image -->
-                <a href="/templates/assets/images/photos/laptop-technology-ipad-tablet.jpg" data-toggle="lightbox"><img src="/templates/assets/images/photos/laptop-technology-ipad-tablet.jpg" alt="" class="-x-img img-fluid mdl-shadow--8dp"></a>
-              </div>
-              <!-- /.col -->
-              <div class="col-md-7 pull-md-5">
-                <div class="content-padding">
-                  <h2>First make it work, then make it better</h2>
-                  <p class="lead">We provide high quality assets for your business. We help <a href="#" class="link">entrepreneurs</a> with great ideas achieving their goals faster with self-hosted, white label software.</p>
-                  <div class="btn-container">
-                    <a class="btn btn-outline-pink btn-pill -x-link" data-offset="5px 0px" data-attachment="right top" data-target-attachment="left top" href="#" role="button">More <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-                  </div>
-                  <div class="mt-2 hor-spacing-sm-a -x-list" data-repeat="a">
-                    <a href="#" role="button" class="color-pink"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    <a href="#" role="button" class="color-pink"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    <a href="#" role="button" class="color-pink"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                    <a href="#" role="button" class="color-pink"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                  </div>
-                </div>
-                <!-- /.content-padding -->
-              </div>
-              <!-- /.col -->
-            </div>
-            <!-- /.row -->
-          </div>
-          <!-- /.container -->
-        </div>
-        <!-- /.content-overlay -->
-      </div>
-      <!-- /.content -->
-    </section>
 
     <!-- Visual right, text aligned right
       ================================================== -->

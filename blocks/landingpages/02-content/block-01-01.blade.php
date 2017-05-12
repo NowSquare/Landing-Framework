@@ -1,6 +1,6 @@
 <section class="-x-block">
   <div class="content content-padding-l -x-block-bg-img" style="">
-    <div class="content-overlay -x-block-bg-color" style="background-color:rgba(255,255,255,0)">
+    <div class="content-overlay -x-block-bg-color" style="background-color:rgba(255,255,255,1)">
       <div class="container">
         <div class="row">
           <div class="col-6 push-3 col-sm-4 push-sm-4 col-md-4 push-md-4 col-xl-4 push-xl-4 text-center">

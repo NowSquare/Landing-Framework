@@ -1,19 +1,28 @@
 <section class="-x-block">
-  <div class="content content-padding-l -x-block-bg-img" style="">
-    <div class="content-overlay -x-block-bg-color" style="background-color:rgba(255,255,255,0)">
+  <div class="content -x-block-bg-img" style="">
+    <div class="content-overlay -x-block-bg-color" style="background-color:rgba(255,255,255,1)">
       <div class="container">
         <div class="row">
-          <div class="col-6 push-3 col-sm-4 push-sm-4 col-md-4 push-md-4 col-xl-4 push-xl-4 text-center">
-            <img src="{{ url('templates/assets/images/icons/biotech.svg') }}" alt="" class="-x-img img-fluid">
+          <div class="col-md-5 push-md-7">
+            <a href="{{ url('templates/assets/images/photos/laptop-technology-ipad-tablet.jpg') }}" data-toggle="lightbox"><img src="{{ url('templates/assets/images/photos/laptop-technology-ipad-tablet.jpg') }}" alt="" class="-x-img img-fluid mdl-shadow--8dp"></a>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 col-lg-6 push-lg-3 text-center">
-            <h1 class="mt-1 -x-text">{!! trans('landingpages::block.content_01_01_head') !!}</h1>
-            <p class="lead -x-text">{!! trans('landingpages::block.content_01_01_line') !!}</p>
-            <p class="btn-container">
-              <a class="btn btn-outline-blue btn-pill -x-link" href="#" role="button">Order Tickets</a>
-            </p>
+          <div class="col-md-7 pull-md-5">
+            <div class="content-padding">
+              <h2 class="-x-text">{!! trans('landingpages::block.photo_01_head') !!}</h2>
+              <div class="-x-text mt-4">
+                <p class="lead">{!! trans('landingpages::block.photo_p1') !!}</p>
+                <p class="lead">{!! trans('landingpages::block.photo_p2') !!}</p>
+              </div>
+              <div class="btn-container">
+                <a class="btn btn-outline-pink btn-pill -x-link" data-offset="5px 0px" data-attachment="right top" data-target-attachment="right bottom" href="#" role="button">More</i></a>
+              </div>
+              <div class="mt-2 hor-spacing-sm-a -x-list" data-repeat="a">
+                <a href="#" role="button" class="color-pink"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                <a href="#" role="button" class="color-pink"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                <a href="#" role="button" class="color-pink"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                <a href="#" role="button" class="color-pink"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
