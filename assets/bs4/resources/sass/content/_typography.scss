@@ -141,32 +141,46 @@ h1, h2, h3, h4, h5 {
 }
 
 .text-xs {
-  font-size: 0.5rem !important;
+  &,i {
+    font-size: 0.5rem !important;
+  }
 }
 
 .text-s {
-  font-size: 1rem !important;
+  &,i {
+    font-size: 1rem !important;
+  }
 }
 
 .text-m {
-  font-size: 1.5rem !important;
+  &,i {
+    font-size: 1.5rem !important;
+  }
 }
 
 .text-l {
-  font-size: 2rem !important;
+  &,i {
+    font-size: 2rem !important;
+  }
 }
 
 .text-xl {
-  font-size: 2.5rem !important;
+  &,i {
+    font-size: 2.5rem !important;
+  }
 }
 
 .text-xxl {
-  font-size: 2.6rem !important;
+  &,i {
+    font-size: 2.6rem !important;
+  }
 }
 
 @include media-breakpoint-down(sm) {
   .text-xxl {
-    font-size: 2rem !important;
+    &,i {
+      font-size: 2rem !important;
+    }
   }
 }
 
