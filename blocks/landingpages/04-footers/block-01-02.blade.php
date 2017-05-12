@@ -8,12 +8,12 @@
           </div>
           <div class="col-md-12 text-center col-lg-9 text-lg-right text-secondary my-1">
             <p class="-x-text">&copy; {!! trans('landingpages::block.copyright') !!} {{ date('Y') }} &bull; {!! trans('landingpages::block.all_right_reserved') !!} | <a href="#">{!! trans('landingpages::block.disclaimer') !!}</a> | <a href="#">{!! trans('landingpages::block.contact') !!}</a></p>
-            <div class="mt-1 hor-spacing-sm-a -x-list" data-repeat="a" data-attachment="bottom right" data-target-attachment="top right" data-dropdown-position="left">
-              <a href="#" role="button" class="color-dark"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
-              <a href="#" role="button" class="color-dark"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-              <a href="#" role="button" class="color-dark"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href="#" role="button" class="color-dark"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-            </div>
+            <span class="mt-1 hor-spacing-sm-a -x-list color-dark" data-repeat="a" data-attachment="center right" data-target-attachment="top left" data-dropdown-position="left">
+              <a href="#" role="button"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+              <a href="#" role="button"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              <a href="#" role="button"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              <a href="#" role="button"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            </span>
           </div>
         </div>
       </div>
