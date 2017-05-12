@@ -2,13 +2,15 @@
 
 @section('content')
 <div id="btn-color-picker"></div>
-
 @endsection
 
 @section('script')
 <style type="text/css">
   html, body {
     overflow: hidden;
+  }
+  body {
+    padding-top: 1px;
   }
   .select-holder {
     float: left;
@@ -45,6 +47,8 @@ Generate button color picker
     var selected = ('btn-' + lfColors[i] == '{{ $selected }}') ? ' selected' : '';
     btnColorPicker += '<div class="select-holder ' + selected + '"><a href="javascript:void(0);" title="' + lfColors[i] + '" data-class="btn-' + lfColors[i] + '" class="color-sample btn btn-sm btn-' + lfColors[i] + '"><span class="inside">&#10004;</span></a></div>';
   }
+
+  btnColorPicker += '<div style="width:100%; float: left"></div>';
 
   for (var i = 0, len = lfColors.length; i < len; i++) {
     var selected = ('btn-outline-' + lfColors[i] == '{{ $selected }}') ? ' selected' : '';
