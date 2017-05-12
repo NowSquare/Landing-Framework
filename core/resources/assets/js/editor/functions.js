@@ -98,11 +98,11 @@ function lfExtractIconClass(css_class) {
       var css_class = css_classes[i];
 
       if (font_found != css_class) {
-        var $dummy = $('<i>', {class: font_found + ' ' + css_class}).appendTo(parent.$('body'));
+        var $dummy = $('<i>', {class: font_found + ' ' + css_class}).appendTo($('body'));
 
         // Check if there is a class with ":before content" set
         var el = $dummy[0];// window.parent.document.getElementsByClassName(css_class);
-        var before_content = window.parent.getComputedStyle(el, ':before').getPropertyValue('content');
+        var before_content = window.getComputedStyle(el, ':before').getPropertyValue('content');
 
         if (before_content && before_content !== 'none') {
           //console.log(window.getMatchedCSSRules(el, '::before'));
