@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-lg-3 text-center">
             <div class="row">
-              <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
+              <div class="col-6 push-3 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
                 <img src="{{ url('templates/assets/images/icons/shop.svg') }}" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">
@@ -19,7 +19,7 @@
           </div>
           <div class="col-12 col-sm-6 col-lg-3 text-center">
             <div class="row">
-              <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
+              <div class="col-6 push-3 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
                 <img src="{{ url('templates/assets/images/icons/selfie.svg') }}" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">
@@ -33,7 +33,7 @@
           </div>
           <div class="col-12 col-sm-6 col-lg-3 text-center">
             <div class="row">
-              <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
+              <div class="col-6 push-3 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
                 <img src="{{ url('templates/assets/images/icons/statistics.svg') }}" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">
@@ -47,7 +47,7 @@
           </div>
           <div class="col-12 col-sm-6 col-lg-3 text-center">
             <div class="row">
-              <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
+              <div class="col-6 push-3 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
                 <img src="{{ url('templates/assets/images/icons/panorama.svg') }}" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">

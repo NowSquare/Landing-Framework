@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-12 col-md-4 text-center">
             <div class="row">
-              <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
+              <div class="col-8 push-2 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-center">
                 <i class="mb-3 icon-xl color-blue -x-icon mi flight_takeoff" data-attachment="bottom left" data-target-attachment="top left"></i>
               </div>
               <div class="col-12">
@@ -19,7 +19,7 @@
           </div>
           <div class="col-12 col-md-4 text-center">
             <div class="row">
-              <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
+              <div class="col-8 push-2 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-center">
                 <i class="mb-3 icon-xl color-blue -x-icon mi important_devices" data-attachment="bottom left" data-target-attachment="top left"></i>
               </div>
               <div class="col-12">
@@ -33,7 +33,7 @@
           </div>
           <div class="col-12 col-md-4 text-center">
             <div class="row">
-              <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
+              <div class="col-8 push-2 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-center">
                 <i class="mb-3 icon-xl color-blue -x-icon mi room" data-attachment="bottom left" data-target-attachment="top left"></i>
               </div>
               <div class="col-12">

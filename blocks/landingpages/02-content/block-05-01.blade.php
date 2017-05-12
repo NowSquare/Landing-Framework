@@ -15,7 +15,7 @@
               <p class="lead -x-text">{!! trans('landingpages::block.content_feature_line') !!}</p>
             </div>
           </div>
-          <div class="col-sm-12 col-md-4">
+          <div class="col-6 push-3 col-sm-6 push-sm-3 col-md-4 push-md-0 text-center">
             <img src="/templates/assets/images/visuals/iPhone-6-4,7-inch-Mockup.png" alt="" class="-x-img img-fluid">
           </div>
           <div class="col-sm-12 col-md-4 text-center text-lg-left mt-3 no-margin-md-t">

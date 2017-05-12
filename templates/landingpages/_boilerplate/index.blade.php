@@ -22,7 +22,7 @@
   </style>
 </head>
 <body>
-<?php /*
+
 <section class="-x-block">
   <div class="header text-light">
     <div class="header-overlay -x-block-bg-gradient" style="background: #4776e6; background: linear-gradient(to bottom, #4776e6 0%,#8e54e9 100%);">
@@ -51,7 +51,7 @@
         <div class="row">
           <div class="col-12 col-md-4 text-center">
             <div class="row">
-              <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
+              <div class="col-8 push-2 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-center">
                 <img src="{{ url('templates/assets/images/icons/electrical_sensor.svg') }}" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">
@@ -65,7 +65,7 @@
           </div>
           <div class="col-12 col-md-4 text-center">
             <div class="row">
-              <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
+              <div class="col-8 push-2 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-center">
                 <img src="{{ url('templates/assets/images/icons/camcorder.svg') }}" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">
@@ -79,7 +79,7 @@
           </div>
           <div class="col-12 col-md-4 text-center">
             <div class="row">
-              <div class="col-12 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
+              <div class="col-8 push-2 col-sm-6 push-sm-3 col-lg-8 push-lg-2 text-center">
                 <img src="{{ url('templates/assets/images/icons/mind_map.svg') }}" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">
@@ -114,7 +114,7 @@
               <p class="lead -x-text">{!! trans('landingpages::block.content_feature_line') !!}</p>
             </div>
           </div>
-          <div class="col-sm-12 col-md-4">
+          <div class="col-6 push-3 col-sm-6 push-sm-3 col-md-4 push-md-0 text-center">
             <img src="/templates/assets/images/visuals/iPhone-6-4,7-inch-Mockup.png" alt="" class="-x-img img-fluid">
           </div>
           <div class="col-sm-12 col-md-4 text-center text-lg-left mt-3 no-margin-md-t">
@@ -157,6 +157,6 @@
     </div>
   </div>
 </section>
-*/ ?>
+
 </body>
 </html>
