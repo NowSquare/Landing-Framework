@@ -109,9 +109,9 @@ Insert block
 */ ?>
 
   $('.onClickInsert').on('click', function() {
-<?php if ($el_class != '') { ?>
-
     var html = $(this).find('.preview_frame')[0].contentWindow.document.body.innerHTML;
+
+<?php if ($el_class != '') { ?>
     var $el = $('.{{ $el_class }}', window.parent.document);
 
 <?php if ($position == 'above') { ?>
@@ -126,10 +126,31 @@ Insert block
     // Make new block editable
     window.parent.lfMakeNewBlockEditable($new_block, '{{ $el_class }}', 'above');
 <?php } ?>
+<?php } else { /* ----------------------------------------------------------------------------
+Insert block at bottom of page
+*/
+?>
+    // Check if there are blocks
+    var last_block_class = $('.-x-block[data-x-el]', window.parent.document).last().attr('data-x-el');
+
+    if (typeof last_block_class !== 'undefined' && last_block_class != null) {
+      var $el = $('.' + last_block_class, window.parent.document);
+      var $new_block = $(html).insertAfter($el);
+
+      // Make new block editable
+      window.parent.lfMakeNewBlockEditable($new_block, last_block_class, 'above');
+    } else {
+      // There are no blocks
+      var $el = $('body', window.parent.document);
+      var $new_block = $(html).prependTo($el);
+
+      // Make new block editable
+      window.parent.lfMakeNewBlockEditable($new_block);
+    }
+<?php } ?>
 
     // Changes detected
     window.parent.lfSetPageIsDirty();
-<?php } ?>
 
     window.parent.lfCloseModal();
   });

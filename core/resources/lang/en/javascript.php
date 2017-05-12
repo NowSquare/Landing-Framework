@@ -60,5 +60,6 @@ return array(
   "M" => "M",
   "L" => "L",
   "XL" => "XL",
+  "insert_block" => "Insert block",
   "" => ""
 );

@@ -39,6 +39,18 @@ function lfInitFab() {
   });
   
   /* 
+    Insert block
+  */
+
+  $('body').on('click', '.-x-el-fab-insert-block', function() {
+
+    lfOpenModal(_lang["url"] + '/landingpages/editor/modal/insert-block?position=below');
+  
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+  });
+  
+  /* 
     Save page
   */
 

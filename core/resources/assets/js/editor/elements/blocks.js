@@ -170,7 +170,7 @@ function lfInitBlocks() {
 }
 
 /* 
-  Duplicate block
+  Make block and elements inside editable
 */
 
 function lfMakeNewBlockEditable($new_block, previous_el, position, block_class) {
@@ -183,10 +183,14 @@ function lfMakeNewBlockEditable($new_block, previous_el, position, block_class) 
   if (typeof block_class !== 'undefined' && block_class != null) {
     var $new_block_settings = $('.-x-el-block-edit-clone[data-x-el=' + block_class + ']').clone().insertAfter('.-x-el-block-edit-clone[data-x-el=' + block_class + ']');
   } else {
-    if (position == 'after') {
-      var $new_block_settings = $(xTplBlockButton).clone().insertAfter('.-x-el-block-edit-clone[data-x-el=' + previous_el + ']');
+    if (typeof previous_el !== 'undefined') {
+      if (position == 'after') {
+        var $new_block_settings = $(xTplBlockButton).clone().insertAfter('.-x-el-block-edit-clone[data-x-el=' + previous_el + ']');
+      } else {
+        var $new_block_settings = $(xTplBlockButton).clone().insertBefore('.-x-el-block-edit-clone[data-x-el=' + previous_el + ']');
+      }
     } else {
-      var $new_block_settings = $(xTplBlockButton).clone().insertBefore('.-x-el-block-edit-clone[data-x-el=' + previous_el + ']');
+      var $new_block_settings = $(xTplBlockButton).clone().prependTo('body');
     }
 
     // Replace class
