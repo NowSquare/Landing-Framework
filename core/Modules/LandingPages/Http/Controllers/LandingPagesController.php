@@ -130,7 +130,9 @@ class LandingPagesController extends Controller
       // Get all categories
       $categories = [];
 
-      $block_categories = \File::directories(base_path('../blocks/landingpages/'));
+      $block_categories = array_sort(\File::directories(base_path('../blocks/landingpages/')), function($dir) {
+        return $dir;
+      });
 
       foreach ($block_categories as $block_category) {
         $category = basename($block_category);
@@ -164,7 +166,9 @@ class LandingPagesController extends Controller
         // Get all blocks
         $blocks = [];
 
-        $category_blocks = \File::files($category_dir);
+        $category_blocks = array_sort(\File::files($category_dir), function($dir) {
+          return $dir;
+        });
 
         foreach ($category_blocks as $category_block) {
           if (ends_with($category_block, '.blade.php')) {
