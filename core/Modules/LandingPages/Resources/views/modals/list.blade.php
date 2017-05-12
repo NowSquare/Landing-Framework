@@ -54,7 +54,7 @@
     </div>
   </td>
   <td>
-    <button type="button" class="btn btn-block btn-lg btn-default icon-picker icon-picker@{{ i }} iconpicker-component" data-toggle="dropdown" data-selected="@{{ icon }}"><i class="fa @{{ icon }}"></i></button>
+    <button type="button" class="btn btn-block btn-lg btn-default icon-picker iconpicker-component" data-toggle="dropdown" data-selected="@{{ icon }}" id="icon-picker@{{ i }}"><i class="fa @{{ icon }}"></i></button>
   </td>
   <td>
     <input type="text" class="form-control input-lg" id="title@{{ i }}" name="title" autocomplete="off" value="@{{ title }}">
@@ -81,6 +81,8 @@ Set settings
 
   var $el = $('.{{ $el_class }}', window.parent.document);
 
+  var i = 0;
+
   // Parse template for speed optimization
   // Initialize before inserting existing rows
   var list_row = $('#list_row').html();
@@ -88,7 +90,7 @@ Set settings
 
 <?php if ($repeat == 'a') { ?>
 
-  $el.find('a').each(function (i) {
+  $el.find('a').each(function (j) {
     var $row = $(this);
     var data = {};
 
@@ -98,13 +100,17 @@ Set settings
     var url = $row.attr('href');
     url = (typeof url !== typeof undefined && url !== false) ? url : '';
 
-    data.i = i;
+    i = j;
+
+    data.i = j;
     data.icon = icon.class;
     data.title = title;
     data.url = url;
 
     addRepeaterRow('insert', data);
   });
+
+  i++;
 
 <?php } ?>
 
@@ -117,45 +123,44 @@ Update settings
   $('.onClickUpdate').on('click', function() {
 <?php if ($el_class != '') { ?>
 
-
 <?php if ($repeat == 'a') { ?>
 
-  // Get one element for cloning, remove class
-  var $item = $el.find('a').first()
+    // Get one element for cloning, remove class
+    var $item = $el.find('a').first()
 
-  var icon = $item.find('i').attr('class');
-  icon = icon.replace('fa ', '');
-  $item.find('i').removeClass(icon);
-  $item = $item.clone();
+    var icon = $item.find('i').attr('class');
+    icon = icon.replace('fa ', '');
+    $item.find('i').removeClass(icon);
+    $item = $item.clone();
 
-  // Make empty before inserting new
-  $el.html('');
+    // Make empty before inserting new
+    $el.html('');
 
-  $('#tbl-list tbody tr').each(function (i) {
-    var $row = $(this);
+    $('#tbl-list tbody tr').each(function (i) {
+      var $row = $(this);
 
-    var icon = $row.find('.icon-picker i').attr('class');
-    icon = icon.replace('iconpicker-component', '');
-    var title = $row.find('[name=title]').val();
-    var url = $row.find('[name=url]').val();
+      var icon = $row.find('.icon-picker i').attr('class');
+      icon = icon.replace('iconpicker-component', '');
+      var title = $row.find('[name=title]').val();
+      var url = $row.find('[name=url]').val();
 
-    var $new_item = $item.clone();
+      var $new_item = $item.clone();
 
-    // Get font vendor
-    var new_icon = parent.lfExtractIconClass($new_item.find('i').attr('class'));
+      // Get font vendor
+      var new_icon = parent.lfExtractIconClass($new_item.find('i').attr('class'));
 
-    $new_item.find('i').removeClass(new_icon.font);
-    $new_item.find('i').addClass(icon);
-    $new_item.attr('title', title);
-    $new_item.attr('href', url);
+      $new_item.find('i').removeClass(new_icon.font);
+      $new_item.find('i').addClass(icon);
+      $new_item.attr('title', title);
+      $new_item.attr('href', url);
 
-    $el.append($new_item);
-  });
+      $el.append($new_item);
+    });
 
 <?php } ?>
 
-  // Changes detected
-  window.parent.lfSetPageIsDirty();
+    // Changes detected
+    window.parent.lfSetPageIsDirty();
 
 <?php } ?>
 
@@ -188,23 +193,12 @@ List template
     }
   });
 
-  var i = 0;
-
   $('.add_item').on('click', function() {
     addRepeaterRow('new', null);
   });
 
   function addRepeaterRow(action, data) {
-    if(action == 'update') {
-      var html = Mustache.render(list_row, mustacheBuildOptions({
-        icon: data.icon,
-        title: data.title,
-        url: data.url
-      }));
-
-      $('tbl-list #row' + data.i).replaceWith(html);
-
-    } else if(action == 'new') {
+    if(action == 'new') {
 
       var html = Mustache.render(list_row, mustacheBuildOptions({
         i: i++,
@@ -214,19 +208,19 @@ List template
       }));
 
       $('#tbl-list tbody').append(html);
-      rowBindings(i);
+      rowBindings(i - 1);
 
     } else if (action == 'insert'){
 
       var html = Mustache.render(list_row, mustacheBuildOptions({
-        i: i++,
+        i: data.i,
         icon: data.icon,
         title: data.title,
         url: data.url
       }));
 
       $('#tbl-list tbody').append(html);
-      rowBindings(i);
+      rowBindings(data.i);
     }
   }
 
@@ -236,30 +230,30 @@ List template
 });
 
 function rowBindings(i) {
-  $('.icon-picker' + i + '').iconpicker({
-      showFooter: true,
-      searchInFooter: true,
-      hideOnSelect: true,
-      animation: true,
-      placement: 'auto',
-      templates: {
-        popover: '<div class="iconpicker-popover popover"><div class="arrow"></div>' +
-          '<div class="popover-title"></div><div class="popover-content"></div></div>',
-        footer: '<div class="popover-footer"></div>',
-        buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">' + _lang['cancel'] + '</button>' +
-          ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">' + _lang['accept'] + '</button>',
-        search: '<input type="search" class="form-control iconpicker-search" placeholder="' + _lang['type_to_filter'] + '" />',
-        iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
-        iconpickerItem: '<a role="button" href="#" class="iconpicker-item"><i></i></a>',
-      },
-      icons: $.merge(materialIcons, $.iconpicker.defaultOptions.icons),
-      fullClassFormatter: function(val) {
-        if(val.match(/^fa-/)) {
-          return 'fa ' + val;
-        } else {
-          return 'mi ' + val;
-        }
+  $('#icon-picker' + i + '').iconpicker({
+    showFooter: true,
+    searchInFooter: true,
+    hideOnSelect: true,
+    animation: true,
+    placement: 'auto',
+    templates: {
+      popover: '<div class="iconpicker-popover popover"><div class="arrow"></div>' +
+        '<div class="popover-title"></div><div class="popover-content"></div></div>',
+      footer: '<div class="popover-footer"></div>',
+      buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">' + _lang['cancel'] + '</button>' +
+        ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">' + _lang['accept'] + '</button>',
+      search: '<input type="search" class="form-control iconpicker-search" placeholder="' + _lang['type_to_filter'] + '" />',
+      iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
+      iconpickerItem: '<a role="button" href="#" class="iconpicker-item"><i></i></a>',
+    },
+    icons: $.merge(materialIcons, $.iconpicker.defaultOptions.icons),
+    fullClassFormatter: function(val) {
+      if(val.match(/^fa-/)) {
+        return 'fa ' + val;
+      } else {
+        return 'mi ' + val;
       }
+    }
   });
 
   bsTooltipsPopovers();
