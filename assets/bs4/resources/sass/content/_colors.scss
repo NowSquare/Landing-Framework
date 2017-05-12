@@ -8,31 +8,43 @@
 }
 
 .color-light {
-  color: $light-color;
+  &,i {
+    color: $light-color;
+  }
 }
 
 a.color-light:hover,
 a.color-light:active,
 a.color-light:focus {
-  color: darken($light-color, 10);
+  &,i {
+    color: darken($light-color, 10);
+  }
 }
 
 .color-light-10 {
-  color: darken($light-color, 10);
+  &,i {
+    color: darken($light-color, 10);
+  }
 }
 a.color-light-10:hover,
 a.color-light-10:active,
 a.color-light-10:focus {
-  color: $light-color;
+  &,i {
+    color: $light-color;
+  }
 }
 
 .color-light-20 {
-  color: darken($light-color, 20);
+  &,i {
+    color: darken($light-color, 20);
+  }
 }
 a.color-light-20:hover,
 a.color-light-20:active,
 a.color-light-20:focus {
-  color: darken($light-color, 10);
+  &,i {
+    color: darken($light-color, 10);
+  }
 }
 
 .bg-dark {
@@ -40,31 +52,43 @@ a.color-light-20:focus {
 }
 
 .color-dark {
-  color: $dark-color;
+  &,i {
+    color: $dark-color;
+  }
 }
 
 a.color-dark:hover,
 a.color-dark:active,
 a.color-dark:focus {
-  color: lighten($dark-color, 10);
+  &,i {
+    color: lighten($dark-color, 10);
+  }
 }
 
 .color-dark-10 {
-  color: lighten($dark-color, 10);
+  &,i {
+    color: lighten($dark-color, 10);
+  }
 }
 a.color-dark-10:hover,
 a.color-dark-10:active,
 a.color-dark-10:focus {
-  color: $dark-color;
+  &,i {
+    color: $dark-color;
+  }
 }
 
 .color-dark-20 {
-  color: lighten($dark-color, 20);
+  &,i {
+    color: lighten($dark-color, 20);
+  }
 }
 a.color-dark-20:hover,
 a.color-dark-20:active,
 a.color-dark-20:focus {
-  color: lighten($dark-color, 10);
+  &,i {
+    color: lighten($dark-color, 10);
+  }
 }
 
 /* Material colors */
@@ -79,12 +103,16 @@ a.color-dark-20:focus {
   }
 
   .color-#{$color-name} {
-    color: $color-value;
+    &,i {
+      color: $color-value;
+    }
   }
 
   a.color-#{$color-name}:hover,
   a.color-#{$color-name}:active,
   a.color-#{$color-name}:focus {
-    color: darken($color-value, 10);
+    &,i {
+      color: darken($color-value, 10);
+    }
   }
 }
