@@ -120,12 +120,24 @@ Insert block
     // Make new block editable
     window.parent.lfMakeNewBlockEditable($new_block, '{{ $el_class }}', 'after');
 
+    // Scroll to element
+    window.parent.$('html, body').animate({
+      scrollTop: parseInt($el.offset().top) - parseInt($new_block[0].scrollHeight)
+    }, 400);
+
 <?php } else { ?>
     var $new_block = $(html).insertAfter($el);
 
     // Make new block editable
     window.parent.lfMakeNewBlockEditable($new_block, '{{ $el_class }}', 'above');
+
+    // Scroll to element
+    window.parent.$('html, body').animate({
+      scrollTop: parseInt($el.offset().top) + parseInt($el[0].scrollHeight)
+    }, 400);
+
 <?php } ?>
+
 <?php } else { /* ----------------------------------------------------------------------------
 Insert block at bottom of page
 */
@@ -147,6 +159,12 @@ Insert block at bottom of page
       // Make new block editable
       window.parent.lfMakeNewBlockEditable($new_block);
     }
+
+    // Scroll to element
+    window.parent.$('html, body').animate({
+      scrollTop: parseInt($el.offset().top) + parseInt($el[0].scrollHeight)
+    }, 400);
+
 <?php } ?>
 
     // Changes detected
