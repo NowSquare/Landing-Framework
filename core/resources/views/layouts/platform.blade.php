@@ -41,8 +41,9 @@
 
   <div id="deviceWarning">
     <div>
-      <p class="lead">{{ trans('global.device_warning1') }}</p>
-      <p class="lead">{{ trans('global.device_warning2') }}</p>
+      <p class="lead">{!! trans('global.device_warning2') !!}</p>
+      <p class="lead">{!! trans('global.device_warning3') !!}</p>
+      <p class="lead" style="color: #FFFF00">{!! trans('global.device_warning1') !!}</p>
       <p class="lead"><button type="button" class="btn btn-lg btn-primary" onclick="$('#deviceWarning').remove()">{{ trans('global.device_warning_remove') }}</button></p>
     </div>
   </div>

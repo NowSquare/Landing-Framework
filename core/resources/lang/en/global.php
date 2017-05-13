@@ -76,8 +76,9 @@ return array(
   "dashboard" => "Dashboard",
   "hi" => ["Hi", "Hola", "Hello", "Hallo", "Aloha", "Heya"],
   "welcome_name" => "Welcome, :name!",
-  "device_warning1" => "We don't currently support mobile browsers. You can only log in and edit your full site from a desktop or laptop.",
-  "device_warning2" => "While we only support site editing on desktop and laptop computers, all sites are optimized for responsive design so they look great in common mobile web browsers.",
+  "device_warning1" => "If you're seeing this message and you're on a desktop or laptop, resize your browser window to a larger viewport.",
+  "device_warning2" => "We don't currently support mobile browsers. You can only log in and edit your full site from a desktop or laptop.",
+  "device_warning3" => "While we only support site editing on desktop and laptop computers, all sites are optimized for responsive design so they look great in common mobile web browsers.",
   "device_warning_remove" => "I understand, and I still want to continue!",
 
   /*
