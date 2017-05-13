@@ -698,6 +698,11 @@ class NodeTest extends PHPUnit_Framework_TestCase
         $node->parent_id = 5;
 
         $this->assertTrue($node->isDirty('parent_id'));
+
+        $node = $this->findCategory('apple');
+        $node->parent_id = null;
+
+        $this->assertTrue($node->isDirty('parent_id'));
     }
 
     public function testIsDirtyMovement()
@@ -860,6 +865,87 @@ class NodeTest extends PHPUnit_Framework_TestCase
 
         $this->assertFalse($category->isLeaf());
     }
+
+    public function testEagerLoadAncestors()
+    {
+        $queryLogCount = count(Capsule::connection()->getQueryLog());
+        $categories = Category::with('ancestors')->orderBy('name')->get();
+
+        $this->assertEquals($queryLogCount + 2, count(Capsule::connection()->getQueryLog()));
+
+        $expectedShape = [
+            'apple (3)}' => 'store (1) > notebooks (2)',
+            'galaxy (8)}' => 'store (1) > mobile (5) > samsung (7)',
+            'lenovo (4)}' => 'store (1) > notebooks (2)',
+            'lenovo (10)}' => 'store (1) > mobile (5)',
+            'mobile (5)}' => 'store (1)',
+            'nokia (6)}' => 'store (1) > mobile (5)',
+            'notebooks (2)}' => 'store (1)',
+            'samsung (7)}' => 'store (1) > mobile (5)',
+            'sony (9)}' => 'store (1) > mobile (5)',
+            'store (1)}' => '',
+            'store_2 (11)}' => ''
+        ];
+
+        $output = [];
+
+        foreach ($categories as $category) {
+            $output["{$category->name} ({$category->id})}"] = $category->ancestors->count()
+                ? implode(' > ', $category->ancestors->map(function ($cat) { return "{$cat->name} ({$cat->id})"; })->toArray())
+                : '';
+        }
+
+        $this->assertEquals($expectedShape, $output);
+    }
+
+    public function testLazyLoadAncestors()
+    {
+        $queryLogCount = count(Capsule::connection()->getQueryLog());
+        $categories = Category::orderBy('name')->get();
+
+        $this->assertEquals($queryLogCount + 1, count(Capsule::connection()->getQueryLog()));
+
+        $expectedShape = [
+            'apple (3)}' => 'store (1) > notebooks (2)',
+            'galaxy (8)}' => 'store (1) > mobile (5) > samsung (7)',
+            'lenovo (4)}' => 'store (1) > notebooks (2)',
+            'lenovo (10)}' => 'store (1) > mobile (5)',
+            'mobile (5)}' => 'store (1)',
+            'nokia (6)}' => 'store (1) > mobile (5)',
+            'notebooks (2)}' => 'store (1)',
+            'samsung (7)}' => 'store (1) > mobile (5)',
+            'sony (9)}' => 'store (1) > mobile (5)',
+            'store (1)}' => '',
+            'store_2 (11)}' => ''
+        ];
+
+        $output = [];
+
+        foreach ($categories as $category) {
+            $output["{$category->name} ({$category->id})}"] = $category->ancestors->count()
+                ? implode(' > ', $category->ancestors->map(function ($cat) { return "{$cat->name} ({$cat->id})"; })->toArray())
+                : '';
+        }
+
+        // assert that there is number of original query + 1 + number of rows to fulfill the relation
+        $this->assertEquals($queryLogCount + 12, count(Capsule::connection()->getQueryLog()));
+
+        $this->assertEquals($expectedShape, $output);
+    }
+
+    public function testWhereHasCountQueryForAncestors()
+    {
+        $categories = all(Category::has('ancestors', '>', 2)->pluck('name'));
+
+        $this->assertEquals([ 'galaxy' ], $categories);
+
+        $categories = all(Category::whereHas('ancestors', function ($query) {
+            $query->where('id', 5);
+        })->pluck('name'));
+
+        $this->assertEquals([ 'nokia', 'samsung', 'galaxy', 'sony', 'lenovo' ], $categories);
+    }
+
 }
 
 function all($items)
