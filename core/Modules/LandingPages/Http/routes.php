@@ -12,6 +12,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'landingpages', 'namespace' => 
   Route::group(['middleware' => 'auth:web'], function () {
 
     Route::get('create', 'LandingPagesController@create');
+    Route::get('create/{category}', 'LandingPagesController@createCategory');
     Route::get('editor', 'LandingPagesController@editor');
 
     // Previews

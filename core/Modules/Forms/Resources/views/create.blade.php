@@ -41,7 +41,7 @@ foreach ($items as $item) {
         </div>
         <div>
           <div class="text-center">
-            <a href="{{ $item['url'] }}">
+            <a href="{{ $item['url'] }}" onclick="alert('Coming soon!')">
               <img src="{{ url('assets/images/icons/color/' . $item['icon']) }}" id="box-icon{{ $i }}" class="box-icon" alt="{{ $item['name'] }}">
             </a>
           </div>
@@ -49,7 +49,7 @@ foreach ($items as $item) {
             {{ $item['desc'] }}
           </div>
           <div class="panel-footer">
-            <a href="{{ $item['url'] }}" class="btn btn-lg btn-primary btn-block">{{ trans('global.select') }}</a>
+            <a href="{{ $item['url'] }}" onclick="alert('Coming soon!')" class="btn btn-lg btn-primary btn-block">{{ trans('global.select') }}</a>
           </div>
         </div>
       </div>

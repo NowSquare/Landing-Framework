@@ -93,10 +93,6 @@ foreach($blocks as $block) {
     percentPosition: true,
     transitionDuration: '0.2s'
   });
-
-  $grid.on('layoutComplete', function() {
-    
-  });
 <?php } ?>
   });
 <?php

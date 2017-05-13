@@ -58,37 +58,19 @@ class LandingPagesController extends Controller
      */
     public function create()
     {
-      $items = [];
+      $categories = FunctionsController::getCategories();
 
-      $items[] = [
-        "icon" => 'presentation.svg',
-        "name" => trans('landingpages::global.business_services'),
-        "desc" => trans('landingpages::global.business_services_desc'),
-        "url" => "#/landingpages/business_services"
-      ];
+      return view('landingpages::create', compact('categories'));
+    }
 
-      $items[] = [
-        "icon" => 'chefavatar-food-grocery-kitchen-restaurant-drink.svg',
-        "name" => trans('landingpages::global.food_drinks'),
-        "desc" => trans('landingpages::global.food_drinks_desc'),
-        "url" => "#/landingpages/food_drink"
-      ];
+    /**
+     * Create a new landing page step 2
+     */
+    public function createCategory($category)
+    {
+      $templates = FunctionsController::getTemplatesByCategory($category);
 
-      $items[] = [
-        "icon" => 'plan.svg',
-        "name" => trans('landingpages::global.digital_tech'),
-        "desc" => trans('landingpages::global.digital_tech_desc'),
-        "url" => "#/landingpages/digital_tech"
-      ];
-
-      $items[] = [
-        "icon" => 'pictureprofile.svg',
-        "name" => trans('landingpages::global.personal'),
-        "desc" => trans('landingpages::global.personal_desc'),
-        "url" => "#/landingpages/personal"
-      ];
-
-      return view('landingpages::create', compact('items'));
+      return view('landingpages::create-select-template', compact('category', 'templates'));
     }
 
     /**
@@ -128,23 +110,7 @@ class LandingPagesController extends Controller
       $position = $request->input('position', 'below');
 
       // Get all categories
-      $categories = [];
-
-      $block_categories = array_sort(\File::directories(base_path('../blocks/landingpages/')), function($dir) {
-        return $dir;
-      });
-
-      foreach ($block_categories as $block_category) {
-        $category = basename($block_category);
-        $category_name = explode('-', $block_category)[1];
-
-        $categories[] = [
-          'dir' => $category,
-          'name' => trans('landingpages::block.' . $category_name),
-          'desc' => trans('landingpages::block.' . $category . '_desc'),
-          'icon' => url('blocks/landingpages/' . $category . '/icon.svg')
-        ];
-      }
+      $categories = FunctionsController::getBlockCategories();
 
       return view('landingpages::modals.insert-block', compact('el_class', 'position', 'categories'));
     }
@@ -159,31 +125,9 @@ class LandingPagesController extends Controller
       $category = $request->input('c', '');
       $category_name = explode('-', $category)[1];
 
-      $category_dir = base_path('../blocks/landingpages/' . $category);
+      $blocks = FunctionsController::getBlocksByCategory($category);
 
-      if (\File::exists($category_dir)) {
-    
-        // Get all blocks
-        $blocks = [];
-
-        $category_blocks = array_sort(\File::files($category_dir), function($dir) {
-          return $dir;
-        });
-
-        foreach ($category_blocks as $category_block) {
-          if (ends_with($category_block, '.blade.php')) {
-            $block = basename($category_block);
-
-            $blocks[] = [
-              'file' => $block,
-              'preview' => url('landingpages/editor/block-preview?c=' . $category . '&b=' . str_replace('.blade.php', '', $block)),
-              'blocks' => $blocks
-            ];
-          }
-        }
-
-        return view('landingpages::modals.insert-block-select', compact('el_class', 'position', 'blocks', 'category', 'category_name'));
-      }
+      return view('landingpages::modals.insert-block-select', compact('el_class', 'position', 'blocks', 'category', 'category_name'));
     }
 
     /**

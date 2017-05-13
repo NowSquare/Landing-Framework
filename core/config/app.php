@@ -188,6 +188,7 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Nwidart\Modules\LaravelModulesServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -257,7 +258,8 @@ return [
         'Former' => GrahamCampbell\Flysystem\Facades\Flysystem::class,
         'Former' => Former\Facades\Former::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'Module' => Nwidart\Modules\Facades\Module::class
+        'Module' => Nwidart\Modules\Facades\Module::class,
+        'Image' => Intervention\Image\Facades\Image::class
 
     ],
 
