@@ -15,6 +15,7 @@
         "graham-campbell/flysystem": "^3.7",
         "guzzlehttp/guzzle": "^6.2",
         "hashids/hashids": "^2.0",
+        "intervention/image": "^2.3",
         "kalnoy/nestedset": "^4.2",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
