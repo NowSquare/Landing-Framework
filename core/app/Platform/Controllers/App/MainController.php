@@ -19,10 +19,38 @@ class MainController extends \App\Http\Controllers\Controller {
    */
 
   public function main() {
+    // Get languages
     $languages = Core\Localization::getLanguagesArray();
     $current_language = strtoupper(trans('i18n.language_code'));
 
-    return view('platform.main', compact('languages', 'current_language'));
+    // Get modules
+    $modules = \Module::enabled();
+    $active_modules = [];
+
+    foreach ($modules as $module) {
+      $namespace = $module->getLowerName();
+      $enabled = config($namespace . '.enabled');
+      $creatable = config($namespace . '.creatable');
+
+      if ($enabled && $creatable && \Gate::allows('limitation', $namespace . '.visible')) {
+        $active_modules[] = [
+          "namespace" => $namespace,
+          "icon" => config($namespace . '.icon'),
+          "order" => config($namespace . '.order'),
+          "name" => trans($namespace . '::global.module_name'),
+          "name_plural" => trans($namespace . '::global.module_name_plural'),
+          "desc" => trans($namespace . '::global.module_desc'),
+          "url" => "#/" . $namespace . "/create"
+        ];
+
+      }
+    }
+
+    $active_modules = array_values(array_sort($active_modules, function ($value) {
+      return $value['order'];
+    }));
+
+    return view('platform.main', compact('languages', 'current_language', 'active_modules'));
   }
 
   /**

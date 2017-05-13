@@ -18,15 +18,6 @@ Route::get('/', '\Platform\Controllers\Website\WebsiteController@home')->name('h
 // JavaScript language vars
 Route::get('assets/javascript', '\Platform\Controllers\App\AssetController@appJs');
 
-// -----------------------------------------------------------------
-// Plan limitation online.cards_visible
-Route::group(['middleware' => 'limitation:online.cards_visible'], function () {
-
-  // Card
-  Route::get('card/{hash_id}', '\Platform\Controllers\Cards\RenderController@showCard');
-  Route::get('card/{hash_id}/manifest.json', '\Platform\Controllers\Cards\RenderController@showManifest');
-});
-
 // Secured web routes
 Route::group(['middleware' => 'auth:web'], function () {
 
@@ -48,10 +39,10 @@ Route::group(['middleware' => 'auth:web'], function () {
   Route::post('platform/profile-avatar', '\Platform\Controllers\App\AccountController@postAvatar');
   Route::post('platform/profile-avatar-delete', '\Platform\Controllers\App\AccountController@postDeleteAvatar');
 
-
+  // Temp -----------------------------------------------
   Route::get('platform/landing/editor', '\Platform\Controllers\Landing\PagesController@showEditor');
-  Route::get('platform/module/create', '\Platform\Controllers\Module\ModuleController@showNew');
 
+  
   // -----------------------------------------------------------------
   // Plan limitation account.plan_visible
   Route::group(['middleware' => 'limitation:account.plan_visible'], function () {
@@ -59,9 +50,6 @@ Route::group(['middleware' => 'auth:web'], function () {
     // Plan
     Route::get('platform/plan', '\Platform\Controllers\App\AccountController@showPlan');
   });
-
-  // Software apps
-  Route::get('platform/software/app', '\Platform\Controllers\Software\AppController@showApp');
 
   // -----------------------------------------------------------------
   // Plan limitation online.visible

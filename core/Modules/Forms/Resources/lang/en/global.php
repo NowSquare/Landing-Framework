@@ -9,6 +9,7 @@ return array(
 	*/
 
 	"module_name" => "Form",
+	"module_name_plural" => "Forms",
 	"module_desc" => "Collect information. Make reservations, proposals, downloads, contact and more.",
 
 	/*
@@ -17,6 +18,7 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
+  "create_new_form" => "Create a new form",
   "contact_form" => "Contact form",
   "contact_form_desc" => "Get in touch with your visitors.",
   "download_form" => "Download form",

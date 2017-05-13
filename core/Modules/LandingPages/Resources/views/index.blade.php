@@ -13,7 +13,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('forms::global.module_name_plural') }}</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('landingpages::global.module_name_plural') }}</a>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-title-navbar">
@@ -25,7 +25,7 @@
                   <input type="text" class="form-control input" id="grid_search" placeholder="{{ trans('global.search_') }}">
                 </div>
 
-                <a href="#/forms/create" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('forms::global.create_new_form') }}</a>
+                <a href="#/landingpages/create" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('landingpages::global.create_new_landing_page') }}</a>
             </div>
 
           </div>

@@ -24,30 +24,30 @@
   <div class="row">
 <?php
 $i=0;
-foreach ($items as $item) {
+foreach ($active_modules as $module) {
   $i++;
 ?>
     <div class="col-xs-6 col-sm-4 col-lg-3">
 
       <div class="portlet shadow-box box-option"
-        onMouseOver="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/active/' . $item['icon']) }}';"
-        onMouseOut="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/color/' . $item['icon']) }}';"
+        onMouseOver="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/active/' . $module['icon']) }}';"
+        onMouseOut="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/color/' . $module['icon']) }}';"
       >
         <div class="portlet-heading portlet-default">
-          <h3 class="portlet-title text-dark">{{ $item['name'] }}</h3>
+          <h3 class="portlet-title text-dark">{{ $module['name'] }}</h3>
           <div class="clearfix"></div>
         </div>
         <div>
           <div class="text-center">
-            <a href="{{ $item['url'] }}">
-              <img src="{{ url('assets/images/icons/color/' . $item['icon']) }}" id="box-icon{{ $i }}" class="box-icon" alt="{{ $item['name'] }}">
+            <a href="{{ $module['url'] }}">
+              <img src="{{ url('assets/images/icons/color/' . $module['icon']) }}" id="box-icon{{ $i }}" class="box-icon" alt="{{ $module['name'] }}">
             </a>
           </div>
           <div class="portlet-body">
-            {{ $item['desc'] }}
+            {{ $module['desc'] }}
           </div>
           <div class="panel-footer">
-            <a href="{{ $item['url'] }}" class="btn btn-lg btn-primary btn-block">{{ trans('global.select') }}</a>
+            <a href="{{ $module['url'] }}" class="btn btn-lg btn-primary btn-block">{{ trans('global.select') }}</a>
           </div>
         </div>
       </div>

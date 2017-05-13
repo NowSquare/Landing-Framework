@@ -54,6 +54,14 @@ class LandingPagesController extends Controller
     }
 
     /**
+     * Landing page home
+     */
+    public function index()
+    {
+      return view('landingpages::index');
+    }
+
+    /**
      * Create a new landing page step 1
      */
     public function create()

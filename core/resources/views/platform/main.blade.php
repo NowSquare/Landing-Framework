@@ -13,6 +13,11 @@
       <div id="navigation">
         <ul class="navigation-menu">
           <li class="has-submenu" id="tour-dashboard"><a href="#/" class="waves-effect waves-light">{{ trans('global.dashboard') }}</a></li>
+<?php
+foreach ($active_modules as $module) {
+?>
+          <li class="has-submenu" id="module{{ $module['namespace'] }}"><a href="#/{{ $module['namespace'] }}" class="waves-effect waves-light">{{ $module['name_plural'] }}</a></li>
+<?php } ?>
 <?php if (1==2 && Gate::allows('limitation', 'media.visible')) { ?>
           <li class="has-submenu"><a href="#/media" class="waves-effect waves-light">{{ trans('global.media') }}</a></li>
 <?php } ?>

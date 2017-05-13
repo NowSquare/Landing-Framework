@@ -6,11 +6,11 @@
         <div class="container-fluid">
          
           <div class="navbar-header">
-            <a class="navbar-brand link" href="#/create">{{ trans('global.create') }}</a>
+            <a class="navbar-brand link" href="#/landingpages">{{ trans('landingpages::global.module_name_plural') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
-            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('landingpages::global.module_name') }}</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('landingpages::global.create_new_landing_page') }}</a>
           </div>
-
+<?php /*
           <div class="collapse navbar-collapse" id="bs-title-navbar">
 
             <div class="navbar-form navbar-right">
@@ -18,6 +18,7 @@
             </div>
 
           </div>
+ */ ?>
         </div>
       </nav>
     </div>

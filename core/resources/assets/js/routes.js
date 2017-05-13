@@ -38,13 +38,13 @@ $(function() {
       '/profile': function () { loadRoute('platform/profile'); },
       '/plan': function () { loadRoute('platform/plan', 'profile'); },
 
-      '/create': function () { loadRoute('platform/module/create'); },
+      '/forms': function () { loadRoute('forms', 'forms'); },
+      '/forms/create': function () { loadRoute('forms/create', 'forms'); },
 
-      '/forms/create': function () { loadRoute('forms/create', 'create'); },
-
-      '/landingpages/create': function () { loadRoute('landingpages/create', 'create'); },
-      '/landingpages/create/:cat': function (cat) { loadRoute('landingpages/create/' + cat, 'create'); },
-      '/landingpages/editor/:sl': function (sl) { loadRoute('landingpages/editor?sl=' + sl, 'landingpage/editor'); },
+      '/landingpages': function () { loadRoute('landingpages', 'landingpages'); },
+      '/landingpages/create': function () { loadRoute('landingpages/create', 'landingpages'); },
+      '/landingpages/create/:cat': function (cat) { loadRoute('landingpages/create/' + cat, 'landingpages'); },
+      '/landingpages/editor/:sl': function (sl) { loadRoute('landingpages/editor?sl=' + sl, 'landingpages'); },
 
       '/members': function () { loadRoute('platform/members'); },
       '/member/:sl': function (sl) { loadRoute('platform/member/edit?sl=' + sl, 'members'); },

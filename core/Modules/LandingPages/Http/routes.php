@@ -6,11 +6,12 @@ Route::group(['middleware' => 'web', 'prefix' => 'lp', 'namespace' => 'Modules\L
   Route::get('{local_domain}', 'LandingPagesController@homePage');
 });
 
-Route::group(['middleware' => 'web', 'prefix' => 'landingpages', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
+Route::group(['middleware' => ['web', 'limitation:landingpages.visible'], 'prefix' => 'landingpages', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
 
   // Secured web routes
   Route::group(['middleware' => 'auth:web'], function () {
 
+    Route::get('/', 'LandingPagesController@index');
     Route::get('create', 'LandingPagesController@create');
     Route::get('create/{category}', 'LandingPagesController@createCategory');
     Route::get('editor', 'LandingPagesController@editor');

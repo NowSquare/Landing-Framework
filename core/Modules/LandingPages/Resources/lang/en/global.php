@@ -9,7 +9,16 @@ return array(
 	*/
 
 	"module_name" => "Landing Page",
+	"module_name_plural" => "Landing Pages",
 	"module_desc" => "Create an awesome looking landing page to promote your product, service or yourself.",
+
+	/*
+	|--------------------------------------------------------------------------
+	| General
+	|--------------------------------------------------------------------------
+	*/
+
+	"create_new_landing_page" => "Create a new landing page",
 	"custom_domain" => "Custom domain",
 	"personal" => "Personal",
 	"personal_desc" => "A landing page for freelancers, a portfolio or resumes.",
