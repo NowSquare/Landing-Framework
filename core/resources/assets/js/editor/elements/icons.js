@@ -59,6 +59,23 @@ function lfInitIcon($icon, unique_class) {
     $edit_button.find('.-x-el-dropdown').addClass('-x-el-dropdown-left');
   }
 
+  // Check selected size
+  $edit_button.find('.-x-el-icon-size-select .-x-el-checkmark').removeClass('-x-checked');
+
+  if ($icon.hasClass('icon-xs')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=xs] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-s')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=s] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-m')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=m] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-l')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=l] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-xl')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=xl] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-xxl')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=xxl] .-x-el-checkmark').addClass('-x-checked');
+  }
+
   new Tether({
     element: $edit_button,
     target: $icon,
@@ -106,6 +123,53 @@ function lfInitIcons() {
       //var $el = $('.' + el_class);
 
       lfOpenModal(_lang["url"] + '/landingpages/editor/modal/icon', el_class);
+    }
+  });
+
+  /* 
+    Icon size
+  */
+
+  $('body').on('click', '.-x-el-icon-size-select', function() {
+    var el_class = $(this).parents('.-x-el-icon-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      var selected_size = $(this).attr('data-x-size');
+
+      // Unselect all
+      $(this).parents('ul').find('.-x-el-icon-size-select .-x-el-checkmark').removeClass('-x-checked');
+
+      // Select size
+      $(this).parents('ul').find('.-x-el-icon-size-select[data-x-size=' + selected_size + '] .-x-el-checkmark').addClass('-x-checked');
+
+      // Remove all size classes
+      var $el = $('.' + el_class);
+      $el.removeClass('icon-xs icon-s icon-m icon-l icon-xl icon-xxl');
+
+      // Add size class
+      $el.addClass('icon-' + selected_size);
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+    }
+  });
+
+  /* 
+    Toggle icon visibility
+  */
+
+  $('body').on('click', '.-x-el-icon-visibility', function() {
+    var el_class = $(this).parents('.-x-el-icon-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+
+      // Toggle .invisible class
+      var $el = $('.' + el_class);
+      $el.toggleClass('invisible');
     }
   });
 }

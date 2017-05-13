@@ -79,6 +79,18 @@ var xTplIconButton = '<div class="-x-el-inline-button -x-el-icon-edit -x-el-rese
   ' >' +
   ' <ul class="-x-el-dropdown -x-el-reset">' +
   '   <li class="-x-el-icon-edit"><a href="javascript:void(0);">' + _lang["modify_icon"] + '</a></li>' +
+  '   <li class="separator"><hr></li>' +
+  '   <li class="-x-el-icon-size"><a href="javascript:void(0);">' + _lang["size"] + ' <div class="-x-el-caret"></div></a>' +
+  '     <ul>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="xs"><a href="javascript:void(0);">' + _lang["XS"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="s"><a href="javascript:void(0);">' + _lang["S"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="m"><a href="javascript:void(0);">' + _lang["M"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="l"><a href="javascript:void(0);">' + _lang["L"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="xl"><a href="javascript:void(0);">' + _lang["XL"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="xxl"><a href="javascript:void(0);">' + _lang["XXL"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '     </ul>' +
+  '   </li>' +
+  '   <li class="-x-el-icon-visibility"><a href="javascript:void(0);">' + _lang["toggle_visibility"] + '</a></li>' +
   ' </ul>' +
   '</div>';
 
@@ -116,5 +128,6 @@ var xTplLinkButton = '<div class="-x-el-inline-button -x-el-link-edit -x-el-rese
   '       <li class="-x-el-link-shape-pill"><a href="javascript:void(0);">' + _lang["pill"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '     </ul>' +
   '   </li>' +
+  '   <li class="-x-el-link-visibility"><a href="javascript:void(0);">' + _lang["toggle_visibility"] + '</a></li>' +
   ' </ul>' +
   '</div>';

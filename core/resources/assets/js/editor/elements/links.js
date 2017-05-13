@@ -222,6 +222,24 @@ function lfInitLinks() {
       $(this).parents('.-x-el-dropdown').trigger('mouseleave');
     }
   });
+
+  /* 
+    Toggle button visibility
+  */
+
+  $('body').on('click', '.-x-el-link-visibility', function() {
+    var el_class = $(this).parents('.-x-el-link-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+
+      // Toggle .invisible class
+      var $el = $('.' + el_class);
+      $el.toggleClass('invisible');
+    }
+  });
 }
 
 /* 

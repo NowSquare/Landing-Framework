@@ -47,6 +47,7 @@ return array(
   "modify_image" => "Modify image",
   "modify_icon" => "Modify icon",
   "remove" => "Remove",
+  "toggle_visibility" => "Toggle visibility",
   "modify_link" => "Modify link",
   "button" => "Button",
   "shape" => "Shape",
@@ -56,10 +57,12 @@ return array(
   "notification" => "Notification",
   "color" => "Color",
   "size" => "Size",
+  "XS" => "XS",
   "S" => "S",
   "M" => "M",
   "L" => "L",
   "XL" => "XL",
+  "XXL" => "XXL",
   "insert_block" => "Insert block",
   "" => ""
 );
