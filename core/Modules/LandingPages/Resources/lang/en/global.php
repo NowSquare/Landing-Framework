@@ -18,7 +18,7 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	"create_new_landing_page" => "Create a new landing page",
+	"create_landing_page" => "Create Landing Page",
 	"category" => "Category",
 	"custom_domain" => "Custom domain",
 	"personal" => "Personal",

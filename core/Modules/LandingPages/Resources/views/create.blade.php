@@ -8,7 +8,7 @@
           <div class="navbar-header">
             <a class="navbar-brand link" href="#/landingpages">{{ trans('landingpages::global.module_name_plural') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
-            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('landingpages::global.create_new_landing_page') }}</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('landingpages::global.create_landing_page') }}</a>
           </div>
 <?php /*
           <div class="collapse navbar-collapse" id="bs-title-navbar">

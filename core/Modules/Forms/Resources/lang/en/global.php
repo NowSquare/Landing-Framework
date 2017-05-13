@@ -18,7 +18,7 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-  "create_new_form" => "Create a new form",
+  "create_form" => "Create Form",
   "contact_form" => "Contact form",
   "contact_form_desc" => "Get in touch with your visitors.",
   "download_form" => "Download form",

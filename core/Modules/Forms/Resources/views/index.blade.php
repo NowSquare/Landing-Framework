@@ -25,7 +25,7 @@
                   <input type="text" class="form-control input" id="grid_search" placeholder="{{ trans('global.search_') }}">
                 </div>
 
-                <a href="#/forms/create" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('forms::global.create_new_form') }}</a>
+                <a href="#/forms/create" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('forms::global.create_form') }}</a>
             </div>
 
           </div>

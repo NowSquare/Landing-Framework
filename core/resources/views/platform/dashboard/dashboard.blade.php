@@ -9,6 +9,7 @@
   </div>
  <?php } ?>
 
+<?php if (count($active_modules) > 0) { ?>
   <div class="row m-t">
     <div class="col-sm-12">
       <nav class="navbar navbar-default card-box sub-navbar">
@@ -55,4 +56,5 @@ foreach ($active_modules as $module) {
     </div>
 <?php } ?>
   </div>
+<?php } ?>
 </div>

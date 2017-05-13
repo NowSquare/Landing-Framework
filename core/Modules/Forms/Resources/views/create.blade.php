@@ -8,7 +8,7 @@
           <div class="navbar-header">
             <a class="navbar-brand link" href="#/forms">{{ trans('forms::global.module_name_plural') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
-            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('forms::global.create_new_form') }}</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('forms::global.create_form') }}</a>
           </div>
 <?php /*
           <div class="collapse navbar-collapse" id="bs-title-navbar">
