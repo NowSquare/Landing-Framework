@@ -21,8 +21,9 @@ foreach ($active_modules as $module) {
 <?php if (1==2 && Gate::allows('limitation', 'media.visible')) { ?>
           <li class="has-submenu"><a href="#/media" class="waves-effect waves-light">{{ trans('global.media') }}</a></li>
 <?php } ?>
+<?php /*
           <li class="has-submenu"> <a href="#/profile" class="waves-effect waves-light">{{ trans('global.account') }}</a></li>
-
+*/ ?>
 <?php if (Gate::allows('admin-management')) { ?>
           <li class="has-submenu last-elements"> <a href="javascript:void(0);" class="waves-effect waves-light">{{ trans('global.admin') }}</a>
             <ul class="submenu">

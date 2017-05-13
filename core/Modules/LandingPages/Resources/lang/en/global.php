@@ -19,6 +19,7 @@ return array(
 	*/
 
 	"create_new_landing_page" => "Create a new landing page",
+	"category" => "Category",
 	"custom_domain" => "Custom domain",
 	"personal" => "Personal",
 	"personal_desc" => "A landing page for freelancers, a portfolio or resumes.",
