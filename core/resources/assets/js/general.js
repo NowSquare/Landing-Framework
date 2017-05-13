@@ -420,10 +420,10 @@ function bindMediaBrowser() {
         fadeOut: 0,
         height: parseInt($(window).height()) + 42, 
         onLoad:function() {
-            $('html, body').css('overflow', 'hidden'); // page scrollbars off
+          $('html, body').css('overflow', 'hidden'); // page scrollbars off
         }, 
         onClosed:function() {
-            $('html, body').css('overflow', ''); // page scrollbars on
+          $('html, body').css('overflow', ''); // page scrollbars on
         }
       });
     });

@@ -57,7 +57,12 @@ class FunctionsController extends Controller
     $category_templates = [];
 
     $templates = array_sort(\File::directories(base_path('../templates/landingpages/')), function($dir) {
-      return $dir;
+      if (\File::exists($dir . '/config.php')) {
+        $config = include $dir . '/config.php';
+        return $config['created_at'];
+      } else {
+        return $dir;
+      }
     });
 
     foreach ($templates as $template) {

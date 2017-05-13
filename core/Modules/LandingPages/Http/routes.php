@@ -14,9 +14,11 @@ Route::group(['middleware' => ['web', 'limitation:landingpages.visible'], 'prefi
     Route::get('/', 'LandingPagesController@index');
     Route::get('create', 'LandingPagesController@create');
     Route::get('create/{category}', 'LandingPagesController@createCategory');
-    Route::get('editor', 'LandingPagesController@editor');
+    Route::get('edit', 'LandingPagesController@editor');
+    Route::get('editor', 'LandingPagesController@editorFrame');
 
     // Previews
+    Route::get('preview/{template}', 'LandingPagesController@previewTemplate');
     Route::get('editor/block-preview', 'LandingPagesController@editorBlockPreview');
 
     // Pickers

@@ -245,9 +245,31 @@ html.editor-modal body {
 #cboxWrapper {
   width: 100% !important;
   height: 100% !important;
-  left: 0 !important;
-  top: 0 !important;
-  bottom: 0 !important;
+}
+
+#colorbox.colorbox-xl {
+  width: 90% !important;
+  height: 90% !important;
+  left: 5% !important;
+  top: 5% !important;
+
+  #cboxLoadedContent {
+    height: 90% !important;
+  }
+
+  #cboxClose {
+    background-color: #fff!important;
+    border-radius: 50%;
+    width: 32px !important;
+    height: 32px !important;
+    margin-top: 28px!important;
+    margin-right: 25px!important;
+  }
+
+  #cboxClose:before, #cboxClose:after {
+    top: 4px;
+    left: 15px;
+  }
 }
 
 #cboxContent {

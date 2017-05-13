@@ -35,8 +35,6 @@
 
 #colorbox, #cboxOverlay, #cboxWrapper {
   position: absolute;
-  top: 0;
-  left: 0;
   z-index: 9999;
   overflow: hidden;
   -webkit-transform: translate3d(0, 0, 0);
@@ -75,8 +73,6 @@
   -ms-interpolation-mode: bicubic;
 }
 .cboxIframe {
-  width: 100%;
-  height: 100%;
   display: block;
   border: 0;
   padding: 0;

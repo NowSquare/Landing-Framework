@@ -17,8 +17,11 @@ class LandingPagesController extends Controller
     {
       $sl = request()->input('sl', '');
 
-      if(1==1 || $sl != '') {
-        //$qs = Core\Secure::string2array($sl);
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        dd($qs);
+
         //$landing_site = Pages::where('user_id', Core\Secure::userId())->where('id', $qs['landing_site_id'])->first();
 
         // Put template html into variable.
@@ -54,11 +57,92 @@ class LandingPagesController extends Controller
     }
 
     /**
-     * Landing page home
+     * Landing page editor
+     */
+    public function editor()
+    {
+      $sl = request()->input('sl', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        if (isset($qs['new'])) {
+          $view = 'template.landingpages::' . $qs['new'] . '.index';
+        } else {
+          $view = '';
+        }
+
+        //$landing_site = Pages::where('user_id', Core\Secure::userId())->where('id', $qs['landing_site_id'])->first();
+
+        // Put template html into variable.
+        $template = view($view);
+
+        // Suppress libxml errors
+        // Resolves an issue with some servers.
+        libxml_use_internal_errors(true);
+
+        // Create a new PHPQuery object to manipulate
+        // the DOM in a similar way as jQuery.
+        $dom = \phpQuery::newDocumentHTML($template);
+        \phpQuery::selectDocument($dom);
+
+        // Insert scripts right after last js include
+        // to make sure jQuery and Bootstrap 4 js are
+        // included in template, while inline <script>'s
+        // can safely run below.
+        pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
+        pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js') . '"></script>');
+
+        // End stylesheet right before </head> to make
+        // sure it overrides other stylesheets.
+        pq('head')->append(PHP_EOL . '<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css') . '" />');
+
+        // Init editor
+        pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ lfInitEditor(); });</script>');
+
+        return $dom;
+      } else {
+        return view('landingpages::index');
+      }
+    }
+
+    /**
+     * Landing page editor iframe
+     */
+    public function editorFrame()
+    {
+      $sl = request()->input('sl', '');
+
+      if($sl != '') {
+        /*
+        $qs = Core\Secure::string2array($sl);
+
+        if (isset($qs['new'])) {
+          $url = url('landingpages/edit/' . $qs['new'] . '');
+        } else {
+          $url = '';
+        }
+        */
+        //$landing_site = Pages::where('user_id', Core\Secure::userId())->where('id', $qs['landing_site_id'])->first();
+
+        return view('landingpages::editor', compact('sl'));
+      }
+    }
+
+    /**
+     * Landing pages backend main
      */
     public function index()
     {
       return view('landingpages::index');
+    }
+
+    /**
+     * Landing page preview
+     */
+    public function previewTemplate($template)
+    {
+      return view('template.landingpages::' . $template . '.index');
     }
 
     /**
@@ -79,21 +163,6 @@ class LandingPagesController extends Controller
       $templates = FunctionsController::getTemplatesByCategory($category);
 
       return view('landingpages::create-select-template', compact('category', 'templates'));
-    }
-
-    /**
-     * Landing page editor
-     */
-    public function editor()
-    {
-      $sl = request()->input('sl', '');
-
-      if($sl != '') {
-        $qs = Core\Secure::string2array($sl);
-        //$landing_site = Pages::where('user_id', Core\Secure::userId())->where('id', $qs['landing_site_id'])->first();
-
-        return view('landingpages::editor');
-      }
     }
 
     /**
