@@ -121,11 +121,11 @@ function lfExtractIconClass(css_class) {
         if (before_content && before_content !== 'none') {
           //console.log(window.getMatchedCSSRules(el, '::before'));
           icon_class_found = css_class;
+
+          // Cleanup
+          $dummy.remove();
           break;
         }
-
-        // Cleanup
-        $dummy.remove();
       }
     }
 
