@@ -192,6 +192,11 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
     right: 40px !important;
   }
 
+  &.-x-el-fab-left {
+    right: auto !important;
+    left: 40px !important;
+  }
+
   &.-x-el-fab,
   &.-x-el-fab .-x-el-icon {
     width: 60px !important;
@@ -233,6 +238,10 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
 
   ul {
     left: 150px !important;
+  }
+
+  &.-x-el-dropdown-top-right {
+    left: -130px !important;
   }
 
   &.-x-el-dropdown-left {

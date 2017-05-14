@@ -8,8 +8,9 @@ var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-i
   '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg\';"' +
   '  >' +
   '  <ul class="-x-el-dropdown -x-el-dropdown-top-left -x-el-dropdown-fab -x-el-reset">' +
-  '    <li class="-x-el-fab-publish"><a href="javascript:void(0);">' + _lang["publish"] + ' <div class="-x-el-caret"></div></a>' +
+  '    <li class="-x-el-fab-publish"><a href="javascript:void(0);">' + _lang["save"] + ' <div class="-x-el-caret"></div></a>' +
   '      <ul>' +
+  '        <li class="-x-el-fab-save"><a href="javascript:void(0);">' + _lang["save_page"] + '</a></li>' +
   '        <li class="-x-el-fab-publish-publish"><a href="javascript:void(0);">' + _lang["save_and_publish"] + '</a></li>' +
   '        <li class="separator"><hr></li>' +
   '        <li class="-x-el-fab-publish-unpublish"><a href="javascript:void(0);">' + _lang["unpublish"] + '</a></li>' +
@@ -20,16 +21,23 @@ var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-i
   '        <li class="-x-el-fab-page-seo"><a href="javascript:void(0);">' + _lang["seo"] + '</a></li>' +
   '        <li class="-x-el-fab-page-domain"><a href="javascript:void(0);">' + _lang["domain"] + '</a></li>' +
   '      </ul>' +
+  '    <li class="separator"><hr></li>' +
   '    <li class="-x-el-fab-view"><a href="javascript:void(0);">' + _lang["view"] + ' <div class="-x-el-caret"></div></a>' +
   '      <ul>' +
+  '        <li class="-x-el-fab-preview"><a href="javascript:void(0);">' + _lang["preview"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '        <li class="separator"><hr></li>' +
   '        <li class="-x-el-fab-view-online"><a href="javascript:void(0);">' + _lang["online"] + '</a></li>' +
   '        <li class="-x-el-fab-view-qr"><a href="javascript:void(0);">' + _lang["qr"] + '</a></li>' +
   '      </ul>' +
   '    </li>' + 
+  '    <li class="-x-el-fab-position"><a href="javascript:void(0);">' + _lang["position"] + ' <div class="-x-el-caret"></div></a>' +
+  '      <ul>' +
+  '        <li class="-x-el-fab-position-left"><a href="javascript:void(0);">' + _lang["left"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '        <li class="-x-el-fab-position-right"><a href="javascript:void(0);">' + _lang["right"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '      </ul>' +
+  '    </li>' + 
   '    <li class="separator"><hr></li>' +
   '    <li class="-x-el-fab-insert-block"><a href="javascript:void(0);">' + _lang["insert_block"] + '</a></li>' +
-  '    <li class="-x-el-fab-preview"><a href="javascript:void(0);">' + _lang["preview"] + ' <div class="-x-el-checkmark"></div></a></li>' +
-  '    <li class="-x-el-fab-save"><a href="javascript:void(0);">' + _lang["save_page"] + '</a></li>' +
   '  </ul>' +
   '</div>';
 

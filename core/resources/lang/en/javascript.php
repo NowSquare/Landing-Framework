@@ -40,6 +40,7 @@ return array(
   "page" => "Page",
   "seo" => "SEO",
   "domain" => "Domain",
+  "save" => "Save",
   "publish" => "Publish",
   "save_and_publish" => "Save &amp; publish",
   "unpublish" => "Unpublish",
@@ -64,5 +65,7 @@ return array(
   "XL" => "XL",
   "XXL" => "XXL",
   "insert_block" => "Insert block",
-  "" => ""
+  "position" => "Position",
+  "left" => "Left",
+  "right" => "Right"
 );

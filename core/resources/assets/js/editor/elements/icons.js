@@ -117,7 +117,7 @@ function lfInitIcons() {
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
 
       // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
 
       // Check what settings can be configured in the modal
       //var $el = $('.' + el_class);
@@ -151,7 +151,7 @@ function lfInitIcons() {
       $el.addClass('icon-' + selected_size);
 
       // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
     }
   });
 
@@ -165,7 +165,7 @@ function lfInitIcons() {
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
 
       // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
 
       // Toggle .invisible class
       var $el = $('.' + el_class);

@@ -132,14 +132,14 @@ function lfInitLinks() {
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
 
-      // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
-
       // Check what settings can be configured in the modal
       var $el = $('.' + el_class);
       var color = ($el.hasClass('btn')) ? 1 : 0;
 
       lfOpenModal(_lang["url"] + '/landingpages/editor/modal/link?color=' + color, el_class);
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
     }
   });
 
@@ -156,12 +156,12 @@ function lfInitLinks() {
       $(this).parents('ul').find('.-x-el-link-shape-pill .-x-el-checkmark').removeClass('-x-checked');
       $(this).parents('ul').find('.-x-el-link-shape-regular .-x-el-checkmark').addClass('-x-checked');
 
-      // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
-
       // Remove pill class
       var $el = $('.' + el_class);
       $el.removeClass('btn-pill');
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
     }
   });
 
@@ -178,13 +178,13 @@ function lfInitLinks() {
       $(this).parents('ul').find('.-x-el-link-shape-pill .-x-el-checkmark').addClass('-x-checked');
       $(this).parents('ul').find('.-x-el-link-shape-regular .-x-el-checkmark').removeClass('-x-checked');
 
-      // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
-
       // First remove pill class to prevent double,
       // then add again.
       var $el = $('.' + el_class);
       $el.removeClass('btn-pill').addClass('btn-pill');
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
     }
   });
 
@@ -219,7 +219,7 @@ function lfInitLinks() {
       }
 
       // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
     }
   });
 
@@ -232,12 +232,12 @@ function lfInitLinks() {
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
 
-      // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').trigger('mouseleave');
-
       // Toggle .invisible class
       var $el = $('.' + el_class);
       $el.toggleClass('invisible');
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
     }
   });
 }

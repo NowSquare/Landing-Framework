@@ -33,20 +33,34 @@ function lfInitDropdowns() {
 
   var lfMouseLeaveDropDown;
 
-  $('body').on('mouseleave', '.-x-el-dropdown', function() {
+  $('body').on('mouseleave', '.-x-el-dropdown', function(e, data) {
     var $dropdown = $(this);
 
-    lfMouseLeaveDropDown = setTimeout(function() {
-      $dropdown.css('cssText', 'display: none !important;');
+    if (typeof data !== 'undefined' && data.immediate) {
+      lfMouseLeaveDropDown = setTimeout(function() {
+        $dropdown.css('cssText', 'display: none !important;');
 
-      // Set z-index back to old value
-      var $button = $dropdown.parents('.-x-el-inline-button-clone');
-      $button.css('cssText', 'z-index: ' + $button.attr('data-x-zIndex') + ' !important;');
-      $button.attr('data-x-zIndex', null);
+        // Set z-index back to old value
+        var $button = $dropdown.parents('.-x-el-inline-button-clone');
+        $button.css('cssText', 'z-index: ' + $button.attr('data-x-zIndex') + ' !important;');
+        $button.attr('data-x-zIndex', null);
 
-      // Reposition tethered elements because $dropdown.css('cssText', ...); seems to reset position
-      Tether.position();
-    }, 200);
+        // Reposition tethered elements because $dropdown.css('cssText', ...); seems to reset position
+        Tether.position();
+      }, 0);
+    } else {
+      lfMouseLeaveDropDown = setTimeout(function() {
+        $dropdown.css('cssText', 'display: none !important;');
+
+        // Set z-index back to old value
+        var $button = $dropdown.parents('.-x-el-inline-button-clone');
+        $button.css('cssText', 'z-index: ' + $button.attr('data-x-zIndex') + ' !important;');
+        $button.attr('data-x-zIndex', null);
+
+        // Reposition tethered elements because $dropdown.css('cssText', ...); seems to reset position
+        Tether.position();
+      }, 200);
+    }
   });
 
   $('body').on('mouseenter', '.-x-el-dropdown', function() {

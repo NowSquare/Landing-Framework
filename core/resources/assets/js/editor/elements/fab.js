@@ -1,6 +1,9 @@
 function lfInitFab() {
   var $el = $(xTplFab).clone().appendTo('body');
 
+  // Set options
+  $el.find('.-x-el-fab-position-right .-x-el-checkmark').addClass('-x-checked');
+
   /*
     Show fab dropdown on click
   */
@@ -47,7 +50,7 @@ function lfInitFab() {
     lfOpenModal(_lang["url"] + '/landingpages/editor/modal/insert-block?position=below');
   
     // Hide dropdown
-    $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
   });
   
   /* 
@@ -60,7 +63,7 @@ function lfInitFab() {
     console.log(html);
   
     // Hide dropdown
-    $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
 
     $.notify({
         title: _lang['notification'],
@@ -79,7 +82,36 @@ function lfInitFab() {
         hideDuration: 200
     });
   });
-  
+
+  /* 
+    Change position
+  */
+
+  $('body').on('click', '.-x-el-fab-position-left, .-x-el-fab-position-right', function() {
+    var $fab_button = $('.-x-el-fab');
+
+    if ($(this).hasClass('-x-el-fab-position-left')) {
+      // Move button to left
+      $fab_button.addClass('-x-el-fab-left');
+      $('.-x-el-dropdown-fab').removeClass('-x-el-dropdown-top-left').addClass('-x-el-dropdown-top-right');
+
+      // Checkmark
+      $('.-x-el-fab-position-right .-x-el-checkmark').removeClass('-x-checked');
+      $('.-x-el-fab-position-left .-x-el-checkmark').addClass('-x-checked');
+    } else {
+      // Move button to right
+      $fab_button.removeClass('-x-el-fab-left');
+      $('.-x-el-dropdown-fab').removeClass('-x-el-dropdown-top-right').addClass('-x-el-dropdown-top-left');
+
+      // Checkmark
+      $('.-x-el-fab-position-left .-x-el-checkmark').removeClass('-x-checked');
+      $('.-x-el-fab-position-right .-x-el-checkmark').addClass('-x-checked');
+    }
+
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+  });
+
   /* 
     Preview, toggle buttons
   */
@@ -93,6 +125,6 @@ function lfInitFab() {
     //}, 200);
   
     // Hide dropdown
-    $(this).parents('.-x-el-dropdown').trigger('mouseleave');
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
   });
 }
