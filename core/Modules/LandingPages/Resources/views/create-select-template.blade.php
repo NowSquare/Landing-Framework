@@ -84,10 +84,10 @@ $('.onClickPreview').on('click', function() {
       $('#colorbox').addClass('colorbox-xl');
     },
     onLoad:function() {
-      $('html, body').css('overflow', 'hidden'); // page scrollbars off
+      //$('html, body').css('overflow', 'hidden'); // page scrollbars off
     }, 
     onClosed:function() {
-      $('html, body').css('overflow', ''); // page scrollbars on
+      //$('html, body').css('overflow', ''); // page scrollbars on
       $('#colorbox').removeClass('colorbox-xl');
     },
     onComplete : function() { 

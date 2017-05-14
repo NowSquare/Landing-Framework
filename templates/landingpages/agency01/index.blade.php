@@ -41,7 +41,7 @@
           <div class="row">
             <div class="col-sm-12 col-md-6">
               <h1 class="display-2 text-md-left my-3 no-margin-smb -x-text">{!! trans('landingpages::block.header_02_head') !!}</h1>
-              <p class="lead -x-text">{!! trans('landingpages::block.header_02_line') !!}</p>
+              <p class="lead text-center text-md-left -x-text">{!! trans('landingpages::block.header_02_line') !!}</p>
               <div class="btn-container my-3 btn-stack-lg">
                 <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.header_02_button') !!}</a>
               </div>

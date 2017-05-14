@@ -58,12 +58,13 @@ function lfInitText() {
         case 'h4':
         case 'h5':
         case 'p':
-          var toolbar = 'undo redo | bold italic link | image | forecolor'; break;
+          var toolbar = 'undo redo | bold italic link | image | forecolor';
+          var plugins = 'advlist autolink lists link image anchor media contextmenu paste colorpicker textcolor';
+          break;
         default: 
           var toolbar = 'undo redo | bold italic link | styleselect | image | bullist | forecolor';
+          var plugins = 'advlist autolink lists link image anchor code media table contextmenu paste colorpicker textcolor';
       }
-
-      // $el.attr('contenteditable', true);
 
       tinymce.init({
         selector: '#' + id,
@@ -76,12 +77,11 @@ function lfInitText() {
         extended_valid_elements: 'span[style,class],script[charset|defer|language|src|type]',
         verify_html: false, 
         file_browser_callback: lfelFinderBrowser,
-        plugins: [
-          'advlist autolink lists link image anchor',
-          'code',
-          'media table contextmenu paste colorpicker textcolor'
-        ],
+        plugins: plugins,
         toolbar: toolbar,
+        table_default_attributes: {
+          class: 'table'
+        },
         init_instance_callback : function(editor) {
           editor.serializer.addNodeFilter('script,style', function(nodes, name) {
             var i = nodes.length, node, value, type;

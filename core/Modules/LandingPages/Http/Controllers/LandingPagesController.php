@@ -76,6 +76,7 @@ class LandingPagesController extends Controller
 
         // Put template html into variable.
         $template = view($view);
+        //return $template;
 
         // Suppress libxml errors
         // Resolves an issue with some servers.
@@ -99,6 +100,8 @@ class LandingPagesController extends Controller
 
         // Init editor
         pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ lfInitEditor(); });</script>');
+
+        $dom = str_replace('</section><section', "</section>\n\n<section", $dom);
 
         return $dom;
       } else {
