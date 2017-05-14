@@ -130,8 +130,9 @@ gulp.task('styles', function() {
     .pipe(concat('scss-files.scss'));
 
   var cssStream = gulp.src([
-      /*'bower_components/bootstrap/dist/css/bootstrap.css',*/
-      'bower_components/sweetalert/dist/sweetalert.css',
+      /*'bower_components/bootstrap/dist/css/bootstrap.css',
+      'bower_components/sweetalert/dist/sweetalert.css',*/
+      'bower_components/sweetalert2/dist/sweetalert2.css',
       'bower_components/datatables.net-bs/css/dataTables.bootstrap.css',
       'bower_components/datatables.net-responsive-bs/css/responsive.bootstrap.css',
       'bower_components/datatables-rowreorder/css/rowReorder.bootstrap.css',
@@ -201,7 +202,8 @@ gulp.task('scripts', function() {
       'bower_components/ladda/js/spin.js',
       'bower_components/ladda/js/ladda.js',
       'bower_components/ladda/js/ladda.jquery.js',
-      'bower_components/sweetalert/dist/sweetalert.min.js',
+      'bower_components/sweetalert2/dist/sweetalert2.js',
+      /*'bower_components/sweetalert/dist/sweetalert.min.js',*/
       'bower_components/datatables.net/js/jquery.dataTables.js',
       'bower_components/datatables.net-bs/js/dataTables.bootstrap.js',
       'bower_components/datatables.net-responsive/js/dataTables.responsive.js',

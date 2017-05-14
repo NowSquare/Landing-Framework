@@ -194,8 +194,7 @@ $('#dt-table-admin_users').on('click', '.row-btn-delete', function() {
     cancelButtonText: _lang['cancel'],
     confirmButtonColor: "#DD6B55",
     confirmButtonText: _lang['yes_delete']
-  }, 
-  function(){
+  }).then(function() {
     blockUI();
 
     var jqxhr = $.ajax({
@@ -204,12 +203,9 @@ $('#dt-table-admin_users').on('click', '.row-btn-delete', function() {
       method: 'POST'
     })
     .done(function(data) {
-      if(data.result == 'success')
-      {
+      if(data.result == 'success') {
         admin_users_table.ajax.reload();
-      }
-      else
-      {
+      } else {
         swal(data.msg);
       }
     })
@@ -219,6 +215,9 @@ $('#dt-table-admin_users').on('click', '.row-btn-delete', function() {
     .always(function() {
       unblockUI();
     });
+  }, function (dismiss) {
+    // Do nothing on cancel
+    // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
   });
 });
 
