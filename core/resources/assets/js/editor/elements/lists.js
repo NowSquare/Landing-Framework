@@ -59,6 +59,13 @@ function lfInitList($list, unique_class) {
     $edit_button.find('.-x-el-dropdown').addClass('-x-el-dropdown-left');
   }
 
+  // Check visibility
+  if ($edit_button.hasClass('invisible')) {
+    $edit_button.find('.-x-el-list-visible .-x-el-checkmark').removeClass('-x-checked');
+  } else {
+    $edit_button.find('.-x-el-list-visible .-x-el-checkmark').addClass('-x-checked');
+  }
+
   new Tether({
     element: $edit_button,
     target: $list,
@@ -111,6 +118,25 @@ function lfInitLists() {
       if (repeat === typeof undefined || repeat === false) repeat = 'a';
 
       lfOpenModal(_lang["url"] + '/landingpages/editor/modal/list?repeat=' + repeat, el_class);
+    }
+  });
+
+  /* 
+    Toggle list visibility
+  */
+
+  $('body').on('click', '.-x-el-list-visible', function() {
+    var el_class = $(this).parents('.-x-el-list-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      // Toggle .invisible class
+      var $el = $('.' + el_class);
+      $el.toggleClass('invisible');
+      $(this).find('.-x-el-checkmark').toggleClass('-x-checked');
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
     }
   });
 }

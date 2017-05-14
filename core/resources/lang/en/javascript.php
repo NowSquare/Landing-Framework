@@ -48,7 +48,7 @@ return array(
   "modify_image" => "Modify image",
   "modify_icon" => "Modify icon",
   "remove" => "Remove",
-  "toggle_visibility" => "Toggle visibility",
+  "visible" => "Visible",
   "modify_link" => "Modify link",
   "button" => "Button",
   "shape" => "Shape",

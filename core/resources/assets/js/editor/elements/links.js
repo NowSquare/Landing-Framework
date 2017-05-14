@@ -91,6 +91,13 @@ function lfInitLink($link, unique_class) {
     $edit_button.find('.-x-el-link-size').addClass('-x-el-disabled');
   }
 
+  // Check visibility
+  if ($edit_button.hasClass('invisible')) {
+    $edit_button.find('.-x-el-link-visible .-x-el-checkmark').removeClass('-x-checked');
+  } else {
+    $edit_button.find('.-x-el-link-visible .-x-el-checkmark').addClass('-x-checked');
+  }
+
   new Tether({
     element: $edit_button,
     target: $link,
@@ -227,7 +234,7 @@ function lfInitLinks() {
     Toggle button visibility
   */
 
-  $('body').on('click', '.-x-el-link-visibility', function() {
+  $('body').on('click', '.-x-el-link-visible', function() {
     var el_class = $(this).parents('.-x-el-link-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
@@ -235,6 +242,7 @@ function lfInitLinks() {
       // Toggle .invisible class
       var $el = $('.' + el_class);
       $el.toggleClass('invisible');
+      $(this).find('.-x-el-checkmark').toggleClass('-x-checked');
 
       // Hide dropdown after option has been clicked
       $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);

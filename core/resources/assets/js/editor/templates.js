@@ -77,6 +77,8 @@ var xTplListButton = '<div class="-x-el-inline-button -x-el-list-edit -x-el-rese
   ' >' +
   ' <ul class="-x-el-dropdown -x-el-reset">' +
   '   <li class="-x-el-list-edit"><a href="javascript:void(0);">' + _lang["modify_list"] + '</a></li>' +
+  '   <li class="separator"><hr></li>' +
+  '   <li class="-x-el-list-visible"><a href="javascript:void(0);">' + _lang["visible"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   ' </ul>' +
   '</div>';
 
@@ -98,7 +100,7 @@ var xTplIconButton = '<div class="-x-el-inline-button -x-el-icon-edit -x-el-rese
   '       <li class="-x-el-icon-size-select" data-x-size="xxl"><a href="javascript:void(0);">' + _lang["XXL"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '     </ul>' +
   '   </li>' +
-  '   <li class="-x-el-icon-visibility"><a href="javascript:void(0);">' + _lang["toggle_visibility"] + '</a></li>' +
+  '   <li class="-x-el-icon-visible"><a href="javascript:void(0);">' + _lang["visible"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   ' </ul>' +
   '</div>';
 
@@ -110,6 +112,7 @@ var xTplImgButton = '<div class="-x-el-inline-button -x-el-img-edit -x-el-reset"
 '  <ul class="-x-el-dropdown -x-el-reset">' +
 '    <li class="-x-el-img-update"><a href="javascript:void(0);">' + _lang["modify_image"] + '</a></li>' +
 '    <li class="separator"><hr></li>' +
+'    <li class="-x-el-img-visible"><a href="javascript:void(0);">' + _lang["visible"] + ' <div class="-x-el-checkmark"></div></a></li>' +
 '    <li class="-x-el-img-remove"><a href="javascript:void(0);">' + _lang["remove"] + '</a></li>' +
 '  </ul>' +
 '</div>';
@@ -136,6 +139,6 @@ var xTplLinkButton = '<div class="-x-el-inline-button -x-el-link-edit -x-el-rese
   '       <li class="-x-el-link-shape-pill"><a href="javascript:void(0);">' + _lang["pill"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '     </ul>' +
   '   </li>' +
-  '   <li class="-x-el-link-visibility"><a href="javascript:void(0);">' + _lang["toggle_visibility"] + '</a></li>' +
+  '   <li class="-x-el-link-visible"><a href="javascript:void(0);">' + _lang["visible"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   ' </ul>' +
   '</div>';

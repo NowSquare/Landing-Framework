@@ -62,6 +62,13 @@ function lfInitIcon($icon, unique_class) {
   // Check selected size
   $edit_button.find('.-x-el-icon-size-select .-x-el-checkmark').removeClass('-x-checked');
 
+  // Check visibility
+  if ($edit_button.hasClass('invisible')) {
+    $edit_button.find('.-x-el-icon-visible .-x-el-checkmark').removeClass('-x-checked');
+  } else {
+    $edit_button.find('.-x-el-icon-visible .-x-el-checkmark').addClass('-x-checked');
+  }
+
   if ($icon.hasClass('icon-xs')) {
     $edit_button.find('.-x-el-icon-size-select[data-x-size=xs] .-x-el-checkmark').addClass('-x-checked');
   } else if ($icon.hasClass('icon-s')) {
@@ -159,17 +166,18 @@ function lfInitIcons() {
     Toggle icon visibility
   */
 
-  $('body').on('click', '.-x-el-icon-visibility', function() {
+  $('body').on('click', '.-x-el-icon-visible', function() {
     var el_class = $(this).parents('.-x-el-icon-edit-clone').attr('data-x-el');
 
     if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
 
-      // Hide dropdown after option has been clicked
-      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
-
       // Toggle .invisible class
       var $el = $('.' + el_class);
       $el.toggleClass('invisible');
+      $(this).find('.-x-el-checkmark').toggleClass('-x-checked');
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
     }
   });
 }
