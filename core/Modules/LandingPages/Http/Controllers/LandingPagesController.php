@@ -151,7 +151,7 @@ class LandingPagesController extends Controller
       if (count($sites) == 0) {
         return $this->create();
       } else {
-        return view('landingpages::index', compact('sites'));
+        return view('landingpages::overview', compact('sites'));
       }
     }
 

@@ -51,6 +51,13 @@ foreach($sites as $site) {
   } else {
     $url = '//' . $site->domain;
   }
+
+  $variant = 1;
+
+  // Update files
+  $storage_root = 'landingpages/site/' . \Platform\Controllers\Core\Secure::staticHash(\Platform\Controllers\Core\Secure::userId()) . '/' .  \Platform\Controllers\Core\Secure::staticHash($site->id, true) . '/' . \Platform\Controllers\Core\Secure::staticHash($page->id, true) . '/' . $variant;
+
+  $published = (\Storage::disk('public')->exists($storage_root . '/published/index.blade.php')) ? '<span class="badge badge-success pull-right">published</span>' : '<span class="badge badge-danger pull-right">not published</span>';
 ?>
     <div class="grid-item col-xs-6 col-sm-2 col-lg-2" style="max-width: 240px" id="item{{ $i }}">
 
@@ -63,14 +70,14 @@ foreach($sites as $site) {
          <table class="table table-hover" style="margin-bottom: 0">
            <tr>
              <td>{{ trans('landingpages::global.visits') }}:</td>
-             <td>{{ $page->visits }}</td>
+             <td class="text-right">{{ $page->visits }}</td>
            </tr>
            <tr>
              <td>{{ trans('landingpages::global.conversions') }}:</td>
-             <td>{{ $page->conversions }}</td>
+             <td class="text-right">{{ $page->conversions }}</td>
            </tr>
            <tr>
-             <td colspan="2"><a href="{{ $url }}" target="_blank" class="link">{{ trans('landingpages::global.visit_online') }}</a></td>
+             <td colspan="2"><a href="{{ $url }}" target="_blank" class="link">{{ trans('landingpages::global.visit_online') }}</a> {!! $published !!}</td>
            </tr>
          </table>
           
