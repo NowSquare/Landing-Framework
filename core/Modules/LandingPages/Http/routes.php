@@ -39,6 +39,7 @@ Route::group(['middleware' => ['web', 'limitation:landingpages.visible'], 'prefi
     Route::get('editor/modal/list', 'LandingPagesController@editorModalList');
     Route::get('editor/modal/image', 'LandingPagesController@editorModalImage');
     Route::get('editor/modal/icon', 'LandingPagesController@editorModalIcon');
+    Route::get('editor/modal/qr', 'LandingPagesController@editorModalQr');
 
   });
 });

@@ -119,10 +119,21 @@ function lfInitFab() {
   $('body').on('click', '.-x-el-fab-preview', function() {
     $('.-x-el-inline-button-clone .-x-el-icon').toggle();
 
-    // Wait a little to prevent flashing of text before dropdown is closed
-    //setTimeout(function() {
-      $(this).find('.-x-el-checkmark').toggleClass('-x-checked');
-    //}, 200);
+    // Toggle checkmark
+    $(this).find('.-x-el-checkmark').toggleClass('-x-checked');
+  
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+  });
+
+  /* 
+    Open QR
+  */
+
+  $('body').on('click', '.-x-el-fab-view-qr', function() {
+    $('.-x-el-inline-button-clone .-x-el-icon').toggle();
+    
+    lfOpenModal(_lang["url"] + '/landingpages/editor/modal/qr?url=' + lf_published_url);
   
     // Hide dropdown
     $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);

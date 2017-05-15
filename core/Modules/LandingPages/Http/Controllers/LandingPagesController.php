@@ -381,6 +381,7 @@ class LandingPagesController extends Controller
 
       return view('landingpages::modals.icon', compact('el_class'));
     }
+
     /**
      * Editor button picker
      */
@@ -390,5 +391,15 @@ class LandingPagesController extends Controller
       $selected = $request->input('selected', '');
 
       return view('landingpages::pickers.button', compact('input_id', 'selected'));
+    }
+
+    /**
+     * View QR
+     */
+    public function editorModalQr(Request $request)
+    {
+      $url = $request->input('url', '');
+
+      return view('landingpages::modals.qr', compact('url'));
     }
 }
