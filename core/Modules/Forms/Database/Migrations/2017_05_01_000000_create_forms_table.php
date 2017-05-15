@@ -20,12 +20,13 @@ class CreateFormsTable extends Migration
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->boolean('active')->default(true);
       $table->string('category', 32)->nullable();
-      $table->string('name', 64)->nullable();
+      $table->string('name', 48)->nullable();
       $table->string('language', 5)->default('en');
       $table->string('timezone', 32)->default('UTC');
       $table->dateTime('last_followup')->nullable();
       $table->dateTime('last_response')->nullable();
       $table->json('meta')->nullable();
+      $table->json('meta_published')->nullable();
       $table->timestamps();
     });
 

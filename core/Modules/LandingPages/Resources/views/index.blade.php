@@ -35,7 +35,7 @@
     </div>
   </div>
 
-  <div class="row grid">
+  <div class="row grid" id="grid">
     <div class="grid-sizer col-xs-4" style="display:none"></div>
 <?php 
 $i = 1;
@@ -60,7 +60,7 @@ foreach($sites as $site) {
           <div class="clearfix"></div>
         </div>
         <div class="portlet-body" style="padding:0">
-         <table class="table table-hover">
+         <table class="table table-hover" style="margin-bottom: 0">
            <tr>
              <td>{{ trans('landingpages::global.visits') }}:</td>
              <td>{{ $page->visits }}</td>
@@ -72,9 +72,6 @@ foreach($sites as $site) {
            <tr>
              <td colspan="2"><a href="{{ $url }}" target="_blank" class="link">{{ trans('landingpages::global.visit_online') }}</a></td>
            </tr>
-           <tr>
-             <td colspan="2"></td>
-           </tr>
          </table>
           
         </div>
@@ -84,7 +81,7 @@ foreach($sites as $site) {
           </a>
         </div>
         <div class="panel-footer">
-          <a href="javascript:void(0);" class="btn btn-lg btn-danger btn-block onClickDelete">{{ trans('global.delete') }}</a>
+          <a href="javascript:void(0);" class="btn btn-sm btn-danger btn-block onClickDelete">{{ trans('global.delete') }}</a>
         </div>
       </div>
 
@@ -122,6 +119,14 @@ foreach($sites as $site) {
 <script>
 $(function() {
   var $grid;
+
+  $('#grid').liveFilter('#grid_search', 'div.grid-item', {
+    filterChildSelector: '.portlet-title',
+    after: function() {
+      $grid.masonry('layout');
+    }
+  });
+
   blockUI('.preview-container');
   $(window).resize(resizeEditFrame);
 

@@ -50,7 +50,9 @@ class LandingPagesController extends Controller
 
           // Stats
           if (! $preview && Core\Secure::userId() != $page->user_id) {
-            
+            // Fingerprint hash
+            $hash = request()->ip() . '|' . date('Y-m-d-H');
+            $hash = \Hash::make($hash);
           }
 
           return $template;
@@ -141,7 +143,11 @@ class LandingPagesController extends Controller
     {
       $sites = Models\Site::where('user_id', Core\Secure::userId())->orderBy('created_at', 'desc')->get();
 
-      return view('landingpages::index', compact('sites'));
+      if (count($sites) == 0) {
+        return $this->create();
+      } else {
+        return view('landingpages::index', compact('sites'));
+      }
     }
 
     /**
