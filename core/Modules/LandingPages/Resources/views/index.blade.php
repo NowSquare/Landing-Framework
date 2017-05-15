@@ -56,7 +56,7 @@ foreach($sites as $site) {
 
       <div class="grid-item-content portlet shadow-box" data-sl="{{ $sl_site }}">
         <div class="portlet-heading portlet-default">
-          <h3 class="portlet-title text-dark">{{ $site['name'] }}</h3>
+          <h3 class="portlet-title text-dark" title="{{ $site['name'] }}">{{ $site['name'] }}</h3>
           <div class="clearfix"></div>
         </div>
         <div class="portlet-body" style="padding:0">
@@ -113,6 +113,12 @@ foreach($sites as $site) {
   -o-transform-origin: 0 0;
   -webkit-transform: scale(0.25);
   -webkit-transform-origin: 0 0;
+}
+.portlet-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 </style>
 

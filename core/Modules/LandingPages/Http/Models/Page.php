@@ -19,6 +19,6 @@ class Page extends Model {
   }
 
   public function site() {
-    return $this->belongsTo('Modules\LandingPages\Http\Models\Site');
+    return $this->belongsTo('Modules\LandingPages\Http\Models\Site', 'landing_site_id');
   }
 }

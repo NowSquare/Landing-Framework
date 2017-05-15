@@ -26,7 +26,7 @@ var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-i
   '      <ul>' +
   '        <li class="-x-el-fab-preview"><a href="javascript:void(0);">' + _lang["preview"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '        <li class="separator"><hr></li>' +
-  '        <li class="-x-el-fab-view-online"><a href="javascript:void(0);">' + _lang["online"] + '</a></li>' +
+  '        <li class="-x-el-fab-view-online"><a href="' + lf_published_url + '" target="_blank">' + _lang["online"] + '</a></li>' +
   '        <li class="-x-el-fab-view-qr"><a href="javascript:void(0);">' + _lang["qr"] + '</a></li>' +
   '      </ul>' +
   '    </li>' + 

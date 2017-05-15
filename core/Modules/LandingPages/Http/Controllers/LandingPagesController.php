@@ -79,6 +79,8 @@ class LandingPagesController extends Controller
 
           $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
 
+          $published_url = ($page->site->domain != '') ? '//' . $page->site->domain : url('lp/' . $page->site->local_domain);
+
           $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $local_domain . '.' . $variant . '.index';
 
           // Put template html into variable.
@@ -97,6 +99,7 @@ class LandingPagesController extends Controller
           // to make sure jQuery and Bootstrap 4 js are
           // included in template, while inline <script>'s
           // can safely run below.
+          pq('head')->find('script[src]:last')->before(PHP_EOL . '<script class="-x-editor-asset">var lf_published_url = "' . $published_url . '";</script>');
           pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
           pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js') . '"></script>');
 
@@ -185,6 +188,7 @@ class LandingPagesController extends Controller
     {
       $template = $request->input('template', '');
       $name = $request->input('name', '');
+      $name = substr($name, 0, 200);
 
       $template_path = base_path('../templates/landingpages/');
 
