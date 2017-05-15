@@ -42,7 +42,9 @@ html, body {
         rememberLastDir: false,
         useBrowserHistory: false,
         getFileCallback: function(file) { // editor callback
-          FileBrowserDialogue.mySubmit(file.url); // pass selected file path to TinyMCE
+          var path = file.url.replace('{{ url('/') }}', '');
+
+          FileBrowserDialogue.mySubmit(path); // pass selected file path to TinyMCE
         },
         commands : [
           /*'open', */'reload', 'home', 'up', 'back', 'forward', 

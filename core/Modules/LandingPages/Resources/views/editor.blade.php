@@ -1,4 +1,4 @@
-<iframe id="editor_frame" class="desktop_mode" src="{{ url('landingpages/edit/?sl=' . $sl) }}" frameborder="0" allowtransparency="true" seamless></iframe>
+<iframe id="editor_frame" class="desktop_mode" src="{{ $url }}" frameborder="0" allowtransparency="true" seamless></iframe>
 <style type="text/css">
   #view {
     background-color: #21252b;
@@ -22,6 +22,7 @@
   }
 </style>
 <script>
+$('#generic_title a').text("{{ str_replace('"', '&quot;', $page->name) }}");
 $('#editor_frame').removeClass('desktop_mode tablet_mode phone_mode');
 $('#editor_frame').addClass($('#device_selector li.active').attr('id'));
 

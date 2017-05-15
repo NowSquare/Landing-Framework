@@ -25,7 +25,7 @@ foreach ($active_modules as $module) {
           <li class="has-submenu"> <a href="#/profile" class="waves-effect waves-light">{{ trans('global.account') }}</a></li>
 */ ?>
 <?php if (Gate::allows('admin-management')) { ?>
-          <li class="has-submenu last-elements"> <a href="javascript:void(0);" class="waves-effect waves-light">{{ trans('global.admin') }}</a>
+          <li class="has-submenu last-elements"> <a href="javascript:void(0);" class="no-link waves-effect waves-light">{{ trans('global.admin') }}</a>
             <ul class="submenu">
               <li class="has-submenu">
                 <a href="javascript:void(0);">{{ trans('global.users') }}</a>
@@ -73,9 +73,13 @@ foreach ($active_modules as $module) {
         </ul>
 
         <ul class="nav navbar-nav navbar-right pull-right" id="device_selector">
-          <li class="menu-icon-button active" id="desktop_mode"><a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE30C;</i></a></li>
-          <li class="menu-icon-button" id="tablet_mode"><a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE330;</i></a></li>
-          <li class="menu-icon-button" id="phone_mode"><a href="javascript:void(0);" data-toggle="dropdown" aria-expanded="true"><i class="material-icons">&#xE32C;</i></a></li>
+          <li class="menu-icon-button active" id="desktop_mode"><a href="javascript:void(0);"><i class="material-icons">&#xE30C;</i></a></li>
+          <li class="menu-icon-button" id="tablet_mode"><a href="javascript:void(0);"><i class="material-icons">&#xE330;</i></a></li>
+          <li class="menu-icon-button" id="phone_mode"><a href="javascript:void(0);"><i class="material-icons">&#xE32C;</i></a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right pull-right" id="generic">
+          <li id="generic_title"><a href="javascript:void(0);" class="no-link"></a></li>
         </ul>
 <?php
 // Only show language dropdown if there's more than one language available

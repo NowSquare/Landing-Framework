@@ -387,8 +387,16 @@ class UserController extends \App\Http\Controllers\Controller {
       {
         $user = \App\User::where('id', '=',  $qs['user_id'])->forceDelete();
 
+        $user_id_hash = Core\Secure::staticHash($qs['user_id']);
+
         // Delete user uploads
-        $user_dir = public_path() . '/uploads/' . Core\Secure::staticHash($qs['user_id']);
+        $user_dir = public_path() . '/uploads/' . $user_id_hash;
+        \File::deleteDirectory($user_dir);
+
+        // Delete user public storate
+        \Storage::disk('public')->delete('landingpages/site/' . $user_id_hash);
+
+        $user_dir = public_path() . '/uploads/' . $user_id_hash;
         \File::deleteDirectory($user_dir);
 
         // Delete user landing stats table if exist

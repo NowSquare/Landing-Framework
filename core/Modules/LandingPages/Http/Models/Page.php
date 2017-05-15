@@ -2,23 +2,23 @@
 namespace Modules\LandingPages\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Kalnoy\Nestedset\NodeTrait;
 
-Class Pages extends Model {
+class Page extends Model {
+  use NodeTrait;
 
   protected $table = 'landing_pages';
 
   protected $casts = [
-    'meta' => 'json'
+    'meta' => 'json',
+    'meta_published' => 'json'
   ];
-
-	// Disabling Auto Timestamps
-  public $timestamps = false;
 
   public function user() {
     return $this->belongsTo('App\User');
   }
 
-  public function reseller() {
-    return $this->belongsTo('App\Reseller');
+  public function site() {
+    return $this->belongsTo('Modules\LandingPages\Http\Models\Site');
   }
 }

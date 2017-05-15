@@ -37,20 +37,13 @@ foreach ($templates as $template) {
       <div class="grid-item-content portlet shadow-box box-option" data-template="{{ $template['dir'] }}">
         <div>
           <div>
-            <a href="javascript:void(0);" class="onClickPreview">
-              <img src="{{ $template['preview01'] }}" id="box-icon{{ $i }}" style="width:100%" alt="{{ $template['dir'] }}">
+            <a href="javascript:void(0);" class="item-hover">
+              <img src="{{ $template['preview01'] }}" id="box-icon{{ $i }}" style="width:100%;" alt="{{ $template['dir'] }}">
+              <div style="position: absolute;width: 75%;">
+                <button class="btn btn-success btn-lg btn-block onClickPreview">{{ trans('global.preview') }}</button>
+                <button class="btn btn-lg btn-primary btn-block onClickSelect">{{ trans('global.select') }}</button>
+              </div>
             </a>
-          </div>
-          <div class="panel-footer">
-            <div class="row">
-              <div class="col-xs-6">
-                <a href="javascript:void(0);" class="onClickPreview btn btn-success btn-block" title="{{ trans('global.preview') }}" data-toggle="tooltip"><i class="mi search"></i></a>
-              </div>
-              <div class="col-xs-6">
-                <?php /*<a href="#/landingpages/create/{{ $category }}/{{ $template['dir'] }}" class="btn btn-sm btn-primary btn-block">{{ trans('global.select') }}</a>*/ ?>
-                <a href="#/landingpages/editor/{{ \Platform\Controllers\Core\Secure::array2string(array('new' => $template['dir'])) }}" class="btn btn-primary btn-block" title="{{ trans('global.select') }}" data-toggle="tooltip"><i class="mi navigate_next"></i></a>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -59,13 +52,75 @@ foreach ($templates as $template) {
 <?php } ?>
   </div>
 </div>
-
+<style type="text/css">
+  .item-hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    flex-direction: column;
+  }
+  .item-hover:hover .btn {
+    display: block;
+  }
+  .item-hover .btn {
+    margin: 5px 0;
+    display: none;
+    text-align: center;
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+  }
+</style>
 <script>
 var $grid = $('.grid').masonry({
   itemSelector: '.grid-item',
   columnWidth: '.grid-sizer',
   percentPosition: true,
   transitionDuration: '0.2s'
+});
+
+$('.onClickSelect').on('click', function() {
+  var template = $(this).parents('.grid-item-content').attr('data-template');
+
+  swal({
+    title: '{{ trans('landingpages::global.enter_name') }}',
+    text: '{{ trans('landingpages::global.enter_name_text') }}',
+    input: 'text',
+    showCancelButton: true,
+    cancelButtonText: _lang['cancel'],
+    confirmButtonColor: "#138dfa",
+    confirmButtonText: _lang['ok'],
+    inputValidator: function (value) {
+      return new Promise(function (resolve, reject) {
+        if (value) {
+          resolve()
+        } else {
+          reject('Please enter a name!')
+        }
+      })
+    }
+  }).then(function (result) {
+
+    blockUI();
+
+    var jqxhr = $.ajax({
+      url: "{{ url('landingpages/create') }}",
+      data: {name: result, template: template,  _token: '<?= csrf_token() ?>'},
+      method: 'POST'
+    })
+    .done(function(data) {
+      document.location = '#/landingpages/editor/' + data.redir;
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
+      unblockUI();
+    });
+
+  }, function (dismiss) {
+    // Do nothing on cancel
+    // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
+  });
 });
 
 $('.onClickPreview').on('click', function() {

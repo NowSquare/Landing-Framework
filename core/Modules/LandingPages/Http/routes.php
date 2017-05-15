@@ -4,17 +4,24 @@ Route::group(['middleware' => 'web', 'prefix' => 'lp', 'namespace' => 'Modules\L
 
   // Public landing page
   Route::get('{local_domain}', 'LandingPagesController@homePage');
+
+  // Secured routes
+  Route::group(['middleware' => 'auth:web'], function () {
+    Route::get('edit/{local_domain}', 'LandingPagesController@editor');
+  });
+
 });
 
 Route::group(['middleware' => ['web', 'limitation:landingpages.visible'], 'prefix' => 'landingpages', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
 
-  // Secured web routes
+  // Secured routes
   Route::group(['middleware' => 'auth:web'], function () {
 
     Route::get('/', 'LandingPagesController@index');
     Route::get('create', 'LandingPagesController@create');
     Route::get('create/{category}', 'LandingPagesController@createCategory');
-    Route::get('edit', 'LandingPagesController@editor');
+    Route::post('create', 'LandingPagesController@createPage');
+    Route::post('delete', 'LandingPagesController@deletePage');
     Route::get('editor', 'LandingPagesController@editorFrame');
 
     // Previews

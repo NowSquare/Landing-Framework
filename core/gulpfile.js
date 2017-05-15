@@ -132,7 +132,6 @@ gulp.task('styles', function() {
   var cssStream = gulp.src([
       /*'bower_components/bootstrap/dist/css/bootstrap.css',
       'bower_components/sweetalert/dist/sweetalert.css',*/
-      'bower_components/sweetalert2/dist/sweetalert2.css',
       'bower_components/datatables.net-bs/css/dataTables.bootstrap.css',
       'bower_components/datatables.net-responsive-bs/css/responsive.bootstrap.css',
       'bower_components/datatables-rowreorder/css/rowReorder.bootstrap.css',

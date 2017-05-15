@@ -45,6 +45,10 @@ return array(
   "list" => "List",
   "icon" => "Icon",
   "insert_block" => "Insert block",
-  "" => "",
+  "enter_name" => "Enter name",
+  "enter_name_text" => "Enter a name for your landing page. You can change this at any time.",
+  "conversions" => "Conversions",
+  "visits" => "Visits",
+  "visit_online" => "Visit online",
   "" => ""
 );

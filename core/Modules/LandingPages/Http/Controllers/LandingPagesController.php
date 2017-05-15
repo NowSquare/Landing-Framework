@@ -13,99 +13,102 @@ class LandingPagesController extends Controller
     /**
      * Landing page public home
      */
-    public function homePage($local_domain, $edit = false)
+    public function homePage($local_domain)
     {
-      $sl = request()->input('sl', '');
+      if(isset($local_domain) && $local_domain != '') {
 
-      if($sl != '') {
-        $qs = Core\Secure::string2array($sl);
+        $preview = (boolean) request()->input('preview', false);
+        $landing_page_id = Core\Secure::staticHashDecode($local_domain, true);
 
-        dd($qs);
+        if (is_numeric($landing_page_id)) {
 
-        //$landing_site = Pages::where('user_id', Core\Secure::userId())->where('id', $qs['landing_site_id'])->first();
+          $variant = 1;
 
-        // Put template html into variable.
-        $template = view('template.landingpages::_boilerplate.index');
+          if ($preview) {
+            $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
 
-        // Suppress libxml errors
-        // Resolves an issue with some servers.
-        libxml_use_internal_errors(true);
+            if (! empty($page)) {
+              $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $local_domain . '.' . $variant . '.index';
+            } else {
+              return response()->view('errors.unpublished', ['route_name' => '404'], 404);
+            }
+          } else {
+            $page = Models\Page::where('id', $landing_page_id)->first();
 
-        // Create a new PHPQuery object to manipulate
-        // the DOM in a similar way as jQuery.
-        $dom = \phpQuery::newDocumentHTML($template);
-        \phpQuery::selectDocument($dom);
+            if (! empty($page)) {
+              $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $local_domain . '.' . $variant . '.published.index';
+            } else {
+              return response()->view('errors.unpublished', ['route_name' => '404'], 404);
+            }
+          }
 
-        // Insert scripts right after last js include
-        // to make sure jQuery and Bootstrap 4 js are
-        // included in template, while inline <script>'s
-        // can safely run below.
-        pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
-        pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js') . '"></script>');
+          try {
+            $template = view($view);
+          } catch(\Exception $e) {
+            return response()->view('errors.unpublished', ['route_name' => '404'], 404);
+          }
 
-        // End stylesheet right before </head> to make
-        // sure it overrides other stylesheets.
-        pq('head')->append(PHP_EOL . '<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css') . '" />');
+          // Stats
+          if (! $preview && Core\Secure::userId() != $page->user_id) {
+            
+          }
 
-        // Init editor
-        pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ lfInitEditor(); });</script>');
-
-        return $dom;
+          return $template;
+        } else {
+          return response()->view('errors.404', ['route_name' => '404'], 404);
+        }
       } else {
-        return view('landingpages::index');
+        return response()->view('errors.404', ['route_name' => '404'], 404);
       }
     }
 
     /**
      * Landing page editor
      */
-    public function editor()
+    public function editor($local_domain)
     {
-      $sl = request()->input('sl', '');
+      if(isset($local_domain) && $local_domain != '') {
 
-      if($sl != '') {
-        $qs = Core\Secure::string2array($sl);
+        $landing_page_id = Core\Secure::staticHashDecode($local_domain, true);
 
-        if (isset($qs['new'])) {
-          $view = 'template.landingpages::' . $qs['new'] . '.index';
-        } else {
-          $view = '';
+        if (is_numeric($landing_page_id)) {
+
+          $variant = 1;
+
+          $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
+
+          $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $local_domain . '.' . $variant . '.index';
+
+          // Put template html into variable.
+          $template = view($view);
+
+          // Suppress libxml errors
+          // Resolves an issue with some servers.
+          libxml_use_internal_errors(true);
+
+          // Create a new PHPQuery object to manipulate
+          // the DOM in a similar way as jQuery.
+          $dom = \phpQuery::newDocumentHTML($template);
+          \phpQuery::selectDocument($dom);
+
+          // Insert scripts right after last js include
+          // to make sure jQuery and Bootstrap 4 js are
+          // included in template, while inline <script>'s
+          // can safely run below.
+          pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
+          pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js') . '"></script>');
+
+          // End stylesheet right before </head> to make
+          // sure it overrides other stylesheets.
+          pq('head')->append(PHP_EOL . '<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css') . '" />');
+
+          // Init editor
+          pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ lfInitEditor(); });</script>');
+
+          //$dom = str_replace('</section><section', "</section>\n\n<section", $dom);
+
+          return $dom;
         }
-
-        //$landing_site = Pages::where('user_id', Core\Secure::userId())->where('id', $qs['landing_site_id'])->first();
-
-        // Put template html into variable.
-        $template = view($view);
-        //return $template;
-
-        // Suppress libxml errors
-        // Resolves an issue with some servers.
-        libxml_use_internal_errors(true);
-
-        // Create a new PHPQuery object to manipulate
-        // the DOM in a similar way as jQuery.
-        $dom = \phpQuery::newDocumentHTML($template);
-        \phpQuery::selectDocument($dom);
-
-        // Insert scripts right after last js include
-        // to make sure jQuery and Bootstrap 4 js are
-        // included in template, while inline <script>'s
-        // can safely run below.
-        pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
-        pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js') . '"></script>');
-
-        // End stylesheet right before </head> to make
-        // sure it overrides other stylesheets.
-        pq('head')->append(PHP_EOL . '<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css') . '" />');
-
-        // Init editor
-        pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ lfInitEditor(); });</script>');
-
-        $dom = str_replace('</section><section', "</section>\n\n<section", $dom);
-
-        return $dom;
-      } else {
-        return view('landingpages::index');
       }
     }
 
@@ -117,18 +120,17 @@ class LandingPagesController extends Controller
       $sl = request()->input('sl', '');
 
       if($sl != '') {
-        /*
         $qs = Core\Secure::string2array($sl);
 
-        if (isset($qs['new'])) {
-          $url = url('landingpages/edit/' . $qs['new'] . '');
-        } else {
-          $url = '';
-        }
-        */
-        //$landing_site = Pages::where('user_id', Core\Secure::userId())->where('id', $qs['landing_site_id'])->first();
+        if (isset($qs['landing_page_id'])) {
+          $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $qs['landing_page_id'])->first();
 
-        return view('landingpages::editor', compact('sl'));
+          if (! empty($page)) {
+            $url = url('lp/edit/' . Core\Secure::staticHash($qs['landing_page_id'], true));
+
+            return view('landingpages::editor', compact('url', 'page'));
+          }
+        }
       }
     }
 
@@ -137,7 +139,9 @@ class LandingPagesController extends Controller
      */
     public function index()
     {
-      return view('landingpages::index');
+      $sites = Models\Site::where('user_id', Core\Secure::userId())->orderBy('created_at', 'desc')->get();
+
+      return view('landingpages::index', compact('sites'));
     }
 
     /**
@@ -166,6 +170,104 @@ class LandingPagesController extends Controller
       $templates = FunctionsController::getTemplatesByCategory($category);
 
       return view('landingpages::create-select-template', compact('category', 'templates'));
+    }
+
+    /**
+     * Create a landing page and return redir url
+     */
+    public function createPage(Request $request)
+    {
+      $template = $request->input('template', '');
+      $name = $request->input('name', '');
+
+      $template_path = base_path('../templates/landingpages/');
+
+      if (\File::exists($template_path . $template . '/config.php') && \File::exists($template_path . $template . '/index.blade.php')) {
+        $config = include $template_path . $template . '/config.php';
+
+        // First create site
+        $site = new Models\Site;
+
+        $site->user_id = Core\Secure::userId();
+        $site->name = $name;
+        $site->save();
+
+        $site_id = $site->id;
+
+        // Then, create page for site
+        $page = new Models\Page;
+
+        $page->user_id = Core\Secure::userId();
+        $page->landing_site_id = $site_id;
+        $page->name = $name;
+        $page->template = $template;
+        $page->type = $config['type'];
+        $page->save();
+
+        $local_domain = Core\Secure::staticHash($site_id, true);
+
+        $site->local_domain = $local_domain;
+        $site->save();
+
+        // Finally, create directory with files
+        $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . $local_domain;
+
+        // Get template HTML and replace title
+        $html = view('template.landingpages::' . $template . '.index');
+
+        // Suppress libxml errors
+        // Resolves an issue with some servers.
+        libxml_use_internal_errors(true);
+
+        // Create a new PHPQuery object to manipulate
+        // the DOM in a similar way as jQuery.
+        $page_html = \phpQuery::newDocumentHTML($html);
+        \phpQuery::selectDocument($page_html);
+
+        // Update page
+        pq('title')->text($name);
+        pq('head')->find('title')->after('<link rel="icon" type="image/x-icon" href="' . url('public/' . $storage_root . '/favicon.ico') . '">');
+        pq('head')->find('title')->after('<meta name="description" content="">');
+
+        //$page_html = str_replace('</section><section', "</section>\n\n<section", $page_html);
+        $page_html = str_replace(url('/'), '', $page_html);
+
+        $variant = 1;
+
+        \Storage::disk('public')->makeDirectory($storage_root . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant . '/' . date('Y-m-d-H-i-s'));
+        \Storage::disk('public')->put($storage_root . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $page_html);
+        \Storage::disk('public')->put($storage_root . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant . '/index.blade.php', $page_html);
+        \Storage::disk('public')->put($storage_root . '/favicon.ico', \File::get($template_path . $template . '/favicon.ico'));
+
+        $redir = Core\Secure::array2string(['landing_page_id' => $page->id]);
+      } else {
+        $redir = '#';
+      }
+
+      return response()->json(['redir' => $redir]);
+    }
+
+    /**
+     * Delete landing
+     */
+    public function deletePage()
+    {
+      $sl = request()->input('sl', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $site_id = $qs['landing_site_id'];
+        if (is_numeric($site_id)) {
+          // Delete records
+          Models\Site::where('user_id', Core\Secure::userId())->where('id', $site_id)->delete();
+
+          // Delete files
+          $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($site_id, true);
+          \Storage::disk('public')->deleteDirectory($storage_root);
+
+          return response()->json(['success' => true]);
+        }
+      }
     }
 
     /**

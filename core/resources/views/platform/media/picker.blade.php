@@ -54,7 +54,9 @@
           }
         },
         getFileCallback: function (file) {
-          window.parent.processSelectedFile(file.url, '{{ $id }}', '{{ $preview }}');
+          var path = file.url.replace('{{ url('/') }}', '');
+
+          window.parent.processSelectedFile(path, '{{ $id }}', '{{ $preview }}');
           parent.$.colorbox.close();
         }
       });

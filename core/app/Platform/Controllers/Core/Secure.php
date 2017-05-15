@@ -8,7 +8,11 @@ class Secure extends \App\Http\Controllers\Controller {
 
   public static function userId()
   {
-    return (auth()->user()->parent_id != NULL) ? auth()->user()->parent_id : auth()->user()->id;
+    if (auth()->check()) {
+      return (auth()->user()->parent_id != NULL) ? auth()->user()->parent_id : auth()->user()->id;
+    } else {
+      return 0;
+    }
   }
 
   /**
@@ -17,7 +21,11 @@ class Secure extends \App\Http\Controllers\Controller {
 
   public static function resellerId()
   {
-    return auth()->user()->reseller_id;
+    if (auth()->check()) {
+      return auth()->user()->reseller_id;
+    } else {
+      return 0;
+    }
   }
 
   /**
@@ -84,10 +92,14 @@ class Secure extends \App\Http\Controllers\Controller {
   {
     $hashids = new \Hashids\Hashids(\Config::get('app.key'));
     $number = $hashids->decode($hash);
-    $number = $number[0];
+    if (isset($number[0])) {
+      $number = $number[0];
 
-    if ($obfuscate) {
-      $number = intval($number) / intval(config()->get('system.obfuscator_prefix'));
+      if ($obfuscate) {
+        $number = intval($number) / intval(config()->get('system.obfuscator_prefix'));
+      }
+    } else {
+      $number = false;
     }
 
     return $number;

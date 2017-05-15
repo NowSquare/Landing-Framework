@@ -76,6 +76,7 @@ class AppServiceProvider extends ServiceProvider
       // Namespaces
       view()->addNamespace('template.landingpages', base_path('../templates/landingpages/'));
       view()->addNamespace('block.landingpages', base_path('../blocks/landingpages/'));
+      view()->addNamespace('public.landingpages', base_path('../public/landingpages/site/'));
 
       // Collection::mapWithKeys() works incorrectly for keys with integer values
       // https://github.com/laravel/framework/issues/15409

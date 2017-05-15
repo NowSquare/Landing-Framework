@@ -44,7 +44,7 @@ $(function() {
       '/landingpages': function () { loadRoute('landingpages', 'landingpages'); },
       '/landingpages/create': function () { loadRoute('landingpages/create', 'landingpages'); },
       '/landingpages/create/:cat': function (cat) { loadRoute('landingpages/create/' + cat, 'landingpages'); },
-      '/landingpages/editor/:sl': function (sl) { loadRoute('landingpages/editor?sl=' + sl, 'landingpages', true); },
+      '/landingpages/editor/:sl': function (sl) { loadRoute('landingpages/editor?sl=' + sl, 'landingpages', true, true); },
 
       '/members': function () { loadRoute('platform/members'); },
       '/member/:sl': function (sl) { loadRoute('platform/member/edit?sl=' + sl, 'members'); },
@@ -74,9 +74,13 @@ $(function() {
 
     router.init('#/');
 
-    function loadRoute(url, route, showDeviceSelection) {
+    function loadRoute(url, route, showGenericTitle, showDeviceSelection) {
       $('#view').load(url, function() {
         onPartialLoaded();
+
+        if (typeof showGenericTitle == 'undefined' || ! showGenericTitle) {
+          $('#generic_title a').text('');
+        }
 
         if (showDeviceSelection) {
           $('#device_selector').fadeIn(100);
