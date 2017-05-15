@@ -21,6 +21,7 @@
         "laravel/tinker": "~1.0",
         "laravolt/avatar": "^1.8",
         "maatwebsite/excel": "^2.1",
+        "milon/barcode": "^5.3",
         "nwidart/laravel-modules": "^1.20",
         "php-http/guzzle6-adapter": "^1.1",
         "tymon/jwt-auth": "^0.5.10"

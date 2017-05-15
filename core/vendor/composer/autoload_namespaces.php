@@ -13,6 +13,7 @@ return array(
     'Net' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Namshi\\JOSE' => array($vendorDir . '/namshi/jose/src'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
+    'Milon\\Barcode' => array($vendorDir . '/milon/barcode/src'),
     'Math' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Maatwebsite\\Excel\\' => array($vendorDir . '/maatwebsite/excel/src'),
     'JakubOnderka\\PhpConsoleHighlighter' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),

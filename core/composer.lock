@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4829564b4c09e9fb0f75612047633902",
+    "content-hash": "7075e70ee05c54a6d8880d645b4cff50",
     "packages": [
         {
             "name": "anahkiasen/former",
@@ -1758,6 +1758,55 @@
                 "laravel"
             ],
             "time": "2017-04-04T18:28:12+00:00"
+        },
+        {
+            "name": "milon/barcode",
+            "version": "5.3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/milon/barcode.git",
+                "reference": "0f211bf93ee1783f1b6e2a1081b45b55af3e7df3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/milon/barcode/zipball/0f211bf93ee1783f1b6e2a1081b45b55af3e7df3",
+                "reference": "0f211bf93ee1783f1b6e2a1081b45b55af3e7df3",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Milon\\Barcode": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Nuruzzaman Milon",
+                    "email": "contact@milon.im"
+                }
+            ],
+            "description": "Barcode generator like Qr Code , PDF417,C39, C39+,C39E,C39E+,C93,S25,S25+,I25,I25+,C128,C128A,C128B,C128C,2-Digits UPC-Based Extention,5-Digits UPC-Based Extention,EAN 8,EAN 13,UPC-A,UPC-E,MSI (Variation of Plessey code) ",
+            "keywords": [
+                "CODABAR",
+                "CODE 128",
+                "CODE 39",
+                "barcode",
+                "datamatrix",
+                "ean",
+                "laravel",
+                "pdf417",
+                "qr code",
+                "qrcode"
+            ],
+            "time": "2017-04-21T01:08:30+00:00"
         },
         {
             "name": "monolog/monolog",

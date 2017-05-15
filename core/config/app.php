@@ -189,6 +189,7 @@ return [
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Nwidart\Modules\LaravelModulesServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Milon\Barcode\BarcodeServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -259,7 +260,9 @@ return [
         'Former' => Former\Facades\Former::class,
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
         'Module' => Nwidart\Modules\Facades\Module::class,
-        'Image' => Intervention\Image\Facades\Image::class
+        'Image' => Intervention\Image\Facades\Image::class,
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
 
     ],
 
