@@ -58,28 +58,133 @@ function lfInitFab() {
   */
 
   $('body').on('click', '.-x-el-fab-save', function() {
-    var html = lfGetHtml();
-
-    console.log(html);
   
     // Hide dropdown
     $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
 
-    $.notify({
-        title: _lang['notification'],
-        text: _lang['save_succes'] + "&nbsp;&nbsp;",
-        image: '<i class="fa fa-bell-o" aria-hidden="true"></i>'
-      }, {
-        style: 'metro',
-        className: 'white', /* white, black, error, success, warning, info */
-        globalPosition: 'top right',
-        autoHide: true,
-        clickToHide: true,
-        autoHideDelay: 5000,
-        showAnimation: 'fadeIn',
-        showDuration: 200,
-        hideAnimation: 'fadeOut',
-        hideDuration: 200
+    // Post html
+    var html = lfGetHtml();
+
+    var jqxhr = $.ajax({
+      url: _lang["url"] + '/landingpages/save',
+      data: {sl: lf_sl, html: html, _token: lf_csrf_token},
+      method: 'POST'
+    })
+    .done(function(data) {
+      if (data.success) {
+        $.notify({
+            title: _lang['notification'],
+            text: data.msg + "&nbsp;&nbsp;",
+            image: '<i class="fa fa-bell-o" aria-hidden="true"></i>'
+          }, {
+            style: 'metro',
+            className: 'white', /* white, black, error, success, warning, info */
+            globalPosition: 'top right',
+            autoHide: true,
+            clickToHide: true,
+            autoHideDelay: 5000,
+            showAnimation: 'fadeIn',
+            showDuration: 200,
+            hideAnimation: 'fadeOut',
+            hideDuration: 200
+        });
+      } else {
+        alert(data.msg);
+      }
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
+    });
+  });
+  
+  /* 
+    Publish page
+  */
+
+  $('body').on('click', '.-x-el-fab-publish-publish', function() {
+  
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+
+    // Post html
+    var html = lfGetHtml();
+
+    var jqxhr = $.ajax({
+      url: _lang["url"] + '/landingpages/publish',
+      data: {sl: lf_sl, html: html, _token: lf_csrf_token},
+      method: 'POST'
+    })
+    .done(function(data) {
+      if (data.success) {
+        $.notify({
+            title: _lang['notification'],
+            text: data.msg + "&nbsp;&nbsp;",
+            image: '<i class="fa fa-bell-o" aria-hidden="true"></i>'
+          }, {
+            style: 'metro',
+            className: 'white', /* white, black, error, success, warning, info */
+            globalPosition: 'top right',
+            autoHide: true,
+            clickToHide: true,
+            autoHideDelay: 5000,
+            showAnimation: 'fadeIn',
+            showDuration: 200,
+            hideAnimation: 'fadeOut',
+            hideDuration: 200
+        });
+      } else {
+        alert(data.msg);
+      }
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
+    });
+  });
+  
+  /* 
+    Unpublish page
+  */
+
+  $('body').on('click', '.-x-el-fab-publish-unpublish', function() {
+  
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+
+    var jqxhr = $.ajax({
+      url: _lang["url"] + '/landingpages/unpublish',
+      data: {sl: lf_sl, _token: lf_csrf_token},
+      method: 'POST'
+    })
+    .done(function(data) {
+      if (data.success) {
+        $.notify({
+            title: _lang['notification'],
+            text: data.msg + "&nbsp;&nbsp;",
+            image: '<i class="fa fa-bell-o" aria-hidden="true"></i>'
+          }, {
+            style: 'metro',
+            className: 'white', /* white, black, error, success, warning, info */
+            globalPosition: 'top right',
+            autoHide: true,
+            clickToHide: true,
+            autoHideDelay: 5000,
+            showAnimation: 'fadeIn',
+            showDuration: 200,
+            hideAnimation: 'fadeOut',
+            hideDuration: 200
+        });
+      } else {
+        alert(data.msg);
+      }
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
     });
   });
 

@@ -220,8 +220,21 @@ function lfGetHtml() {
   // Various
   $html.find('[data-tether-id]').remove();
 
-  return $html.html();
+  return lfGetDocTypeAsString() + $html[0].outerHTML;
+  //return $('<div>').append($html).html();
 }
+
+var lfGetDocTypeAsString = function () { 
+    var node = document.doctype;
+    return node ? "<!DOCTYPE "
+         + node.name
+         + (node.publicId ? ' PUBLIC "' + node.publicId + '"' : '')
+         + (!node.publicId && node.systemId ? ' SYSTEM' : '') 
+         + (node.systemId ? ' "' + node.systemId + '"' : '')
+         + '>\n' : '';
+};
+
+lfGetDocTypeAsString() + document.documentElement.outerHTML   
 
 /* 
   Remove html attributes starting with string

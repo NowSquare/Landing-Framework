@@ -22,6 +22,8 @@ return array(
 	"confirm_leaving_page" => "It looks like there have been changes. If you leave before saving, all changes will be lost.",
 	"yes_delete" => "Yes, delete",
 	"save_succes" => "Changes saved successfully.",
+	"publish_succes" => "Changes published successfully.",
+	"unpublish_succes" => "Page has been unpublished successfully.",
   "background" => "Background",
   "move" => "Move",
   "move_up" => "Move up",

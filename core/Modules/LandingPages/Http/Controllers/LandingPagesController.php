@@ -79,6 +79,8 @@ class LandingPagesController extends Controller
 
           $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
 
+          $sl = \Platform\Controllers\Core\Secure::array2string(['landing_page_id' => $page->id]);
+
           $published_url = ($page->site->domain != '') ? '//' . $page->site->domain : url('lp/' . $page->site->local_domain);
 
           $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $local_domain . '.' . $variant . '.index';
@@ -99,7 +101,7 @@ class LandingPagesController extends Controller
           // to make sure jQuery and Bootstrap 4 js are
           // included in template, while inline <script>'s
           // can safely run below.
-          pq('head')->find('script[src]:last')->before(PHP_EOL . '<script class="-x-editor-asset">var lf_published_url = "' . $published_url . '";</script>');
+          pq('head')->find('script[src]:last')->before(PHP_EOL . '<script class="-x-editor-asset">var lf_published_url = "' . $published_url . '";var lf_sl = "' . $sl . '";var lf_csrf_token = "' . csrf_token() . '";</script>');
           pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
           pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js') . '"></script>');
 
@@ -244,9 +246,11 @@ class LandingPagesController extends Controller
 
         $variant = 1;
 
-        \Storage::disk('public')->makeDirectory($storage_root . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant . '/' . date('Y-m-d-H-i-s'));
-        \Storage::disk('public')->put($storage_root . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $page_html);
-        \Storage::disk('public')->put($storage_root . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant . '/index.blade.php', $page_html);
+        $storage_root_full = $storage_root . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
+
+        \Storage::disk('public')->makeDirectory($storage_root_full . '/' . date('Y-m-d-H-i-s'));
+        \Storage::disk('public')->put($storage_root_full . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $page_html);
+        \Storage::disk('public')->put($storage_root_full . '/index.blade.php', $page_html);
         \Storage::disk('public')->put($storage_root . '/favicon.ico', \File::get($template_path . $template . '/favicon.ico'));
 
         $redir = Core\Secure::array2string(['landing_page_id' => $page->id]);
@@ -255,6 +259,101 @@ class LandingPagesController extends Controller
       }
 
       return response()->json(['redir' => $redir]);
+    }
+
+    /**
+     * Save page
+     */
+    public function savePage(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $page_html = $request->input('html', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        $landing_page_id = $qs['landing_page_id'];
+        $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
+
+        $variant = 1;
+
+        // Update files
+        $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' .  Core\Secure::staticHash($page->landing_site_id, true) . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
+
+        $page_html = str_replace(url('/'), '', $page_html);
+
+        \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
+        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $page_html);
+        \Storage::disk('public')->put($storage_root . '/index.blade.php', $page_html);
+
+        $response = ['success' => true, 'msg' => trans('javascript.save_succes')];
+      } else {
+        $response = ['success' => false, 'msg' => 'An error occured'];
+      }
+
+      return response()->json($response);
+    }
+
+    /**
+     * Publish page
+     */
+    public function publishPage(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $page_html = $request->input('html', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        $landing_page_id = $qs['landing_page_id'];
+        $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
+
+        $variant = 1;
+
+        // Update files
+        $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' .  Core\Secure::staticHash($page->landing_site_id, true) . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
+
+        $page_html = str_replace(url('/'), '', $page_html);
+
+        \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
+        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $page_html);
+        \Storage::disk('public')->put($storage_root . '/index.blade.php', $page_html);
+        \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $page_html);
+
+        $response = ['success' => true, 'msg' => trans('javascript.publish_succes')];
+      } else {
+        $response = ['success' => false, 'msg' => 'An error occured'];
+      }
+
+      return response()->json($response);
+    }
+
+    /**
+     * Unpublish page
+     */
+    public function unpublishPage(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        $landing_page_id = $qs['landing_page_id'];
+        $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
+
+        $variant = 1;
+
+        // Update files
+        $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' .  Core\Secure::staticHash($page->landing_site_id, true) . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
+
+        \Storage::disk('public')->deleteDirectory($storage_root . '/published');
+
+        $response = ['success' => true, 'msg' => trans('javascript.unpublish_succes')];
+      } else {
+        $response = ['success' => false, 'msg' => 'An error occured'];
+      }
+
+      return response()->json($response);
     }
 
     /**

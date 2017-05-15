@@ -90,11 +90,13 @@ foreach($sites as $site) {
   $i++;
 } 
 ?>
-
   </div>
 </div>
 
 <style type="text/css">
+.panel-footer {
+  padding: 0px !important;
+}
 .preview-container {
   display: block;
   width:100%;
@@ -183,7 +185,7 @@ $('.onClickDelete').on('click', function() {
     confirmButtonText: _lang['yes_delete']
   }).then(function (result) {
 
-    blockUI();
+    //blockUI();
 
     var jqxhr = $.ajax({
       url: "{{ url('landingpages/delete') }}",
@@ -198,7 +200,7 @@ $('.onClickDelete').on('click', function() {
       console.log('error');
     })
     .always(function() {
-      unblockUI();
+     //unblockUI();
     });
 
   }, function (dismiss) {

@@ -21,6 +21,9 @@ Route::group(['middleware' => ['web', 'limitation:landingpages.visible'], 'prefi
     Route::get('create', 'LandingPagesController@create');
     Route::get('create/{category}', 'LandingPagesController@createCategory');
     Route::post('create', 'LandingPagesController@createPage');
+    Route::post('save', 'LandingPagesController@savePage');
+    Route::post('publish', 'LandingPagesController@publishPage');
+    Route::post('unpublish', 'LandingPagesController@unpublishPage');
     Route::post('delete', 'LandingPagesController@deletePage');
     Route::get('editor', 'LandingPagesController@editorFrame');
 
