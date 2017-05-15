@@ -179,6 +179,15 @@ function lfGetHtml() {
     }
   });
 
+  // Remove empty style blocks
+  $html.find('style[type="text/css"]').each(function() {
+    var contents = $(this).text();
+
+    if (contents == '') {
+      $(this).remove();
+    }
+  });
+
   // Remove all classes starting with -x-data-
   $html.find('[class*=-x-data-]').each(function() {
     this.className = this.className.replace(/(^| )-x-data-[^ ]*/g, '');
@@ -220,8 +229,10 @@ function lfGetHtml() {
   // Various
   $html.find('[data-tether-id]').remove();
 
-  return lfGetDocTypeAsString() + $html[0].outerHTML;
-  //return $('<div>').append($html).html();
+  // Get full html including DOCTYPE
+  var html = lfGetDocTypeAsString() + $html[0].outerHTML;
+
+  return html;
 }
 
 var lfGetDocTypeAsString = function () { 

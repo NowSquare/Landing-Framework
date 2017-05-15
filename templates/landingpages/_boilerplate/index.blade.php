@@ -7,8 +7,6 @@
 
   <link rel="stylesheet" type="text/css" href="{{ url('assets/bs4/css/style.min.css') }}" />
   <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
-
-  <link href="//fonts.googleapis.com/css?family=Dosis:200,400|Open+Sans:300,400,700" rel="stylesheet">
   <style type="text/css">
     body {
       font-family: 'Open Sans', sans-serif;
@@ -20,6 +18,7 @@
       font-weight: 300 !important;
     }
   </style>
+  <link href="//fonts.googleapis.com/css?family=Dosis:200,400|Open+Sans:300,400,700" rel="stylesheet">
 </head>
 <body>
 
