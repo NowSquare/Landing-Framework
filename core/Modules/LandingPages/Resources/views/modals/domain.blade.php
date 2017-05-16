@@ -16,6 +16,8 @@
           <input type="text" class="form-control" id="local_domain" name="local_domain" readonly autocomplete="off" value="{{ url('lp/' . $page->site->local_domain) }}">
       </div>
 
+<?php if (Gate::allows('limitation', 'landingpages.custom_domain')) { ?>
+
       <div class="form-group">
         <label for="domain">{{ trans('landingpages::global.custom_domain') }}</label>
         <div class="input-group">
@@ -25,10 +27,14 @@
         <p class="help-block text-muted"><small>{!! trans('landingpages::global.custom_domain_help', ['host' => request()->getHttpHost()]) !!}</small></p>
       </div>
 
-
+<?php } else { ?>
+        <div class="alert alert-warning">{!! trans('global.no_access_to_feature') !!}</div>
+<?php } ?>
     <div class="editor-modal-footer">
       <button type="button" class="btn btn-primary btn-material onClickClose">{{ trans('global.close') }}</button>
+<?php if (Gate::allows('limitation', 'landingpages.custom_domain')) { ?>
         <button type="button" class="btn btn-primary btn-material ladda-button onClickUpdate" data-style="zoom-in" data-spinner-color="#138dfa"><span class="ladda-label">{{ trans('global.save') }}</span></button>
+<?php } ?>
     </div>
 
     </div>
@@ -45,6 +51,7 @@ Update settings
 */ ?>
 
   $('.onClickUpdate').on('click', function() {
+<?php if (Gate::allows('limitation', 'landingpages.custom_domain')) { ?>
     var ladda_button = $('button.onClickUpdate').ladda();
     ladda_button.ladda('start');
 
@@ -62,7 +69,9 @@ Update settings
     .always(function() {
       ladda_button.ladda('stop');
     });
-
+<?php } else { ?>
+    window.parent.lfCloseModal();
+<?php } ?>
   });
 });
 </script>

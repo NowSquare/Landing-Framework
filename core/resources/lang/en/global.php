@@ -281,6 +281,7 @@ return array(
   "limitations" => "Limitations",
   "maximum" => "Maximum",
   "account_limit_reached" => "Your account limit has been reached.",
+  "no_access_to_feature" => "Your current account has no access to this feature. Upgrade your account if you want to use this feature.",
 
   /*
    |--------------------------------------------------------------------------
