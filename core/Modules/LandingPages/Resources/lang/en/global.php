@@ -50,5 +50,12 @@ return array(
   "conversions" => "Conversions",
   "visits" => "Visits",
   "visit_online" => "Visit online",
+  "seo" => "SEO",
+  "name" => "Name",
+  "name_help" => "The name is only visible in the system.",
+  "page_title" => "Page title",
+  "page_title_help" => "This is the title tag. <a href=\"https://support.google.com/webmasters/answer/35624\" target=\"_blank\">Click here</a> for more information.",
+  "page_description" => "Page description",
+  "page_description_help" => "This is the meta description. <a href=\"https://support.google.com/webmasters/answer/35624\" target=\"_blank\">Click here</a> for more information.",
   "" => ""
 );

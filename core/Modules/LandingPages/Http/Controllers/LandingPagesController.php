@@ -495,6 +495,83 @@ class LandingPagesController extends Controller
     }
 
     /**
+     * Page SEO
+     */
+    public function editorModalSeo(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $page_id = $qs['landing_page_id'];
+
+        if (is_numeric($page_id)) {
+          $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $qs['landing_page_id'])->first();
+
+          // Get page title & meta
+          /*
+          $variant = 1;
+          $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $page->site->local_domain . '.' . $variant . '.index';
+          $template = view($view);
+          libxml_use_internal_errors(true);
+          $dom = \phpQuery::newDocumentHTML($template);
+          \phpQuery::selectDocument($dom);
+
+          $page_title = pq('title')->text();
+          $page_description = pq('meta[name=description]')->attr('content');
+          */
+
+          return view('landingpages::modals.seo', compact('page', 'sl'));
+        }
+      }
+    }
+
+    /**
+     * Post page SEO
+     */
+    public function editorPostSeo(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $name = $request->input('name', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $page_id = $qs['landing_page_id'];
+
+        if (is_numeric($page_id)) {
+          $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $qs['landing_page_id'])->first();
+          $page->name = $name;
+          $page->save();
+
+          $site = Models\Site::where('user_id', Core\Secure::userId())->where('id', $page->landing_site_id)->first();
+          $site->name = $name;
+          $site->save();
+
+          return response()->json(['success' => true]);
+        }
+      }
+    }
+
+    /**
+     * Domain
+     */
+    public function editorModalDomain(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $page_id = $qs['landing_page_id'];
+
+        if (is_numeric($page_id)) {
+          $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $qs['landing_page_id'])->first();
+
+          return view('landingpages::modals.domain', compact('page'));
+        }
+      }
+    }
+
+    /**
      * View QR
      */
     public function editorModalQr(Request $request)

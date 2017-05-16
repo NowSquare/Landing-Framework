@@ -13,7 +13,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('landingpages::global.module_name_plural') }}</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('landingpages::global.module_name_plural') }} ({{ count($sites) }})</a>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-title-navbar">
@@ -114,13 +114,13 @@ foreach($sites as $site) {
 }
 .preview_frame {
   pointer-events: none;
-  width: 400%;
-  -ms-zoom: 0.25;
-  -moz-transform: scale(0.25);
+  width: 500%;
+  -ms-zoom: 0.2;
+  -moz-transform: scale(0.2);
   -moz-transform-origin: 0 0;
-  -o-transform: scale(0.25);
+  -o-transform: scale(0.2);
   -o-transform-origin: 0 0;
-  -webkit-transform: scale(0.25);
+  -webkit-transform: scale(0.2);
   -webkit-transform-origin: 0 0;
 }
 .portlet-title {
@@ -152,7 +152,7 @@ $(function() {
 
       $(this).height(frame_height);
 
-      $(this).parent().height(frame_height / 4);
+      $(this).parent().height(frame_height / 5);
       //$(this).parent().width(frame_width / 4);
       $(this).parent().width('100%');
     });

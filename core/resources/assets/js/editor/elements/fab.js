@@ -237,8 +237,34 @@ function lfInitFab() {
 
   $('body').on('click', '.-x-el-fab-view-qr', function() {
     $('.-x-el-inline-button-clone .-x-el-icon').toggle();
-    
+
     lfOpenModal(_lang["url"] + '/landingpages/editor/modal/qr?url=' + lf_published_url);
+
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+  });
+
+  /* 
+    SEO
+  */
+
+  $('body').on('click', '.-x-el-fab-page-seo', function() {
+    $('.-x-el-inline-button-clone .-x-el-icon').toggle();
+    
+    lfOpenModal(_lang["url"] + '/landingpages/editor/modal/seo?sl=' + lf_sl);
+  
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+  });
+
+  /* 
+    Domain
+  */
+
+  $('body').on('click', '.-x-el-fab-page-domain', function() {
+    $('.-x-el-inline-button-clone .-x-el-icon').toggle();
+    
+    lfOpenModal(_lang["url"] + '/landingpages/editor/modal/domain?sl=' + lf_sl);
   
     // Hide dropdown
     $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
