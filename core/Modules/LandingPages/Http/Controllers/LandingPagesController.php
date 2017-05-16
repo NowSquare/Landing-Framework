@@ -50,9 +50,7 @@ class LandingPagesController extends Controller
 
           // Stats
           if (! $preview && Core\Secure::userId() != $page->user_id) {
-            // Fingerprint hash
-            $hash = request()->ip() . '|' . date('Y-m-d-H');
-            $hash = \Hash::make($hash);
+            FunctionsController::addStat($page);
           }
 
           return $template;

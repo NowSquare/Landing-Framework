@@ -42,7 +42,7 @@ class CreateLandingPagesTable extends Migration
 
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-      $table->integer('landing_site_id')->unsigned();
+      $table->bigInteger('landing_site_id')->unsigned();
       $table->foreign('landing_site_id')->references('id')->on('landing_sites')->onDelete('cascade');
       $table->boolean('show_in_menu')->default(true);
       $table->string('name', 200);
