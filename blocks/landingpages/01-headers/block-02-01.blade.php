@@ -1,5 +1,5 @@
 <section class="-x-block">
-  <div class="header text-light -x-block-bg-img" style="background-image:url('{{ url('templates/assets/images/headers/landscape-mountains-nature-sky.jpg') }}')">
+  <div class="header text-light -x-block-bg-img" style="background-image:url('/templates/assets/images/headers/landscape-mountains-nature-sky.jpg')">
     <div id="particles-js-connect" class="header-overlay -x-block-bg-color" style="background-color:rgba(37,75,98,0.7)">
       <div class="container">
         <div class="header-padding no-padding-b">
@@ -17,12 +17,12 @@
             <div class="col-sm-12 col-md-6">
               <h1 class="display-2 text-md-left my-3 no-margin-smb -x-text">{!! trans('landingpages::block.header_02_head') !!}</h1>
               <p class="lead text-center text-md-left -x-text">{!! trans('landingpages::block.header_02_line') !!}</p>
-              <div class="btn-container my-3 btn-stack-lg">
+              <div class="btn-container my-5 btn-stack-lg">
                 <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.header_02_button') !!}</a>
               </div>
             </div>
             <div class="col-sm-12 col-md-6 push-lg-1 col-lg-5 text-center text-md-right img-container my-2">
-              <img src="{{ url('templates/assets/images/visuals/iWatch-White-2.png') }}" alt="" class="-x-img img-fluid">
+              <img src="/templates/assets/images/visuals/iWatch-White-2.png" alt="" class="-x-img img-fluid">
             </div>
           </div>
         </div>

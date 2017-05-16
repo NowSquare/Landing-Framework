@@ -10,7 +10,7 @@
               <div class="btn-container mt-3 mb-1">
                 <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.header_01_button') !!}</a>
               </div>
-              <img src="{{ url('templates/assets/images/visuals/software01.png') }}" alt="" class="img-fluid -x-img" style="margin:auto">
+              <img src="/templates/assets/images/visuals/software01.png" alt="" class="img-fluid -x-img" style="margin:auto">
             </div>
           </div>
         </div>

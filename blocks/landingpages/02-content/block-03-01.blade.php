@@ -6,7 +6,7 @@
           <div class="col-12 col-md-4 text-center">
             <div class="row">
               <div class="col-6 push-3 col-sm-6 push-sm-3 col-lg-6 push-lg-3 text-center">
-                <img src="{{ url('templates/assets/images/icons/electrical_sensor.svg') }}" alt="" class="-x-img img-fluid">
+                <img src="/templates/assets/images/icons/electrical_sensor.svg" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">
                 <h2 class="mt-1 -x-text">{!! trans('landingpages::block.content_title1') !!}</h2>
@@ -20,7 +20,7 @@
           <div class="col-12 col-md-4 text-center">
             <div class="row">
               <div class="col-6 push-3 col-sm-6 push-sm-3 col-lg-6 push-lg-3 text-center">
-                <img src="{{ url('templates/assets/images/icons/camcorder.svg') }}" alt="" class="-x-img img-fluid">
+                <img src="/templates/assets/images/icons/camcorder.svg" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">
                 <h2 class="mt-1 -x-text">{!! trans('landingpages::block.content_title2') !!}</h2>
@@ -34,7 +34,7 @@
           <div class="col-12 col-md-4 text-center">
             <div class="row">
               <div class="col-6 push-3 col-sm-6 push-sm-3 col-lg-6 push-lg-3 text-center">
-                <img src="{{ url('templates/assets/images/icons/mind_map.svg') }}" alt="" class="-x-img img-fluid">
+                <img src="/templates/assets/images/icons/mind_map.svg" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">
                 <h2 class="mt-1 -x-text">{!! trans('landingpages::block.content_title3') !!}</h2>
