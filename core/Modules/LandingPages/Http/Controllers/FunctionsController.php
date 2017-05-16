@@ -70,7 +70,9 @@ class FunctionsController extends Controller
       $osInfo = $dd->getOs();
       $device = $dd->getDevice();
       $brand = $dd->getBrandName();
+      if ($brand == '') $brand = null;
       $model = $dd->getModel();
+      if ($model == '') $model = null;
 
       $is_bot = false;
 

@@ -368,6 +368,10 @@ class LandingPagesController extends Controller
           // Delete records
           Models\Site::where('user_id', Core\Secure::userId())->where('id', $site_id)->delete();
 
+          // Delete records
+          $tbl_name = 'x_landing_stats_' . Core\Secure::userId();
+          \DB::table($tbl_name)->where('landing_site_id', $site_id)->delete();
+  
           // Delete files
           $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($site_id, true);
           \Storage::disk('public')->deleteDirectory($storage_root);
