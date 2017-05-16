@@ -100,7 +100,7 @@ $('.onClickSelect').on('click', function() {
     }
   }).then(function (result) {
 
-    blockUI();
+    //blockUI();
 
     var jqxhr = $.ajax({
       url: "{{ url('landingpages/create') }}",
@@ -114,7 +114,7 @@ $('.onClickSelect').on('click', function() {
       console.log('error');
     })
     .always(function() {
-      unblockUI();
+      //unblockUI();
     });
 
   }, function (dismiss) {

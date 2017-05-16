@@ -178,7 +178,7 @@ class LandingPagesController extends Controller
     {
       $templates = FunctionsController::getTemplatesByCategory($category);
 
-      return view('landingpages::create-select-template', compact('category', 'templates'));
+      return view('landingpages::create-category', compact('category', 'templates'));
     }
 
     /**

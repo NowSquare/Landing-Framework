@@ -192,7 +192,7 @@ $('.onClickDelete').on('click', function() {
     confirmButtonText: _lang['yes_delete']
   }).then(function (result) {
 
-    //blockUI();
+    blockUI();
 
     var jqxhr = $.ajax({
       url: "{{ url('landingpages/delete') }}",
@@ -207,7 +207,7 @@ $('.onClickDelete').on('click', function() {
       console.log('error');
     })
     .always(function() {
-     //unblockUI();
+     unblockUI();
     });
 
   }, function (dismiss) {
