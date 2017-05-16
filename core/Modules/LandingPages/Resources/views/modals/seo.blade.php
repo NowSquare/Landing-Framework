@@ -11,27 +11,27 @@
     <div class="col-xs-10 col-sm-6">
 
       <div class="form-group">
-        <label for="text">{{ trans('landingpages::global.name') }}</label>
+        <label for="name">{{ trans('landingpages::global.name') }}</label>
           <input type="text" class="form-control" id="name" name="name" autocomplete="off" value="{{ $page->name }}">
-          <p class="help-block">{!! trans('landingpages::global.name_help') !!}</p>
+          <p class="help-block text-muted"><small>{!! trans('landingpages::global.name_help') !!}</small></p>
       </div>
 
       <div class="form-group">
-        <label for="text">{{ trans('landingpages::global.page_title') }}</label>
+        <label for="title">{{ trans('landingpages::global.page_title') }}</label>
           <input type="text" class="form-control" id="title" name="title" autocomplete="off" value="">
-          <p class="help-block">{!! trans('landingpages::global.page_title_help') !!}</p>
+          <p class="help-block text-muted"><small>{!! trans('landingpages::global.page_title_help') !!}</small></p>
       </div>
 
       <div class="form-group">
-        <label for="text">{{ trans('landingpages::global.page_description') }}</label>
-          <textarea class="form-control" id="description" name="description" autocomplete="off"></textarea>
-          <p class="help-block">{!! trans('landingpages::global.page_description_help') !!}</p>
+        <label for="description">{{ trans('landingpages::global.page_description') }}</label>
+          <textarea class="form-control" id="description" name="description" autocomplete="off" rows="4"></textarea>
+          <p class="help-block text-muted"><small>{!! trans('landingpages::global.page_description_help') !!}</small></p>
       </div>
 
 
       <div class="editor-modal-footer">
-        <button type="button" class="btn btn-primary btn-material ladda-button onClickUpdate" data-style="zoom-in" data-spinner-color="#138dfa"><span class="ladda-label">{{ trans('global.save') }}</span></button>
         <button type="button" class="btn btn-primary btn-material onClickClose">{{ trans('global.close') }}</button>
+        <button type="button" class="btn btn-primary btn-material ladda-button onClickUpdate" data-style="zoom-in" data-spinner-color="#138dfa"><span class="ladda-label">{{ trans('global.save') }}</span></button>
       </div>
 
     </div>
@@ -70,6 +70,11 @@ Update settings
 
       $el.find('title').text($('#title').val());
       $el.find('meta[name=description]').attr('content', $('#description').val());
+
+      // Update page title
+      if (typeof window.parent.parent.$('#generic_title a') !== 'undefined') {
+        window.parent.parent.$('#generic_title a').text($('#name').val());
+      }
 
       // Changes detected
       window.parent.lfSetPageIsDirty();

@@ -36,6 +36,12 @@ class LandingPagesController extends Controller
             $page = Models\Page::where('id', $landing_page_id)->first();
 
             if (! empty($page)) {
+
+              // Redirect if custom domain is set, but local domain is called
+              if ($page->site->local_domain == request()->segment(2) && $page->site->domain != '') {
+                return redirect('http://' . $page->site->domain, 301);
+              }
+  
               $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $local_domain . '.' . $variant . '.published.index';
             } else {
               return response()->view('errors.unpublished', ['route_name' => '404'], 404);
@@ -566,7 +572,30 @@ class LandingPagesController extends Controller
         if (is_numeric($page_id)) {
           $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $qs['landing_page_id'])->first();
 
-          return view('landingpages::modals.domain', compact('page'));
+          return view('landingpages::modals.domain', compact('page', 'sl'));
+        }
+      }
+    }
+
+    /**
+     * Post domain
+     */
+    public function editorPostDomain(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $domain = $request->input('domain', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $page_id = $qs['landing_page_id'];
+
+        if (is_numeric($page_id)) {
+          $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $qs['landing_page_id'])->first();
+          $site = Models\Site::where('user_id', Core\Secure::userId())->where('id', $page->landing_site_id)->first();
+          $site->domain = $domain;
+          $site->save();
+
+          return response()->json(['success' => true]);
         }
       }
     }

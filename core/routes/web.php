@@ -1,13 +1,56 @@
 <?php
+
 /*
  |--------------------------------------------------------------------------
- | Web Routes
+ | Globals
  |--------------------------------------------------------------------------
- |
  */
 
-// Public website
-Route::get('/', '\Platform\Controllers\Website\WebsiteController@home')->name('home');
+$url_parts = parse_url(URL::current());
+
+/*
+ |--------------------------------------------------------------------------
+ | Check for reseller or custom domain
+ |--------------------------------------------------------------------------
+ */
+
+$reseller = \Platform\Controllers\Core\Reseller::get();
+
+if ($reseller !== false) {
+	$domain = str_replace('www.', '', $url_parts['host']);
+
+  $custom_site = \Modules\LandingPages\Http\Models\Site::where('domain', $domain)
+		->orWhere('domain', 'www.' . $domain)
+		->first();
+
+} else {
+	$custom_site = array();
+}
+
+/*
+ |--------------------------------------------------------------------------
+ | Front end website
+ |--------------------------------------------------------------------------
+ */
+
+Route::get('/', function() use($url_parts, $custom_site, $reseller) {
+  if (! empty($custom_site)) {
+    // Naked or www domain?
+    if (substr($custom_site->domain, 0, 4) == 'www.' && substr($url_parts['host'], 0, 4) != 'www.') {
+      return \Redirect::to($url_parts['scheme'] . '://' . $custom_site->domain, 301);
+    } elseif (substr($custom_site->domain, 0, 4) != 'www.' && substr($url_parts['host'], 0, 4) == 'www.') {
+      return \Redirect::to($url_parts['scheme'] . '://' . $custom_site->domain, 301);
+    }
+    // Page
+    App::setLocale($custom_site->language);
+
+    return App::make('\Modules\LandingPages\Http\Controllers\LandingPagesController')->homePage($custom_site->local_domain);
+  } else {
+
+    // Public website
+    return App::make('\Platform\Controllers\Website\WebsiteController')->home();
+  }
+});
 
 /*
  |--------------------------------------------------------------------------

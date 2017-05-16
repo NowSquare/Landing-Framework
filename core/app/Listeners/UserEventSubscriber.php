@@ -50,6 +50,7 @@ class UserEventSubscriber {
         $table->bigInteger('landing_page_id')->unsigned();
         $table->foreign('landing_page_id')->references('id')->on('landing_pages')->onDelete('cascade');
         $table->char('fingerprint', 32)->nullable();
+        $table->bigInteger('views')->unsigned()->default(1);
         $table->boolean('is_bot')->default(false);
         $table->string('ip', 40)->nullable();
         $table->string('language', 5)->nullable();
@@ -86,6 +87,7 @@ class UserEventSubscriber {
         $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
         $table->string('email', 96)->nullable();
         $table->char('fingerprint', 32)->nullable();
+        $table->bigInteger('views')->unsigned()->default(1);
         $table->boolean('is_bot')->default(false);
         $table->string('ip', 40)->nullable();
         $table->string('language', 5)->nullable();
