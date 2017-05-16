@@ -25,7 +25,7 @@
 $('#generic_title a').text("{{ str_replace('"', '&quot;', $page->name) }}");
 
 $('#generic_title a').on('click', function() {
-  console.log('click');
+  $('#editor_frame')[0].contentWindow.$('.-x-el-fab-page-seo').trigger('click');
 });
 
 $('#editor_frame').removeClass('desktop_mode tablet_mode phone_mode');

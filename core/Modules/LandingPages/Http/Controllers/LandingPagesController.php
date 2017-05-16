@@ -539,6 +539,7 @@ class LandingPagesController extends Controller
     {
       $sl = $request->input('sl', '');
       $name = $request->input('name', '');
+      $name = substr($name, 0, 200);
 
       if ($sl != '') {
         $qs = Core\Secure::string2array($sl);

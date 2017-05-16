@@ -24,6 +24,7 @@ foreach ($active_modules as $module) {
 <?php /*
           <li class="has-submenu"> <a href="#/profile" class="waves-effect waves-light">{{ trans('global.account') }}</a></li>
 */ ?>
+<?php /*
 <?php if (Gate::allows('admin-management')) { ?>
           <li class="has-submenu last-elements"> <a href="javascript:void(0);" class="no-link waves-effect waves-light">{{ trans('global.admin') }}</a>
             <ul class="submenu">
@@ -42,6 +43,7 @@ foreach ($active_modules as $module) {
             </ul>
           </li>
 <?php } ?>
+*/ ?>
         </ul>
       </div>
 
@@ -66,6 +68,15 @@ foreach ($active_modules as $module) {
 <?php if (Gate::allows('limitation', 'account.plan_visible')) { ?>
               <li><a href="#/plan"><i class="ti-crown m-r-5"></i> {{ trans('global.plan') }}</a></li>
 <?php } ?>
+<?php if (Gate::allows('admin-management')) { ?>
+              <li role="separator" class="divider"><hr></li>
+              <li class="dropdown-header text-muted">{{ trans('global.admin') }}</li>
+              <li><a href="#/admin/users">{{ trans('global.users') }}</a></li>
+              <li><a href="#/admin/plans">{{ trans('global.plans') }}</a></li>
+<?php if (Gate::allows('owner-management')) { ?>
+              <li><a href="#/admin/resellers">{{ trans('global.resellers') }}</a></li>
+<?php } ?>
+<?php } ?>
               <li role="separator" class="divider"><hr></li>
               <li><a href="{{ url('logout') }}"><i class="ti-power-off m-r-5"></i> {{ trans('global.logout') }}</a></li>
             </ul>
@@ -79,7 +90,7 @@ foreach ($active_modules as $module) {
         </ul>
 
         <ul class="nav navbar-nav navbar-right pull-right" id="generic">
-          <li id="generic_title"><a href="javascript:void(0);" class="no-link"></a></li>
+          <li id="generic_title"><a href="javascript:void(0);" class="no-link" style="color:#ddd !important; font-size: 1.8rem;"></a></li>
         </ul>
 <?php
 // Only show language dropdown if there's more than one language available
