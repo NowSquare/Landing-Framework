@@ -24,6 +24,7 @@
         "milon/barcode": "^5.3",
         "nwidart/laravel-modules": "^1.20",
         "php-http/guzzle6-adapter": "^1.1",
+        "piwik/device-detector": "^3.7",
         "tymon/jwt-auth": "^0.5.10"
     },
     "require-dev": {
