@@ -14,6 +14,7 @@
 @yield('content')
 
   <!-- Editor -->
+  <script>var lf_published_url = "";var lf_sl = "";var lf_csrf_token = "'";</script>
   <script src="{{ url('assets/js/scripts.editor.min.js') }}"></script>
 
 @yield('script')
