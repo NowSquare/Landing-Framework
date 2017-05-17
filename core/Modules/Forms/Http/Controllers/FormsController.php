@@ -183,7 +183,7 @@ class FormsController extends Controller
 
       if (\File::exists($template_path . $template . '/index.blade.php')) {
         // Create form
-        $form = new Models\form;
+        $form = new Models\Form;
 
         $form->user_id = Core\Secure::userId();
         $form->name = $name;
