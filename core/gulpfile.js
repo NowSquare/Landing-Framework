@@ -170,7 +170,9 @@ gulp.task('styles', function() {
       }))
       .pipe(gulp.dest('../assets/css'))
       .pipe(rename({suffix: '.min'}))
-      .pipe(cssnano())
+      .pipe(cssnano({
+        discardComments: {removeAll: true}
+      }))
       .pipe(gulp.dest('../assets/css'))
       .pipe(livereload())
       .pipe(notify({ message: 'Styles task complete' }));
@@ -422,7 +424,9 @@ gulp.task('elfinder_styles', function() {
   .pipe(autoprefixer())
   .pipe(gulp.dest('../assets/css'))
   .pipe(rename({suffix: '.min'}))
-  .pipe(cssnano())
+  .pipe(cssnano({
+    discardComments: {removeAll: true}
+  }))
   .pipe(gulp.dest('../assets/css'))
   .pipe(livereload());
 });
@@ -444,7 +448,9 @@ gulp.task('editor_styles', function() {
   .pipe(autoprefixer())
   .pipe(gulp.dest('../assets/css'))
   .pipe(rename({suffix: '.min'}))
-  .pipe(cssnano())
+  .pipe(cssnano({
+    discardComments: {removeAll: true}
+  }))
   .pipe(gulp.dest('../assets/css'))
   .pipe(livereload());
 });

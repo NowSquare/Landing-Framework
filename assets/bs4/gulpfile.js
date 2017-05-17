@@ -80,7 +80,9 @@ gulp.task('styles', function() {
     }))
     .pipe(gulp.dest('css'))
     .pipe(rename({suffix: '.min'}))
-    .pipe(cssnano())
+    .pipe(cssnano({
+      discardComments: {removeAll: true}
+    }))
     .pipe(gulp.dest('css'))
     .pipe(livereload())
     .pipe(notify({ message: 'Styles task complete' }));
