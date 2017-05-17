@@ -19,8 +19,20 @@ return array(
 	*/
 
   "create_form" => "Create Form",
-  "contact_form" => "Contact form",
-  "contact_form_desc" => "Get in touch with your visitors.",
-  "download_form" => "Download form",
-  "download_form_desc" => "Send a link to download a file after submitting the form.",
+  "contact" => "Contact",
+  "contact_desc" => "Get in touch with your visitors.",
+  "newsletter" => "Newsletter",
+  "newsletter_desc" => "Get visitors to join your mailing list.",
+  "download" => "Download",
+  "download_desc" => "Send a link to download a file after submitting the form.",
+
+	/*
+	|--------------------------------------------------------------------------
+	| General
+	|--------------------------------------------------------------------------
+	*/
+
+  "enter_name" => "Enter name",
+  "enter_name_text" => "Enter a name for your form. You can change this at any time.",
+  "please_enter_value" => "Please enter a value!",
 );

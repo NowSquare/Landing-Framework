@@ -74,9 +74,15 @@ class AppServiceProvider extends ServiceProvider
       }
 
       // Namespaces
+      // Landing pages
       view()->addNamespace('template.landingpages', base_path('../templates/landingpages/'));
       view()->addNamespace('block.landingpages', base_path('../blocks/landingpages/'));
       view()->addNamespace('public.landingpages', base_path('../public/landingpages/site/'));
+
+      // Forms
+      view()->addNamespace('template.forms', base_path('../templates/forms/'));
+      view()->addNamespace('block.forms', base_path('../blocks/forms/'));
+      view()->addNamespace('public.forms', base_path('../public/forms/form/'));
 
       // Collection::mapWithKeys() works incorrectly for keys with integer values
       // https://github.com/laravel/framework/issues/15409

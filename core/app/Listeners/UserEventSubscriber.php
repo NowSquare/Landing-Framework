@@ -77,6 +77,41 @@ class UserEventSubscriber {
       });
     }
 
+    // Create user form stats table if not exist
+    $tbl_name = 'x_form_stats_' . $event->user->id;
+
+    if (! Schema::hasTable($tbl_name)) {
+      Schema::create($tbl_name, function(Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->bigInteger('form_id')->unsigned();
+        $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
+        $table->bigInteger('landing_site_id')->unsigned()->nullable();
+        $table->foreign('landing_site_id')->references('id')->on('landing_sites')->onDelete('SET NULL');
+        $table->bigInteger('landing_page_id')->unsigned()->nullable();
+        $table->foreign('landing_page_id')->references('id')->on('landing_pages')->onDelete('SET NULL');
+        $table->char('fingerprint', 32)->nullable();
+        $table->bigInteger('views')->unsigned()->default(1);
+        $table->boolean('is_bot')->default(false);
+        $table->string('ip', 40)->nullable();
+        $table->string('language', 5)->nullable();
+        $table->string('client_type', 32)->nullable();
+        $table->string('client_name', 32)->nullable();
+        $table->string('client_version', 32)->nullable();
+        $table->string('client_engine', 32)->nullable();
+        $table->string('client_engine_version', 32)->nullable();
+        $table->string('os_name', 32)->nullable();
+        $table->string('os_version', 32)->nullable();
+        $table->string('os_platform', 32)->nullable();
+        $table->string('device', 12)->nullable();
+        $table->string('brand', 32)->nullable();
+        $table->string('model', 32)->nullable();
+        $table->decimal('lat', 10, 8)->nullable();
+        $table->decimal('lng', 11, 8)->nullable();
+        $table->json('meta')->nullable();
+        $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+      });
+    }
+
     // Create user form entries table if not exist
     $tbl_name = 'x_form_entries_' . $event->user->id;
 
@@ -85,10 +120,17 @@ class UserEventSubscriber {
         $table->bigIncrements('id');
         $table->bigInteger('form_id')->unsigned();
         $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
-        $table->string('email', 96)->nullable();
+        $table->bigInteger('landing_site_id')->unsigned()->nullable();
+        $table->foreign('landing_site_id')->references('id')->on('landing_sites')->onDelete('SET NULL');
+        $table->bigInteger('landing_page_id')->unsigned()->nullable();
+        $table->foreign('landing_page_id')->references('id')->on('landing_pages')->onDelete('SET NULL');
+        $table->string('email', 96);
+        $table->boolean('confirmed')->default(false);
+        $table->tinyInteger('followups')->unsigned()->default(0);
+        $table->dateTime('first_followup')->nullable();
+        $table->dateTime('last_followup')->nullable();
+        $table->dateTime('last_response')->nullable();
         $table->char('fingerprint', 32)->nullable();
-        $table->bigInteger('views')->unsigned()->default(1);
-        $table->boolean('is_bot')->default(false);
         $table->string('ip', 40)->nullable();
         $table->string('language', 5)->nullable();
         $table->string('client_type', 32)->nullable();

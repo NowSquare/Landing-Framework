@@ -11,14 +11,20 @@ function lfSetPageIsDirty() {
   Init editor related features
 */
 
-function lfInitEditor() {
+function lfInitEditor(editor) {
   lfInitBlocks();
   lfInitImages();
   lfInitIcons();
   lfInitLinks();
   lfInitLists();
   lfInitText();
-  lfInitFab();
+
+  if (typeof editor === 'undefined') {
+    lfInitFab();
+  } else if (editor == 'forms') {
+    
+  }
+
   lfInitDropdowns();
   lfInitModal();
 

@@ -8,6 +8,9 @@
   </div>
 
   <div class="row">
+    <div class="col-xs-12">
+      <p class="lead">{!! trans('landingpages::global.custom_domain_intro') !!}</p>
+    </div>
 
     <div class="col-xs-10 col-sm-6">
 

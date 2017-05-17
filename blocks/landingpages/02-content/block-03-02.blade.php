@@ -10,7 +10,9 @@
               </div>
               <div class="col-12">
                 <h2 class="mt-1 -x-text">{!! trans('landingpages::block.content_title1') !!}</h2>
-                <p class="lead -x-text">{!! trans('landingpages::block.content_lead1') !!}</p>
+                <div class="-x-text">
+                  <p class="lead">{!! trans('landingpages::block.content_lead1') !!}</p>
+                </div>
                 <p class="btn-container">
                   <a class="btn btn-blue btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.content_button') !!}</a>
                 </p>
@@ -24,7 +26,9 @@
               </div>
               <div class="col-12">
                 <h2 class="mt-1 -x-text">{!! trans('landingpages::block.content_title2') !!}</h2>
-                <p class="lead -x-text">{!! trans('landingpages::block.content_lead1') !!}</p>
+                <div class="-x-text">
+                  <p class="lead">{!! trans('landingpages::block.content_lead1') !!}</p>
+                </div>
                 <p class="btn-container">
                   <a class="btn btn-blue btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.content_button') !!}</a>
                 </p>
@@ -38,7 +42,9 @@
               </div>
               <div class="col-12">
                 <h2 class="mt-1 -x-text">{!! trans('landingpages::block.content_title3') !!}</h2>
-                <p class="lead -x-text">{!! trans('landingpages::block.content_lead1') !!}</p>
+                <div class="-x-text">
+                  <p class="lead">{!! trans('landingpages::block.content_lead1') !!}</p>
+                </div>
                 <p class="btn-container">
                   <a class="btn btn-blue btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.content_button') !!}</a>
                 </p>

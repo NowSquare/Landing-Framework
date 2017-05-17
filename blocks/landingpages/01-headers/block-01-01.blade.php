@@ -6,7 +6,9 @@
           <div class="row">
             <div class="col-12">
               <h1 class="display-3 -x-text">{!! trans('landingpages::block.header_01_head') !!}</h1>
-              <p class="lead -x-text">{!! trans('landingpages::block.header_01_line') !!}</p>
+              <div class="-x-text">
+                <p class="lead">{!! trans('landingpages::block.header_01_line') !!}</p>
+              </div>
               <div class="btn-container mt-3 mb-1">
                 <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.header_01_button') !!}</a>
               </div>

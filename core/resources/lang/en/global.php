@@ -66,6 +66,7 @@ return array(
   "select_none" => "Select none",
   "records" => "Records",
   "order" => "Order",
+	"category" => "Category",
 
   /*
    |--------------------------------------------------------------------------
@@ -89,6 +90,7 @@ return array(
 
   "page_not_found" => "Page not found",
   "page_not_published" => "Page not published",
+  "form_not_published" => "Form not published",
 
   /*
    |--------------------------------------------------------------------------
@@ -120,18 +122,13 @@ return array(
 
   /*
    |--------------------------------------------------------------------------
-   | Editor
+   | Analytics
    |--------------------------------------------------------------------------
    */
 
-  "editor" => "Editor",
-  "image" => "Image",
-  "template" => "Template",
-  "url" => "URL",
-  "open_url" => "open URL",
-  "show_image" => "show image",
-  "start_date" => "Start date",
-  "end_date" => "End date",
+  "conversions" => "Conversions",
+  "visits" => "Visits",
+  "visit_online" => "Visit online",
 
   /*
   |--------------------------------------------------------------------------

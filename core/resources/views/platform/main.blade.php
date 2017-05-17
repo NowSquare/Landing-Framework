@@ -64,21 +64,21 @@ foreach ($active_modules as $module) {
               <li class="dropdown-header" style="font-size: 1.5rem">{{ \Auth::user()->name }}</li>
               <li class="dropdown-header text-muted">{{ \Auth::user()->email }}</li>
               <li role="separator" class="divider"><hr></li>
-              <li><a href="#/profile"><i class="ti-user m-r-5"></i> {{ trans('global.profile') }}</a></li>
+              <li><a href="#/profile"><i class="mi account_circle m-r-5"></i> {{ trans('global.profile') }}</a></li>
 <?php if (Gate::allows('limitation', 'account.plan_visible')) { ?>
-              <li><a href="#/plan"><i class="ti-crown m-r-5"></i> {{ trans('global.plan') }}</a></li>
+              <li><a href="#/plan"><i class="mi credit_card m-r-5"></i> {{ trans('global.plan') }}</a></li>
 <?php } ?>
 <?php if (Gate::allows('admin-management')) { ?>
               <li role="separator" class="divider"><hr></li>
               <li class="dropdown-header text-muted">{{ trans('global.admin') }}</li>
-              <li><a href="#/admin/users">{{ trans('global.users') }}</a></li>
-              <li><a href="#/admin/plans">{{ trans('global.plans') }}</a></li>
+              <li><a href="#/admin/users"><i class="mi people m-r-5"></i> {{ trans('global.users') }}</a></li>
+              <li><a href="#/admin/plans"><i class="mi card_membership m-r-5"></i> {{ trans('global.plans') }}</a></li>
 <?php if (Gate::allows('owner-management')) { ?>
-              <li><a href="#/admin/resellers">{{ trans('global.resellers') }}</a></li>
+              <li><a href="#/admin/resellers"><i class="mi card_travel m-r-5"></i> {{ trans('global.resellers') }}</a></li>
 <?php } ?>
 <?php } ?>
               <li role="separator" class="divider"><hr></li>
-              <li><a href="{{ url('logout') }}"><i class="ti-power-off m-r-5"></i> {{ trans('global.logout') }}</a></li>
+              <li><a href="{{ url('logout') }}"><i class="mi power_settings_new m-r-5"></i> {{ trans('global.logout') }}</a></li>
             </ul>
           </li>
         </ul>

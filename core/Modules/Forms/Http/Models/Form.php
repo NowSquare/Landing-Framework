@@ -8,8 +8,7 @@ class Form extends Model {
   protected $table = 'forms';
 
   protected $casts = [
-    'meta' => 'json',
-    'meta_published' => 'json'
+    'meta' => 'json'
   ];
 
   public function user() {
@@ -18,5 +17,22 @@ class Form extends Model {
 
   public function campaign() {
     return $this->hasOne('Platform\Models\Campaigns\Campaign');
+  }
+
+  /**
+   * Get form url.
+   *
+   * @param \Illuminate\Database\Eloquent\Builder $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeUrl($query) {
+
+    $local_domain = 'f/' . $this->local_domain;
+
+    if ($this->domain == '') {
+      return url($local_domain);
+    } else {
+      return '//' . $this->domain;
+    }
   }
 }

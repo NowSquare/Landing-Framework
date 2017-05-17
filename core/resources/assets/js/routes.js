@@ -40,6 +40,8 @@ $(function() {
 
       '/forms': function () { loadRoute('forms', 'forms'); },
       '/forms/create': function () { loadRoute('forms/create', 'forms'); },
+      '/forms/create/:cat': function (cat) { loadRoute('forms/create/' + cat, 'forms'); },
+      '/forms/editor/:sl': function (sl) { loadRoute('forms/editor?sl=' + sl, 'forms', true, true); },
 
       '/landingpages': function () { loadRoute('landingpages', 'landingpages'); },
       '/landingpages/create': function () { loadRoute('landingpages/create', 'landingpages'); },

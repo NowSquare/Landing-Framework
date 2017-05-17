@@ -2,7 +2,7 @@
 
 Route::group(['middleware' => 'web', 'prefix' => 'lp', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
 
-  // Public landing page
+  // Public routes
   Route::get('{local_domain}', 'LandingPagesController@homePage');
 
   // Secured routes

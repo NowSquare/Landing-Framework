@@ -30,20 +30,20 @@ class CreateLandingPagesTable extends Migration
       $table->bigInteger('visits')->unsigned()->default(0);
       $table->bigInteger('conversions')->unsigned()->default(0);
       $table->json('meta')->nullable();
-      $table->json('meta_published')->nullable();
       $table->timestamps();
     });
 
     Schema::create('landing_pages', function(Blueprint $table)
     {
       $table->bigIncrements('id');
-
-      NestedSet::columns($table);
-
+      $table->bigInteger('parent_id')->unsigned()->nullable();
+      $table->bigInteger('_lft')->unsigned()->default(0);
+      $table->bigInteger('_rgt')->unsigned()->default(0);
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->bigInteger('landing_site_id')->unsigned();
       $table->foreign('landing_site_id')->references('id')->on('landing_sites')->onDelete('cascade');
+      $table->tinyInteger('variant')->unsigned()->default(1);
       $table->boolean('show_in_menu')->default(true);
       $table->string('name', 200);
       $table->string('template', 48)->nullable();
@@ -52,7 +52,6 @@ class CreateLandingPagesTable extends Migration
       $table->bigInteger('visits')->unsigned()->default(0);
       $table->bigInteger('conversions')->unsigned()->default(0);
       $table->json('meta')->nullable();
-      $table->json('meta_published')->nullable();
       $table->timestamps();
     });
   }

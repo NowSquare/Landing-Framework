@@ -30,7 +30,7 @@ class LandingPagesController extends Controller
             if (! empty($page)) {
               $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $local_domain . '.' . $variant . '.index';
             } else {
-              return response()->view('errors.unpublished', ['route_name' => '404'], 404);
+              return response()->view('errors.unpublished', ['msg' => trans('global.page_not_published')], 404);
             }
           } else {
             $page = Models\Page::where('id', $landing_page_id)->first();
@@ -44,14 +44,14 @@ class LandingPagesController extends Controller
   
               $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $local_domain . '.' . $variant . '.published.index';
             } else {
-              return response()->view('errors.unpublished', ['route_name' => '404'], 404);
+              return response()->view('errors.unpublished', ['msg' => trans('global.page_not_published')], 404);
             }
           }
 
           try {
             $template = view($view);
           } catch(\Exception $e) {
-            return response()->view('errors.unpublished', ['route_name' => '404'], 404);
+            return response()->view('errors.unpublished', ['msg' => trans('global.page_not_published')], 404);
           }
 
           // Stats
@@ -61,10 +61,10 @@ class LandingPagesController extends Controller
 
           return $template;
         } else {
-          return response()->view('errors.404', ['route_name' => '404'], 404);
+          return response()->view('errors.404', ['msg' => trans('global.page_not_published')], 404);
         }
       } else {
-        return response()->view('errors.404', ['route_name' => '404'], 404);
+        return response()->view('errors.404', ['msg' => trans('global.page_not_published')], 404);
       }
     }
 
@@ -83,7 +83,11 @@ class LandingPagesController extends Controller
 
           $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
 
-          $sl = \Platform\Controllers\Core\Secure::array2string(['landing_page_id' => $page->id]);
+          if (empty($page)) {
+            return response()->view('errors.404', [], 404);
+          }
+
+          $sl = Core\Secure::array2string(['landing_page_id' => $page->id]);
 
           $published_url = ($page->site->domain != '') ? '//' . $page->site->domain : url('lp/' . $page->site->local_domain);
 
@@ -107,11 +111,11 @@ class LandingPagesController extends Controller
           // can safely run below.
           pq('head')->find('script[src]:last')->before(PHP_EOL . '<script class="-x-editor-asset">var lf_published_url = "' . $published_url . '";var lf_sl = "' . $sl . '";var lf_csrf_token = "' . csrf_token() . '";</script>');
           pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
-          pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js') . '"></script>');
+          pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js?v=' . config('version.editor')) . '"></script>');
 
           // End stylesheet right before </head> to make
           // sure it overrides other stylesheets.
-          pq('head')->append(PHP_EOL . '<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css') . '" />');
+          pq('head')->append(PHP_EOL . '<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css?v=' . config('version.editor')) . '" />');
 
           // Init editor
           pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ lfInitEditor(); });</script>');
@@ -206,6 +210,8 @@ class LandingPagesController extends Controller
 
         $site->user_id = Core\Secure::userId();
         $site->name = $name;
+        $site->language = auth()->user()->language;
+        $site->timezone = auth()->user()->timezone;
         $site->save();
 
         $site_id = $site->id;

@@ -10,7 +10,9 @@
         <div class="row">
           <div class="col-md-12 col-lg-6 push-lg-3 text-center">
             <h1 class="mt-1 -x-text">{!! trans('landingpages::block.content_01_head') !!}</h1>
-            <p class="lead -x-text">{!! trans('landingpages::block.content_01_line') !!}</p>
+            <div class="-x-text">
+              <p class="lead">{!! trans('landingpages::block.content_01_line') !!}</p>
+            </div>
             <p class="btn-container">
               <a class="btn btn-outline-pink btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.content_01_button') !!}</a>
             </p>

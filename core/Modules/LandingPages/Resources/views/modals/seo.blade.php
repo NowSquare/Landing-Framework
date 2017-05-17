@@ -8,24 +8,30 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-10 col-sm-6">
+    <div class="col-xs-12 col-sm-10">
 
-      <div class="form-group">
-        <label for="name">{{ trans('landingpages::global.name') }}</label>
-          <input type="text" class="form-control" id="name" name="name" autocomplete="off" value="{{ $page->name }}">
-          <p class="help-block text-muted"><small>{!! trans('landingpages::global.name_help') !!}</small></p>
+      <div class="row">
+        <div class="col-xs-12 col-sm-8">
+          <div class="form-group">
+            <label for="name">{{ trans('landingpages::global.name') }}</label>
+              <p class="help-block text-muted"><small>{!! trans('landingpages::global.name_help') !!}</small></p>
+              <input type="text" class="form-control" id="name" name="name" autocomplete="off" value="{{ $page->name }}">
+          </div>
+        </div>
       </div>
+
+      <br>
 
       <div class="form-group">
         <label for="title">{{ trans('landingpages::global.page_title') }}</label>
-          <input type="text" class="form-control" id="title" name="title" autocomplete="off" value="">
           <p class="help-block text-muted"><small>{!! trans('landingpages::global.page_title_help') !!}</small></p>
+          <input type="text" class="form-control" id="title" name="title" autocomplete="off" value="">
       </div>
 
       <div class="form-group">
         <label for="description">{{ trans('landingpages::global.page_description') }}</label>
-          <textarea class="form-control" id="description" name="description" autocomplete="off" rows="4"></textarea>
           <p class="help-block text-muted"><small>{!! trans('landingpages::global.page_description_help') !!}</small></p>
+          <textarea class="form-control" id="description" name="description" autocomplete="off" rows="4"></textarea>
       </div>
 
 

@@ -45,12 +45,9 @@ foreach($sites as $site) {
   $sl_site = \Platform\Controllers\Core\Secure::array2string(['landing_site_id' => $site->id]);
   $sl_page = \Platform\Controllers\Core\Secure::array2string(['landing_page_id' => $page_id]);
   $edit_url = '#/landingpages/editor/' . $sl_page;
+
   $local_domain = 'lp/' . $site->local_domain;
-  if ($site->domain == '') {
-    $url = url($local_domain);
-  } else {
-    $url = '//' . $site->domain;
-  }
+  $url = $page->url();
 
   $variant = 1;
 
@@ -69,15 +66,15 @@ foreach($sites as $site) {
         <div class="portlet-body" style="padding:0">
          <table class="table table-hover" style="margin-bottom: 0">
            <tr>
-             <td>{{ trans('landingpages::global.visits') }}:</td>
+             <td>{{ trans('global.visits') }}:</td>
              <td class="text-right">{{ $page->visits }}</td>
            </tr>
            <tr>
-             <td>{{ trans('landingpages::global.conversions') }}:</td>
+             <td>{{ trans('global.conversions') }}:</td>
              <td class="text-right">{{ $page->conversions }}</td>
            </tr>
            <tr>
-             <td colspan="2"><a href="{{ $url }}" target="_blank" class="link">{{ trans('landingpages::global.visit_online') }}</a> {!! $published !!}</td>
+             <td colspan="2"><a href="{{ $url }}" target="_blank" class="link">{{ trans('global.visit_online') }}</a> {!! $published !!}</td>
            </tr>
          </table>
           

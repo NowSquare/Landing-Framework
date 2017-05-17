@@ -8,7 +8,7 @@
           <div class="navbar-header">
             <a class="navbar-brand link" href="#/landingpages">{{ trans('landingpages::global.module_name_plural') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
-            <a class="navbar-brand link" href="#/landingpages/create">{{ trans('landingpages::global.category') }}</a>
+            <a class="navbar-brand link" href="#/landingpages/create">{{ trans('global.category') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('landingpages::global.' . $category) }}</a>
           </div>
@@ -94,7 +94,7 @@ $('.onClickSelect').on('click', function() {
         if (value) {
           resolve()
         } else {
-          reject('Please enter a name!')
+          reject('{{ trans('landingpages::please_enter_value.enter_value') }}')
         }
       })
     }

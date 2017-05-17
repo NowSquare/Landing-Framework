@@ -27,30 +27,30 @@
   <div class="row flex-holder">
 <?php
 $i=0;
-foreach ($items as $item) {
+foreach ($categories as $category) {
   $i++;
 ?>
     <div class="col-sm-4 col-lg-3 flex-item">
 
-      <div class="portlet shadow-box box-option flex-eq-height"
-        onMouseOver="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/active/' . $item['icon']) }}';"
-        onMouseOut="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/color/' . $item['icon']) }}';"
+      <div class="portlet shadow-box box-option flex-eq-height" 
+        onMouseOver="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/active/' . $category['icon']) }}';"
+        onMouseOut="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/color/' . $category['icon']) }}';"
       >
         <div class="portlet-heading portlet-default">
-          <h3 class="portlet-title text-dark">{{ $item['name'] }}</h3>
+          <h3 class="portlet-title text-dark">{{ $category['name'] }}</h3>
           <div class="clearfix"></div>
         </div>
         <div>
           <div class="text-center">
-            <a href="{{ $item['url'] }}" onclick="alert('Coming soon!')">
-              <img src="{{ url('assets/images/icons/color/' . $item['icon']) }}" id="box-icon{{ $i }}" class="box-icon" alt="{{ $item['name'] }}">
+            <a href="#/forms/create/{{ $category['category'] }}">
+              <img src="{{ url('assets/images/icons/color/' . $category['icon']) }}" id="box-icon{{ $i }}" class="box-icon" alt="{{ $category['name'] }}">
             </a>
           </div>
           <div class="portlet-body">
-            {{ $item['desc'] }}
+            {{ $category['desc'] }}
           </div>
           <div class="panel-footer">
-            <a href="{{ $item['url'] }}" onclick="alert('Coming soon!')" class="btn btn-lg btn-primary btn-block">{{ trans('global.select') }}</a>
+            <a href="#/forms/create/{{ $category['category'] }}" class="btn btn-lg btn-primary btn-block">{{ trans('global.select') }}</a>
           </div>
         </div>
       </div>

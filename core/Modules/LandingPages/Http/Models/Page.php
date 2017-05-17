@@ -10,8 +10,7 @@ class Page extends Model {
   protected $table = 'landing_pages';
 
   protected $casts = [
-    'meta' => 'json',
-    'meta_published' => 'json'
+    'meta' => 'json'
   ];
 
   public function user() {
@@ -20,5 +19,22 @@ class Page extends Model {
 
   public function site() {
     return $this->belongsTo('Modules\LandingPages\Http\Models\Site', 'landing_site_id');
+  }
+
+  /**
+   * Get page url.
+   *
+   * @param \Illuminate\Database\Eloquent\Builder $query
+   * @return \Illuminate\Database\Eloquent\Builder
+   */
+  public function scopeUrl($query) {
+
+    $local_domain = 'lp/' . $this->site->local_domain;
+
+    if ($this->site->domain == '') {
+      return url($local_domain);
+    } else {
+      return '//' . $this->site->domain;
+    }
   }
 }

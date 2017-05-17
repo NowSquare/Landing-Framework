@@ -15,21 +15,24 @@ class CreateFormsTable extends Migration
   {
     Schema::create('forms', function ($table) {
       $table->bigIncrements('id');
-      $table->bigInteger('order');
       $table->integer('user_id')->unsigned()->nullable();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+      $table->bigInteger('campaign_id')->unsigned()->nullable();
+      $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+      $table->tinyInteger('variant')->unsigned()->default(1);
       $table->boolean('active')->default(true);
-      $table->string('category', 32)->nullable();
-      $table->string('name', 48)->nullable();
+      $table->string('name', 200)->nullable();
+      $table->string('local_domain', 64)->nullable();
+      $table->string('domain', 200)->nullable();
       $table->string('language', 5)->default('en');
       $table->string('timezone', 32)->default('UTC');
       $table->dateTime('last_followup')->nullable();
       $table->dateTime('last_response')->nullable();
+      $table->bigInteger('visits')->unsigned()->default(0);
+      $table->bigInteger('conversions')->unsigned()->default(0);
       $table->json('meta')->nullable();
-      $table->json('meta_published')->nullable();
       $table->timestamps();
     });
-
   }
 
   /**

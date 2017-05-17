@@ -8,8 +8,7 @@ class Site extends Model {
   protected $table = 'landing_sites';
 
   protected $casts = [
-    'meta' => 'json',
-    'meta_published' => 'json'
+    'meta' => 'json'
   ];
 
   public function user() {

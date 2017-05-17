@@ -19,7 +19,6 @@ return array(
 	*/
 
 	"create_landing_page" => "Create Landing Page",
-	"category" => "Category",
 	"custom_domain" => "Custom domain",
 	"personal" => "Personal",
 	"personal_desc" => "A landing page for freelancers, a portfolio or resumes.",
@@ -47,12 +46,10 @@ return array(
   "insert_block" => "Insert block",
   "enter_name" => "Enter name",
   "enter_name_text" => "Enter a name for your landing page. You can change this at any time.",
-  "conversions" => "Conversions",
-  "visits" => "Visits",
-  "visit_online" => "Visit online",
+  "please_enter_value" => "Please enter a value!",
   "seo" => "SEO",
   "name" => "Name",
-  "name_help" => "The name is only visible in the system.",
+  "name_help" => "Only visible in the system.",
   "page_title" => "Page title",
   "page_title_help" => "Title tag. <a href=\"https://support.google.com/webmasters/answer/35624\" target=\"_blank\">Click here</a> for more information.",
   "page_description" => "Page description",
@@ -61,5 +58,5 @@ return array(
   "domain" => "Domain",
   "custom_domain" => "Custom domain",
   "custom_domain_help" => "Enter a domain and point its CNAME to <strong>:host</strong>.",
-  "" => ""
+  "custom_domain_intro" => "Here you can link your own domain or subdomain to this landing page. Update the domain DNS settings as described below."
 );
