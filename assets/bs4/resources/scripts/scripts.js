@@ -1,3 +1,5 @@
+var ladda_button;
+
 /*
  * This function is called when the editor duplicates a block.
  * All template relevant stuff that needs to be re-bound and
@@ -62,8 +64,24 @@ if (document.getElementById('particles-js-diamonds') !== null) { particlesJS.loa
 if (document.getElementById('particles-js-nasa') !== null) { particlesJS.load('particles-js-nasa', '/assets/js/particles/particles-nasa.json'); }
 if (document.getElementById('particles-js-snow') !== null) { particlesJS.load('particles-js-snow', '/assets/js/particles/particles-snow.json'); }
 
-$(function($)
-{
+$(function($) {
+
+	/*
+	 * Ajax forms
+	 */
+
+  $('form.ajax').validator().on('submit', function (e) {
+    if (! e.isDefaultPrevented()) {
+      $('form.ajax').ajaxSubmit({
+        dataType: 'json',
+        beforeSerialize: beforeSerialize,
+        success: formResponse,
+        error: formResponse
+      });
+      e.preventDefault();
+    }
+  });
+
   /*
    * jQuery.scrollTo
    * https://github.com/flesler/jquery.scrollTo
@@ -251,3 +269,54 @@ $(function($)
 	}
 
 });
+
+function beforeSerialize($jqForm, options) {
+	ladda_button = $jqForm.find('[type=submit]').ladda();
+
+    // Loading state
+	ladda_button.ladda('start');
+}
+
+function formResponse(responseText, statusText, xhr, $jqForm) {
+
+  if (typeof responseText.title !== 'undefined' && typeof responseText.text !== 'undefined') {
+    swal({
+      title: responseText.title,
+      text: responseText.text,
+      confirmButtonColor: "#138dfa",
+      confirmButtonText: _lang['ok']
+    }).then(function (result) {
+
+      // Reset form
+      if (responseText.type == 'success')
+      {
+        $jqForm[0].reset();
+      }
+
+      // Loading state
+      ladda_button.ladda('stop');
+
+    }, function (dismiss) {
+      // Do nothing on cancel
+      // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
+    });
+  } else {
+    swal({
+      title: _lang['form_post_demo_title'],
+      text: _lang['form_post_demo_text'],
+      confirmButtonColor: "#138dfa",
+      confirmButtonText: _lang['ok']
+    }).then(function (result) {
+
+      // Reset form
+      $jqForm[0].reset();
+
+      // Loading state
+      ladda_button.ladda('stop');
+
+    }, function (dismiss) {
+      // Do nothing on cancel
+      // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
+    });
+  }
+}

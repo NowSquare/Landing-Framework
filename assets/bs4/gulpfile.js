@@ -105,7 +105,7 @@ gulp.task('scripts', function() {
       'bower_components/ladda/js/ladda.js',
       'bower_components/ladda/js/ladda.jquery.js',
   		'bower_components/jquery-form/jquery.form.js',
-      'bower_components/bootstrap-sweetalert/dist/sweetalert.js',
+      'bower_components/sweetalert2/dist/sweetalert2.js',
       'bower_components/bootstrap-validator/dist/validator.js',
       'bower_components/jquery-form/src/jquery.form.js',
       'bower_components/H5F/src/H5F.js',

@@ -7,7 +7,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
   <link rel="stylesheet" type="text/css" href="{{ url('assets/bs4/css/style.min.css') }}"/>
-  <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
   <style type="text/css">
     body {
       font-family: 'Open Sans', sans-serif;
@@ -20,6 +19,9 @@
     }
   </style>
   <link href="//fonts.googleapis.com/css?family=Dosis:200,400|Open+Sans:300,400,700" rel="stylesheet">
+
+  <script src="{{ url('assets/translations?lang=en') }}"></script>
+  <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
 </head>
 
 <body>

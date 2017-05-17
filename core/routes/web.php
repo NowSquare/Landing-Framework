@@ -60,6 +60,7 @@ Route::get('/', function() use($url_parts, $custom_site, $reseller) {
 
 // JavaScript language vars
 Route::get('assets/javascript', '\Platform\Controllers\App\AssetController@appJs');
+Route::get('assets/translations', '\Platform\Controllers\App\AssetController@appJsPublic');
 
 // Secured web routes
 Route::group(['middleware' => 'auth:web'], function () {

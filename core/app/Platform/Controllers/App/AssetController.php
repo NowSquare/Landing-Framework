@@ -29,4 +29,23 @@ class AssetController extends \App\Http\Controllers\Controller {
 
     return $response;
   }
+
+  /**
+   * Public JavaScript
+   */
+  public function appJsPublic()
+  {
+    $translation = trans('javascript-public');
+
+    $js = '_lang=[];';
+    foreach($translation as $key => $val)
+    {
+      $js .= '_lang["' . $key . '"]="' . $val . '";';
+    }
+
+    $response = \Response::make($js);
+    $response->header('Content-Type', 'application/javascript');
+
+    return $response;
+  }
 }

@@ -18,7 +18,8 @@
     "spinthatshit": "^1.0.3",
     "sweetalert": "^1.1.3",
     "notifyjs": "^0.4.2",
-    "material-color": "^2.3.2"
+    "material-color": "^2.3.2",
+    "bootstrap-validator": "^0.11.9",
+    "sweetalert2": "^6.6.3"
   }
-
 }
