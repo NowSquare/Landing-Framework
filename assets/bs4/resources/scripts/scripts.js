@@ -283,13 +283,13 @@ function formResponse(responseText, statusText, xhr, $jqForm) {
     swal({
       title: responseText.title,
       text: responseText.text,
-      confirmButtonColor: "#138dfa",
-      confirmButtonText: _lang['ok']
+      confirmButtonColor: $jqForm.find('[type=submit]').css('border-color'),
+      confirmButtonText: _lang['ok'],
+      allowOutsideClick: false
     }).then(function (result) {
 
       // Reset form
-      if (responseText.type == 'success')
-      {
+      if (responseText.type == 'success') {
         $jqForm[0].reset();
       }
 
@@ -304,8 +304,9 @@ function formResponse(responseText, statusText, xhr, $jqForm) {
     swal({
       title: _lang['form_post_demo_title'],
       text: _lang['form_post_demo_text'],
-      confirmButtonColor: "#138dfa",
-      confirmButtonText: _lang['ok']
+      confirmButtonColor: $jqForm.find('[type=submit]').css('border-color'),
+      confirmButtonText: _lang['ok'],
+      allowOutsideClick: false
     }).then(function (result) {
 
       // Reset form
