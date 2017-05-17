@@ -37,10 +37,10 @@ class AssetController extends \App\Http\Controllers\Controller {
   {
     $translation = trans('javascript-public');
 
-    $js = '_lang=[];';
+    $js = '_trans=[];';
     foreach($translation as $key => $val)
     {
-      $js .= '_lang["' . $key . '"]="' . $val . '";';
+      $js .= '_trans["' . $key . '"]="' . $val . '";';
     }
 
     $response = \Response::make($js);

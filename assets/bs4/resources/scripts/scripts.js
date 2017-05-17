@@ -284,7 +284,7 @@ function formResponse(responseText, statusText, xhr, $jqForm) {
       title: responseText.title,
       text: responseText.text,
       confirmButtonColor: $jqForm.find('[type=submit]').css('border-color'),
-      confirmButtonText: _lang['ok'],
+      confirmButtonText: _trans['ok'],
       allowOutsideClick: false
     }).then(function (result) {
 
@@ -302,10 +302,10 @@ function formResponse(responseText, statusText, xhr, $jqForm) {
     });
   } else {
     swal({
-      title: _lang['form_post_demo_title'],
-      text: _lang['form_post_demo_text'],
+      title: _trans['form_post_demo_title'],
+      text: _trans['form_post_demo_text'],
       confirmButtonColor: $jqForm.find('[type=submit]').css('border-color'),
-      confirmButtonText: _lang['ok'],
+      confirmButtonText: _trans['ok'],
       allowOutsideClick: false
     }).then(function (result) {
 
