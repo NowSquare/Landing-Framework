@@ -63,7 +63,7 @@
     <input type="text" class="form-control input-lg" id="url@{{ i }}" name="url" autocomplete="off" value="@{{ url }}" placeholder="http://">
   </td>
   <td align="right">
-    <button type="button" class="btn btn-lg btn-danger btn-delete" title="{{ trans('global.delete') }}" data-toggle="tooltip" title="{{ trans('global.delete') }}" style="margin-top:1px;"><i class="fa fa-times"></i></button>
+    <button type="button" class="btn btn-lg btn-danger btn-delete" title="{{ trans('global.delete') }}" data-toggle="tooltip" title="{{ trans('global.delete') }}" style="margin-top:1px;"><i class="mi delete"></i></button>
   </td>
 </tr>
 </script>

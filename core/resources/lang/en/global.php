@@ -55,9 +55,7 @@ return array(
   "design" => "Design",
   "icon" => "Icon",
   "background" => "Background",
-  "background_images" => "Background images",
-  "header_images" => "Header images",
-  "my_settings" => "My settings",
+  "settings" => "Settings",
   "with_selected" => "With selected",
   "switch_active" => "Switch active",
   "toggle_active" => "Toggle active",
@@ -99,6 +97,92 @@ return array(
    */
 
   "modules" => "Modules",
+
+  /*
+   |--------------------------------------------------------------------------
+   | Forms
+   |--------------------------------------------------------------------------
+   */
+
+  "form_fields" => [
+    "general" => [
+      "text" => "Text",
+      "textarea" => "Multi-line text",
+      "number" => "Number",
+      "url" => "Url",
+      "multiple_choice" => "Multiple choice",
+      "select" => "Select from list",
+      "radios" => "Options",
+      "checkbox" => "Checkbox",
+      "website" => "Website",
+      "date" => "Date",
+      "time" => "Time",
+      "date_time" => "Date and time"
+    ],
+    "personal" => [
+      "first_name" => "First name",
+      "last_name" => "Last name",
+      "full_name" => "Full name",
+      "gender" => "Gender", // Male / female,
+      "title" => "Title", // Mr / Mrs
+      "impressum" => "Impressum",
+      "birthday" => "Birthday",
+      "website" => "Website",
+      "address1" => "Address 1",
+      "address2" => "Address 2",
+      "street" => "Street",
+      "house_number" => "House number",
+      "phone" => "Phone",
+      "mobile" => "Mobile",
+      "fax" => "Fax",
+      "postal" => "Postal code / zip",
+      "city" => "City",
+      "state" => "Region / state",
+      "country" => "Country"
+    ],
+    "business" => [
+      "company" => "Company name",
+      "job_title" => "Job title",
+      "website" => "Website",
+      "email" => "Email",
+      "address1" => "Address 1",
+      "address2" => "Address 2",
+      "street" => "Street",
+      "house_number" => "House number",
+      "phone" => "Phone",
+      "mobile" => "Mobile",
+      "fax" => "Fax",
+      "postal" => "Postal code / zip",
+      "city" => "City",
+      "state" => "Region / state",
+      "country" => "Country"
+    ],
+    "booking" => [
+      "date" => "Date",
+      "start_date" => "Start date",
+      "end_date" => "End date",
+      "time" => "Time",
+      "start_time" => "Start time",
+      "end_time" => "End time",
+      "date_time" => "Date and time",
+      "start_date_time" => "Start date and time",
+      "end_date_time" => "End date and time",
+      "persons" => "Number of persons",
+      "adults" => "Adults",
+      "kids" => "Kids"
+    ]
+  ],
+  "form_fields_gender" => [
+    "male" => "Male",
+    "female" => "Female"
+  ],
+  "form_fields_title" => [
+    "mr" => "Mr",
+    "ms" => "Mrs"
+  ],
+  "personal" => "Personal",
+  "business" => "Business",
+  "booking" => "Booking",
 
   /*
    |--------------------------------------------------------------------------

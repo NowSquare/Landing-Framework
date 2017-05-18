@@ -163,12 +163,14 @@ foreach($sites as $site) {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
 <?php if ($i == count($sites)) { ?>
-    $grid = $('.grid').masonry({
-      itemSelector: '.grid-item',
-      columnWidth: '.grid-sizer',
-      percentPosition: true,
-      transitionDuration: '0.2s'
-    });
+    setTimeout(function() {
+      $grid = $('.grid').masonry({
+        itemSelector: '.grid-item',
+        columnWidth: '.grid-sizer',
+        percentPosition: true,
+        transitionDuration: '0.2s'
+      });
+    }, 100);
 <?php } ?>
   });
 <?php

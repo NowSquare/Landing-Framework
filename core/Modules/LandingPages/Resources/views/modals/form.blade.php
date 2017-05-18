@@ -18,7 +18,7 @@
             <th style="width:49px"></th>
             <th>{{ trans('landingpages::global.name') }}</th>
             <th>{{ trans('landingpages::global.type') }}</th>
-            <th>{{ trans('landingpages::global.settings') }}</th>
+            <th style="width:50px"></th>
             <th style="width:50px"></th>
           </tr>
         </thead>
@@ -54,41 +54,26 @@
     </div>
   </td>
   <td>
-    <input type="text" class="form-control input-lg" id="title@{{ i }}" name="title" autocomplete="off" value="@{{ title }}">
+    <input type="text" class="form-control input-lg" id="name@{{ i }}" name="name" autocomplete="off" value="@{{ name }}">
   </td>
   <td>
     <select class="form-control input-lg">
-      <optgroup label="Generic">
-        <option>Text</option>
-        <option>Textarea</option>
-        <option>Multiple choice</option>
-      </optgroup>
-      <optgroup label="Variables">
-        <option>First name</option>
-        <option>Last name</option>
-        <option>Full name</option>
-        <option>Address</option>
-        <option>Street name</option>
-        <option>Street number</option>
-        <option>Phone</option>
-        <option>Mobile</option>
-        <option>Zip</option>
-        <option>City</option>
-        <option>Region</option>
-        <option>Country</option>
-        <option>Birthday</option>
-        <option>Start date</option>
-        <option>End date</option>
-        <option>Start date/time</option>
-        <option>End date/time</option>
-      </optgroup>
+<?php
+foreach (trans('global.form_fields') as $category => $items) {
+  $category_translation = trans('global.' . $category);
+  echo '<optgroup label="' . $category_translation . '">';
+  foreach ($items as $item => $translation) {
+    echo '<option value="' . $category . '.' . $item . '">' . $category_translation . ' - ' . $translation . '</option>';
+  }
+}
+?>
     </select>
   </td>
-  <td>
-    Settings
+  <td class="text-center">
+    <button type="button" class="btn btn-lg btn-info" data-toggle="tooltip" title="{{ trans('global.settings') }}"><i class="mi settings"></i></button>
   </td>
   <td align="right">
-    <button type="button" class="btn btn-lg btn-danger btn-delete" title="{{ trans('global.delete') }}" data-toggle="tooltip" title="{{ trans('global.delete') }}" style="margin-top:1px;"><i class="fa fa-times"></i></button>
+    <button type="button" class="btn btn-lg btn-danger btn-delete" title="{{ trans('global.delete') }}" data-toggle="tooltip" title="{{ trans('global.delete') }}" style="margin-top:1px;"><i class="mi delete"></i></button>
   </td>
 </tr>
 </script>
@@ -118,15 +103,23 @@ Set settings
     var $row = $(this);
     var data = {};
 
-    var title = $row.attr('title');
-    title = (typeof title !== typeof undefined && title !== false) ? title : '';
+    var name = $row.find('label').html();
+    name = (typeof name !== typeof undefined && name !== false) ? name : '';
+    var placeholder = $row.find('input').attr('placeholder');
+    placeholder = (typeof placeholder !== typeof undefined && placeholder !== false) ? placeholder : '';
+
+    if (name == '') name = placeholder;
+
     var url = $row.attr('href');
     url = (typeof url !== typeof undefined && url !== false) ? url : '';
+
+    var undeletable = true;
 
     i = j;
 
     data.i = j;
-    data.title = title;
+    data.undeletable = j;
+    data.name = name;
     data.url = url;
 
     addRepeaterRow('insert', data);
@@ -158,19 +151,12 @@ Update settings
     $('#tbl-form tbody tr').each(function (i) {
       var $row = $(this);
 
-      var icon = $row.find('.icon-picker i').attr('class');
-      icon = icon.replace('iconpicker-component', '');
-      var title = $row.find('[name=title]').val();
+      var name = $row.find('[name=name]').val();
       var url = $row.find('[name=url]').val();
 
       var $new_item = $item.clone();
 
-      // Get font vendor
-      var new_icon = parent.lfExtractIconClass($new_item.find('i').attr('class'));
-
-      $new_item.find('i').removeClass(new_icon.font);
-      $new_item.find('i').addClass(icon);
-      $new_item.attr('title', title);
+      $new_item.attr('name', name);
       $new_item.attr('href', url);
 
       $el.append($new_item);
@@ -219,7 +205,8 @@ List template
 
       var html = Mustache.render(form_row, mustacheBuildOptions({
         i: i++,
-        title: '',
+        undeletable: '',
+        name: '',
         url: '#'
       }));
 
@@ -230,7 +217,8 @@ List template
 
       var html = Mustache.render(form_row, mustacheBuildOptions({
         i: data.i,
-        title: data.title,
+        undeletable: data.undeletable,
+        name: data.name,
         url: data.url
       }));
 
