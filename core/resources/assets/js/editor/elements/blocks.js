@@ -227,6 +227,7 @@ function lfMakeNewBlockEditable($new_block, previous_el, position, block_class) 
   lfDuplicateBlockIcons($new_block);
   lfDuplicateBlockLinks($new_block);
   lfDuplicateBlockLists($new_block);
+  lfDuplicateBlockForms($new_block);
   lfDuplicateBlockText($new_block);
 
   if (typeof lfDuplicateBlockHook === 'function') {

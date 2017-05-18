@@ -34,7 +34,7 @@
           <p class="lead">We'll send you a link to download the latest version for free.</p>
         </div>
 
-        <form class="form ajax form-rounded">
+        <form class="form ajax form-rounded -x-form">
           <div class="form-group" id="formKey">
             <input type="email" class="form-control form-control-lg" id="email" required name="email" placeholder="Enter your email address">
           </div>

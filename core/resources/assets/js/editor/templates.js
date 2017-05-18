@@ -82,6 +82,16 @@ var xTplListButton = '<div class="-x-el-inline-button -x-el-list-edit -x-el-rese
   ' </ul>' +
   '</div>';
 
+var xTplFormButton = '<div class="-x-el-inline-button -x-el-form-edit -x-el-reset">' + 
+  ' <img src="' + _lang["url"] + '/assets/images/editor/icons/email.svg" class="-x-el-icon"' +
+  '   onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/email-hover.svg\';"' +
+  '   onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/email.svg\';"' +
+  ' >' +
+  ' <ul class="-x-el-dropdown -x-el-reset">' +
+  '   <li class="-x-el-form-edit"><a href="javascript:void(0);">' + _lang["modify_form"] + '</a></li>' +
+  ' </ul>' +
+  '</div>';
+
 var xTplIconButton = '<div class="-x-el-inline-button -x-el-icon-edit -x-el-reset">' + 
   ' <img src="' + _lang["url"] + '/assets/images/editor/icons/vector.svg" class="-x-el-icon"' +
   '   onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/vector-hover.svg\';"' +

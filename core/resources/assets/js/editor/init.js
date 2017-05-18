@@ -17,6 +17,7 @@ function lfInitEditor(editor) {
   lfInitIcons();
   lfInitLinks();
   lfInitLists();
+  lfInitForms();
   lfInitText();
 
   if (typeof editor === 'undefined') {

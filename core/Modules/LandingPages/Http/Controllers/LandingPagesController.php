@@ -476,6 +476,16 @@ class LandingPagesController extends Controller
     }
 
     /**
+     * Editor modal to configure form
+     */
+    public function editorModalForm(Request $request)
+    {
+      $el_class = $request->input('el_class', '');
+
+      return view('landingpages::modals.form', compact('el_class'));
+    }
+
+    /**
      * Editor modal to configure image
      */
     public function editorModalImage(Request $request)

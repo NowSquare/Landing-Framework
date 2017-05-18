@@ -294,6 +294,7 @@ gulp.task('editor_scripts', function() {
       'resources/assets/js/editor/elements/icons.js',
       'resources/assets/js/editor/elements/links.js',
       'resources/assets/js/editor/elements/lists.js',
+      'resources/assets/js/editor/elements/forms.js',
       'resources/assets/js/editor/elements/text.js',
       'resources/assets/js/editor/elements/fab.js',
       'resources/assets/js/editor/modal.js',

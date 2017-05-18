@@ -47,6 +47,7 @@ return array(
   "save_and_publish" => "Save &amp; publish",
   "unpublish" => "Unpublish",
   "modify_list" => "Modify list",
+  "modify_form" => "Modify form",
   "modify_image" => "Modify image",
   "modify_icon" => "Modify icon",
   "remove" => "Remove",

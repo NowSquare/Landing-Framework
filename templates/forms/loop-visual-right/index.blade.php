@@ -35,7 +35,7 @@
           <p class="lead">Stay up to date with the best curated news.</p>
         </div>
 
-        <form class="form ajax">
+        <form class="form ajax -x-form">
           <div class="form-group" id="formKey">
             <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your email address">
           </div>
