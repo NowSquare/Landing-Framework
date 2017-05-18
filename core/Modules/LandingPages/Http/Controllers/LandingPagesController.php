@@ -459,8 +459,9 @@ class LandingPagesController extends Controller
     {
       $el_class = $request->input('el_class', '');
       $color = (boolean) $request->input('color', false);
+      $submit = (boolean) $request->input('submit', false);
 
-      return view('landingpages::modals.link', compact('el_class', 'color'));
+      return view('landingpages::modals.link', compact('el_class', 'color', 'submit'));
     }
 
     /**

@@ -214,8 +214,8 @@ class FormsController extends Controller
 
         // Update page
         pq('title')->text($name);
-        pq('head')->find('title')->after('<link rel="icon" type="image/x-icon" href="' . url('public/' . $storage_root . '/favicon.ico') . '">');
-        pq('head')->find('title')->after('<meta name="description" content="">');
+        //pq('head')->find('title')->after('<link rel="icon" type="image/x-icon" href="' . url('public/' . $storage_root . '/favicon.ico') . '">');
+        //pq('head')->find('title')->after('<meta name="description" content="">');
 
         //$page_html = str_replace('</section><section', "</section>\n\n<section", $page_html);
         $page_html = str_replace(url('/'), '', $page_html);

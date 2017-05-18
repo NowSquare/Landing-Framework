@@ -271,7 +271,16 @@ $(function($) {
 });
 
 function beforeSerialize($jqForm, options) {
-	ladda_button = $jqForm.find('[type=submit]').ladda();
+
+  var $btn = $jqForm.find('[type=submit]');
+
+  if ($btn.is('[class*=btn-outline]')) {
+    $btn.attr('data-spinner-color', $btn.css('border-color'));
+  } else {
+    $btn.attr('data-spinner-color', $btn.css('color'));
+  }
+
+	ladda_button = $btn.ladda();
 
     // Loading state
 	ladda_button.ladda('start');
@@ -279,13 +288,17 @@ function beforeSerialize($jqForm, options) {
 
 function formResponse(responseText, statusText, xhr, $jqForm) {
 
+  var $btn = $jqForm.find('[type=submit]');
+
   if (typeof responseText.title !== 'undefined' && typeof responseText.text !== 'undefined') {
     swal({
       title: responseText.title,
       text: responseText.text,
-      confirmButtonColor: $jqForm.find('[type=submit]').css('border-color'),
+      confirmButtonColor: $btn.css('border-color'),
       confirmButtonText: _trans['ok'],
-      allowOutsideClick: false
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false
     }).then(function (result) {
 
       // Reset form
@@ -304,7 +317,7 @@ function formResponse(responseText, statusText, xhr, $jqForm) {
     swal({
       title: _trans['form_post_demo_title'],
       text: _trans['form_post_demo_text'],
-      confirmButtonColor: $jqForm.find('[type=submit]').css('border-color'),
+      confirmButtonColor: $btn.css('border-color'),
       confirmButtonText: _trans['ok'],
       allowOutsideClick: false
     }).then(function (result) {

@@ -40,7 +40,7 @@
             <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your email address">
           </div>
 
-          <button type="submit" class="btn btn-lg btn-block btn-blue mb-4 ladda-button" data-style="zoom-in" data-spinner-color="#ffffff"><span class="ladda-label">Get Free Updates</span></button>
+          <button type="submit" class="btn btn-lg btn-block btn-blue mb-4 ladda-button -x-link" data-style="zoom-in" data-spinner-color="#ffffff"><span class="ladda-label">Get Free Updates</span></button>
         </form>
       </div>
 

@@ -142,8 +142,9 @@ function lfInitLinks() {
       // Check what settings can be configured in the modal
       var $el = $('.' + el_class);
       var color = ($el.hasClass('btn')) ? 1 : 0;
+      var submit = ($el.attr('type') == 'submit') ? 1 : 0;
 
-      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/link?color=' + color, el_class);
+      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/link?color=' + color + '&submit=' + submit, el_class);
 
       // Hide dropdown after option has been clicked
       $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);

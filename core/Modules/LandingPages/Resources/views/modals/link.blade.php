@@ -14,7 +14,7 @@
         <label for="text">{{ trans('landingpages::global.text') }}</label>
           <input type="text" class="form-control" id="text" name="text" autocomplete="off" value="">
       </div>
-
+<?php if (! $submit) { ?>
       <div class="form-group">
         <label for="url">{{ trans('landingpages::global.url') }}</label>
         <div class="input-group">
@@ -38,6 +38,8 @@ echo Former::select('target')
   ->label(trans('landingpages::global.target'));
 ?>
       </div>
+
+<?php } ?>
 
 <?php if ($color) { ?>
       <div class="form-group">
@@ -71,7 +73,11 @@ Set settings
 
   var $el = $('.{{ $el_class }}', window.parent.document);
 
-  $('#text').val($el.html());
+  var text = ($el.hasClass('ladda-button')) ? $el.find('.ladda-label').html(): $el.html();
+
+  $('#text').val(text);
+
+<?php if (! $submit) { ?>
   $('#target').val($el.attr('target')).trigger('change.select2');
 
   var url = $el.attr('href');
@@ -80,6 +86,7 @@ Set settings
   if (url != '') {
     updateImagePreview($('#select_url'));
   }
+<?php } ?>
 
 <?php if ($color) { ?>
 
@@ -108,9 +115,16 @@ Update settings
   $('.onClickUpdate').on('click', function() {
 <?php if ($el_class != '') { ?>
 
-    $el.html($('#text').val());
+    if ($el.hasClass('ladda-button')) {
+      $el.find('.ladda-label').html($('#text').val());
+    } else {
+      $el.html($('#text').val());
+    }
+
+<?php if (! $submit) { ?>
     $el.attr('href', $('#url').val());
     $el.attr('target', $('#target').val());
+<?php } ?>
 
 <?php if ($color) { ?>
 
