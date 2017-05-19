@@ -105,10 +105,10 @@ function lfInitLink($link, unique_class) {
     offset: offset,
     targetAttachment: targetAttachment,
     classPrefix: '-x-data',
-    constraints: [{
+/*    constraints: [{
       to: 'scrollParent',
       attachment: 'together'
-    }],
+    }],*/
     optimizations: {
       moveElement: true,
       gpu: true

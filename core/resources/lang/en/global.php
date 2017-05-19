@@ -111,9 +111,8 @@ return array(
       "number" => "Number",
       "url" => "Url",
       "multiple_choice" => "Multiple choice",
-      "select" => "Select from list",
+      "select" => "Dropdown list",
       "radios" => "Options",
-      "checkbox" => "Checkbox",
       "website" => "Website",
       "date" => "Date",
       "time" => "Time",
@@ -122,7 +121,7 @@ return array(
     "personal" => [
       "first_name" => "First name",
       "last_name" => "Last name",
-      "full_name" => "Full name",
+      "name" => "Name",
       "gender" => "Gender", // Male / female,
       "title" => "Title", // Mr / Mrs
       "impressum" => "Impressum",
@@ -152,7 +151,7 @@ return array(
       "phone" => "Phone",
       "mobile" => "Mobile",
       "fax" => "Fax",
-      "postal" => "Postal code / zip",
+      "postal" => "Postal code",
       "city" => "City",
       "state" => "Region / state",
       "country" => "Country"
@@ -166,10 +165,7 @@ return array(
       "end_time" => "End time",
       "date_time" => "Date and time",
       "start_date_time" => "Start date and time",
-      "end_date_time" => "End date and time",
-      "persons" => "Number of persons",
-      "adults" => "Adults",
-      "kids" => "Kids"
+      "end_date_time" => "End date and time"
     ]
   ],
   "form_fields_gender" => [

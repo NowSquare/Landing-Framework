@@ -75,10 +75,11 @@ function lfInitForm($form, unique_class) {
     offset: offset,
     targetAttachment: targetAttachment,
     classPrefix: '-x-data',
+    /*
     constraints: [{
       to: 'scrollParent',
       attachment: 'together'
-    }],
+    }],*/
     optimizations: {
       moveElement: true,
       gpu: true

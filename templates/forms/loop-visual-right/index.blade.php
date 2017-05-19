@@ -26,26 +26,28 @@
 
 <body>
 
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-6 col-lg-4 text-center text-md-left offset-sm-0 offset-md-0 offset-lg-1">
+  <div class="container">
+     <div class="m-3">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center text-md-left offset-sm-0 offset-md-0 offset-lg-1">
 
-        <div class="-x-text mb-4">
-          <h1>Stay in the Loop</h1>
-          <p class="lead">Stay up to date with the best curated news.</p>
-        </div>
-
-        <form class="form ajax -x-form">
-          <div class="form-group" id="formKey">
-            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your email address">
+          <div class="-x-text mb-4">
+            <h1>Stay in the Loop</h1>
+            <p class="lead">Stay up to date with the best curated news.</p>
           </div>
 
-          <button type="submit" class="btn btn-lg btn-block btn-blue mb-4 ladda-button -x-link" data-style="zoom-in" data-spinner-color="#ffffff"><span class="ladda-label">Get Free Updates</span></button>
-        </form>
-      </div>
+          <form class="form ajax -x-form">
+            <div class="form-group" id="formKey">
+              <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="Enter your email address">
+            </div>
 
-      <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center text-md-left">
-        <img src="/templates/assets/images/photos/man-using-stylus-pen-for-touching-the-digital-tablet-screen.jpg" alt="" class="-x-img img-fluid mdl-shadow--8dp">
+            <button type="submit" class="btn btn-lg btn-block btn-blue mb-4 ladda-button -x-link" data-attachment="bottom right" data-target-attachment="top left" data-style="zoom-in" data-spinner-color="#ffffff"><span class="ladda-label">Get Free Updates</span></button>
+          </form>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center text-md-left">
+          <img src="/templates/assets/images/photos/man-using-stylus-pen-for-touching-the-digital-tablet-screen.jpg" alt="" class="-x-img img-fluid mdl-shadow--8dp">
+        </div>
       </div>
     </div>
   </div>

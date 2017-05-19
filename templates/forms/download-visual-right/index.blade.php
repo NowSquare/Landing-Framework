@@ -25,26 +25,28 @@
 
 <body>
 
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-12 col-sm-12 col-md-7 col-lg-4 text-center text-md-left offset-sm-0 offset-md-0 offset-lg-2">
+  <div class="container">
+     <div class="m-3">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-7 col-lg-5 text-center text-md-left offset-sm-0 offset-md-0 offset-lg-2">
 
-        <div class="-x-text mb-4 mt-md-4">
-          <h1 class="mb-3">Get a Free Copy</h1>
-          <p class="lead">We'll send you a link to download the latest version for free.</p>
+          <div class="-x-text mb-4 mt-md-4">
+            <h1 class="mb-3">Get a Free Copy</h1>
+            <p class="lead">We'll send you a link to download the latest version for free.</p>
+          </div>
+
+          <form class="form ajax form-rounded -x-form">
+            <div class="form-group" id="formKey">
+              <input type="email" class="form-control form-control-lg" id="email" required name="email" placeholder="Enter your email address">
+            </div>
+
+            <button type="submit" class="btn btn-lg btn-block btn-pill btn-pink mb-4 ladda-button -x-link" data-attachment="bottom right" data-target-attachment="top left" data-style="zoom-in" data-spinner-color="#ffffff"><span class="ladda-label">Download Now</span></button>
+          </form>
         </div>
 
-        <form class="form ajax form-rounded -x-form">
-          <div class="form-group" id="formKey">
-            <input type="email" class="form-control form-control-lg" id="email" required name="email" placeholder="Enter your email address">
-          </div>
-          
-          <button type="submit" class="btn btn-lg btn-block btn-pill btn-pink mb-4 ladda-button -x-link" data-style="zoom-in" data-spinner-color="#ffffff"><span class="ladda-label">Download Now</span></button>
-        </form>
-      </div>
-
-      <div class="col-12 col-sm-12 col-md-5 col-lg-4 text-center text-md-left">
-        <img src="/templates/assets/images/visuals/software-box-blank.png" alt="" class="-x-img img-fluid">
+        <div class="col-12 col-sm-12 col-md-5 col-lg-4 text-center text-md-left">
+          <img src="/templates/assets/images/visuals/software-box-blank.png" alt="" class="-x-img img-fluid">
+        </div>
       </div>
     </div>
   </div>

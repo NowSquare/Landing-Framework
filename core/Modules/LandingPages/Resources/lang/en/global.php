@@ -62,4 +62,18 @@ return array(
   "custom_domain_intro" => "Here you can link your own domain or subdomain to this landing page. Update the domain DNS settings as described below.",
   "type" => "Type",
   "settings" => "Settings",
+  "placeholder" => "Placeholder",
+  "size" => "Size",
+  "small" => "Small",
+  "normal" => "Normal",
+  "large" => "Large",
+  "label" => "Label",
+  "required" => "Required",
+  "form_options_help" => "One option per line. Put [x] in front of an initially selected option.",
+  "form_options_placeholder" => "Option 1
+[x] Option 2
+Option 3",
+  "" => "",
+  "" => "",
+  "" => "",
 );
