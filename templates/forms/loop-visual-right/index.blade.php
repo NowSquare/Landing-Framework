@@ -32,7 +32,7 @@
         <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center text-md-left offset-sm-0 offset-md-0 offset-lg-1">
 
           <div class="-x-text mb-4">
-            <h1>Stay in the Loop</h1>
+            <h1>{!! trans('forms::form.stay_in_the_loop') !!}</h1>
             <p class="lead">Stay up to date with the best curated news.</p>
           </div>
 

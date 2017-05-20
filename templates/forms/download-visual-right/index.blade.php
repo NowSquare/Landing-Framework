@@ -31,7 +31,7 @@
         <div class="col-12 col-sm-12 col-md-7 col-lg-5 text-center text-md-left offset-sm-0 offset-md-0 offset-lg-2">
 
           <div class="-x-text mb-4 mt-md-4">
-            <h1 class="mb-3">Get a Free Copy</h1>
+            <h1 class="mb-3">{!! trans('forms::form.get_free_copy') !!}</h1>
             <p class="lead">We'll send you a link to download the latest version for free.</p>
           </div>
 

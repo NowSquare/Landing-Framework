@@ -296,17 +296,22 @@ Update settings
       var $row = $(this);
 
       var type = $row.find('[name=name]').val();
-      formElement.setType(type);
+      var label = $row.find('[name=label]').val();
+      var placeholder = $row.find('[name=placeholder]').val();
 
-      formElement.label = $row.find('[name=label]').val();
-      formElement.placeholder = $row.find('[name=placeholder]').val();
-      formElement.size = $row.find('[name=size]').val();
-      formElement.required = ($row.find('[name=required]').is(':checked')) ? 1 : 0;
-      formElement.options = $row.find('[name=options]').val();
+      if (label != '' || placeholder != '') {
+        formElement.setType(type);
 
-      var new_item_html = formElement.getHtml();
+        formElement.label = label;
+        formElement.placeholder = placeholder;
+        formElement.size = $row.find('[name=size]').val();
+        formElement.required = ($row.find('[name=required]').is(':checked')) ? 1 : 0;
+        formElement.options = $row.find('[name=options]').val();
 
-      $(new_item_html).insertBefore($el.find('button[type=submit]'))/*.after("\r\n")*/;
+        var new_item_html = formElement.getHtml();
+
+        $(new_item_html).insertBefore($el.find('button[type=submit]'))/*.after("\r\n")*/;
+      }
     });
 
     // Remove whitespace

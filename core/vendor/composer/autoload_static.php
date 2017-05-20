@@ -20,8 +20,8 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
         '65fec9ebcfbb3cbb4fd0d519687aea01' => __DIR__ . '/..' . '/danielstjules/stringy/src/Create.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
         '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
+        'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -2497,8 +2497,12 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         'Mockery\\Undefined' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Undefined.php',
         'Mockery\\VerificationDirector' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationDirector.php',
         'Mockery\\VerificationExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/VerificationExpectation.php',
+        'Modules\\EmailCampaigns\\Database\\Seeders\\EmailCampaignsDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/EmailCampaigns/Database/Seeders/EmailCampaignsDatabaseSeeder.php',
+        'Modules\\EmailCampaigns\\Http\\Controllers\\EmailCampaignsController' => __DIR__ . '/../..' . '/Modules/EmailCampaigns/Http/Controllers/EmailCampaignsController.php',
+        'Modules\\EmailCampaigns\\Providers\\EmailCampaignsServiceProvider' => __DIR__ . '/../..' . '/Modules/EmailCampaigns/Providers/EmailCampaignsServiceProvider.php',
         'Modules\\Forms\\Database\\Seeders\\FormsDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Forms/Database/Seeders/FormDatabaseSeeder.php',
         'Modules\\Forms\\Http\\Controllers\\FormsController' => __DIR__ . '/../..' . '/Modules/Forms/Http/Controllers/FormsController.php',
+        'Modules\\Forms\\Http\\Controllers\\FunctionsController' => __DIR__ . '/../..' . '/Modules/Forms/Http/Controllers/FunctionsController.php',
         'Modules\\Forms\\Http\\Models\\Form' => __DIR__ . '/../..' . '/Modules/Forms/Http/Models/Form.php',
         'Modules\\Forms\\Providers\\FormsServiceProvider' => __DIR__ . '/../..' . '/Modules/Forms/Providers/FormsServiceProvider.php',
         'Modules\\LandingPages\\Database\\Seeders\\LandingPageDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/LandingPages/Database/Seeders/LandingPageDatabaseSeeder.php',
@@ -3623,6 +3627,7 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         'Psy\\CodeCleaner\\InstanceOfPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/InstanceOfPass.php',
         'Psy\\CodeCleaner\\LeavePsyshAlonePass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/LeavePsyshAlonePass.php',
         'Psy\\CodeCleaner\\LegacyEmptyPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/LegacyEmptyPass.php',
+        'Psy\\CodeCleaner\\LoopContextPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/LoopContextPass.php',
         'Psy\\CodeCleaner\\MagicConstantsPass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/MagicConstantsPass.php',
         'Psy\\CodeCleaner\\NamespaceAwarePass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/NamespaceAwarePass.php',
         'Psy\\CodeCleaner\\NamespacePass' => __DIR__ . '/..' . '/psy/psysh/src/Psy/CodeCleaner/NamespacePass.php',
@@ -4478,6 +4483,7 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         'elFinderVolumeLocalFileSystem' => __DIR__ . '/..' . '/studio-42/elfinder/php/elFinderVolumeLocalFileSystem.class.php',
         'elFinderVolumeMySQL' => __DIR__ . '/..' . '/studio-42/elfinder/php/elFinderVolumeMySQL.class.php',
         'elFinderVolumeOneDrive' => __DIR__ . '/..' . '/studio-42/elfinder/php/elFinderVolumeOneDrive.class.php',
+        'elFinderVolumeTrash' => __DIR__ . '/..' . '/studio-42/elfinder/php/elFinderVolumeTrash.class.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
         'phpDocumentor\\Reflection\\DocBlockFactoryInterface' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactoryInterface.php',
