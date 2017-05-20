@@ -5,6 +5,9 @@ Route::group(['middleware' => 'web', 'prefix' => 'f', 'namespace' => 'Modules\Fo
   // Public routes
   Route::get('{local_domain}', 'FormsController@homePage');
 
+  // Form post
+  Route::post('post', 'FormsController@formPost');
+
   // Secured routes
   Route::group(['middleware' => 'auth:web'], function () {
     Route::get('edit/{local_domain}', 'FormsController@editor');

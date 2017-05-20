@@ -70,17 +70,7 @@ $(function($) {
 	 * Ajax forms
 	 */
 
-  $('form.ajax').validator().on('submit', function (e) {
-    if (! e.isDefaultPrevented()) {
-      $('form.ajax').ajaxSubmit({
-        dataType: 'json',
-        beforeSerialize: beforeSerialize,
-        success: formResponse,
-        error: formResponse
-      });
-      e.preventDefault();
-    }
-  });
+  bindAjaxForms();
 
   /*
    * jQuery.scrollTo
@@ -270,6 +260,118 @@ $(function($) {
 
 });
 
+/*
+ * Ajax forms
+ */
+
+function bindAjaxForms() {
+  $('form.ajax').validator().on('submit', function (e) {
+    if (! e.isDefaultPrevented()) {
+      processAjaxForm($(this));
+      /*
+      $('form.ajax').ajaxSubmit({
+        dataType: 'json',
+        beforeSerialize: beforeSerialize,
+        success: formResponse,
+        error: formResponse
+      });
+*/
+    e.preventDefault();
+    }
+  });
+}
+
+function updateAjaxForms() {
+  $('form.ajax').validator('update').on('submit', function (e) {
+    if (! e.isDefaultPrevented()) {
+      processAjaxForm($(this));
+      /*
+      $('form.ajax').ajaxSubmit({
+        dataType: 'json',
+        beforeSerialize: beforeSerialize,
+        success: formResponse,
+        error: formResponse
+      });
+*/
+      e.preventDefault();
+    }
+  });
+}
+
+function processAjaxForm($form) {
+
+  var $btn = $form.find('[type=submit]');
+
+  if ($btn.is('[class*=btn-outline]')) {
+    $btn.attr('data-spinner-color', $btn.css('border-color'));
+  } else {
+    $btn.attr('data-spinner-color', $btn.css('color'));
+  }
+
+	ladda_button = $btn.ladda();
+
+    // Loading state
+	ladda_button.ladda('start');
+
+  if (typeof lf_demo === 'undefined') {
+    var f = formSerialize($form);
+
+    var jqxhr = $.ajax({
+      url: _trans['url'] + "/f/post",
+      data: {f: f , _token: _trans['csrf'] },
+      method: 'POST'
+    })
+    .done(function(data) {
+      swal({
+        title: data.title,
+        text: data.text,
+        confirmButtonColor: $btn.css('border-color'),
+        confirmButtonText: _trans['ok'],
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+      }).then(function (result) {
+
+        // Reset form
+        $form.resetForm();
+
+        // Loading state
+        ladda_button.ladda('stop');
+
+      }, function (dismiss) {
+        // Do nothing on cancel
+        // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
+      });
+    })
+    .fail(function() {
+      alert('Request failed, please try again (' + textStatus + ')');
+    })
+    .always(function() {
+      ladda_button.ladda('stop');
+    });
+
+  } else {
+    swal({
+      title: _trans['form_post_demo_title'],
+      text: _trans['form_post_demo_text'],
+      confirmButtonColor: $btn.css('border-color'),
+      confirmButtonText: _trans['ok'],
+      allowOutsideClick: false
+    }).then(function (result) {
+
+      // Reset form
+      $form.resetForm();
+
+      // Loading state
+      ladda_button.ladda('stop');
+
+    }, function (dismiss) {
+      // Do nothing on cancel
+      // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
+    });
+  }
+}
+
 function beforeSerialize($jqForm, options) {
 
   var $btn = $jqForm.find('[type=submit]');
@@ -286,9 +388,70 @@ function beforeSerialize($jqForm, options) {
 	ladda_button.ladda('start');
 }
 
+function formSerialize($form) {
+  var custom_vars = {};
+  var form_vars = {};
+
+	if ($form.find('.form-group').length) {
+    $form.find('.form-group').each(function() {
+
+      var $formGroup = $(this);
+      var $formControl = $formGroup.find('.form-control');
+
+      var type, val;
+      var name = $formControl.attr('name');
+
+      var label = $formGroup.find('label').html();
+      label = (typeof label !== typeof undefined && label !== false) ? label : '';
+
+      var placeholder = $formControl.attr('placeholder');
+      placeholder = (typeof placeholder !== typeof undefined && placeholder !== false) ? placeholder : '';
+
+      var reference = (label != '') ? label : placeholder;
+
+      if (typeof name !== 'undefined') {
+        type = 'form-control';
+        val = $formControl.val();
+        if (name == 'email') {
+          reference = 'email';
+        }
+      } else if ($formGroup.find('input[type=radio]').length) {
+        type = 'radio';
+        name = $formGroup.find('input[type=radio]').attr('name');
+        val = $formGroup.find('input[type=radio]:checked').val();
+      } else if ($formGroup.find('input[type=checkbox]').length) {
+        type = 'checkbox';
+        name = $formGroup.find('input[type=checkbox]').attr('name');
+        var val = [];
+        $formGroup.find('input[type=checkbox]:checked').each(function() {
+          val.push($(this).val());
+        });
+      } else {
+        name = '';
+      }
+
+      if (name != '') {
+        if (name.indexOf('[]') >= 0) {
+          // It's a custom var
+          custom_vars[reference] = val;
+        } else {
+          // It's a form var
+          form_vars[name] = val;
+        }
+      }
+    });
+  }
+
+  return {
+    'c': custom_vars,
+    'f': form_vars
+  };
+}
+
 function formResponse(responseText, statusText, xhr, $jqForm) {
 
   var $btn = $jqForm.find('[type=submit]');
+  var formPost = formSerialize($jqForm);
 
   if (typeof responseText.title !== 'undefined' && typeof responseText.text !== 'undefined') {
     swal({

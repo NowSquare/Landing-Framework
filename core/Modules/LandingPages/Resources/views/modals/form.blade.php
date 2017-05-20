@@ -91,7 +91,7 @@
     </div>
   </td>
   <td style="width:250px">
-    <select class="form-control input-lg select2-required" name="name" id="name@{{ i }}" onchange="changeFormElement(@{{ i }}, $(this).val())">
+    <select class="form-control input-lg" name="name" id="name@{{ i }}" onchange="changeFormElement(@{{ i }}, $(this).val())" @{{#undeletable}}disabled @{{/undeletable}}>
 <?php
 echo '{{#undeletable}}';
 echo '<option value="email" selected>' . trans('global.email') . '</option>';
@@ -112,8 +112,9 @@ echo '{{/undeletable}}';
   <td>
     <div class="well well-sm options-closed 
       @{{#has_options=0}}no-options@{{/has_options=0}} 
-      @{{#has_placeholder=0}}no-placeholder@{{/has_placeholder=0}}"  
-      @{{#has_size=0}}no-size@{{/has_size=0}}" 
+      @{{#has_placeholder=0}}no-placeholder@{{/has_placeholder=0}}
+      @{{#has_size=0}}no-size@{{/has_size=0}}
+      " 
       id="options-panel@{{ i }}">
 
       <input type="text" class="form-control input-lg show-when-hidden" id="reference@{{ i }}" name="reference" autocomplete="off" value="@{{ reference }}"
@@ -223,17 +224,28 @@ Set settings
     required = (typeof required !== typeof undefined && required !== false) ? 1 : 0;
 
     var name = $formControl.attr('name');
+    var label = $formGroup.find('label').html();
+    label = (typeof label !== typeof undefined && label !== false) ? label : '';
+
+    var placeholder = $formControl.attr('placeholder');
+    placeholder = (typeof placeholder !== typeof undefined && placeholder !== false) ? placeholder : '';
+
+    var reference_type = (label != '') ? 'label' : 'placeholder';
+    var reference = (label != '') ? label : placeholder;
 
     if (typeof name !== 'undefined') {
       var undeletable = (name == 'email') ? 1 : 0;
       if (name == 'email') required = 1;
     } else if ($formGroup.find('input[type=radio]').length) {
-      var name = $formGroup.find('input[type=radio]').attr('name');
-      console.log(name);
+      name = $formGroup.find('input[type=radio]').attr('name');
+      required = $formGroup.find('input[type=radio]').attr('required');
+      required = (typeof required !== typeof undefined && required !== false) ? 1 : 0;
     } else if ($formGroup.find('input[type=checkbox]').length) {
-      var name = $formGroup.find('input[type=checkbox]').attr('name');
-      console.log(name);
+      name = $formGroup.find('input[type=checkbox]').attr('name');
+      required = $formGroup.find('input[type=checkbox]').attr('required');
+      required = (typeof required !== typeof undefined && required !== false) ? 1 : 0;
     } else {
+      console.log('not found');
       name = '';
     }
 
@@ -241,18 +253,9 @@ Set settings
 
     formElement.setType(name);
 
-    var label = $formGroup.find('label').html();
-    label = (typeof label !== typeof undefined && label !== false) ? label : '';
-
-    var placeholder = $formControl.attr('placeholder');
-    placeholder = (typeof placeholder !== typeof undefined && placeholder !== false) ? placeholder : '';
-
     var size = 2;
     if ($formControl.hasClass('form-control-sm')) size = 1;
     if ($formControl.hasClass('form-control-lg')) size = 3;
-
-    var reference_type = (label != '') ? 'label' : 'placeholder';
-    var reference = (label != '') ? label : placeholder;
 
     i = j;
 
@@ -307,11 +310,13 @@ Update settings
     });
 
     // Changes detected
-    //window.parent.lfSetPageIsDirty();
+    window.parent.lfSetPageIsDirty();
 
 <?php } ?>
 
+    window.parent.updateAjaxForms();
     window.parent.lfCloseModal();
+
   });
 
 <?php /* ----------------------------------------------------------------------------
@@ -421,73 +426,7 @@ function rowBindings(i) {
     bsTooltipsPopovers();
   });
 }
-<?php /*
-/*
-  "form_fields" => [
-    "general" => [
-      "text" => "Text",
-      "textarea" => "Multi-line text",
-      "number" => "Number",
-      "url" => "Url",
-      "multiple_choice" => "Multiple choice",
-      "select" => "Select from list",
-      "radios" => "Options",
-      "checkbox" => "Checkbox",
-      "website" => "Website",
-      "date" => "Date",
-      "time" => "Time",
-      "date_time" => "Date and time"
-    ],
-    "personal" => [
-      "first_name" => "First name",
-      "last_name" => "Last name",
-      "name" => "Name",
-      "gender" => "Gender", // Male / female,
-      "title" => "Title", // Mr / Mrs
-      "impressum" => "Impressum",
-      "birthday" => "Birthday",
-      "website" => "Website",
-      "address1" => "Address 1",
-      "address2" => "Address 2",
-      "street" => "Street",
-      "house_number" => "House number",
-      "phone" => "Phone",
-      "mobile" => "Mobile",
-      "fax" => "Fax",
-      "postal" => "Postal code / zip",
-      "city" => "City",
-      "state" => "Region / state",
-      "country" => "Country"
-    ],
-    "business" => [
-      "company" => "Company name",
-      "job_title" => "Job title",
-      "website" => "Website",
-      "email" => "Email",
-      "address1" => "Address 1",
-      "address2" => "Address 2",
-      "street" => "Street",
-      "house_number" => "House number",
-      "phone" => "Phone",
-      "mobile" => "Mobile",
-      "fax" => "Fax",
-      "postal" => "Postal code",
-      "city" => "City",
-      "state" => "Region / state",
-      "country" => "Country"
-    ],
-    "booking" => [
-      "date" => "Date",
-      "start_date" => "Start date",
-      "end_date" => "End date",
-      "time" => "Time",
-      "start_time" => "Start time",
-      "end_time" => "End time",
-      "date_time" => "Date and time",
-      "start_date_time" => "Start date and time",
-      "end_date_time" => "End date and time"
-    ]
-*/ ?>
+
 function changeFormElement(i, name) {
   var formElement = new lfFormElementGenerator();
 
@@ -531,6 +470,11 @@ function lfFormElementGenerator() {
 
     switch (this.type) {
       case 'general_select':
+        this.hasPlaceholder = false;
+        this.hasSize = true;
+        this.hasOptions = true;
+        break;
+
       case 'general_radios': 
       case 'general_multiple_choice': 
         this.hasPlaceholder = false;
@@ -661,7 +605,7 @@ function lfFormElementGenerator() {
 
         html += TAB + '<div class="form-group">' + CRLF;
         if (this.label != '') html += TAB + TAB + '<label for="' + id + '">' + this.label + '</label>' + CRLF;
-        html += TAB + TAB + '<select class="form-control' + html_size + '" id="' + id + '-' + this.count + '" name="' + name + '[]" placeholder="' + this.placeholder + '">' + CRLF;
+        html += TAB + TAB + '<select class="form-control' + html_size + '" id="' + id + '-' + this.count + '" name="' + name + '[]" placeholder="' + this.placeholder + '"' + html_required + '>' + CRLF;
 
         if (options.length > 0) {
           for (var i = 0; i < options.length; i++) {
@@ -688,7 +632,7 @@ function lfFormElementGenerator() {
             var selected = (options[i].selected) ? ' checked' : '';
             html += TAB + TAB + '<div class="form-check">' + CRLF;
             html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
-            html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '[]" id="' + id + '-' + i + '" value="' + options[i].text + '"' + selected + '>' + CRLF;
+            html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '[]" id="' + id + '-' + i + '" value="' + options[i].text + '"' + selected + '' + html_required + '>' + CRLF;
             html += TAB + TAB + TAB + TAB + options[i].text + CRLF;
             html += TAB + TAB + TAB + '</label>' + CRLF;
             html += TAB + TAB + '</div>' + CRLF;
@@ -710,7 +654,7 @@ function lfFormElementGenerator() {
             var selected = (options[i].selected) ? ' checked' : '';
             html += TAB + TAB + '<div class="form-check">' + CRLF;
             html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
-            html += TAB + TAB + TAB + TAB + '<input type="checkbox" class="form-check-input" name="' + name + '[]" id="' + id + '-' + i + '" value="' + options[i].text + '"' + selected + '>' + CRLF;
+            html += TAB + TAB + TAB + TAB + '<input type="checkbox" class="form-check-input" name="' + name + '[]" id="' + id + '-' + i + '" value="' + options[i].text + '"' + selected + '' + html_required + '>' + CRLF;
             html += TAB + TAB + TAB + TAB + options[i].text + CRLF;
             html += TAB + TAB + TAB + '</label>' + CRLF;
             html += TAB + TAB + '</div>' + CRLF;
@@ -744,6 +688,15 @@ function lfFormElementGenerator() {
             html_type = 'email'; 
             break;
 
+          case 'personal_phone': 
+          case 'personal_mobile': 
+          case 'personal_fax': 
+          case 'business_phone': 
+          case 'business_mobile': 
+          case 'business_fax': 
+            html_type = 'tel'; 
+            break;
+
           case 'general_date':
           case 'personal_birthday':
           case 'booking_date':
@@ -757,6 +710,13 @@ function lfFormElementGenerator() {
           case 'booking_start_time':
           case 'booking_end_time': 
             html_type = 'time'; 
+            break;
+
+          case 'general_date_time':
+          case 'booking_date_time':
+          case 'booking_date_start_time':
+          case 'booking_date_end_time': 
+            html_type = 'datetime-local'; 
             break;
 
           default: 
