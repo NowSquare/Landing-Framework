@@ -296,7 +296,8 @@ gulp.task('editor_scripts', function() {
       'resources/assets/js/editor/elements/lists.js',
       'resources/assets/js/editor/elements/forms.js',
       'resources/assets/js/editor/elements/text.js',
-      'resources/assets/js/editor/elements/fab.js',
+      'resources/assets/js/editor/elements/fab.landingpages.js',
+      'resources/assets/js/editor/elements/fab.forms.js',
       'resources/assets/js/editor/modal.js',
       'resources/assets/js/editor/init.js'
     ])

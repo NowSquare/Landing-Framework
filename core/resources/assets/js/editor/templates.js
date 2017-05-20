@@ -2,7 +2,7 @@ var xTplModal = '<div class="-x-editor-inline-modal-bg" style="z-index: 999990 !
   '  <iframe class="-x-el-inline-modal -x-full -x-el-reset" src="about:blank" frameborder="0" allowtransparency="true" seamless></iframe>' +
   '</div>';
 
-var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-index: 999990 !important;">' +
+var xTplFabLandingpages = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-index: 999990 !important;">' +
   '  <img src="' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg" class="-x-el-icon"' +
   '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical-hover.svg\';"' +
   '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg\';"' +
@@ -38,6 +38,45 @@ var xTplFab = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-i
   '    </li>' + 
   '    <li class="separator"><hr></li>' +
   '    <li class="-x-el-fab-insert-block"><a href="javascript:void(0);">' + _lang["insert_block"] + '</a></li>' +
+  '  </ul>' +
+  '</div>';
+
+var xTplFabForms = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-index: 999990 !important;">' +
+  '  <img src="' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg" class="-x-el-icon"' +
+  '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical-hover.svg\';"' +
+  '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg\';"' +
+  '  >' +
+  '  <ul class="-x-el-dropdown -x-el-dropdown-top-left -x-el-dropdown-fab -x-el-reset">' +
+  '    <li class="-x-el-fab-publish"><a href="javascript:void(0);">' + _lang["save"] + ' <div class="-x-el-caret"></div></a>' +
+  '      <ul>' +
+  '        <li class="-x-el-fab-save"><a href="javascript:void(0);">' + _lang["save_form"] + '</a></li>' +
+  '        <li class="-x-el-fab-publish-publish"><a href="javascript:void(0);">' + _lang["save_and_publish"] + '</a></li>' +
+  '        <li class="separator"><hr></li>' +
+  '        <li class="-x-el-fab-publish-unpublish"><a href="javascript:void(0);">' + _lang["unpublish"] + '</a></li>' +
+  '      </ul>' +
+  '    </li>' + 
+  '    <li class="-x-el-fab-form"><a href="javascript:void(0);">' + _lang["form"] + ' <div class="-x-el-caret"></div></a>' +
+  '      <ul>' +
+  '        <li class="-x-el-fab-form-settings"><a href="javascript:void(0);">' + _lang["settings"] + '</a></li>' +
+  '        <li class="-x-el-fab-form-design"><a href="javascript:void(0);">' + _lang["design"] + '</a></li>' +
+  '      </ul>' +
+  '    <li class="separator"><hr></li>' +
+  '    <li class="-x-el-fab-view"><a href="javascript:void(0);">' + _lang["view"] + ' <div class="-x-el-caret"></div></a>' +
+  '      <ul>' +
+  '        <li class="-x-el-fab-preview"><a href="javascript:void(0);">' + _lang["preview"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '        <li class="separator"><hr></li>' +
+  '        <li class="-x-el-fab-view-online"><a href="' + lf_published_url + '" target="_blank">' + _lang["online"] + '</a></li>' +
+  '        <li class="-x-el-fab-view-qr"><a href="javascript:void(0);">' + _lang["qr"] + '</a></li>' +
+  '      </ul>' +
+  '    </li>' + 
+  '    <li class="-x-el-fab-position"><a href="javascript:void(0);">' + _lang["position"] + ' <div class="-x-el-caret"></div></a>' +
+  '      <ul>' +
+  '        <li class="-x-el-fab-position-left"><a href="javascript:void(0);">' + _lang["left"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '        <li class="-x-el-fab-position-right"><a href="javascript:void(0);">' + _lang["right"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '      </ul>' +
+  '    </li>' + 
+  '    <li class="separator"><hr></li>' +
+  '    <li class="-x-el-fab-save"><a href="javascript:void(0);">' + _lang["save_form"] + '</a></li>' +
   '  </ul>' +
   '</div>';
 
@@ -102,12 +141,16 @@ var xTplIconButton = '<div class="-x-el-inline-button -x-el-icon-edit -x-el-rese
   '   <li class="separator"><hr></li>' +
   '   <li class="-x-el-icon-size"><a href="javascript:void(0);">' + _lang["size"] + ' <div class="-x-el-caret"></div></a>' +
   '     <ul>' +
-  '       <li class="-x-el-icon-size-select" data-x-size="xs"><a href="javascript:void(0);">' + _lang["XS"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+/*  '       <li class="-x-el-icon-size-select" data-x-size="xs"><a href="javascript:void(0);">' + _lang["XS"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '       <li class="-x-el-icon-size-select" data-x-size="s"><a href="javascript:void(0);">' + _lang["S"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '       <li class="-x-el-icon-size-select" data-x-size="m"><a href="javascript:void(0);">' + _lang["M"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '       <li class="-x-el-icon-size-select" data-x-size="l"><a href="javascript:void(0);">' + _lang["L"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '       <li class="-x-el-icon-size-select" data-x-size="xl"><a href="javascript:void(0);">' + _lang["XL"] + ' <div class="-x-el-checkmark"></div></a></li>' +
-  '       <li class="-x-el-icon-size-select" data-x-size="xxl"><a href="javascript:void(0);">' + _lang["XXL"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="xxl"><a href="javascript:void(0);">' + _lang["XXL"] + ' <div class="-x-el-checkmark"></div></a></li>' +*/
+  '       <li class="-x-el-icon-size-select" data-x-size="xs"><a href="javascript:void(0);">' + _lang["S"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="m"><a href="javascript:void(0);">' + _lang["M"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="xl"><a href="javascript:void(0);">' + _lang["L"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="xxl"><a href="javascript:void(0);">' + _lang["XL"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '     </ul>' +
   '   </li>' +
   '   <li class="-x-el-icon-visible"><a href="javascript:void(0);">' + _lang["visible"] + ' <div class="-x-el-checkmark"></div></a></li>' +

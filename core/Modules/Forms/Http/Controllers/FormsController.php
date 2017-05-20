@@ -89,7 +89,7 @@ class FormsController extends Controller
 
           $sl = Core\Secure::array2string(['form_id' => $form->id]);
 
-          $published_url = ($form->domain != '') ? '//' . $form->domain : url('lp/' . $form->local_domain);
+          $published_url = ($form->domain != '') ? '//' . $form->domain : url('f/' . $form->local_domain);
 
           $view = 'public.forms::' . Core\Secure::staticHash($form->user_id) . '.' . $local_domain . '.' . $variant . '.index';
 
@@ -279,6 +279,101 @@ class FormsController extends Controller
           }
         }
       }
+    }
+
+    /**
+     * Save form
+     */
+    public function saveForm(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $form_html = $request->input('html', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        $form_id = $qs['form_id'];
+        $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $form_id)->first();
+
+        $variant = 1;
+
+        // Update files
+        $storage_root = 'forms/form/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($form->id, true) . '/' . $variant;
+
+        $form_html = str_replace(url('/'), '', $form_html);
+
+        \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
+        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $form_html);
+        \Storage::disk('public')->put($storage_root . '/index.blade.php', $form_html);
+
+        $response = ['success' => true, 'msg' => trans('javascript.save_succes')];
+      } else {
+        $response = ['success' => false, 'msg' => 'An error occured'];
+      }
+
+      return response()->json($response);
+    }
+
+    /**
+     * Publish form
+     */
+    public function publishForm(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $form_html = $request->input('html', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        $form_id = $qs['form_id'];
+        $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $form_id)->first();
+
+        $variant = 1;
+
+        // Update files
+        $storage_root = 'forms/form/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($form->id, true) . '/' . $variant;
+
+        $form_html = str_replace(url('/'), '', $form_html);
+
+        \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
+        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $form_html);
+        \Storage::disk('public')->put($storage_root . '/index.blade.php', $form_html);
+        \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $form_html);
+
+        $response = ['success' => true, 'msg' => trans('javascript.publish_succes')];
+      } else {
+        $response = ['success' => false, 'msg' => 'An error occured'];
+      }
+
+      return response()->json($response);
+    }
+
+    /**
+     * Unpublish form
+     */
+    public function unpublishForm(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        $form_id = $qs['form_id'];
+        $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $form_id)->first();
+
+        $variant = 1;
+
+        // Update files
+        $storage_root = 'forms/form/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($form->id, true) . '/' . $variant;
+
+        \Storage::disk('public')->deleteDirectory($storage_root . '/published');
+
+        $response = ['success' => true, 'msg' => trans('javascript.unpublish_succes')];
+      } else {
+        $response = ['success' => false, 'msg' => 'An error occured'];
+      }
+
+      return response()->json($response);
     }
 
     /**

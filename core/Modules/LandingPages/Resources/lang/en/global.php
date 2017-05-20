@@ -47,7 +47,6 @@ return array(
   "insert_block" => "Insert block",
   "enter_name" => "Enter name",
   "enter_name_text" => "Enter a name for your landing page. You can change this at any time.",
-  "please_enter_value" => "Please enter a value!",
   "seo" => "SEO",
   "name" => "Name",
   "name_help" => "Only visible in the system.",

@@ -1,5 +1,5 @@
-function lfInitFab() {
-  var $el = $(xTplFab).clone().appendTo('body');
+function lfInitFabLandingpages() {
+  var $el = $(xTplFabLandingpages).clone().appendTo('body');
 
   // Set options
   $el.find('.-x-el-fab-position-right .-x-el-checkmark').addClass('-x-checked');

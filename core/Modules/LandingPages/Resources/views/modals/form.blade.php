@@ -306,9 +306,14 @@ Update settings
 
       var new_item_html = formElement.getHtml();
 
-      $(new_item_html).insertBefore($el.find('button[type=submit]'));
+      $(new_item_html).insertBefore($el.find('button[type=submit]'))/*.after("\r\n")*/;
     });
 
+    // Remove whitespace
+    $el.contents().filter(function() {
+      return this.nodeType = Node.TEXT_NODE && /\S/.test(this.nodeValue) === false;
+    }).remove();
+    
     // Changes detected
     window.parent.lfSetPageIsDirty();
 
@@ -638,6 +643,50 @@ function lfFormElementGenerator() {
             html += TAB + TAB + '</div>' + CRLF;
           }
         }
+
+        html += TAB + '</div>' + CRLF;
+
+        break;
+
+      case 'personal_gender': 
+        html += TAB + '<div class="form-group">' + CRLF;
+        if (this.label != '') html += TAB + TAB + '<label for="' + id + '">' + this.label + '</label>' + CRLF;
+
+        html += TAB + TAB + '<div class="form-check">' + CRLF;
+        html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
+        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '[]" id="' + id + '-0" value="0"' + html_required + '>' + CRLF;
+        html += TAB + TAB + TAB + TAB + "{{ trans('global.form_fields_gender.male') }}" + CRLF;
+        html += TAB + TAB + TAB + '</label>' + CRLF;
+        html += TAB + TAB + '</div>' + CRLF;
+
+        html += TAB + TAB + '<div class="form-check">' + CRLF;
+        html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
+        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '[]" id="' + id + '-1" value="1"' + html_required + '>' + CRLF;
+        html += TAB + TAB + TAB + TAB + "{{ trans('global.form_fields_gender.female') }}" + CRLF;
+        html += TAB + TAB + TAB + '</label>' + CRLF;
+        html += TAB + TAB + '</div>' + CRLF;
+
+        html += TAB + '</div>' + CRLF;
+
+        break;
+
+      case 'personal_title': 
+        html += TAB + '<div class="form-group">' + CRLF;
+        if (this.label != '') html += TAB + TAB + '<label for="' + id + '">' + this.label + '</label>' + CRLF;
+
+        html += TAB + TAB + '<div class="form-check">' + CRLF;
+        html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
+        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '[]" id="' + id + '-0" value="0"' + html_required + '>' + CRLF;
+        html += TAB + TAB + TAB + TAB + "{{ trans('global.form_fields_title.mr') }}" + CRLF;
+        html += TAB + TAB + TAB + '</label>' + CRLF;
+        html += TAB + TAB + '</div>' + CRLF;
+
+        html += TAB + TAB + '<div class="form-check">' + CRLF;
+        html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
+        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '[]" id="' + id + '-1" value="1"' + html_required + '>' + CRLF;
+        html += TAB + TAB + TAB + TAB + "{{ trans('global.form_fields_title.ms') }}" + CRLF;
+        html += TAB + TAB + TAB + '</label>' + CRLF;
+        html += TAB + TAB + '</div>' + CRLF;
 
         html += TAB + '</div>' + CRLF;
 

@@ -180,6 +180,8 @@ return array(
   "business" => "Business",
   "booking" => "Booking",
 
+  "please_enter_value" => "Please enter a value!",
+
   /*
    |--------------------------------------------------------------------------
    | Categories

@@ -94,7 +94,7 @@ $('.onClickSelect').on('click', function() {
         if (value) {
           resolve()
         } else {
-          reject('{{ trans('forms::please_enter_value.enter_value') }}')
+          reject('{{ trans('global.please_enter_value') }}')
         }
       })
     }

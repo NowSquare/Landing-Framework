@@ -21,9 +21,9 @@ function lfInitEditor(editor) {
   lfInitText();
 
   if (typeof editor === 'undefined') {
-    lfInitFab();
+    lfInitFabLandingpages();
   } else if (editor == 'forms') {
-    
+    lfInitFabForms();
   }
 
   lfInitDropdowns();
