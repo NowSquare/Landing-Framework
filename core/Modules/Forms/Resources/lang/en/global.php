@@ -35,5 +35,7 @@ return array(
   "enter_name_text" => "Enter a name for your form. You can change this at any time.",
   "form_style" => "Form style",
   "normal" => "Normal",
-  "rounded_shadow" => "Rounded shadow"
+  "rounded_shadow" => "Rounded shadow",
+  "thank_you_title" => "Thank you",
+  "thank_you_text" => "Your submission was sent successfully."
 );

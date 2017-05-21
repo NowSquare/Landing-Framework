@@ -59,7 +59,23 @@ class FormsController extends Controller
             FunctionsController::addStat($form);
           }
 
-          return $template;
+          libxml_use_internal_errors(true);
+          $dom = \phpQuery::newDocumentHTML($template);
+          \phpQuery::selectDocument($dom);
+
+          // Add sl
+          $sl = Core\Secure::array2string(['form_id' => $form->id]);
+          pq('head')->find('script[src]:first')->before(PHP_EOL . '<script>var sl_f = "' . $sl . '";</script>');
+          //pq('head')->prepend(PHP_EOL . '<script>var sl_f = "' . $sl . '";</script>');
+
+          // Beautify html
+          $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
+          $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
+          $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+
+          $html = $indenter->indent($dom);
+
+          return $html;
         } else {
           return response()->view('errors.404', [], 404);
         }
@@ -140,19 +156,57 @@ class FormsController extends Controller
     public function formPost()
     {
       $response = [
-        'success' => false
+        'success' => false,
+        'title' => "Unknown Error",
+        'text' => "Sorry, something went wrong. Please contact the site owner if the problem persists."
       ];
 
       $f = request()->get('f', '');
-      if ($f != '' && isset($f['f'])) {
-        $custom_vars = (isset($f['c'])) ? $f['c'] : [];
-        $form_vars = $f['f'];
+      $sl_lp = request()->get('sl_lp', '');
+      $sl_f = request()->get('sl_f', '');
 
-        $response = [
-          'success' => true,
-          'title' => 'Title',
-          'text' => 'Text'
-        ];
+      if ($f != '' && isset($f['f']) && isset($f['sl_f']) && $f['sl_f'] != '') {
+        $qs_f = Core\Secure::string2array($f['sl_f']);
+
+        if (isset($qs_f['form_id'])) {
+
+          $custom_vars = (isset($f['c'])) ? $f['c'] : [];
+          $form_vars = $f['f'];
+
+          if (isset($form_vars['email']) && $form_vars['email'] != '') {
+
+            // Get landing page info if available
+            $page = false;
+
+            if ($f['sl_lp'] != '') {
+              $qs_lp = Core\Secure::string2array($f['sl_lp']);
+              $page = Models\Page::where('id', $qs_lp['landing_page_id'])->first();
+            }
+
+            // Post form
+            $form = Models\Form::where('id', $qs_f['form_id'])->first();
+
+            if (! empty($form)) {
+              // Check if this form belongs to the logged in user
+              if (Core\Secure::userId() != $form->user_id) {
+                $inserted = FunctionsController::addEntry($form, $form_vars, $custom_vars, $page);
+              } else {
+                $response = [
+                  'success' => false,
+                  'title' => "Demo",
+                  'text' => "This form was not submitted because you are logged in."
+                ];
+                return response()->json($response);
+              }
+            }
+          }
+
+          $response = [
+            'success' => true,
+            'title' => trans('forms::global.thank_you_title'),
+            'text' => trans('forms::global.thank_you_text')
+          ];
+        }
       }
       return response()->json($response);
     }

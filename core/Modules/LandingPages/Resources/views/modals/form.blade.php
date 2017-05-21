@@ -592,6 +592,10 @@ function lfFormElementGenerator() {
     var id = this.type;
     var name = this.type;
 
+    if (name.indexOf('general_') >= 0) {
+      name += '[]';
+    }
+
     switch (parseInt(this.size)) {
       case 1: html_size = ' form-control-sm'; break;
       case 3: html_size = ' form-control-lg'; break;
@@ -604,7 +608,7 @@ function lfFormElementGenerator() {
 
         html += TAB + '<div class="form-group">' + CRLF;
         if (this.label != '') html += TAB + TAB + '<label for="' + id + '">' + this.label + '</label>' + CRLF;
-        html += TAB + TAB + '<textarea class="form-control' + html_size + '" id="' + id + '-' + this.count + '" name="' + name + '[]" placeholder="' + this.placeholder + '"' + html_required + ' rows="4"></textarea>' + CRLF;
+        html += TAB + TAB + '<textarea class="form-control' + html_size + '" id="' + id + '-' + this.count + '" name="' + name + '" placeholder="' + this.placeholder + '"' + html_required + ' rows="4"></textarea>' + CRLF;
         html += TAB + '</div>' + CRLF;
 
         this.count ++;
@@ -615,7 +619,7 @@ function lfFormElementGenerator() {
 
         html += TAB + '<div class="form-group">' + CRLF;
         if (this.label != '') html += TAB + TAB + '<label for="' + id + '">' + this.label + '</label>' + CRLF;
-        html += TAB + TAB + '<select class="form-control' + html_size + '" id="' + id + '-' + this.count + '" name="' + name + '[]" placeholder="' + this.placeholder + '"' + html_required + '>' + CRLF;
+        html += TAB + TAB + '<select class="form-control' + html_size + '" id="' + id + '-' + this.count + '" name="' + name + '" placeholder="' + this.placeholder + '"' + html_required + '>' + CRLF;
 
         if (options.length > 0) {
           for (var i = 0; i < options.length; i++) {
@@ -642,7 +646,7 @@ function lfFormElementGenerator() {
             var selected = (options[i].selected) ? ' checked' : '';
             html += TAB + TAB + '<div class="form-check">' + CRLF;
             html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
-            html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '[]" id="' + id + '-' + i + '" value="' + options[i].text + '"' + selected + '' + html_required + '>' + CRLF;
+            html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '" id="' + id + '-' + i + '" value="' + options[i].text + '"' + selected + '' + html_required + '>' + CRLF;
             html += TAB + TAB + TAB + TAB + options[i].text + CRLF;
             html += TAB + TAB + TAB + '</label>' + CRLF;
             html += TAB + TAB + '</div>' + CRLF;
@@ -659,14 +663,14 @@ function lfFormElementGenerator() {
 
         html += TAB + TAB + '<div class="form-check">' + CRLF;
         html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
-        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '[]" id="' + id + '-0" value="0"' + html_required + '>' + CRLF;
+        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '" id="' + id + '-0" value="0"' + html_required + '>' + CRLF;
         html += TAB + TAB + TAB + TAB + "{{ trans('global.form_fields_gender.male') }}" + CRLF;
         html += TAB + TAB + TAB + '</label>' + CRLF;
         html += TAB + TAB + '</div>' + CRLF;
 
         html += TAB + TAB + '<div class="form-check">' + CRLF;
         html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
-        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '[]" id="' + id + '-1" value="1"' + html_required + '>' + CRLF;
+        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '" id="' + id + '-1" value="1"' + html_required + '>' + CRLF;
         html += TAB + TAB + TAB + TAB + "{{ trans('global.form_fields_gender.female') }}" + CRLF;
         html += TAB + TAB + TAB + '</label>' + CRLF;
         html += TAB + TAB + '</div>' + CRLF;
@@ -681,14 +685,14 @@ function lfFormElementGenerator() {
 
         html += TAB + TAB + '<div class="form-check">' + CRLF;
         html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
-        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '[]" id="' + id + '-0" value="0"' + html_required + '>' + CRLF;
+        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '" id="' + id + '-0" value="0"' + html_required + '>' + CRLF;
         html += TAB + TAB + TAB + TAB + "{{ trans('global.form_fields_title.mr') }}" + CRLF;
         html += TAB + TAB + TAB + '</label>' + CRLF;
         html += TAB + TAB + '</div>' + CRLF;
 
         html += TAB + TAB + '<div class="form-check">' + CRLF;
         html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
-        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '[]" id="' + id + '-1" value="1"' + html_required + '>' + CRLF;
+        html += TAB + TAB + TAB + TAB + '<input type="radio" class="form-check-input" name="' + name + '" id="' + id + '-1" value="1"' + html_required + '>' + CRLF;
         html += TAB + TAB + TAB + TAB + "{{ trans('global.form_fields_title.ms') }}" + CRLF;
         html += TAB + TAB + TAB + '</label>' + CRLF;
         html += TAB + TAB + '</div>' + CRLF;
@@ -708,7 +712,7 @@ function lfFormElementGenerator() {
             var selected = (options[i].selected) ? ' checked' : '';
             html += TAB + TAB + '<div class="form-check">' + CRLF;
             html += TAB + TAB + TAB + '<label class="form-check-label">' + CRLF;
-            html += TAB + TAB + TAB + TAB + '<input type="checkbox" class="form-check-input" name="' + name + '[]" id="' + id + '-' + i + '" value="' + options[i].text + '"' + selected + '' + html_required + '>' + CRLF;
+            html += TAB + TAB + TAB + TAB + '<input type="checkbox" class="form-check-input" name="' + name + '" id="' + id + '-' + i + '" value="' + options[i].text + '"' + selected + '' + html_required + '>' + CRLF;
             html += TAB + TAB + TAB + TAB + options[i].text + CRLF;
             html += TAB + TAB + TAB + '</label>' + CRLF;
             html += TAB + TAB + '</div>' + CRLF;

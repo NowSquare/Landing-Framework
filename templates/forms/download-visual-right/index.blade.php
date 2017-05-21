@@ -36,7 +36,7 @@
           </div>
 
           <form class="form ajax form-rounded -x-form">
-            <div class="form-group" id="formKey">
+            <div class="form-group">
               <input type="email" class="form-control form-control-lg" id="email" required name="email" placeholder="Enter your email address">
             </div>
 

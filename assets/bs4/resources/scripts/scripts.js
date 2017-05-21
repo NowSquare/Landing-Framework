@@ -303,7 +303,7 @@ function processAjaxForm($form) {
   var $btn = $form.find('[type=submit]');
 
   if ($btn.is('[class*=btn-outline]')) {
-    $btn.attr('data-spinner-color', $btn.css('border-color'));
+    $btn.attr('data-spinner-color', $btn.css('border-top-color'));
   } else {
     $btn.attr('data-spinner-color', $btn.css('color'));
   }
@@ -325,7 +325,7 @@ function processAjaxForm($form) {
       swal({
         title: data.title,
         text: data.text,
-        confirmButtonColor: $btn.css('border-color'),
+        confirmButtonColor: $btn.css('border-top-color'),
         confirmButtonText: _trans['ok'],
         allowOutsideClick: false,
         allowEscapeKey: false,
@@ -333,7 +333,9 @@ function processAjaxForm($form) {
       }).then(function (result) {
 
         // Reset form
-        $form.resetForm();
+        if (data.success) {
+          $form.resetForm();
+        }
 
         // Loading state
         ladda_button.ladda('stop');
@@ -370,22 +372,6 @@ function processAjaxForm($form) {
       // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
     });
   }
-}
-
-function beforeSerialize($jqForm, options) {
-
-  var $btn = $jqForm.find('[type=submit]');
-
-  if ($btn.is('[class*=btn-outline]')) {
-    $btn.attr('data-spinner-color', $btn.css('border-color'));
-  } else {
-    $btn.attr('data-spinner-color', $btn.css('color'));
-  }
-
-	ladda_button = $btn.ladda();
-
-    // Loading state
-	ladda_button.ladda('start');
 }
 
 function formSerialize($form) {
@@ -443,9 +429,28 @@ function formSerialize($form) {
   }
 
   return {
+    'sl_lp': (typeof sl_lp !== 'undefined') ? sl_lp : '',
+    'sl_f': (typeof sl_f !== 'undefined') ? sl_f : '',
     'c': custom_vars,
     'f': form_vars
   };
+}
+/*
+
+function beforeSerialize($jqForm, options) {
+
+  var $btn = $jqForm.find('[type=submit]');
+
+  if ($btn.is('[class*=btn-outline]')) {
+    $btn.attr('data-spinner-color', $btn.css('border-color'));
+  } else {
+    $btn.attr('data-spinner-color', $btn.css('color'));
+  }
+
+	ladda_button = $btn.ladda();
+
+    // Loading state
+	ladda_button.ladda('start');
 }
 
 function formResponse(responseText, statusText, xhr, $jqForm) {
@@ -496,4 +501,4 @@ function formResponse(responseText, statusText, xhr, $jqForm) {
       // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
     });
   }
-}
+}*/

@@ -58,6 +58,24 @@ class LandingPagesController extends Controller
           if (! $preview && Core\Secure::userId() != $page->user_id) {
             FunctionsController::addStat($page);
           }
+/*
+          libxml_use_internal_errors(true);
+          $dom = \phpQuery::newDocumentHTML($template);
+          \phpQuery::selectDocument($dom);
+
+          // Add sl
+          $sl = Core\Secure::array2string(['landing_page_id' => $landing_page_id]);
+          pq('head')->prepend(PHP_EOL . '<script>var sl_lp = "' . $sl . '";</script>');
+
+          // Beautify html
+          $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
+          $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
+          $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+
+          $html = $indenter->indent($dom);
+
+          return $html;
+          */
 
           return $template;
         } else {
