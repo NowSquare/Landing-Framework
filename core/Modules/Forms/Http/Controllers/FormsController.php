@@ -56,7 +56,7 @@ class FormsController extends Controller
 
           // Stats
           if (! $preview && Core\Secure::userId() != $form->user_id) {
-            //FunctionsController::addStat($form);
+            FunctionsController::addStat($form);
           }
 
           return $template;

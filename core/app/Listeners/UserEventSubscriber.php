@@ -105,6 +105,11 @@ class UserEventSubscriber {
         $table->string('device', 12)->nullable();
         $table->string('brand', 32)->nullable();
         $table->string('model', 32)->nullable();
+        $table->string('bot_name', 32)->nullable();
+        $table->string('bot_category', 32)->nullable();
+        $table->string('bot_url', 200)->nullable();
+        $table->string('bot_producer_name', 48)->nullable();
+        $table->string('bot_producer_url', 128)->nullable();
         $table->decimal('lat', 10, 8)->nullable();
         $table->decimal('lng', 11, 8)->nullable();
         $table->json('meta')->nullable();
@@ -150,8 +155,8 @@ class UserEventSubscriber {
         $table->string('personal_first_name', 250)->nullable();
         $table->string('personal_last_name', 250)->nullable();
         $table->string('personal_name', 250)->nullable();
-        $table->tinyInt('personal_gender')->unsigned()->nullable();
-        $table->tinyInt('personal_title')->unsigned()->nullable();
+        $table->tinyInteger('personal_gender')->unsigned()->nullable();
+        $table->tinyInteger('personal_title')->unsigned()->nullable();
         $table->string('personal_impressum', 250)->nullable();
         $table->date('personal_birthday')->nullable();
         $table->string('personal_website', 250)->nullable();

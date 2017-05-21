@@ -16,7 +16,7 @@ class FunctionsController extends Controller
   /**
    * Add stat
    */
-  public static function addEntry($form, $ua = null)
+  public static function addStat($form, $ua = null)
   {
     // Fingerprint hash
     if ($ua == null) $ua = request()->header('User-Agent');
@@ -96,23 +96,21 @@ class FunctionsController extends Controller
 
     $hash = md5($hash);
 
-    $tbl_name = 'x_form_entries_' . $form->user_id;
+    $tbl_name = 'x_form_stats_' . $form->user_id;
 
     $stats = \DB::table($tbl_name)
               ->where('fingerprint', $hash)
-              ->where('landing_site_id', $form->landing_site_id)
-              ->where('landing_page_id', $form->id)
+              ->where('form_id', $form->id)
               ->first();
 
     if (empty($stats)) {
       // Increment visits
-      \DB::table('forms')->whereId($form->landing_site_id)->increment('visits');
+      \DB::table('forms')->whereId($form->id)->increment('visits');
 
       // Insert visit
       \DB::table($tbl_name)->insert(
         [
-          'landing_site_id' => $form->landing_site_id,
-          'landing_page_id' => $form->id,
+          'form_id' => $form->id,
           'fingerprint' => $hash,
           'is_bot' => $is_bot,
           'ip' => $ip,
