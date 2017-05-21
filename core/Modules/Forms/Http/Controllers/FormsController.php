@@ -72,6 +72,12 @@ class FormsController extends Controller
           $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
           $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
           $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
 
           $html = $indenter->indent($dom);
 
@@ -142,6 +148,12 @@ class FormsController extends Controller
           $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
           $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
           $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+          $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
 
           $html = $indenter->indent($dom);
 
@@ -157,8 +169,8 @@ class FormsController extends Controller
     {
       $response = [
         'success' => false,
-        'title' => "Unknown Error",
-        'text' => "Sorry, something went wrong. Please contact the site owner if the problem persists."
+        'title' => trans('forms::global.unknown_error'),
+        'text' => trans('forms::global.unknown_error_text')
       ];
 
       $f = request()->get('f', '');
@@ -190,11 +202,20 @@ class FormsController extends Controller
               // Check if this form belongs to the logged in user
               if (Core\Secure::userId() != $form->user_id) {
                 $inserted = FunctionsController::addEntry($form, $form_vars, $custom_vars, $page);
+
+                if ($inserted === false) {
+                  $response = [
+                    'success' => false,
+                    'title' => trans('forms::global.rate_limit_error'),
+                    'text' => trans('forms::global.rate_limit_error_text')
+                  ];
+                  return response()->json($response);
+                }
               } else {
                 $response = [
                   'success' => false,
-                  'title' => "Demo",
-                  'text' => "This form was not submitted because you are logged in."
+                  'title' => trans('forms::global.demo'),
+                  'text' => trans('forms::global.demo_text')
                 ];
                 return response()->json($response);
               }
@@ -230,7 +251,29 @@ class FormsController extends Controller
      */
     public function previewTemplate($template)
     {
-      return view('template.forms::' . $template . '.index');
+      $template = view('template.forms::' . $template . '.index');
+
+      libxml_use_internal_errors(true);
+      $dom = \phpQuery::newDocumentHTML($template);
+      \phpQuery::selectDocument($dom);
+
+      // Add demo
+      pq('head')->find('script[src]:first')->before(PHP_EOL . '<script>var lf_demo = true;</script>');
+
+      // Beautify html
+      $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
+      $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
+      $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+      $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+      $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+      $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+      $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+      $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+      $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+
+      $html = $indenter->indent($dom);
+
+      return $html;
     }
 
     /**
@@ -308,6 +351,12 @@ class FormsController extends Controller
         $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
         $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
         $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
 
         $html = $indenter->indent($html);
 
@@ -374,6 +423,12 @@ class FormsController extends Controller
         $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
         $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
         $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
 
         $html = $indenter->indent($html);
 
@@ -414,6 +469,12 @@ class FormsController extends Controller
         $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
         $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
         $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+        $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
 
         $html = $indenter->indent($html);
 

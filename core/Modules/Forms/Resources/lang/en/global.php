@@ -14,7 +14,7 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| General
+	| Categories
 	|--------------------------------------------------------------------------
 	*/
 
@@ -36,6 +36,19 @@ return array(
   "form_style" => "Form style",
   "normal" => "Normal",
   "rounded_shadow" => "Rounded shadow",
+
+	/*
+	|--------------------------------------------------------------------------
+	| Form submission
+	|--------------------------------------------------------------------------
+	*/
+
   "thank_you_title" => "Thank you",
-  "thank_you_text" => "Your submission was sent successfully."
+  "thank_you_text" => "Your submission was sent successfully.",
+  "unknown_error" => "Unknown Error",
+  "unknown_error_text" => "Sorry, something went wrong. Please contact the site owner if the problem persists.",
+  "demo" => "Demo",
+  "demo_text" => "This form was not submitted because you are logged in.",
+  "rate_limit_error" => "Error",
+  "rate_limit_error_text" => "Submission was too fast after previous entry. Please wait before posting again."
 );

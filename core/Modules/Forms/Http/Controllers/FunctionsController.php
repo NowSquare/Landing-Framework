@@ -212,7 +212,7 @@ class FunctionsController extends Controller
       $os_version = (isset($osInfo['version']) && $osInfo['version'] != '') ? $osInfo['version'] : null;
       $os_platform = (isset($osInfo['platform']) && $osInfo['platform'] != '') ? $osInfo['platform'] : null;
 
-      $hash = $ip . '|' . date('Y-m-d-H') . '|' . implode($clientInfo, '-') . '|' . implode($osInfo, '-') . '|' . $device . '|' . $brand . '|' . $model;
+      $hash = $ip . '|' . date('Y-m-d-H-i') . '|' . implode($clientInfo, '-') . '|' . implode($osInfo, '-') . '|' . $device . '|' . $brand . '|' . $model;
     }
 
     $language = Core\Localization::getBrowserLocale();
@@ -257,6 +257,10 @@ class FunctionsController extends Controller
       $insert['entry'] = json_encode($custom_vars);
 
       \DB::table($tbl_name)->insert($insert);
+
+      return true;
+    } else {
+      return false;
     }
   }
 
