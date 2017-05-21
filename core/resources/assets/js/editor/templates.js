@@ -57,7 +57,7 @@ var xTplFabForms = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style
   '    </li>' + 
   '    <li class="-x-el-fab-form"><a href="javascript:void(0);">' + _lang["form"] + ' <div class="-x-el-caret"></div></a>' +
   '      <ul>' +
-  '        <li class="-x-el-fab-form-settings"><a href="javascript:void(0);">' + _lang["settings"] + '</a></li>' +
+  '        <li class="-x-el-fab-form-seo"><a href="javascript:void(0);">' + _lang["seo"] + '</a></li>' +
   '        <li class="-x-el-fab-form-design"><a href="javascript:void(0);">' + _lang["design"] + '</a></li>' +
   '      </ul>' +
   '    <li class="separator"><hr></li>' +

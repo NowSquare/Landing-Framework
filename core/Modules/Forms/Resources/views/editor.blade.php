@@ -25,7 +25,7 @@
 $('#generic_title a').text("{{ str_replace('"', '&quot;', $form->name) }}");
 
 $('#generic_title a').on('click', function() {
-  console.log('click');
+  $('#editor_frame')[0].contentWindow.$('.-x-el-fab-form-seo').trigger('click');
 });
 
 $('#editor_frame').removeClass('desktop_mode tablet_mode phone_mode');
@@ -46,6 +46,5 @@ $(window).resize($.debounce(100, previewSiteResize));
 function previewSiteResize()
 {
 	$('#editor_frame').css({ 'height' : (parseInt($(window).outerHeight()) - 64) + 'px'});
-	//$('#view').css({ 'height' : (parseInt($(window).outerHeight()) - 60) + 'px'});
 }
 </script>

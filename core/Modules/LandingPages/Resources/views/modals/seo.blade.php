@@ -15,7 +15,7 @@
           <div class="form-group">
             <label for="name">{{ trans('landingpages::global.name') }}</label>
               <p class="help-block text-muted"><small>{!! trans('landingpages::global.name_help') !!}</small></p>
-              <input type="text" class="form-control" id="name" name="name" autocomplete="off" value="{{ $page->name }}">
+              <input type="text" class="form-control" id="name" name="name" autocomplete="off" value="<?php echo (isset($page)) ? $page->name : $form->name ; ?>">
           </div>
         </div>
       </div>
@@ -68,7 +68,11 @@ Update settings
     ladda_button.ladda('start');
 
     var jqxhr = $.ajax({
+<?php if (isset($page)) { ?>
       url: "{{ url('landingpages/editor/seo') }}",
+<?php } else { ?>
+      url: "{{ url('forms/editor/seo') }}",
+<?php } ?>
       data: {name: $('#name').val(), sl: "{{ $sl }}",  _token: '<?= csrf_token() ?>'},
       method: 'POST'
     })

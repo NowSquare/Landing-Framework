@@ -32,5 +32,11 @@ Route::group(['middleware' => ['web', 'limitation:forms.visible'], 'prefix' => '
 
     // Previews
     Route::get('preview/{template}', 'FormsController@previewTemplate');
+
+    // Editor modals
+    Route::get('editor/modal/seo', 'FormsController@editorModalSeo');
+    Route::post('editor/seo', 'FormsController@editorPostSeo');
+    Route::get('editor/modal/design', 'FormsController@editorModalDesign');
+    Route::post('editor/design', 'FormsController@editorPostDesign');
   });
 });

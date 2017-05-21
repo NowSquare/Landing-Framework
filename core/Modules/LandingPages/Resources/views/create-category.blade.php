@@ -82,7 +82,7 @@ $('.onClickSelect').on('click', function() {
   var template = $(this).parents('.grid-item-content').attr('data-template');
 
   swal({
-    title: '{{ trans('landingpages::global.enter_name') }}',
+    title: '{{ trans('global.enter_name') }}',
     text: '{{ trans('landingpages::global.enter_name_text') }}',
     input: 'text',
     showCancelButton: true,

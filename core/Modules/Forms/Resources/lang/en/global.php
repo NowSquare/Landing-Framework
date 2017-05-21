@@ -32,7 +32,8 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-  "enter_name" => "Enter name",
   "enter_name_text" => "Enter a name for your form. You can change this at any time.",
-  "please_enter_value" => "Please enter a value!",
+  "form_style" => "Form style",
+  "normal" => "Normal",
+  "rounded_shadow" => "Rounded shadow"
 );

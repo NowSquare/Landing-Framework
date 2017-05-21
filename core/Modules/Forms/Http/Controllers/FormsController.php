@@ -402,4 +402,88 @@ class FormsController extends Controller
         }
       }
     }
+
+    /**
+     * Form SEO
+     */
+    public function editorModalSeo(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $form_id = $qs['form_id'];
+
+        if (is_numeric($form_id)) {
+          $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $qs['form_id'])->first();
+
+          return view('landingpages::modals.seo', compact('form', 'sl'));
+        }
+      }
+    }
+
+    /**
+     * Post form SEO
+     */
+    public function editorPostSeo(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $name = $request->input('name', '');
+      $name = substr($name, 0, 200);
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $form_id = $qs['form_id'];
+
+        if (is_numeric($form_id)) {
+          $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $qs['form_id'])->first();
+          $form->name = $name;
+          $form->save();
+
+          return response()->json(['success' => true]);
+        }
+      }
+    }
+
+    /**
+     * Form design
+     */
+    public function editorModalDesign(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $form_id = $qs['form_id'];
+
+        if (is_numeric($form_id)) {
+          $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $qs['form_id'])->first();
+
+          return view('landingpages::modals.design', compact('form', 'sl'));
+        }
+      }
+    }
+
+    /**
+     * Post form design
+     */
+    public function editorPostDesign(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $name = $request->input('name', '');
+      $name = substr($name, 0, 200);
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $form_id = $qs['form_id'];
+
+        if (is_numeric($form_id)) {
+          $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $qs['form_id'])->first();
+          $form->name = $name;
+          $form->save();
+
+          return response()->json(['success' => true]);
+        }
+      }
+    }
 }

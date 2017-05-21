@@ -97,6 +97,8 @@ return array(
    */
 
   "modules" => "Modules",
+  "enter_name" => "Enter name",
+  "please_enter_value" => "Please enter a value!",
 
   /*
    |--------------------------------------------------------------------------
@@ -179,8 +181,6 @@ return array(
   "personal" => "Personal",
   "business" => "Business",
   "booking" => "Booking",
-
-  "please_enter_value" => "Please enter a value!",
 
   /*
    |--------------------------------------------------------------------------
