@@ -122,7 +122,14 @@ class LandingPagesController extends Controller
 
           //$dom = str_replace('</section><section', "</section>\n\n<section", $dom);
 
-          return $dom;
+          // Beautify html
+          $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
+          $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
+          $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+
+          $html = $indenter->indent($dom);
+
+          return $html;
         }
       }
     }
@@ -243,24 +250,31 @@ class LandingPagesController extends Controller
 
         // Create a new PHPQuery object to manipulate
         // the DOM in a similar way as jQuery.
-        $page_html = \phpQuery::newDocumentHTML($html);
-        \phpQuery::selectDocument($page_html);
+        $html = \phpQuery::newDocumentHTML($html);
+        \phpQuery::selectDocument($html);
 
         // Update page
         pq('title')->text($name);
         pq('head')->find('title')->after('<link rel="icon" type="image/x-icon" href="' . url('public/' . $storage_root . '/favicon.ico') . '">');
         pq('head')->find('title')->after('<meta name="description" content="">');
 
-        //$page_html = str_replace('</section><section', "</section>\n\n<section", $page_html);
-        $page_html = str_replace(url('/'), '', $page_html);
+        //$html = str_replace('</section><section', "</section>\n\n<section", $html);
+        $html = str_replace(url('/'), '', $html);
+
+        // Beautify html
+        $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
+        $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
+        $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+
+        $html = $indenter->indent($html);
 
         $variant = 1;
 
         $storage_root_full = $storage_root . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
 
         \Storage::disk('public')->makeDirectory($storage_root_full . '/' . date('Y-m-d-H-i-s'));
-        \Storage::disk('public')->put($storage_root_full . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $page_html);
-        \Storage::disk('public')->put($storage_root_full . '/index.blade.php', $page_html);
+        \Storage::disk('public')->put($storage_root_full . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
+        \Storage::disk('public')->put($storage_root_full . '/index.blade.php', $html);
         \Storage::disk('public')->put($storage_root . '/favicon.ico', \File::get($template_path . $template . '/favicon.ico'));
 
         $redir = Core\Secure::array2string(['landing_page_id' => $page->id]);
@@ -277,7 +291,7 @@ class LandingPagesController extends Controller
     public function savePage(Request $request)
     {
       $sl = $request->input('sl', '');
-      $page_html = $request->input('html', '');
+      $html = $request->input('html', '');
 
       if($sl != '') {
         $qs = Core\Secure::string2array($sl);
@@ -290,11 +304,18 @@ class LandingPagesController extends Controller
         // Update files
         $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' .  Core\Secure::staticHash($page->landing_site_id, true) . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
 
-        $page_html = str_replace(url('/'), '', $page_html);
+        $html = str_replace(url('/'), '', $html);
+
+        // Beautify html
+        $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
+        $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
+        $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+
+        $html = $indenter->indent($html);
 
         \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
-        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $page_html);
-        \Storage::disk('public')->put($storage_root . '/index.blade.php', $page_html);
+        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
+        \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
 
         $response = ['success' => true, 'msg' => trans('javascript.save_succes')];
       } else {
@@ -310,7 +331,7 @@ class LandingPagesController extends Controller
     public function publishPage(Request $request)
     {
       $sl = $request->input('sl', '');
-      $page_html = $request->input('html', '');
+      $html = $request->input('html', '');
 
       if($sl != '') {
         $qs = Core\Secure::string2array($sl);
@@ -323,12 +344,19 @@ class LandingPagesController extends Controller
         // Update files
         $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' .  Core\Secure::staticHash($page->landing_site_id, true) . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
 
-        $page_html = str_replace(url('/'), '', $page_html);
+        $html = str_replace(url('/'), '', $html);
+
+        // Beautify html
+        $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
+        $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
+        $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+
+        $html = $indenter->indent($html);
 
         \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
-        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $page_html);
-        \Storage::disk('public')->put($storage_root . '/index.blade.php', $page_html);
-        \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $page_html);
+        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
+        \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
+        \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $html);
 
         $response = ['success' => true, 'msg' => trans('javascript.publish_succes')];
       } else {

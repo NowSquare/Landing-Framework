@@ -13,6 +13,7 @@
         "codesleeve/laravel-stapler": "^1.0",
         "doctrine/cache": "^1.6",
         "electrolinux/phpquery": "^0.9.6",
+        "gajus/dindent": "^2.0",
         "graham-campbell/flysystem": "^3.7",
         "guzzlehttp/guzzle": "^6.2",
         "hashids/hashids": "^2.0",

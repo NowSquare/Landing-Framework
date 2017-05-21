@@ -117,6 +117,7 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
             'GuzzleHttp\\' => 11,
             'GrahamCampbell\\Manager\\' => 23,
             'GrahamCampbell\\Flysystem\\' => 25,
+            'Gajus\\Dindent\\' => 14,
         ),
         'F' => 
         array (
@@ -356,6 +357,10 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         'GrahamCampbell\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/graham-campbell/flysystem/src',
+        ),
+        'Gajus\\Dindent\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/gajus/dindent/src',
         ),
         'Former\\' => 
         array (
@@ -1212,6 +1217,10 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         'Former\\Traits\\FieldTest' => __DIR__ . '/..' . '/anahkiasen/former/tests/Traits/FieldTest.php',
         'Former\\Traits\\FormerObject' => __DIR__ . '/..' . '/anahkiasen/former/src/Former/Traits/FormerObject.php',
         'Former\\Traits\\Framework' => __DIR__ . '/..' . '/anahkiasen/former/src/Former/Traits/Framework.php',
+        'Gajus\\Dindent\\Exception\\DindentException' => __DIR__ . '/..' . '/gajus/dindent/src/Exception/DindentException.php',
+        'Gajus\\Dindent\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/gajus/dindent/src/Exception/InvalidArgumentException.php',
+        'Gajus\\Dindent\\Exception\\RuntimeException' => __DIR__ . '/..' . '/gajus/dindent/src/Exception/RuntimeException.php',
+        'Gajus\\Dindent\\Indenter' => __DIR__ . '/..' . '/gajus/dindent/src/Indenter.php',
         'GlobalMiddlewareTest' => __DIR__ . '/..' . '/barryvdh/laravel-cors/tests/GlobalMiddlewareTest.php',
         'GrahamCampbell\\Flysystem\\Adapters\\AwsS3Connector' => __DIR__ . '/..' . '/graham-campbell/flysystem/src/Adapters/AwsS3Connector.php',
         'GrahamCampbell\\Flysystem\\Adapters\\AzureConnector' => __DIR__ . '/..' . '/graham-campbell/flysystem/src/Adapters/AzureConnector.php',

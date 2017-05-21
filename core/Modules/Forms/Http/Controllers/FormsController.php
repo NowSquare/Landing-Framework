@@ -122,7 +122,14 @@ class FormsController extends Controller
 
           //$dom = str_replace('</section><section', "</section>\n\n<section", $dom);
 
-          return $dom;
+          // Beautify html
+          $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
+          $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
+          $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+
+          $html = $indenter->indent($dom);
+
+          return $html;
         }
       }
     }
@@ -232,24 +239,31 @@ class FormsController extends Controller
 
         // Create a new PHPQuery object to manipulate
         // the DOM in a similar way as jQuery.
-        $page_html = \phpQuery::newDocumentHTML($html);
-        \phpQuery::selectDocument($page_html);
+        $html = \phpQuery::newDocumentHTML($html);
+        \phpQuery::selectDocument($html);
 
         // Update page
         pq('title')->text($name);
         //pq('head')->find('title')->after('<link rel="icon" type="image/x-icon" href="' . url('public/' . $storage_root . '/favicon.ico') . '">');
         //pq('head')->find('title')->after('<meta name="description" content="">');
 
-        //$page_html = str_replace('</section><section', "</section>\n\n<section", $page_html);
-        $page_html = str_replace(url('/'), '', $page_html);
+        //$html = str_replace('</section><section', "</section>\n\n<section", $html);
+        $html = str_replace(url('/'), '', $html);
+
+        // Beautify html
+        $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
+        $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
+        $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+
+        $html = $indenter->indent($html);
 
         $variant = 1;
 
         $storage_root_full = $storage_root . '/' . $variant;
 
         \Storage::disk('public')->makeDirectory($storage_root_full . '/' . date('Y-m-d-H-i-s'));
-        \Storage::disk('public')->put($storage_root_full . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $page_html);
-        \Storage::disk('public')->put($storage_root_full . '/index.blade.php', $page_html);
+        \Storage::disk('public')->put($storage_root_full . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
+        \Storage::disk('public')->put($storage_root_full . '/index.blade.php', $html);
 
         $redir = Core\Secure::array2string(['form_id' => $form_id]);
       } else {
@@ -287,7 +301,7 @@ class FormsController extends Controller
     public function saveForm(Request $request)
     {
       $sl = $request->input('sl', '');
-      $form_html = $request->input('html', '');
+      $html = $request->input('html', '');
 
       if($sl != '') {
         $qs = Core\Secure::string2array($sl);
@@ -300,11 +314,18 @@ class FormsController extends Controller
         // Update files
         $storage_root = 'forms/form/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($form->id, true) . '/' . $variant;
 
-        $form_html = str_replace(url('/'), '', $form_html);
+        $html = str_replace(url('/'), '', $html);
+
+        // Beautify html
+        $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
+        $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
+        $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+
+        $html = $indenter->indent($html);
 
         \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
-        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $form_html);
-        \Storage::disk('public')->put($storage_root . '/index.blade.php', $form_html);
+        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
+        \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
 
         $response = ['success' => true, 'msg' => trans('javascript.save_succes')];
       } else {
@@ -320,7 +341,7 @@ class FormsController extends Controller
     public function publishForm(Request $request)
     {
       $sl = $request->input('sl', '');
-      $form_html = $request->input('html', '');
+      $html = $request->input('html', '');
 
       if($sl != '') {
         $qs = Core\Secure::string2array($sl);
@@ -333,12 +354,19 @@ class FormsController extends Controller
         // Update files
         $storage_root = 'forms/form/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($form->id, true) . '/' . $variant;
 
-        $form_html = str_replace(url('/'), '', $form_html);
+        $html = str_replace(url('/'), '', $html);
+
+        // Beautify html
+        $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
+        $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
+        $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
+
+        $html = $indenter->indent($html);
 
         \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
-        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $form_html);
-        \Storage::disk('public')->put($storage_root . '/index.blade.php', $form_html);
-        \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $form_html);
+        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
+        \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
+        \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $html);
 
         $response = ['success' => true, 'msg' => trans('javascript.publish_succes')];
       } else {
