@@ -45,7 +45,7 @@ function lfInitEditor(editor) {
     if ($(this).attr('data-toggle') != 'lightbox') {
       if ($(this).attr('href') == '#') {
         return false;
-      } else {
+      } else if ($(this).attr('href') != 'javascript:void(0);') {
         if (! confirm(_lang['confirm_follow_link'])) {
           e.preventDefault();
         }

@@ -52,6 +52,16 @@ gulp.task('watch_styles', function() {
 
 });
 
+gulp.task('watch_scripts', function() {
+
+  // Create LiveReload server
+  livereload.listen();
+
+  // Watch .js files
+  gulp.watch('resources/scripts/**/*.js', ['scripts']);
+
+});
+
 /*
  |--------------------------------------------------------------------------
  | Styles

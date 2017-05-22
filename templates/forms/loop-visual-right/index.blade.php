@@ -20,14 +20,13 @@
   </style>
   <link href="//fonts.googleapis.com/css?family=Dosis:200,400|Open+Sans:300,400,700" rel="stylesheet">
 
-  <script src="{{ url('assets/translations?lang=en') }}"></script>
   <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
 </head>
 
 <body>
 
-  <div class="container">
-     <div class="m-3">
+  <div class="container-fluid">
+     <div class="m-5">
       <div class="row">
         <div class="col-12 col-sm-12 col-md-6 col-lg-5 text-center text-md-left offset-sm-0 offset-md-0 offset-lg-1">
 

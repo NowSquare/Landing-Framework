@@ -14,19 +14,34 @@
         <label for="text">{{ trans('landingpages::global.text') }}</label>
           <input type="text" class="form-control" id="text" name="text" autocomplete="off" value="">
       </div>
-<?php if (! $submit) { ?>
-      <div class="form-group">
-        <label for="url">{{ trans('landingpages::global.url') }}</label>
-        <div class="input-group">
-          <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="" placeholder="http://">
-          <div class="input-group-btn add-on">
-            <button type="button" class="btn btn-primary" id="select_url" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="url" data-preview="url-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
-            <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="url-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
-          </div>
-        </div>
-      </div>
 
-      <div class="form-group">
+<?php if (! $submit) { ?>
+
+
+<?php if (Gate::allows('limitation', 'forms.visible')) { ?>
+      <div class="well well-sm" style="margin-bottom: 15px">
+      <ul class="nav nav-tabs navtab-custom">
+        <li<?php if($tab == 'url') echo ' class="active"'; ?>><a href="#tab_url" data-toggle="tab" aria-expanded="false">{{ trans('landingpages::global.url') }}</a></li>
+        <li<?php if($tab == 'form') echo ' class="active"'; ?>><a href="#tab_form" data-toggle="tab" aria-expanded="false">{{ trans('landingpages::global.form') }}</a></li>
+      </ul>
+<?php } ?>
+
+<?php if (Gate::allows('limitation', 'forms.visible')) { ?>
+      <div class="tab-content m-b-0" style="box-shadow: none">
+        <div class="tab-pane<?php if($tab == 'url') echo ' active'; ?>" id="tab_url">
+<?php } ?>
+
+          <div class="form-group">
+            <div class="input-group">
+              <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="" placeholder="http://">
+              <div class="input-group-btn add-on">
+                <button type="button" class="btn btn-primary" id="select_url" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="url" data-preview="url-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
+                <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="url-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 0">
 <?php
 echo Former::select('target')
   ->class('select2-required form-control')
@@ -37,7 +52,29 @@ echo Former::select('target')
   ])
   ->label(trans('landingpages::global.target'));
 ?>
+          </div>
+
+<?php if (Gate::allows('limitation', 'forms.visible')) { ?>
+        </div>
+        <div class="tab-pane<?php if($tab == 'form') echo ' active'; ?>" id="tab_form">
+
+          <div class="form-group" style="margin-bottom: 0">
+<?php
+
+echo Former::select('form')
+  ->addOption('&nbsp;')
+  ->class('select2-required form-control')
+  ->name('form')
+  ->fromQuery($forms, 'name', 'local_domain')
+  ->label(false);
+?>
+          </div>
+
+        </div>
+
       </div>
+      </div>
+<?php } ?>
 
 <?php } ?>
 
@@ -78,15 +115,34 @@ Set settings
   $('#text').val(text);
 
 <?php if (! $submit) { ?>
-  $('#target').val($el.attr('target')).trigger('change.select2');
 
+<?php if (Gate::allows('limitation', 'forms.visible')) { ?>
+
+  var form = $el.attr('data-form');
+
+  if (typeof form !== typeof undefined && form !== false) {
+    // A form is set
+    var url = '';
+    $('#form').val(form).trigger('change.select2');
+  } else {
+    // No form is set
+    $('#target').val($el.attr('target')).trigger('change.select2');
+    var url = $el.attr('href');
+  }
+
+<?php } else { ?>
+  $('#target').val($el.attr('target')).trigger('change.select2');
   var url = $el.attr('href');
+
+<?php } // forms.visible ?>
+
   $('#url').val(url);
 
   if (url != '') {
     updateImagePreview($('#select_url'));
   }
-<?php } ?>
+
+<?php } // ! $submit ?>
 
 <?php if ($color) { ?>
 
@@ -104,9 +160,9 @@ Set settings
 
   $('#btn_color').val(color_class);
 
-<?php } ?>
+<?php } // $color ?>
 
-<?php } ?>
+<?php } // $el_class != '' ?>
 
 <?php /* ----------------------------------------------------------------------------
 Update settings
@@ -122,16 +178,40 @@ Update settings
     }
 
 <?php if (! $submit) { ?>
+
+<?php if (Gate::allows('limitation', 'forms.visible')) { ?>
+
+  var form = $('#form').val();
+
+  if (form != '') {
+    // A form is selected
+    $el.attr('data-form', form);
+    $el.attr('href', 'javascript:void(0);');
+    $el.removeAttr('target');
+  } else {
+    // No form is selected
+    console.log($('#url').val());
+    $el.removeAttr('data-form');
     $el.attr('href', $('#url').val());
+
     $el.attr('target', $('#target').val());
-<?php } ?>
+  }
+
+<?php } else { ?>
+
+  $el.attr('href', $('#url').val());
+  $el.attr('target', $('#target').val());
+
+<?php } // forms.visible ?>
+
+<?php } // ! $submit ?>
 
 <?php if ($color) { ?>
 
   $el.removeClass(window.parent.lfBtnClasses);
   $el.addClass($('#btn_color').val());
 
-<?php } ?>
+<?php } // $color ?>
 
       // Changes detected
     window.parent.lfSetPageIsDirty();

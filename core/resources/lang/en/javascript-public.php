@@ -1,6 +1,8 @@
 <?php
 
-return array(
+$editor = (boolean) request()->get('editor', false);
+
+$return = array(
 
 	/*
 	|--------------------------------------------------------------------------
@@ -10,7 +12,16 @@ return array(
 
   "url" => url(''),
   "csrf" => csrf_token(),
-	"ok" => "OK",
-	"form_post_demo_title" => "Demo",
-	"form_post_demo_text" => "No data was posted!"
+	"ok" => "OK"
 );
+
+if ($editor) {
+  $merge = [
+    "form_post_demo_title" => "Demo",
+    "form_post_demo_text" => "No data was posted!"
+  ];
+
+  $return = array_merge($return, $merge);
+}
+
+return $return;

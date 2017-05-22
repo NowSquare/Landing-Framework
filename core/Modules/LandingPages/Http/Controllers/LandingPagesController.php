@@ -58,22 +58,21 @@ class LandingPagesController extends Controller
           if (! $preview && Core\Secure::userId() != $page->user_id) {
             FunctionsController::addStat($page);
           }
-/*
+
           libxml_use_internal_errors(true);
           $dom = \phpQuery::newDocumentHTML($template);
           \phpQuery::selectDocument($dom);
 
-          // Add sl
+          // Add sl + translations
           $sl = Core\Secure::array2string(['landing_page_id' => $landing_page_id]);
+          pq('head')->find('script[src]:first')->before(PHP_EOL . '<script src="' . url('assets/translations?lang=' . $page->site->language) . '"></script>');
           pq('head')->prepend(PHP_EOL . '<script>var sl_lp = "' . $sl . '";</script>');
 
           // Beautify html
           $html = Core\Parser::beautifyHtml($dom);
 
           return $html;
-          */
 
-          return $template;
         } else {
           return response()->view('errors.404', ['msg' => trans('global.page_not_published')], 404);
         }
@@ -123,6 +122,7 @@ class LandingPagesController extends Controller
           // to make sure jQuery and Bootstrap 4 js are
           // included in template, while inline <script>'s
           // can safely run below.
+          pq('head')->find('script[src]:first')->before(PHP_EOL . '<script src="' . url('assets/translations?lang=' . $page->site->language) . '&editor=1"></script>');
           pq('head')->find('script[src]:last')->before(PHP_EOL . '<script class="-x-editor-asset">var lf_published_url = "' . $published_url . '";var lf_sl = "' . $sl . '";var lf_csrf_token = "' . csrf_token() . '";</script>');
           pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
           pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js?v=' . config('version.editor')) . '"></script>');
@@ -500,8 +500,17 @@ class LandingPagesController extends Controller
       $el_class = $request->input('el_class', '');
       $color = (boolean) $request->input('color', false);
       $submit = (boolean) $request->input('submit', false);
+      $form = (boolean) $request->input('form', false);
+      $tab = 'url';
+      if ($form) $tab = 'form';
 
-      return view('landingpages::modals.link', compact('el_class', 'color', 'submit'));
+      if (\Gate::allows('limitation', 'forms.visible') && ! $submit) {
+        $forms = \Modules\Forms\Http\Models\Form::where('user_id', Core\Secure::userId())->orderBy('name', 'asc')->get();
+      } else {
+        $forms = null;
+      }
+
+      return view('landingpages::modals.link', compact('el_class', 'color', 'submit', 'tab', 'forms'));
     }
 
     /**

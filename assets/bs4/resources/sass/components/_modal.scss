@@ -1,0 +1,27 @@
+
+/*
+ * Modal related styles
+ */
+
+.modal-frame {
+  .modal-dialog {
+    border-radius: 0;
+    box-shadow: $mdl-shadow--16dp;
+
+    .modal-content {
+      border-radius: 0;
+      border: 0;
+
+      .modal-header {
+        width: 100%;
+        position: absolute;
+        border-radius: 0;
+        border: 0;
+        padding-bottom: 0;
+
+        .close {
+        }
+      }
+    }
+  }
+}

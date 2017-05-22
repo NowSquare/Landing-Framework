@@ -72,6 +72,12 @@ $(function($) {
 
   bindAjaxForms();
 
+	/*
+	 * Form links
+	 */
+
+  bindAjaxFormLinks();
+
   /*
    * jQuery.scrollTo
    * https://github.com/flesler/jquery.scrollTo
@@ -260,6 +266,88 @@ $(function($) {
 
 });
 
+
+/*
+ * Ajax form links
+ */
+
+function bindAjaxFormLinks() {
+
+	if ($('[data-form]').length) {
+    $('[data-form]').each(function(i) {
+      var index = i;
+      var $form_link = $(this);
+
+      var form = $form_link.attr('data-form');
+
+      var html = '<div class="-x-tmp modal modal-frame fade" tabindex="-1" role="dialog" id="formModal' + index + '" aria-hidden="true">' +
+        '<div class="modal-dialog modal-lg">' +
+          '<div class="modal-content">' +
+            '<div class="modal-header">' +
+              '<h5 class="modal-title" id="formTitle' + index + '"></h5>' +
+              '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+                '<span aria-hidden="true">&times;</span>' +
+              '</button>' +
+            '</div>' +
+            '<iframe src="about:blank" seamless="1" frameborder="0" style="width:100%;min-height:100px" id="formFrame' + index + '"></frame>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+      $('body').append(html);
+
+      // Initialize the modal, but don't show yet
+      $('#formModal' + index).modal({
+        show: false,
+        backdrop: 'static',
+        keyboard: false
+      });
+
+      $form_link.on('click', function() {
+        var $modal = $('#formModal' + index);
+        var $frame = $('#formFrame' + index);
+
+        if ($frame.attr('src') == 'about:blank') {
+          $frame.attr('src', _trans['url'] + '/f/' + form);
+
+          // Set temp css to calculate iframe height
+          $modal.css({
+            visibility: 'hidden',
+            display: 'block'
+          });
+
+          $frame.on('load', function() {
+            var frame_height = parseInt($frame.contents().find('html').height());
+            $frame.height(frame_height);
+
+            $modal.attr('style', '');
+            $modal.modal('show');
+          });
+        } else {
+          // Set temp css to calculate iframe height
+          $modal.css({
+            visibility: 'hidden',
+            display: 'block'
+          });
+
+          // Resize frame in case window size has changes when modal was hidden
+          var frame_height = parseInt($frame.contents().find('html').height());
+          console.log(frame_height);
+          $frame.height(frame_height);
+
+          $modal.attr('style', '');
+          $('#formModal' + index).modal('show');
+        }
+
+        $(window).resize(function() {
+          var frame_height = parseInt($frame.contents().find('html').height());
+          $frame.height(frame_height);
+        });
+
+      });
+    });
+  };
+}
 /*
  * Ajax forms
  */

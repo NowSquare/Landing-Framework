@@ -159,7 +159,7 @@ $(function() {
 $i = 1;
 foreach($sites as $site) {
 ?>
-  $('#frame{{ $i }}').load(function() {
+  $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
 <?php if ($i == count($sites)) { ?>

@@ -165,7 +165,7 @@ function lfGetHtml() {
   var $html = $('html').clone();
 
   // Remove editor and plugin elements
-  $html.find('.-x-el-inline-button, .-x-editor-asset, .-x-el-dropdown, .-x-editor-inline-modal-bg, #window-resizer-tooltip, #core-notify, #notify-bootstrap, #notify-metro, .notifyjs-corner').remove();
+  $html.find('.-x-tmp, .-x-el-inline-button, .-x-editor-asset, .-x-el-dropdown, .-x-editor-inline-modal-bg, #window-resizer-tooltip, #core-notify, #notify-bootstrap, #notify-metro, .notifyjs-corner').remove();
 
   // Remove all localhost script
   $html.find('script[src]').each(function() {

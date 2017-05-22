@@ -156,7 +156,7 @@ $(function() {
 $i = 1;
 foreach($forms as $form) {
 ?>
-  $('#frame{{ $i }}').load(function() {
+  $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
 <?php if ($i == count($forms)) { ?>

@@ -83,7 +83,7 @@ $(function() {
 $i = 1;
 foreach($blocks as $block) {
 ?>
-  $('#frame{{ $i }}').load(function() {
+  $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
 <?php if ($i == count($blocks)) { ?>

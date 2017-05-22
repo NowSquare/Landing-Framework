@@ -743,6 +743,7 @@ function lfFormElementGenerator() {
             break;
 
           case 'business_email': 
+          case 'email': 
             html_type = 'email'; 
             break;
 

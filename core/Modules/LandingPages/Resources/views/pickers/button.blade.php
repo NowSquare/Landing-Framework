@@ -39,7 +39,7 @@
     height: 28px;
   }
   .select-holder.selected {
-    border: 2px solid #000;
+    border: 2px solid #888;
     border-radius: 4px;
     margin: -1px 0px 1px 0;
     padding: 3px 3px 3px;

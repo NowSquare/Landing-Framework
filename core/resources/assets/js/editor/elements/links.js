@@ -143,8 +143,9 @@ function lfInitLinks() {
       var $el = $('.' + el_class);
       var color = ($el.hasClass('btn')) ? 1 : 0;
       var submit = ($el.attr('type') == 'submit') ? 1 : 0;
+      var form = (typeof $el.attr('data-form') !== typeof undefined && $el.attr('data-form') !== false) ? 1 : 0;
 
-      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/link?color=' + color + '&submit=' + submit, el_class);
+      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/link?color=' + color + '&submit=' + submit + '&form=' + form, el_class);
 
       // Hide dropdown after option has been clicked
       $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
