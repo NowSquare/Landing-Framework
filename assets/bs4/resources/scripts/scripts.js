@@ -265,9 +265,26 @@ $(function($) {
  */
 
 function bindAjaxForms() {
+
+  // Save cloned forms to freeze labels and placeholders for custom elements
+  // This prevents visitors from chaning the dom with dev tools
+	if ($('form.ajax').length) {
+    var form = 0;
+    var $f = [];
+    $('form.ajax').each(function() {
+      var $form = $(this);
+      $form.attr('data-x-i', form);
+      $f[form] = $form.clone(false);
+      form++;
+    });
+  };
+
   $('form.ajax').validator().on('submit', function (e) {
     if (! e.isDefaultPrevented()) {
-      processAjaxForm($(this));
+      var $form = $(this);
+      var form = $form.attr('data-x-i');
+
+      processAjaxForm($form, $f[form]);
       /*
       $('form.ajax').ajaxSubmit({
         dataType: 'json',
@@ -298,7 +315,7 @@ function updateAjaxForms() {
   });
 }
 
-function processAjaxForm($form) {
+function processAjaxForm($form, $clone) {
 
   var $btn = $form.find('[type=submit]');
 
@@ -314,7 +331,7 @@ function processAjaxForm($form) {
 	ladda_button.ladda('start');
 
   if (typeof lf_demo === 'undefined') {
-    var f = formSerialize($form);
+    var f = formSerialize($form, $clone);
 
     var jqxhr = $.ajax({
       url: _trans['url'] + "/f/post",
@@ -374,23 +391,26 @@ function processAjaxForm($form) {
   }
 }
 
-function formSerialize($form) {
+function formSerialize($form, $clone) {
   var custom_vars = {};
   var form_vars = {};
 
 	if ($form.find('.form-group').length) {
-    $form.find('.form-group').each(function() {
+    $form.find('.form-group').each(function(i) {
+
+      var $cloneGroup = $($clone.find('.form-group')[i]);
+      var $cloneControl = $cloneGroup.find('.form-control');
 
       var $formGroup = $(this);
       var $formControl = $formGroup.find('.form-control');
 
       var type, val;
-      var name = $formControl.attr('name');
+      var name = $cloneControl.attr('name');
 
-      var label = $formGroup.find('label').html();
+      var label = $cloneGroup.find('label').html();
       label = (typeof label !== typeof undefined && label !== false) ? label : '';
 
-      var placeholder = $formControl.attr('placeholder');
+      var placeholder = $cloneControl.attr('placeholder');
       placeholder = (typeof placeholder !== typeof undefined && placeholder !== false) ? placeholder : '';
 
       var reference = (label != '') ? label : placeholder;
