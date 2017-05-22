@@ -69,17 +69,7 @@ class FormsController extends Controller
           //pq('head')->prepend(PHP_EOL . '<script>var sl_f = "' . $sl . '";</script>');
 
           // Beautify html
-          $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
-          $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
-          $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-
-          $html = $indenter->indent($dom);
+          $html = Core\Parser::beautifyHtml($dom);
 
           return $html;
         } else {
@@ -145,17 +135,7 @@ class FormsController extends Controller
           //$dom = str_replace('</section><section', "</section>\n\n<section", $dom);
 
           // Beautify html
-          $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
-          $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
-          $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-          $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-
-          $html = $indenter->indent($dom);
+          $html = Core\Parser::beautifyHtml($dom);
 
           return $html;
         }
@@ -201,7 +181,8 @@ class FormsController extends Controller
             if (! empty($form)) {
               // Check if this form belongs to the logged in user
               if (Core\Secure::userId() != $form->user_id) {
-                $inserted = FunctionsController::addEntry($form, $form_vars, $custom_vars, $page);
+                dd($custom_vars);
+                //$inserted = FunctionsController::addEntry($form, $form_vars, $custom_vars, $page);
 
                 if ($inserted === false) {
                   $response = [
@@ -260,18 +241,7 @@ class FormsController extends Controller
       // Add demo
       pq('head')->find('script[src]:first')->before(PHP_EOL . '<script>var lf_demo = true;</script>');
 
-      // Beautify html
-      $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
-      $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
-      $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-      $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-      $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-      $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-      $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-      $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-      $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-
-      $html = $indenter->indent($dom);
+      $html = Core\Parser::beautifyHtml($dom);
 
       return $html;
     }
@@ -348,17 +318,7 @@ class FormsController extends Controller
         $html = str_replace(url('/'), '', $html);
 
         // Beautify html
-        $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
-        $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
-        $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-
-        $html = $indenter->indent($html);
+        $html = Core\Parser::beautifyHtml($html);
 
         $variant = 1;
 
@@ -420,17 +380,7 @@ class FormsController extends Controller
         $html = str_replace(url('/'), '', $html);
 
         // Beautify html
-        $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
-        $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
-        $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-
-        $html = $indenter->indent($html);
+        $html = Core\Parser::beautifyHtml($html);
 
         \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
         \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
@@ -466,17 +416,7 @@ class FormsController extends Controller
         $html = str_replace(url('/'), '', $html);
 
         // Beautify html
-        $indenter = new \Gajus\Dindent\Indenter(['indentation_character' => '  ']);
-        $indenter->setElementType('style', \Gajus\Dindent\Indenter::ELEMENT_TYPE_BLOCK);
-        $indenter->setElementType('label', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h1', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h2', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h3', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h4', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h5', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-        $indenter->setElementType('h6', \Gajus\Dindent\Indenter::ELEMENT_TYPE_INLINE);
-
-        $html = $indenter->indent($html);
+        $html = Core\Parser::beautifyHtml($html);
 
         \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
         \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
