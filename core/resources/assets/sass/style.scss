@@ -50,6 +50,11 @@ $mi_path: "../bs4/fonts/material-icons" !default;
   background: transparent;
 }
 
+/* Fix for jQuery UI sortable scroll issue */
+.table .ui-sortable {
+  overflow: auto;
+}
+
 /* Editor modal */
 html.editor-modal,
 html.editor-modal body {
