@@ -58,7 +58,7 @@ foreach($forms as $form) {
       <div class="grid-item-content portlet shadow-box" data-sl="{{ $sl_form }}">
 
         <div class="btn-group pull-right">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="mi more_vert"></i>
           </button>
           <ul class="dropdown-menu m-t-0">
@@ -75,7 +75,7 @@ foreach($forms as $form) {
         </div>
 
         <div class="portlet-body" style="padding:0">
-         <table class="table table-hover table-condensed table-striped" style="margin-bottom: 0">
+         <table class="table table-hover table-striped" style="margin-bottom: 0">
            <tr>
              <td width="33" class="text-center"><i class="mi insert_link"></i></td>
              <td><a href="{{ $url }}" target="_blank" class="link">{{ trans('global.visit_online') }}</a></td>
@@ -115,7 +115,7 @@ foreach($forms as $form) {
   padding: 0px !important;
 }
 .preview-container {
-  border-top: 1px solid #f3f3f3;
+  border-top: 1px solid #bdbdbd /*#f3f3f3*/;
   display: block;
   width:100%;
   height: 120px;
