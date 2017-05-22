@@ -197,7 +197,7 @@ class FormsController extends Controller
                 }
               } else {
                 $response = [
-                  'success' => false,
+                  'success' => true,
                   'title' => trans('forms::global.demo'),
                   'text' => trans('forms::global.demo_text')
                 ];

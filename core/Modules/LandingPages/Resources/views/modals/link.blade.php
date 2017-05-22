@@ -19,21 +19,20 @@
 
 
 <?php if (Gate::allows('limitation', 'forms.visible')) { ?>
-      <div class="well well-sm" style="margin-bottom: 15px">
-      <ul class="nav nav-tabs navtab-custom">
+      <ul class="nav nav-tabs navtab-custom navtab-shadow">
         <li<?php if($tab == 'url') echo ' class="active"'; ?>><a href="#tab_url" data-toggle="tab" aria-expanded="false">{{ trans('landingpages::global.url') }}</a></li>
         <li<?php if($tab == 'form') echo ' class="active"'; ?>><a href="#tab_form" data-toggle="tab" aria-expanded="false">{{ trans('landingpages::global.form') }}</a></li>
       </ul>
 <?php } ?>
 
 <?php if (Gate::allows('limitation', 'forms.visible')) { ?>
-      <div class="tab-content m-b-0" style="box-shadow: none">
+      <div class="tab-content navtab-shadow">
         <div class="tab-pane<?php if($tab == 'url') echo ' active'; ?>" id="tab_url">
 <?php } ?>
 
           <div class="form-group">
             <div class="input-group">
-              <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="" placeholder="http://">
+              <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="" placeholder="http://" onkeydown="$('#form').val('').trigger('change.select2');">
               <div class="input-group-btn add-on">
                 <button type="button" class="btn btn-primary" id="select_url" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="url" data-preview="url-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
                 <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="url-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
@@ -72,7 +71,6 @@ echo Former::select('form')
 
         </div>
 
-      </div>
       </div>
 <?php } ?>
 

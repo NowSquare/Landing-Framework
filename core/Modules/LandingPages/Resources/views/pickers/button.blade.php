@@ -17,10 +17,7 @@
   }
   .well {
     padding: 9px 9px 8px;
-    background-color: #f5f5f5;
-    border: 1px solid #e3e3e3;
-    border-radius: 0;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    background-color: #f7f7f7;
   }
   .select-holder {
     float: left;
@@ -40,7 +37,7 @@
   }
   .select-holder.selected {
     border: 2px solid #888;
-    border-radius: 4px;
+    border-radius: 5px;
     margin: -1px 0px 1px 0;
     padding: 3px 3px 3px;
   }

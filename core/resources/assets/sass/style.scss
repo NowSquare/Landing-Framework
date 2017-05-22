@@ -313,6 +313,11 @@ abbr[title], acronym[title] {
 .mdl-shadow--8dp { box-shadow: $mdl-shadow--8dp; }
 .mdl-shadow--16dp { box-shadow: $mdl-shadow--16dp; }
 
+.tab-content.navtab-shadow,
+.navtab-shadow li.active > a {
+  background-color: #f7f7f7 !important;
+}
+
 // Tables
 .table-selectable {
   tbody tr {
