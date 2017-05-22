@@ -21,5 +21,34 @@
       min-height: 100px;
     }
   }
-}
 
+  &.grid-item-content {
+    .open .dropdown-toggle,
+    .dropdown-toggle {
+      background-color: #797979 !important;
+      color: #fff;
+      border:0;
+      padding: 6px;
+    }
+
+    .badge {
+      margin-top: 4px;
+    }
+
+    .portlet-heading {
+      background-color: #797979;
+      padding: 2px 10px 0px;
+      .portlet-title {
+        color: #fff !important;
+        position: absolute;
+        width: calc(100% - 46px);
+      }
+    }
+    .table tr td:first-child {
+      padding: 4px;
+    }
+    .table tr td:last-child {
+      padding-right: 6px;
+    }
+  }
+}

@@ -65,6 +65,7 @@ return array(
   "records" => "Records",
   "order" => "Order",
 	"category" => "Category",
+  "link" => "Link",
 
   /*
    |--------------------------------------------------------------------------

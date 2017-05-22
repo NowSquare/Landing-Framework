@@ -184,8 +184,7 @@ class FormsController extends Controller
             if (! empty($form)) {
               // Check if this form belongs to the logged in user
               if (Core\Secure::userId() != $form->user_id) {
-                dd($custom_vars);
-                //$inserted = FunctionsController::addEntry($form, $form_vars, $custom_vars, $page);
+                $inserted = FunctionsController::addEntry($form, $form_vars, $custom_vars, $page);
 
                 if ($inserted === false) {
                   $response = [

@@ -38,7 +38,7 @@ class LandingPagesController extends Controller
             if (! empty($page)) {
 
               // Redirect if custom domain is set, but local domain is called
-              if ($page->site->local_domain == request()->segment(2) && $page->site->domain != '') {
+              if (isset($page->site) && $page->site->local_domain == request()->segment(2) && $page->site->domain != '') {
                 return redirect('http://' . $page->site->domain, 301);
               }
   

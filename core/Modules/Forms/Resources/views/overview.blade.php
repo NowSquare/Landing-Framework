@@ -51,39 +51,55 @@ foreach($forms as $form) {
   // Update files
   $storage_root = 'forms/form/' . \Platform\Controllers\Core\Secure::staticHash(\Platform\Controllers\Core\Secure::userId()) . '/' .  \Platform\Controllers\Core\Secure::staticHash($form->id, true) . '/' . $variant;
 
-  $published = (\Storage::disk('public')->exists($storage_root . '/published/index.blade.php')) ? '<span class="badge badge-success pull-right">published</span>' : '<span class="badge badge-danger pull-right">not published</span>';
+  $published = (\Storage::disk('public')->exists($storage_root . '/published/index.blade.php')) ? '<span class="badge badge-xs badge-success pull-right">published</span>' : '<span class="badge badge-xs badge-danger pull-right">not published</span>';
 ?>
-    <div class="grid-item col-xs-6 col-sm-2 col-lg-2" style="max-width: 240px" id="item{{ $i }}">
+    <div class="grid-item col-xs-6 col-sm-3 col-lg-3" style="max-width: 250px" id="item{{ $i }}">
 
       <div class="grid-item-content portlet shadow-box" data-sl="{{ $sl_form }}">
+
+        <div class="btn-group pull-right">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="mi more_vert"></i>
+          </button>
+          <ul class="dropdown-menu m-t-0">
+            <li><a href="{{ $edit_url }}">{{ trans('forms::global.edit_form') }}</a></li>
+            <li><a href="#">{{ trans('forms::global.view_entries') }}</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="javascript:void(0);" class="onClickDelete">{{ trans('global.delete') }}</a></li>
+          </ul>
+        </div>
+
         <div class="portlet-heading portlet-default">
           <h3 class="portlet-title text-dark" title="{{ $form['name'] }}">{{ $form['name'] }}</h3>
           <div class="clearfix"></div>
         </div>
+
         <div class="portlet-body" style="padding:0">
-         <table class="table table-hover" style="margin-bottom: 0">
+         <table class="table table-hover table-condensed table-striped" style="margin-bottom: 0">
            <tr>
+             <td width="33" class="text-center"><i class="mi insert_link"></i></td>
+             <td><a href="{{ $url }}" target="_blank" class="link">{{ trans('global.visit_online') }}</a></td>
+             <td class="text-right"> {!! $published !!}</td>
+           </tr>
+           <tr>
+             <td width="33" class="text-center"><i class="mi person_pin"></i></td>
              <td>{{ trans('global.visits') }}:</td>
-             <td class="text-right">{{ $form->visits }}</td>
+             <td class="text-right"><strong>{{ number_format($form->visits) }}</strong></td>
            </tr>
            <tr>
-             <td>{{ trans('global.conversions') }}:</td>
-             <td class="text-right">{{ $form->conversions }}</td>
-           </tr>
-           <tr>
-             <td colspan="2"><a href="{{ $url }}" target="_blank" class="link">{{ trans('global.visit_online') }}</a> {!! $published !!}</td>
+             <td class="text-center"><i class="mi input"></i></td>
+             <td>{{ trans('forms::global.entries') }}:</td>
+             <td class="text-right"><strong>{{ number_format($form->conversions) }}</strong></td>
            </tr>
          </table>
-          
         </div>
+
         <div>
           <a href="{{ $edit_url }}" class="preview-container" id="container{{ $i }}">
             <iframe src="{{ url($local_domain . '?preview=1') }}" id="frame{{ $i }}" class="preview_frame" frameborder="0" seamless></iframe>
           </a>
         </div>
-        <div class="panel-footer">
-          <a href="javascript:void(0);" class="btn btn-sm btn-danger btn-block onClickDelete">{{ trans('global.delete') }}</a>
-        </div>
+
       </div>
 
     </div>
@@ -99,6 +115,7 @@ foreach($forms as $form) {
   padding: 0px !important;
 }
 .preview-container {
+  border-top: 1px solid #f3f3f3;
   display: block;
   width:100%;
   height: 120px;

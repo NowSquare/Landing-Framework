@@ -337,7 +337,7 @@ abbr[title], acronym[title] {
     white-space: nowrap;
   }
 
-  tbody tr td:last-child {
+  &.dataTable tbody tr td:last-child {
     padding: 7px !important;
   }
 

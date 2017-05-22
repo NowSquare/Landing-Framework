@@ -36,6 +36,9 @@ return array(
   "form_style" => "Form style",
   "normal" => "Normal",
   "rounded_shadow" => "Rounded shadow",
+  "edit_form" => "Edit form",
+  "entries" => "Entries",
+  "view_entries" => "View entries",
 
 	/*
 	|--------------------------------------------------------------------------

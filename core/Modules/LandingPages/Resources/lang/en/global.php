@@ -71,7 +71,7 @@ return array(
   "form_options_placeholder" => "Option 1
 [x] Option 2
 Option 3",
-  "" => "",
+  "edit_landing_page" => "Edit landing page",
   "" => "",
   "" => "",
 );
