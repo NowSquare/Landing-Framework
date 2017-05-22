@@ -224,8 +224,6 @@ function lfInitFabForms() {
   */
 
   $('body').on('click', '.-x-el-fab-view-qr', function() {
-    $('.-x-el-inline-button-clone .-x-el-icon').toggle();
-
     lfOpenModal(_lang["url"] + '/landingpages/editor/modal/qr?url=' + lf_published_url);
 
     // Hide dropdown
@@ -236,9 +234,7 @@ function lfInitFabForms() {
     Settings
   */
 
-  $('body').on('click', '.-x-el-fab-form-seo', function() {
-    $('.-x-el-inline-button-clone .-x-el-icon').toggle();
-    
+  $('body').on('click', '.-x-el-fab-form-seo', function() {    
     lfOpenModal(_lang["url"] + '/forms/editor/modal/seo?sl=' + lf_sl);
   
     // Hide dropdown
@@ -249,9 +245,7 @@ function lfInitFabForms() {
     Design
   */
 
-  $('body').on('click', '.-x-el-fab-form-design', function() {
-    $('.-x-el-inline-button-clone .-x-el-icon').toggle();
-    
+  $('body').on('click', '.-x-el-fab-form-design', function() {    
     lfOpenModal(_lang["url"] + '/forms/editor/modal/design?sl=' + lf_sl);
   
     // Hide dropdown

@@ -236,8 +236,6 @@ function lfInitFabLandingpages() {
   */
 
   $('body').on('click', '.-x-el-fab-view-qr', function() {
-    $('.-x-el-inline-button-clone .-x-el-icon').toggle();
-
     lfOpenModal(_lang["url"] + '/landingpages/editor/modal/qr?url=' + lf_published_url);
 
     // Hide dropdown
@@ -248,9 +246,7 @@ function lfInitFabLandingpages() {
     SEO
   */
 
-  $('body').on('click', '.-x-el-fab-page-seo', function() {
-    $('.-x-el-inline-button-clone .-x-el-icon').toggle();
-    
+  $('body').on('click', '.-x-el-fab-page-seo', function() {    
     lfOpenModal(_lang["url"] + '/landingpages/editor/modal/seo?sl=' + lf_sl);
   
     // Hide dropdown
@@ -261,9 +257,7 @@ function lfInitFabLandingpages() {
     Domain
   */
 
-  $('body').on('click', '.-x-el-fab-page-domain', function() {
-    $('.-x-el-inline-button-clone .-x-el-icon').toggle();
-    
+  $('body').on('click', '.-x-el-fab-page-domain', function() {    
     lfOpenModal(_lang["url"] + '/landingpages/editor/modal/domain?sl=' + lf_sl);
   
     // Hide dropdown
