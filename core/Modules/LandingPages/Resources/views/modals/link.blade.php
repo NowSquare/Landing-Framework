@@ -197,6 +197,11 @@ Update settings
     $el.attr('target', $('#target').val());
   }
 
+  // Rebind modals  
+  $el.off('click.form-modal');
+  window.parent.$('.modal-frame').remove();
+  window.parent.bindAjaxFormLinks();
+
 <?php } else { ?>
 
   $el.attr('href', $('#url').val());

@@ -280,11 +280,10 @@ function bindAjaxFormLinks() {
 
       var form = $form_link.attr('data-form');
 
-      var html = '<div class="-x-tmp modal modal-frame fade" tabindex="-1" role="dialog" id="formModal' + index + '" aria-hidden="true">' +
+      var html = '<div class="-x-tmp modal modal-frame modal-form fade" tabindex="-1" role="dialog" id="formModal' + index + '" aria-hidden="true">' +
         '<div class="modal-dialog modal-lg">' +
           '<div class="modal-content">' +
             '<div class="modal-header">' +
-              '<h5 class="modal-title" id="formTitle' + index + '"></h5>' +
               '<button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
                 '<span aria-hidden="true">&times;</span>' +
               '</button>' +
@@ -303,7 +302,7 @@ function bindAjaxFormLinks() {
         keyboard: false
       });
 
-      $form_link.on('click', function() {
+      $form_link.off('click.form-modal').on('click.form-modal', function() {
         var $modal = $('#formModal' + index);
         var $frame = $('#formFrame' + index);
 
@@ -348,6 +347,7 @@ function bindAjaxFormLinks() {
     });
   };
 }
+
 /*
  * Ajax forms
  */
