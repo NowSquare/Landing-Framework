@@ -303,6 +303,7 @@ function bindAjaxFormLinks() {
       });
 
       $form_link.off('click.form-modal').on('click.form-modal', function() {
+        blockUI();
         var $modal = $('#formModal' + index);
         var $frame = $('#formFrame' + index);
 
@@ -320,6 +321,7 @@ function bindAjaxFormLinks() {
             $frame.height(frame_height);
 
             $modal.attr('style', '');
+            unblockUI();
             $modal.modal('show');
           });
         } else {
@@ -331,10 +333,10 @@ function bindAjaxFormLinks() {
 
           // Resize frame in case window size has changes when modal was hidden
           var frame_height = parseInt($frame.contents().find('html').height());
-          console.log(frame_height);
           $frame.height(frame_height);
 
           $modal.attr('style', '');
+          unblockUI();
           $('#formModal' + index).modal('show');
         }
 
@@ -610,3 +612,58 @@ function formResponse(responseText, statusText, xhr, $jqForm) {
     });
   }
 }*/
+
+/*
+ * BlockUI
+ */
+
+function blockUI(el) {
+  if (typeof el === 'undefined') {
+    $.blockUI({
+      message: '<div class="loader"></div>',
+      fadeIn: 0,
+      fadeOut: 100,
+      baseZ: 21000,
+      overlayCSS: {
+        backgroundColor: '#000'
+      },
+      css: {
+        border: 'none',
+        padding: '0',
+        backgroundColor: 'transparant',
+        opacity: 1,
+        color: '#fff'
+      }
+    });
+  } else {
+    $(el).block({
+      message: '<div class="loader loader-xs"></div>',
+      fadeIn: 0,
+      fadeOut: 100,
+      baseZ: 21000,
+      overlayCSS: {
+        backgroundColor: '#000',
+        opacity: 0.1,
+      },
+      css: {
+        border: 'none',
+        padding: '0',
+        backgroundColor: 'transparant',
+        opacity: 1,
+        color: '#fff'
+      }
+    });
+  }
+}
+
+/*
+ * unblockUI
+ */
+
+function unblockUI(el) {
+  if (typeof el === 'undefined') {
+    $.unblockUI();
+  } else {
+    $(el).unblock();
+  }
+}
