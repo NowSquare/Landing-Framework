@@ -1,7 +1,10 @@
 @extends('landingpages::layouts.picker')
 
 @section('content')
+<div class="well">
 <div id="btn-color-picker"></div>
+<br style="clear:both">
+</div>
 @endsection
 
 @section('script')
@@ -10,7 +13,14 @@
     overflow: hidden;
   }
   body {
-    padding-top: 1px;
+    /*padding-top: 1px;*/
+  }
+  .well {
+    padding: 9px 9px 8px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
   }
   .select-holder {
     float: left;
