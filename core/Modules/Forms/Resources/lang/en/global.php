@@ -53,5 +53,16 @@ return array(
   "demo" => "Demo",
   "demo_text" => "This form was not submitted because you are logged in.",
   "rate_limit_error" => "Error",
-  "rate_limit_error_text" => "Submission was too fast after previous entry. Please wait before posting again."
+  "rate_limit_error_text" => "Submission was too fast after previous entry. Please wait before posting again.",
+
+	/*
+	|--------------------------------------------------------------------------
+	| Entries
+	|--------------------------------------------------------------------------
+	*/
+
+  "no_entries_found" => "No entries found",
+  "no_entries_found_text" => "This form has received no submissions yet. Here's the link: <a href=':link' target='_blank'>:link</a>. Go forth and spread the word!",
+  "" => "",
+  "" => ""
 );

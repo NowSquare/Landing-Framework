@@ -363,6 +363,9 @@ abbr[title], acronym[title] {
 
 .dataTables_processing {
   border: 0;
+  &.panel {
+    box-shadow: none;
+  }
 }
 
 .card-box.table-responsive {

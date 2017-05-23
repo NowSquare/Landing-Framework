@@ -1,8 +1,4 @@
-var selected_apps = [];
-var selected_campaigns = [];
-var selected_cards = [];
-var selected_beacons = [];
-var selected_geofences = [];
+var selected_entries = [];
 var ladda_button;
 
 /**
@@ -906,4 +902,66 @@ function _click(url, data, verb, callback) {
   request.fail(function(jqXHR, textStatus) {
     alert('Request failed, please try again (' + textStatus + ')');
   });
+};
+
+/*
+ * Global daterangepicker options
+ */
+
+var daterangepicker_opts = {
+  format: 'MM-DD-YYYY',
+  dateLimit: {
+      days: 60
+  },
+  showDropdowns: true,
+  showWeekNumbers: true,
+  timePicker: false,
+  timePickerIncrement: 1,
+  timePicker12Hour: true,
+  opens: 'left',
+  drops: 'down',
+  buttonClasses: ['btn', 'btn-sm'],
+  applyClass: 'btn-primary',
+  cancelClass: 'btn-inverse',
+  separator: ' ' + _lang['separator_to'] + ' ',
+  locale: {
+    applyLabel: _lang['submit'],
+    cancelLabel: _lang['reset'],
+    fromLabel: _lang['date_from'],
+    toLabel: _lang['date_to'],
+    customRangeLabel: _lang['custom_range'],
+    daysOfWeek: [_lang['su'], _lang['mo'], _lang['tu'], _lang['we'], _lang['th'], _lang['fr'],_lang['sa']],
+      monthNames: [_lang['january'], _lang['february'], _lang['march'], _lang['april'], _lang['may'], _lang['june'], _lang['july'], _lang['august'], _lang['september'], _lang['october'], _lang['november'], _lang['december']],
+      firstDay: 1
+  },
+  template: '<div class="daterangepicker dropdown-menu">' +
+      '<div class="calendar left">' +
+          '<div class="daterangepicker_input">' +
+            '<input class="input-mini form-control" type="text" name="daterangepicker_start" value="" />' +
+            '<i class="mi date_range"></i>' +
+            '<div class="calendar-time">' +
+              '<div></div>' +
+              '<i class="fa fa-clock-o glyphicon glyphicon-time"></i>' +
+            '</div>' +
+          '</div>' +
+          '<div class="calendar-table"></div>' +
+      '</div>' +
+      '<div class="calendar right">' +
+          '<div class="daterangepicker_input">' +
+            '<input class="input-mini form-control" type="text" name="daterangepicker_end" value="" />' +
+            '<i class="mi date_range"></i>' +
+            '<div class="calendar-time">' +
+              '<div></div>' +
+              '<i class="fa fa-clock-o glyphicon glyphicon-time"></i>' +
+            '</div>' +
+          '</div>' +
+          '<div class="calendar-table"></div>' +
+      '</div>' +
+      '<div class="ranges">' +
+          '<div class="range_inputs">' +
+              '<button class="applyBtn" disabled="disabled" type="button"></button> ' +
+              '<button class="cancelBtn" type="button"></button>' +
+          '</div>' +
+      '</div>' +
+  '</div>'
 };

@@ -79,7 +79,7 @@ foreach($sites as $site) {
         <div class="portlet-body" style="padding:0">
          <table class="table table-hover table-striped" style="margin-bottom: 0">
            <tr>
-             <td width="33" class="text-center"><i class="mi insert_link"></i></td>
+             <td width="33" class="text-center"><i class="mi open_in_browser"></i></td>
              <td><a href="{{ $url }}" target="_blank" class="link">{{ trans('global.visit_online') }}</a></td>
              <td class="text-right"> {!! $published !!}</td>
            </tr>
@@ -97,7 +97,7 @@ foreach($sites as $site) {
         </div>
 
         <div>
-          <a href="{{ $edit_url }}" class="preview-container" id="container{{ $i }}">
+          <a href="{{ $edit_url }}" class="preview-container" id="container{{ $i }}" title="{{ $site['name'] }}">
             <iframe src="{{ url($local_domain . '?preview=1') }}" id="frame{{ $i }}" class="preview_frame" frameborder="0" seamless></iframe>
           </a>
         </div>
@@ -117,7 +117,7 @@ foreach($sites as $site) {
   padding: 0px !important;
 }
 .preview-container {
-  border-top: 1px solid #bdbdbd /*#f3f3f3*/;
+  border-top: 2px solid #e5e5e5;
   display: block;
   width:100%;
   height: 120px;
@@ -154,6 +154,13 @@ $(function() {
       $grid.masonry('layout');
     }
   });
+
+/*
+  $('.preview-container').tooltip({
+    placement : 'top',
+    template: '<div class="tooltip" style="margin-top: 21px"  role="tooltip"><div class="tooltip-inner"></div></div>'
+  });
+*/
 
   blockUI('.preview-container');
   $(window).resize(resizeEditFrame);

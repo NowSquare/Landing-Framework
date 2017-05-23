@@ -38,5 +38,13 @@ Route::group(['middleware' => ['web', 'limitation:forms.visible'], 'prefix' => '
     Route::post('editor/seo', 'FormsController@editorPostSeo');
     Route::get('editor/modal/design', 'FormsController@editorModalDesign');
     Route::post('editor/design', 'FormsController@editorPostDesign');
+
+    // Entries
+    Route::get('entries', 'EntriesController@showEntries');
+
+    Route::post('entry/delete', 'EntriesController@postDelete');
+    //Route::get('entries/data', 'EntriesController@getData');
+    Route::post('entries/data', 'EntriesController@getData');
+    Route::get('entries/export', 'EntriesController@getExport'); 
   });
 });

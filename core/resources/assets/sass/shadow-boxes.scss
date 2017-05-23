@@ -22,6 +22,15 @@
     }
   }
 
+  .link {
+    color: #797979;
+  }
+
+  .link:hover,
+  .link:active {
+    color: #222;
+  }
+
   &.grid-item-content {
     .dropdown-toggle {
       background-color: #21252b !important;

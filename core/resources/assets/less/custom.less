@@ -386,8 +386,19 @@ i.help-icon:hover {
   color: #aaa !important;
 }
 
-.daterangepicker .input-mini {
+.daterangepicker .input-mini,
+.daterangepicker .input-mini.active {
   border-radius: 0px;
+  border: 0 !important;
+  background-color: transparent;
+  font-size: 16px;
+}
+.daterangepicker .daterangepicker_input {
+  padding-left: 14px;
+  i {
+    left: 12px;
+    top: 6px;
+  }
 }
 
 .daterangepicker .btn {

@@ -10,7 +10,7 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10">
 
-      <div class="row">
+      <div class="row m-b-20">
         <div class="col-xs-12 col-sm-8">
           <div class="form-group">
             <label for="name">{{ trans('landingpages::global.name') }}</label>
@@ -20,9 +20,7 @@
         </div>
       </div>
 
-      <br>
-
-      <div class="form-group">
+      <div class="form-group m-b-20">
         <label for="title">{{ trans('landingpages::global.page_title') }}</label>
           <p class="help-block text-muted"><small>{!! trans('landingpages::global.page_title_help') !!}</small></p>
           <input type="text" class="form-control" id="title" name="title" autocomplete="off" value="">

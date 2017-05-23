@@ -46,11 +46,11 @@ foreach($forms as $form) {
   $local_domain = 'f/' . $form->local_domain;
   $url = $form->url();
 
+  $sl_form = \Platform\Controllers\Core\Secure::array2string(['form_id' => $form->id]);
+
+  // Check if published file exists
   $variant = 1;
-
-  // Update files
   $storage_root = 'forms/form/' . \Platform\Controllers\Core\Secure::staticHash(\Platform\Controllers\Core\Secure::userId()) . '/' .  \Platform\Controllers\Core\Secure::staticHash($form->id, true) . '/' . $variant;
-
   $published = (\Storage::disk('public')->exists($storage_root . '/published/index.blade.php')) ? '<span class="badge badge-xs badge-success pull-right">published</span>' : '<span class="badge badge-xs badge-danger pull-right">not published</span>';
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" style="max-width: 250px" id="item{{ $i }}">
@@ -63,7 +63,7 @@ foreach($forms as $form) {
           </button>
           <ul class="dropdown-menu m-t-0">
             <li><a href="{{ $edit_url }}">{{ trans('forms::global.edit_form') }}</a></li>
-            <li><a href="#">{{ trans('forms::global.view_entries') }}</a></li>
+            <li><a href="#/forms/entries/{{ $sl_form }}">{{ trans('forms::global.view_entries') }}</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="javascript:void(0);" class="onClickDelete">{{ trans('global.delete') }}</a></li>
           </ul>
@@ -77,7 +77,7 @@ foreach($forms as $form) {
         <div class="portlet-body" style="padding:0">
          <table class="table table-hover table-striped" style="margin-bottom: 0">
            <tr>
-             <td width="33" class="text-center"><i class="mi insert_link"></i></td>
+             <td width="33" class="text-center"><i class="mi open_in_browser"></i></td>
              <td><a href="{{ $url }}" target="_blank" class="link">{{ trans('global.visit_online') }}</a></td>
              <td class="text-right"> {!! $published !!}</td>
            </tr>
@@ -88,14 +88,14 @@ foreach($forms as $form) {
            </tr>
            <tr>
              <td class="text-center"><i class="mi input"></i></td>
-             <td>{{ trans('forms::global.entries') }}:</td>
+             <td><a href="#/forms/entries/{{ $sl_form }}" class="link">{{ trans('forms::global.entries') }}</a>:</td>
              <td class="text-right"><strong>{{ number_format($form->conversions) }}</strong></td>
            </tr>
          </table>
         </div>
 
         <div>
-          <a href="{{ $edit_url }}" class="preview-container" id="container{{ $i }}">
+          <a href="{{ $edit_url }}" class="preview-container" id="container{{ $i }}" title="{{ $form['name'] }}">
             <iframe src="{{ url($local_domain . '?preview=1') }}" id="frame{{ $i }}" class="preview_frame" frameborder="0" seamless></iframe>
           </a>
         </div>
@@ -115,7 +115,7 @@ foreach($forms as $form) {
   padding: 0px !important;
 }
 .preview-container {
-  border-top: 1px solid #bdbdbd /*#f3f3f3*/;
+  border-top: 2px solid #e5e5e5;
   display: block;
   width:100%;
   height: 120px;
@@ -152,6 +152,13 @@ $(function() {
       $grid.masonry('layout');
     }
   });
+
+/*
+  $('.preview-container').tooltip({
+    placement : 'top',
+    template: '<div class="tooltip" style="margin-top: 21px"  role="tooltip"><div class="tooltip-inner"></div></div>'
+  });
+*/
 
   blockUI('.preview-container');
   $(window).resize(resizeEditFrame);
