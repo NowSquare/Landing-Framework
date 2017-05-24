@@ -163,7 +163,7 @@ var entries_table = $('#dt-table-entries').DataTable({
       render: function (data, type, row) {
         return '<div data-moment="fromNowDateTime">' + data + '</div>';
       },
-      targets: [1]
+      targets: [5]
     }
   ],
   language: {
