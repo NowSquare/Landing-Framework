@@ -18,7 +18,20 @@
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('global.analytics') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
-            <a class="navbar-brand link" href="{{ $this_page->url() }}" target="_blank">{{ $this_page->name }}</a>
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $this_page->name }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+<?php
+foreach($sites as $site) {
+  $sl_landing_page = \Platform\Controllers\Core\Secure::array2string(['landing_page_id' => $site->pages->first()->id]);
+  $selected = ($site->id == $site_id) ? ' active' : '';
+  echo '<li class="' . $selected . '"><a href="#/landingpages/analytics/' . $sl_landing_page . '">' . $site->name . '</a></li>';
+}
+?>
+                </ul>
+              </li>
+            </ul>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-title-navbar">
@@ -32,7 +45,7 @@
                 <i class="mi date_range" style="margin:0 5px 0 0"></i> <span></span>
               </div>
             </div>
-
+<?php /*
             <div class="navbar-form navbar-right" style="min-width:240px">
 
 <select id="sites" class="select2-required">
@@ -51,7 +64,7 @@ $('#sites').on('change', function() {
 });
 </script>
               </div>
-
+*/ ?>
 <?php if ($data_found) { ?><?php /*
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">

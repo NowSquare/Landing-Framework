@@ -18,7 +18,21 @@
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('forms::global.entries') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
-            <a class="navbar-brand link" href="{{ $this_form->url() }}" target="_blank">{{ $this_form->name }}</a>
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $this_form->name }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+<?php
+foreach($forms as $form) {
+  $sl_form = \Platform\Controllers\Core\Secure::array2string(['form_id' => $form->id]);
+  $selected = ($form->id == $form_id) ? ' active' : '';
+  echo '<li class="' . $selected . '"><a href="#/forms/entries/' . $sl_form . '">' . $form->name . '</a></li>';
+
+}
+?>
+                </ul>
+              </li>
+            </ul>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-title-navbar">
@@ -32,25 +46,6 @@
                 <i class="mi date_range" style="margin:0 5px 0 0"></i> <span></span>
               </div>
             </div>
-
-            <div class="navbar-form navbar-right" style="min-width:240px">
-
-<select id="forms" class="select2-required">
-<?php
-foreach($forms as $form) {
-$sl_form = \Platform\Controllers\Core\Secure::array2string(['form_id' => $form->id]);
-$selected = ($form->id == $form_id) ? ' selected' : '';
-echo '<option value="' . $sl_form . '"' . $selected . '>' . $form->name . '</option>';
-}
-?>
-</select>
-
-<script>
-$('#forms').on('change', function() {
-  document.location = '#/forms/entries/' + $(this).val();
-});
-</script>
-              </div>
 
 <?php if ($data_found) { ?>
             <ul class="nav navbar-nav navbar-right">
