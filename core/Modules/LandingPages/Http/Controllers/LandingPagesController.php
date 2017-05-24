@@ -66,7 +66,7 @@ class LandingPagesController extends Controller
           // Add sl + translations
           $sl = Core\Secure::array2string(['landing_page_id' => $landing_page_id]);
           pq('head')->find('script[src]:first')->before(PHP_EOL . '<script src="' . url('assets/translations?lang=' . $page->site->language) . '"></script>');
-          pq('head')->prepend(PHP_EOL . '<script>var sl_lp = "' . $sl . '";</script>');
+          pq('head')->find('script[src]:first')->before(PHP_EOL . '<script>var sl_lp = "' . $sl . '";</script>');
 
           // Beautify html
           $html = Core\Parser::beautifyHtml($dom);
