@@ -64,10 +64,11 @@ class FormsController extends Controller
           \phpQuery::selectDocument($dom);
 
           // Add sl
-          $sl = Core\Secure::array2string(['form_id' => $form->id]);
+          $sl_f = Core\Secure::array2string(['form_id' => $form->id]);
+          $sl_lp = request()->get('sl_lp', '');
 
           pq('head')->find('script[src]:first')->before(PHP_EOL . '<script src="' . url('assets/translations?lang=' . $form->language) . '"></script>');
-          pq('head')->find('script[src]:first')->before(PHP_EOL . '<script>var sl_f = "' . $sl . '";</script>');
+          pq('head')->find('script[src]:first')->before(PHP_EOL . '<script>var sl_f = "' . $sl_f . '";var sl_lp = "' . $sl_lp . '";</script>');
           //pq('head')->prepend(PHP_EOL . '<script>var sl_f = "' . $sl . '";</script>');
 
           // Beautify html
@@ -175,7 +176,7 @@ class FormsController extends Controller
 
             if ($f['sl_lp'] != '') {
               $qs_lp = Core\Secure::string2array($f['sl_lp']);
-              $page = Models\Page::where('id', $qs_lp['landing_page_id'])->first();
+              $page = \Modules\LandingPages\Http\Models\Page::where('id', $qs_lp['landing_page_id'])->first();
             }
 
             // Post form

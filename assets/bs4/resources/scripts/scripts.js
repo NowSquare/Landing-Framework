@@ -308,7 +308,8 @@ function bindAjaxFormLinks() {
         var $frame = $('#formFrame' + index);
 
         if ($frame.attr('src') == 'about:blank') {
-          $frame.attr('src', _trans['url'] + '/f/' + form);
+          var qs = (typeof sl_lp !== 'undefined') ? '?sl_lp=' + sl_lp : '';
+          $frame.attr('src', _trans['url'] + '/f/' + form + qs);
 
           // Set temp css to calculate iframe height
           $modal.css({
@@ -428,7 +429,10 @@ function processAjaxForm($form, $clone) {
 
     var jqxhr = $.ajax({
       url: _trans['url'] + "/f/post",
-      data: {f: f , _token: _trans['csrf'] },
+      data: {
+        f: f, 
+        _token: _trans['csrf']
+      },
       method: 'POST'
     })
     .done(function(data) {
