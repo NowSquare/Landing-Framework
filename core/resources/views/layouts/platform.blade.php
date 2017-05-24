@@ -18,12 +18,6 @@
   <script src="{{ url('assets/javascript?lang=' . \App::getLocale()) }}"></script>
   <script>var app_root = "{{ url('/') }}";</script>
 
-  <script>
-    window.Laravel = <?php echo json_encode([
-      'csrfToken' => csrf_token(),
-    ]); ?>
-  </script>
-
   @yield('head')
 </head>
 <body>

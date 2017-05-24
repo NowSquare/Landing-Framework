@@ -118,7 +118,7 @@ if (count($languages) > 1) {
 @endsection 
 
 @section('bottom')
-<?php if (\Auth::user()->logins <= 1) { ?>
+<?php if (1==2 && \Auth::user()->logins <= 1) { ?>
 <script>
 $.notify({
   title: "{{ trans('global.hi.' . mt_rand(0, count(trans('global.hi')) - 1)) }}",
