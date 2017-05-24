@@ -276,6 +276,7 @@ return array(
   "reset_password_info" => "Enter your email address and instructions to reset your password will be sent to you.",
   "register" => "Register",
   "already_have_account" => "Already have an account?",
+  "incorrect_password" => "The current password is incorrect.",
 
   /*
    |--------------------------------------------------------------------------

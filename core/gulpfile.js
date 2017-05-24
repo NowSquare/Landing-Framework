@@ -217,11 +217,10 @@ gulp.task('scripts', function() {
       'bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
       'bower_components/bootstrap-daterangepicker/daterangepicker.js',
       'bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js',
-      'bower_components/Flot/jquery.flot.js',
-/*      'bower_components/Flot/jquery.flot.stack.js',*/
+/*      'bower_components/Flot/jquery.flot.js',
       'bower_components/Flot/jquery.flot.time.js',
       'bower_components/Flot/jquery.flot.pie.js',
-      'bower_components/flot.tooltip/js/jquery.flot.tooltip.js',
+      'bower_components/flot.tooltip/js/jquery.flot.tooltip.js',*/
       'bower_components/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js',
       'bower_components/mustache.js/mustache.js',
       'bower_components/notifyjs/dist/notify.js',

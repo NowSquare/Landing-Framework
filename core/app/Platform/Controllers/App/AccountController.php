@@ -70,7 +70,7 @@ class AccountController extends \App\Http\Controllers\Controller {
         return response()->json(array(
           'type' => 'error',
           'reset' => false, 
-          'msg' => trans('auth.incorrect_password')
+          'msg' => trans('global.incorrect_password')
         ));
       }
 

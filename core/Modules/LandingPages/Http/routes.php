@@ -52,5 +52,6 @@ Route::group(['middleware' => ['web', 'limitation:landingpages.visible'], 'prefi
     // Analytics
     Route::get('analytics', 'AnalyticsController@showAnalytics');
     Route::post('analytics/stats/data', 'AnalyticsController@getStatData');
+    Route::post('analytics/stats/range', 'AnalyticsController@getStatRange');
   });
 });

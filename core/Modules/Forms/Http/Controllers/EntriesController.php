@@ -279,6 +279,6 @@ class EntriesController extends Controller
       'data' => $data
     );
 
-    echo json_encode($response);
+    return response()->json($response);
   }
 }

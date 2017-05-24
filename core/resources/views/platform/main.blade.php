@@ -1,5 +1,12 @@
 @extends('layouts.platform')
 
+@section('head') 
+<script type="text/javascript" src="//www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {packages: ['corechart', 'line']});
+</script>
+@endsection 
+
 @section('content') 
 <header id="topnav">
   <div class="topbar-main">

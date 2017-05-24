@@ -167,6 +167,9 @@ function lfGetHtml() {
   // Remove editor and plugin elements
   $html.find('.-x-tmp, .-x-el-inline-button, .-x-editor-asset, .-x-el-dropdown, .-x-editor-inline-modal-bg, #window-resizer-tooltip, #core-notify, #notify-bootstrap, #notify-metro, .notifyjs-corner').remove();
 
+  // Remove generated form classes
+  $html.find('.form-group').removeClass('has-error has-danger');
+
   // Remove all localhost script
   $html.find('script[src]').each(function() {
     var src = $(this).attr('src');

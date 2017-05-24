@@ -576,7 +576,7 @@ function formResponse(responseText, statusText, xhr, $jqForm) {
     swal({
       type: responseText.type,
       title: responseText.msg
-    }, function() {
+    }).then(function () {
 
       // Reset form
       var reset_form = (typeof responseText.reset !== 'undefined') ? responseText.reset : true;
@@ -721,13 +721,12 @@ function select2() {
           var csrf_token = el.attr('data-token');
 
           swal({
-              title: title,
-              type: "input",
-              showCancelButton: true,
-              closeOnConfirm: false,
-              animation: "slide-from-top"
-            },
-            function(inputValue) {
+            title: title,
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: "slide-from-top"
+          }).then(function (inputValue) {
               if (inputValue === false) {
                 el.val('').trigger("change");
                 return false;
@@ -765,6 +764,9 @@ function select2() {
               });
 
               return false;
+            }, function (dismiss) {
+              // Do nothing on cancel
+              // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
             });
         }
       });
@@ -878,8 +880,7 @@ function _confirm(url, data, verb, callback, msg) {
       cancelButtonText: _lang['cancel'],
       confirmButtonColor: "#DD6B55",
       confirmButtonText: _lang['yes']
-    },
-    function() {
+    }).then(function () {
       _click(url, data, verb, callback);
     });
 };

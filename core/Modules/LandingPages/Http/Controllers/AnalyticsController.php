@@ -181,8 +181,8 @@ class AnalyticsController extends Controller
       $columns['language'] = $row->language;
       $columns['client_name'] = $row->client_name;
       $columns['client_version'] = $row->client_version;
-      $columns['os_name'] = $row->client_name;
-      $columns['os_version'] = $row->client_version;
+      $columns['os_name'] = $row->os_name;
+      $columns['os_version'] = $row->os_version;
       $columns['brand'] = $row->brand;
       $columns['model'] = $row->model;
       $columns['created_at'] = $row->created_at->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
@@ -198,6 +198,82 @@ class AnalyticsController extends Controller
       'data' => $data
     );
 
-    echo json_encode($response);
+    return response()->json($response);
+  }
+
+  /**
+   * Get stats data
+   */
+  public function getStatRange(Request $request)
+  {
+    // Form id
+    $sl = request()->get('sl', '');
+
+    if ($sl == '') {
+      return '';
+    }
+
+    $qs = Core\Secure::string2array($sl);
+    $landing_page_id = $qs['landing_page_id'];
+
+    // Date
+    $date_start = request()->get('date_start', date('Y-m-d', strtotime(' - 30 day')));
+    $date_end = request()->get('date_end', date('Y-m-d'));
+
+    $from =  $date_start . ' 00:00:00';
+    $to = $date_end . ' 23:59:59';
+
+    // Stat model
+    $tbl_name = 'x_landing_stats_' . Core\Secure::userId();
+
+    $Stat = new Models\Stat([]);
+    $Stat->setTable($tbl_name);
+
+    $stats_visits = $Stat->where('landing_page_id', $landing_page_id)
+      ->select(\DB::raw('DATE(created_at) as date'), \DB::raw('count(id) as visits'))
+      ->groupBy([\DB::raw('DATE(created_at)')])
+      ->get();
+
+    $main_chart_range = \Platform\Controllers\Core\Analytics::getRange($date_start, $date_end);
+
+    // Columns
+    $response['cols'] = [];
+
+    $response['cols'][] = [
+      'label' => false,
+      'type' => 'date'
+    ];
+
+    $response['cols'][] = [
+      'label' => trans('global.visits'),
+      'type' => 'number'
+    ];
+
+    // Rows
+    $response['rows'] = [];
+
+    foreach ($main_chart_range as $date => $dArr) {
+
+      //$visits = ($date < $earliest_date) ? NULL : 0;
+      $visits = 0;
+
+      foreach($stats_visits as $row) {
+        // $row->created_at->timezone(\Auth::user()->timezone)->format('Y-m-d')
+        if ($date == $row->date) {
+          $visits = $row->visits;
+          break 1;
+        }
+      }
+
+      $response['rows'][] = [
+        'c' => [
+          ['v' => 'Date(' . $dArr['y'] . ', ' . $dArr['m'] . ', ' . $dArr['d'] . ')'],
+          ['v' => $visits]
+        ]
+      ];
+
+    }
+
+    return response()->json($response);
   }
 }

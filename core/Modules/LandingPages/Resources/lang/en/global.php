@@ -72,6 +72,6 @@ return array(
 [x] Option 2
 Option 3",
   "edit_landing_page" => "Edit landing page",
-  "" => "",
-  "" => "",
+  "no_data_found" => "No data found",
+  "no_data_found_text" => "This landing page had no visitors yet. Here's the link: <a href=':link' target='_blank'>:link</a>. Go forth and spread the word!",
 );
