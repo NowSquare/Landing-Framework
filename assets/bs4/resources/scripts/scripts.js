@@ -332,12 +332,15 @@ function bindAjaxFormLinks() {
           });
 
           // Resize frame in case window size has changes when modal was hidden
-          var frame_height = parseInt($frame.contents().find('html').height());
-          $frame.height(frame_height);
+          // Timeout is necessary because otherwise 0 height is calculated in some browsers.
+          setTimeout(function() {
+            var frame_height = parseInt($frame.contents().find('html').height());
+            $frame.height(frame_height);
 
-          $modal.attr('style', '');
-          unblockUI();
-          $('#formModal' + index).modal('show');
+            $modal.attr('style', '');
+            unblockUI();
+            $('#formModal' + index).modal('show');
+          }, 100);
         }
 
         $(window).resize(function() {
