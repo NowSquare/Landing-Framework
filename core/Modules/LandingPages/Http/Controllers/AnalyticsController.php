@@ -119,6 +119,8 @@ class AnalyticsController extends Controller
     $aColumn[] = 'client_version';
     $aColumn[] = 'os_name';
     $aColumn[] = 'os_version';
+    $aColumn[] = 'brand';
+    $aColumn[] = 'model';
     $aColumn[] = 'created_at';
 
     if($q != '') {
@@ -181,6 +183,8 @@ class AnalyticsController extends Controller
       $columns['client_version'] = $row->client_version;
       $columns['os_name'] = $row->client_name;
       $columns['os_version'] = $row->client_version;
+      $columns['brand'] = $row->brand;
+      $columns['model'] = $row->model;
       $columns['created_at'] = $row->created_at->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
       $columns['sl'] = Core\Secure::array2string(['landing_site_id' => $row->landing_site_id, 'landing_page_id' => $row->landing_page_id, 'stat_id' => $row->id]);
 

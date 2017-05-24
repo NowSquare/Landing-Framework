@@ -83,6 +83,8 @@ $('#landingpages').on('change', function() {
               <th>{{ trans('global.version') }}</th>
               <th>{{ trans('global.os') }}</th>
               <th>{{ trans('global.version') }}</th>
+              <th>{{ trans('global.brand') }}</th>
+              <th>{{ trans('global.model') }}</th>
               <th>{{ trans('global.created') }}</th>
             </tr>
           </thead>
@@ -131,7 +133,7 @@ var entries_table = $('#dt-table-entries').DataTable({
       d.sl = '{{ $sl }}';
     }
   },
-  order: [ [1, "desc"] ],
+  order: [ [7, "desc"] ],
   dom: "<'row'<'col-sm-12 dt-header'<'pull-left'lr><'pull-right'f><'pull-right hidden-sm hidden-xs'T><'clearfix'>>>t<'row'<'col-sm-12 dt-footer'<'pull-left'i><'pull-right'p><'clearfix'>>>",
   processing: true,
   serverSide: true,
@@ -148,13 +150,10 @@ var entries_table = $('#dt-table-entries').DataTable({
     {	data: "client_version" }, 
     {	data: "os_name" }, 
     {	data: "os_version" }, 
+    {	data: "brand" }, 
+    {	data: "model" }, 
     { data: "created_at", width: 120 }
   ],
-  rowCallback: function(row, data) {
-    if($.inArray(data.DT_RowId.replace('row_', ''), selected_entries) !== -1) {
-      $(row).addClass('success');
-    }
-  },
   fnDrawCallback: function() {
     onDataTableLoad();
   },
@@ -163,7 +162,7 @@ var entries_table = $('#dt-table-entries').DataTable({
       render: function (data, type, row) {
         return '<div data-moment="fromNowDateTime">' + data + '</div>';
       },
-      targets: [5]
+      targets: [7]
     }
   ],
   language: {
