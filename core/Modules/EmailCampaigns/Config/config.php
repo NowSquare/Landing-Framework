@@ -2,7 +2,7 @@
 
 return [
   // Only enabled modules are used within the system
-  'enabled' => false,
+  'enabled' => true,
   // If a module is 'creatable', it can be selected when creating a new item
   'creatable' => true,
   // If a module is 'in_plan', it can be turned on or off for a plan

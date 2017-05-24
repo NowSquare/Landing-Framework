@@ -5,68 +5,23 @@ namespace Modules\EmailCampaigns\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use \Platform\Controllers\Core;
+use Modules\EmailCampaigns\Http\Models;
 
 class EmailCampaignsController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     * @return Response
+     * Email campaigns backend main
      */
     public function index()
     {
-        return view('emailcampaigns::index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @return Response
-     */
-    public function create()
-    {
-        return view('emailcampaigns::create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-    }
-
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('emailcampaigns::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     * @return Response
-     */
-    public function edit()
-    {
-        return view('emailcampaigns::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param  Request $request
-     * @return Response
-     */
-    public function update(Request $request)
-    {
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @return Response
-     */
-    public function destroy()
-    {
+      //$campaigns = Models\Site::where('user_id', Core\Secure::userId())->orderBy('created_at', 'desc')->get();
+      $campaigns = [];
+      //if (count($sites) == 0) {
+      //  return $this->create();
+      //} else {
+        return view('emailcampaigns::overview', compact('campaigns'));
+      //}
     }
 }

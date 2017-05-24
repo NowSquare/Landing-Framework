@@ -261,6 +261,8 @@ class AnalyticsController extends Controller
         // $row->created_at->timezone(\Auth::user()->timezone)->format('Y-m-d')
         if ($date == $row->date) {
           $visits = $row->visits;
+          if (! isset($min) || $visits < $min) $min = $visits;
+          if (! isset($max) || $visits > $min) $max = $visits;
           break 1;
         }
       }
@@ -273,6 +275,11 @@ class AnalyticsController extends Controller
       ];
 
     }
+
+    $response['vars'] = [
+      'min' => $min,
+      'max' => $max
+    ];
 
     return response()->json($response);
   }

@@ -80,7 +80,7 @@ $('#sites').on('change', function() {
       </div>
 
       <div class="card-box table-responsive">
-        <table class="table table-striped table-bordered table-hover" id="dt-table-analytics" style="width:100%">
+        <table class="table table-striped table-hover" id="dt-table-analytics" style="width:100%">
           <thead>
             <tr>
               <th>{{ trans('global.language') }}</th>
@@ -107,15 +107,11 @@ $('#sites').on('change', function() {
   </div>
 </div>
 
-
 <?php } // $data_found ?>
     </div>
   </div>
 
 </div>
-
-<style type="text/css">
-</style>
 
 <script>
 <?php if ($data_found) { ?>
@@ -174,9 +170,9 @@ function drawChart() {
       }
     },
     vAxis: {
-      minValue: 0,                    
-      viewWindow: {min: 0},       
-      format: '0',                     
+      minValue: 0,
+      viewWindow: {min: -0.15, max: parseInt(JSON.parse(jsonData).vars.max) + 1},
+      format: '0',
     },
     hAxis: {
       ticks: ticks,
