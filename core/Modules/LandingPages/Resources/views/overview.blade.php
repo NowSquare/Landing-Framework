@@ -36,7 +36,7 @@
   </div>
 
   <div class="row grid" id="grid">
-    <div class="grid-sizer col-xs-4" style="display:none"></div>
+    <div class="grid-sizer col-xs-6 col-sm-3 col-lg-3" style="display:none"></div>
 <?php 
 $i = 1;
 foreach($sites as $site) {
@@ -49,11 +49,9 @@ foreach($sites as $site) {
   $local_domain = 'lp/' . $site->local_domain;
   $url = $page->url();
 
-  $variant = 1;
-
   // Update files
+  $variant = 1;
   $storage_root = 'landingpages/site/' . \Platform\Controllers\Core\Secure::staticHash(\Platform\Controllers\Core\Secure::userId()) . '/' .  \Platform\Controllers\Core\Secure::staticHash($site->id, true) . '/' . \Platform\Controllers\Core\Secure::staticHash($page->id, true) . '/' . $variant;
-
   $published = (\Storage::disk('public')->exists($storage_root . '/published/index.blade.php')) ? '<span class="badge badge-xs badge-success pull-right">published</span>' : '<span class="badge badge-xs badge-danger pull-right">not published</span>';
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" style="max-width: 250px" id="item{{ $i }}">
@@ -85,7 +83,7 @@ foreach($sites as $site) {
            </tr>
            <tr>
              <td width="33" class="text-center"><i class="mi person_pin"></i></td>
-             <td>{{ trans('global.visits') }}:</td>
+             <td><a href="#/landingpages/analytics/{{ $sl_page }}" class="link">{{ trans('global.visits') }}</a>:</td>
              <td class="text-right"><strong>{{ number_format($page->visits) }}</strong></td>
            </tr>
            <tr>
@@ -151,7 +149,7 @@ $(function() {
   $('#grid').liveFilter('#grid_search', 'div.grid-item', {
     filterChildSelector: '.portlet-title',
     after: function() {
-      $grid.masonry('layout');
+      $grid.masonry('reloadItems').masonry();
     }
   });
 
@@ -223,7 +221,7 @@ $('.onClickDelete').on('click', function() {
     })
     .done(function(data) {
       $item.remove();
-      $grid.masonry('layout');
+      $grid.masonry('reloadItems').masonry();
     })
     .fail(function() {
       console.log('error');

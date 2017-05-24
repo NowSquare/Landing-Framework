@@ -93,6 +93,7 @@ return array(
   "last_30_days" => "Last 30 Days",
   "this_month" => "This Month",
   "last_month" => "Last Month",
+  "all_time" => "All Time",
   "date_from" => "From",
   "date_to" => "To",
   "custom_range" => "Custom Range",

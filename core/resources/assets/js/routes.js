@@ -48,6 +48,11 @@ $(function() {
       '/landingpages/create': function () { loadRoute('landingpages/create', 'landingpages'); },
       '/landingpages/create/:cat': function (cat) { loadRoute('landingpages/create/' + cat, 'landingpages'); },
       '/landingpages/editor/:sl': function (sl) { loadRoute('landingpages/editor?sl=' + sl, 'landingpages', true, true); },
+      '/landingpages/analytics': function () { loadRoute('landingpages/analytics', 'landingpages'); },
+      '/landingpages/analytics/:sl': function (sl) { loadRoute('landingpages/analytics?sl=' + sl, 'landingpages'); },
+      '/landingpages/analytics/:start/:end': function (start, end) { loadRoute('landingpages/analytics?start=' + start + '&end=' + end, 'landingpages'); },
+      '/landingpages/analytics/:start/:end/:sl': function (start, end, sl) { loadRoute('landingpages/analytics?sl=' + sl + '&start=' + start + '&end=' + end, 'landingpages'); },
+      '/landingpages/analytics/:start/:end/:sl/:filter': function (start, end, sl, filter) { loadRoute('landingpages/analytics?sl=' + sl + '&filter=' + filter + '&start=' + start + '&end=' + end, 'landingpages'); },
 
       '/members': function () { loadRoute('platform/members'); },
       '/member/:sl': function (sl) { loadRoute('platform/member/edit?sl=' + sl, 'members'); },

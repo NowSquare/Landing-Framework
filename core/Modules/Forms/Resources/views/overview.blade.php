@@ -36,7 +36,7 @@
   </div>
 
   <div class="row grid" id="grid">
-    <div class="grid-sizer col-xs-4" style="display:none"></div>
+    <div class="grid-sizer col-xs-6 col-sm-3 col-lg-3" style="display:none"></div>
 <?php 
 $i = 1;
 foreach($forms as $form) {
@@ -149,7 +149,7 @@ $(function() {
   $('#grid').liveFilter('#grid_search', 'div.grid-item', {
     filterChildSelector: '.portlet-title',
     after: function() {
-      $grid.masonry('layout');
+      $grid.masonry('reloadItems').masonry();
     }
   });
 
@@ -221,7 +221,7 @@ $('.onClickDelete').on('click', function() {
     })
     .done(function(data) {
       $item.remove();
-      $grid.masonry('layout');
+      $grid.masonry('reloadItems').masonry();
     })
     .fail(function() {
       console.log('error');

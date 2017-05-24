@@ -49,5 +49,7 @@ Route::group(['middleware' => ['web', 'limitation:landingpages.visible'], 'prefi
     Route::get('editor/modal/domain', 'LandingPagesController@editorModalDomain');
     Route::post('editor/domain', 'LandingPagesController@editorPostDomain');
 
+    // Analytics
+    Route::get('analytics', 'AnalyticsController@showAnalytics');
   });
 });

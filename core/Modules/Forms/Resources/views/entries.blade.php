@@ -14,7 +14,11 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
+            <a class="navbar-brand link" href="#/forms">{{ trans('forms::global.module_name_plural') }}</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('forms::global.entries') }}</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
+            <a class="navbar-brand link" href="{{ $this_form->url() }}" target="_blank">{{ $this_form->name }}</a>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-title-navbar">
@@ -30,19 +34,20 @@
             </div>
 
             <div class="navbar-form navbar-right" style="min-width:240px">
-                    <select id="forms" class="select2-required">
+
+<select id="forms" class="select2-required">
 <?php
 foreach($forms as $form) {
-  if ($form->id == $form_id) $this_form = $form;
-  $sl_form = \Platform\Controllers\Core\Secure::array2string(['form_id' => $form->id]);
-  $selected = ($form->id == $form_id) ? ' selected' : '';
-  echo '<option value="' . $sl_form . '"' . $selected . '>' . $form->name . '</option>';
+$sl_form = \Platform\Controllers\Core\Secure::array2string(['form_id' => $form->id]);
+$selected = ($form->id == $form_id) ? ' selected' : '';
+echo '<option value="' . $sl_form . '"' . $selected . '>' . $form->name . '</option>';
 }
 ?>
-          </select>
+</select>
+
 <script>
 $('#forms').on('change', function() {
-  document.location = ($(this).val() == '') ? '#/forms/entries/<?php echo $date_start ?>/<?php echo $date_end ?>' : '#/forms/entries/<?php echo $date_start ?>/<?php echo $date_end ?>/' + $(this).val();
+  document.location = '#/forms/entries/' + $(this).val();
 });
 </script>
               </div>
@@ -166,7 +171,7 @@ var entries_table = $('#dt-table-entries').DataTable({
 <?php foreach($columns['custom'] as $column) { ?>
     { data: "{{ $column }}" }, 
 <?php } ?>
-    { data: "created_at", width: 60 },
+    { data: "created_at", width: 110 },
     { data: "sl", width: 74, sortable: false}
   ],
   rowCallback: function(row, data) {
@@ -372,7 +377,8 @@ daterangepicker_opts.ranges = {
  [ _lang['last_7_days'] ]: [ moment().subtract(6, 'days'), moment() ],
  [ _lang['last_30_days'] ]: [ moment().subtract(29, 'days'), moment() ],
  [ _lang['this_month'] ]: [ moment().startOf('month'), moment().endOf('month') ],
- [ _lang['last_month'] ]: [ moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month') ]
+ [ _lang['last_month'] ]: [ moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month') ],
+ [ _lang['all_time'] ]: [ moment('<?php echo $earliest_date ?>').format('MM-D-YYYY'), moment() ]
 };
   
 daterangepicker_opts.startDate = moment('<?php echo $date_start ?>').format('MM-D-YYYY');

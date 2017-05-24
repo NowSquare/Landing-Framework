@@ -36,6 +36,9 @@ class EntriesController extends Controller
     // All forms
     $forms = Models\Form::where('user_id', Core\Secure::userId())->orderBy('name', 'asc')->get();
 
+    // This form
+    $this_form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $form_id)->first();
+
     // Get form columns
     $earliest_date = date('Y-m-d');
 
@@ -66,6 +69,7 @@ class EntriesController extends Controller
       'date_start', 
       'date_end', 
       'forms', 
+      'this_form', 
       'columns', 
       'form_id', 
       'sl'
@@ -116,9 +120,16 @@ class EntriesController extends Controller
     if(\Auth::check() && $sl != '') {
       $qs = Core\Secure::string2array($sl);
       $entry = $Entry->where('id', '=',  $qs['entry_id'])->delete();
+
+      // Decrement
+      Models\Form::whereId($qs['form_id'])->decrement('conversions');
+
     } elseif (\Auth::check()) {
       foreach(request()->input('ids', array()) as $id) {
         $affected = $Entry->where('id', '=', $id)->delete();
+
+        // Decrement
+        Models\Form::whereId($qs['form_id'])->decrement('conversions');
       }
     }
 
@@ -248,14 +259,14 @@ class EntriesController extends Controller
       $columns['DT_RowId'] = 'row_' . $row->id;
       $columns['email'] = $row->email;
       $columns['created_at'] = $row->created_at->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
-      $columns['sl'] = Core\Secure::array2string(['entry_id' => $row->id]);
+      $columns['sl'] = Core\Secure::array2string(['form_id' => $form_id, 'entry_id' => $row->id]);
 
       foreach($aFormColumns as $column) {
-        $columns[$column] = $row->{$column};
+        $columns[$column] = \Illuminate\Support\Str::limit(strip_tags($row->{$column}), 20, '...');
       }
 
       foreach($aCustomColumns as $column) {
-        $columns[$column] = $row->entry[$column];
+        $columns[$column] = \Illuminate\Support\Str::limit(strip_tags($row->entry[$column]), 20, '...');
       }
 
       $data[] = $columns;
