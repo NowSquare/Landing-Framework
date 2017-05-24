@@ -209,10 +209,15 @@ return array(
    |--------------------------------------------------------------------------
    */
 
+  "analytics" => "Analytics",
   "conversions" => "Conversions",
   "visits" => "Visits",
   "visit_online" => "Visit online",
-
+  "browser" => "Browser",
+  "version" => "Version",
+  "os" => "OS",
+  "" => "",
+  "" => "",
 
   /*
    |--------------------------------------------------------------------------
