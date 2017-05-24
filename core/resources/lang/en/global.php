@@ -210,6 +210,7 @@ return array(
    */
 
   "analytics" => "Analytics",
+  "view_analytics" => "View analytics",
   "conversions" => "Conversions",
   "visits" => "Visits",
   "visit_online" => "Visit online",

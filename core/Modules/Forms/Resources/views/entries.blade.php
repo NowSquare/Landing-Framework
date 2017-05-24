@@ -399,11 +399,10 @@ $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
   $('#reportrange span').html(picker.startDate.format('MMMM D, YYYY') + ' - ' + picker.endDate.format('MMMM D, YYYY'));
   date_start = picker.startDate.format('YYYY-MM-DD');
   date_end = picker.endDate.format('YYYY-MM-DD');
+
+<?php if ($data_found) { ?>
   entries_table.ajax.reload();
-<?php /*
-  //var sl = '{{ $sl }}';
-  //document.location = (sl == '') ? '#/forms/entries/' + start + '/' + end : '#/forms/entries/' + start + '/' + end + '/' + sl;
-  //document.location = '#/forms/entries/' + start + '/' + end + '/' + forms + '/' + encodeURIComponent(filter);*/ ?>
+<?php } // $data_found ?>
 });
 
 </script>
