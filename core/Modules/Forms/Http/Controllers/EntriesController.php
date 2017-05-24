@@ -262,7 +262,18 @@ class EntriesController extends Controller
       $columns['sl'] = Core\Secure::array2string(['form_id' => $form_id, 'entry_id' => $row->id]);
 
       foreach($aFormColumns as $column) {
-        $columns[$column] = \Illuminate\Support\Str::limit(strip_tags($row->{$column}), 20, '...');
+        $value = $row->{$column};
+
+        // Parse special fields
+        if ($column == 'personal_gender') {
+          $value = ($row->{$column} == 0) ? trans('global.form_fields_gender.male') : trans('global.form_fields_gender.female');
+        }
+
+        if ($column == 'personal_title') {
+          $value = ($row->{$column} == 0) ? trans('global.form_fields_title.mr') : trans('global.form_fields_title.ms');
+        }
+
+        $columns[$column] = \Illuminate\Support\Str::limit(strip_tags($value), 20, '...');
       }
 
       foreach($aCustomColumns as $column) {
