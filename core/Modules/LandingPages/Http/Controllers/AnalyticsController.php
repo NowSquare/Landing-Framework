@@ -241,7 +241,8 @@ class AnalyticsController extends Controller
 
     $response['cols'][] = [
       'label' => false,
-      'type' => 'date'
+      'type' => 'string'
+      /*'type' => 'date'*/
     ];
 
     $response['cols'][] = [
@@ -269,7 +270,8 @@ class AnalyticsController extends Controller
 
       $response['rows'][] = [
         'c' => [
-          ['v' => 'Date(' . $dArr['y'] . ', ' . $dArr['m'] . ', ' . $dArr['d'] . ')'],
+          ['v' => \Carbon\Carbon::parse($date)->timezone(\Auth::user()->timezone)->toFormattedDateString()],
+          /*['v' => 'Date(' . $dArr['y'] . ', ' . $dArr['m'] . ', ' . $dArr['d'] . ')'],*/
           ['v' => $visits]
         ]
       ];

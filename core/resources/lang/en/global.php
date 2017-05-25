@@ -101,6 +101,13 @@ return array(
   "enter_name" => "Enter name",
   "please_enter_value" => "Please enter a value!",
 
+  "new_first" => "Newest first",
+  "old_first" => "Oldest first",
+  "high_converting_first" => "Highest converting first",
+  "low_converting_first" => "Lowest converting first",
+  "most_visited_first" => "Most visited first",
+  "least_visited_first" => "Least visited first",
+
   /*
    |--------------------------------------------------------------------------
    | Forms

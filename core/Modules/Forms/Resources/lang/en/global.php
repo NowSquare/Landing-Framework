@@ -10,7 +10,7 @@ return array(
 
 	"module_name" => "Form",
 	"module_name_plural" => "Forms",
-	"module_desc" => "Collect information. Make reservations, proposals, downloads, contact and more.",
+	"module_desc" => "Collect information. Reservations, proposals, contact and more.",
 
 	/*
 	|--------------------------------------------------------------------------

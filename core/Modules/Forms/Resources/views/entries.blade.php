@@ -80,7 +80,7 @@ foreach($forms as $form) {
     <div class="col-sm-12">
 <?php if ($data_found) { ?>
       <div class="card-box table-responsive">
-        <table class="table table-striped table-bordered table-hover table-selectable" id="dt-table-entries" style="width:100%">
+        <table class="table table-striped table-hover table-selectable" id="dt-table-entries" style="width:100%; border: 1px solid #ddd;">
           <thead>
             <tr>
               <th>{{ trans('global.email') }}</th>

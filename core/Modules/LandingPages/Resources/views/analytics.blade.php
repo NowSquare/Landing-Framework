@@ -89,11 +89,17 @@ $('#sites').on('change', function() {
 <?php if ($data_found) { ?>
 
       <div class="card-box">
-        <div id="stats_line_chart"></div>
+        <div id="stats_line_chart">
+
+          <div style="height:244px">
+            <div class="loader loader-xs"></div>
+          </div>
+          
+        </div>
       </div>
 
       <div class="card-box table-responsive">
-        <table class="table table-striped table-hover" id="dt-table-analytics" style="width:100%">
+        <table class="table table-striped table-hover" id="dt-table-analytics" style="width:100%; border: 1px solid #ddd;">
           <thead>
             <tr>
               <th>{{ trans('global.language') }}</th>
@@ -188,6 +194,7 @@ function drawChart() {
       format: '0',
     },
     hAxis: {
+      gridlines: {count: 30},
       ticks: ticks,
       format: 'M/d/yy'
     }
@@ -220,7 +227,7 @@ var analytics_table = $('#dt-table-analytics').DataTable({
     }
   },
   order: [ [7, "desc"] ],
-  dom: "<'row'<'col-sm-12 dt-header'<'pull-left'lr><'pull-right'f><'pull-right hidden-sm hidden-xs'T><'clearfix'>>>t<'row'<'col-sm-12 dt-footer'<'pull-left'i><'pull-right'p><'clearfix'>>>",
+  dom: "<'row'<'col-sm-12 dt-header'<'pull-left'lr><'pull-right'><'pull-right hidden-sm hidden-xs'T><'clearfix'>>>t<'row'<'col-sm-12 dt-footer'<'pull-left'i><'pull-right'p><'clearfix'>>>",
   processing: true,
   serverSide: true,
   stateSave: true,
@@ -268,8 +275,6 @@ var analytics_table = $('#dt-table-analytics').DataTable({
     }
   }
 });
-
-$('#dt-table-analytics_wrapper .dataTables_filter input').attr('placeholder', "{{ trans('global.search_') }}");
 
 <?php } else { // $data_found ?>
 

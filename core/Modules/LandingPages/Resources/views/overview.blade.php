@@ -20,13 +20,35 @@
 
             <div class="navbar-form navbar-right">
 
+
                 <div class="input-group input-group" style="margin:0 15px 0 0">
                   <span class="input-group-addon"><i class="fa fa-search"></i></span>
                   <input type="text" class="form-control input" id="grid_search" placeholder="{{ trans('global.search_') }}">
                 </div>
 
+                <div class="input-group input-group" style="margin:0 15px 0 0">
+                  <span class="input-group-addon"><i class="mi sort"></i></span>
+                  <div style="min-width:180px">
+                    <select id="order" class="select2-required">
+                      <option value="new_first"<?php if ($order == 'new_first') echo ' selected'; ?>>{{ trans('global.new_first') }}</option>
+                      <option value="old_first"<?php if ($order == 'old_first') echo ' selected'; ?>>{{ trans('global.old_first') }}</option>
+                      <option value="high_converting_first"<?php if ($order == 'high_converting_first') echo ' selected'; ?>>{{ trans('global.high_converting_first') }}</option>
+                      <option value="low_converting_first"<?php if ($order == 'low_converting_first') echo ' selected'; ?>>{{ trans('global.low_converting_first') }}</option>
+                      <option value="most_visited_first"<?php if ($order == 'most_visited_first') echo ' selected'; ?>>{{ trans('global.most_visited_first') }}</option>
+                      <option value="least_visited_first"<?php if ($order == 'least_visited_first') echo ' selected'; ?>>{{ trans('global.least_visited_first') }}</option>
+                    </select>
+                  </div>
+                </div>
+
+<script>
+$('#order').on('change', function() {
+  document.location = '#/landingpages/' + $(this).val();
+});
+</script>
+
                 <a href="#/landingpages/create" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('landingpages::global.create_landing_page') }}</a>
             </div>
+
 
           </div>
         </div>

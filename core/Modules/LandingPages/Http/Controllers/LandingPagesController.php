@@ -171,12 +171,31 @@ class LandingPagesController extends Controller
      */
     public function index()
     {
-      $sites = Models\Site::where('user_id', Core\Secure::userId())->orderBy('created_at', 'desc')->get();
+      $order = request()->input('order', '');
+      $cookie = null;
+
+      if ($order != '') {
+        $cookie = \Cookie::queue('lp_order', $order, 60 * 24 * 7 * 4 * 6);
+        
+      } else {
+        $order = request()->cookie('lp_order', 'new_first');
+      }
+
+      switch($order) {
+        default: $order_column = 'created_at'; $order_by = 'desc';
+        case 'old_first': $order_column = 'created_at'; $order_by = 'asc'; break;
+        case 'high_converting_first': $order_column = 'conversions'; $order_by = 'desc'; break;
+        case 'low_converting_first': $order_column = 'conversions'; $order_by = 'asc'; break;
+        case 'most_visited_first': $order_column = 'visits'; $order_by = 'desc'; break;
+        case 'least_visited_first': $order_column = 'visits'; $order_by = 'asc'; break;
+      }
+
+      $sites = Models\Site::where('user_id', Core\Secure::userId())->orderBy($order_column, $order_by)->get();
 
       if (count($sites) == 0) {
         return $this->create();
       } else {
-        return view('landingpages::overview', compact('sites'));
+        return view('landingpages::overview', compact('sites', 'order'))->withCookie($cookie);
       }
     }
 
