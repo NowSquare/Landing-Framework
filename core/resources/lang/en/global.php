@@ -103,8 +103,8 @@ return array(
 
   "new_first" => "Newest first",
   "old_first" => "Oldest first",
-  "high_converting_first" => "Highest converting first",
-  "low_converting_first" => "Lowest converting first",
+  "high_conversion_first" => "Highest conversion first",
+  "low_conversion_first" => "Lowest conversion first",
   "most_visited_first" => "Most visited first",
   "least_visited_first" => "Least visited first",
 
@@ -218,6 +218,7 @@ return array(
 
   "analytics" => "Analytics",
   "view_analytics" => "View analytics",
+  "conversion" => "Conversion",
   "conversions" => "Conversions",
   "visits" => "Visits",
   "visit_online" => "Visit online",

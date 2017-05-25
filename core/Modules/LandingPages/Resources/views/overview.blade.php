@@ -31,8 +31,8 @@
                     <select id="order" class="select2-required-no-search">
                       <option value="new_first"<?php if ($order == 'new_first') echo ' selected'; ?>>{{ trans('global.new_first') }}</option>
                       <option value="old_first"<?php if ($order == 'old_first') echo ' selected'; ?>>{{ trans('global.old_first') }}</option>
-                      <option value="high_converting_first"<?php if ($order == 'high_converting_first') echo ' selected'; ?>>{{ trans('global.high_converting_first') }}</option>
-                      <option value="low_converting_first"<?php if ($order == 'low_converting_first') echo ' selected'; ?>>{{ trans('global.low_converting_first') }}</option>
+                      <option value="high_converting_first"<?php if ($order == 'high_converting_first') echo ' selected'; ?>>{{ trans('global.high_conversion_first') }}</option>
+                      <option value="low_converting_first"<?php if ($order == 'low_converting_first') echo ' selected'; ?>>{{ trans('global.low_conversion_first') }}</option>
                       <option value="most_visited_first"<?php if ($order == 'most_visited_first') echo ' selected'; ?>>{{ trans('global.most_visited_first') }}</option>
                       <option value="least_visited_first"<?php if ($order == 'least_visited_first') echo ' selected'; ?>>{{ trans('global.least_visited_first') }}</option>
                     </select>
@@ -110,8 +110,8 @@ foreach($sites as $site) {
            </tr>
            <tr>
              <td class="text-center"><i class="mi filter_list"></i></td>
-             <td>{{ trans('global.conversions') }}:</td>
-             <td class="text-right"><strong>{{ number_format($page->conversions) }}</strong></td>
+             <td>{{ trans('global.conversion') }}:</td>
+             <td class="text-right"><strong>{{ $page->conversion }}% ({{ number_format($page->conversions) }})</strong></td>
            </tr>
          </table>
         </div>

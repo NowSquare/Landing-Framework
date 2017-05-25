@@ -184,14 +184,14 @@ class LandingPagesController extends Controller
       switch($order) {
         case 'new_first': $order_column = 'created_at'; $order_by = 'desc'; break;
         case 'old_first': $order_column = 'created_at'; $order_by = 'asc'; break;
-        case 'high_converting_first': $order_column = 'conversions'; $order_by = 'desc'; break;
-        case 'low_converting_first': $order_column = 'conversions'; $order_by = 'asc'; break;
+        case 'high_converting_first': $order_column = 'conversion'; $order_by = 'desc'; break;
+        case 'low_converting_first': $order_column = 'conversion'; $order_by = 'asc'; break;
         case 'most_visited_first': $order_column = 'visits'; $order_by = 'desc'; break;
         case 'least_visited_first': $order_column = 'visits'; $order_by = 'asc'; break;
         default: $order_column = 'created_at'; $order_by = 'desc';
       }
 
-      $sites = Models\Site::where('user_id', Core\Secure::userId())->orderBy($order_column, $order_by)->get();
+      $sites = Models\Site::where('user_id', Core\Secure::userId())->select('landing_sites.*')->addSelect(\DB::raw('((landing_sites.conversions / landing_sites.visits) * 100) as conversion'))->orderBy($order_column, $order_by)->get();
 
       if (count($sites) == 0) {
         return $this->create();
