@@ -229,10 +229,6 @@ class FunctionsController extends Controller
       // Form is linked to landing page.
       $landing_site_id = $page->site->id;
       $landing_page_id = $page->id;
-
-      // Increment conversions
-      \DB::table('landing_sites')->whereId($landing_site_id)->increment('conversions');
-      \DB::table('landing_pages')->whereId($landing_page_id)->increment('conversions');
     }
 
     $stats = \DB::table($tbl_name)
@@ -241,6 +237,11 @@ class FunctionsController extends Controller
               ->first();
 
     if (empty($stats)) {
+
+      // Increment conversions
+      \DB::table('landing_sites')->whereId($landing_site_id)->increment('conversions');
+      \DB::table('landing_pages')->whereId($landing_page_id)->increment('conversions');
+
       // Increment entries
       \DB::table('forms')->whereId($form->id)->increment('conversions');
 
