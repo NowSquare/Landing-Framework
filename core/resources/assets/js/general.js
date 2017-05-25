@@ -1,6 +1,35 @@
 var selected_entries = [];
 var ladda_button;
 
+/*
+ * Editor modal scrolling
+ */
+
+if ($('.editor-modal').length) {
+  window.onload = checkEditorModal;
+  $(window).scroll(checkEditorModal);
+  $(window).resize($.debounce(50, checkEditorModal));
+  checkEditorModal();
+}
+
+function checkEditorModal() {
+  var $editorModal = $('.editor-modal');
+  //var scroll = $(window).scrollTop();
+
+  if (parseInt($('html').height()) + 50 > $(window).height()) {
+    $editorModal.addClass('editor-modal-scrolling');
+  } else {
+    $editorModal.removeClass('editor-modal-scrolling');
+  }
+/*
+  if (scroll >= 40) {
+    $editorModal.addClass('editor-modal-scrolling');
+  } else {
+    $editorModal.removeClass('editor-modal-scrolling');
+  }
+*/
+}
+
 /**
  * Cookie helper functions
  */

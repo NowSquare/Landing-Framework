@@ -50,6 +50,7 @@ foreach($blocks as $block) {
 }
 .preview_frame {
   pointer-events: none;
+  position: absolute;
   width: 400%;
   -ms-zoom: 0.25;
   -moz-transform: scale(0.25);

@@ -126,6 +126,7 @@ foreach($campaigns as $campaign) {
 }
 .preview_frame {
   pointer-events: none;
+  position: absolute;
   width: 500%;
   -ms-zoom: 0.2;
   -moz-transform: scale(0.2);
@@ -184,7 +185,7 @@ foreach($campaigns as $campaign) {
   $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
-<?php if ($i == count($campaigns)) { ?>
+<?php if ($i == count($campaigns) + 1) { ?>
     setTimeout(function() {
       $grid = $('.grid').masonry({
         itemSelector: '.grid-item',

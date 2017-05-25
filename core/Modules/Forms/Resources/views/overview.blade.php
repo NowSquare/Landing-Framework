@@ -41,7 +41,7 @@
 
 <script>
 $('#order').on('change', function() {
-  document.location = '#/forms/' + $(this).val();
+  document.location = '#/forms/order/' + $(this).val();
 });
 </script>
 
@@ -145,6 +145,7 @@ foreach($forms as $form) {
 }
 .preview_frame {
   pointer-events: none;
+  position: absolute;
   width: 400%;
   -ms-zoom: 0.25;
   -moz-transform: scale(0.25);
@@ -203,7 +204,7 @@ foreach($forms as $form) {
   $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
-<?php if ($i == count($forms)) { ?>
+<?php if ($i == count($forms) + 1) { ?>
     setTimeout(function() {
       $grid = $('.grid').masonry({
         itemSelector: '.grid-item',

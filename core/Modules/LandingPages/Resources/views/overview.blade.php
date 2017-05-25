@@ -41,7 +41,7 @@
 
 <script>
 $('#order').on('change', function() {
-  document.location = '#/landingpages/' + $(this).val();
+  document.location = '#/landingpages/order/' + $(this).val();
 });
 </script>
 
@@ -147,6 +147,7 @@ foreach($sites as $site) {
 }
 .preview_frame {
   pointer-events: none;
+  position: absolute;
   width: 500%;
   -ms-zoom: 0.2;
   -moz-transform: scale(0.2);
@@ -205,7 +206,7 @@ foreach($sites as $site) {
   $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
-<?php if ($i == count($sites)) { ?>
+<?php if ($i == count($sites) + 1) { ?>
     setTimeout(function() {
       $grid = $('.grid').masonry({
         itemSelector: '.grid-item',
