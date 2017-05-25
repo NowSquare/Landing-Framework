@@ -182,12 +182,13 @@ class LandingPagesController extends Controller
       }
 
       switch($order) {
-        default: $order_column = 'created_at'; $order_by = 'desc';
+        case 'new_first': $order_column = 'created_at'; $order_by = 'desc'; break;
         case 'old_first': $order_column = 'created_at'; $order_by = 'asc'; break;
         case 'high_converting_first': $order_column = 'conversions'; $order_by = 'desc'; break;
         case 'low_converting_first': $order_column = 'conversions'; $order_by = 'asc'; break;
         case 'most_visited_first': $order_column = 'visits'; $order_by = 'desc'; break;
         case 'least_visited_first': $order_column = 'visits'; $order_by = 'asc'; break;
+        default: $order_column = 'created_at'; $order_by = 'desc';
       }
 
       $sites = Models\Site::where('user_id', Core\Secure::userId())->orderBy($order_column, $order_by)->get();
