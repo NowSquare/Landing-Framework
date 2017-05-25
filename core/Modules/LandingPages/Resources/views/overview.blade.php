@@ -167,7 +167,12 @@ foreach($sites as $site) {
 
 <script>
 $(function() {
-  var $grid;
+  var $grid = $('.grid').masonry({
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+    transitionDuration: '0.2s'
+  });
 
   $('#grid').liveFilter('#grid_search', 'div.grid-item', {
     filterChildSelector: '.portlet-title',
@@ -206,14 +211,9 @@ foreach($sites as $site) {
   $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
-<?php if ($i == count($sites) + 1) { ?>
+<?php if ($i == count($sites)) { ?>
     setTimeout(function() {
-      $grid = $('.grid').masonry({
-        itemSelector: '.grid-item',
-        columnWidth: '.grid-sizer',
-        percentPosition: true,
-        transitionDuration: '0.2s'
-      });
+      $grid.masonry('reloadItems').masonry();
     }, 100);
 <?php } ?>
   });

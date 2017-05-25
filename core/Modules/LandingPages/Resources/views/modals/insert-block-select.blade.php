@@ -63,6 +63,12 @@ foreach($blocks as $block) {
 </style>
 <script>
 $(function() {
+  var $grid = $('.grid').masonry({
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+    transitionDuration: '0.2s'
+  });
 
   blockUI('.preview-container');
   $(window).resize(resizeEditFrame);
@@ -88,12 +94,9 @@ foreach($blocks as $block) {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
 <?php if ($i == count($blocks)) { ?>
-  var $grid = $('.grid').masonry({
-    itemSelector: '.grid-item',
-    columnWidth: '.grid-sizer',
-    percentPosition: true,
-    transitionDuration: '0.2s'
-  });
+    setTimeout(function() {
+      $grid.masonry('reloadItems').masonry();
+    }, 100);
 <?php } ?>
   });
 <?php

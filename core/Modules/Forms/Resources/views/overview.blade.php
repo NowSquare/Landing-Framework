@@ -165,8 +165,13 @@ foreach($forms as $form) {
 
 <script>
 $(function() {
-  var $grid;
-
+  var $grid = $('.grid').masonry({
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+    transitionDuration: '0.2s'
+  });
+  
   $('#grid').liveFilter('#grid_search', 'div.grid-item', {
     filterChildSelector: '.portlet-title',
     after: function() {
@@ -204,14 +209,9 @@ foreach($forms as $form) {
   $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
-<?php if ($i == count($forms) + 1) { ?>
+<?php if ($i == count($forms)) { ?>
     setTimeout(function() {
-      $grid = $('.grid').masonry({
-        itemSelector: '.grid-item',
-        columnWidth: '.grid-sizer',
-        percentPosition: true,
-        transitionDuration: '0.2s'
-      });
+      $grid.masonry('reloadItems').masonry();
     }, 100);
 <?php } ?>
   });
