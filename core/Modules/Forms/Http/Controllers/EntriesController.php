@@ -84,24 +84,55 @@ class EntriesController extends Controller
   {
     $type = request()->input('type', 'xls');
     if (! in_array($type, ['xls', 'xlsx', 'csv'])) $type = 'xls';
-    $filename = Core\Reseller::get()->name . '-' . str_slug(trans('global.forms')) . '-' . date('Y-m-d h:i:s');
-    $forms = Models\Form::where('forms.user_id', Core\Secure::userId())
-      ->select(\DB::raw("
-        forms.name as '" . trans('global.name') . "', 
-        forms.description as '" . trans('global.description') . "', 
-        forms.content as '" . trans('global.content') . "', 
-        lat as '" . trans('global.latitude') . "', 
-        lng as '" . trans('global.longitude') . "', 
-        zoom as '" . trans('global.zoom') . "', 
-        active as '" . trans('global.active') . "', 
-        forms.created_at as '" . trans('global.created') . "', 
-        forms.updated_at as '" . trans('global.updated') . "'"))->get();
 
-    \Excel::create($filename, function($excel) use($forms) {
-      $excel->sheet(trans('global.forms'), function($sheet) use($forms) {
-        $sheet->fromArray($forms);
-      });
-    })->download($type);
+    $sl = request()->input('sl', '');
+
+    if ($sl != '') {
+      $qs = Core\Secure::string2array($sl);
+      $form_id = $qs['form_id'];
+
+      $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $form_id)->first();
+
+      $filename = str_slug(Core\Reseller::get()->name . '-' . $form->name . '-' . date('Y-m-d h:i:s'));
+
+      // Entry model
+      $tbl_name = 'x_form_entries_' . Core\Secure::userId();
+
+      $Entry = new Models\Entry([]);
+      $Entry->setTable($tbl_name);
+
+      $columns = $Entry->getColumns($form_id);
+
+      // Columns
+      $aColumn = [];
+      $aColumn[] = "email as " . trans('global.email') . "";
+
+      foreach($columns['form'] as $column) {
+
+        $trans = $column;
+        foreach (trans('global.form_fields') as $form_cat => $form_items) {
+          $trans = str_replace($form_cat . '_', $form_cat . '.', $trans);
+        }
+
+        $trans = trans('global.form_fields.' . $trans);
+
+        $aColumn[] = $column . " as " . $trans . "";
+      }
+
+      foreach($columns['custom'] as $column) {        
+        $aColumn[] = \DB::raw('JSON_UNQUOTE(json_extract(entry, \'$."' . $column . '"\')) as "' . $column . '"');
+      }
+
+      $aColumn[] = "created_at as " . trans('global.created') . "";
+
+      $entries = $Entry->where('form_id', $form_id)->select($aColumn)->orderBy('created_at', 'asc')->get();
+
+      \Excel::create($filename, function($excel) use($entries) {
+        $excel->sheet(trans('global.forms'), function($sheet) use($entries) {
+          $sheet->fromArray($entries);
+        });
+      })->download($type);
+    }
   }
 
   /**

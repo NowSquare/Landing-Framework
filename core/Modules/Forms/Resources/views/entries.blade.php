@@ -58,15 +58,15 @@ foreach($forms as $form) {
                   <li class="dropdown-header">{{ trans('global.with_selected') }}</li>
                   <li class="must-have-selection"><a href="javascript:void(0);" id="selected-delete">{{ trans('global.delete_selected') }}</a></li>
                 </ul>
-              </li><?php /*
+              </li>
               <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ trans('global.export') }} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="{{ url('forms/entries/export?type=xls') }}">Excel5 (xls)</a></li>
-                  <li><a href="{{ url('forms/entries/export?type=xlsx') }}">Excel2007 (xlsx)</a></li>
-                  <li><a href="{{ url('forms/entries/export?type=csv') }}">CSV</a></li>
+                  <li><a href="{{ url('forms/entries/export?type=xls&sl=' . $sl) }}">Excel5 (xls)</a></li>
+                  <li><a href="{{ url('forms/entries/export?type=xlsx&sl=' . $sl) }}">Excel2007 (xlsx)</a></li>
+                  <li><a href="{{ url('forms/entries/export?type=csv&sl=' . $sl) }}">CSV</a></li>
                 </ul>
-              </li>*/ ?>
+              </li>
             </ul>
 <?php } // $data_found ?>
           </div>
