@@ -28,7 +28,7 @@
                 <div class="input-group input-group" style="margin:0 15px 0 0">
                   <span class="input-group-addon"><i class="mi sort"></i></span>
                   <div style="min-width:180px">
-                    <select id="order" class="select2-required">
+                    <select id="order" class="select2-required-no-search">
                       <option value="new_first"<?php if ($order == 'new_first') echo ' selected'; ?>>{{ trans('global.new_first') }}</option>
                       <option value="old_first"<?php if ($order == 'old_first') echo ' selected'; ?>>{{ trans('global.old_first') }}</option>
                       <option value="high_converting_first"<?php if ($order == 'high_converting_first') echo ' selected'; ?>>{{ trans('global.high_converting_first') }}</option>

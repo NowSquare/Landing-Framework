@@ -694,8 +694,18 @@ function select2() {
       allowClear: true
     });
 
+    $('.select2-no-search').select2({
+      allowClear: true,
+      minimumResultsForSearch: -1
+    });
+
     $('.select2-required').select2({
       allowClear: false
+    });
+
+    $('.select2-required-no-search').select2({
+      allowClear: false,
+      minimumResultsForSearch: -1
     });
 
     $('.select2-tags').select2({
