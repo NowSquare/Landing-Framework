@@ -182,6 +182,18 @@ function lfGetHtml() {
     }
   });
 
+  // Remove stylesheets starting with
+  $html.find('link[rel=stylesheet]').each(function() {
+    var href = $(this).attr('href');
+    var remove_href_starting_with = ['/assets/js/skins/', 'assets/js/skins/'];
+
+    for (var i = 0, len = remove_href_starting_with.length; i < len; i++) {
+      if (href.substr(0, remove_href_starting_with[i].length) == remove_href_starting_with[i]) {
+        $(this).remove();
+      }
+    }
+  });
+
   // Remove empty style blocks
   $html.find('style[type="text/css"]').each(function() {
     var contents = $(this).text();
