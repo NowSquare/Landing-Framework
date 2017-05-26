@@ -455,3 +455,14 @@ gulp.task('editor_styles', function() {
   .pipe(gulp.dest('../assets/css'))
   .pipe(livereload());
 });
+
+/*
+ |--------------------------------------------------------------------------
+ | ACE editor
+ |--------------------------------------------------------------------------
+ */
+
+gulp.task('ace', function(){
+  gulp.src('bower_components/ace-builds/src-min/**/*')
+    .pipe(gulp.dest('../assets/ace'));
+});

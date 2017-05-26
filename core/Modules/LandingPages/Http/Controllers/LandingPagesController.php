@@ -167,6 +167,34 @@ class LandingPagesController extends Controller
     }
 
     /**
+     * Landing page source editor
+     */
+    public function sourceEditor()
+    {
+      $sl = request()->input('sl', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        if (isset($qs['landing_page_id'])) {
+          $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $qs['landing_page_id'])->first();
+
+          $variant = 1;
+
+          // Get html
+          $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' .  Core\Secure::staticHash($page->landing_site_id, true) . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
+
+          // Beautify html
+          $html = \Storage::disk('public')->get($storage_root . '/index.blade.php');
+
+          if (! empty($page)) {
+            return view('landingpages::source', compact('page', 'html'));
+          }
+        }
+      }
+    }
+
+    /**
      * Landing pages backend main
      */
     public function index()

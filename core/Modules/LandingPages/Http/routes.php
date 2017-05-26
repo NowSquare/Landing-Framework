@@ -53,5 +53,11 @@ Route::group(['middleware' => ['web', 'limitation:landingpages.visible'], 'prefi
     Route::get('analytics', 'AnalyticsController@showAnalytics');
     Route::post('analytics/stats/data', 'AnalyticsController@getStatData');
     Route::post('analytics/stats/range', 'AnalyticsController@getStatRange');
+
+    // Edit html
+    Route::group(['middleware' => ['auth:web', 'limitation:landingpages.edit_html']], function () {
+      Route::get('source', 'LandingPagesController@sourceEditor');
+    });
+
   });
 });
