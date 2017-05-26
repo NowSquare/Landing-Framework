@@ -228,7 +228,7 @@ return array(
   "os" => "OS",
   "brand" => "Brand",
   "model" => "Model",
-  "visitor_s_" => "Visitor(s)",
+  "visit_s_" => "Visit(s)",
 
   /*
    |--------------------------------------------------------------------------

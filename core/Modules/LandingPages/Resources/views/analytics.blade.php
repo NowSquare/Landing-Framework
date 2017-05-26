@@ -173,7 +173,7 @@ function drawChart() {
   if (date_start == date_end) {
     jsonData = JSON.parse(jsonData);
     var visitors = jsonData.rows[0].c[1].v;
-    $('#stats_line_chart').html('<h1 class="text-center">' + visitors + ' {{ trans('global.visitor_s_') }}</h1>');
+    $('#stats_line_chart').html('<h1 class="text-center">' + visitors + ' {{ trans('global.visit_s_') }}</h1>');
   } else {
 
     chartRangeData = new google.visualization.DataTable(jsonData);
