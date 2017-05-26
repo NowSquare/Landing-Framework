@@ -43,6 +43,7 @@ $(function() {
       '/landingpages/create': function () { loadRoute('landingpages/create', 'landingpages'); },
       '/landingpages/create/:cat': function (cat) { loadRoute('landingpages/create/' + cat, 'landingpages'); },
       '/landingpages/editor/:sl': function (sl) { loadRoute('landingpages/editor?sl=' + sl, 'landingpages', true, true); },
+      '/landingpages/source/:sl': function (sl) { loadRoute('landingpages/source?sl=' + sl, 'landingpages'); },
       '/landingpages/analytics/:sl': function (sl) { loadRoute('landingpages/analytics?sl=' + sl, 'landingpages'); },
 
       '/forms': function () { loadRoute('forms', 'forms'); },
@@ -50,6 +51,7 @@ $(function() {
       '/forms/create': function () { loadRoute('forms/create', 'forms'); },
       '/forms/create/:cat': function (cat) { loadRoute('forms/create/' + cat, 'forms'); },
       '/forms/editor/:sl': function (sl) { loadRoute('forms/editor?sl=' + sl, 'forms', true, true); },
+      '/forms/source/:sl': function (sl) { loadRoute('forms/source?sl=' + sl, 'forms'); },
       '/forms/entries/:sl': function (sl) { loadRoute('forms/entries?sl=' + sl, 'forms'); },
 
       '/emailcampaigns': function () { loadRoute('emailcampaigns', 'emailcampaigns'); },
@@ -57,6 +59,7 @@ $(function() {
       '/emailcampaigns/create': function () { loadRoute('emailcampaigns/create', 'emailcampaigns'); },
       '/emailcampaigns/create/:cat': function (cat) { loadRoute('emailcampaigns/create/' + cat, 'emailcampaigns'); },
       '/emailcampaigns/editor/:sl': function (sl) { loadRoute('emailcampaigns/editor?sl=' + sl, 'emailcampaigns', true, true); },
+      '/emailcampaigns/source/:sl': function (sl) { loadRoute('emailcampaigns/source?sl=' + sl, 'emailcampaigns'); },
       '/emailcampaigns/analytics/:sl': function (sl) { loadRoute('emailcampaigns/analytics?sl=' + sl, 'emailcampaigns'); },
 
       '/members': function () { loadRoute('platform/members'); },

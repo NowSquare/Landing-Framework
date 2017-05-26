@@ -249,78 +249,22 @@ class LandingPagesController extends Controller
     {
       $template = $request->input('template', '');
       $name = $request->input('name', '');
-      $name = substr($name, 0, 200);
 
-      $template_path = base_path('../templates/landingpages/');
+      // Verify limit
+      $current_count = Models\Page::where('user_id', '=', Core\Secure::userId())->count();
+      $current_count_limit = \Auth::user()->plan->limitations['landingpages']['max'];
 
-      if (\File::exists($template_path . $template . '/config.php') && \File::exists($template_path . $template . '/index.blade.php')) {
-        $config = include $template_path . $template . '/config.php';
-
-        // First create site
-        $site = new Models\Site;
-
-        $site->user_id = Core\Secure::userId();
-        $site->name = $name;
-        $site->language = auth()->user()->language;
-        $site->timezone = auth()->user()->timezone;
-        $site->save();
-
-        $site_id = $site->id;
-
-        // Then, create page for site
-        $page = new Models\Page;
-
-        $page->user_id = Core\Secure::userId();
-        $page->landing_site_id = $site_id;
-        $page->name = $name;
-        $page->template = $template;
-        $page->type = $config['type'];
-        $page->save();
-
-        $local_domain = Core\Secure::staticHash($site_id, true);
-
-        $site->local_domain = $local_domain;
-        $site->save();
-
-        // Finally, create directory with files
-        $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . $local_domain;
-
-        // Get template HTML and replace title
-        $html = view('template.landingpages::' . $template . '.index');
-
-        // Suppress libxml errors
-        // Resolves an issue with some servers.
-        libxml_use_internal_errors(true);
-
-        // Create a new PHPQuery object to manipulate
-        // the DOM in a similar way as jQuery.
-        $html = \phpQuery::newDocumentHTML($html);
-        \phpQuery::selectDocument($html);
-
-        // Update page
-        pq('title')->text($name);
-        pq('head')->find('title')->after('<link rel="icon" type="image/x-icon" href="' . url('public/' . $storage_root . '/favicon.ico') . '">');
-        pq('head')->find('title')->after('<meta name="description" content="">');
-
-        //$html = str_replace('</section><section', "</section>\n\n<section", $html);
-        $html = str_replace(url('/'), '', $html);
-
-        // Beautify html
-        $html = Core\Parser::beautifyHtml($html);
-
-        $variant = 1;
-
-        $storage_root_full = $storage_root . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
-
-        \Storage::disk('public')->makeDirectory($storage_root_full . '/' . date('Y-m-d-H-i-s'));
-        \Storage::disk('public')->put($storage_root_full . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
-        \Storage::disk('public')->put($storage_root_full . '/index.blade.php', $html);
-        \Storage::disk('public')->put($storage_root . '/favicon.ico', \File::get($template_path . $template . '/favicon.ico'));
-
-        $redir = Core\Secure::array2string(['landing_page_id' => $page->id]);
-      } else {
-        $redir = '#';
+      if ($current_count >= $current_count_limit) {
+        return response()->json([
+          'type' => 'error', 
+          'msg' => trans('global.account_limit_reached'),
+          'reset' => false
+        ]);
       }
+
+      $page = FunctionsController::createPage($template, $name);
+
+      $redir = ($page !== false) ? Core\Secure::array2string(['landing_page_id' => $page->id]) : '#';
 
       return response()->json(['redir' => $redir]);
     }
@@ -333,26 +277,9 @@ class LandingPagesController extends Controller
       $sl = $request->input('sl', '');
       $html = $request->input('html', '');
 
-      if($sl != '') {
-        $qs = Core\Secure::string2array($sl);
+      $save = FunctionsController::savePage($sl, $html);
 
-        $landing_page_id = $qs['landing_page_id'];
-        $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
-
-        $variant = 1;
-
-        // Update files
-        $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' .  Core\Secure::staticHash($page->landing_site_id, true) . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
-
-        $html = str_replace(url('/'), '', $html);
-
-        // Beautify html
-        $html = Core\Parser::beautifyHtml($html);
-
-        \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
-        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
-        \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
-
+      if ($save) {
         $response = ['success' => true, 'msg' => trans('javascript.save_succes')];
       } else {
         $response = ['success' => false, 'msg' => 'An error occured'];
@@ -369,27 +296,9 @@ class LandingPagesController extends Controller
       $sl = $request->input('sl', '');
       $html = $request->input('html', '');
 
-      if($sl != '') {
-        $qs = Core\Secure::string2array($sl);
+      $publish = FunctionsController::savePage($sl, $html, true);
 
-        $landing_page_id = $qs['landing_page_id'];
-        $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
-
-        $variant = 1;
-
-        // Update files
-        $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' .  Core\Secure::staticHash($page->landing_site_id, true) . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
-
-        $html = str_replace(url('/'), '', $html);
-
-        // Beautify html
-        $html = Core\Parser::beautifyHtml($html);
-
-        \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
-        \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
-        \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
-        \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $html);
-
+      if ($publish) {
         $response = ['success' => true, 'msg' => trans('javascript.publish_succes')];
       } else {
         $response = ['success' => false, 'msg' => 'An error occured'];

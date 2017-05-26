@@ -16,11 +16,13 @@ class FunctionsController extends Controller
   /**
    * Add stat
    */
-  public static function addStat($page, $ua = null)
+  public static function addStat($page, $ua = null, $ip = null, $created_at = null)
   {
+    if ($created_at == null) $created_at = date('Y-m-d H:i:s');
+
     // Fingerprint hash
     if ($ua == null) $ua = request()->header('User-Agent');
-    $ip = request()->ip();
+    if ($ip == null) $ip = request()->ip();
 
     $dd = new DeviceDetector($ua);
 
@@ -44,8 +46,6 @@ class FunctionsController extends Controller
     $client_name = null;
     $client_short_name = null;
     $client_version = null;
-    $client_engine = null;
-    $client_engine_version = null;
     $os_name = null;
     $os_short_name = null;
     $os_version = null;
@@ -80,8 +80,6 @@ class FunctionsController extends Controller
       $client_name = (isset($clientInfo['name']) && $clientInfo['name'] != '') ? $clientInfo['name'] : null;
       $client_short_name = (isset($clientInfo['short_name']) && $clientInfo['short_name'] != '') ? $clientInfo['short_name'] : null;
       $client_version = (isset($clientInfo['version']) && $clientInfo['version'] != '') ? $clientInfo['version'] : null;
-      $client_engine = (isset($clientInfo['engine']) && $clientInfo['engine'] != '') ? $clientInfo['engine'] : null;
-      $client_engine_version = (isset($clientInfo['engine_version']) && $clientInfo['engine_version'] != '') ? $clientInfo['engine_version'] : null;
 
       $os_name = (isset($osInfo['name']) && $osInfo['name'] != '') ? $osInfo['name'] : null;
       $os_short_name = (isset($osInfo['short_name']) && $osInfo['short_name'] != '') ? $osInfo['short_name'] : null;
@@ -121,8 +119,6 @@ class FunctionsController extends Controller
           'client_type' => $client_type,
           'client_name' => $client_name,
           'client_version' => $client_version,
-          'client_engine' => $client_engine,
-          'client_engine_version' => $client_engine_version,
           'os_name' => $os_name,
           'os_version' => $os_version,
           'os_platform' => $os_platform,
@@ -133,7 +129,8 @@ class FunctionsController extends Controller
           'bot_category' => $bot_category,
           'bot_url' => $bot_url,
           'bot_producer_name' => $bot_producer_name,
-          'bot_producer_url' => $bot_producer_url
+          'bot_producer_url' => $bot_producer_url,
+          'created_at' => $created_at
         ]
       );
 
@@ -292,5 +289,121 @@ class FunctionsController extends Controller
       }
     }
     return $blocks;
+  }
+
+  /**
+   * Create a landing page
+   */
+  public static function createPage($template, $name, $user_id = null)
+  {
+    if ($user_id == null) $user_id = Core\Secure::userId();
+    $name = substr($name, 0, 200);
+    $template_path = base_path('../templates/landingpages/');
+
+    if (\File::exists($template_path . $template . '/config.php') && \File::exists($template_path . $template . '/index.blade.php')) {
+      $config = include $template_path . $template . '/config.php';
+
+      // First create site
+      $site = new Models\Site;
+
+      $site->user_id = $user_id;
+      $site->name = $name;
+      $site->language = auth()->user()->language;
+      $site->timezone = auth()->user()->timezone;
+      $site->save();
+
+      $site_id = $site->id;
+
+      // Then, create page for site
+      $page = new Models\Page;
+
+      $page->user_id = $user_id;
+      $page->landing_site_id = $site_id;
+      $page->name = $name;
+      $page->template = $template;
+      $page->type = $config['type'];
+      $page->save();
+
+      $local_domain = Core\Secure::staticHash($site_id, true);
+
+      $site->local_domain = $local_domain;
+      $site->save();
+
+      // Finally, create directory with files
+      $storage_root = 'landingpages/site/' . Core\Secure::staticHash($user_id) . '/' . $local_domain;
+
+      // Get template HTML and replace title
+      $html = view('template.landingpages::' . $template . '.index');
+
+      // Suppress libxml errors
+      // Resolves an issue with some servers.
+      libxml_use_internal_errors(true);
+
+      // Create a new PHPQuery object to manipulate
+      // the DOM in a similar way as jQuery.
+      $html = \phpQuery::newDocumentHTML($html);
+      \phpQuery::selectDocument($html);
+
+      // Update page
+      pq('title')->text($name);
+      pq('head')->find('title')->after('<link rel="icon" type="image/x-icon" href="' . url('public/' . $storage_root . '/favicon.ico') . '">');
+      pq('head')->find('title')->after('<meta name="description" content="">');
+
+      //$html = str_replace('</section><section', "</section>\n\n<section", $html);
+      $html = str_replace(url('/'), '', $html);
+
+      // Beautify html
+      $html = Core\Parser::beautifyHtml($html);
+
+      $variant = 1;
+
+      $storage_root_full = $storage_root . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
+
+      \Storage::disk('public')->makeDirectory($storage_root_full . '/' . date('Y-m-d-H-i-s'));
+      \Storage::disk('public')->put($storage_root_full . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
+      \Storage::disk('public')->put($storage_root_full . '/index.blade.php', $html);
+      \Storage::disk('public')->put($storage_root . '/favicon.ico', \File::get($template_path . $template . '/favicon.ico'));
+
+      return $page;
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * Save / publish page
+   */
+  public static function savePage($sl, $html, $publish = false, $user_id = null)
+  {
+    if ($user_id == null) $user_id = Core\Secure::userId();
+
+    if($sl != '') {
+      $qs = Core\Secure::string2array($sl);
+
+      $landing_page_id = $qs['landing_page_id'];
+      $page = Models\Page::where('user_id', $user_id)->where('id', $landing_page_id)->first();
+
+      $variant = 1;
+
+      // Update files
+      $storage_root = 'landingpages/site/' . Core\Secure::staticHash($user_id) . '/' .  Core\Secure::staticHash($page->landing_site_id, true) . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
+
+      $html = str_replace(url('/'), '', $html);
+
+      // Beautify html
+      $html = Core\Parser::beautifyHtml($html);
+
+      \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
+      \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
+      \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
+
+      if ($publish) {
+        \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $html);
+      }
+
+      return true;
+    } else {
+      return false;
+    }
   }
 }

@@ -81,8 +81,12 @@ class AppServiceProvider extends ServiceProvider
 
       // Forms
       view()->addNamespace('template.forms', base_path('../templates/forms/'));
-      view()->addNamespace('block.forms', base_path('../blocks/forms/'));
       view()->addNamespace('public.forms', base_path('../public/forms/form/'));
+
+      // Emails
+      view()->addNamespace('template.emails', base_path('../templates/emails/'));
+      view()->addNamespace('block.emails', base_path('../blocks/emails/'));
+      view()->addNamespace('public.emails', base_path('../public/emails/email/'));
 
       // Collection::mapWithKeys() works incorrectly for keys with integer values
       // https://github.com/laravel/framework/issues/15409

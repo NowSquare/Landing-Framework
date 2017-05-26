@@ -25,12 +25,15 @@ class DemoTableSeeder extends Seeder
         $lng_max = 5.479960;
 
         // System users
-        $system_user_count = 15;
+        $system_user_count = 0;
 
         // Analytics
         $startDate = '-2 months';
         $endDate = 'now';
         $analytics_unique_user_count = 40;
+
+        // Landing pages
+        $lp_stats = 100;
 
         /*
          |--------------------------------------------------------------------------
@@ -58,22 +61,24 @@ class DemoTableSeeder extends Seeder
         // Analytics users
         $user = [];
         for ($i = 0; $i < $analytics_unique_user_count; $i++) {
-          $_platform = ['Android', 'iOS'];
-          $platform = $_platform[mt_rand(0, count($_platform) - 1)];
-
-          if ($platform == 'iOS') {
-            $_model = ['iPad4,1', 'iPad5,4', 'iPhone8,2', 'iPhone8,1', 'iPhone7,2', 'iPhone9,2', 'iPhone9,1'];
-          } else {
-            $_model = ['Pixel', 'Pixel XL', 'LG G5', 'HTC 10', 'HTC Bolt', 'LG V20', 'Samsung Galaxy S7 Edge', 'Sony Xperia XZ', 'Moto X'];
-          }
-          $model = $_model[mt_rand(0, count($_model) - 1)];
-
           $user[] = [
             'ip' => $faker->ipv4(), 
-            'uuid' => $faker->uuid(), 
-            'platform' => $platform, 
-            'model' => $model
+            'ua' => $faker->userAgent()
           ];
         }
+
+        // Landing page stats
+/*
+        // Page 1
+        $page = \Modules\LandingPages\Http\Models\Page::where('id', 1)->first();
+        for ($i = 0; $i < $lp_stats; $i++) {
+          \Modules\LandingPages\Http\Controllers\FunctionsController::addStat($page, $faker->userAgent());
+        }
+
+        // Page 2
+        $page = \Modules\LandingPages\Http\Models\Page::where('id', 2)->first();
+        for ($i = 0; $i < $lp_stats; $i++) {
+          \Modules\LandingPages\Http\Controllers\FunctionsController::addStat($page, $faker->userAgent());
+        }*/
     }
 }

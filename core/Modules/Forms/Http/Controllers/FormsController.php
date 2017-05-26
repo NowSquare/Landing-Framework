@@ -299,6 +299,18 @@ class FormsController extends Controller
       $name = $request->input('name', '');
       $name = substr($name, 0, 200);
 
+      // Verify limit
+      $current_count = Models\Form::where('user_id', '=', Core\Secure::userId())->count();
+      $current_count_limit = \Auth::user()->plan->limitations['forms']['max'];
+
+      if ($current_count >= $current_count_limit) {
+        return response()->json([
+          'type' => 'error', 
+          'msg' => trans('global.account_limit_reached'),
+          'reset' => false
+        ]);
+      }
+
       $template_path = base_path('../templates/forms/');
 
       if (\File::exists($template_path . $template . '/index.blade.php')) {

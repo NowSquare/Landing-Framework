@@ -108,7 +108,15 @@ $('.onClickSelect').on('click', function() {
       method: 'POST'
     })
     .done(function(data) {
-      document.location = '#/forms/editor/' + data.redir;
+      if (typeof data.redir !== 'undefined') {
+        document.location = '#/forms/editor/' + data.redir;
+      } else if (typeof data.msg !== 'undefined') {
+        swal(
+          "{{ trans('global.oops') }}",
+          data.msg,
+          'error'
+        )
+      }
     })
     .fail(function() {
       console.log('error');

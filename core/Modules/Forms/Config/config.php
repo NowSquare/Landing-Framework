@@ -16,7 +16,9 @@ return [
   // Numeric, the default amount for the system owner
   'in_plan_default_amount' => 100,
   // Extra boolean options for plan with default value - make sure to update global language file with $key
-  'extra_plan_config_boolean' => [],
+  'extra_plan_config_boolean' => [
+    'edit_html' => 0
+  ],
   // Extra string options for plan with default value - make sure to update global language file with $key
   'extra_plan_config_string' => [],
   // The order number is used for sorting purposes

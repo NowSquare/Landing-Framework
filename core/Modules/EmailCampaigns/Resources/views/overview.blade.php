@@ -13,7 +13,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('emailcampaigns::global.module_name_plural') }} ({{ count($campaigns) }})</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('emailcampaigns::global.module_name_plural') }} ({{ count($email_campaigns) }})</a>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-title-navbar">
@@ -39,7 +39,7 @@
     <div class="grid-sizer col-xs-6 col-sm-3 col-lg-3" style="display:none"></div>
 <?php 
 $i = 1;
-foreach($campaigns as $campaign) {
+foreach($email_campaigns as $campaign) {
   $page = $campaign->pages->first();
   $page_id = $page->id;
   $sl_site = \Platform\Controllers\Core\Secure::array2string(['landing_site_id' => $campaign->id]);
@@ -146,12 +146,17 @@ foreach($campaigns as $campaign) {
 
 <script>
 $(function() {
-  var $grid;
+  var $grid = $('.grid').masonry({
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+    transitionDuration: '0.2s'
+  });
 
   $('#grid').liveFilter('#grid_search', 'div.grid-item', {
     filterChildSelector: '.portlet-title',
     after: function() {
-      $grid.masonry('reloadItems').masonry();
+      $grid.masonry();
     }
   });
 
@@ -180,19 +185,14 @@ $(function() {
 
 <?php
 $i = 1;
-foreach($campaigns as $campaign) {
+foreach($email_campaigns as $campaign) {
 ?>
   $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
-<?php if ($i == count($campaigns) + 1) { ?>
+<?php if ($i == count($email_campaigns) + 1) { ?>
     setTimeout(function() {
-      $grid = $('.grid').masonry({
-        itemSelector: '.grid-item',
-        columnWidth: '.grid-sizer',
-        percentPosition: true,
-        transitionDuration: '0.2s'
-      });
+      $grid.masonry('reloadItems').masonry();
     }, 100);
 <?php } ?>
   });

@@ -16,12 +16,34 @@ class EmailCampaignsController extends Controller
      */
     public function index()
     {
-      //$campaigns = Models\Site::where('user_id', Core\Secure::userId())->orderBy('created_at', 'desc')->get();
-      $campaigns = [];
-      //if (count($sites) == 0) {
-      //  return $this->create();
-      //} else {
-        return view('emailcampaigns::overview', compact('campaigns'));
-      //}
+      $email_campaigns = Models\EmailCampaign::where('user_id', Core\Secure::userId())->orderBy('created_at', 'desc')->get();
+
+      if (count($email_campaigns) == 0) {
+        return $this->create();
+      } else {
+        return view('emailcampaigns::overview', compact('email_campaigns'));
+      }
     }
+
+    /**
+     * Show the form for creating a new resource.
+     * @return Response
+     */
+    public function create()
+    {
+      $categories = FunctionsController::getCategories();
+
+      return view('emailcampaigns::create', compact('categories'));
+    }
+
+    /**
+     * Create a new campaign step 2
+     */
+    public function createCategory($category)
+    {
+      $templates = FunctionsController::getTemplatesByCategory($category);
+
+      return view('emailcampaigns::create-category', compact('category', 'templates'));
+    }
+
 }

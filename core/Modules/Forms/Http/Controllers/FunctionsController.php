@@ -44,8 +44,6 @@ class FunctionsController extends Controller
     $client_name = null;
     $client_short_name = null;
     $client_version = null;
-    $client_engine = null;
-    $client_engine_version = null;
     $os_name = null;
     $os_short_name = null;
     $os_version = null;
@@ -80,8 +78,6 @@ class FunctionsController extends Controller
       $client_name = (isset($clientInfo['name']) && $clientInfo['name'] != '') ? $clientInfo['name'] : null;
       $client_short_name = (isset($clientInfo['short_name']) && $clientInfo['short_name'] != '') ? $clientInfo['short_name'] : null;
       $client_version = (isset($clientInfo['version']) && $clientInfo['version'] != '') ? $clientInfo['version'] : null;
-      $client_engine = (isset($clientInfo['engine']) && $clientInfo['engine'] != '') ? $clientInfo['engine'] : null;
-      $client_engine_version = (isset($clientInfo['engine_version']) && $clientInfo['engine_version'] != '') ? $clientInfo['engine_version'] : null;
 
       $os_name = (isset($osInfo['name']) && $osInfo['name'] != '') ? $osInfo['name'] : null;
       $os_short_name = (isset($osInfo['short_name']) && $osInfo['short_name'] != '') ? $osInfo['short_name'] : null;
@@ -118,8 +114,6 @@ class FunctionsController extends Controller
           'client_type' => $client_type,
           'client_name' => $client_name,
           'client_version' => $client_version,
-          'client_engine' => $client_engine,
-          'client_engine_version' => $client_engine_version,
           'os_name' => $os_name,
           'os_version' => $os_version,
           'os_platform' => $os_platform,
@@ -168,8 +162,6 @@ class FunctionsController extends Controller
     $client_name = null;
     $client_short_name = null;
     $client_version = null;
-    $client_engine = null;
-    $client_engine_version = null;
     $os_name = null;
     $os_short_name = null;
     $os_version = null;
@@ -204,8 +196,6 @@ class FunctionsController extends Controller
       $client_name = (isset($clientInfo['name']) && $clientInfo['name'] != '') ? $clientInfo['name'] : null;
       $client_short_name = (isset($clientInfo['short_name']) && $clientInfo['short_name'] != '') ? $clientInfo['short_name'] : null;
       $client_version = (isset($clientInfo['version']) && $clientInfo['version'] != '') ? $clientInfo['version'] : null;
-      $client_engine = (isset($clientInfo['engine']) && $clientInfo['engine'] != '') ? $clientInfo['engine'] : null;
-      $client_engine_version = (isset($clientInfo['engine_version']) && $clientInfo['engine_version'] != '') ? $clientInfo['engine_version'] : null;
 
       $os_name = (isset($osInfo['name']) && $osInfo['name'] != '') ? $osInfo['name'] : null;
       $os_short_name = (isset($osInfo['short_name']) && $osInfo['short_name'] != '') ? $osInfo['short_name'] : null;
@@ -255,8 +245,6 @@ class FunctionsController extends Controller
         'client_type' => $client_type,
         'client_name' => $client_name,
         'client_version' => $client_version,
-        'client_engine' => $client_engine,
-        'client_engine_version' => $client_engine_version,
         'os_name' => $os_name,
         'os_version' => $os_version,
         'os_platform' => $os_platform,

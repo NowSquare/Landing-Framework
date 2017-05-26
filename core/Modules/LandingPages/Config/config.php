@@ -17,7 +17,8 @@ return [
   'in_plan_default_amount' => 100,
   // Extra boolean options for plan with default value (0=false, 1=true) - make sure to update global language file with $key
   'extra_plan_config_boolean' => [
-    'custom_domain' => 0
+    'custom_domain' => 0,
+    'edit_html' => 0
   ],
   // Extra string options for plan with default value - make sure to update global language file with $key
   'extra_plan_config_string' => [],

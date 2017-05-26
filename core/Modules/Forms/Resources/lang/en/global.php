@@ -11,6 +11,7 @@ return array(
 	"module_name" => "Form",
 	"module_name_plural" => "Forms",
 	"module_desc" => "Collect information. Reservations, proposals, contact and more.",
+  "edit_html" => "Edit HTML",
 
 	/*
 	|--------------------------------------------------------------------------
@@ -47,7 +48,7 @@ return array(
 	*/
 
   "thank_you_title" => "Thank you",
-  "thank_you_text" => "Your submission was sent successfully.",
+  "thank_you_text" => "Your information has been submitted successfully.",
   "unknown_error" => "Unknown Error",
   "unknown_error_text" => "Sorry, something went wrong. Please contact the site owner if the problem persists.",
   "demo" => "Demo",

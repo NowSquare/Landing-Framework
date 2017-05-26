@@ -11,6 +11,7 @@ return array(
 	"module_name" => "Landing Page",
 	"module_name_plural" => "Landing Pages",
 	"module_desc" => "Create an awesome looking landing page to promote your product, service or yourself.",
+  "edit_html" => "Edit HTML",
 
 	/*
 	|--------------------------------------------------------------------------

@@ -175,7 +175,7 @@ $(function() {
   $('#grid').liveFilter('#grid_search', 'div.grid-item', {
     filterChildSelector: '.portlet-title',
     after: function() {
-      $grid.masonry('reloadItems').masonry();
+      $grid.masonry();
     }
   });
 

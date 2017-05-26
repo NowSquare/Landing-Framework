@@ -170,43 +170,52 @@ function drawChart() {
     async: false
   }).responseText;
 
-  chartRangeData = new google.visualization.DataTable(jsonData);
+  if (date_start == date_end) {
+    jsonData = JSON.parse(jsonData);
+    var visitors = jsonData.rows[0].c[1].v;
+    $('#stats_line_chart').html('<h1 class="text-center">' + visitors + ' {{ trans('global.visitor_s_') }}</h1>');
+  } else {
 
-  // load custom ticks
-  var ticks = [];
-  for (var i = 0; i < chartRangeData.getNumberOfRows(); i++) {
-    ticks.push(chartRangeData.getValue(i, 0));
-  }
+    chartRangeData = new google.visualization.DataTable(jsonData);
 
-  chartRangeOpts = {
-    width: '100%',
-    height: 220,
-    legend: {position: 'none'},
-    pointSize: 4,
-    axes: {
-      x: {
-        0: {side: 'top'}
-      }
-    },
-    vAxis: {
-      minValue: 0,
-      viewWindow: {min: -0.15, max: parseInt(JSON.parse(jsonData).vars.max) + 1},
-      format: '0',
-    },
-    hAxis: {
-      gridlines: {count: 30},
-      ticks: ticks,
-      format: 'M/d/yy'
+    // load custom ticks
+    var ticks = [];
+    for (var i = 0; i < chartRangeData.getNumberOfRows(); i++) {
+      ticks.push(chartRangeData.getValue(i, 0));
     }
-  };
 
-  chartRangeInstance = new google.charts.Line(document.getElementById('stats_line_chart'));
+    chartRangeOpts = {
+      width: '100%',
+      height: 220,
+      legend: {position: 'none'},
+      pointSize: 4,
+      axes: {
+        x: {
+          0: {side: 'top'}
+        }
+      },
+      vAxis: {
+        minValue: 0,
+        viewWindow: {min: -0.15, max: parseInt(JSON.parse(jsonData).vars.max) + 1},
+        format: '0',
+      },
+      hAxis: {
+        gridlines: {count: 30},
+        ticks: ticks,
+        format: 'M/d/yy'
+      }
+    };
 
-  chartRangeInstance.draw(chartRangeData, google.charts.Line.convertOptions(chartRangeOpts));
+    chartRangeInstance = new google.charts.Line(document.getElementById('stats_line_chart'));
+
+    chartRangeInstance.draw(chartRangeData, google.charts.Line.convertOptions(chartRangeOpts));
+  }
 }
 
 function redrawChart() {
-  chartRangeInstance.draw(chartRangeData, google.charts.Line.convertOptions(chartRangeOpts));
+  if (date_start != date_end) {
+    chartRangeInstance.draw(chartRangeData, google.charts.Line.convertOptions(chartRangeOpts));
+  }
 }
 
 $(window).resize($.debounce(100, redrawChart));

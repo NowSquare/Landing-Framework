@@ -22,7 +22,7 @@ return [
   // The order number is used for sorting purposes
   'order' => 30,
   // The icon must have a normal and active version, and it must exist in /assets/images/icons/
-  'icon' => 'calendar.svg',
+  'icon' => 'markedcalendar.svg',
   // Internal name, don't change
   'name' => 'EmailCampaigns'
 ];

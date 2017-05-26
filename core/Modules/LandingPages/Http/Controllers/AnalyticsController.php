@@ -41,7 +41,7 @@ class AnalyticsController extends Controller
     $this_page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
     $site_id = $this_page->site->id;
 
-    // Get form columns
+    // Get earliest date
     $earliest_date = date('Y-m-d');
 
     if ($landing_page_id > 0) {
@@ -59,7 +59,7 @@ class AnalyticsController extends Controller
       }
     }
 
-    if ($earliest_date > $date_start || request()->get('start', '') == '') $date_start = $earliest_date;
+    if ($earliest_date > $date_start) $date_start = $earliest_date;
 
     return view('landingpages::analytics', compact(
       'data_found', 
@@ -231,6 +231,9 @@ class AnalyticsController extends Controller
 
     $stats_visits = $Stat->where('landing_page_id', $landing_page_id)
       ->select(\DB::raw('DATE(created_at) as date'), \DB::raw('count(id) as visits'))
+      ->where('created_at', '>=', $from)
+      ->where('created_at', '<=', $to)
+      ->where('is_bot', 0)
       ->groupBy([\DB::raw('DATE(created_at)')])
       ->get();
 
@@ -251,6 +254,8 @@ class AnalyticsController extends Controller
     ];
 
     // Rows
+    $min = 0;
+    $max = 0;
     $response['rows'] = [];
 
     foreach ($main_chart_range as $date => $dArr) {
@@ -262,8 +267,8 @@ class AnalyticsController extends Controller
         // $row->created_at->timezone(\Auth::user()->timezone)->format('Y-m-d')
         if ($date == $row->date) {
           $visits = $row->visits;
-          if (! isset($min) || $visits < $min) $min = $visits;
-          if (! isset($max) || $visits > $min) $max = $visits;
+          if ($visits < $min) $min = $visits;
+          if ($visits > $max) $max = $visits;
           break 1;
         }
       }
