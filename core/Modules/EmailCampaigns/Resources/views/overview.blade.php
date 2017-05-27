@@ -40,31 +40,31 @@
 <?php 
 $i = 1;
 foreach($email_campaigns as $campaign) {
-  $page = $campaign->pages->first();
-  $page_id = $page->id;
-  $sl_site = \Platform\Controllers\Core\Secure::array2string(['landing_site_id' => $campaign->id]);
-  $sl_page = \Platform\Controllers\Core\Secure::array2string(['landing_page_id' => $page_id]);
-  $edit_url = '#/emailcampaigns/editor/' . $sl_page;
+  $email = $campaign->emails->first();
+  $email_id = $email->id;
+  $sl_campaign = \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $campaign->id]);
+  $sl_email = \Platform\Controllers\Core\Secure::array2string(['email_id' => $email_id]);
+  $edit_url = '#/emailcampaigns/editor/' . $sl_email;
 
-  $local_domain = 'lp/' . $campaign->local_domain;
-  $url = $page->url();
+  $local_domain = 'ec/' . $email->local_domain;
+  $url = $email->url();
 
   // Update files
   $variant = 1;
-  $storage_root = 'emailcampaigns/site/' . \Platform\Controllers\Core\Secure::staticHash(\Platform\Controllers\Core\Secure::userId()) . '/' .  \Platform\Controllers\Core\Secure::staticHash($campaign->id, true) . '/' . \Platform\Controllers\Core\Secure::staticHash($page->id, true) . '/' . $variant;
+  $storage_root = 'emailcampaigns/site/' . \Platform\Controllers\Core\Secure::staticHash(\Platform\Controllers\Core\Secure::userId()) . '/' .  \Platform\Controllers\Core\Secure::staticHash($campaign->id, true) . '/' . \Platform\Controllers\Core\Secure::staticHash($email->id, true) . '/' . $variant;
   $published = (\Storage::disk('public')->exists($storage_root . '/published/index.blade.php')) ? '<span class="badge badge-xs badge-success pull-right">published</span>' : '<span class="badge badge-xs badge-danger pull-right">not published</span>';
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" style="max-width: 250px" id="item{{ $i }}">
 
-      <div class="grid-item-content portlet shadow-box" data-sl="{{ $sl_site }}">
+      <div class="grid-item-content portlet shadow-box" data-sl="{{ $sl_campaign }}">
 
         <div class="btn-group pull-right">
           <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="mi more_vert"></i>
           </button>
           <ul class="dropdown-menu m-t-0">
-            <li><a href="{{ $edit_url }}">{{ trans('emailcampaigns::global.edit_landing_page') }}</a></li>
-            <li><a href="#/emailcampaigns/analytics/{{ $sl_page }}">{{ trans('global.view_analytics') }}</a></li>
+            <li><a href="{{ $edit_url }}">{{ trans('emailcampaigns::global.edit_email_campaign') }}</a></li>
+            <li><a href="#/emailcampaigns/analytics/{{ $sl_email }}">{{ trans('global.view_analytics') }}</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="javascript:void(0);" class="onClickDelete">{{ trans('global.delete') }}</a></li>
           </ul>
@@ -84,13 +84,13 @@ foreach($email_campaigns as $campaign) {
            </tr>
            <tr>
              <td width="33" class="text-center"><i class="mi person_pin"></i></td>
-             <td><a href="#/emailcampaigns/analytics/{{ $sl_page }}" class="link">{{ trans('global.visits') }}</a>:</td>
-             <td class="text-right"><strong>{{ number_format($page->visits) }}</strong></td>
+             <td><a href="#/emailcampaigns/analytics/{{ $sl_email }}" class="link">{{ trans('global.visits') }}</a>:</td>
+             <td class="text-right"><strong>{{ number_format($email->visits) }}</strong></td>
            </tr>
            <tr>
              <td class="text-center"><i class="mi input"></i></td>
              <td>{{ trans('global.conversions') }}:</td>
-             <td class="text-right"><strong>{{ number_format($page->conversions) }}</strong></td>
+             <td class="text-right"><strong>{{ number_format($email->conversions) }}</strong></td>
            </tr>
          </table>
         </div>
@@ -160,13 +160,6 @@ $(function() {
     }
   });
 
-/*
-  $('.preview-container').tooltip({
-    placement : 'top',
-    template: '<div class="tooltip" style="margin-top: 21px"  role="tooltip"><div class="tooltip-inner"></div></div>'
-  });
-*/
-
   blockUI('.preview-container');
   $(window).resize(resizeEditFrame);
 
@@ -190,7 +183,7 @@ foreach($email_campaigns as $campaign) {
   $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
-<?php if ($i == count($email_campaigns) + 1) { ?>
+<?php if ($i == count($email_campaigns)) { ?>
     setTimeout(function() {
       $grid.masonry('reloadItems').masonry();
     }, 100);

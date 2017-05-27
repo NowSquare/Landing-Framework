@@ -1,6 +1,7 @@
 <?php namespace Platform\Controllers\App;
 
 use \Platform\Controllers\Core;
+use \Platform\Models\Funnels;
 
 class MainController extends \App\Http\Controllers\Controller {
 
@@ -50,7 +51,11 @@ class MainController extends \App\Http\Controllers\Controller {
       return $value['order'];
     }));
 
-    return view('platform.main', compact('languages', 'current_language', 'active_modules'));
+    // Get funnels
+    $funnels = Funnels\Funnel::where('user_id', Core\Secure::userId())->orderBy('name', 'asc')->get();
+    $funnel_id = Core\Secure::funnelId();
+
+    return view('platform.main', compact('languages', 'current_language', 'active_modules', 'funnels', 'funnel_id'));
   }
 
   /**

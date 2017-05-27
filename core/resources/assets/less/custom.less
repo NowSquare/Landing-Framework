@@ -1,6 +1,6 @@
 @import "variables.less";
 @import "elements.less";
-@import "hopscotch/hopscotch.less";
+//@import "hopscotch/hopscotch.less";
 
 html {
   overflow: visible;
@@ -296,6 +296,25 @@ i.help-icon:hover {
   .select2-container-multi.form-control {
     height: auto;
   }
+
+  .select2-selection {
+    .border-radius(0px);
+  }
+
+  .select2-results__option {
+    white-space: nowrap;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
+.app-search {
+  .select2-container {
+    border-radius: 15px;
+    .select2-selection {
+      .border-radius(14px);
+    }
+  }
 }
 .select2-results .select2-highlighted {
   color: #ffffff;
@@ -366,7 +385,7 @@ i.help-icon:hover {
 
 // Tabs
 .navtab-custom li {
-    margin-bottom: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 .nav.nav-tabs {

@@ -19,8 +19,8 @@ class CreateLandingPagesTable extends Migration
       $table->bigIncrements('id');
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-      $table->bigInteger('campaign_id')->unsigned()->nullable();
-      $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+      $table->bigInteger('funnel_id')->unsigned()->nullable();
+      $table->foreign('funnel_id')->references('id')->on('funnels')->onDelete('cascade');
       $table->boolean('active')->default(true);
       $table->string('name', 200);
       $table->string('local_domain', 64)->nullable();

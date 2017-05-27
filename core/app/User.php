@@ -112,8 +112,8 @@ class User extends Authenticatable implements StaplerableInterface
     return $this->hasOne('\App\Reseller', 'reseller_id');
   }
 
-  public function campaigns() {
-    return $this->hasMany('\Platform\Models\Campaigns\Campaign', 'user_id');
+  public function funnels() {
+    return $this->hasMany('\Platform\Models\Funnels\Funnel', 'user_id');
   }
 
   /**

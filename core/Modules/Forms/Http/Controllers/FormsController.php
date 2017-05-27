@@ -241,7 +241,7 @@ class FormsController extends Controller
         default: $order_column = 'created_at'; $order_by = 'desc';
       }
 
-      $forms = Models\Form::where('user_id', Core\Secure::userId())->orderBy($order_column, $order_by)->get();
+      $forms = Models\Form::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->orderBy($order_column, $order_by)->get();
 
       if (count($forms) == 0) {
         return $this->create();
@@ -318,6 +318,7 @@ class FormsController extends Controller
         $form = new Models\Form;
 
         $form->user_id = Core\Secure::userId();
+        $form->funnel_id = Core\Secure::funnelId();
         $form->name = $name;
         $form->language = auth()->user()->language;
         $form->timezone = auth()->user()->timezone;

@@ -15,7 +15,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'f', 'namespace' => 'Modules\Fo
 
 });
 
-Route::group(['middleware' => ['web', 'limitation:forms.visible'], 'prefix' => 'forms', 'namespace' => 'Modules\Forms\Http\Controllers'], function() {
+Route::group(['middleware' => ['web', 'funnel', 'limitation:forms.visible'], 'prefix' => 'forms', 'namespace' => 'Modules\Forms\Http\Controllers'], function() {
 
   // Secured web routes
   Route::group(['middleware' => 'auth:web'], function () {

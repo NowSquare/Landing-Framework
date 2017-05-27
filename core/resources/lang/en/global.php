@@ -91,6 +91,7 @@ return array(
   "page_not_found" => "Page not found",
   "page_not_published" => "Page not published",
   "form_not_published" => "Form not published",
+  "email_not_published" => "Email not published",
 
   /*
    |--------------------------------------------------------------------------
@@ -193,23 +194,21 @@ return array(
 
   /*
    |--------------------------------------------------------------------------
-   | Categories
+   | Funnels
    |--------------------------------------------------------------------------
    */
 
-  "categories" => "Categories",
-  "generic_categories" => [
-    "bars_restaurants" => "Bars &amp; Restaurants",
-    "fashion_clothing" => "Fashion &amp; Clothing",
-    "health_fitness" => "Health &amp; Fitness",
-    "beauty_esthetics" => "Beauty &amp; Esthetics",
-    "shows_events" => "Shows &amp; Events",
-    "travel_tourism" => "Travel &amp; Tourism",
-    "electronics_communication" => "Electronics &amp; Communication",
-    "household_interior" => "Household &amp; Interior",
-    "art_design" => "Art &amp; Design",
-    "toys_games" => "Toys &amp; Games"
-  ],
+  "funnels" => "Funnels",
+  "funnel" => "Funnel",
+  "create_funnel" => "Create funnel",
+  "confirm_delete_funnel" => "All attached pages, forms and email campaigns will be deleted.",
+  "create_funnel_placeholder" => "ACME Inc. - Product Launch",
+  "create_funnel_text" => "Enter a name for the funnel.",
+  "create_first_funnel_text" => "Before we can start, we need a funnel name to categorize pages, forms and email campaigns.",
+  "create_first_funnel_text2" => "Go ahead and enter a name. You can change this later.",
+  "edit_funnels" => "Edit funnels",
+  "update_funnel" => "Update funnel",
+  "update_funnel_text" => "Enter a new name for the funnel.",
 
   /*
    |--------------------------------------------------------------------------

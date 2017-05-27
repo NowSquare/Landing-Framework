@@ -233,7 +233,7 @@ class FunctionsController extends Controller
       \DB::table('landing_pages')->whereId($landing_page_id)->increment('conversions');
 
       // Increment entries
-      \DB::table('forms')->whereId($form->id)->increment('conversions');
+      \DB::table('forms')->whereId($form->id)->increment('entries');
 
       $stats = [
         'form_id' => $form->id,

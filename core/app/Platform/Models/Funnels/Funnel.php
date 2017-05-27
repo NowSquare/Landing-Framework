@@ -1,11 +1,11 @@
 <?php
-namespace Platform\Models\Campaigns;
+namespace Platform\Models\Funnels;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Campaign extends Model {
+class Funnel extends Model {
 
-  protected $table = 'campaigns';
+  protected $table = 'funnels';
 
   protected $casts = [
     'segment' => 'json',
@@ -22,5 +22,13 @@ class Campaign extends Model {
 
   public function landingSites() {
     return $this->hasMany('Modules\LandingPages\Http\Models\Site');
+  }
+
+  public function forms() {
+    return $this->hasMany('Modules\Forms\Http\Models\Form');
+  }
+
+  public function emailCampaigns() {
+    return $this->hasMany('Modules\EmailCampaigns\Http\Models\EmailCampaign');
   }
 }

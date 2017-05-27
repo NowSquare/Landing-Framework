@@ -109,7 +109,7 @@ foreach($forms as $form) {
            <tr>
              <td class="text-center"><i class="mi input"></i></td>
              <td><a href="#/forms/entries/{{ $sl_form }}" class="link">{{ trans('forms::global.entries') }}</a>:</td>
-             <td class="text-right"><strong>{{ number_format($form->conversions) }}</strong></td>
+             <td class="text-right"><strong>{{ number_format($form->entries) }}</strong></td>
            </tr>
          </table>
         </div>

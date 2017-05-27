@@ -219,7 +219,7 @@ class LandingPagesController extends Controller
         default: $order_column = 'created_at'; $order_by = 'desc';
       }
 
-      $sites = Models\Site::where('user_id', Core\Secure::userId())->select('landing_sites.*')->addSelect(\DB::raw('((landing_sites.conversions / landing_sites.visits) * 100) as conversion'))->orderBy($order_column, $order_by)->get();
+      $sites = Models\Site::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->select('landing_sites.*')->addSelect(\DB::raw('((landing_sites.conversions / landing_sites.visits) * 100) as conversion'))->orderBy($order_column, $order_by)->get();
 
       if (count($sites) == 0) {
         return $this->create();

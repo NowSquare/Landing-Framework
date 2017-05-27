@@ -33,8 +33,11 @@ $(function() {
 
     var router = Router({
       '/': function () { loadRoute('platform/dashboard'); },
-      '/media': function () { loadRoute('platform/media/browser'); },
+      '/funnels': function () { loadRoute('platform/funnels', 'funnels'); },
+      '/funnels/new': function () { loadRoute('platform/funnels/new', 'funnels'); },
+      '/funnels/:sl': function (sl) { loadRoute('platform/funnels/edit?sl=' + sl, 'funnels'); },
 
+      '/media': function () { loadRoute('platform/media/browser'); },
       '/profile': function () { loadRoute('platform/profile'); },
       '/plan': function () { loadRoute('platform/plan', 'profile'); },
 
@@ -61,9 +64,6 @@ $(function() {
       '/emailcampaigns/editor/:sl': function (sl) { loadRoute('emailcampaigns/editor?sl=' + sl, 'emailcampaigns', true, true); },
       '/emailcampaigns/source/:sl': function (sl) { loadRoute('emailcampaigns/source?sl=' + sl, 'emailcampaigns'); },
       '/emailcampaigns/analytics/:sl': function (sl) { loadRoute('emailcampaigns/analytics?sl=' + sl, 'emailcampaigns'); },
-
-      '/members': function () { loadRoute('platform/members'); },
-      '/member/:sl': function (sl) { loadRoute('platform/member/edit?sl=' + sl, 'members'); },
 
       '/admin/plans': function () { loadRoute('platform/admin/plans'); },
       '/admin/plan': function () { loadRoute('platform/admin/plan/new', 'admin/plans'); },
@@ -99,9 +99,11 @@ $(function() {
         }
 
         if (showDeviceSelection) {
-          $('#device_selector').fadeIn(100);
+          $('#device_selector').show();
+          $('#funnel_selector').hide();
         } else {
-          $('#device_selector').fadeOut(100);
+          $('#device_selector').hide();
+          $('#funnel_selector').show();
         }
 
         $('.navigation-menu li').removeClass('active');

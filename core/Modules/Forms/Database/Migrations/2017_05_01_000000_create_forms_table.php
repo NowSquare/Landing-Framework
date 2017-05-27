@@ -17,8 +17,8 @@ class CreateFormsTable extends Migration
       $table->bigIncrements('id');
       $table->integer('user_id')->unsigned()->nullable();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-      $table->bigInteger('campaign_id')->unsigned()->nullable();
-      $table->foreign('campaign_id')->references('id')->on('campaigns')->onDelete('cascade');
+      $table->bigInteger('funnel_id')->unsigned()->nullable();
+      $table->foreign('funnel_id')->references('id')->on('funnels')->onDelete('cascade');
       $table->tinyInteger('variant')->unsigned()->default(1);
       $table->boolean('active')->default(true);
       $table->string('name', 200)->nullable();
@@ -29,7 +29,7 @@ class CreateFormsTable extends Migration
       $table->dateTime('last_followup')->nullable();
       $table->dateTime('last_response')->nullable();
       $table->bigInteger('visits')->unsigned()->default(0);
-      $table->bigInteger('conversions')->unsigned()->default(0);
+      $table->bigInteger('entries')->unsigned()->default(0);
       $table->json('meta')->nullable();
       $table->timestamps();
     });

@@ -15,8 +15,8 @@ class Form extends Model {
     return $this->belongsTo('App\User');
   }
 
-  public function campaign() {
-    return $this->hasOne('Platform\Models\Campaigns\Campaign');
+  public function funnel() {
+    return $this->hasOne('Platform\Models\Funnels\Funnel');
   }
 
   /**

@@ -36,5 +36,5 @@ return array(
   "create_campaign" => "Create Campaign",
   "enter_name_text" => "Enter a name for your email campaign. You can change this at any time.",
 
-  "" => "",
+  "edit_email_campaign" => "Edit email campaign",
 );

@@ -3,6 +3,25 @@
 class Secure extends \App\Http\Controllers\Controller {
 
   /**
+   * Get funnel id - \App\Core\Secure::funnelId()
+   */
+
+  public static function funnelId()
+  {
+    if (auth()->check()) {
+      $sl_funnel = session('funnel', '');
+      if ($sl_funnel != '') {
+        $qs = Secure::string2array($sl_funnel);
+        return $qs['funnel_id'];
+      } else {
+        return 0;
+      }
+    } else {
+      return 0;
+    }
+  }
+
+  /**
    * Get account holder id - \App\Core\Secure::userId()
    */
 

@@ -226,14 +226,14 @@ gulp.task('scripts', function() {
       'bower_components/notifyjs/dist/notify.js',
       'bower_components/notifyjs/dist/styles/metro/notify-metro.js',
       'bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js',
-      'bower_components/hopscotch/dist/js/hopscotch.js',
+      /*'bower_components/hopscotch/dist/js/hopscotch.js',*/
       'bower_components/circliful/js/jquery.circliful.js',
       'bower_components/jquery-throttle-debounce/jquery.ba-throttle-debounce.js',
       'bower_components/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.js',
       'bower_components/masonry/dist/masonry.pkgd.js',
 
-      'bower_components/tinymce/tinymce.js',
       /*'bower_components/tinymce/plugins/** /*.js',*/
+      /*'bower_components/tinymce/tinymce.js',
       'bower_components/tinymce/plugins/link/plugin.js',
       'bower_components/tinymce/plugins/paste/plugin.js',
       'bower_components/tinymce/plugins/contextmenu/plugin.js',
@@ -243,7 +243,7 @@ gulp.task('scripts', function() {
       'bower_components/tinymce/plugins/code/plugin.js',
 
       'bower_components/tinymce/themes/inlite/theme.js',
-      'bower_components/tinymce/themes/modern/theme.js',
+      'bower_components/tinymce/themes/modern/theme.js',*/
 
       'resources/assets/js/*.js'
       /*'resources/assets/js/** / *.js'*/

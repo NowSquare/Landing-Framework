@@ -294,9 +294,11 @@ class FunctionsController extends Controller
   /**
    * Create a landing page
    */
-  public static function createPage($template, $name, $user_id = null)
+  public static function createPage($template, $name, $user_id = null, $funnel_id = null)
   {
     if ($user_id == null) $user_id = Core\Secure::userId();
+    if ($funnel_id == null) $funnel_id = Core\Secure::funnelId();
+
     $name = substr($name, 0, 200);
     $template_path = base_path('../templates/landingpages/');
 
@@ -307,9 +309,10 @@ class FunctionsController extends Controller
       $site = new Models\Site;
 
       $site->user_id = $user_id;
+      $site->funnel_id = $funnel_id;
       $site->name = $name;
-      $site->language = auth()->user()->language;
-      $site->timezone = auth()->user()->timezone;
+      $site->language = (auth()->check()) ? auth()->user()->language : Core\Reseller::get()->default_language;
+      $site->timezone = (auth()->check()) ? auth()->user()->timezone : Core\Reseller::get()->default_timezone;
       $site->save();
 
       $site_id = $site->id;

@@ -2,9 +2,7 @@
 
 use \Platform\Controllers\Core;
 use Illuminate\Support\Facades\Gate;
-use \Platform\Models\Analytics as ModelAnalytics;
-use \Platform\Models\Location;
-use \Platform\Models\Campaigns;
+use \Platform\Models\Funnels;
 
 class DashboardController extends \App\Http\Controllers\Controller {
 
@@ -47,17 +45,14 @@ class DashboardController extends \App\Http\Controllers\Controller {
     $active_modules = array_values(array_sort($active_modules, function ($value) {
       return $value['order'];
     }));
-/*
-    $active_modules[] = [
-      "img" => url('assets/images/active_modules/landing-page.jpg'),
-      "name" => "Coupon",
-      "desc" => "With digital coupons you can offer your customers a great deal.",
-      "url" => "#/coupon"
-    ];
-*/
 
-    return view('platform.dashboard.dashboard', compact(
-      'active_modules'
-    ));
+    // Get funnels
+    $funnels = Funnels\Funnel::where('user_id', Core\Secure::userId())->orderBy('name', 'asc')->get();
+
+    /*if (count($funnels) == 0) {
+      return \App::make('\Platform\Controllers\App\FunnelController')->showCreateFunnel();
+    }*/
+
+    return view('platform.dashboard.dashboard', compact('active_modules'));
   }
 }

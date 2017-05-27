@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCampaignsTable extends Migration
+class CreateFunnelsTable extends Migration
 {
   /**
    * Run the migrations.
@@ -13,12 +13,13 @@ class CreateCampaignsTable extends Migration
    */
   public function up()
   {
-    Schema::create('campaigns', function($table)
+    Schema::create('funnels', function($table)
     {
       $table->bigIncrements('id');
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-      $table->string('name', 32);
+      $table->string('name', 64);
+      $table->text('description')->nullable();
       $table->string('api_token', 60)->nullable()->unique();
       $table->dateTime('date_start')->nullable();
       $table->dateTime('date_end')->nullable();
@@ -38,6 +39,6 @@ class CreateCampaignsTable extends Migration
    */
   public function down()
   {
-    Schema::drop('campaigns');
+    Schema::drop('funnels');
   }
 }

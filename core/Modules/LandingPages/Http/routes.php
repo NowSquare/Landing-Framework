@@ -12,7 +12,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'lp', 'namespace' => 'Modules\L
 
 });
 
-Route::group(['middleware' => ['web', 'limitation:landingpages.visible'], 'prefix' => 'landingpages', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
+Route::group(['middleware' => ['web', 'funnel', 'limitation:landingpages.visible'], 'prefix' => 'landingpages', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
 
   // Secured routes
   Route::group(['middleware' => 'auth:web'], function () {
