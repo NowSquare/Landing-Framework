@@ -16,7 +16,9 @@ class CheckFunnel
      */
     public function handle($request, Closure $next)
     {
-        $sl_funnel = session('funnel', '');
+        $cookie_name = 'funnel' . \Platform\Controllers\Core\Secure::staticHash($request->user()->id);
+
+        $sl_funnel = session($cookie_name, \Cookie::get($cookie_name, ''));
 
         if ($sl_funnel != '') {
           $qs = \Platform\Controllers\Core\Secure::string2array($sl_funnel);
@@ -25,10 +27,14 @@ class CheckFunnel
           $funnel = \Platform\Models\Funnels\Funnel::where('user_id', $request->user()->id)->where('id', $funnel_id)->first();
 
           if (empty($funnel)) {
-            return response('Unauthorized.', 401);
+            return redirect('platform/funnels');
+            //return \App::make('\Platform\Controllers\App\FunnelController')->showFunnels();
+            //return response('Unauthorized.', 401);
           }
         } else {
-          return response('Unauthorized.', 401);
+          return redirect('platform/funnels');
+          //return \App::make('\Platform\Controllers\App\FunnelController')->showFunnels();
+          //return response('Unauthorized.', 401);
         }
 
         return $next($request);

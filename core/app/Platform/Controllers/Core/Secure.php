@@ -9,7 +9,10 @@ class Secure extends \App\Http\Controllers\Controller {
   public static function funnelId()
   {
     if (auth()->check()) {
-      $sl_funnel = session('funnel', '');
+
+      $cookie_name = 'funnel' . \Platform\Controllers\Core\Secure::staticHash(auth()->user()->id);
+      $sl_funnel = session($cookie_name, \Cookie::get($cookie_name, ''));
+
       if ($sl_funnel != '') {
         $qs = Secure::string2array($sl_funnel);
         return $qs['funnel_id'];

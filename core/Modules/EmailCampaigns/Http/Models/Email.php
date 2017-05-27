@@ -18,7 +18,7 @@ class Email extends Model {
   }
 
   public function emailCampaign() {
-    return $this->belongsTo('Modules\EmailCampaigns\Http\Models\Site', 'landing_site_id');
+    return $this->belongsTo('Modules\EmailCampaigns\Http\Models\EmailCampaign', 'email_id');
   }
 
   /**
@@ -29,12 +29,12 @@ class Email extends Model {
    */
   public function scopeUrl($query) {
 
-    $local_domain = 'lp/' . $this->site->local_domain;
+    $local_domain = 'ec/' . $this->local_domain;
 
-    if ($this->site->domain == '') {
+    if ($this->domain == '') {
       return url($local_domain);
     } else {
-      return '//' . $this->site->domain;
+      return '//' . $this->domain;
     }
   }
 

@@ -49,9 +49,11 @@ class DashboardController extends \App\Http\Controllers\Controller {
     // Get funnels
     $funnels = Funnels\Funnel::where('user_id', Core\Secure::userId())->orderBy('name', 'asc')->get();
 
-    /*if (count($funnels) == 0) {
-      return \App::make('\Platform\Controllers\App\FunnelController')->showCreateFunnel();
-    }*/
+    $funnel_id = Core\Secure::funnelId();
+
+    if ($funnel_id == 0) {
+      return \App::make('\Platform\Controllers\App\FunnelController')->showFunnels();
+    }
 
     return view('platform.dashboard.dashboard', compact('active_modules'));
   }

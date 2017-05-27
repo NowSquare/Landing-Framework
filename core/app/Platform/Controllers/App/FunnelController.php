@@ -42,7 +42,10 @@ class FunnelController extends \App\Http\Controllers\Controller {
       $funnel = Funnels\Funnel::where('user_id', Core\Secure::userId())->where('id', $qs['funnel_id'])->first();
 
       if (! empty($funnel)) {
-        session(['funnel' => $sl_funnel]);
+        $cookie_name = 'funnel' . Core\Secure::staticHash(Core\Secure::userId());
+
+        session([$cookie_name  => $sl_funnel]);
+        $cookie = \Cookie::queue($cookie_name, $sl_funnel, 60 * 24 * 7 * 4 * 6);
 
         $response = array(
           'type' => 'success',
@@ -99,7 +102,11 @@ class FunnelController extends \App\Http\Controllers\Controller {
       if($funnel->save()) {
         // Set funnel session
         $sl = Core\Secure::array2string(array('funnel_id' => $funnel->id));
-        session(['funnel' => $sl]);
+
+        $cookie_name = 'funnel' . Core\Secure::staticHash(Core\Secure::userId());
+
+        session([$cookie_name  => $sl]);
+        $cookie = \Cookie::queue($cookie_name, $sl, 60 * 24 * 7 * 4 * 6);
 
         $response = array(
           'type' => 'success',
@@ -168,6 +175,7 @@ class FunnelController extends \App\Http\Controllers\Controller {
 
       // Current funnel
       $funnel_id = Core\Secure::funnelId();
+      $cookie_name = 'funnel' . Core\Secure::staticHash(Core\Secure::userId());
 
       if ($funnel_id == $funnel->id) {
         // Switch to other funnel if exists
@@ -175,10 +183,14 @@ class FunnelController extends \App\Http\Controllers\Controller {
         if (! empty($funnel_new)) {
           // Switch session
           $sl = Core\Secure::array2string(array('funnel_id' => $funnel_new->id));
-          session(['funnel' => $sl]);
+
+          session([$cookie_name  => $sl]);
+          $cookie = \Cookie::queue($cookie_name, $sl, 60 * 24 * 7 * 4 * 6);
+
         } else {
           // There are no other funnels, remove session
-          session()->forget('funnel');
+          session()->forget($cookie_name);
+          \Cookie::queue(\Cookie::forget($cookie));
         }
       }
 

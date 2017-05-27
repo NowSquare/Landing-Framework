@@ -30,7 +30,11 @@ foreach ($funnels as $funnel) {
   $selected = ($funnel_id == $funnel->id) ? 'success' : '';
 ?>
             <tr class="{{ $selected }}">
-              <td>{{ $funnel->name }}</td>
+              <td>
+                <div class="row-actions" data-sl="{{ $sl_funnel }}">
+                  <a href="javascript:void(0);" class="link row-btn-select">{{ $funnel->name }}</a>
+                </div>
+              </td>
               <td class="text-center" style="width:90px"><span data-moment="fromNowDateTime" data-toggle="tooltip" title="{{ $funnel->created_at }}">{{ $funnel->created_at }}</span></td>
               <td class="text-center" style="width:94px">
                 <div class="row-actions-wrap">

@@ -70,7 +70,7 @@ function deleteCookie(name) {
 (function($) {
 
   'use strict';
-
+  
   function initNavbar() {
 
     $('.navbar-toggle').on('click', function(event) {
@@ -270,7 +270,7 @@ function onPartialLoaded() {
   fromNowDateTime();
   bindMediaBrowser();
   bindFormElements();
-  bindTinyMce();
+  //bindTinyMce();
 }
 
 function fromNowDateTime() {
@@ -600,7 +600,11 @@ function formResponse(responseText, statusText, xhr, $jqForm) {
   } else if (typeof responseText.redir !== 'undefined' && responseText.redir == 'reload') {
     document.location.reload();
   } else if (typeof responseText.redir !== 'undefined') {
-    document.location = responseText.redir;
+    if (document.location.hash == responseText.redir) {
+      document.location.reload();
+    } else {
+      document.location = responseText.redir;
+    }
   } else if (typeof responseText.msg !== 'undefined') {
     swal({
       type: responseText.type,
@@ -719,7 +723,7 @@ function format_fonts(font) {
 
 function select2() {
   if (jQuery().select2) {
-    $('.select2').select2({
+    $('.select2-basic').select2({
       allowClear: true
     });
 
