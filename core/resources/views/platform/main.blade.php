@@ -18,7 +18,7 @@
 
       <div id="navigation">
         <ul class="navigation-menu">
-          <li class="has-submenu"><a href="#/" class="waves-effect waves-light">{{ trans('global.dashboard') }}</a></li>
+<?php /*          <li class="has-submenu"><a href="#/" class="waves-effect waves-light">{{ trans('global.dashboard') }}</a></li>*/ ?>
 <?php
 foreach ($active_modules as $module) {
 ?>

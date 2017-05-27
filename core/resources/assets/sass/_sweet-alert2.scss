@@ -29,7 +29,7 @@ $swal2-validationerror-color:      $swal2-white !default;
 
 body {
   &.swal2-shown {
-    overflow-y: hidden;
+    /*overflow-y: hidden;*/
   }
 
   &.swal2-iosfix {
