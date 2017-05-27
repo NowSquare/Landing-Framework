@@ -115,8 +115,8 @@ foreach($funnels as $funnel) {
 <?php } ?>
                 </optgroup>
                 <optgroup label="{{ trans('global.options') }}">
+                <option value="-2">{{ trans('global.manage_funnels') }}</option>
                 <option value="-1">{{ trans('global.create_funnel') }}</option>
-                <option value="-2">{{ trans('global.edit_funnels') }}</option>
                 </optgroup>
               </select>
 
@@ -165,7 +165,7 @@ $(function() {
       if (result.id == -1) {
         return $('<span><i class="mi add"></i> ' + result.text + '</span>');
       } else if (result.id == -2) {
-        return $('<span><i class="mi mode_edit"></i> ' + result.text + '</span>');
+        return $('<span><i class="mi view_headline"></i> ' + result.text + '</span>');
       } else {
         return $('<span><i class="mi filter_list"></i> ' + result.text + '</span>');
         //return result.text;
@@ -177,7 +177,7 @@ $(function() {
       if (result.id == -1) {
         return $('<span><i class="mi add"></i> ' + result.text + '</span>');
       } else if (result.id == -2) {
-        return $('<span><i class="mi mode_edit"></i> ' + result.text + '</span>');
+        return $('<span><i class="mi view_headline"></i> ' + result.text + '</span>');
       } else {
         return $('<span><i class="mi filter_list"></i> ' + result.text + '</span>');
         //return result.text;

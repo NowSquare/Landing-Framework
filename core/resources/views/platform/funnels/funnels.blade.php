@@ -27,12 +27,12 @@
 foreach ($funnels as $funnel) {
   $sl_funnel = \Platform\Controllers\Core\Secure::array2string(['funnel_id' => $funnel->id]);
 
-  $selected = ($funnel_id == $funnel->id) ? 'success' : '';
+  $selected = ($funnel_id == $funnel->id) ? ' &nbsp; <strong>(' . trans('global.currently_selected') . ')</strong>' : '';
 ?>
-            <tr class="{{ $selected }}">
+            <tr>
               <td>
                 <div class="row-actions" data-sl="{{ $sl_funnel }}">
-                  <a href="javascript:void(0);" class="link row-btn-select">{{ $funnel->name }}</a>
+                  <a href="javascript:void(0);" class="link row-btn-select">{{ $funnel->name }}</a> {!! $selected !!}
                 </div>
               </td>
               <td class="text-center" style="width:90px"><span data-moment="fromNowDateTime" data-toggle="tooltip" title="{{ $funnel->created_at }}">{{ $funnel->created_at }}</span></td>

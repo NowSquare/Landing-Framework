@@ -206,9 +206,10 @@ return array(
   "create_funnel_text" => "Enter a name for the funnel.",
   "create_first_funnel_text" => "Before we can start, we need a funnel name to categorize pages, forms and email campaigns.",
   "create_first_funnel_text2" => "Go ahead and enter a name. You can change this later.",
-  "edit_funnels" => "Edit funnels",
+  "manage_funnels" => "Manage funnels",
   "update_funnel" => "Update funnel",
   "update_funnel_text" => "Enter a new name for the funnel.",
+  "currently_selected" => "Currently selected",
 
   /*
    |--------------------------------------------------------------------------
