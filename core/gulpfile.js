@@ -192,6 +192,7 @@ gulp.task('scripts', function() {
       'bower_components/jquery-ui/jquery-ui.js',
       'bower_components/director/build/director.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
+      'bower_components/bluebird/js/browser/bluebird.js',
       'bower_components/bootstrap-validator/dist/validator.js',
       'bower_components/fastclick/lib/fastclick.js',
       'bower_components/blockUI/jquery.blockUI.js',

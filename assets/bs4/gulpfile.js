@@ -109,6 +109,7 @@ gulp.task('scripts', function() {
       'bower_components/jquery/dist/jquery.js',
       'bower_components/tether/dist/js/tether.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
+      'bower_components/bluebird/js/browser/bluebird.js',
   		'bower_components/blockUI/jquery.blockUI.js',
       'bower_components/owl.carousel/dist/owl.carousel.js',
       'bower_components/particles.js/particles.js',

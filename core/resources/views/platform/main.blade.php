@@ -311,7 +311,7 @@ function createFunnel(first_funnel) {
       unblockUI();
     });
 
-  }, function (dismiss) {
+  }).catch(function(dismiss) {
     // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
     if (dismiss == 'cancel') {
       $('#selected_funnel').val(selected_funnel).trigger('change.select2');

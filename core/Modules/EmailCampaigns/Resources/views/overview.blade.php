@@ -20,11 +20,27 @@
 
             <div class="navbar-form navbar-right">
 
-                <div class="input-group input-group" style="margin:0 15px 0 0">
-                  <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                  <input type="text" class="form-control input" id="grid_search" placeholder="{{ trans('global.search_') }}">
+                <div class="input-group input-group" style="margin:0 5px 0 0">
+                  <span class="input-group-addon" onClick="if ($('#grid_search:visible').length) { $('#grid_search').delay().animate({width:'0px'}, 150, '').hide(0); } else { $('#grid_search').show().animate({width:'180px'}, 500, 'easeOutBounce'); }"><i class="mi search"></i></span>
+                  <input type="text" class="form-control input" id="grid_search" placeholder="{{ trans('global.search_') }}" style="width:0px;display: none">
                 </div>
-
+<?php /*
+                <div class="input-group input-group" style="margin:0 5px 0 0">
+                  <span class="input-group-addon" onClick="if ($('#order_selector:visible').length) { $('#order_selector').delay().animate({width:'0px'}, 150, '').hide(0); } else { $('#order_selector').show().animate({width:'180px'}, 500, 'easeOutBounce'); }"><i class="mi sort"></i></span>
+                  <div style="width: 0; overflow: hidden; display: none" id="order_selector">
+                  <div style="min-width:180px">
+                    <select id="order" class="select2-required-no-search">
+                      <option value="new_first"<?php if ($order == 'new_first') echo ' selected'; ?>>{{ trans('global.new_first') }}</option>
+                      <option value="old_first"<?php if ($order == 'old_first') echo ' selected'; ?>>{{ trans('global.old_first') }}</option>
+                      <option value="high_converting_first"<?php if ($order == 'high_converting_first') echo ' selected'; ?>>{{ trans('global.high_conversion_first') }}</option>
+                      <option value="low_converting_first"<?php if ($order == 'low_converting_first') echo ' selected'; ?>>{{ trans('global.low_conversion_first') }}</option>
+                      <option value="most_visited_first"<?php if ($order == 'most_visited_first') echo ' selected'; ?>>{{ trans('global.most_visited_first') }}</option>
+                      <option value="least_visited_first"<?php if ($order == 'least_visited_first') echo ' selected'; ?>>{{ trans('global.least_visited_first') }}</option>
+                    </select>
+                  </div>
+                  </div>
+                </div>
+*/ ?>
                 <a href="#/emailcampaigns/create" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('emailcampaigns::global.create_campaign') }}</a>
             </div>
 
@@ -186,7 +202,7 @@ foreach($email_campaigns as $campaign) {
 <?php if ($i == count($email_campaigns)) { ?>
     setTimeout(function() {
       $grid.masonry('reloadItems').masonry();
-    }, 100);
+    }, 200);
 <?php } ?>
   });
 <?php

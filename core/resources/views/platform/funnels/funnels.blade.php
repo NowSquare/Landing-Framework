@@ -2,26 +2,44 @@
 
   <div class="row m-t">
     <div class="col-sm-12">
-      <nav class="navbar navbar-default card-box sub-navbar">
+
+       <nav class="navbar navbar-default card-box sub-navbar">
         <div class="container-fluid">
+
           <div class="navbar-header">
-            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('global.funnels') }}</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-title-navbar" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('global.funnels') }} ({{ count($funnels) }})</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="bs-title-navbar">
+
+            <div class="navbar-form navbar-right">
+               <button type="button" class="btn btn-success" onclick="createFunnel(false);"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('global.create_funnel') }}</button>
+            </div>
+
           </div>
         </div>
       </nav>
+
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-12">
       <div class="card-box table-responsive">
-        <table class="table table-striped table-hover" id="table-funnels"><?php /*
+        <table class="table table-striped table-hover" id="table-funnels" style="width:100%; border: 1px solid #ddd;">
           <thead>
             <tr>
-              <th>Funnel</th>
-              <th>Funnel</th>
+              <th>{{ trans('global.name') }}</th>
+              <th style="width:120px" class="text-center">{{ trans('global.created') }}</th>
+              <th style="width:74px" class="text-center">{{ trans('global.actions') }}</th>
             </tr>
-          </thead>*/ ?>
+          </thead>
           <tbody>
 <?php
 foreach ($funnels as $funnel) {
@@ -35,11 +53,11 @@ foreach ($funnels as $funnel) {
                   <a href="javascript:void(0);" class="link row-btn-select">{{ $funnel->name }}</a> {!! $selected !!}
                 </div>
               </td>
-              <td class="text-center" style="width:90px"><span data-moment="fromNowDateTime" data-toggle="tooltip" title="{{ $funnel->created_at }}">{{ $funnel->created_at }}</span></td>
-              <td class="text-center" style="width:94px">
+              <td class="text-center"><span data-moment="fromNowDateTime" data-toggle="tooltip" title="{{ $funnel->created_at }}">{{ $funnel->created_at }}</span></td>
+              <td class="text-center">
                 <div class="row-actions-wrap">
                   <div class="text-center row-actions" data-sl="{{ $sl_funnel }}" data-name="{{ $funnel->name }}">
-                    <a href="javascript:void(0);" class="btn btn-xs btn-primary row-btn-select" data-toggle="tooltip" title="{{ trans('global.select') }}"><i class="fa fa-sign-in"></i></a>
+<?php /*                    <a href="javascript:void(0);" class="btn btn-xs btn-primary row-btn-select" data-toggle="tooltip" title="{{ trans('global.select') }}"><i class="fa fa-sign-in"></i></a>*/ ?>
                     <a href="javascript:void(0);" class="btn btn-xs btn-inverse row-btn-edit" data-toggle="tooltip" title="{{ trans('global.edit') }}"><i class="fa fa-pencil"></i></a>
                     <a href="javascript:void(0);" class="btn btn-xs btn-danger row-btn-delete" data-toggle="tooltip" title="{{ trans('global.delete') }}"><i class="fa fa-trash"></i></a>
                   </div>
@@ -50,13 +68,6 @@ foreach ($funnels as $funnel) {
 }
 ?>
           </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3" style="padding:15px 0 0 0">
-                 <button type="button" class="btn btn-block btn-success btn-lg" onclick="createFunnel(false);">{{ trans('global.create_funnel') }}</button>
-              </td>
-            </tr>
-          </tfoot>
        </table>
       </div>
     </div>
