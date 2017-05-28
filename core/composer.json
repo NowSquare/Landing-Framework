@@ -10,6 +10,7 @@
         "barryvdh/elfinder-flysystem-driver": "^0.2.0",
         "barryvdh/laravel-cors": "^0.9.2",
         "barryvdh/laravel-elfinder": "^0.3.10",
+        "bogardo/mailgun": "^5.0",
         "codesleeve/laravel-stapler": "^1.0",
         "doctrine/cache": "^1.6",
         "electrolinux/phpquery": "^0.9.6",
