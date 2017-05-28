@@ -24,15 +24,15 @@
     </div>
   </div>
 
-  <div class="row flex-holder">
+  <div class="row">
 <?php
 $i=0;
 foreach ($categories as $category) {
   $i++;
 ?>
-    <div class="col-sm-4 col-lg-3 flex-item">
+    <div class="col-xs-6 col-sm-4 col-lg-3">
 
-      <div class="portlet shadow-box box-option flex-eq-height" 
+      <div class="portlet shadow-box box-option"
         onMouseOver="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/active/' . $category['icon']) }}';"
         onMouseOut="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/color/' . $category['icon']) }}';"
       >
