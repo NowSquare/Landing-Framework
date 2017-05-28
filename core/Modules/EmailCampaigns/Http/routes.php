@@ -2,6 +2,9 @@
 
 Route::group(['middleware' => 'web', 'prefix' => 'ec', 'namespace' => 'Modules\EmailCampaigns\Http\Controllers'], function() {
 
+  // Mail test
+  Route::get('mail', 'EmailCampaignsController@sendEmail');
+
   // Public routes
   Route::get('{local_domain}', 'EmailCampaignsController@showEmail');
 
@@ -22,7 +25,7 @@ Route::group(['middleware' => ['web', 'funnel', 'limitation:emailcampaigns.visib
     Route::post('save', 'EmailCampaignsController@saveEmail');
     Route::post('publish', 'EmailCampaignsController@publishEmail');
     Route::post('unpublish', 'EmailCampaignsController@unpublishEmail');
-    Route::post('delete', 'EmailCampaignsController@deleteEmail');
+    Route::post('delete', 'EmailCampaignsController@deleteCampaign');
     Route::get('editor', 'EmailCampaignsController@editorFrame');
 
     // Previews

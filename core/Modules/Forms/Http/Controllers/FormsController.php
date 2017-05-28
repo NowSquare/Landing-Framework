@@ -84,6 +84,28 @@ class FormsController extends Controller
     }
 
     /**
+     * Form editor iframe
+     */
+    public function editorFrame()
+    {
+      $sl = request()->input('sl', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        if (isset($qs['form_id'])) {
+          $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $qs['form_id'])->first();
+
+          if (! empty($form)) {
+            $url = url('f/edit/' . Core\Secure::staticHash($qs['form_id'], true));
+
+            return view('forms::editor', compact('url', 'form'));
+          }
+        }
+      }
+    }
+
+    /**
      * Form editor
      */
     public function editor($local_domain)
@@ -370,28 +392,6 @@ class FormsController extends Controller
       }
 
       return response()->json(['redir' => $redir]);
-    }
-
-    /**
-     * Landing page editor iframe
-     */
-    public function editorFrame()
-    {
-      $sl = request()->input('sl', '');
-
-      if($sl != '') {
-        $qs = Core\Secure::string2array($sl);
-
-        if (isset($qs['form_id'])) {
-          $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $qs['form_id'])->first();
-
-          if (! empty($form)) {
-            $url = url('f/edit/' . Core\Secure::staticHash($qs['form_id'], true));
-
-            return view('forms::editor', compact('url', 'form'));
-          }
-        }
-      }
     }
 
     /**

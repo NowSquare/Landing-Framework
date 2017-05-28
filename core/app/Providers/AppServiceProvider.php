@@ -113,6 +113,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+      // https://github.com/Bogardo/Mailgun
+      $this->app->bind('mailgun.client', function() {
+        return \Http\Adapter\Guzzle6\Client::createWithConfig([
+          // your Guzzle6 configuration
+        ]);
+      });
     }
 }

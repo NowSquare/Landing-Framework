@@ -62,7 +62,7 @@ foreach($email_campaigns as $campaign) {
   $sl_email = \Platform\Controllers\Core\Secure::array2string(['email_id' => $email_id]);
   $edit_url = '#/emailcampaigns/editor/' . $sl_email;
 
-  $local_domain = 'ec/' . $email->local_domain;
+  $local_domain = 'ec/' . $campaign->local_domain;
   $url = $email->url();
 
   // Update files

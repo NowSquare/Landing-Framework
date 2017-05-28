@@ -138,10 +138,10 @@ class FunctionsController extends Controller
       $email->template = $template;
       $email->save();
 
-      $local_domain = Core\Secure::staticHash($email->id, true);
+      $local_domain = Core\Secure::staticHash($email_campaign_id, true);
 
-      $email->local_domain = $local_domain;
-      $email->save();
+      $email_campaign->local_domain = $local_domain;
+      $email_campaign->save();
 
       // Finally, create directory with files
       $storage_root = 'emails/email/' . Core\Secure::staticHash($user_id) . '/' . $local_domain;
