@@ -109,6 +109,9 @@ class InstallationController extends \App\Http\Controllers\Controller {
         $table->bigInteger('landing_page_id')->unsigned()->nullable();
         $table->foreign('landing_page_id')->references('id')->on('landing_pages')->onDelete('SET NULL');
         $table->boolean('confirmed')->default(false);
+        $table->integer('clicks')->unsigned()->default(0);
+        $table->integer('opens')->unsigned()->default(0);
+        $table->integer('emails')->unsigned()->default(0);
         $table->tinyInteger('followups')->unsigned()->default(0);
         $table->dateTime('first_followup')->nullable();
         $table->dateTime('last_followup')->nullable();
@@ -180,33 +183,19 @@ class InstallationController extends \App\Http\Controllers\Controller {
     }
 
     // Create user email stats table if not exist
-    $tbl_name = 'x_email_stats_' . $user_id;
+    $tbl_name = 'x_email_mailings_' . $user_id;
 
     if (! Schema::hasTable($tbl_name)) {
       Schema::create($tbl_name, function(Blueprint $table) {
         $table->bigIncrements('id');
-        $table->bigInteger('email_id')->unsigned();
-        $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
         $table->bigInteger('email_campaign_id')->unsigned()->nullable();
         $table->foreign('email_campaign_id')->references('id')->on('email_campaigns')->onDelete('SET NULL');
-        $table->char('fingerprint', 32)->nullable();
-        $table->boolean('is_click')->default(false);
-        $table->bigInteger('clicks')->unsigned()->default(1);
-        $table->boolean('is_open')->default(false);
-        $table->bigInteger('opens')->unsigned()->default(1);
-        $table->string('ip', 40)->nullable();
+        $table->bigInteger('email_id')->unsigned();
+        $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
+        $table->integer('recepients')->unsigned()->default(1);
+        $table->integer('clicks')->unsigned()->default(0);
+        $table->integer('opens')->unsigned()->default(0);
         $table->string('language', 5)->nullable();
-        $table->string('client_type', 32)->nullable();
-        $table->string('client_name', 32)->nullable();
-        $table->string('client_version', 32)->nullable();
-        $table->string('os_name', 32)->nullable();
-        $table->string('os_version', 32)->nullable();
-        $table->string('os_platform', 32)->nullable();
-        $table->string('device', 12)->nullable();
-        $table->string('brand', 32)->nullable();
-        $table->string('model', 32)->nullable();
-        $table->decimal('lat', 10, 8)->nullable();
-        $table->decimal('lng', 11, 8)->nullable();
         $table->json('meta')->nullable();
         $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
       });

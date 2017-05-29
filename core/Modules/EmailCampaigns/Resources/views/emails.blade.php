@@ -45,7 +45,7 @@
                   </div>
                 </div>
 */ ?>
-                <a href="#/emailcampaigns/create" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('emailcampaigns::global.create_email') }}</a>
+                <a href="#/emailcampaigns/emails/create/{{ $sl }}" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('emailcampaigns::global.create_email') }}</a>
             </div>
 
           </div>
@@ -71,7 +71,7 @@ foreach($email_campaign->emails as $email) {
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" style="max-width: 250px" id="item{{ $i }}">
 
-      <div class="grid-item-content portlet shadow-box" data-sl="{{ $sl_campaign }}">
+      <div class="grid-item-content portlet shadow-box" data-sl="{{ $sl_email }}">
 
         <div class="btn-group pull-right">
           <button type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -196,12 +196,12 @@ $(function() {
 
 <?php
 $i = 1;
-foreach($email_campaigns as $campaign) {
+foreach($email_campaign->emails as $email) {
 ?>
   $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
-<?php if ($i == count($email_campaigns)) { ?>
+<?php if ($i == count($email)) { ?>
     setTimeout(function() {
       $grid.masonry('reloadItems').masonry();
     }, 200);
@@ -228,13 +228,12 @@ $('.onClickDelete').on('click', function() {
     blockUI();
 
     var jqxhr = $.ajax({
-      url: "{{ url('emailcampaigns/delete') }}",
+      url: "{{ url('emailcampaigns/emails/delete') }}",
       data: {sl: sl,  _token: '<?= csrf_token() ?>'},
       method: 'POST'
     })
     .done(function(data) {
-      $item.remove();
-      $grid.masonry('reloadItems').masonry();
+      document.location.reload();
     })
     .fail(function() {
       console.log('error');

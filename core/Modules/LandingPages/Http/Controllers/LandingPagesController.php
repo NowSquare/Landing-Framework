@@ -462,7 +462,7 @@ class LandingPagesController extends Controller
       if ($form) $tab = 'form';
 
       if (\Gate::allows('limitation', 'forms.visible') && ! $submit) {
-        $forms = \Modules\Forms\Http\Models\Form::where('user_id', Core\Secure::userId())->orderBy('name', 'asc')->get();
+        $forms = \Modules\Forms\Http\Models\Form::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->orderBy('name', 'asc')->get();
       } else {
         $forms = null;
       }

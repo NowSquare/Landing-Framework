@@ -302,4 +302,32 @@ class EmailsController extends Controller
 
       return $html;
     }
+    /**
+     * Delete email
+     */
+    public function deleteEmail()
+    {
+      $sl = request()->input('sl', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+        if (is_numeric($email_id)) {
+          // Delete records
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $email_id)->first();
+
+          // Delete records
+          $tbl_name = 'x_email_mailings_' . Core\Secure::userId();
+          \DB::table($tbl_name)->where('email_id', $email_id)->delete();
+
+          // Delete files
+          $storage_root = 'emails/email/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($email->email_campaign_id, true) . '/' . Core\Secure::staticHash($email_id, true);
+          \Storage::disk('public')->deleteDirectory($storage_root);
+
+          $email->delete();
+
+          return response()->json(['success' => true]);
+        }
+      }
+    }
 }

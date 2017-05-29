@@ -28,6 +28,7 @@ Route::group(['middleware' => ['web', 'funnel', 'limitation:emailcampaigns.visib
     Route::get('emails/create', 'EmailsController@showCreateEmail');
     Route::get('emails/create/{category}', 'EmailsController@showSelectTemplate');
     Route::post('emails/create', 'EmailsController@postCreateEmail');
+    Route::post('emails/delete', 'EmailsController@deleteEmail');
 
     Route::post('emails/save', 'EmailsController@saveEmail');
     Route::get('emails/editor', 'EmailsController@editorFrame');

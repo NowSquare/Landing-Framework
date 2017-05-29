@@ -61,7 +61,6 @@ class CreateEmailCampaignsTable extends Migration
       $table->json('meta')->nullable();
       $table->timestamps();
     });
-
   }
 
   /**
