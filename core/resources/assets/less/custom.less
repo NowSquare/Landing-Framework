@@ -214,12 +214,12 @@ i.help-icon:hover {
 
 // Select2
 .select2-container.select2-container--open {
-  border-width: 0px !important;
+ // border-width: 0px !important;
 }
 
 .form-group {
   .select2-container.select2-container--open {
-    border-width: 1px !important;
+   // border-width: 1px !important;
   }
 }
 
@@ -229,14 +229,23 @@ i.help-icon:hover {
   border: 1px solid #eee !important;
   border-radius: 0px;
 
-  &.select2-container--below,
-  &.select2-container--above {
-    border: 1px solid fade(@dark, 10%) !important;
+  &.select2-container--open {
+    border: 0 !important;
+    margin-top: -2px;
+  }
+
+  &.select2-container--open.select2-container--below,
+  &.select2-container--open.select2-container--above {
+    border: 1px solid #eee !important;
+    margin: 0 !important;
+    //border: 1px solid fade(@dark, 10%) !important;
   }
   
   .select2-dropdown {
     border-color: fade(@dark, 10%) !important;
     .border-radius(0px)  !important;
+    border: 0 !important;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12);
 
     &.select2-dropdown--above {
       //margin-top: 0;
@@ -311,6 +320,9 @@ i.help-icon:hover {
 .app-search {
   .select2-container {
     border-radius: 15px;
+    &.select2-container--open {
+      border: 0 !important;
+    }
     .select2-selection {
       .border-radius(12px);
     }
