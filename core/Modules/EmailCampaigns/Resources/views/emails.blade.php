@@ -15,9 +15,22 @@
             </button>
             <a class="navbar-brand link" href="#/emailcampaigns">{{ trans('emailcampaigns::global.module_name_plural') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
-            <a class="navbar-brand link" href="#/emailcampaigns/edit/{{ \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $email_campaign->id]) }}">{{ $email_campaign->name }}</a>
-            <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('global.emails') }} ({{ count($email_campaign->emails) }})</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $email_campaign->name }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+<?php
+foreach($email_campaigns as $campaign) {
+  $sl_email_campaign = \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $campaign->id]);
+  $selected = ($campaign->id == $email_campaign->id) ? ' active' : '';
+  echo '<li class="' . $selected . '"><a href="#/emailcampaigns/edit/' . $sl_email_campaign . '">' . $campaign->name . '</a></li>';
+}
+?>
+                </ul>
+              </li>
+            </ul>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-title-navbar">

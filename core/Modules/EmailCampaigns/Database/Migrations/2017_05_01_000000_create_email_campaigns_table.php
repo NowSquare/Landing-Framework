@@ -46,10 +46,13 @@ class CreateEmailCampaignsTable extends Migration
       $table->bigInteger('form_id')->unsigned()->nullable();
       $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade')->nullable();
       $table->string('template', 48)->nullable();
+      $table->integer('test_mails')->unsigned()->default(0);
+      $table->dateTime('last_test')->nullable();
       $table->string('local_domain', 64)->nullable();
       $table->tinyInteger('variant')->unsigned()->default(1);
       $table->boolean('active')->default(true);
       $table->string('name', 64)->nullable();
+      $table->string('subject', 200)->nullable();
       $table->dateTime('last_followup')->nullable();
       $table->dateTime('last_response')->nullable();
       $table->bigInteger('opens')->unsigned()->default(0);
