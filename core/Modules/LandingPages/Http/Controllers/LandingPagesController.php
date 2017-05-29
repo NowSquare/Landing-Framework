@@ -292,7 +292,7 @@ class LandingPagesController extends Controller
 
       $page = FunctionsController::createPage($template, $name);
 
-      $redir = ($page !== false) ? Core\Secure::array2string(['landing_page_id' => $page->id]) : '#';
+      $redir = ($page !== false) ? urlencode(Core\Secure::array2string(['landing_page_id' => $page->id])) : '#';
 
       return response()->json(['redir' => $redir]);
     }

@@ -3,31 +3,35 @@
 Route::group(['middleware' => 'web', 'prefix' => 'ec', 'namespace' => 'Modules\EmailCampaigns\Http\Controllers'], function() {
 
   // Mail test
-  Route::get('mail', 'EmailCampaignsController@sendEmail');
+  Route::get('mail', 'EmailsController@sendEmail');
 
   // Public routes
-  Route::get('{local_domain}', 'EmailCampaignsController@showEmail');
+  Route::get('{local_domain}', 'EmailsController@showEmail');
 
   // Secured routes
   Route::group(['middleware' => 'auth:web'], function () {
-    Route::get('edit/{local_domain}', 'EmailCampaignsController@editor');
+    Route::get('edit/{local_domain}', 'EmailsController@editor');
   });
 
 });
 
 Route::group(['middleware' => ['web', 'funnel', 'limitation:emailcampaigns.visible'], 'prefix' => 'emailcampaigns', 'namespace' => 'Modules\EmailCampaigns\Http\Controllers'], function()
 {
-    Route::get('/', 'EmailCampaignsController@index');
-    Route::get('create', 'EmailCampaignsController@create');
-    Route::get('create/{category}', 'EmailCampaignsController@createCategory');
-    Route::post('create', 'EmailCampaignsController@createCampaign');
-
-    Route::post('save', 'EmailCampaignsController@saveEmail');
-    Route::post('publish', 'EmailCampaignsController@publishEmail');
-    Route::post('unpublish', 'EmailCampaignsController@unpublishEmail');
+    Route::get('/', 'EmailCampaignsController@showCampaigns');
+    Route::get('create', 'EmailCampaignsController@showCreateCampaign');
+    Route::post('create', 'EmailCampaignsController@postCreateCampaign');
+    Route::get('edit', 'EmailCampaignsController@showEditCampaign');
+    Route::post('update', 'EmailCampaignsController@postUpdateCampaign');
     Route::post('delete', 'EmailCampaignsController@deleteCampaign');
-    Route::get('editor', 'EmailCampaignsController@editorFrame');
+
+    Route::get('emails', 'EmailsController@showEmails');
+    Route::get('emails/create', 'EmailsController@showCreateEmail');
+    Route::get('emails/create/{category}', 'EmailsController@showSelectTemplate');
+    Route::post('emails/create', 'EmailsController@postCreateEmail');
+
+    Route::post('emails/save', 'EmailsController@saveEmail');
+    Route::get('emails/editor', 'EmailsController@editorFrame');
 
     // Previews
-    Route::get('preview/{template}', 'EmailCampaignsController@previewTemplate');
+    Route::get('preview/{template}', 'EmailsController@previewTemplate');
 });

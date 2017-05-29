@@ -3,7 +3,7 @@
 return [
   'name' => 'Newsletter',
   'active' => true,
-  'categories' => ['transactional_email', 'marketing_email', 'drip_campaign'],
+  'categories' => ['news'],
   'created_at' => '2017-05-28',
   'updated_at' => '2017-05-28',
   'author_name' => 'Landing Framework',

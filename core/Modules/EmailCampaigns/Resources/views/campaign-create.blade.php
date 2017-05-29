@@ -32,7 +32,7 @@ foreach ($categories as $category) {
 ?>
     <div class="col-xs-6 col-sm-4 col-lg-3">
 
-      <div class="portlet shadow-box box-option"
+      <div class="portlet shadow-box box-option" data-category="{{ $category['category'] }}"
         onMouseOver="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/active/' . $category['icon']) }}';"
         onMouseOut="document.getElementById('box-icon{{ $i }}').src = '{{ url('assets/images/icons/color/' . $category['icon']) }}';"
       >
@@ -42,7 +42,7 @@ foreach ($categories as $category) {
         </div>
         <div>
           <div class="text-center">
-            <a href="#/emailcampaigns/create/{{ $category['category'] }}">
+            <a href="javascript:void(0);" class="onClickSelect">
               <img src="{{ url('assets/images/icons/color/' . $category['icon']) }}" id="box-icon{{ $i }}" class="box-icon" alt="{{ $category['name'] }}">
             </a>
           </div>
@@ -50,7 +50,7 @@ foreach ($categories as $category) {
             {{ $category['desc'] }}
           </div>
           <div class="panel-footer">
-            <a href="#/emailcampaigns/create/{{ $category['category'] }}" class="btn btn-lg btn-primary btn-block">{{ trans('global.select') }}</a>
+            <a href="javascript:void(0);" class="btn btn-lg btn-primary btn-block onClickSelect">{{ trans('global.select') }}</a>
           </div>
         </div>
       </div>
@@ -59,3 +59,66 @@ foreach ($categories as $category) {
 <?php } ?>
   </div>
 </div>
+
+<script>
+var $grid = $('.grid').masonry({
+  itemSelector: '.grid-item',
+  columnWidth: '.grid-sizer',
+  percentPosition: true,
+  transitionDuration: '0.2s'
+});
+
+$('.onClickSelect').on('click', function() {
+  var category = $(this).parents('.portlet.shadow-box').attr('data-category');
+
+  swal({
+    title: '{{ trans('global.enter_name') }}',
+    text: '{{ trans('emailcampaigns::global.enter_name_text') }}',
+    input: 'text',
+    showCancelButton: true,
+    cancelButtonText: _lang['cancel'],
+    confirmButtonColor: "#138dfa",
+    confirmButtonText: _lang['ok'],
+    inputValidator: function (value) {
+      return new Promise(function (resolve, reject) {
+        if (value) {
+          resolve()
+        } else {
+          reject('{{ trans('global.please_enter_value') }}')
+        }
+      })
+    }
+  }).then(function (result) {
+
+    //blockUI();
+
+    var jqxhr = $.ajax({
+      url: "{{ url('emailcampaigns/create') }}",
+      data: {name: result, category: category,  _token: '<?= csrf_token() ?>'},
+      method: 'POST'
+    })
+    .done(function(data) {
+      if (typeof data.redir !== 'undefined') {
+        document.location = '#/emailcampaigns/emails/' + data.redir;
+      } else if (typeof data.msg !== 'undefined') {
+        swal(
+          "{{ trans('global.oops') }}",
+          data.msg,
+          'error'
+        )
+      }
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
+      //unblockUI();
+    });
+
+  }, function (dismiss) {
+    // Do nothing on cancel
+    // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
+  });
+});
+
+</script>

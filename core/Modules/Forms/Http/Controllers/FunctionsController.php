@@ -14,6 +14,37 @@ use DeviceDetector\Parser\Device\DeviceParserAbstract;
 class FunctionsController extends Controller
 {
   /**
+   * Get all form categories
+   */
+  public static function getCategories()
+  {
+    $items = [];
+
+    $items[] = [
+      "icon" => 'handshake.svg',
+      "category" => "contact",
+      "name" => trans('forms::global.contact'),
+      "desc" => trans('forms::global.contact_desc')
+    ];
+
+    $items[] = [
+      "icon" => 'avatarmaleplus.svg',
+      "category" => "opt_in",
+      "name" => trans('forms::global.opt_in'),
+      "desc" => trans('forms::global.opt_in_desc')
+    ];
+
+    $items[] = [
+      "icon" => 'attachmentadd.svg',
+      "category" => "download",
+      "name" => trans('forms::global.download'),
+      "desc" => trans('forms::global.download_desc')
+    ];
+
+    return $items;
+  }
+
+  /**
    * Add stat
    */
   public static function addStat($form, $ua = null)
@@ -262,37 +293,6 @@ class FunctionsController extends Controller
     } else {
       return false;
     }
-  }
-
-  /**
-   * Get all form categories
-   */
-  public static function getCategories()
-  {
-    $items = [];
-
-    $items[] = [
-      "icon" => 'handshake.svg',
-      "category" => "contact",
-      "name" => trans('forms::global.contact'),
-      "desc" => trans('forms::global.contact_desc')
-    ];
-
-    $items[] = [
-      "icon" => 'newsletter.svg',
-      "category" => "newsletter",
-      "name" => trans('forms::global.newsletter'),
-      "desc" => trans('forms::global.newsletter_desc')
-    ];
-
-    $items[] = [
-      "icon" => 'attachmentadd.svg',
-      "category" => "download",
-      "name" => trans('forms::global.download'),
-      "desc" => trans('forms::global.download_desc')
-    ];
-
-    return $items;
   }
 
   /**

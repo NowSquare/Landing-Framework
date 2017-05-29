@@ -8,7 +8,9 @@
           <div class="navbar-header">
             <a class="navbar-brand link" href="#/emailcampaigns">{{ trans('emailcampaigns::global.module_name_plural') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
-            <a class="navbar-brand link" href="#/emailcampaigns/create">{{ trans('global.category') }}</a>
+            <a class="navbar-brand link" href="#/emailcampaigns/emails/{{ $sl }}">{{ $email_campaign->name }}</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
+            <a class="navbar-brand link" href="#/emailcampaigns/emails/create/{{ $sl }}">{{ trans('emailcampaigns::global.create_email') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('emailcampaigns::global.' . $category) }}</a>
           </div>
@@ -16,7 +18,7 @@
           <div class="collapse navbar-collapse" id="bs-title-navbar">
 
             <div class="navbar-form navbar-right">
-                <a href="#/emailcampaigns/create" class="btn btn-default"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ trans('global.back') }}</a>
+                <a href="#/emailcampaigns/emails/create/{{ $sl }}" class="btn btn-default"><i class="fa fa-arrow-left" aria-hidden="true"></i> {{ trans('global.back') }}</a>
             </div>
 
           </div>
@@ -103,13 +105,13 @@ $('.onClickSelect').on('click', function() {
     //blockUI();
 
     var jqxhr = $.ajax({
-      url: "{{ url('emailcampaigns/create') }}",
-      data: {name: result, template: template,  _token: '<?= csrf_token() ?>'},
+      url: "{{ url('emailcampaigns/emails/create') }}",
+      data: {name: result, template: template, sl: "{{ $sl }}",  _token: '<?= csrf_token() ?>'},
       method: 'POST'
     })
     .done(function(data) {
       if (typeof data.redir !== 'undefined') {
-        document.location = '#/emailcampaigns/editor/' + data.redir;
+        document.location = '#/emailcampaigns/emails/editor/' + data.redir;
       } else if (typeof data.msg !== 'undefined') {
         swal(
           "{{ trans('global.oops') }}",

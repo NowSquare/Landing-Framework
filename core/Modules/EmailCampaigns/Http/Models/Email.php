@@ -37,18 +37,4 @@ class Email extends Model {
       return '//' . $this->domain;
     }
   }
-
-  /**
-   * Conversion percentage.
-   */
-  public function getConversionAttribute($query) {
-
-    if ($this->visits < $this->conversions) {
-      return 100;
-    } elseif ($this->conversions == 0) {
-      return 0;
-    } else {
-      return round(($this->conversions / $this->visits) * 100);
-    }
-  }
 }

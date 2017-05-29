@@ -386,7 +386,7 @@ class FormsController extends Controller
         \Storage::disk('public')->put($storage_root_full . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
         \Storage::disk('public')->put($storage_root_full . '/index.blade.php', $html);
 
-        $redir = Core\Secure::array2string(['form_id' => $form_id]);
+        $redir = urlencode(Core\Secure::array2string(['form_id' => $form_id]));
       } else {
         $redir = '#';
       }

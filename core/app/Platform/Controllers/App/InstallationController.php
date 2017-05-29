@@ -317,7 +317,7 @@ class InstallationController extends \App\Http\Controllers\Controller {
 
       // Demo data
       if (config('app.demo')) {
-
+/*
         // Create user tables
         \Platform\Controllers\App\InstallationController::createUserTables(1);
 
@@ -344,7 +344,7 @@ class InstallationController extends \App\Http\Controllers\Controller {
         for ($i = 0; $i < $lp_stats; $i++) {
           \Modules\LandingPages\Http\Controllers\FunctionsController::addStat($page, $faker->userAgent(), $faker->ipv4(), $faker->dateTimeBetween($startDate, $endDate));
         }
-
+*/
         // Demo seeds
         \Artisan::call('db:seed', [
             '--force' => true,

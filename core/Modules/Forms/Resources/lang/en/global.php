@@ -22,8 +22,8 @@ return array(
   "create_form" => "Create Form",
   "contact" => "Contact",
   "contact_desc" => "Get in touch with your visitors.",
-  "newsletter" => "Newsletter",
-  "newsletter_desc" => "Get visitors to join your mailing list.",
+  "opt_in" => "Opt-in",
+  "opt_in_desc" => "Get visitors to join a list.",
   "download" => "Download",
   "download_desc" => "Send a link to download a file after submitting the form.",
 

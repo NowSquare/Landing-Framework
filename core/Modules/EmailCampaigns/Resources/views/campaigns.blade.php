@@ -56,19 +56,7 @@
 <?php 
 $i = 1;
 foreach($email_campaigns as $campaign) {
-  $email = $campaign->emails->first();
-  $email_id = $email->id;
   $sl_campaign = \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $campaign->id]);
-  $sl_email = \Platform\Controllers\Core\Secure::array2string(['email_id' => $email_id]);
-  $edit_url = '#/emailcampaigns/editor/' . $sl_email;
-
-  $local_domain = 'ec/' . $campaign->local_domain;
-  $url = $email->url();
-
-  // Update files
-  $variant = 1;
-  $storage_root = 'emailcampaigns/site/' . \Platform\Controllers\Core\Secure::staticHash(\Platform\Controllers\Core\Secure::userId()) . '/' .  \Platform\Controllers\Core\Secure::staticHash($campaign->id, true) . '/' . \Platform\Controllers\Core\Secure::staticHash($email->id, true) . '/' . $variant;
-  $published = (\Storage::disk('public')->exists($storage_root . '/published/index.blade.php')) ? '<span class="badge badge-xs badge-success pull-right">published</span>' : '<span class="badge badge-xs badge-danger pull-right">not published</span>';
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" style="max-width: 250px" id="item{{ $i }}">
 
@@ -79,8 +67,8 @@ foreach($email_campaigns as $campaign) {
             <i class="mi more_vert"></i>
           </button>
           <ul class="dropdown-menu m-t-0">
-            <li><a href="{{ $edit_url }}">{{ trans('emailcampaigns::global.edit_email_campaign') }}</a></li>
-            <li><a href="#/emailcampaigns/analytics/{{ $sl_email }}">{{ trans('global.view_analytics') }}</a></li>
+            <li><a href="#/emailcampaigns/edit/{{ $sl_campaign }}">{{ trans('emailcampaigns::global.edit_email_campaign') }}</a></li>
+            <li><a href="#/emailcampaigns/emails/{{ $sl_campaign }}">{{ trans('emailcampaigns::global.manage_emails') }}</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="javascript:void(0);" class="onClickDelete">{{ trans('global.delete') }}</a></li>
           </ul>
@@ -94,29 +82,33 @@ foreach($email_campaigns as $campaign) {
         <div class="portlet-body" style="padding:0">
          <table class="table table-hover table-striped" style="margin-bottom: 0">
            <tr>
+             <td width="33" class="text-center"><i class="mi info_outline"></i></td>
+             <td colspan="2"><strong>{{ trans('emailcampaigns::global.' . $campaign->type) }}</strong></td>
+           </tr>
+           <tr>
+             <td width="33" class="text-center"><i class="mi mail_outline"></i></td>
+             <td><a href="#/emailcampaigns/emails/{{ $sl_campaign }}" class="link">{{ trans('global.emails') }}</a></td>
+             <td class="text-right"><strong>{{ number_format(count($campaign->emails)) }}</strong></td>
+           </tr><?php /*
+           <tr>
              <td width="33" class="text-center"><i class="mi open_in_browser"></i></td>
-             <td><a href="{{ $url }}" target="_blank" class="link">{{ trans('global.visit_online') }}</a></td>
-             <td class="text-right"> {!! $published !!}</td>
+             <td>{{ trans('global.opens') }}:</td>
+             <td class="text-right"><strong>{{ number_format($campaign->opens) }}</strong></td>
            </tr>
            <tr>
-             <td width="33" class="text-center"><i class="mi person_pin"></i></td>
-             <td><a href="#/emailcampaigns/analytics/{{ $sl_email }}" class="link">{{ trans('global.visits') }}</a>:</td>
-             <td class="text-right"><strong>{{ number_format($email->visits) }}</strong></td>
-           </tr>
-           <tr>
-             <td class="text-center"><i class="mi input"></i></td>
-             <td>{{ trans('global.conversions') }}:</td>
-             <td class="text-right"><strong>{{ number_format($email->conversions) }}</strong></td>
-           </tr>
+             <td class="text-center"><i class="mi touch_app"></i></td>
+             <td>{{ trans('global.clicks') }}:</td>
+             <td class="text-right"><strong>{{ number_format($campaign->clicks) }}</strong></td>
+           </tr>*/ ?>
          </table>
         </div>
-
+<?php /*
         <div>
-          <a href="{{ $edit_url }}" class="preview-container" id="container{{ $i }}" title="{{ $campaign['name'] }}">
+          <a href="" class="preview-container" id="container{{ $i }}" title="{{ $campaign['name'] }}">
             <iframe src="{{ url($local_domain . '?preview=1') }}" id="frame{{ $i }}" class="preview_frame" frameborder="0" seamless></iframe>
           </a>
         </div>
-
+*/ ?>
       </div>
 
     </div>
@@ -128,30 +120,7 @@ foreach($email_campaigns as $campaign) {
 </div>
 
 <style type="text/css">
-.panel-footer {
-  padding: 0px !important;
-}
-.preview-container {
-  border-top: 2px solid #e5e5e5;
-  display: block;
-  width:100%;
-  height: 120px;
-}
-.loader.loader-xs {
-  margin: -6px auto 0;
-}
-.preview_frame {
-  pointer-events: none;
-  position: absolute;
-  width: 500%;
-  -ms-zoom: 0.2;
-  -moz-transform: scale(0.2);
-  -moz-transform-origin: 0 0;
-  -o-transform: scale(0.2);
-  -o-transform-origin: 0 0;
-  -webkit-transform: scale(0.2);
-  -webkit-transform-origin: 0 0;
-}
+
 .portlet-title {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -162,12 +131,6 @@ foreach($email_campaigns as $campaign) {
 
 <script>
 $(function() {
-  var $grid = $('.grid').masonry({
-    itemSelector: '.grid-item',
-    columnWidth: '.grid-sizer',
-    percentPosition: true,
-    transitionDuration: '0.2s'
-  });
 
   $('#grid').liveFilter('#grid_search', 'div.grid-item', {
     filterChildSelector: '.portlet-title',
@@ -176,39 +139,6 @@ $(function() {
     }
   });
 
-  blockUI('.preview-container');
-  $(window).resize(resizeEditFrame);
-
-  function resizeEditFrame() {
-    $('.preview_frame').each(function() {
-      var frame_height = parseInt($(this).contents().find('html').height());
-      var frame_width = parseInt($(this).contents().find('html').width());
-
-      $(this).height(frame_height);
-
-      $(this).parent().height(frame_height / 5);
-      //$(this).parent().width(frame_width / 4);
-      $(this).parent().width('100%');
-    });
-  }
-
-<?php
-$i = 1;
-foreach($email_campaigns as $campaign) {
-?>
-  $('#frame{{ $i }}').on('load', function() {
-    resizeEditFrame();
-    unblockUI('#container{{ $i }}');
-<?php if ($i == count($email_campaigns)) { ?>
-    setTimeout(function() {
-      $grid.masonry('reloadItems').masonry();
-    }, 200);
-<?php } ?>
-  });
-<?php
-  $i++;
-}
-?>
 
 $('.onClickDelete').on('click', function() {
   var sl = $(this).parents('.grid-item-content').attr('data-sl');
@@ -232,7 +162,6 @@ $('.onClickDelete').on('click', function() {
     })
     .done(function(data) {
       $item.remove();
-      $grid.masonry('reloadItems').masonry();
     })
     .fail(function() {
       console.log('error');

@@ -14,9 +14,9 @@ use DeviceDetector\Parser\Device\DeviceParserAbstract;
 class FunctionsController extends Controller
 {
   /**
-   * Get all form categories
+   * Get all campaign categories
    */
-  public static function getCategories()
+  public static function getCampaignCategories()
   {
     $items = [];
 
@@ -39,6 +39,37 @@ class FunctionsController extends Controller
       "category" => "drip_campaign",
       "name" => trans('emailcampaigns::global.drip_campaign'),
       "desc" => trans('emailcampaigns::global.drip_campaign_desc')
+    ];
+
+    return $items;
+  }
+
+  /**
+   * Get all email categories
+   */
+  public static function getEmailCategories()
+  {
+    $items = [];
+
+    $items[] = [
+      "icon" => 'chatbubble.svg',
+      "category" => "opt_in",
+      "name" => trans('emailcampaigns::global.opt_in'),
+      "desc" => trans('emailcampaigns::global.opt_in_desc')
+    ];
+
+    $items[] = [
+      "icon" => 'newsletter.svg',
+      "category" => "news",
+      "name" => trans('emailcampaigns::global.news'),
+      "desc" => trans('emailcampaigns::global.news_desc')
+    ];
+
+    $items[] = [
+      "icon" => 'website.svg',
+      "category" => "other",
+      "name" => trans('emailcampaigns::global.other'),
+      "desc" => trans('emailcampaigns::global.other_desc')
     ];
 
     return $items;
@@ -106,7 +137,47 @@ class FunctionsController extends Controller
   /**
    * Create a email campaign
    */
-  public static function createCampaign($template, $name, $user_id = null, $funnel_id = null)
+  public static function createCampaign($name, $category, $user_id = null, $funnel_id = null)
+  {
+    if ($user_id == null) $user_id = Core\Secure::userId();
+    if ($funnel_id == null) $funnel_id = Core\Secure::funnelId();
+
+    $name = substr($name, 0, 200);
+
+    // Check if category exists
+    $hasItem = false;
+    $categories = FunctionsController::getCampaignCategories();
+    foreach($categories as $cat) {
+      if ($cat['category'] == $category) {
+        $hasItem = true;
+        break;
+      }
+    }
+
+    if ($name != '' && $hasItem) {
+      // Create campaign
+      $email_campaign = new Models\EmailCampaign;
+
+      $email_campaign->user_id = $user_id;
+      $email_campaign->funnel_id = $funnel_id;
+      $email_campaign->name = $name;
+      $email_campaign->type = $category;
+      $email_campaign->language = auth()->user()->language;
+      $email_campaign->timezone = auth()->user()->timezone;
+      $email_campaign->save();
+
+      $email_campaign_id = $email_campaign->id;
+
+      return $email_campaign;
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * Create a email campaign
+   */
+  public static function createEmail($email_campaign, $template, $name, $user_id = null, $funnel_id = null)
   {
     if ($user_id == null) $user_id = Core\Secure::userId();
     if ($funnel_id == null) $funnel_id = Core\Secure::funnelId();
@@ -117,34 +188,22 @@ class FunctionsController extends Controller
     if (\File::exists($template_path . $template . '/config.php') && \File::exists($template_path . $template . '/index.blade.php')) {
       $config = include $template_path . $template . '/config.php';
 
-      // First create campaign
-      $email_campaign = new Models\EmailCampaign;
-
-      $email_campaign->user_id = $user_id;
-      $email_campaign->funnel_id = $funnel_id;
-      $email_campaign->name = $name;
-      $email_campaign->language = auth()->user()->language;
-      $email_campaign->timezone = auth()->user()->timezone;
-      $email_campaign->save();
-
-      $email_campaign_id = $email_campaign->id;
-
-      // Then, create (first) email for campaign
+      // Create email for campaign
       $email = new Models\Email;
 
       $email->user_id = $user_id;
-      $email->email_campaign_id = $email_campaign_id;
+      $email->email_campaign_id = $email_campaign->id;
       $email->name = $name;
       $email->template = $template;
       $email->save();
 
-      $local_domain = Core\Secure::staticHash($email_campaign_id, true);
+      $local_domain = Core\Secure::staticHash($email->id, true);
 
-      $email_campaign->local_domain = $local_domain;
-      $email_campaign->save();
+      $email->local_domain = $local_domain;
+      $email->save();
 
       // Finally, create directory with files
-      $storage_root = 'emails/email/' . Core\Secure::staticHash($user_id) . '/' . $local_domain;
+      $storage_root = 'emails/email/' . Core\Secure::staticHash($user_id) . '/' . Core\Secure::staticHash($email_campaign->id, true) . '/' . $local_domain;
 
       // Get template HTML and replace title
       $html = view('template.emails::' . $template . '.index');
@@ -160,7 +219,6 @@ class FunctionsController extends Controller
 
       // Update page
       pq('title')->text($name);
-      pq('head')->find('title')->after('<meta name="description" content="">');
 
       //$html = str_replace('</section><section', "</section>\n\n<section", $html);
       //$html = str_replace(url('/'), '', $html);
@@ -170,7 +228,7 @@ class FunctionsController extends Controller
 
       $variant = 1;
 
-      $storage_root_full = $storage_root . '/' . Core\Secure::staticHash($email->id, true) . '/' . $variant;
+      $storage_root_full = $storage_root . '/' . $variant;
 
       \Storage::disk('public')->makeDirectory($storage_root_full . '/' . date('Y-m-d-H-i-s'));
       \Storage::disk('public')->put($storage_root_full . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);

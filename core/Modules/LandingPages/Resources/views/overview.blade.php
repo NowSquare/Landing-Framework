@@ -109,7 +109,7 @@ foreach($sites as $site) {
              <td class="text-right"> {!! $published !!}</td>
            </tr>
            <tr>
-             <td width="33" class="text-center"><i class="mi person_pin"></i></td>
+             <td width="33" class="text-center"><i class="mi pageview"></i></td>
              <td><a href="#/landingpages/analytics/{{ $sl_page }}" class="link">{{ trans('global.visits') }}</a>:</td>
              <td class="text-right"><strong>{{ number_format($page->visits) }}</strong></td>
            </tr>

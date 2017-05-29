@@ -32,6 +32,7 @@ return array(
   "active" => "Active",
   "new" => "New",
   "share" => "Share",
+  "view" => "View",
   "download" => "Download",
   "upload" => "Upload",
   "remove" => "Remove",
@@ -229,6 +230,10 @@ return array(
   "brand" => "Brand",
   "model" => "Model",
   "visit_s_" => "Visit(s)",
+  "opens" => "Opens",
+  "clicks" => "Clicks",
+  "emails" => "Emails",
+  "sent" => "Sent",
 
   /*
    |--------------------------------------------------------------------------
