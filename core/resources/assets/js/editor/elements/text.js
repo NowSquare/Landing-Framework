@@ -196,6 +196,11 @@ function lfInitText() {
                 Tether.position();
               }
             });
+
+            // Hack to prevent editor from hiding
+            editor.on('blur', function () {
+              return false;
+            });
           }
         }); // tinymce.init
       }); // getJSON
