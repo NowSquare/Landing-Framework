@@ -263,7 +263,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('editor_scripts', function() {
-  return gulp.src([
+  var jsStream = gulp.src([
       'bower_components/jquery-ui/jquery-ui.js',
       'bower_components/wow/dist/wow.js',
       'bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js',
@@ -298,12 +298,14 @@ gulp.task('editor_scripts', function() {
       'resources/assets/js/editor/elements/text.js',
       'resources/assets/js/editor/elements/fab.landingpages.js',
       'resources/assets/js/editor/elements/fab.forms.js',
+      'resources/assets/js/editor/elements/fab.emails.js',
       'resources/assets/js/editor/modal.js',
       'resources/assets/js/editor/init.js'
-    ])
-//    .pipe(jshint('.jshintrc'))
-//    .pipe(jshint.reporter('default'))
-    .pipe(concat('scripts.editor.js'))
+    ]);
+
+  var mergedStream = orderedMergeStream([jsStream]);
+
+  mergedStream.pipe(concat('scripts.editor.js'))
     .pipe(gulp.dest('../assets/js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify({
@@ -312,6 +314,8 @@ gulp.task('editor_scripts', function() {
     .pipe(gulp.dest('../assets/js'))
     .pipe(livereload())
     .pipe(notify({ message: 'Scripts task complete' }));
+
+  return mergedStream;
 });
 
 gulp.task('scripts_map', function() {

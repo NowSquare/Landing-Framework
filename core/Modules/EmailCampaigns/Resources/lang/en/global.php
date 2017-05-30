@@ -45,4 +45,5 @@ return array(
 
   "edit_email_campaign" => "Edit email campaign",
   "manage_emails" => "Manage emails",
+  "no_forms_to_send_to" => "There are no forms to send to.",
 );

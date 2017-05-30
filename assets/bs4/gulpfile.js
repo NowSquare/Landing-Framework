@@ -123,10 +123,33 @@ gulp.task('scripts', function() {
       'bower_components/bootstrap-validator/dist/validator.js',
       'bower_components/H5F/src/H5F.js',
       'bower_components/notifyjs/dist/notify.js',
-      'bower_components/parsleyjs/dist/parsley.js',
+      /*'bower_components/parsleyjs/dist/parsley.js',*/
       'resources/scripts/**/*.js'
     ])
     .pipe(concat('scripts.js'))
+    .pipe(gulp.dest('js'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify({
+      mangle: true
+    }))
+    .pipe(gulp.dest('js'))
+    .pipe(livereload())
+    .pipe(notify({ message: 'Scripts task complete' }));
+});
+
+/*
+ |--------------------------------------------------------------------------
+ | Scripts lite
+ |--------------------------------------------------------------------------
+ */
+
+gulp.task('scripts_lite', function() {
+  return gulp.src([
+      'bower_components/jquery/dist/jquery.js',
+      'bower_components/tether/dist/js/tether.js',
+      'bower_components/notifyjs/dist/notify.js'
+    ])
+    .pipe(concat('scripts.lite.js'))
     .pipe(gulp.dest('js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify({

@@ -58,7 +58,7 @@ $i = 1;
 foreach($email_campaigns as $campaign) {
   $sl_campaign = \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $campaign->id]);
 ?>
-    <div class="grid-item col-xs-6 col-sm-3 col-lg-3" style="max-width: 250px" id="item{{ $i }}">
+    <div class="grid-item col-xs-6 col-sm-3 col-lg-3" id="item{{ $i }}">
 
       <div class="grid-item-content portlet shadow-box" data-sl="{{ $sl_campaign }}">
 

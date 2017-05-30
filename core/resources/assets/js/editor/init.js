@@ -24,6 +24,8 @@ function lfInitEditor(editor) {
     lfInitFabLandingpages();
   } else if (editor == 'forms') {
     lfInitFabForms();
+  } else if (editor == 'emails') {
+    lfInitFabEmails();
   }
 
   lfInitDropdowns();

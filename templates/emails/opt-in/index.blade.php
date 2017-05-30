@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Announcement</title>
+  <title>Re-engagement</title>
 </head>
 
 <body yahoo bgcolor="#ffffff">
@@ -20,64 +20,34 @@
 				<td valign="top" mc:edit="headerBrand" id="templateContainerHeader">
 
 					<p style="text-align:center;margin:0;padding:0;">
-						<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/cog-01.jpg" style="display:inline-block;" />
+						<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/cog-01.jpg" style="max-width:600px;display:inline-block;" />
 					</p>
 
 				</td>
 			</tr>
-      <tr>
-				<td align="center" valign="top">
-					<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainerImageCurve" style="min-height:15px;">
-						<tr>
-							<td valign="top" class="bodyContentImageFull" mc:edit="body_content_01">
-                <p style="text-align:center;margin:0;padding:0;">
-      						<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/annoucnement-01.jpg" style="display:block;" />
-      					</p>
-							</td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-      <tr>
-				<td align="center" valign="top">
-						<!-- BEGIN BODY // -->
-						<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainerMiddle">
-							<tr>
-								<td valign="top" class="bodyContent" mc:edit="body_content">
-                  <h3>Welcome --First Name=there--,</h3>
-									<h2><strong>We wanted you to be the first to know,  we have just released our API & SDK.</strong></h2>
-									<p>Our free community for marketers! We're excited to share everything that we know about marketing, automation, and growing your business.<br /><br />
-We hope you enjoy the content as much as we did creating it. Drawing from decades of experience using marketing automation and trying out all sorts of techniques, it's peppered with real life examples and practical takeaways.</p>
-								</td>
-							</tr>
-						</table>
-						<!-- // END BODY -->
-					</td>
-			</tr>
-      <tr>
-				<td align="center" valign="top">
-						<!-- BEGIN BODY // -->
-						<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainerMiddle">
-							<tr>
-								<td valign="top" class="bodyContentCenter" mc:edit="body_content_centered">
-                  <a class="blue-btn" href="#"><strong>Sign me up</strong></a>
-								</td>
-							</tr>
-						</table>
-						<!-- // END BODY -->
-					</td>
-			</tr>
 			<tr>
 				<td align="center" valign="top">
 						<!-- BEGIN BODY // -->
-							<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainerMiddleBtm">
+							<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainer">
+									<tr>
+											<td valign="top" class="bodyContent" mc:edit="body_content">
+												<p>Hi --First Name=there--,</p>
+												<p>Please confirm your subscription by clicking the link below. Thank you!</p>
+                        <a class="blue-btn" href="--confirm--"><strong>Confirm Email</strong></a>
+											</td>
+									</tr>
+									<tr>
+											<td valign="top">
+												&nbsp;
+											</td>
+									</tr>
 									<tr align="top">
 											<td valign="top" class="bodyContentImage">
 												<table border="0" cellpadding="0" cellspacing="0" valign="top">
 													<tr>
 														<td align="left" width="50" valign="top" mc:edit="footer_sigimage" style="margin:0;padding:0;">
-															<p style="margin-bottom:10px"padding:0;display:block;>
-																<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/img_profile.jpg" style="display:block;" />
+															<p style="margin-bottom:10px; padding:0;display:block;">
+																<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/img_profile.jpg" style="max-width:600px;display:block;" />
 															</p>
 														</td>
 														<td width="15" align="left" valign="top" style="width:15px;margin:0;padding:0;">&nbsp;</td>
@@ -99,12 +69,11 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
 						<tr>
 							<td valign="top" width="100%" mc:edit="footer_unsubscribe">
 								<p style="text-align:center;">
-									<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/cog-03.jpg" style="margin:0 auto 0 auto;display:inline-block;" />
+									<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/cog-03.jpg" style="max-width:600px;margin:0 auto 0 auto;display:inline-block;" />
 								</p>
 								<h6 style="text-align:center;margin-top: 9px;">COG Inc</h6>
 								<h6 style="text-align:center;">589&#8203; Howard&#8203; Street&#8203;</h6>
 								<h6 style="text-align:center;">San Francisco,&#8203; CA&#8203; 94105&#8203;</h6>
-								<h6 style="text-align:center;margin-top: 7px;"><a href="--unsubscribe--">unsubscribe</a></h6>
 							</td>
 						</tr>
 					</table>
@@ -127,6 +96,7 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
   .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
   body, table, td, p, a, li, blockquote{-webkit-text-size-adjust:100%; -ms-text-size-adjust:100%;} /* Prevent WebKit and Windows mobile changing default text sizes */
   table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;} /* Remove spacing between tables in Outlook 2007 and up */
+  img{-ms-interpolation-mode:bicubic;max-width:100%;} /* Allow smoother rendering of resized image in Internet Explorer */
   td ul li {
     font-size: 16px;
   }
@@ -142,6 +112,7 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
   table{border-collapse:collapse !important;}
   .content {width: 100%; max-width: 600px;}
   .content img { height: auto; min-height: 1px; }
+  .content {width: 100%; max-width: 600px;}
 
   #bodyTable{margin:0; padding:0; width:100% !important;}
   #bodyCell{margin:0; padding:0;}
@@ -153,7 +124,7 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
     padding-top:2.429em;
     padding-bottom:0.929em;
   }
-  #templateContainerFootBrd{
+  #templateContainerFootBrd {
     border-bottom:1px solid #e2e2e2;
     border-left:1px solid #e2e2e2;
     border-right:1px solid #e2e2e2;
@@ -165,30 +136,19 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
   }
   #templateContainer{
     border-top:1px solid #e2e2e2;
-    border-left:1px solid #e2e2e2;
-    border-right:1px solid #e2e2e2;
-    border-radius: 4px 4px 0 0 ;
-    background-clip: padding-box;
-    border-spacing: 0;
-  }
-  #templateContainerMiddle {
-    border-left:1px solid #e2e2e2;
-    border-right:1px solid #e2e2e2;
-  }
-  #templateContainerMiddleBtm {
-    border-left:1px solid #e2e2e2;
-    border-right:1px solid #e2e2e2;
     border-bottom:1px solid #e2e2e2;
-    border-radius: 0 0 4px 4px;
+    border-left:1px solid #e2e2e2;
+    border-right:1px solid #e2e2e2;
+    border-radius: 4px 4px 4px 4px;
     background-clip: padding-box;
     border-spacing: 0;
   }
 
   /**
-  * tab Page
-  * section heading 1
-  * tip Set the styling for all first-level headings in your emails. These should be the largest of your headings.
-  * style heading 1
+  tab Page
+  section heading 1
+  tip Set the styling for all first-level headings in your emails. These should be the largest of your headings.
+  style heading 1
   */
   h1{
      color:#2e2e2e;
@@ -207,10 +167,10 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
   }
 
   /**
-  * tab Page
-  * section heading 2
-  * tip Set the styling for all second-level headings in your emails.
-  * style heading 2
+  tab Page
+  section heading 2
+  tip Set the styling for all second-level headings in your emails.
+  style heading 2
   */
   h2{
      color:#2e2e2e;
@@ -229,10 +189,10 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
   }
 
   /**
-  * tab Page
-  * section heading 3
-  * tip Set the styling for all third-level headings in your emails.
-  * style heading 3
+  tab Page
+  section heading 3
+  tip Set the styling for all third-level headings in your emails.
+  style heading 3
   */
   h3{
      color:#545454;
@@ -251,10 +211,10 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
   }
 
   /**
-  * tab Page
-  * section heading 4
-  * tip Set the styling for all fourth-level headings in your emails. These should be the smallest of your headings.
-  * style heading 4
+  tab Page
+  section heading 4
+  tip Set the styling for all fourth-level headings in your emails. These should be the smallest of your headings.
+  style heading 4
   */
   h4{
      color:#545454;
@@ -319,7 +279,7 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
     margin-right:0;
     margin-bottom:15px;
     margin-left:0;
-    text-align:left;
+     text-align:left;
   }
 
   .unSubContent a:visited { color: #a1a1a1; text-decoration:underline; font-weight:normal;}
@@ -345,24 +305,6 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
     padding-left:3.5em;
     padding-bottom:0.714em;
      text-align:left;
-  }
-  .bodyContentCenter {
-    color:#505050;
-    font-family:Helvetica;
-    font-size:14px;
-    line-height:150%;
-    padding-top:0em;
-    padding-right:3.5em;
-    padding-left:3.5em;
-    padding-bottom:3.0em;
-    text-align:center;
-  }
-  .bodyContentCenter p {
-    margin-bottom: 0;
-    text-align: center;
-  }
-  .bodyContentCenter a.blue-btn {
-    margin-top: 0;
   }
   .bodyContentImage {
     color:#505050;
@@ -391,15 +333,30 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
   }
 
   /**
-  * tab Body
-  * section body link
-  * tip Set the styling for your email's main content links. Choose a color that helps them stand out from your text.
+  tab Body
+  section body link
+  tip Set the styling for your email's main content links. Choose a color that helps them stand out from your text.
   */
   a:visited { color: #3386e4; text-decoration:none;}
   a:focus   { color: #3386e4; text-decoration:none;}
   a:hover   { color: #3386e4; text-decoration:none;}
   a:link   { color: #3386e4 ; text-decoration:none;}
   a .yshortcuts   { color: #3386e4 ; text-decoration:none;}
+
+  a.blue-btn {
+    background: #5098ea;
+    display: inline-block;
+    color: #FFFFFF;
+    border-top:10px solid #5098ea;
+    border-bottom:10px solid #5098ea;
+    border-left:20px solid #5098ea;
+    border-right:20px solid #5098ea;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 1.0em;
+    border-radius: 3px 3px 3px 3px;
+    background-clip: padding-box;
+  }
 
   .bodyContent img{
     height:auto;
@@ -419,52 +376,14 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
   }
 
   /**
-  * tab Footer
-  * section footer link
-  * tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
+  tab Footer
+  section footer link
+  tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
   */
   .footerContent a:link, .footerContent a:visited, /* Yahoo! Mail Override */ .footerContent a .yshortcuts, .footerContent a span /* Yahoo! Mail Override */{
      color:#606060;
      font-weight:normal;
      text-decoration:underline;
-  }
-
-  /**
-  * tab Footer
-  * section footer link
-  * tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
-  */
-  #templateContainerImageFull { border-left:1px solid #e2e2e2; border-right:1px solid #e2e2e2; }
-  #templateContainerImageCurve {
-    border-left:1px solid #e2e2e2;
-    border-right:1px solid #e2e2e2;
-    border-radius: 3px 3px 0px 0px;
-    background-clip: padding-box;
-    border-collapse: separate !important;
-    border-spacing: 0;
-  }
-  #templateContainerImageCurve img {
-    border-radius: 3px 3px 0px 0px;
-    background-clip: padding-box;
-  }
-  /*boom*/
-  .bodyContentImageFull p { font-size:0 !important; margin-bottom: 0 !important; }
-  .brdBottomPadd { border-bottom: 1px solid #f0f0f0; }
-  .brdBottomPadd .bodyContent { padding-bottom: 2.286em; }
-  a.blue-btn {
-    background: #5098ea;
-    display: inline-block;
-    color: #FFFFFF;
-    border-top:10px solid #5098ea;
-    border-bottom:10px solid #5098ea;
-    border-bottom:10px solid #5098ea;
-    border-left:20px solid #5098ea;
-    border-right:20px solid #5098ea;
-    text-decoration: none;
-    font-size: 14px;
-    margin-top: 1.0em;
-    border-radius: 3px 3px 3px 3px;
-    background-clip: padding-box;
   }
 
 
@@ -473,12 +392,12 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
     body[yahoo] .buttonwrapper {background-color: transparent!important;}
     body[yahoo] .button {padding: 0px!important;}
     body[yahoo] .button a {background-color: #e05443; padding: 15px 15px 13px!important;}
-    body[yahoo] .unsubscribe { font-size: 14px; display: block; margin-top: 0.714em; padding: 10px 50px; background: #2f3942; border-radius: 5px; text-decoration: none!important;}
+    body[yahoo] .unsubscribe {display: block; margin-top: 20px; padding: 10px 50px; background: #2f3942; border-radius: 5px; text-decoration: none!important; font-weight: bold;}
   }
   /*@media only screen and (min-device-width: 601px) {
     .content {width: 600px !important;}
   }*/
-  @media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 480px){
     h1 {
       font-size:34px !important;
     }
@@ -500,7 +419,7 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
     p {
       font-size: 18px !important;
     }
-    .brdBottomPadd .bodyContent { padding-bottom: 2.286em !important; }
+
     .bodyContent {
       padding: 6% 5% 1% 6% !important;
     }
@@ -508,7 +427,7 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
       max-width: 100% !important;
     }
     .bodyContentImage {
-      padding: 3% 6% 6% 6% !important;
+      padding: 3% 6% 3% 6% !important;
     }
     .bodyContentImage img {
       max-width: 100% !important;
@@ -519,9 +438,6 @@ We hope you enjoy the content as much as we did creating it. Drawing from decade
     .bodyContentImage h5 {
       font-size: 15px !important;
       margin-top:0;
-    }
-    td[class="bodyContentCenter"] {
-      padding: 6% 6% 6% 6% !important;
     }
   }
 </style>

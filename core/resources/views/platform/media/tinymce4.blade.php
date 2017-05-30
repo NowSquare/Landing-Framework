@@ -10,8 +10,9 @@ html, body {
 </style>
   <link rel="stylesheet" href="<?= url('assets/packages/jquery-ui/jquery-ui.min.css') ?>" />
   <link href="{{ asset('assets/css/styles.min.css') }}" rel="stylesheet">
-  <script src="<?php echo url('assets/js/scripts.min.js'); ?>"></script>
   <link rel="stylesheet" type="text/css" href="<?= url('assets/css/elfinder.min.css') ?>">
+  <script src="{{ url('assets/javascript?lang=' . \App::getLocale()) }}"></script>
+  <script src="<?php echo url('assets/js/scripts.min.js'); ?>"></script>
   <script src="<?= url('assets/packages/elfinder/js/elfinder.min.js') ?>"></script>
   <script type="text/javascript">
     var FileBrowserDialogue = {
@@ -42,9 +43,9 @@ html, body {
         rememberLastDir: false,
         useBrowserHistory: false,
         getFileCallback: function(file) { // editor callback
-          var path = file.url.replace('{{ url('/') }}', '');
+          //var path = file.url.replace('{{ url('/') }}', '');
 
-          FileBrowserDialogue.mySubmit(path); // pass selected file path to TinyMCE
+          FileBrowserDialogue.mySubmit(file.url); // pass selected file path to TinyMCE
         },
         commands : [
           /*'open', */'reload', 'home', 'up', 'back', 'forward', 
@@ -54,6 +55,7 @@ html, body {
         ]
       });
 
+      $('.elfinder-button[title]').attr('data-placement', 'bottom');
       $('.elfinder-button[title]').attr('data-toggle', 'tooltip');
       bsTooltipsPopovers();
 

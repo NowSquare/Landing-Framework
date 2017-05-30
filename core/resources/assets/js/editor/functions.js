@@ -185,7 +185,7 @@ function lfGetHtml() {
   // Remove stylesheets starting with
   $html.find('link[rel=stylesheet]').each(function() {
     var href = $(this).attr('href');
-    var remove_href_starting_with = ['/assets/js/skins/', 'assets/js/skins/'];
+    var remove_href_starting_with = ['/assets/js/skins/', 'assets/js/skins/', _trans["url"] + '/assets/js/skins/'];
 
     for (var i = 0, len = remove_href_starting_with.length; i < len; i++) {
       if (href.substr(0, remove_href_starting_with[i].length) == remove_href_starting_with[i]) {
@@ -226,7 +226,7 @@ function lfGetHtml() {
   });
 
   // Remove attributes starting with data-mce
-  $html.find('div,span,img').each(function() {
+  $html.find('*').each(function() {
     lfRemoveAttributesStartingWith($(this), 'data-mce-');
   });
 

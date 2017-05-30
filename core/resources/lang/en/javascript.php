@@ -36,6 +36,8 @@ return array(
   "delete" => "Delete",
   "save_page" => "Save page",
   "save_form" => "Save form",
+  "save_email" => "Save email",
+  "email" => "Email",
   "online" => "Online",
   "qr" => "QR",
   "view" => "View",
@@ -75,6 +77,7 @@ return array(
   "position" => "Position",
   "left" => "Left",
   "right" => "Right",
+  "variables" => "Variables",
 
   /*
   |--------------------------------------------------------------------------

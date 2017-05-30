@@ -11,7 +11,7 @@
   <table border="0" cellpadding="10" cellspacing="0" style=
   "background-color: #FFFFFF" width="100%">
     <tr>
-      <td>
+      <td class="-x-text">
         <!--[if (gte mso 9)|(IE)]>
       <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -95,7 +95,7 @@
 
                         <td valign="top" mc:edit="welcomeEditTxtFirst" style="width:71%;color:#505050;font-family:Helvetica;font-size:14px;padding-top:0.714em;">
                           <h3><strong>Attend your first event</strong></h3>
-                          <h4>Take part in our free community. Connect with like minded marketers to exchange ideas. <a href="http://www.autopilothq.com/">Learn more</a></h4>
+                          <h4>Take part in our free community. Connect with like minded marketers to exchange ideas. <a href="#">Learn more</a></h4>
                         </td>
 
                         <td valign="top" style="width:5%;">&nbsp;</td>
@@ -114,7 +114,7 @@
 
                         <td valign="top" mc:edit="welcomeEditTxtFirst" style="width:71%;color:#505050;font-family:Helvetica;font-size:14px;padding-top:0.714em;">
                           <h3><strong>Complete your first Flight Plan</strong></h3>
-                          <h4>Flight plans are best practice methodologies to succeed with marketing automation faster. <a href="http://www.autopilothq.com/">Learn more</a></h4>
+                          <h4>Flight plans are best practice methodologies to succeed with marketing automation faster. <a href="#">Learn more</a></h4>
                         </td>
 
                         <td valign="top" style="width:5%;">&nbsp;</td>
@@ -133,7 +133,7 @@
 
                         <td valign="top" mc:edit="welcomeEditTxtFirst">
                           <h3><strong>Invite your friends</strong></h3>
-                          <h4>Our community is only as good as its members. Share Flight School with your friends. <a href="http://www.autopilothq.com/">Learn more</a></h4>
+                          <h4>Our community is only as good as its members. Share Flight School with your friends. <a href="#">Learn more</a></h4>
                         </td>
 
                         <td valign="top" style="width:5%;">&nbsp;</td>

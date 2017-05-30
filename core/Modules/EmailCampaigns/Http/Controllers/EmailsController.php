@@ -118,10 +118,12 @@ class EmailsController extends Controller
         if (isset($qs['email_id'])) {
           $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
 
+          $forms = \Modules\Forms\Http\Models\Form::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->orderBy('name', 'asc')->get();
+
           if (! empty($email)) {
             $url = url('ec/edit/' . Core\Secure::staticHash($qs['email_id'], true));
 
-            return view('emailcampaigns::editor', compact('url', 'email'));
+            return view('emailcampaigns::editor', compact('url', 'email', 'forms'));
           }
         }
       }
@@ -168,17 +170,18 @@ class EmailsController extends Controller
           // to make sure jQuery and Bootstrap 4 js are
           // included in template, while inline <script>'s
           // can safely run below.
-          pq('head')->find('script[src]:first')->before(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/translations?lang=' . $email->language) . '&editor=1"></script>');
-          pq('head')->find('script[src]:last')->before(PHP_EOL . '<script class="-x-editor-asset">var lf_published_url = "' . $published_url . '";var lf_demo = true;var lf_sl = "' . $sl . '";var lf_csrf_token = "' . csrf_token() . '";</script>');
-          pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
-          pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js?v=' . config('version.editor')) . '"></script>');
+          pq('head')->append(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/translations?lang=' . $email->language) . '&editor=1"></script>');
+          pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">var lf_published_url = "' . $published_url . '";var lf_demo = true;var lf_sl = "' . $sl . '";var lf_csrf_token = "' . csrf_token() . '";</script>');
+          pq('head')->append(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
+          pq('head')->append(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/bs4/js/scripts.lite.min.js?v=' . config('version.editor')) . '"></script>');
+          pq('head')->append(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js?v=' . config('version.editor')) . '"></script>');
 
           // End stylesheet right before </head> to make
           // sure it overrides other stylesheets.
           pq('head')->append(PHP_EOL . '<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css?v=' . config('version.editor')) . '" />');
 
           // Init editor
-          pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ lfInitEditor(\'forms\'); });</script>');
+          pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ lfInitEditor(\'emails\'); });</script>');
 
           //$dom = str_replace('</section><section', "</section>\n\n<section", $dom);
 
@@ -302,6 +305,7 @@ class EmailsController extends Controller
 
       return $html;
     }
+
     /**
      * Delete email
      */
@@ -329,5 +333,43 @@ class EmailsController extends Controller
           return response()->json(['success' => true]);
         }
       }
+    }
+
+    /**
+     * Email variables for use in WYSIWYG editor
+     */
+    public function getEmailVariables()
+    {
+      $vars = [];
+
+      foreach (trans('global.form_fields') as $category => $items) {
+        $category_translation = trans('global.' . $category);
+        if ($category != 'general') {
+          $submenu = [];
+
+          foreach ($items as $item => $translation) {
+            $alt = '';
+
+            switch ($item) {
+              case 'first_name': 
+              case 'name': 
+                $alt = '=there';
+                break;
+            }
+
+            $submenu[] = [
+              'text' => $translation,
+              'value' => '--' . $category . '_' . $item . $alt . '--'
+            ];
+          }
+
+          $vars[] = [
+            'text' => $category_translation,
+            'menu' => $submenu
+          ];
+        }
+      }
+
+      return response()->json($vars);
     }
 }

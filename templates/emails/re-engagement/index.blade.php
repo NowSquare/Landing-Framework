@@ -9,7 +9,7 @@
 <body yahoo bgcolor="#ffffff">
 <table width="100%" bgcolor="#ffffff" border="0" cellpadding="10" cellspacing="0">
 <tr>
-  <td>
+  <td class="-x-text">
     <!--[if (gte mso 9)|(IE)]>
       <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -32,7 +32,7 @@
 									<tr>
 											<td valign="top" class="bodyContent" mc:edit="body_content">
 												<p>Hi --First Name=there--,</p>
-												<p>I noticed you were interested in learning more about growing --Company=your business--. I would like to <a href="http://www.autopilothq.com/">invite you</a> to our free 30 day business growth course. Or, you can <a href="http://www.autopilothq.com/">signup</a> for a free complimentary 45 minute session for being such a valuable contributor to our Facebook community.
+												<p>I noticed you were interested in learning more about growing --Company=your business--. I would like to <a href="#">invite you</a> to our free 30 day business growth course. Or, you can <a href="#">signup</a> for a free complimentary 45 minute session for being such a valuable contributor to our Facebook community.
                           <br /><br />
                           Just to confirm, is this your first time starting a business, or have you done it before? </p>
 											</td>

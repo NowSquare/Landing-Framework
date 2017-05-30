@@ -17,7 +17,7 @@
 <body yahoo bgcolor="#ffffff">
 <table width="100%" bgcolor="#ffffff" border="0" cellpadding="10" cellspacing="0">
 <tr>
-  <td>
+  <td class="-x-text">
     <!--[if (gte mso 9)|(IE)]>
       <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -268,7 +268,7 @@
 							<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainerMiddleBtm">
 									<tr>
 										<td valign="top" class="bodyContent" mc:edit="body_content">
-											<h4>Thanks for being a subscriber. You can view more articles on our <a href="http://www.autopilothq.com/">blog</a>.</h4>
+											<h4>Thanks for being a subscriber. You can view more articles on our <a href="#">blog</a>.</h4>
 										</td>
 									</tr>
 									<tr align="top">

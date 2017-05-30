@@ -111,7 +111,94 @@ function lfInitText() {
           });
         }
       });
+
     });
+
+    if ($('.-x-mail').length) {
+      var $el = $('.-x-mail');
+
+      // Check if TinyMCE already is attached
+      if ($el.hasClass('mce-content-body')) return false;
+
+      // Check if element has id, if not generate a semi-unique id.
+      // This is needed for TinyMCE to have separate inline editors
+      // per element.
+      var id = $el.attr('id');
+
+      if (typeof id == 'undefined') {
+        var timestamp = new Date().getTime();
+        var id = 'mce_' + timestamp;
+        $el.attr('id', id);
+      }
+
+      var toolbar = 'mail_vars | undo redo | bold italic link | styleselect | image | bullist | forecolor';
+      var plugins = 'advlist autolink lists link image anchor code media table contextmenu paste colorpicker textcolor';
+
+      $.getJSON(_lang["url"] + '/emailcampaigns/emails/editor/variables')
+      .done(function(menu) {
+        var menu = menu;
+
+        tinymce.init({
+          selector: '#' + id,
+          skin: 'dark',
+          inline: true,
+          menubar: false,
+          schema: 'html5',
+          relative_urls: false,
+          apply_source_formatting: false, 
+          extended_valid_elements: 'span[style,class],script[charset|defer|language|src|type]',
+          verify_html: false, 
+          file_browser_callback: lfelFinderBrowser,
+          plugins: plugins,
+          toolbar: toolbar,
+          init_instance_callback : function(editor) {
+            editor.serializer.addNodeFilter('script,style', function(nodes, name) {
+              var i = nodes.length, node, value, type;
+
+              function trim(value) {
+                return value.replace(/(<!--\[CDATA\[|\]\]-->)/g, '\n')
+                        .replace(/^[\r\n]*|[\r\n]*$/g, '')
+                        .replace(/^\s*((<!--)?(\s*\/\/)?\s*<!\[CDATA\[|(<!--\s*)?\/\*\s*<!\[CDATA\[\s*\*\/|(\/\/)?\s*<!--|\/\*\s*<!--\s*\*\/)\s*[\r\n]*/gi, '')
+                        .replace(/\s*(\/\*\s*\]\]>\s*\*\/(-->)?|\s*\/\/\s*\]\]>(-->)?|\/\/\s*(-->)?|\]\]>|\/\*\s*-->\s*\*\/|\s*-->\s*)\s*$/g, '');
+              }
+              while (i--) {
+                node = nodes[i];
+                value = node.firstChild ? node.firstChild.value : '';
+
+                if (value.length > 0) {
+                  node.firstChild.value = trim(value);
+                }
+              }
+            });
+          },
+          setup: function (editor) {
+
+              editor.addButton('mail_vars', {
+                type: 'listbox',
+                text: _lang['variables'],
+                icon: false,
+                autofocus: false,
+                onselect: function (e) {
+                  editor.insertContent(this.value());
+                  this.value(null);
+                },
+                menu: menu,
+                onPostRender: function () {
+                  // Select the second item by default
+                  //this.value('&nbsp;<em>Some italic text!</em>');
+                }
+              });
+
+            editor.on('Change', function (e) {
+              lfSetPageIsDirty();
+              if (typeof Tether !== 'undefined') {
+                Tether.position();
+              }
+            });
+          }
+        }); // tinymce.init
+      }); // getJSON
+    };
   });
 }
 

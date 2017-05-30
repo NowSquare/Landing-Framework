@@ -35,4 +35,7 @@ Route::group(['middleware' => ['web', 'funnel', 'limitation:emailcampaigns.visib
 
     // Previews
     Route::get('preview/{template}', 'EmailsController@previewTemplate');
+
+    // Email variables
+    Route::get('emails/editor/variables', 'EmailsController@getEmailVariables');
 });
