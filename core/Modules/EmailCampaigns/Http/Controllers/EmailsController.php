@@ -78,11 +78,9 @@ class EmailsController extends Controller
             return response()->view('errors.unpublished', ['msg' => trans('global.email_not_published')], 404);
           }
 
-          // Stats
-          if (! $preview && Core\Secure::userId() != $email->user_id) {
-            //FunctionsController::addStat($email);
-          }
+          $dom = $template;
 
+/*
           libxml_use_internal_errors(true);
           $dom = \phpQuery::newDocumentHTML($template);
           \phpQuery::selectDocument($dom);
@@ -91,7 +89,7 @@ class EmailsController extends Controller
           $sl = Core\Secure::array2string(['email_id' => $email_id]);
           pq('head')->find('script[src]:first')->before(PHP_EOL . '<script src="' . url('assets/translations?lang=' . $email->language) . '"></script>');
           pq('head')->find('script[src]:first')->before(PHP_EOL . '<script>var sl_e = "' . $sl . '";</script>');
-
+*/
           // Beautify html
           $html = Core\Parser::beautifyHtml($dom);
 
@@ -183,6 +181,9 @@ class EmailsController extends Controller
           // Init editor
           pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ lfInitEditor(\'emails\'); });</script>');
 
+          // Editor toolbar
+          pq('body')->prepend(PHP_EOL . '<div class="-x-editor-asset" id="editor_toolbar"></div>');
+          
           //$dom = str_replace('</section><section', "</section>\n\n<section", $dom);
 
           // Beautify html

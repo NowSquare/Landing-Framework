@@ -141,6 +141,7 @@ function lfInitText() {
         tinymce.init({
           selector: '#' + id,
           skin: 'dark',
+          fixed_toolbar_container: '#editor_toolbar',
           inline: true,
           menubar: false,
           schema: 'html5',

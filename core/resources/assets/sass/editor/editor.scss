@@ -59,6 +59,14 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
   outline: none !important;
 }
 
+#editor_toolbar {
+  background-color: #252a31;
+
+  .mce-tinymce {
+    margin: auto;
+  }
+}
+
 /* 
   Iframe modal
 */

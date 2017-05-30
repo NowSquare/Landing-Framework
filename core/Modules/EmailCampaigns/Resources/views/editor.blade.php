@@ -108,7 +108,7 @@ if (count($forms) == 0) {
     border: 0 !important;
     background-color: #fafafa !important;
   }
-  
+
   #view,
   html {
     background-color: #21252b;
