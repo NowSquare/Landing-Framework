@@ -278,6 +278,25 @@ class LandingPagesController extends Controller
       $template = $request->input('template', '');
       $name = $request->input('name', '');
 
+      $input = array(
+        'name' => $name
+      );
+
+      $rules = array(
+        'name' => 'required|max:64'
+      );
+
+      $validator = \Validator::make($input, $rules);
+
+      if($validator->fails()) {
+        $response = array(
+          'type' => 'error', 
+          'reset' => false, 
+          'msg' => $validator->messages()->first()
+        );
+        return response()->json($response);
+      }
+
       // Verify limit
       $current_count = Models\Page::where('user_id', '=', Core\Secure::userId())->count();
       $current_count_limit = \Auth::user()->plan->limitations['landingpages']['max'];

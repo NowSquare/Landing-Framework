@@ -22,7 +22,7 @@ class CreateLandingPagesTable extends Migration
       $table->bigInteger('funnel_id')->unsigned()->nullable();
       $table->foreign('funnel_id')->references('id')->on('funnels')->onDelete('cascade');
       $table->boolean('active')->default(true);
-      $table->string('name', 200);
+      $table->string('name', 64);
       $table->string('local_domain', 64)->nullable();
       $table->string('domain', 200)->nullable();
       $table->string('language', 5)->default('en');
@@ -45,7 +45,7 @@ class CreateLandingPagesTable extends Migration
       $table->foreign('landing_site_id')->references('id')->on('landing_sites')->onDelete('cascade');
       $table->tinyInteger('variant')->unsigned()->default(1);
       $table->boolean('show_in_menu')->default(true);
-      $table->string('name', 200);
+      $table->string('name', 64);
       $table->string('template', 48)->nullable();
       $table->string('type', 32)->nullable();
       $table->string('slug', 128)->nullable();

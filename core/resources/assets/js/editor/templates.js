@@ -99,6 +99,8 @@ var xTplFabEmails = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" styl
   '    </li>' + 
   '    <li class="separator"><hr></li>' +
   '    <li class="-x-el-fab-preview"><a href="javascript:void(0);">' + _lang["preview"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '    <li class="-x-el-fab-test-mail"><a href="javascript:void(0);">' + _lang["test_email"] + '</a></li>' +
+  '    <li class="separator"><hr></li>' +
   '    <li class="-x-el-fab-save"><a href="javascript:void(0);">' + _lang["save_email"] + '</a></li>' +
   '  </ul>' +
   '</div>';

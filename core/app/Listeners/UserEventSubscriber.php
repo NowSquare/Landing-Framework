@@ -35,7 +35,9 @@ class UserEventSubscriber {
     $event->user->save();
 
     // Create user tables, prefix with `x_` to have them grouped
-    \Platform\Controllers\App\InstallationController::createUserTables($event->user->id);
+    if ($event->user->logins <= 1) {
+      \Platform\Controllers\App\InstallationController::createUserTables($event->user->id);
+    }
   }
 
   /**

@@ -43,6 +43,25 @@ class EmailCampaignsController extends Controller
       $name = $request->input('name', '');
       $category = $request->input('category', '');
 
+      $input = array(
+        'name' => $name
+      );
+
+      $rules = array(
+        'name' => 'required|max:64'
+      );
+
+      $validator = \Validator::make($input, $rules);
+
+      if($validator->fails()) {
+        $response = array(
+          'type' => 'error', 
+          'reset' => false, 
+          'msg' => $validator->messages()->first()
+        );
+        return response()->json($response);
+      }
+
       // Verify limit - deprecated: only check emails
       /*
       $current_count = Models\EmailCampaign::where('user_id', '=', Core\Secure::userId())->count();
@@ -93,6 +112,25 @@ class EmailCampaignsController extends Controller
       $sl = request()->input('sl', '');
       $name = request()->get('name', '');
 
+      $input = array(
+        'name' => $name
+      );
+
+      $rules = array(
+        'name' => 'required|max:64'
+      );
+
+      $validator = \Validator::make($input, $rules);
+
+      if($validator->fails()) {
+        $response = array(
+          'type' => 'error', 
+          'reset' => false, 
+          'msg' => $validator->messages()->first()
+        );
+        return response()->json($response);
+      }
+
       if($sl != '') {
         $qs = Core\Secure::string2array($sl);
         $email_campaign_id = $qs['email_campaign_id'];
@@ -100,18 +138,12 @@ class EmailCampaignsController extends Controller
 
         $email_campaign->name = $name;
 
-        if($email_campaign->save()) {
-          $response = array(
-            'type' => 'success',
-            'redir' => '#/emailcampaigns'
-          );
-        } else {
-          $response = array(
-            'type' => 'error',
-            'reset' => false, 
-            'msg' => $email_campaign->errors()->first()
-          );
-        }
+        $email_campaign->save();
+
+        $response = array(
+          'type' => 'success',
+          'redir' => '#/emailcampaigns'
+        );
 
         return response()->json($response);
       }

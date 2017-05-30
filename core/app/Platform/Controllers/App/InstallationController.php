@@ -112,10 +112,9 @@ class InstallationController extends \App\Http\Controllers\Controller {
         $table->integer('clicks')->unsigned()->default(0);
         $table->integer('opens')->unsigned()->default(0);
         $table->integer('emails')->unsigned()->default(0);
-        $table->tinyInteger('followups')->unsigned()->default(0);
-        $table->dateTime('first_followup')->nullable();
-        $table->dateTime('last_followup')->nullable();
-        $table->dateTime('last_response')->nullable();
+        $table->dateTime('last_click')->nullable();
+        $table->dateTime('last_open')->nullable();
+        $table->dateTime('last_email')->nullable();
         $table->char('fingerprint', 32)->nullable();
         $table->string('ip', 40)->nullable();
         $table->string('language', 5)->nullable();
@@ -182,13 +181,13 @@ class InstallationController extends \App\Http\Controllers\Controller {
       });
     }
 
-    // Create user email stats table if not exist
+    // Create user mailings table if not exist
     $tbl_name = 'x_email_mailings_' . $user_id;
 
     if (! Schema::hasTable($tbl_name)) {
       Schema::create($tbl_name, function(Blueprint $table) {
         $table->bigIncrements('id');
-        $table->bigInteger('email_campaign_id')->unsigned()->nullable();
+        $table->bigInteger('email_campaign_id')->unsigned();
         $table->foreign('email_campaign_id')->references('id')->on('email_campaigns')->onDelete('SET NULL');
         $table->bigInteger('email_id')->unsigned();
         $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
@@ -196,6 +195,22 @@ class InstallationController extends \App\Http\Controllers\Controller {
         $table->integer('clicks')->unsigned()->default(0);
         $table->integer('opens')->unsigned()->default(0);
         $table->string('language', 5)->nullable();
+        $table->json('meta')->nullable();
+        $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+      });
+    }
+
+    // Create user mail sequence table if not exist
+    $tbl_name = 'x_email_sequence_' . $user_id;
+
+    if (! Schema::hasTable($tbl_name)) {
+      Schema::create($tbl_name, function(Blueprint $table) {
+        $table->bigIncrements('id');
+        $table->bigInteger('email_id')->unsigned();
+        $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
+        $table->string('email', 96);
+        $table->integer('clicks')->unsigned()->default(0);
+        $table->integer('opens')->unsigned()->default(0);
         $table->json('meta')->nullable();
         $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
       });

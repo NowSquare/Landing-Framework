@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use \Platform\Controllers\Core;
 use Modules\EmailCampaigns\Http\Models;
+use Modules\EmailCampaigns\Jobs\SendTestEmail;
 
 class EmailsController extends Controller
 {
@@ -15,6 +16,16 @@ class EmailsController extends Controller
      */
     public function sendEmail()
     {
+      $email = [
+        'text' => 'This is the text version',
+        'var1' => 'val1'
+      ];
+
+      $job = (new SendTestEmail($email));/*
+        ->delay(\Carbon\Carbon::now()->addMinutes(2));*/
+
+      dispatch($job);
+
       // <20170528181128.57811.4114FD6414B0E9F0@mg.landingframework.com>
       //$response = \Mailgun::api()->get('events', [
     //    'to' => 'info@s3m.nl',

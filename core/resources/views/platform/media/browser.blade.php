@@ -1,7 +1,11 @@
 <link rel="stylesheet" href="<?= url('assets/packages/jquery-ui/jquery-ui.min.css') ?>" />
 <link rel="stylesheet" type="text/css" href="<?= url('assets/css/elfinder.min.css') ?>">
 <script src="<?= url('assets/packages/elfinder/js/elfinder.min.js') ?>"></script>
-
+<style type="text/css">
+  html, body {
+    overflow: hidden;
+  }
+</style>
       <div id="elfinder"></div>
 
 <script type="text/javascript" charset="utf-8">

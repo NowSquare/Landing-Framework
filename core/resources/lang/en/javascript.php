@@ -78,6 +78,9 @@ return array(
   "left" => "Left",
   "right" => "Right",
   "variables" => "Variables",
+  "test_email" => "Test email",
+  "" => "",
+  "" => "",
 
   /*
   |--------------------------------------------------------------------------

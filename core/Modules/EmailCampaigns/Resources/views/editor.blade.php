@@ -171,7 +171,7 @@ if (count($forms) == 0) {
 
       function previewSiteResize() {
         $( '#editor_frame' ).css( {
-          'height': ( parseInt( $( window ).outerHeight() ) - 172 ) + 'px'
+          'height': ( parseInt( $( window ).outerHeight() ) - 170 ) + 'px'
         } );
       }
 </script>
