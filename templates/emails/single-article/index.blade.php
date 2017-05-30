@@ -30,7 +30,7 @@
 					<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainer">
 						<tr>
 							<td valign="top" class="bodyContent" mc:edit="body_content_01">
-                <p>Hi --First Name=there--,</p>
+                <p>Hi --personal_name=there--,</p>
                 <h1><strong>Enjoy our latest article</strong></h1>
 							</td>
 						</tr>

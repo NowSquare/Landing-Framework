@@ -44,7 +44,7 @@
 						<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainerMiddle">
 							<tr>
 								<td valign="top" class="bodyContent" mc:edit="body_content">
-                  <h3>Welcome --First Name=there--,</h3>
+                  <h3>Welcome --personal_name=there--,</h3>
 									<h2><strong>We wanted you to be the first to know,  we have just released our API & SDK.</strong></h2>
 									<p>Our free community for marketers! We're excited to share everything that we know about marketing, automation, and growing your business.<br /><br />
 We hope you enjoy the content as much as we did creating it. Drawing from decades of experience using marketing automation and trying out all sorts of techniques, it's peppered with real life examples and practical takeaways.</p>

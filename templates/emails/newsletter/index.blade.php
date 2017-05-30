@@ -43,7 +43,7 @@
 						</tr>
             <tr>
 							<td valign="top" class="bodyContentNewsLetter" mc:edit="body_content_newsletter_02">
-                <p>Hi --First Name=there--,</p>
+                <p>Hi --personal_name=there--,</p>
                 <h1><strong>What’s new in August</strong></h1>
 							</td>
 						</tr>

@@ -31,14 +31,14 @@
 							<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainer">
 									<tr>
 											<td valign="top" class="bodyContent" mc:edit="body_content">
-												<p>Hi --First Name=there--,</p>
+												<p>Hi --personal_name=there--,</p>
 												<p>Please confirm your subscription by clicking the link below. Thank you!</p>
                         <a class="blue-btn" href="--confirm--"><strong>Confirm Email</strong></a>
 											</td>
 									</tr>
 									<tr>
-											<td valign="top">
-												&nbsp;
+											<td valign="top">&nbsp;
+												
 											</td>
 									</tr>
 									<tr align="top">

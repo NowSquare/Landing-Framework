@@ -37,7 +37,7 @@
 					<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainer">
             <tr>
 							<td valign="top" class="bodyContent" mc:edit="body_content_newsletter_02">
-                <p>Hi --First Name=there--,</p>
+                <p>Hi --personal_name=there--,</p>
                 <h2><strong>Michael has invited you to Outside Lands.</strong></h2>
 							</td>
 						</tr>

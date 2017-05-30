@@ -34,7 +34,7 @@
               "brdBottomPadd-two" id="templateContainer" width="100%">
                 <tr>
                   <td class="bodyContent" valign="top" mc:edit="welcomeEdit-02">
-                    <p>Hi --First Name=there--,</p>
+                    <p>Hi --personal_name=there--,</p>
 
                     <h1><strong>Congratulations on signing up<br>
                     for Flight School!</strong></h1>
