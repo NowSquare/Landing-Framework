@@ -15,8 +15,6 @@
             </button>
             <a class="navbar-brand link" href="#/emailcampaigns">{{ trans('emailcampaigns::global.module_name_plural') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
-            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('global.emails') }} ({{ count($email_campaign->emails) }})</a>
-            <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
             <ul class="nav navbar-nav">
               <li class="dropdown">
                 <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ $email_campaign->name }} <span class="caret"></span></a>
@@ -31,6 +29,8 @@ foreach($email_campaigns as $campaign) {
                 </ul>
               </li>
             </ul>
+            <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('global.emails') }} ({{ count($email_campaign->emails) }})</a>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-title-navbar">
