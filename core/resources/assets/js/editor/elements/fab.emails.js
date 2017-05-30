@@ -53,9 +53,16 @@ function lfInitFabEmails() {
     // Post html
     var html = lfGetHtml();
 
+    // Other vars
+    var subject = window.parent.document.getElementById('subject').value;
+    var mailto = window.parent.document.getElementById('mailto');
+    mailto = (mailto == null || typeof mailto === 'undefined') ? '' : mailto.value;
+    var from_name = window.parent.document.getElementById('from_name').value;
+    var from_email = window.parent.document.getElementById('from_email').value;
+
     var jqxhr = $.ajax({
       url: _lang["url"] + '/emailcampaigns/emails/save',
-      data: {sl: lf_sl, html: html, _token: lf_csrf_token},
+      data: { sl: lf_sl, html: html, subject: subject, mailto: mailto, from_name: from_name, from_email: from_email, _token: lf_csrf_token },
       method: 'POST'
     })
     .done(function(data) {

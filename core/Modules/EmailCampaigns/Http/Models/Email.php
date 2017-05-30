@@ -18,7 +18,7 @@ class Email extends Model {
   }
 
   public function emailCampaign() {
-    return $this->belongsTo('Modules\EmailCampaigns\Http\Models\EmailCampaign', 'email_id');
+    return $this->belongsTo('Modules\EmailCampaigns\Http\Models\EmailCampaign', 'email_campaign_id');
   }
 
   /**

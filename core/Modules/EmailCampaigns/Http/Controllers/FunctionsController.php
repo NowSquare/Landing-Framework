@@ -243,7 +243,7 @@ class FunctionsController extends Controller
   /**
    * Save / publish email
    */
-  public static function saveEmail($sl, $html, $publish = false, $user_id = null)
+  public static function saveEmail($sl, $mailto, $subject, $from_name, $from_email, $html, $publish = false, $user_id = null)
   {
     if ($user_id == null) $user_id = Core\Secure::userId();
 
@@ -252,6 +252,19 @@ class FunctionsController extends Controller
 
       $email_id = $qs['email_id'];
       $email = Models\Email::where('user_id', $user_id)->where('id', $email_id)->first();
+      $email->subject = $subject;
+      if ($mailto != '') {
+        $form_id = Core\Secure::staticHashDecode($mailto, true);
+        $email->form_id = $form_id;
+      } else {
+        $email->form_id = null;
+      }
+      $email->save();
+
+      $emailCampaign = Models\EmailCampaign::where('id', $email->email_campaign_id)->first();
+      $emailCampaign->mail_from = $from_email;
+      $emailCampaign->mail_from_name = $from_name;
+      $emailCampaign->save();
 
       $variant = 1;
 

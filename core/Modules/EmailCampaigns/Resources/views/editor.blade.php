@@ -5,7 +5,7 @@
 
         <div class="input-group">
           <span class="input-group-addon">{{ trans('global.subject') }}</span>
-          <input type="text" class="form-control" name="name" id="name" value="{{ $email->name }}" required autocomplete="off">
+          <input type="text" class="form-control" name="subject" id="subject" value="{{ $email->subject }}" required autocomplete="off">
         </div>
 
       </div>
@@ -20,11 +20,15 @@ if (count($forms) == 0) {
             <input type="text" class="form-control" disabled value="{{ trans('emailcampaigns::global.no_forms_to_send_to') }}" required autocomplete="off">
 <?php
 } else {
-  echo Former::select('form')
+  $form_id = $email->form_id;
+  if ($form_id != '') $form_id = \Platform\Controllers\Core\Secure::staticHash($form_id, true);
+  echo Former::select('mailto')
     ->addOption('&nbsp;')
     ->class('select2-required form-control')
-    ->name('form')
+    ->name('mailto')
+    ->id('mailto')
     ->fromQuery($forms, 'name', 'local_domain')
+    ->forceValue($form_id)
     ->label(false);
 }
 ?>
@@ -45,7 +49,7 @@ if (count($forms) == 0) {
 
         <div class="input-group">
           <span class="input-group-addon">{{ trans('global.from_name') }}</span>
-          <input type="text" class="form-control" name="from_name" id="from_name" value="{{ auth()->user()->name }}" required autocomplete="off">
+          <input type="text" class="form-control" name="from_name" id="from_name" value="<?php echo ($email->emailCampaign->mail_from_name == '') ? auth()->user()->name : $email->emailCampaign->mail_from_name; ?>" required autocomplete="off">
         </div>
 
       </div>
@@ -53,7 +57,7 @@ if (count($forms) == 0) {
 
         <div class="input-group">
           <span class="input-group-addon">{{ trans('global.from_email') }}</span>
-          <input type="text" class="form-control" name="from_email" id="from_email" value="{{ auth()->user()->email }}" required autocomplete="off">
+          <input type="text" class="form-control" name="from_email" id="from_email" value="<?php echo ($email->emailCampaign->mail_from == '') ? auth()->user()->email : $email->emailCampaign->mail_from; ?>" required autocomplete="off">
         </div>
 
       </div>
@@ -94,7 +98,12 @@ if (count($forms) == 0) {
   .group-same-width .form-control,
   .group-same-width .select2-container {
     border: 0 !important;
-    color: #111;
+    color:
+  }
+
+  .group-same-width .select2-container {
+    position: relative;
+    top: 2px;
   }
   
   .group-same-width .form-control[disabled], .group-same-width .form-control[readonly],
