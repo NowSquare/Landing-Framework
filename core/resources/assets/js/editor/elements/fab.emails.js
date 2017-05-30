@@ -42,7 +42,7 @@ function lfInitFabEmails() {
   });
 
   /* 
-    Save page
+    Save email
   */
 
   $('body').on('click', '.-x-el-fab-save', function() {
@@ -52,100 +52,10 @@ function lfInitFabEmails() {
 
     // Post html
     var html = lfGetHtml();
-console.log(html);
-    return false;
+
     var jqxhr = $.ajax({
       url: _lang["url"] + '/emailcampaigns/emails/save',
       data: {sl: lf_sl, html: html, _token: lf_csrf_token},
-      method: 'POST'
-    })
-    .done(function(data) {
-      if (data.success) {
-        $.notify({
-            title: _lang['notification'],
-            text: data.msg + "&nbsp;&nbsp;",
-            image: '<i class="fa fa-bell-o" aria-hidden="true"></i>'
-          }, {
-            style: 'metro',
-            className: 'white', /* white, black, error, success, warning, info */
-            globalPosition: 'top right',
-            autoHide: true,
-            clickToHide: true,
-            autoHideDelay: 5000,
-            showAnimation: 'fadeIn',
-            showDuration: 200,
-            hideAnimation: 'fadeOut',
-            hideDuration: 200
-        });
-      } else {
-        alert(data.msg);
-      }
-    })
-    .fail(function() {
-      console.log('error');
-    })
-    .always(function() {
-    });
-  });
-  
-  /* 
-    Publish page
-  */
-
-  $('body').on('click', '.-x-el-fab-publish-publish', function() {
-  
-    // Hide dropdown
-    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
-
-    // Post html
-    var html = lfGetHtml();
-
-    var jqxhr = $.ajax({
-      url: _lang["url"] + '/emailcampaigns/emails/publish',
-      data: {sl: lf_sl, html: html, _token: lf_csrf_token},
-      method: 'POST'
-    })
-    .done(function(data) {
-      if (data.success) {
-        $.notify({
-            title: _lang['notification'],
-            text: data.msg + "&nbsp;&nbsp;",
-            image: '<i class="fa fa-bell-o" aria-hidden="true"></i>'
-          }, {
-            style: 'metro',
-            className: 'white', /* white, black, error, success, warning, info */
-            globalPosition: 'top right',
-            autoHide: true,
-            clickToHide: true,
-            autoHideDelay: 5000,
-            showAnimation: 'fadeIn',
-            showDuration: 200,
-            hideAnimation: 'fadeOut',
-            hideDuration: 200
-        });
-      } else {
-        alert(data.msg);
-      }
-    })
-    .fail(function() {
-      console.log('error');
-    })
-    .always(function() {
-    });
-  });
-  
-  /* 
-    Unpublish page
-  */
-
-  $('body').on('click', '.-x-el-fab-publish-unpublish', function() {
-  
-    // Hide dropdown
-    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
-
-    var jqxhr = $.ajax({
-      url: _lang["url"] + '/emailcampaigns/emails/unpublish',
-      data: {sl: lf_sl, _token: lf_csrf_token},
       method: 'POST'
     })
     .done(function(data) {
@@ -211,7 +121,9 @@ console.log(html);
   */
 
   $('body').on('click', '.-x-el-fab-preview', function() {
-    $('.-x-el-inline-button-clone .-x-el-icon').toggle();
+
+    // Toggle tinyMCE visual aids
+    emailEditor.execCommand('mceToggleVisualAid');
 
     // Toggle checkmark
     $(this).find('.-x-el-checkmark').toggleClass('-x-checked');
@@ -221,35 +133,14 @@ console.log(html);
   });
 
   /* 
-    Open QR
-  */
-
-  $('body').on('click', '.-x-el-fab-view-qr', function() {
-    lfOpenModal(_lang["url"] + '/landingpages/editor/modal/qr?url=' + lf_published_url);
-
-    // Hide dropdown
-    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
-  });
-
-  /* 
     Settings
   */
 
-  $('body').on('click', '.-x-el-fab-form-seo', function() {    
+  $('body').on('click', '.-x-el-fab-email-settings', function() {    
     lfOpenModal(_lang["url"] + '/emailcampaigns/editor/modal/seo?sl=' + lf_sl);
   
     // Hide dropdown
     $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
   });
 
-  /* 
-    Design
-  */
-
-  $('body').on('click', '.-x-el-fab-form-design', function() {    
-    lfOpenModal(_lang["url"] + '/emailcampaigns/editor/modal/design?sl=' + lf_sl);
-  
-    // Hide dropdown
-    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
-  });
 }

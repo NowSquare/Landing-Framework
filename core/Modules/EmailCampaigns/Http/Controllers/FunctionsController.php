@@ -175,7 +175,7 @@ class FunctionsController extends Controller
   }
 
   /**
-   * Create a email campaign
+   * Create an email
    */
   public static function createEmail($email_campaign, $template, $name, $user_id = null, $funnel_id = null)
   {
@@ -235,6 +235,43 @@ class FunctionsController extends Controller
       \Storage::disk('public')->put($storage_root_full . '/index.blade.php', $html);
 
       return $email;
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * Save / publish email
+   */
+  public static function saveEmail($sl, $html, $publish = false, $user_id = null)
+  {
+    if ($user_id == null) $user_id = Core\Secure::userId();
+
+    if($sl != '') {
+      $qs = Core\Secure::string2array($sl);
+
+      $email_id = $qs['email_id'];
+      $email = Models\Email::where('user_id', $user_id)->where('id', $email_id)->first();
+
+      $variant = 1;
+
+      // Update files
+      $storage_root = 'emails/email/' . Core\Secure::staticHash($user_id) . '/' .  Core\Secure::staticHash($email->email_campaign_id, true) . '/' . Core\Secure::staticHash($email->id, true) . '/' . $variant;
+
+      $html = str_replace(url('/'), '', $html);
+
+      // Beautify html
+      $html = Core\Parser::beautifyHtml($html);
+
+      \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
+      \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
+      \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
+
+      if ($publish) {
+        \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $html);
+      }
+
+      return true;
     } else {
       return false;
     }

@@ -168,6 +168,7 @@ class EmailsController extends Controller
           // to make sure jQuery and Bootstrap 4 js are
           // included in template, while inline <script>'s
           // can safely run below.
+          pq('head')->append(PHP_EOL . '<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/bs4/css/style.min.css') . '">');
           pq('head')->append(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/translations?lang=' . $email->language) . '&editor=1"></script>');
           pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">var lf_published_url = "' . $published_url . '";var lf_demo = true;var lf_sl = "' . $sl . '";var lf_csrf_token = "' . csrf_token() . '";</script>');
           pq('head')->append(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
@@ -334,6 +335,72 @@ class EmailsController extends Controller
           return response()->json(['success' => true]);
         }
       }
+    }
+
+    /**
+     * Save email
+     */
+    public function saveEmail(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $html = $request->input('html', '');
+
+      $save = FunctionsController::saveEmail($sl, $html);
+
+      if ($save) {
+        $response = ['success' => true, 'msg' => trans('javascript.save_succes')];
+      } else {
+        $response = ['success' => false, 'msg' => 'An error occured'];
+      }
+
+      return response()->json($response);
+    }
+
+    /**
+     * Publish email
+     */
+    public function publishEmail(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $html = $request->input('html', '');
+
+      $publish = FunctionsController::saveEmail($sl, $html, true);
+
+      if ($publish) {
+        $response = ['success' => true, 'msg' => trans('javascript.publish_succes')];
+      } else {
+        $response = ['success' => false, 'msg' => 'An error occured'];
+      }
+
+      return response()->json($response);
+    }
+
+    /**
+     * Unpublish email
+     */
+    public function unpublishEmail(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        $email_id = $qs['email_id'];
+        $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $email_id)->first();
+
+        $variant = 1;
+
+        // Update files
+        $storage_root = 'emails/email/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' .  Core\Secure::staticHash($email->email_campaign_id, true) . '/' . Core\Secure::staticHash($email->id, true) . '/' . $variant;
+
+        \Storage::disk('public')->deleteDirectory($storage_root . '/published');
+
+        $response = ['success' => true, 'msg' => trans('javascript.unpublish_succes')];
+      } else {
+        $response = ['success' => false, 'msg' => 'An error occured'];
+      }
+
+      return response()->json($response);
     }
 
     /**

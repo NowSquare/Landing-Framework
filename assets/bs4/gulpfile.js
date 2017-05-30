@@ -98,6 +98,38 @@ gulp.task('styles', function() {
     .pipe(notify({ message: 'Styles task complete' }));
 });
 
+
+/*
+ |--------------------------------------------------------------------------
+ | Styles
+ |--------------------------------------------------------------------------
+ */
+
+gulp.task('styles_lite', function() {
+  return sass([
+      'resources/sass/plugins/_notify-metro.scss',
+      'bower_components/tether/src/css/tether.sass'
+    ], {
+      style: 'expanded',
+      loadPath: [ 
+        'resources/sass'
+      ]
+    })
+  	.pipe(concat('style.lite.css'))
+    .pipe(autoprefixer({
+      browsers: ['last 2 version'], 
+      cascade: false
+    }))
+    .pipe(gulp.dest('css'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(cssnano({
+      discardComments: {removeAll: true}
+    }))
+    .pipe(gulp.dest('css'))
+    .pipe(livereload())
+    .pipe(notify({ message: 'Styles task complete' }));
+});
+
 /*
  |--------------------------------------------------------------------------
  | Scripts
@@ -147,7 +179,8 @@ gulp.task('scripts_lite', function() {
   return gulp.src([
       'bower_components/jquery/dist/jquery.js',
       'bower_components/tether/dist/js/tether.js',
-      'bower_components/notifyjs/dist/notify.js'
+      'bower_components/notifyjs/dist/notify.js',
+      'resources/scripts/notify-metro.js'
     ])
     .pipe(concat('scripts.lite.js'))
     .pipe(gulp.dest('js'))

@@ -25,6 +25,7 @@ function lfInitEditor(editor) {
   } else if (editor == 'forms') {
     lfInitFabForms();
   } else if (editor == 'emails') {
+    var emailEditor;
     lfInitFabEmails();
   }
 
@@ -45,7 +46,7 @@ function lfInitEditor(editor) {
 
   $('body').on('click', 'a:parents(.-x-el-dropdown)', function(e) {
     if ($(this).attr('data-toggle') != 'lightbox') {
-      if ($(this).attr('href') == '#') {
+      if ($(this).attr('href') == '#' || $(this).attr('href').substring(0, 2) == '--') {
         return false;
       } else if ($(this).attr('href') != 'javascript:void(0);') {
         if (! confirm(_lang['confirm_follow_link'])) {

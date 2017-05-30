@@ -145,6 +145,7 @@ function lfInitText() {
           inline: true,
           menubar: false,
           schema: 'html5',
+          convert_urls: false,
           relative_urls: false,
           apply_source_formatting: false, 
           extended_valid_elements: 'span[style,class],script[charset|defer|language|src|type]',
@@ -173,22 +174,23 @@ function lfInitText() {
             });
           },
           setup: function (editor) {
+            emailEditor = editor;
 
-              editor.addButton('mail_vars', {
-                type: 'listbox',
-                text: _lang['variables'],
-                icon: false,
-                autofocus: false,
-                onselect: function (e) {
-                  editor.insertContent(this.value());
-                  this.value(null);
-                },
-                menu: menu,
-                onPostRender: function () {
-                  // Select the second item by default
-                  //this.value('&nbsp;<em>Some italic text!</em>');
-                }
-              });
+            editor.addButton('mail_vars', {
+              type: 'listbox',
+              text: _lang['variables'],
+              icon: false,
+              autofocus: false,
+              onselect: function (e) {
+                editor.insertContent(this.value());
+                this.value(null);
+              },
+              menu: menu,
+              onPostRender: function () {
+                // Select the second item by default
+                //this.value('&nbsp;<em>Some italic text!</em>');
+              }
+            });
 
             editor.on('Change', function (e) {
               lfSetPageIsDirty();
