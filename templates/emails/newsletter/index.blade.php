@@ -17,7 +17,7 @@
 <body yahoo bgcolor="#ffffff">
 <table width="100%" bgcolor="#ffffff" border="0" cellpadding="10" cellspacing="0">
 <tr>
-  <td class="-x-text">
+  <td class="-x-mail">
     <!--[if (gte mso 9)|(IE)]>
       <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
         <tr>

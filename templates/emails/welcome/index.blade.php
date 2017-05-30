@@ -11,7 +11,7 @@
   <table border="0" cellpadding="10" cellspacing="0" style=
   "background-color: #FFFFFF" width="100%">
     <tr>
-      <td class="-x-text">
+      <td class="-x-mail">
         <!--[if (gte mso 9)|(IE)]>
       <table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
         <tr>
