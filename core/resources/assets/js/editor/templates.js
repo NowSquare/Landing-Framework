@@ -3,10 +3,12 @@ var xTplModal = '<div class="-x-editor-inline-modal-bg" style="z-index: 59999 !i
   '</div>';
 
 var xTplFabLandingpages = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-index: 59999 !important;">' +
-  '  <img src="' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg" class="-x-el-icon"' +
-  '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical-hover.svg\';"' +
-  '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg\';"' +
+  '  <span>' +
+  '  <img src="' + _lang["url"] + '/assets/images/editor/icons/fab.svg" class="-x-el-icon"' +
+  '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/fab-hover.svg\';"' +
+  '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/fab.svg\';"' +
   '  >' +
+  '  </span>' +
   '  <ul class="-x-el-dropdown -x-el-dropdown-top-left -x-el-dropdown-fab -x-el-reset">' +
   '    <li class="-x-el-fab-publish"><a href="javascript:void(0);">' + _lang["save"] + ' <div class="-x-el-caret"></div></a>' +
   '      <ul>' +
@@ -42,10 +44,12 @@ var xTplFabLandingpages = '<div class="-x-el-inline-button -x-el-fab -x-el-reset
   '</div>';
 
 var xTplFabForms = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-index: 59999 !important;">' +
-  '  <img src="' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg" class="-x-el-icon"' +
-  '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical-hover.svg\';"' +
-  '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg\';"' +
+  '  <span>' +
+  '  <img src="' + _lang["url"] + '/assets/images/editor/icons/fab.svg" class="-x-el-icon"' +
+  '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/fab-hover.svg\';"' +
+  '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/fab.svg\';"' +
   '  >' +
+  '  </span>' +
   '  <ul class="-x-el-dropdown -x-el-dropdown-top-left -x-el-dropdown-fab -x-el-reset">' +
   '    <li class="-x-el-fab-publish"><a href="javascript:void(0);">' + _lang["save"] + ' <div class="-x-el-caret"></div></a>' +
   '      <ul>' +
@@ -82,10 +86,12 @@ var xTplFabForms = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style
   '</div>';
 
 var xTplFabEmails = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" style="z-index: 59999 !important;">' +
-  '  <img src="' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg" class="-x-el-icon"' +
-  '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical-hover.svg\';"' +
-  '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/dots-vertical.svg\';"' +
+  '  <span>' +
+  '  <img src="' + _lang["url"] + '/assets/images/editor/icons/fab.svg" class="-x-el-icon"' +
+  '    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/fab-hover.svg\';"' +
+  '    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/fab.svg\';"' +
   '  >' +
+  '  </span>' +
   '  <ul class="-x-el-dropdown -x-el-dropdown-top-left -x-el-dropdown-fab -x-el-reset">' +
 /*  '    <li class="-x-el-fab-email"><a href="javascript:void(0);">' + _lang["email"] + ' <div class="-x-el-caret"></div></a>' +
   '      <ul>' +

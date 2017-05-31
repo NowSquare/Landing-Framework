@@ -4,6 +4,7 @@
   Variables
 */
 
+$mdl-shadow--1dp: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !default;
 $mdl-shadow--2dp: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !default;
 $mdl-shadow--3dp: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12) !default;
 $mdl-shadow--4dp: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !default;
@@ -219,9 +220,17 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
     height: 60px !important;
   }
 
+  &.-x-el-fab span {
+    box-shadow: $mdl-shadow--4dp !important;
+    width: 60px !important;
+    height: 60px !important;
+    display: inline-block !important;
+    border-radius: 50% !important;
+  }
+
   &.-x-el-fab .-x-el-icon {
-    box-shadow: $mdl-shadow--6dp !important;
     transition: 0.2s ease-in-out;
+    box-shadow: none !important;
   }
 
   &.-x-el-fab:hover .-x-el-icon {
