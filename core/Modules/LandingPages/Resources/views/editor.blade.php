@@ -1,5 +1,8 @@
 <iframe id="editor_frame" class="desktop_mode" src="{{ $url }}" frameborder="0" allowtransparency="true" seamless></iframe>
 <style type="text/css">
+  html, body {
+    overflow: hidden;
+  }
   #view {
     background-color: #21252b;
   }

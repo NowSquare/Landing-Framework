@@ -46,4 +46,8 @@ return array(
   "edit_email_campaign" => "Edit email campaign",
   "manage_emails" => "Manage emails",
   "no_forms_to_send_to" => "There are no forms to send to.",
+  "test_email" => "Test email",
+  "send_email" => "Send email",
+  "test_email_text" => "Send a test email to the address below. Make sure you save the email before testing.",
+  "test_email_sent" => "The test email has been queued for sending."
 );

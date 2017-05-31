@@ -144,7 +144,18 @@ function lfInitFabEmails() {
   */
 
   $('body').on('click', '.-x-el-fab-email-settings', function() {    
-    lfOpenModal(_lang["url"] + '/emailcampaigns/editor/modal/seo?sl=' + lf_sl);
+    lfOpenModal(_lang["url"] + '/emailcampaigns/editor/modal/settings?sl=' + lf_sl);
+  
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+  });
+
+  /* 
+    Test email
+  */
+
+  $('body').on('click', '.-x-el-fab-test-mail', function() {    
+    lfOpenModal(_lang["url"] + '/emailcampaigns/editor/modal/test-email?sl=' + lf_sl);
   
     // Hide dropdown
     $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);

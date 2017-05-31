@@ -16,13 +16,84 @@ class EmailsController extends Controller
      */
     public function sendEmail()
     {
+      $variant = 1;
+
+      $email = Models\Email::where('id', 1)->first();
+      $view = 'public.emails::' . Core\Secure::staticHash($email->user_id) . '.' . Core\Secure::staticHash($email->email_campaign_id, true) . '.' . $email->local_domain . '.' . $variant . '.index';
+
+      dd($email->emailCampaign->mail_from);
+      return view($view);
+
+      dd($view);
+      die();
+
       $email = [
         'text' => 'This is the text version',
         'var1' => 'val1'
       ];
 
-      $job = (new SendTestEmail($email));/*
-        ->delay(\Carbon\Carbon::now()->addMinutes(2));*/
+      $job = (new SendTestEmail($email))
+        ->delay(\Carbon\Carbon::now()->addMinutes(2));
+
+      dispatch($job);
+
+      // <20170528181128.57811.4114FD6414B0E9F0@mg.landingframework.com>
+      //$response = \Mailgun::api()->get('events', [
+    //    'to' => 'info@s3m.nl',
+      //]);
+
+      //dd($response);
+      die();
+
+      $data = [
+        'text' => 'This is the text version',
+        'var1' => 'val1'
+      ];
+
+      $response = \Mailgun::send(['template.emails::basic.index', 'template.emails::_text.index'], $data, function ($message) {
+        $message
+          ->subject('Mailgun test mail')
+          ->from('noreply@landingframework.com', 'LF')
+          ->replyTo('noreply@landingframework.com', 'LF')
+          ->to('info@s3m.nl', 'Sem')
+          ->trackClicks(true)
+          ->trackOpens(true);
+      });
+      dd($response);
+    }
+    /**
+     * Send test email
+     */
+    public function sendTestEmail()
+    {
+      $mailto = request()->input('preview', false);
+
+      $input = array(
+        'name' => $mailto
+      );
+
+      $rules = array(
+        'name' => 'required|email'
+      );
+
+      $validator = \Validator::make($input, $rules);
+
+      if($validator->fails()) {
+        $response = array(
+          'type' => 'error', 
+          'reset' => false, 
+          'msg' => $validator->messages()->first()
+        );
+        return response()->json($response);
+      }
+      
+      $email = [
+        'text' => 'This is the text version',
+        'var1' => 'val1'
+      ];
+
+      $job = (new SendTestEmail($email))
+        ->delay(\Carbon\Carbon::now()->addMinutes(2));
 
       dispatch($job);
 
@@ -417,6 +488,137 @@ class EmailsController extends Controller
       }
 
       return response()->json($response);
+    }
+
+    /**
+     * Settings
+     */
+    public function editorModalSettings(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+
+        if (is_numeric($email_id)) {
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+
+          return view('landingpages::modals.email-settings', compact('email', 'sl'));
+        }
+      }
+    }
+
+    /**
+     * Post settings
+     */
+    public function editorPostSettings(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $email = $request->input('email', '');
+
+      $input = array(
+        'email' => $email
+      );
+
+      $rules = array(
+        'email' => 'required|max:64'
+      );
+
+      $validator = \Validator::make($input, $rules);
+
+      if($validator->fails()) {
+        $response = array(
+          'type' => 'error', 
+          'reset' => false, 
+          'msg' => $validator->messages()->first()
+        );
+        return response()->json($response);
+      }
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+
+        if (is_numeric($email_id)) {
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+          $email->tests = $email->tests + 1;
+          $email->last_test = date('Y-m-d H:i:s');
+          $email->save();
+
+          return response()->json(['success' => true]);
+        }
+      }
+    }
+
+    /**
+     * Test email
+     */
+    public function editorModalTestEmail(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+
+        if (is_numeric($email_id)) {
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+
+          return view('landingpages::modals.test-email', compact('email', 'sl'));
+        }
+      }
+    }
+
+    /**
+     * Post test email
+     */
+    public function editorPostTestEmail(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $mailto = $request->input('mailto', '');
+
+      $input = array(
+        'mailto' => $mailto
+      );
+
+      $rules = array(
+        'mailto' => 'required|email|not_in:info@example.com'
+      );
+
+      $validator = \Validator::make($input, $rules);
+
+      if($validator->fails()) {
+        $response = [
+          'type' => 'error', 
+          'reset' => false, 
+          'msg' => $validator->messages()->first()
+        ];
+        return response()->json($response);
+      }
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+
+        if (is_numeric($email_id)) {
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+
+          $email->tests = $email->tests + 1;
+          $email->last_test = date('Y-m-d H:i:s');
+          $email->last_test_email = $mailto;
+          $email->save();
+
+          $job = (new SendTestEmail($mailto, $email));
+          dispatch($job);
+
+          return response()->json([
+            'type' => 'success', 
+            'reset' => false, 
+            'msg' => trans('emailcampaigns::global.test_email_sent')
+          ]);
+        }
+      }
     }
 
     /**

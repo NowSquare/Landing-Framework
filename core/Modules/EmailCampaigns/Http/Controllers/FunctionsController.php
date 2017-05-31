@@ -289,4 +289,12 @@ class FunctionsController extends Controller
       return false;
     }
   }
+
+  /**
+   * Parse email
+   */
+  public static function parseEmail()
+  {
+
+  }
 }

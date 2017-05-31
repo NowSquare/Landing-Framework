@@ -6,15 +6,14 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Bus\Queueable;
-
-/*
-sude nohup php artisan queue:work --daemon --tries=3
- */
+use Modules\EmailCampaigns\Http\Models\Email;
+use \Platform\Controllers\Core;
 
 class SendTestEmail implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels, Queueable;
 
+    protected $mailto;
     protected $email;
 
     /**
@@ -22,8 +21,9 @@ class SendTestEmail implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($email)
+    public function __construct($mailto, Email $email)
     {
+        $this->mailto = $mailto;
         $this->email = $email;
     }
 
@@ -34,18 +34,20 @@ class SendTestEmail implements ShouldQueue
      */
     public function handle()
     {
-
       $data = [
-        'text' => 'This is the text version',
-        'var1' => 'val1'
+        'email_text_version' => ''
       ];
 
-      $response = \Mailgun::send(['template.emails::opt-in.index', 'template.emails::_text.index'], $data, function ($message) {
+      $variant = 1;
+
+      $view = 'public.emails::' . Core\Secure::staticHash($this->email->user_id) . '.' . Core\Secure::staticHash($this->email->email_campaign_id, true) . '.' . $this->email->local_domain . '.' . $variant . '.index';
+
+      $response = \Mailgun::send([$view/*, 'template.emails::_text.index'*/], $data, function ($message) {
         $message
-          ->subject('Mailgun test mail')
-          ->from('noreply@landingframework.com', 'Sembo')
-          ->replyTo('noreply@landingframework.com', 'Sembo')
-          ->to('info@s3m.nl', 'Sem')
+          ->subject($this->email->subject)
+          ->from($this->email->emailCampaign->mail_from, $this->email->emailCampaign->mail_from_name)
+          ->replyTo($this->email->emailCampaign->mail_from, $this->email->emailCampaign->mail_from_name)
+          ->to($this->mailto)
           ->trackClicks(true)
           ->trackOpens(true);
       });

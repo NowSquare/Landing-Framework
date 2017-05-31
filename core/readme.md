@@ -1,40 +1,72 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Installation
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Server
+Landing Framework requires a LAMP stack to run on. For this manual we use a digitalocean.com VPS with serverpilot.io automated updates and SSL.
 
-## About Laravel
+## Crontabs
+Each system user has their own list of scheduled tasks. This list is called a crontab. To view a crontab, SSH in to your server and run the command:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+`crontab -l`
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+To edit a system user's crontab, run the command:
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+`crontab -e`
 
-## Learning Laravel
+To add the Laravel cron job that makes a web request every minute, scroll to the bottom of the file and add the line:
+
+`* * * * * php /srv/users/serverpilot/apps/name_of_your_app/public/core/artisan schedule:run >> /dev/null 2>&1`
+
+For more information on crontabs, consult the [ServerPilot crontabs documentation](https://serverpilot.io/community/articles/how-to-use-cron-to-schedule-scripts.html).
+
+## Queues
+In development mode you can listen to queues with the following command:
+
+`php artisan queue:work`
+
+If you make changes to the job, run:
+
+`php artisan queue:restart`
+
+For production you need to set up Supervisor as described below.
+
+### Installing Supervisor
+Supervisor is a process monitor for the Linux operating system, and will automatically restart your `queue:work` process if it fails. To install Supervisor on Ubuntu, you may use the following command:
+
+`sudo apt-get install supervisor`
+
+### Configuring Supervisor
+
+Supervisor configuration files are typically stored in the `/etc/supervisor/conf.d` directory. Within this directory, you may create any number of configuration files that instruct supervisor how your processes should be monitored. For example, let's create a `name_of_your_app.conf` file that starts and monitors a `queue:work` process:
+
+```[program:name_of_your_app]
+process_name=%(program_name)s_%(process_num)02d
+command=php /srv/users/serverpilot/apps/name_of_your_app/public/core/artisan queue:work database --sleep=3 --tries=3
+autostart=true
+autorestart=true
+user=serverpilot
+numprocs=8
+redirect_stderr=true
+stdout_logfile=/srv/users/serverpilot/apps/name_of_your_app/supervisor.log``` 
+
+In this example, the `numprocs` directive will instruct Supervisor to run 8 `queue:work` processes and monitor all of them, automatically restarting them if they fail. Of course, you should change the `queue:work sqs` portion of the `command` directive to reflect your desired queue connection.
+
+### Starting Supervisor
+
+Once the configuration file has been created, you may update the Supervisor configuration and start the processes using the following commands:
+
+`sudo supervisorctl reread`
+
+`sudo supervisorctl update`
+
+`sudo supervisorctl start name_of_your_app:*`
+
+For more information on Supervisor, consult the [Supervisor documentation](http://supervisord.org/index.html).
+
+## Mailgun webhooks
+To track email clicks and opens, we have to configure Mailgun webhooks. Log in to your Mailgun account
+
+## Based on Laravel
 
 Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
 
 If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
