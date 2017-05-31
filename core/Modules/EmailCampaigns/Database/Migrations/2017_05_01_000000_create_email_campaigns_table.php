@@ -39,6 +39,8 @@ class CreateEmailCampaignsTable extends Migration
       $table->bigInteger('_rgt')->unsigned()->default(0);
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+      $table->bigInteger('email_campaign_id')->unsigned();
+      $table->foreign('email_campaign_id')->references('id')->on('email_campaigns')->onDelete('cascade');
       $table->string('template', 48)->nullable();
       $table->string('local_domain', 64)->nullable();
       $table->tinyInteger('variant')->unsigned()->default(1);
