@@ -98,6 +98,7 @@ foreach($columns['custom'] as $column) {
 ?>
               <th>{{ $column }}</th>
 <?php } ?>
+              <th>{{ trans('global.confirmed') }}</th>
               <th>{{ trans('global.created') }}</th>
               <th class="text-center">{{ trans('global.actions') }}</th>
             </tr>
@@ -147,7 +148,7 @@ var entries_table = $('#dt-table-entries').DataTable({
       d.sl = '{{ $sl }}';
     }
   },
-  order: [ [<?php echo count($columns['form']) + count($columns['custom']) + 1 ?>, "desc"] ],
+  order: [ [<?php echo count($columns['form']) + count($columns['custom']) + 2 ?>, "desc"] ],
   dom: "<'row'<'col-sm-12 dt-header'<'pull-left'lr><'pull-right'f><'pull-right hidden-sm hidden-xs'T><'clearfix'>>>t<'row'<'col-sm-12 dt-footer'<'pull-left'i><'pull-right'p><'clearfix'>>>",
   processing: true,
   serverSide: true,
@@ -166,6 +167,7 @@ var entries_table = $('#dt-table-entries').DataTable({
 <?php foreach($columns['custom'] as $column) { ?>
     { data: "{{ $column }}" }, 
 <?php } ?>
+    { data: "confirmed", width: 60 },
     { data: "created_at", width: 110 },
     { data: "sl", width: 74, sortable: false}
   ],
@@ -182,16 +184,18 @@ var entries_table = $('#dt-table-entries').DataTable({
       render: function (data, type, row) {
         return '<div data-moment="fromNowDateTime">' + data + '</div>';
       },
-      targets: [<?php echo count($columns['form']) + count($columns['custom']) + 1 ?>]
-    },/*
-		{
-			render: function (data, type, row) {
-        var html = '<div class="text-center"><button class="btn btn-default btn-xs mapRow" data-id="' + row.DT_RowId + '" data-lat="' + row.lat + '" data-lng="' + row.lng + '" data-zoom="' + row.zoom + '" id="mapRow' + row.DT_RowId + '" data-toggle="popover" data-placement="top" data-html="true" data-trigger="focus" data-content="<div class=\'gmap\' id=\'gmap-' + row.DT_RowId + '\' style=\'width:240px;height:240px;\'></div>"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ trans('global.map') }}</button></div>';
-
-				return html;
-			},
-			targets: [12]
-		},*/
+      targets: [<?php echo count($columns['form']) + count($columns['custom']) + 2 ?>]
+    },
+    {
+      render: function (data, type, row) {
+        if(data == 1) {
+          return '<div class="text-center"><i class="fa fa-check" aria-hidden="true"></i></div>';
+        } else {
+          return '<div class="text-center"><i class="fa fa-times" aria-hidden="true"></i></div>';
+        }
+      },
+      targets: <?php echo count($columns['form']) + count($columns['custom']) + 1 ?>
+    },
     {
       render: function (data, type, row) {
         return '<div class="row-actions-wrap"><div class="text-center row-actions" data-sl="' + data + '">' + 
@@ -199,7 +203,7 @@ var entries_table = $('#dt-table-entries').DataTable({
           '<a href="javascript:void(0);" class="btn btn-xs btn-danger row-btn-delete" data-toggle="tooltip" title="{{ trans('global.delete') }}"><i class="fa fa-trash"></i></a>' + 
           '</div></div>';
       },
-      targets: <?php echo count($columns['form']) + count($columns['custom']) + 2 ?>
+      targets: <?php echo count($columns['form']) + count($columns['custom']) + 3 ?>
     },
   ],
   language: {
@@ -258,7 +262,7 @@ $('#dt-table-entries tbody').on('click dblclick', 'tr', function(e) {
       var td_index = $(e.target).parents('td').index();
     }
 
-    if(td_index == <?php echo count($columns['form']) + count($columns['custom']) + 2 ?>) return;
+    if(td_index == <?php echo count($columns['form']) + count($columns['custom']) + 3 ?>) return;
 
     var id = this.id.replace('row_', '');
     var index = $.inArray(id, selected_entries);

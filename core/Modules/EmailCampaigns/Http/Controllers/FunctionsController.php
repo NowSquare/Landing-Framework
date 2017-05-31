@@ -322,6 +322,7 @@ class FunctionsController extends Controller
       if (! empty($form_entry)) {
         $form_columns = $Entry->getColumns($form->id);
         $form_columns = (isset($form_columns['form'])) ? $form_columns['form'] : [];
+        $form_local_domain .= '/' . Core\Secure::staticHash($form_entry->id, true);
         $form_entry = $form_entry->toArray();
       } else {
         $form_entry = [];
@@ -412,6 +413,7 @@ class FunctionsController extends Controller
       if (! empty($form_entry)) {
         $form_columns = $Entry->getColumns($form->id);
         $form_columns = (isset($form_columns['form'])) ? $form_columns['form'] : [];
+        $form_local_domain .= '/' . Core\Secure::staticHash($form_entry->id, true);
         $form_entry = $form_entry->toArray();
       } else {
         $form_entry = [];

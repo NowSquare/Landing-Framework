@@ -123,6 +123,7 @@ class EntriesController extends Controller
         $aColumn[] = \DB::raw('JSON_UNQUOTE(json_extract(entry, \'$."' . $column . '"\')) as "' . $column . '"');
       }
 
+      $aColumn[] = "confirmed as " . trans('global.confirmed') . "";
       $aColumn[] = "created_at as " . trans('global.created') . "";
 
       $entries = $Entry->where('form_id', $form_id)->select($aColumn)->orderBy('created_at', 'asc')->get();
@@ -153,14 +154,14 @@ class EntriesController extends Controller
       $entry = $Entry->where('id', '=',  $qs['entry_id'])->delete();
 
       // Decrement
-      Models\Form::whereId($qs['form_id'])->decrement('conversions');
+      Models\Form::whereId($qs['form_id'])->decrement('entries');
 
     } elseif (\Auth::check()) {
       foreach(request()->input('ids', array()) as $id) {
         $affected = $Entry->where('id', '=', $id)->delete();
 
         // Decrement
-        Models\Form::whereId($qs['form_id'])->decrement('conversions');
+        Models\Form::whereId($id)->decrement('entries');
       }
     }
 
@@ -223,6 +224,7 @@ class EntriesController extends Controller
       $aCustomColumns[] = $column;
     }
 
+    $aColumn[] = 'confirmed';
     $aColumn[] = 'created_at';
 
     if($q != '') {
@@ -290,6 +292,7 @@ class EntriesController extends Controller
       $columns['DT_RowId'] = 'row_' . $row->id;
       $columns['email'] = $row->email;
       $columns['created_at'] = $row->created_at->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
+      $columns['confirmed'] = $row->confirmed;
       $columns['sl'] = Core\Secure::array2string(['form_id' => $form_id, 'entry_id' => $row->id]);
 
       foreach($aFormColumns as $column) {

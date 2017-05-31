@@ -52,5 +52,8 @@ return array(
   "send_email" => "Send email",
   "test_email_text" => "Send a test email to the address below. Make sure you save the email before testing.",
   "test_email_sent" => "The test email has been queued for sending.",
-  "select_forms_placeholder" => "Select one or more forms to send to"
+  "select_forms_placeholder" => "Select one or more forms to send to",
+  "confirmation_thank_you" => "Thank you for confirming your email!",
+  "confirmation_not_found" => "Email already confirmed or not found.",
+  "confirmation_demo" => "This is a demo link for confirming your email address.",
 );

@@ -16,13 +16,29 @@ class EmailsController extends Controller
      */
     public function sendEmail()
     {
+
+      // Check for transaction emails linked to this form
+      $forms = \Modules\Forms\Http\Models\Form::whereId(2)->get();
+
+      foreach ($forms as $form) {
+        $emails = $form->emails;
+        if ($emails->count() > 0) {
+          foreach ($emails as $email) {
+            if ($email->emailCampaign->type == 'transactional_email') {
+            echo $email->name;
+            }
+          }
+        }
+      }
+
+      die();
       $email = Models\Email::where('id', 1)->first();
       $form = \Modules\Forms\Http\Models\Form::where('id', 1)->first();
 
       $variant = 1;
       $view = 'public.emails::' . Core\Secure::staticHash($email->user_id) . '.' . Core\Secure::staticHash($email->email_campaign_id, true) . '.' . $email->local_domain . '.' . $variant . '.index';
 
-      $mailto = 'info@s3m.nl';
+      $mailto = 'info@';
 
       $html = FunctionsController::parseEmail($mailto, $view, $email);
       echo $html;
@@ -33,9 +49,29 @@ class EmailsController extends Controller
     /**
      * Confirm email
      */
-    public function confirmEmail($email, $local_domain)
+    public function confirmEmail($email, $local_domain, $entry_id)
     {
-      return 'Thank you for confirming your email!';
+      $form_id = Core\Secure::staticHashDecode($local_domain, true);
+      $entry_id = Core\Secure::staticHashDecode($entry_id, true);
+
+      // Get entry
+      $form = \Modules\Forms\Http\Models\Form::whereId($form_id)->first();
+
+      $tbl_name = 'x_form_entries_' . $form->user_id;
+
+      $Entry = new \Modules\Forms\Http\Models\Entry([]);
+      $Entry->setTable($tbl_name);
+
+      $form_entry = $Entry->where('form_id', $form->id)->where('email', $email)->where('id', $entry_id)->where('confirmed', 0)->first();
+
+      if (empty($form_entry)) {
+        return trans('emailcampaigns::global.confirmation_not_found');
+      } else {
+        $form_entry->setTable($tbl_name);
+        $form_entry->confirmed = 1;
+        $form_entry->save();
+        return trans('emailcampaigns::global.confirmation_thank_you');
+      }
     }
 
     /**
@@ -43,7 +79,7 @@ class EmailsController extends Controller
      */
     public function confirmEmailTest()
     {
-      return 'This is a demo link for confirming this email address.';
+      return trans('emailcampaigns::global.confirmation_demo');
     }
 
     /**

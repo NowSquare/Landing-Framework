@@ -47,6 +47,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="{{ url('assets/javascript?lang=' . \App::getLocale()) }}"></script>
   <script src="{{ url('assets/js/scripts.min.js') }}"></script>
 </body>
 </html>

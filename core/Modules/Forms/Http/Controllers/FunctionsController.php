@@ -176,7 +176,7 @@ class FunctionsController extends Controller
     $dd->setCache(new \Doctrine\Common\Cache\PhpFileCache(storage_path() . '/app/piwik_cache/'));
 
     // OPTIONAL: If called, getBot() will only return true if a bot was detected  (speeds up detection a bit)
-    //$dd->discardBotInformation();
+    $dd->discardBotInformation();
 
     $dd->parse();
 
@@ -289,7 +289,20 @@ class FunctionsController extends Controller
 
       \DB::table($tbl_name)->insert($insert);
 
-      // To do; entry job
+      // Check for transaction emails linked to this form
+      $forms = Models\Form::whereId($form->id)->get();
+
+      foreach ($forms as $form) {
+        $emails = $form->emails;
+        if ($emails->count() > 0) {
+          foreach ($emails as $email) {
+            if ($email->emailCampaign->type == 'transactional_email') {
+              $job = (new \Modules\EmailCampaigns\Jobs\SendEmail($form_vars['email'], $email, $form));
+              dispatch($job);
+            }
+          }
+        }
+      }
 
       return true;
     } else {

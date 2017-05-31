@@ -9,6 +9,14 @@ class Stat extends Model {
     'meta' => 'json'
   ];
 
+  public function setUpdatedAtAttribute($value) {
+    // Do nothing.
+  }
+
+  public function getUpdatedAtColumn() {
+    return null;
+  }
+
   /**
    * Dynamically set a model's table.
    *

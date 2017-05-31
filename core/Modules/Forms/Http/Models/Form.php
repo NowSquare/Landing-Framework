@@ -20,7 +20,7 @@ class Form extends Model {
   }
 
   public function emails() {
-    return $this->belongsToMany('Modules\EmailCampaigns\Http\Models\Email', 'email_forms', 'email_id', 'form_id');
+    return $this->belongsToMany('Modules\EmailCampaigns\Http\Models\Email', 'email_forms', 'form_id', 'email_id');
   }
 
   /**

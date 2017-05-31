@@ -192,6 +192,7 @@ return array(
   "personal" => "Personal",
   "business" => "Business",
   "booking" => "Booking",
+  "confirmed" => "Confirmed",
 
   /*
    |--------------------------------------------------------------------------
