@@ -23,7 +23,7 @@
 foreach($email_campaigns as $campaign) {
   $sl_email_campaign = \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $campaign->id]);
   $selected = ($campaign->id == $email_campaign->id) ? ' active' : '';
-  echo '<li class="' . $selected . '"><a href="#/emailcampaigns/edit/' . $sl_email_campaign . '">' . $campaign->name . '</a></li>';
+  echo '<li class="' . $selected . '"><a href="#/emailcampaigns/emails/' . $sl_email_campaign . '">' . $campaign->name . '</a></li>';
 }
 ?>
                 </ul>

@@ -55,15 +55,8 @@
     <div class="grid-sizer col-xs-6 col-sm-3 col-lg-3" style="display:none"></div>
 <?php 
 $i = 1;
-$categories = \Modules\EmailCampaigns\Http\Controllers\FunctionsController::getCampaignCategories();
 foreach($email_campaigns as $campaign) {
   $sl_campaign = \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $campaign->id]);
-
-  foreach ($categories as $category) {
-    if ($campaign->type == $category['category']) {
-      $icon = $category['icon'];
-    }
-  }
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" id="item{{ $i }}">
 
@@ -84,12 +77,14 @@ foreach($email_campaigns as $campaign) {
         <div class="portlet-heading portlet-default">
           <h3 class="portlet-title text-dark" title="{{ $campaign['name'] }}">{{ $campaign['name'] }}</h3>
           <div class="clearfix"></div>
-          <p class="panel-sub-title font-13 text-muted m-b-10">{{ trans('emailcampaigns::global.' . $campaign->type) }}</p>
-          <div class="clearfix"></div>
         </div>
 
         <div class="portlet-body" style="padding:0">
          <table class="table table-hover table-striped" style="margin-bottom: 0">
+           <tr>
+             <td width="33" class="text-center"><i class="mi info_outline"></i></td>
+             <td colspan="2"><strong>{{ trans('emailcampaigns::global.' . $campaign->type) }}</strong></td>
+           </tr>
            <tr>
              <td width="33" class="text-center"><i class="mi mail_outline"></i></td>
              <td><a href="#/emailcampaigns/emails/{{ $sl_campaign }}" class="link">{{ trans('emailcampaigns::global.manage_emails') }}</a></td>
