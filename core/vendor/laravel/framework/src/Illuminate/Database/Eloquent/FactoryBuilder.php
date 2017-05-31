@@ -92,7 +92,7 @@ class FactoryBuilder
     /**
      * Set the states to be applied to the model.
      *
-     * @param  array|dynamic  $states
+     * @param  array|mixed  $states
      * @return $this
      */
     public function states($states)
@@ -143,7 +143,7 @@ class FactoryBuilder
     protected function store($results)
     {
         $results->each(function ($model) {
-            $model->setConnection($model->query()->getConnection()->getName());
+            $model->setConnection($model->newQueryWithoutScopes()->getConnection()->getName());
 
             $model->save();
         });

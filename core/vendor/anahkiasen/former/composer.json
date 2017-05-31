@@ -1,7 +1,7 @@
 {
   "name": "anahkiasen/former",
   "description": "A powerful form builder",
-  "homepage": "http://anahkiasen.github.com/former/",
+  "homepage": "http://formers.github.io/former/",
   "license": "MIT",
   "keywords": [
     "bootstrap",
@@ -38,5 +38,10 @@
       ],
       "Laravel\\": "src/Laravel"
     }
+  },
+  "extra": {
+      "branch-alias": {
+          "dev-master": "3.5.x-dev"
+      }
   }
 }

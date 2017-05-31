@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\VarDumper\Tests;
+namespace Symfony\Component\VarDumper\Tests\Dumper;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\Cloner\VarCloner;
@@ -25,7 +25,7 @@ class CliDumperTest extends TestCase
 
     public function testGet()
     {
-        require __DIR__.'/Fixtures/dumb-var.php';
+        require __DIR__.'/../Fixtures/dumb-var.php';
 
         $dumper = new CliDumper('php://output');
         $dumper->setColors(false);
@@ -75,8 +75,8 @@ array:24 [
     +"bar": "bar"
   }
   "closure" => Closure {{$r}
-    class: "Symfony\Component\VarDumper\Tests\CliDumperTest"
-    this: Symfony\Component\VarDumper\Tests\CliDumperTest {{$r} …}
+    class: "Symfony\Component\VarDumper\Tests\Dumper\CliDumperTest"
+    this: Symfony\Component\VarDumper\Tests\Dumper\CliDumperTest {{$r} …}
     parameters: {
       \$a: {}
       &\$b: {
@@ -106,6 +106,67 @@ EOTXT
             ,
             $out
         );
+    }
+
+    /**
+     * @dataProvider provideDumpWithCommaFlagTests
+     */
+    public function testDumpWithCommaFlag($expected, $flags)
+    {
+        $dumper = new CliDumper(null, null, $flags);
+        $dumper->setColors(false);
+        $cloner = new VarCloner();
+
+        $var = array(
+            'array' => array('a', 'b'),
+            'string' => 'hello',
+            'multiline string' => "this\nis\na\multiline\nstring",
+        );
+
+        $dump = $dumper->dump($cloner->cloneVar($var), true);
+
+        $this->assertSame($expected, $dump);
+    }
+
+    public function provideDumpWithCommaFlagTests()
+    {
+        $expected = <<<'EOTXT'
+array:3 [
+  "array" => array:2 [
+    0 => "a",
+    1 => "b"
+  ],
+  "string" => "hello",
+  "multiline string" => """
+    this\n
+    is\n
+    a\multiline\n
+    string
+    """
+]
+
+EOTXT;
+
+        yield array($expected, CliDumper::DUMP_COMMA_SEPARATOR);
+
+        $expected = <<<'EOTXT'
+array:3 [
+  "array" => array:2 [
+    0 => "a",
+    1 => "b",
+  ],
+  "string" => "hello",
+  "multiline string" => """
+    this\n
+    is\n
+    a\multiline\n
+    string
+    """,
+]
+
+EOTXT;
+
+        yield array($expected, CliDumper::DUMP_TRAILING_COMMA);
     }
 
     /**
@@ -236,7 +297,7 @@ EOTXT
     {
         $out = fopen('php://memory', 'r+b');
 
-        require_once __DIR__.'/Fixtures/Twig.php';
+        require_once __DIR__.'/../Fixtures/Twig.php';
         $twig = new \__TwigTemplate_VarDumperFixture_u75a09(new \Twig_Environment(new \Twig_Loader_Filesystem()));
 
         $dumper = new CliDumper();
@@ -258,7 +319,6 @@ EOTXT
                 }
             };'),
         ));
-        $line = __LINE__ - 2;
         $ref = (int) $out;
 
         $data = $cloner->cloneVar($out);
@@ -271,7 +331,7 @@ EOTXT
 stream resource {@{$ref}
   ⚠: Symfony\Component\VarDumper\Exception\ThrowingCasterException {{$r}
     #message: "Unexpected Exception thrown from a caster: Foobar"
-    -trace: {
+    trace: {
       %sTwig.php:2: {
         : foo bar
         :   twig source
@@ -292,7 +352,7 @@ stream resource {@{$ref}
         :     \$this->display(\$context);
         : } catch (%s \$e) {
       }
-      %sCliDumperTest.php:{$line}: {
+      %sCliDumperTest.php:%d: {
 %A
       }
     }
