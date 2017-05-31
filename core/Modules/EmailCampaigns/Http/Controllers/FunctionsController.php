@@ -10,6 +10,7 @@ use \Platform\Controllers\Core;
 use Modules\EmailCampaigns\Http\Models;
 use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\Device\DeviceParserAbstract;
+use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 class FunctionsController extends Controller
 {
@@ -356,6 +357,25 @@ class FunctionsController extends Controller
           }
         }
       }
+    }
+
+    // CSS to inline
+    libxml_use_internal_errors(true);
+    $dom = \phpQuery::newDocumentHTML($html);
+    \phpQuery::selectDocument($dom);
+
+    // Get CSS
+    $html =  pq('html')->html();
+    $css = pq('html')->find('style[type=text/css]:first')->html();
+
+    if ($css != '') {
+      $cssToInlineStyles = new CssToInlineStyles();
+
+      // output
+      $html = $cssToInlineStyles->convert(
+          $html,
+          $css
+      );
     }
 
     return $html;
