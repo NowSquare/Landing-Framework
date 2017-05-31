@@ -352,11 +352,11 @@ class EmailsController extends Controller
       $html = $request->input('html', '');
 
       $subject = $request->input('subject', '');
-      $mailto = $request->input('mailto', '');
+      $forms = $request->input('forms', '');
       $from_name = $request->input('from_name', '');
       $from_email = $request->input('from_email', '');
 
-      $save = FunctionsController::saveEmail($sl, $mailto, $subject, $from_name, $from_email, $html);
+      $save = FunctionsController::saveEmail($sl, $forms, $subject, $from_name, $from_email, $html);
 
       if ($save) {
         $response = ['success' => true, 'msg' => trans('javascript.save_succes')];

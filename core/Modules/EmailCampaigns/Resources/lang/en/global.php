@@ -41,13 +41,16 @@ return array(
 
   "create_campaign" => "Create Campaign",
   "create_email" => "Create Email",
+  "default_email_subject" => "Hi --personal_name=there--!",
   "enter_name_text" => "Enter a name for your email campaign. You can change this at any time.",
 
   "edit_email_campaign" => "Edit email campaign",
+  "edit_email" => "Edit email",
   "manage_emails" => "Manage emails",
   "no_forms_to_send_to" => "There are no forms to send to.",
   "test_email" => "Test email",
   "send_email" => "Send email",
   "test_email_text" => "Send a test email to the address below. Make sure you save the email before testing.",
-  "test_email_sent" => "The test email has been queued for sending."
+  "test_email_sent" => "The test email has been queued for sending.",
+  "select_forms_placeholder" => "Select one or more forms to send to"
 );

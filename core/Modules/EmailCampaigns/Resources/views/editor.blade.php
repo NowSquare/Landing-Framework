@@ -20,15 +20,14 @@ if (count($forms) == 0) {
             <input type="text" class="form-control" disabled value="{{ trans('emailcampaigns::global.no_forms_to_send_to') }}" required autocomplete="off">
 <?php
 } else {
-  $form_id = $email->form_id;
-  if ($form_id != '') $form_id = \Platform\Controllers\Core\Secure::staticHash($form_id, true);
-  echo Former::select('mailto')
-    ->addOption('&nbsp;')
-    ->class('select2-required form-control')
-    ->name('mailto')
-    ->id('mailto')
-    ->fromQuery($forms, 'name', 'local_domain')
-    ->forceValue($form_id)
+  echo Former::select('forms[]')
+    ->multiple('multiple')
+    ->class('select2-multiple')
+    ->name('forms')
+    ->id('forms')
+    ->dataPlaceholder(trans('emailcampaigns::global.select_forms_placeholder'))
+    ->fromQuery($forms, 'name', 'id')
+    ->forceValue($email->forms)
     ->label(false);
 }
 ?>
@@ -107,6 +106,7 @@ if (count($forms) == 0) {
   .group-same-width .select2-container {
     position: relative;
     top: 2px;
+    left: 8px;
   }
   
   .group-same-width .form-control[disabled], .group-same-width .form-control[readonly],

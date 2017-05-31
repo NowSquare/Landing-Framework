@@ -34,14 +34,14 @@ class FunctionsController extends Controller
       "name" => trans('emailcampaigns::global.marketing_email'),
       "desc" => trans('emailcampaigns::global.marketing_email_desc')
     ];
-
+/*
     $items[] = [
       "icon" => 'calendar.svg',
       "category" => "drip_campaign",
       "name" => trans('emailcampaigns::global.drip_campaign'),
       "desc" => trans('emailcampaigns::global.drip_campaign_desc')
     ];
-
+*/
     return $items;
   }
 
@@ -195,6 +195,7 @@ class FunctionsController extends Controller
       $email->user_id = $user_id;
       $email->email_campaign_id = $email_campaign->id;
       $email->name = $name;
+      $email->subject = trans('emailcampaigns::global.default_email_subject');
       $email->template = $template;
       $email->save();
 
@@ -244,7 +245,7 @@ class FunctionsController extends Controller
   /**
    * Save / publish email
    */
-  public static function saveEmail($sl, $mailto, $subject, $from_name, $from_email, $html, $publish = false, $user_id = null)
+  public static function saveEmail($sl, $forms, $subject, $from_name, $from_email, $html, $publish = false, $user_id = null)
   {
     if ($user_id == null) $user_id = Core\Secure::userId();
 
@@ -254,13 +255,18 @@ class FunctionsController extends Controller
       $email_id = $qs['email_id'];
       $email = Models\Email::where('user_id', $user_id)->where('id', $email_id)->first();
       $email->subject = $subject;
-      if ($mailto != '') {
-        $form_id = Core\Secure::staticHashDecode($mailto, true);
-        $email->form_id = $form_id;
-      } else {
-        $email->form_id = null;
-      }
       $email->save();
+
+      // Link forms
+      /*
+      $forms_sync = [];
+      if (! empty($forms)) {
+        foreach ($forms as $form) {
+          $forms_sync[] = Core\Secure::staticHashDecode($form, true);
+        }
+      }*/
+
+      $email->forms()->sync($forms);
 
       $emailCampaign = Models\EmailCampaign::where('id', $email->email_campaign_id)->first();
       $emailCampaign->mail_from = $from_email;
@@ -294,7 +300,7 @@ class FunctionsController extends Controller
   /**
    * Parse email
    */
-  public static function parseEmail($email_address, $view, $email, $form = null)
+  public static function parseEmail($email_address, $view, $form = null)
   {
     $html = view($view)->render();
 
@@ -376,6 +382,77 @@ class FunctionsController extends Controller
           $html,
           $css
       );
+    }
+
+    return $html;
+  }
+
+  /**
+   * Parse string
+   */
+  public static function parseString($email_address, $string, $form = null)
+  {
+    $html = $string;
+
+    $form_local_domain = '';
+    $form_columns = [];
+    $form_entry = [];
+
+    if ($form != null) {
+      $form_local_domain = '/' . $form->local_domain;
+
+      // Get entry
+      $tbl_name = 'x_form_entries_' . $form->user_id;
+
+      $Entry = new \Modules\Forms\Http\Models\Entry([]);
+      $Entry->setTable($tbl_name);
+
+      $form_entry = $Entry->where('form_id', $form->id)->where('email', $email_address)->orderBy('created_at', 'desc')->first();
+
+      if (! empty($form_entry)) {
+        $form_columns = $Entry->getColumns($form->id);
+        $form_columns = (isset($form_columns['form'])) ? $form_columns['form'] : [];
+        $form_entry = $form_entry->toArray();
+      } else {
+        $form_entry = [];
+      }
+    }
+
+    $form_columns = array_merge(['personal_email'], $form_columns);
+
+    preg_match_all("/--(.*)--/U", $html, $matches, PREG_PATTERN_ORDER);
+
+    if (isset($matches[1])) {
+      foreach ($matches[1] as $match) {
+        if ($match == 'confirm') {
+          $link = url('ec/confirm/' . $email_address . $form_local_domain);
+          $html = str_replace('--confirm--', $link, $html);
+        } elseif ($match == 'unsubscribe') {
+          $link = url('ec/unsubscribe/' . $email_address . $form_local_domain);
+          $html = str_replace('--unsubscribe--', $link, $html);
+        } else {
+          // Check for default value
+          $variable = $match;
+          $default_value = '';
+          if (strpos($match, '=') !== false) {
+            $default_value = explode('=', $match);
+            if (isset($default_value[1]) && trim($default_value[1]) != '') {
+              $variable = $default_value[0];
+              $default_value = $default_value[1];
+            }
+          }
+          if ($variable == 'personal_email') $variable = 'email';
+
+          // Check if variable exists
+          if (isset($form_entry[$variable]) && $form_entry[$variable] != '') {
+            $html = str_replace('--' . $match . '--', $form_entry[$variable], $html);
+          } elseif ($default_value != '') {
+            $html = str_replace('--' . $match . '--', $default_value, $html);
+          } elseif(isset($form_entry[$variable])) {
+            $html = str_replace('--' . $match . '--', '', $html);
+          }
+        }
+      }
     }
 
     return $html;

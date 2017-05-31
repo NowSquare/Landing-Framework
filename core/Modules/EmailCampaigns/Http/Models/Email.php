@@ -21,6 +21,10 @@ class Email extends Model {
     return $this->belongsTo('Modules\EmailCampaigns\Http\Models\EmailCampaign', 'email_campaign_id');
   }
 
+  public function forms() {
+    return $this->belongsToMany('Modules\Forms\Http\Models\Form', 'email_forms', 'email_id', 'form_id');
+  }
+
   /**
    * Get page url.
    *

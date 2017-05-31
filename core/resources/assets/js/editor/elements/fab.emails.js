@@ -55,14 +55,14 @@ function lfInitFabEmails() {
 
     // Other vars
     var subject = window.parent.document.getElementById('subject').value;
-    var mailto = window.parent.document.getElementById('mailto');
-    mailto = (mailto == null || typeof mailto === 'undefined') ? '' : mailto.value;
+    var forms = window.parent.document.getElementById('forms');
+    forms = (forms == null || typeof forms === 'undefined') ? '' : window.parent.$('#forms').val();
     var from_name = window.parent.document.getElementById('from_name').value;
     var from_email = window.parent.document.getElementById('from_email').value;
 
     var jqxhr = $.ajax({
       url: _lang["url"] + '/emailcampaigns/emails/save',
-      data: { sl: lf_sl, html: html, subject: subject, mailto: mailto, from_name: from_name, from_email: from_email, _token: lf_csrf_token },
+      data: { sl: lf_sl, html: html, subject: subject, forms: forms, from_name: from_name, from_email: from_email, _token: lf_csrf_token },
       method: 'POST'
     })
     .done(function(data) {

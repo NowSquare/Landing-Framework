@@ -39,10 +39,6 @@ class CreateEmailCampaignsTable extends Migration
       $table->bigInteger('_rgt')->unsigned()->default(0);
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-      $table->bigInteger('email_campaign_id')->unsigned();
-      $table->foreign('email_campaign_id')->references('id')->on('email_campaigns')->onDelete('cascade');
-      $table->bigInteger('form_id')->unsigned()->nullable();
-      $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade')->nullable();
       $table->string('template', 48)->nullable();
       $table->string('local_domain', 64)->nullable();
       $table->tinyInteger('variant')->unsigned()->default(1);
@@ -61,6 +57,15 @@ class CreateEmailCampaignsTable extends Migration
       $table->boolean('only_send_when_clicked')->default(false);
       $table->json('meta')->nullable();
       $table->timestamps();
+    });
+
+    Schema::create('email_forms', function(Blueprint $table)
+    {
+      $table->bigIncrements('id');
+      $table->bigInteger('email_id')->unsigned();
+      $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
+      $table->bigInteger('form_id')->unsigned();
+      $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
     });
   }
 

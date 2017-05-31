@@ -622,6 +622,18 @@ function formResponse(responseText, statusText, xhr, $jqForm) {
 
       // Loading state
       ladda_button.ladda('stop');
+    }, function (dismiss) {
+      // Reset form
+      var reset_form = (typeof responseText.reset !== 'undefined') ? responseText.reset : true;
+
+      if (reset_form) {
+        $jqForm[0].reset();
+      } else {
+        $('[type=password]').val('');
+      }
+
+      // Loading state
+      ladda_button.ladda('stop');
     });
   }
 }

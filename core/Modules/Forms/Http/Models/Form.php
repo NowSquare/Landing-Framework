@@ -19,6 +19,10 @@ class Form extends Model {
     return $this->hasOne('Platform\Models\Funnels\Funnel');
   }
 
+  public function emails() {
+    return $this->belongsToMany('Modules\EmailCampaigns\Http\Models\Email', 'email_forms', 'email_id', 'form_id');
+  }
+
   /**
    * Get form url.
    *

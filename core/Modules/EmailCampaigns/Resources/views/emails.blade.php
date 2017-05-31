@@ -91,7 +91,7 @@ foreach($email_campaign->emails as $email) {
             <i class="mi more_vert"></i>
           </button>
           <ul class="dropdown-menu m-t-0">
-            <li><a href="#/emailcampaigns/emails/editor/{{ $sl_email }}">{{ trans('emailcampaigns::global.edit_email_campaign') }}</a></li>
+            <li><a href="#/emailcampaigns/emails/editor/{{ $sl_email }}">{{ trans('emailcampaigns::global.edit_email') }}</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="javascript:void(0);" class="onClickDelete">{{ trans('global.delete') }}</a></li>
           </ul>
@@ -104,10 +104,11 @@ foreach($email_campaign->emails as $email) {
 
         <div class="portlet-body" style="padding:0">
          <table class="table table-hover table-striped" style="margin-bottom: 0">
+<?php /*
            <tr>
              <td width="33" class="text-center"><i class="mi open_in_browser"></i></td>
              <td colspan="2"><a href="{{ $url }}" target="_blank" class="link">{{ trans('global.view') }}</a></td>
-           </tr>
+           </tr>*/ ?>
            <tr>
              <td class="text-center"><i class="mi send"></i></td>
              <td>{{ trans('global.sent') }}:</td>
