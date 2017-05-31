@@ -293,8 +293,71 @@ class FunctionsController extends Controller
   /**
    * Parse email
    */
-  public static function parseEmail()
+  public static function parseEmail($email_address, $view, $email, $form = null)
   {
+    $html = view($view)->render();
 
+    $form_local_domain = '';
+    $form_columns = [];
+    $form_entry = [];
+
+    if ($form != null) {
+      $form_local_domain = '/' . $form->local_domain;
+
+      // Get entry
+      $tbl_name = 'x_form_entries_' . $form->user_id;
+
+      $Entry = new \Modules\Forms\Http\Models\Entry([]);
+      $Entry->setTable($tbl_name);
+
+      $form_entry = $Entry->where('form_id', $form->id)->where('email', $email_address)->orderBy('created_at', 'desc')->first();
+
+      if (! empty($form_entry)) {
+        $form_columns = $Entry->getColumns($form->id);
+        $form_columns = (isset($form_columns['form'])) ? $form_columns['form'] : [];
+        $form_entry = $form_entry->toArray();
+      } else {
+        $form_entry = [];
+      }
+    }
+
+    $form_columns = array_merge(['personal_email'], $form_columns);
+
+    preg_match_all("/--(.*)--/U", $html, $matches, PREG_PATTERN_ORDER);
+
+    if (isset($matches[1])) {
+      foreach ($matches[1] as $match) {
+        if ($match == 'confirm') {
+          $link = url('ec/confirm/' . $email_address . $form_local_domain);
+          $html = str_replace('--confirm--', $link, $html);
+        } elseif ($match == 'unsubscribe') {
+          $link = url('ec/unsubscribe/' . $email_address . $form_local_domain);
+          $html = str_replace('--unsubscribe--', $link, $html);
+        } else {
+          // Check for default value
+          $variable = $match;
+          $default_value = '';
+          if (strpos($match, '=') !== false) {
+            $default_value = explode('=', $match);
+            if (isset($default_value[1]) && trim($default_value[1]) != '') {
+              $variable = $default_value[0];
+              $default_value = $default_value[1];
+            }
+          }
+          if ($variable == 'personal_email') $variable = 'email';
+
+          // Check if variable exists
+          if (isset($form_entry[$variable]) && $form_entry[$variable] != '') {
+            $html = str_replace('--' . $match . '--', $form_entry[$variable], $html);
+          } elseif ($default_value != '') {
+            $html = str_replace('--' . $match . '--', $default_value, $html);
+          } elseif(isset($form_entry[$variable])) {
+            $html = str_replace('--' . $match . '--', '', $html);
+          }
+        }
+      }
+    }
+
+    return $html;
   }
 }

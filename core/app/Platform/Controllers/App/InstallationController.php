@@ -109,6 +109,9 @@ class InstallationController extends \App\Http\Controllers\Controller {
         $table->bigInteger('landing_page_id')->unsigned()->nullable();
         $table->foreign('landing_page_id')->references('id')->on('landing_pages')->onDelete('SET NULL');
         $table->boolean('confirmed')->default(false);
+        $table->boolean('delivered')->default(false);
+        $table->boolean('dropped')->default(false);
+        $table->boolean('bounced')->default(false);
         $table->integer('clicks')->unsigned()->default(0);
         $table->integer('opens')->unsigned()->default(0);
         $table->integer('emails')->unsigned()->default(0);
@@ -188,7 +191,7 @@ class InstallationController extends \App\Http\Controllers\Controller {
       Schema::create($tbl_name, function(Blueprint $table) {
         $table->bigIncrements('id');
         $table->bigInteger('email_campaign_id')->unsigned();
-        $table->foreign('email_campaign_id')->references('id')->on('email_campaigns')->onDelete('SET NULL');
+        $table->foreign('email_campaign_id')->references('id')->on('email_campaigns')->onDelete('cascade');
         $table->bigInteger('email_id')->unsigned();
         $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
         $table->integer('recepients')->unsigned()->default(1);

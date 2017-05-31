@@ -5,6 +5,10 @@ Route::group(['middleware' => 'web', 'prefix' => 'ec', 'namespace' => 'Modules\E
   // Mail test
   Route::get('mail', 'EmailsController@sendEmail');
 
+  // Confirm email address
+  Route::get('confirm/{email_address}', 'EmailsController@confirmEmailTest');
+  Route::get('confirm/{email_address}/{local_domain}', 'EmailsController@confirmEmail');
+
   // Public routes
   Route::get('{local_domain}', 'EmailsController@showEmail');
 

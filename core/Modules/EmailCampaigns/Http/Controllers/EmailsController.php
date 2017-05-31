@@ -16,110 +16,34 @@ class EmailsController extends Controller
      */
     public function sendEmail()
     {
-      $variant = 1;
-
       $email = Models\Email::where('id', 1)->first();
+      $form = \Modules\Forms\Http\Models\Form::where('id', 1)->first();
+
+      $variant = 1;
       $view = 'public.emails::' . Core\Secure::staticHash($email->user_id) . '.' . Core\Secure::staticHash($email->email_campaign_id, true) . '.' . $email->local_domain . '.' . $variant . '.index';
 
-      dd($email->emailCampaign->mail_from);
-      return view($view);
+      $mailto = 'info@s3m.nl';
 
-      dd($view);
+      $html = FunctionsController::parseEmail($mailto, $view, $email);
+      echo $html;
+
       die();
-
-      $email = [
-        'text' => 'This is the text version',
-        'var1' => 'val1'
-      ];
-
-      $job = (new SendTestEmail($email))
-        ->delay(\Carbon\Carbon::now()->addMinutes(2));
-
-      dispatch($job);
-
-      // <20170528181128.57811.4114FD6414B0E9F0@mg.landingframework.com>
-      //$response = \Mailgun::api()->get('events', [
-    //    'to' => 'info@s3m.nl',
-      //]);
-
-      //dd($response);
-      die();
-
-      $data = [
-        'text' => 'This is the text version',
-        'var1' => 'val1'
-      ];
-
-      $response = \Mailgun::send(['template.emails::basic.index', 'template.emails::_text.index'], $data, function ($message) {
-        $message
-          ->subject('Mailgun test mail')
-          ->from('noreply@landingframework.com', 'LF')
-          ->replyTo('noreply@landingframework.com', 'LF')
-          ->to('info@s3m.nl', 'Sem')
-          ->trackClicks(true)
-          ->trackOpens(true);
-      });
-      dd($response);
     }
+
     /**
-     * Send test email
+     * Confirm email
      */
-    public function sendTestEmail()
+    public function confirmEmail($email, $local_domain)
     {
-      $mailto = request()->input('preview', false);
+      return 'Thank you for confirming your email!';
+    }
 
-      $input = array(
-        'name' => $mailto
-      );
-
-      $rules = array(
-        'name' => 'required|email'
-      );
-
-      $validator = \Validator::make($input, $rules);
-
-      if($validator->fails()) {
-        $response = array(
-          'type' => 'error', 
-          'reset' => false, 
-          'msg' => $validator->messages()->first()
-        );
-        return response()->json($response);
-      }
-      
-      $email = [
-        'text' => 'This is the text version',
-        'var1' => 'val1'
-      ];
-
-      $job = (new SendTestEmail($email))
-        ->delay(\Carbon\Carbon::now()->addMinutes(2));
-
-      dispatch($job);
-
-      // <20170528181128.57811.4114FD6414B0E9F0@mg.landingframework.com>
-      //$response = \Mailgun::api()->get('events', [
-    //    'to' => 'info@s3m.nl',
-      //]);
-
-      //dd($response);
-      die();
-
-      $data = [
-        'text' => 'This is the text version',
-        'var1' => 'val1'
-      ];
-
-      $response = \Mailgun::send(['template.emails::basic.index', 'template.emails::_text.index'], $data, function ($message) {
-        $message
-          ->subject('Mailgun test mail')
-          ->from('noreply@landingframework.com', 'LF')
-          ->replyTo('noreply@landingframework.com', 'LF')
-          ->to('info@s3m.nl', 'Sem')
-          ->trackClicks(true)
-          ->trackOpens(true);
-      });
-      dd($response);
+    /**
+     * Confirm email demo page
+     */
+    public function confirmEmailTest()
+    {
+      return 'This is a demo link for confirming this email address.';
     }
 
     /**
@@ -632,7 +556,7 @@ class EmailsController extends Controller
         $category_translation = trans('global.' . $category);
         if ($category != 'general') {
           $submenu = [];
-
+          $i = 0;
           foreach ($items as $item => $translation) {
             $alt = '';
 
@@ -643,10 +567,19 @@ class EmailsController extends Controller
                 break;
             }
 
+            if ($category == 'personal' && $i == 0) {
+              $submenu[] = [
+                'text' => trans('global.email_address'),
+                'value' => '--' . $category . '_email--'
+              ];
+            }
+
             $submenu[] = [
               'text' => $translation,
               'value' => '--' . $category . '_' . $item . $alt . '--'
             ];
+
+            $i++;
           }
 
           $vars[] = [

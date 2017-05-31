@@ -39,10 +39,11 @@ class SendTestEmail implements ShouldQueue
       ];
 
       $variant = 1;
-
       $view = 'public.emails::' . Core\Secure::staticHash($this->email->user_id) . '.' . Core\Secure::staticHash($this->email->email_campaign_id, true) . '.' . $this->email->local_domain . '.' . $variant . '.index';
 
-      $response = \Mailgun::send([$view/*, 'template.emails::_text.index'*/], $data, function ($message) {
+      $html = \Modules\EmailCampaigns\Http\Controllers\FunctionsController::parseEmail($this->mailto, $view, $this->email);
+
+      $response = \Mailgun::raw($html, function ($message) {
         $message
           ->subject($this->email->subject)
           ->from($this->email->emailCampaign->mail_from, $this->email->emailCampaign->mail_from_name)
