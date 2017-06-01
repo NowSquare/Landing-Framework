@@ -47,19 +47,28 @@ class SendEmail implements ShouldQueue
       $html = \Modules\EmailCampaigns\Http\Controllers\FunctionsController::parseEmail($this->mailto, $view, $this->form);
       $subject = \Modules\EmailCampaigns\Http\Controllers\FunctionsController::parseString($this->mailto, $this->email->subject, $this->form);
 
-      $form_entry = $Entry->where('form_id', $this->form)->where('email', $mailto)->orderBy('created_at', 'desc')->first();
+      // Get entry id
+      $entry_id = 0;
+      $tbl_name = 'x_form_entries_' . $this->form->user_id;
+
+      $Entry = new \Modules\Forms\Http\Models\Entry([]);
+      $Entry->setTable($tbl_name);
+
+      $form_entry = $Entry->where('form_id', $this->form->id)->where('email', $this->mailto)->orderBy('created_at', 'desc')->first();
 
       if (! empty($form_entry)) {
         $entry_id = $form_entry->id;
       }
 
-      $response = \Mailgun::raw($html, function ($message) use ($subject) {
+      $tag = $this->email->user_id . '_' . $this->form->id . '_' . $this->email->id . '_' . $entry_id;
+
+      $response = \Mailgun::raw($html, function ($message) use ($subject, $tag) {
         $message
           ->subject($subject)
           ->from($this->email->emailCampaign->mail_from, $this->email->emailCampaign->mail_from_name)
           ->replyTo($this->email->emailCampaign->mail_from, $this->email->emailCampaign->mail_from_name)
           ->to($this->mailto)
-          ->tag($this->email->user_id . '_' . $this->form->id . '_' . $this->email->id . '_' . $entry_id)
+          ->tag($tag)
           ->trackClicks(true)
           ->trackOpens(true);
       });

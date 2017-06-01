@@ -657,26 +657,48 @@ class EmailsController extends Controller
      */
     public function mgEvent()
     {
-      $message_id = request()->get('Message-Id');
-      $event = request()->get('event');
-      $tag = request()->get('tag');
+      $message_id = request()->get('Message-Id', '');
+      $event = request()->get('event', '');
+      $tag = request()->get('tag', '');
 
       $tags = explode('_', $tag);
 
-      $user_id = $tags[0];
-      $form_id = $tags[1];
-      $email_id = $tags[2];
-      $entry_id = $tags[3];
+      $user_id = (isset($tags[0])) ? $tags[0] : 0;
+      $form_id = (isset($tags[1])) ? $tags[1] : 0;
+      $email_id = (isset($tags[2])) ? $tags[2] : 0;
+      $entry_id = (isset($tags[3])) ? $tags[3] : 0;
+/*
+      $html = 'Tag: ' . $tag . '<br>';
+      $html .= 'Event: ' . $event . '<br>';
+      $html .= 'User id: ' . $user_id . '<br>';
+      $html .= 'Form id: ' . $form_id . '<br>';
+      $html .= 'Email id: ' . $email_id . '<br>';
+      $html .= 'Entry id: ' . $entry_id . '<br>';
 
-      // Insert mail event
-      \DB::table($tbl_name)->insert(
-        [
-          'form_id' => $form_id,
-          'email_id' => $email_id,
-          'entry_id' => $entry_id,
-          'event' => $event
-        ]
-      );
+      $response = \Mailgun::raw($html, function ($message) {
+        $message
+          ->subject('Mailgun webhook test')
+          ->from('noreply@landingframework.com', 'Landing Framework')
+          ->to('info@s3m.nl')
+          ->trackClicks(false)
+          ->trackOpens(false);
+      });
+*/
+      if ($user_id > 0 && $form_id > 0 && $email_id > 0 && $entry_id > 0) {
+
+        // Insert mail event
+        $tbl_name = 'x_email_events_' . $user_id;
+
+        \DB::table($tbl_name)->insert(
+          [
+            'form_id' => $form_id,
+            'email_id' => $email_id,
+            'entry_id' => $entry_id,
+            'message_id' => $message_id,
+            'event' => $event
+          ]
+        );
+      }
 
       return response()->json(['message' => 'Post received. Thanks!']);
     }

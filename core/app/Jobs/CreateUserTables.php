@@ -246,6 +246,7 @@ class CreateUserTables implements ShouldQueue
           $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
           $table->bigInteger('entry_id')->unsigned();
           $table->foreign('entry_id')->references('id')->on('x_form_entries_' . $user_id)->onDelete('cascade');
+          $table->text('message_id');
           $table->string('event', 64);
           $table->json('meta')->nullable();
           $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
