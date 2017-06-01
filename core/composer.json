@@ -7,6 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "anahkiasen/former": "^4.1",
+        "aws/aws-sdk-php": "^3.28",
         "barryvdh/elfinder-flysystem-driver": "^0.2.0",
         "barryvdh/laravel-cors": "^0.9.2",
         "barryvdh/laravel-elfinder": "^0.3.10",
