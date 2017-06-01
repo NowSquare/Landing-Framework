@@ -3,7 +3,6 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Invitation</title>
   <!--[if (gte mso 9)|(IE)]>
       <style type="text/css">
         .bodyContentBtns {
@@ -27,7 +26,7 @@
 				<td valign="top" mc:edit="headerBrand" id="templateContainerHeader">
 
 					<p style="text-align:center;margin:0;padding:0;">
-						<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/cog-01.jpg" style="display:inline-block;" />
+						<img src="{{ url('templates/assets/images/email/wreath01.jpg') }}" style="display:inline-block;" />
 					</p>
 
 				</td>
@@ -56,19 +55,19 @@
                       <table width="600">
                       <tr>
                         <td valign="top" height="20">
-                          <img height="20px" style="display: block; margin: 0; padding: 0; border: 0;" src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" />
+                          <img height="20px" style="display: block; margin: 0; padding: 0; border: 0;" src="{{ url('templates/assets/images/email/blank.png') }}" />
                         </td>
                       </tr>
                       <tr>
                       <td width="50" valign="top">
-                        <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" />
+                        <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="{{ url('templates/assets/images/email/blank.png') }}" />
                       </td>
                       <td width="166" valign="top">
                       <![endif]-->
                       <table class="column">
                         <tr>
                           <td class="text" mc:edit="body_content_col1" width="100%" style="width:100%;">
-                            <p><img style="display: block; height: 1px;" src="https://c940564.ssl.cf2.rackcdn.com/0/1440034295357453/d0e045e0f607030c9c422653b1988b5b.jpg" alt="" width="151" height="1" /></p>
+                            <p><img style="display: block; height: 1px;" src="{{ url('templates/assets/images/email/pixel-white.jpg') }}" alt="" width="151" height="1" /></p>
                             <p><a class="green-btn btn-large" href="#"><strong>Going</strong></a></p>
                           </td>
                         </tr>
@@ -79,7 +78,7 @@
                       <table class="column">
                         <tr>
                           <td class="text" mc:edit="body_content_col2" width="100%" style="width:100%;">
-                            <p><img style="display: block; height: 1px;" src="https://c940564.ssl.cf2.rackcdn.com/0/1440034295357453/d0e045e0f607030c9c422653b1988b5b.jpg" alt="" width="151" height="1" /></p>
+                            <p><img style="display: block; height: 1px;" src="{{ url('templates/assets/images/email/pixel-white.jpg') }}" alt="" width="151" height="1" /></p>
                             <p><a class="grey-btn btn-large" href="#"><strong>Maybe</strong></a></p>
                           </td>
                         </tr>
@@ -90,7 +89,7 @@
                       <table class="column">
                         <tr>
                           <td class="text" mc:edit="body_content_col3" width="100%" style="width:100%;">
-                            <p><img style="display: block; height: 1px;" src="https://c940564.ssl.cf2.rackcdn.com/0/1440034295357453/d0e045e0f607030c9c422653b1988b5b.jpg" alt="" width="151" height="1" /></p>
+                            <p><img style="display: block; height: 1px;" src="{{ url('templates/assets/images/email/pixel-white.jpg') }}" alt="" width="151" height="1" /></p>
                             <p><a class="red-btn btn-large" href="#"><strong>Decline</strong></a></p>
                           </td>
                         </tr>
@@ -98,12 +97,12 @@
                       <!--[if (gte mso 9)|(IE)]>
                       </td>
                       <td width="50" valign="top">
-                        <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" />
+                        <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="{{ url('templates/assets/images/email/blank.png') }}" />
                       </td>
                       </tr>
                       <tr>
                         <td valign="top" height="20">
-                          <img height="20px" style="display: block; margin: 0; padding: 0; border: 0;" src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" />
+                          <img height="20px" style="display: block; margin: 0; padding: 0; border: 0;" src="{{ url('templates/assets/images/email/blank.png') }}" />
                         </td>
                       </tr>
                       </table>
@@ -137,7 +136,7 @@
 						<tr>
 							<td valign="top" class="bodyContentImageFull" mc:edit="body_content_01">
                 <p style="text-align:center;margin:0;padding:0;">
-      						<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/map.jpg" style="display:block;" />
+      						<img src="{{ url('templates/assets/images/email/map.jpg') }}" style="display:block;" />
       					</p>
 							</td>
 						</tr>
@@ -159,7 +158,7 @@
 													<tr>
 														<td align="left" width="50" valign="top" mc:edit="footer_sigimage" style="margin:0;padding:0;">
 															<p style="margin-bottom:10px"padding:0;display:block;>
-																<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/img_profile.jpg" style="display:block;" />
+																<img src="{{ url('templates/assets/images/email/avatar_woman.jpg') }}" style="display:block;" />
 															</p>
 														</td>
 														<td width="15" align="left" valign="top" style="width:15px;margin:0;padding:0;">&nbsp;</td>
@@ -181,7 +180,7 @@
 						<tr>
 							<td valign="top" width="100%" mc:edit="footer_unsubscribe">
 								<p style="text-align:center;">
-									<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/cog-03.jpg" style="margin:0 auto 0 auto;display:inline-block;" />
+									<img src="{{ url('templates/assets/images/email/donut.jpg') }}" style="margin:0 auto 0 auto;display:inline-block;" />
 								</p>
 								<h6 style="text-align:center;margin-top: 9px;">COG Inc</h6>
 								<h6 style="text-align:center;">589&#8203; Howard&#8203; Street&#8203;</h6>
@@ -203,7 +202,6 @@
   </tr>
 </table>
 <style type="text/css">
-  /* /\/\/\/\/\/\/\/\/ CLIENT-SPECIFIC STYLES /\/\/\/\/\/\/\/\/ */
   #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" message */
   .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
   .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
@@ -212,7 +210,6 @@
   td ul li {
     font-size: 16px;
   }
-  /* /\/\/\/\/\/\/\/\/ RESET STYLES /\/\/\/\/\/\/\/\/ */
   body{margin:0; padding:0;}
   img{
     max-width:100%;

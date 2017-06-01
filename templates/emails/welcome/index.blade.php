@@ -3,7 +3,6 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>Welcome</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
@@ -23,7 +22,7 @@
           <tr>
             <td id="templateContainerHeader" valign="top" mc:edit="welcomeEdit-01">
               <p style="text-align:center;margin:0;padding:0;"><img src=
-              "http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/cog-01.jpg"
+              "{{ url('templates/assets/images/email/wreath01.jpg') }}"
               style="display:inline-block;"></p>
             </td>
           </tr>
@@ -52,7 +51,7 @@
                         <td align="left" style="margin:0;padding:0;" valign=
                         "top" width="50" mc:edit="welcomeEdit-03">
                           <p style="margin-bottom:10px"><img src=
-                          "http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/img_profile.jpg"
+                          "{{ url('templates/assets/images/email/avatar_woman.jpg') }}"
                           style="display:block;"></p>
                         </td>
 
@@ -87,7 +86,7 @@
                           <p style=
                           "text-align:center;margin:0 0 15px 0;padding:0;">
                           <img height="" src=
-                          "http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/circle.jpg"
+                          "{{ url('templates/assets/images/email/circle-check.jpg') }}"
                           style="display:block;" width="91"></p>
                         </td>
 
@@ -106,7 +105,7 @@
                           <p style=
                           "text-align:center;margin:0 0 15px 0;padding:0;">
                           <img height="" src=
-                          "http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/circle.jpg"
+                          "{{ url('templates/assets/images/email/circle-check.jpg') }}"
                           style="display:block;" width="91"></p>
                         </td>
 
@@ -125,7 +124,7 @@
                           <p style=
                           "text-align:center;margin:0 0 15px 0;padding:0;">
                           <img height="" src=
-                          "http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/circle.jpg"
+                          "{{ url('templates/assets/images/email/circle-check.jpg') }}"
                           style="display:block;" width="91"></p>
                         </td>
 
@@ -178,7 +177,7 @@
                 <tr>
                   <td valign="top" width="100%" mc:edit="welcomeEdit-11">
                     <p style="text-align:center;"><img src=
-                    "http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/cog-03.jpg"
+                    "{{ url('templates/assets/images/email/donut.jpg') }}"
                     style="margin:0 auto 0 auto;display:inline-block;"></p>
 
                     <h6 style="text-align:center;margin-top: 9px;">COG Inc</h6>
@@ -211,8 +210,6 @@
     td ul li {
       font-size: 16px;
     }
-
-    /* /\/\/\/\/\/\/\/\/ CLIENT-SPECIFIC STYLES /\/\/\/\/\/\/\/\/ */
     #outlook a {
     padding:0
     }
@@ -244,7 +241,6 @@
     }
 
     /* Remove spacing between tables in Outlook 2007 and up */
-    /* /\/\/\/\/\/\/\/\/ RESET STYLES /\/\/\/\/\/\/\/\/ */
     body {
     margin:0;
     padding:0

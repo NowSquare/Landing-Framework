@@ -3,7 +3,6 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Newsletter</title>
   <!--[if (gte mso 9)|(IE)]>
       <style type="text/css">
         .bodyContentTwoColumn {
@@ -28,7 +27,7 @@
 				<td valign="top" mc:edit="headerBrand" id="templateContainerHeader">
 
 					<p style="text-align:center;margin:0;padding:0;">
-						<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/cog-01.jpg" style="display:inline-block;" />
+						<img src="{{ url('templates/assets/images/email/wreath01.jpg') }}" style="display:inline-block;" />
 					</p>
 
 				</td>
@@ -38,7 +37,7 @@
 					<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainer">
             <tr>
 							<td valign="top" class="bodyContentNewsLetterDate" mc:edit="body_content_newsletter_01">
-                <h5 style="text-align:right;"><strong>August 2015</strong></h5>
+                <h5 style="text-align:right;"><strong>August {{ date('Y') }}</strong></h5>
 							</td>
 						</tr>
             <tr>
@@ -55,12 +54,12 @@
 					<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateContainerImageFull" style="min-height:15px;">
 						<tr>
               <td width="1">
-                <img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" style="width: 1px; display:block; margin:0; padding:0; border:0;"/>
+                <img src="{{ url('templates/assets/images/email/blank.png') }}" style="width: 1px; display:block; margin:0; padding:0; border:0;"/>
               </td>
 							<td valign="top" class="bodyContentImageFull" mc:edit="body_content_01">
                 <!-- STOP DELETINGGGGGGGGGGGG -->
                 <p style="text-align:center;margin:0;padding:0;float:right;">
-      						<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/bvw-01.jpg" style="display:block; margin:0; padding:0; border:0;" />
+      						<img src="{{ url('templates/assets/images/email/header02.jpg') }}" style="display:block; margin:0; padding:0; border:0;" />
       					</p>
 							</td>
 						</tr>
@@ -96,19 +95,19 @@
                         <table width="600">
                         <tr>
                           <td valign="top" height="50">
-                            <img height="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" />
+                            <img height="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="{{ url('templates/assets/images/email/blank.png') }}" />
                           </td>
                         </tr>
                         <tr>
                         <td width="50" valign="top">
-                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" />
+                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="{{ url('templates/assets/images/email/blank.png') }}" />
                         </td>
                         <td width="230" valign="top">
                         <![endif]-->
                         <table class="column">
                           <tr>
                             <td class="text" mc:edit="body_content_col1">
-                              <p><img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/bvw-02.jpg" style="display:block;" /></p>
+                              <p><img src="{{ url('templates/assets/images/email/photo01.jpg') }}" style="display:block;" /></p>
                               <h4><strong>Title of article goes here</strong></h4>
                               <h4>This is a brief teaser of the article that you're featuring.</h4>
                               <h4><a href="#">Read now</a></h4>
@@ -131,7 +130,7 @@
                         <table class="column">
                           <tr>
                             <td class="text" mc:edit="body_content_col2">
-                              <p><img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/bvw-03.jpg" style="display:block;" /></p>
+                              <p><img src="{{ url('templates/assets/images/email/photo02.jpg') }}" style="display:block;" /></p>
                               <h4><strong>Title of article goes here</strong></h4>
                               <h4>This is a brief teaser of the article that you're featuring.</h4>
                               <h4><a href="#">Read now</a></h4>
@@ -141,7 +140,7 @@
                         <!--[if (gte mso 9)|(IE)]>
                         </td>
                         <td width="50" valign="top">
-                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" />
+                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="{{ url('templates/assets/images/email/blank.png') }}" />
                         </td>
                         </tr>
                         </table>
@@ -154,14 +153,14 @@
                         <table width="600">
                         <tr>
                         <td width="50" valign="top">
-                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" />
+                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="{{ url('templates/assets/images/email/blank.png') }}" />
                         </td>
                         <td width="230" valign="top">
                         <![endif]-->
                         <table class="column">
                           <tr>
                             <td class="text" mc:edit="body_content_col3">
-                              <p><img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/bvw-04.jpg" style="display:block;" /></p>
+                              <p><img src="{{ url('templates/assets/images/email/photo03.jpg') }}" style="display:block;" /></p>
                               <h4><strong>Title of article goes here</strong></h4>
                               <h4>This is a brief teaser of the article that you're featuring.</h4>
                               <h4><a href="#">Read now</a></h4>
@@ -184,7 +183,7 @@
                         <table class="column">
                           <tr>
                             <td class="text" mc:edit="body_content_col4">
-                              <p><img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/bvw-05.jpg" style="display:block;" /></p>
+                              <p><img src="{{ url('templates/assets/images/email/photo04.jpg') }}" style="display:block;" /></p>
                               <h4><strong>Title of article goes here</strong></h4>
                               <h4>This is a brief teaser of the article that you're featuring.</h4>
                               <h4><a href="#">Read now</a></h4>
@@ -194,7 +193,7 @@
                         <!--[if (gte mso 9)|(IE)]>
                         </td>
                         <td width="50" valign="top">
-                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" />
+                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="{{ url('templates/assets/images/email/blank.png') }}" />
                         </td>
                         </tr>
                         </table>
@@ -207,14 +206,14 @@
                         <table width="600">
                         <tr>
                         <td width="50" valign="top">
-                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" />
+                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="{{ url('templates/assets/images/email/blank.png') }}" />
                         </td>
                         <td width="230" valign="top">
                         <![endif]-->
                         <table class="column">
                           <tr>
                             <td class="text" mc:edit="body_content_col5">
-                              <p><img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/bvw-06.jpg" style="display:block;" /></p>
+                              <p><img src="{{ url('templates/assets/images/email/photo05.jpg') }}" style="display:block;" /></p>
                               <h4><strong>Title of article goes here</strong></h4>
                               <h4>This is a brief teaser of the article that you're featuring.</h4>
                               <h4><a href="#">Read now</a></h4>
@@ -237,7 +236,7 @@
                         <table class="column">
                           <tr>
                             <td class="text" mc:edit="body_content_col6">
-                              <p><img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/bvw-07.jpg" style="display:block;" /></p>
+                              <p><img src="{{ url('templates/assets/images/email/photo06.jpg') }}" style="display:block;" /></p>
                               <h4><strong>Title of article goes here</strong></h4>
                               <h4>This is a brief teaser of the article that you're featuring.</h4>
                               <h4><a href="#">Read now</a></h4>
@@ -247,7 +246,7 @@
                         <!--[if (gte mso 9)|(IE)]>
                         </td>
                         <td width="50" valign="top">
-                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/blank.png" />
+                          <img width="50px" style="display: block; margin: 0; padding: 0; border: 0;" src="{{ url('templates/assets/images/email/blank.png') }}" />
                         </td>
                         </tr>
                         </table>
@@ -277,7 +276,7 @@
 													<tr>
 														<td align="left" width="50" valign="top" mc:edit="footer_sigimage" style="margin:0;padding:0;">
 															<p style="margin-bottom:10px"padding:0;display:block;>
-																<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/img_profile.jpg" style="display:block;" />
+																<img src="{{ url('templates/assets/images/email/avatar_woman.jpg') }}" style="display:block;" />
 															</p>
 														</td>
 														<td width="15" align="left" valign="top" style="width:15px;margin:0;padding:0;">&nbsp;</td>
@@ -299,7 +298,7 @@
 						<tr>
 							<td valign="top" width="100%" mc:edit="footer_unsubscribe">
 								<p style="text-align:center;">
-									<img src="http://c0185784a2b233b0db9b-d0e5e4adc266f8aacd2ff78abb166d77.r51.cf2.rackcdn.com/templates/cog-03.jpg" style="margin:0 auto 0 auto;display:inline-block;" />
+									<img src="{{ url('templates/assets/images/email/donut.jpg') }}" style="margin:0 auto 0 auto;display:inline-block;" />
 								</p>
 								<h6 style="text-align:center;margin-top: 9px;">COG Inc</h6>
 								<h6 style="text-align:center;">589&#8203; Howard&#8203; Street&#8203;</h6>
@@ -321,7 +320,6 @@
   </tr>
 </table>
 <style type="text/css">
-  /* /\/\/\/\/\/\/\/\/ CLIENT-SPECIFIC STYLES /\/\/\/\/\/\/\/\/ */
   #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" message */
   .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
   .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {line-height: 100%;} /* Force Hotmail to display normal line spacing */
@@ -330,7 +328,6 @@
   td ul li {
     font-size: 16px;
   }
-  /* /\/\/\/\/\/\/\/\/ RESET STYLES /\/\/\/\/\/\/\/\/ */
   body{margin:0; padding:0;}
   img{
     max-width:100%;
