@@ -210,20 +210,12 @@ class FunctionsController extends Controller
       // Get template HTML and replace title
       $html = view('template.emails::' . $template . '.index');
 
-      // Suppress libxml errors
-      // Resolves an issue with some servers.
-      libxml_use_internal_errors(true);
-
-      // Create a new PHPQuery object to manipulate
-      // the DOM in a similar way as jQuery.
-      $html = \phpQuery::newDocumentHTML($html);
-      \phpQuery::selectDocument($html);
+      //libxml_use_internal_errors(true);
+      //$html = \phpQuery::newDocumentHTML($html);
+      //\phpQuery::selectDocument($html);
 
       // Update page
-      pq('title')->text($name);
-
-      //$html = str_replace('</section><section', "</section>\n\n<section", $html);
-      //$html = str_replace(url('/'), '', $html);
+      //pq('title')->text($name);
 
       // Beautify html
       $html = Core\Parser::beautifyHtml($html);
@@ -372,8 +364,9 @@ class FunctionsController extends Controller
     \phpQuery::selectDocument($dom);
 
     // Get CSS
-    $html =  pq('html')->html();
+    $html = pq('html')->html();
     $css = pq('html')->find('style[type=text/css]:first')->html();
+    $html = str_replace($css, '', $html);
 
     if ($css != '') {
       $cssToInlineStyles = new CssToInlineStyles();

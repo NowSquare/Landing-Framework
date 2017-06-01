@@ -90,6 +90,7 @@ foreach($email_campaign->emails as $email) {
 
   $sent = number_format($email->sent);
   $opens = number_format($Event->where('email_id', $email->id)->where('event', 'opened')->count());
+  $clicks = number_format($Event->where('email_id', $email->id)->where('event', 'clicked')->count());
 
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" style="max-width: 250px" id="item{{ $i }}">
@@ -132,7 +133,7 @@ foreach($email_campaign->emails as $email) {
            <tr>
              <td class="text-center"><i class="mi touch_app"></i></td>
              <td>{{ trans('global.clicks') }}:</td>
-             <td class="text-right"><strong>{{ number_format($email->conversions) }}</strong></td>
+             <td class="text-right"><strong>{{ $clicks }}</strong></td>
            </tr>
          </table>
         </div>

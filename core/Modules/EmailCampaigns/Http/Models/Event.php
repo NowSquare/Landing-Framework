@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model {
 
   protected $casts = [
-    'entry' => 'json',
     'meta' => 'json'
   ];
 
