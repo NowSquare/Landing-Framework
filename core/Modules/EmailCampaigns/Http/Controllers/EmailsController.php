@@ -16,6 +16,30 @@ class EmailsController extends Controller
      */
     public function sendEmail()
     {
+      die();
+      $html = 'Hello, this is a <a href="https://landingframework.com">link</a>.';
+      $response = \Mailgun::raw($html, function ($message) {
+        $message
+          ->subject('Mailgun webhook test')
+          ->from('noreply@landingframework.com', 'Landing Framework')
+          ->to('info@s3m.nl')
+          ->tag(['f432', 'e23432'])
+          ->trackClicks(true)
+          ->trackOpens(true);
+      });
+
+      $message_id = $response['id'];
+
+      //dd($message_id);
+      
+      die();
+      \Mail::raw('Text to e-mail', function($message) {
+        $message->from('info@landingframework.com', 'Landing Framework');
+        $message->to('info@s3m.nl');
+      });
+      
+      
+      die();
 
       // Check for transaction emails linked to this form
       $forms = \Modules\Forms\Http\Models\Form::whereId(2)->get();
@@ -626,5 +650,34 @@ class EmailsController extends Controller
       }
 
       return response()->json($vars);
+    }
+
+    /**
+     * Mailgun webhook
+     */
+    public function mgEvent()
+    {
+      $message_id = request()->get('Message-Id');
+      $event = request()->get('event');
+      $tag = request()->get('tag');
+
+      $tags = explode('_', $tag);
+
+      $user_id = $tags[0];
+      $form_id = $tags[1];
+      $email_id = $tags[2];
+      $entry_id = $tags[3];
+
+      // Insert mail event
+      \DB::table($tbl_name)->insert(
+        [
+          'form_id' => $form_id,
+          'email_id' => $email_id,
+          'entry_id' => $entry_id,
+          'event' => $event
+        ]
+      );
+
+      return response()->json(['message' => 'Post received. Thanks!']);
     }
 }

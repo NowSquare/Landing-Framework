@@ -26,6 +26,9 @@ class CreateEmailCampaignsTable extends Migration
       $table->string('timezone', 32)->default('UTC');
       $table->integer('opens')->unsigned()->default(0);
       $table->integer('clicks')->unsigned()->default(0);
+      $table->integer('drops')->unsigned()->default(0);
+      $table->integer('bounces')->unsigned()->default(0);
+      $table->integer('sent')->unsigned()->default(0);
       $table->string('mail_from', 64)->nullable();
       $table->string('mail_from_name', 64)->nullable();
       $table->json('meta')->nullable();
@@ -49,6 +52,8 @@ class CreateEmailCampaignsTable extends Migration
       $table->string('subject', 200)->nullable();
       $table->integer('opens')->unsigned()->default(0);
       $table->integer('clicks')->unsigned()->default(0);
+      $table->integer('drops')->unsigned()->default(0);
+      $table->integer('bounces')->unsigned()->default(0);
       $table->integer('sent')->unsigned()->default(0);
       $table->integer('tests')->unsigned()->default(0);
       $table->dateTime('last_test')->nullable();

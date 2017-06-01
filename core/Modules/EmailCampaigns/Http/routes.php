@@ -12,6 +12,9 @@ Route::group(['middleware' => 'web', 'prefix' => 'ec', 'namespace' => 'Modules\E
   // Public routes
   Route::get('{local_domain}', 'EmailsController@showEmail');
 
+  // Mailgun webhooks
+  Route::post('mg/event', 'EmailsController@mgEvent');
+
   // Secured routes
   Route::group(['middleware' => 'auth:web'], function () {
     Route::get('edit/{local_domain}', 'EmailsController@editor');

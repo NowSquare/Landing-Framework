@@ -48,8 +48,8 @@ class SendTestEmail implements ShouldQueue
           ->from($this->email->emailCampaign->mail_from, $this->email->emailCampaign->mail_from_name)
           ->replyTo($this->email->emailCampaign->mail_from, $this->email->emailCampaign->mail_from_name)
           ->to($this->mailto)
-          ->trackClicks(true)
-          ->trackOpens(true);
+          ->trackClicks(false)
+          ->trackOpens(false);
       });
 
     }

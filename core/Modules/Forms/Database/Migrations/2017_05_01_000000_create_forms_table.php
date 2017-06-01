@@ -30,6 +30,11 @@ class CreateFormsTable extends Migration
       $table->dateTime('last_response')->nullable();
       $table->bigInteger('visits')->unsigned()->default(0);
       $table->bigInteger('entries')->unsigned()->default(0);
+      $table->integer('opens')->unsigned()->default(0);
+      $table->integer('clicks')->unsigned()->default(0);
+      $table->integer('drops')->unsigned()->default(0);
+      $table->integer('bounces')->unsigned()->default(0);
+      $table->integer('sent')->unsigned()->default(0);
       $table->json('meta')->nullable();
       $table->timestamps();
     });

@@ -36,7 +36,7 @@ class UserEventSubscriber {
 
     // Create user tables, prefix with `x_` to have them grouped
     if ($event->user->logins <= 1) {
-      \Platform\Controllers\App\InstallationController::createUserTables($event->user->id);
+      dispatch(new \App\Jobs\CreateUserTables($event->user->id));
     }
   }
 

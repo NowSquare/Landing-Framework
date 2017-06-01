@@ -47,12 +47,19 @@ class SendEmail implements ShouldQueue
       $html = \Modules\EmailCampaigns\Http\Controllers\FunctionsController::parseEmail($this->mailto, $view, $this->form);
       $subject = \Modules\EmailCampaigns\Http\Controllers\FunctionsController::parseString($this->mailto, $this->email->subject, $this->form);
 
+      $form_entry = $Entry->where('form_id', $this->form)->where('email', $mailto)->orderBy('created_at', 'desc')->first();
+
+      if (! empty($form_entry)) {
+        $entry_id = $form_entry->id;
+      }
+
       $response = \Mailgun::raw($html, function ($message) use ($subject) {
         $message
           ->subject($subject)
           ->from($this->email->emailCampaign->mail_from, $this->email->emailCampaign->mail_from_name)
           ->replyTo($this->email->emailCampaign->mail_from, $this->email->emailCampaign->mail_from_name)
           ->to($this->mailto)
+          ->tag($this->email->user_id . '_' . $this->form->id . '_' . $this->email->id . '_' . $entry_id)
           ->trackClicks(true)
           ->trackOpens(true);
       });
