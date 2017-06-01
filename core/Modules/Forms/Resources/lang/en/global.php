@@ -9,7 +9,7 @@ return array(
 	*/
 
 	"module_name" => "Form",
-	"module_name_plural" => "Forms",
+	"module_name_plural" => "Lists",
 	"module_desc" => "Collect information. Reservations, proposals, contacts and more.",
   "edit_html" => "Edit HTML",
 
