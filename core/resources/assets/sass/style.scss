@@ -275,16 +275,16 @@ html.editor-modal body {
 
 #cboxClose:before, #cboxClose:after {
   position: absolute;
-  left: 15px;
   content: ' ';
-  height: 24px;
   width: 2px;
   background-color: #333;
 }
 #cboxClose:before {
+  height: 26px;
   transform: rotate(45deg);
 }
 #cboxClose:after {
+  height: 24px;
   transform: rotate(-45deg);
 }
 
