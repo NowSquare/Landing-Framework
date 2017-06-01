@@ -62,6 +62,9 @@ class SendEmail implements ShouldQueue
 
       $tag = $this->email->user_id . '_' . $this->form->id . '_' . $this->email->id . '_' . $entry_id;
 
+      // Increment email sent
+      \DB::table('emails')->whereId($this->email->id)->increment('sent');
+
       $response = \Mailgun::raw($html, function ($message) use ($subject, $tag) {
         $message
           ->subject($subject)

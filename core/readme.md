@@ -35,7 +35,6 @@ Supervisor is a process monitor for the Linux operating system, and will automat
 `sudo apt-get install supervisor`
 
 ### Configuring Supervisor
-
 Supervisor configuration files are typically stored in the `/etc/supervisor/conf.d` directory. Within this directory, you may create any number of configuration files that instruct supervisor how your processes should be monitored. For example, let's create a `name_of_your_app.conf` file that starts and monitors a `queue:work` process:
 
 ```[program:name_of_your_app]
@@ -51,7 +50,6 @@ stdout_logfile=/srv/users/serverpilot/apps/name_of_your_app/supervisor.log```
 In this example, the `numprocs` directive will instruct Supervisor to run 8 `queue:work` processes and monitor all of them, automatically restarting them if they fail. Of course, you should change the `queue:work sqs` portion of the `command` directive to reflect your desired queue connection.
 
 ### Starting Supervisor
-
 Once the configuration file has been created, you may update the Supervisor configuration and start the processes using the following commands:
 
 `sudo supervisorctl reread`
@@ -63,7 +61,9 @@ Once the configuration file has been created, you may update the Supervisor conf
 For more information on Supervisor, consult the [Supervisor documentation](http://supervisord.org/index.html).
 
 ## Mailgun webhooks
-To track email clicks and opens, we have to configure Mailgun webhooks. Log in to your Mailgun account
+To track email clicks and opens, we have to configure Mailgun webhooks. Log in to your Mailgun account, click *Webhooks* and enter the following URL for all events you want to track:
+
+`https://try.landingframework.com/ec/mg/event`
 
 ## Based on Laravel
 

@@ -72,6 +72,13 @@ foreach($email_campaigns as $campaign) {
     <div class="grid-sizer col-xs-6 col-sm-3 col-lg-3" style="display:none"></div>
 <?php 
 $i = 1;
+
+$entry_id = 0;
+$tbl_name = 'x_email_events_' . auth()->user()->id;
+
+$Event = new \Modules\EmailCampaigns\Http\Models\Event([]);
+$Event->setTable($tbl_name);
+
 foreach($email_campaign->emails as $email) {
   $email_id = $email->id;
   $sl_campaign = \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $email_campaign->id]);
@@ -80,6 +87,9 @@ foreach($email_campaign->emails as $email) {
 
   $local_domain = 'ec/' . $email->local_domain;
   $url = $email->url();
+
+  $sent = number_format($email->sent);
+  $opens = number_format($Event->where('email_id', $email->id)->where('event', 'opened')->count());
 
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" style="max-width: 250px" id="item{{ $i }}">
@@ -112,12 +122,12 @@ foreach($email_campaign->emails as $email) {
            <tr>
              <td class="text-center"><i class="mi send"></i></td>
              <td>{{ trans('global.sent') }}:</td>
-             <td class="text-right"><strong>{{ number_format($email->conversions) }}</strong></td>
+             <td class="text-right"><strong>{{ $sent }}</strong></td>
            </tr>
            <tr>
              <td width="33" class="text-center"><i class="mi open_in_new"></i></td>
              <td>{{ trans('global.opens') }}:</td>
-             <td class="text-right"><strong>{{ number_format($email->visits) }}</strong></td>
+             <td class="text-right"><strong>{{ $opens }}</strong></td>
            </tr>
            <tr>
              <td class="text-center"><i class="mi touch_app"></i></td>

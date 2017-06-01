@@ -657,7 +657,7 @@ class EmailsController extends Controller
      */
     public function mgEvent()
     {
-      $message_id = request()->get('Message-Id', '');
+      $message_id = request()->get('message-id', '');
       $event = request()->get('event', '');
       $tag = request()->get('tag', '');
 
