@@ -2,10 +2,38 @@
 namespace Modules\LandingPages\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use \Platform\Controllers\Core;
 
 class Site extends Model {
 
   protected $table = 'landing_sites';
+
+  /**
+   * The "booting" method of the model.
+   *
+   * We'll use this method to register event listeners.
+   */
+  protected static function boot()
+  {
+    parent::boot();
+
+    //static::created(function ($model) {
+      //dd($model);
+    //});
+
+    // Make sure to pull when deleting:
+    // NOT: Models\Site::where('id', $site_id)->delete();
+    // BUT: Models\Site::where('id', $site_id)->first()->delete();
+    static::deleting(function ($model) {
+
+      // Delete records
+      \DB::table('x_landing_stats_' . $model->user_id)->where('landing_site_id', $model->id)->delete();
+
+      // Delete files
+      $storage_root = 'landingpages/site/' . Core\Secure::staticHash($model->user_id) . '/' . Core\Secure::staticHash($model->id, true);
+      \Storage::disk('public')->deleteDirectory($storage_root);
+    });
+  }
 
   protected $casts = [
     'meta' => 'json'

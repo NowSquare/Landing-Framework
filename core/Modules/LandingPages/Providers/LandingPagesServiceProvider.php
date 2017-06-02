@@ -23,6 +23,10 @@ class LandingPagesServiceProvider extends ServiceProvider
         $this->registerTranslations();
         $this->registerConfig();
         $this->registerViews();
+
+        \Event::listen(['eloquent.*'], function ($event){
+          //var_dump($event);
+        });
     }
 
     /**
