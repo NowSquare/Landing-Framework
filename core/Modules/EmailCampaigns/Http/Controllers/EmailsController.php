@@ -660,6 +660,8 @@ class EmailsController extends Controller
       $message_id = request()->get('message-id', '');
       $event = request()->get('event', '');
       $tag = request()->get('tag', '');
+      $link = request()->get('link', null);
+      $recipient = request()->get('recipient', null);
 
       $tags = explode('_', $tag);
 
@@ -695,7 +697,9 @@ class EmailsController extends Controller
             'email_id' => $email_id,
             'entry_id' => $entry_id,
             'message_id' => $message_id,
-            'event' => $event
+            'event' => $event,
+            'recipient' => $recipient,
+            'link' => $link
           ]
         );
       }

@@ -58,7 +58,8 @@ class CreateEmailCampaignsTable extends Migration
       $table->integer('tests')->unsigned()->default(0);
       $table->dateTime('last_test')->nullable();
       $table->text('last_test_email')->nullable();
-      $table->integer('send_after_days')->nullable();
+      $table->integer('delay_hours')->nullable();
+      $table->integer('delay_months')->nullable();
       $table->time('send_time')->nullable();
       $table->boolean('only_send_when_opened')->default(false);
       $table->boolean('only_send_when_clicked')->default(false);

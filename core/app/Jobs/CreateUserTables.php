@@ -238,16 +238,17 @@ class CreateUserTables implements ShouldQueue
       $tbl_name = 'x_email_events_' . $user_id;
 
       if (! Schema::hasTable($tbl_name)) {
-        Schema::create($tbl_name, function(Blueprint $table) use ($user_id) {
+        Schema::create($tbl_name, function(Blueprint $table) {
           $table->bigIncrements('id');
           $table->bigInteger('form_id')->unsigned();
           $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
           $table->bigInteger('email_id')->unsigned();
           $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
           $table->bigInteger('entry_id')->unsigned();
-          $table->foreign('entry_id')->references('id')->on('x_form_entries_' . $user_id)->onDelete('cascade');
           $table->text('message_id');
           $table->string('event', 64);
+          $table->text('link')->nullable();
+          $table->string('recipient', 96)->nullable();
           $table->json('meta')->nullable();
           $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
         });
