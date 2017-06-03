@@ -93,21 +93,23 @@ var xTplFabEmails = '<div class="-x-el-inline-button -x-el-fab -x-el-reset" styl
   '  >' +
   '  </span>' +
   '  <ul class="-x-el-dropdown -x-el-dropdown-top-left -x-el-dropdown-fab -x-el-reset">' +
+  '    <li class="-x-el-fab-send-mailing -x-el-disabled"><a href="javascript:void(0);">' + _lang["send_mailing"] + '</a></li>' +
 /*  '    <li class="-x-el-fab-email"><a href="javascript:void(0);">' + _lang["email"] + ' <div class="-x-el-caret"></div></a>' +
   '      <ul>' +
   '        <li class="-x-el-fab-email-settings"><a href="javascript:void(0);">' + _lang["settings"] + '</a></li>' +
   '      </ul>' +
   '    </li>' +
   '    <li class="separator"><hr></li>' + */
+  '    <li class="separator"><hr></li>' +
+  '    <li class="-x-el-fab-preview"><a href="javascript:void(0);">' + _lang["preview"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '    <li class="-x-el-fab-test-mail"><a href="javascript:void(0);">' + _lang["test_email"] + '</a></li>' +
+  '    <li class="separator"><hr></li>' +
   '    <li class="-x-el-fab-position"><a href="javascript:void(0);">' + _lang["position"] + ' <div class="-x-el-caret"></div></a>' +
   '      <ul>' +
   '        <li class="-x-el-fab-position-left"><a href="javascript:void(0);">' + _lang["left"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '        <li class="-x-el-fab-position-right"><a href="javascript:void(0);">' + _lang["right"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '      </ul>' +
   '    </li>' + 
-  '    <li class="separator"><hr></li>' +
-  '    <li class="-x-el-fab-preview"><a href="javascript:void(0);">' + _lang["preview"] + ' <div class="-x-el-checkmark"></div></a></li>' +
-  '    <li class="-x-el-fab-test-mail"><a href="javascript:void(0);">' + _lang["test_email"] + '</a></li>' +
   '    <li class="separator"><hr></li>' +
   '    <li class="-x-el-fab-save"><a href="javascript:void(0);">' + _lang["save_email"] + '</a></li>' +
   '  </ul>' +

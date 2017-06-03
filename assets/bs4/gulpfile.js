@@ -8,7 +8,8 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
-    del = require('del');
+    del = require('del'),
+    orderedMergeStream = require('ordered-merge-stream');
 
 /*
  |--------------------------------------------------------------------------
@@ -69,21 +70,25 @@ gulp.task('watch_scripts', function() {
  */
 
 gulp.task('styles', function() {
-  return sass([
-      'resources/sass/style.scss', 
-      'resources/sass/bootstrap.scss',
-      'resources/sass/sweetalert.scss',
-      'bower_components/tether/src/css/tether.sass',
-      /*'bower_components/owl.carousel/src/scss/owl.carousel.scss',*/
-      'bower_components/ladda/css/ladda.scss'
-    ], {
-      style: 'expanded',
-      loadPath: [ 
-        'resources/sass',
-        'bower_components/bootstrap/scss'
-      ]
-    })
-  	.pipe(concat('style.css'))
+  var sassStream = sass([
+    'resources/sass/style.scss', 
+    'resources/sass/bootstrap.scss',
+    'resources/sass/sweetalert.scss',
+    'bower_components/tether/src/css/tether.sass',
+    /*'bower_components/tether-drop/src/css/drop-theme-basic.sass',*/
+    /*'bower_components/owl.carousel/src/scss/owl.carousel.scss',*/
+    'bower_components/ladda/css/ladda.scss'
+  ], {
+    style: 'expanded',
+    loadPath: [ 
+      'resources/sass',
+      'bower_components/bootstrap/scss'
+    ]
+  });
+
+  var mergedStream = orderedMergeStream([sassStream]);
+
+  mergedStream.pipe(concat('style.css'))
     .pipe(autoprefixer({
       browsers: ['last 2 version'], 
       cascade: false
@@ -96,6 +101,8 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('css'))
     .pipe(livereload())
     .pipe(notify({ message: 'Styles task complete' }));
+
+  return mergedStream;
 });
 
 
@@ -108,7 +115,8 @@ gulp.task('styles', function() {
 gulp.task('styles_lite', function() {
   return sass([
       'resources/sass/plugins/_notify-metro.scss',
-      'bower_components/tether/src/css/tether.sass'
+      'bower_components/tether/src/css/tether.sass'/*,
+      'bower_components/tether-drop/src/css/drop-theme-basic.sass',*/
     ], {
       style: 'expanded',
       loadPath: [ 
@@ -140,6 +148,7 @@ gulp.task('scripts', function() {
   return gulp.src([
       'bower_components/jquery/dist/jquery.js',
       'bower_components/tether/dist/js/tether.js',
+      /*'bower_components/tether-drop/dist/js/drop.js',*/
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/bluebird/js/browser/bluebird.js',
   		'bower_components/blockUI/jquery.blockUI.js',
@@ -179,6 +188,7 @@ gulp.task('scripts_lite', function() {
   return gulp.src([
       'bower_components/jquery/dist/jquery.js',
       'bower_components/tether/dist/js/tether.js',
+      /*'bower_components/tether-drop/dist/js/drop.js',*/
       'bower_components/notifyjs/dist/notify.js',
       'resources/scripts/notify-metro.js'
     ])

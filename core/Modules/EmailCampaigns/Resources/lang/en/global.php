@@ -56,4 +56,12 @@ return array(
   "confirmation_thank_you" => "Thank you for confirming your email!",
   "confirmation_not_found" => "Email already confirmed or not found.",
   "confirmation_demo" => "This is a demo link for confirming your email address.",
+  "send_mailing_text" => "The email is sent to members who have confirmed their subscription.",
+  "send_mailing" => "Send mailing",
+  "schedule_mailing" => "Schedule mailing",
+  "amount_confirmed_members" => ":amount confirmed members",
+  "send_now" => "Send now",
+  "schedule" => "Schedule",
+  "" => "",
+  "" => "",
 );

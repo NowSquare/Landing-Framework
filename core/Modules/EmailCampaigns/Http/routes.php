@@ -41,10 +41,12 @@ Route::group(['middleware' => ['web', 'funnel', 'limitation:emailcampaigns.visib
     Route::get('emails/editor', 'EmailsController@editorFrame');
 
     // Editor modals
-    Route::get('editor/modal/settings', 'EmailsController@editorModalSettings');
-    Route::post('editor/settings', 'EmailsController@editorPostSettings');
+    //Route::get('editor/modal/settings', 'EmailsController@editorModalSettings');
+    //Route::post('editor/settings', 'EmailsController@editorPostSettings');
     Route::get('editor/modal/test-email', 'EmailsController@editorModalTestEmail');
     Route::post('editor/test-email', 'EmailsController@editorPostTestEmail');
+    Route::get('editor/modal/send-mailing', 'EmailsController@editorModalSendMailing');
+    Route::post('editor/send-mailing', 'EmailsController@editorPostSendMailing');
 
     // Previews
     Route::get('preview/{template}', 'EmailsController@previewTemplate');

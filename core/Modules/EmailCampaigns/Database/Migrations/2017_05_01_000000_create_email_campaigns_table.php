@@ -61,6 +61,7 @@ class CreateEmailCampaignsTable extends Migration
       $table->integer('delay_hours')->nullable();
       $table->integer('delay_months')->nullable();
       $table->time('send_time')->nullable();
+      $table->boolean('scheduled')->default(false);
       $table->boolean('only_send_when_opened')->default(false);
       $table->boolean('only_send_when_clicked')->default(false);
       $table->json('meta')->nullable();

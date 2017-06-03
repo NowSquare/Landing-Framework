@@ -4,6 +4,13 @@ function lfInitFabEmails() {
   // Set options
   $el.find('.-x-el-fab-position-right .-x-el-checkmark').addClass('-x-checked');
 
+  // Check if send mailing is available
+  if (typeof lfCampaignType !== 'undefined' && (lfCampaignType == 'marketing_email' || lfCampaignType == 'drip_campaign')) {
+    $el.find('.-x-el-fab-send-mailing').removeClass('-x-el-disabled');
+  } else {
+    $el.find('.-x-el-fab-send-mailing').addClass('-x-el-disabled');
+  }
+
   /*
     Show fab dropdown on click
   */
@@ -33,6 +40,7 @@ function lfInitFabEmails() {
             gpu: true
           }
         });
+
         //$fab_dropdown.css('cssText', 'position: fixed !important;display: block !important;');
       } else {
         // Reposition tethered elements because $block_settings.css('cssText', ...); seems to reset position
@@ -143,8 +151,21 @@ function lfInitFabEmails() {
     Settings
   */
 
-  $('body').on('click', '.-x-el-fab-email-settings', function() {    
+  $('body').on('click', '.-x-el-fab-email-settings', function() { 
     lfOpenModal(_lang["url"] + '/emailcampaigns/editor/modal/settings?sl=' + lf_sl);
+  
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+  });
+
+  /* 
+    Send mailing
+  */
+
+  $('body').on('click', '.-x-el-fab-send-mailing', function() {
+    if ($(this).hasClass('-x-el-disabled')) return false;
+
+    lfOpenModal(_lang["url"] + '/emailcampaigns/editor/modal/send-mailing?sl=' + lf_sl);
   
     // Hide dropdown
     $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
@@ -154,7 +175,7 @@ function lfInitFabEmails() {
     Test email
   */
 
-  $('body').on('click', '.-x-el-fab-test-mail', function() {    
+  $('body').on('click', '.-x-el-fab-test-mail', function() { 
     lfOpenModal(_lang["url"] + '/emailcampaigns/editor/modal/test-email?sl=' + lf_sl);
   
     // Hide dropdown

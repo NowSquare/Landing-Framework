@@ -79,7 +79,7 @@ return array(
   "right" => "Right",
   "variables" => "Variables",
   "test_email" => "Test email",
-  "" => "",
+  "send_mailing" => "Send mailing",
   "" => "",
 
   /*

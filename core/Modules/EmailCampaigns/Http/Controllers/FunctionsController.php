@@ -208,7 +208,7 @@ class FunctionsController extends Controller
       $storage_root = 'emails/email/' . Core\Secure::staticHash($user_id) . '/' . Core\Secure::staticHash($email_campaign->id, true) . '/' . $local_domain;
 
       // Get template HTML and replace title
-      $html = view('template.emails::' . $template . '.index');
+      $html = view('template.emails::' . $template . '.index')->render();
 
       //libxml_use_internal_errors(true);
       //$html = \phpQuery::newDocumentHTML($html);
@@ -269,8 +269,6 @@ class FunctionsController extends Controller
 
       // Update files
       $storage_root = 'emails/email/' . Core\Secure::staticHash($user_id) . '/' .  Core\Secure::staticHash($email->email_campaign_id, true) . '/' . Core\Secure::staticHash($email->id, true) . '/' . $variant;
-
-      $html = str_replace(url('/'), '', $html);
 
       // Beautify html
       $html = Core\Parser::beautifyHtml($html);

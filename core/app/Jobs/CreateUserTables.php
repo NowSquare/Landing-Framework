@@ -212,7 +212,7 @@ class CreateUserTables implements ShouldQueue
           $table->integer('recepients')->unsigned()->default(1);
           $table->integer('clicks')->unsigned()->default(0);
           $table->integer('opens')->unsigned()->default(0);
-          $table->string('language', 5)->nullable();
+          $table->dateTime('schedule')->nullable();
           $table->json('meta')->nullable();
           $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
         });

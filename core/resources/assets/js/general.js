@@ -595,7 +595,7 @@ function formResponse(responseText, statusText, xhr, $jqForm) {
       $('[type=password]').val('');
     }
 
-    // Loading state
+    // End loading state
     ladda_button.ladda('stop');
   } else if (typeof responseText.redir !== 'undefined' && responseText.redir == 'reload') {
     document.location.reload();

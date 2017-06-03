@@ -16,6 +16,17 @@ class EmailsController extends Controller
      */
     public function sendEmail()
     {
+      $email = Models\Email::where('id', 1)->first();
+      $form = \Modules\Forms\Http\Models\Form::where('id', 1)->first();
+
+      $variant = 1;
+      $view = 'public.emails::' . Core\Secure::staticHash($email->user_id) . '.' . Core\Secure::staticHash($email->email_campaign_id, true) . '.' . $email->local_domain . '.' . $variant . '.index';
+
+      $mailto = 'info@';
+
+      $html = FunctionsController::parseEmail($mailto, $view, $email);
+      echo $html;
+
       die();
       $html = 'Hello, this is a <a href="https://landingframework.com">link</a>.';
       $response = \Mailgun::raw($html, function ($message) {
@@ -246,12 +257,10 @@ class EmailsController extends Controller
           pq('head')->append(PHP_EOL . '<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css?v=' . config('version.editor')) . '" />');
 
           // Init editor
-          pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ lfInitEditor(\'emails\'); });</script>');
+          pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">var lfCampaignType = \'' . $email->emailCampaign->type . '\'; $(function(){ lfInitEditor(\'emails\'); });</script>');
 
           // Editor toolbar
           pq('body')->prepend(PHP_EOL . '<div class="-x-editor-asset" id="editor_toolbar"></div>');
-          
-          //$dom = str_replace('</section><section', "</section>\n\n<section", $dom);
 
           // Beautify html
           $html = Core\Parser::beautifyHtml($dom);
@@ -536,6 +545,76 @@ class EmailsController extends Controller
     }
 
     /**
+     * Send mailing
+     */
+    public function editorModalSendMailing(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+
+        if (is_numeric($email_id)) {
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+
+          return view('landingpages::modals.send-mailing', compact('email', 'sl'));
+        }
+      }
+    }
+
+    /**
+     * Post mailing
+     */
+    public function editorPostSendMailing(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $mailto = $request->input('mailto', '');
+
+      $input = array(
+        'mailto' => $mailto
+      );
+
+      $rules = array(
+        'mailto' => 'required|email|not_in:info@example.com'
+      );
+
+      $validator = \Validator::make($input, $rules);
+
+      if($validator->fails()) {
+        $response = [
+          'type' => 'error', 
+          'reset' => false, 
+          'msg' => $validator->messages()->first()
+        ];
+        return response()->json($response);
+      }
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+
+        if (is_numeric($email_id)) {
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+
+          //$email->tests = $email->tests + 1;
+          //$email->last_test = date('Y-m-d H:i:s');
+          //$email->last_test_email = $mailto;
+          //$email->save();
+
+          //$job = (new SendTestEmail($mailto, $email));
+          //dispatch($job);
+
+          return response()->json([
+            'type' => 'success', 
+            'reset' => false, 
+            'msg' => trans('emailcampaigns::global.test_email_sent')
+          ]);
+        }
+      }
+    }
+
+    /**
      * Test email
      */
     public function editorModalTestEmail(Request $request)
@@ -660,7 +739,7 @@ class EmailsController extends Controller
       $message_id = request()->get('message-id', '');
       $event = request()->get('event', '');
       $tag = request()->get('tag', '');
-      $link = request()->get('link', null);
+      $link = request()->get('url', null);
       $recipient = request()->get('recipient', null);
 
       $tags = explode('_', $tag);
