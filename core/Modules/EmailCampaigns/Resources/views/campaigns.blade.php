@@ -24,7 +24,7 @@
                   <span class="input-group-addon" onClick="if ($('#grid_search:visible').length) { $('#grid_search').delay().animate({width:'0px'}, 150, '').hide(0); } else { $('#grid_search').show().animate({width:'180px'}, 500, 'easeOutBounce'); }"><i class="mi search"></i></span>
                   <input type="text" class="form-control input" id="grid_search" placeholder="{{ trans('global.search_') }}" style="width:0px;display: none">
                 </div>
-<?php /*
+
                 <div class="input-group input-group" style="margin:0 5px 0 0">
                   <span class="input-group-addon" onClick="if ($('#order_selector:visible').length) { $('#order_selector').delay().animate({width:'0px'}, 150, '').hide(0); } else { $('#order_selector').show().animate({width:'180px'}, 500, 'easeOutBounce'); }"><i class="mi sort"></i></span>
                   <div style="width: 0; overflow: hidden; display: none" id="order_selector">
@@ -32,15 +32,15 @@
                     <select id="order" class="select2-required-no-search">
                       <option value="new_first"<?php if ($order == 'new_first') echo ' selected'; ?>>{{ trans('global.new_first') }}</option>
                       <option value="old_first"<?php if ($order == 'old_first') echo ' selected'; ?>>{{ trans('global.old_first') }}</option>
-                      <option value="high_converting_first"<?php if ($order == 'high_converting_first') echo ' selected'; ?>>{{ trans('global.high_conversion_first') }}</option>
-                      <option value="low_converting_first"<?php if ($order == 'low_converting_first') echo ' selected'; ?>>{{ trans('global.low_conversion_first') }}</option>
-                      <option value="most_visited_first"<?php if ($order == 'most_visited_first') echo ' selected'; ?>>{{ trans('global.most_visited_first') }}</option>
-                      <option value="least_visited_first"<?php if ($order == 'least_visited_first') echo ' selected'; ?>>{{ trans('global.least_visited_first') }}</option>
                     </select>
                   </div>
                   </div>
                 </div>
-*/ ?>
+<script>
+$('#order').on('change', function() {
+  document.location = '#/emailcampaigns/order/' + $(this).val();
+});
+</script>
                 <a href="#/emailcampaigns/create" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('emailcampaigns::global.create_campaign') }}</a>
             </div>
 
@@ -57,6 +57,8 @@
 $i = 1;
 foreach($email_campaigns as $campaign) {
   $sl_campaign = \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $campaign->id]);
+
+  $email_count = count($campaign->emails);
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" id="item{{ $i }}">
 
@@ -82,13 +84,9 @@ foreach($email_campaigns as $campaign) {
         <div class="portlet-body" style="padding:0">
          <table class="table table-hover table-striped" style="margin-bottom: 0">
            <tr>
-             <td width="33" class="text-center"><i class="mi info_outline"></i></td>
-             <td colspan="2"><strong>{{ trans('emailcampaigns::global.' . $campaign->type) }}</strong></td>
-           </tr>
-           <tr>
              <td width="33" class="text-center"><i class="mi mail_outline"></i></td>
-             <td><a href="#/emailcampaigns/emails/{{ $sl_campaign }}" class="link">{{ trans('emailcampaigns::global.manage_emails') }}</a></td>
-             <td class="text-right"><strong>{{ number_format(count($campaign->emails)) }}</strong></td>
+             <td><a href="#/emailcampaigns/emails/{{ $sl_campaign }}" class="link">{{ trans_choice('emailcampaigns::global.' . $campaign->type, $email_count) }}</a></td>
+             <td class="text-right"><strong>{{ number_format($email_count) }}</strong></td>
            </tr><?php /*
            <tr>
              <td width="33" class="text-center"><i class="mi open_in_browser"></i></td>
@@ -102,13 +100,13 @@ foreach($email_campaigns as $campaign) {
            </tr>*/ ?>
          </table>
         </div>
-<?php /*
+
         <div>
-          <a href="" class="preview-container" id="container{{ $i }}" title="{{ $campaign['name'] }}">
-            <iframe src="{{ url($local_domain . '?preview=1') }}" id="frame{{ $i }}" class="preview_frame" frameborder="0" seamless></iframe>
+          <a href="#/emailcampaigns/emails/{{ $sl_campaign }}" class="preview-container" id="container{{ $i }}" title="{{ $campaign['name'] }}">
+            <img src="{{ url('assets/images/icons/color/' . $categories[$campaign->type]['icon']) }}">
           </a>
         </div>
-*/ ?>
+
       </div>
 
     </div>
@@ -120,6 +118,14 @@ foreach($email_campaigns as $campaign) {
 </div>
 
 <style type="text/css">
+.preview-container {
+  text-align: center;
+  display: block;
+}
+.preview-container img {
+  height: 64px;
+  margin: 30px 10px;
+}
 
 .portlet-title {
   overflow: hidden;

@@ -18,11 +18,11 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-  "transactional_email" => "Transactional email",
+  "transactional_email" => "Transactional email|Transactional emails",
   "transactional_email_desc" => "A response to a form submit. A double opt-in, thank you or autoresponder.",
-  "marketing_email" => "Marketing email",
+  "marketing_email" => "Marketing email|Marketing emails",
   "marketing_email_desc" => "Marketing emails are timed and sent strategically to your recipient list.",
-  "drip_campaign" => "Drip campaign",
+  "drip_campaign" => "Drip campaign|Drip campaign emails",
   "drip_campaign_desc" => "Drip campaigns are a sequence of emails delivered in a specific order.",
 
   "opt_in" => "Opt-in",
@@ -52,16 +52,18 @@ return array(
   "send_email" => "Send email",
   "test_email_text" => "Send a test email to the address below. Make sure you save the email before testing.",
   "test_email_sent" => "The test email has been queued for sending.",
+  "mailing_sent" => "The mailing has been queued and will be sent ASAP.",
+  "mailing_scheduled" => "The mailing has been scheduled.",
   "select_forms_placeholder" => "Select one or more lists",
   "confirmation_thank_you" => "Thank you for confirming your email!",
   "confirmation_not_found" => "Email already confirmed or not found.",
   "confirmation_demo" => "This is a demo link for confirming your email address.",
-  "send_mailing_text" => "The email is sent to members who have confirmed their subscription.",
+  "send_mailing_text" => "The mailing is sent to members who have confirmed their subscription.",
   "send_mailing" => "Send mailing",
   "schedule_mailing" => "Schedule mailing",
   "amount_confirmed_members" => ":amount confirmed members",
   "send_now" => "Send now",
   "schedule" => "Schedule",
-  "" => "",
-  "" => "",
+  "no_lists_selected" => "No lists selected.",
+  "no_confirmed_members" => "There are no confirmed members to send this mailing to.",
 );

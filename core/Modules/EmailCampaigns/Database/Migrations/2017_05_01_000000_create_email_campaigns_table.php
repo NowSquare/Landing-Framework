@@ -55,13 +55,14 @@ class CreateEmailCampaignsTable extends Migration
       $table->integer('drops')->unsigned()->default(0);
       $table->integer('bounces')->unsigned()->default(0);
       $table->integer('sent')->unsigned()->default(0);
+      $table->dateTime('last_sent')->nullable();
       $table->integer('tests')->unsigned()->default(0);
       $table->dateTime('last_test')->nullable();
       $table->text('last_test_email')->nullable();
       $table->integer('delay_hours')->nullable();
       $table->integer('delay_months')->nullable();
       $table->time('send_time')->nullable();
-      $table->boolean('scheduled')->default(false);
+      $table->dateTime('scheduled_at')->nullable();
       $table->boolean('only_send_when_opened')->default(false);
       $table->boolean('only_send_when_clicked')->default(false);
       $table->json('meta')->nullable();

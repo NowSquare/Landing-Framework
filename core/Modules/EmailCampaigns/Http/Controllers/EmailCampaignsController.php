@@ -15,12 +15,30 @@ class EmailCampaignsController extends Controller
      */
     public function showCampaigns()
     {
-      $email_campaigns = Models\EmailCampaign::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->orderBy('created_at', 'desc')->get();
+      $order = request()->input('order', '');
+      $cookie = null;
+
+      if ($order != '') {
+        $cookie = \Cookie::queue('ec_order', $order, 60 * 24 * 7 * 4 * 6);
+        
+      } else {
+        $order = request()->cookie('ec_order', 'new_first');
+      }
+
+      switch($order) {
+        case 'new_first': $order_column = 'created_at'; $order_by = 'desc'; break;
+        case 'old_first': $order_column = 'created_at'; $order_by = 'asc'; break;
+        default: $order_column = 'created_at'; $order_by = 'desc';
+      }
+
+      $email_campaigns = Models\EmailCampaign::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->orderBy($order_column, $order_by)->get();
 
       if (count($email_campaigns) == 0) {
         return $this->showCreateCampaign();
       } else {
-        return view('emailcampaigns::campaigns', compact('email_campaigns'));
+        $categories = FunctionsController::getCampaignCategories();
+
+        return view('emailcampaigns::campaigns', compact('email_campaigns', 'categories', 'order'))->withCookie($cookie);
       }
     }
 

@@ -31,7 +31,14 @@ foreach ($email->forms as $form) {
 ?>
         </ul>
 <?php 
+  if ($total_members == 0) {
+    echo '<div class="alert alert-warning" role="alert"><strong>' . trans('emailcampaigns::global.no_confirmed_members') . '</strong></div>';
+  }
+} else {
+  echo '<div class="alert alert-warning" role="alert"><strong>' . trans('emailcampaigns::global.no_lists_selected') . '</strong></div>';
 }
+
+if ($total_members > 0) {
 ?>
         <button type="button" class="btn btn-lg btn-block btn-primary btn-material ladda-button onClickSend" data-style="zoom-in" data-spinner-color="#fff"><span class="ladda-label"><i class="mi send"></i> {{ trans('emailcampaigns::global.send_now') }}</span></button>
 
@@ -39,12 +46,11 @@ foreach ($email->forms as $form) {
 
         <div class="form-group">
           <div class="input-group input-group-lg" style="width: 100%">
-            <input type="text" class="form-control datepicker-schedule" value="{{ \Carbon\Carbon::tomorrow(\Auth::user()->timezone)->format('Y-m-d') }}">
+            <input type="text" class="form-control" id="scheduled_at_date" value="{{ \Carbon\Carbon::tomorrow(\Auth::user()->timezone)->format('D M jS Y') }}" data-value="{{ \Carbon\Carbon::tomorrow(\Auth::user()->timezone)->format('Y-m-d') }}">
             <span class="input-group-addon b-0">@</span>
-            <input type="text" class="form-control timepicker-component" value="{{ \Carbon\Carbon::now()->addHours(24)->timezone(\Auth::user()->timezone)->format('H:00') }}">
+            <input type="text" class="form-control" id="scheduled_at_time" value="{{ \Carbon\Carbon::now()->timezone(\Auth::user()->timezone)->format('H:00') }}" data-value="{{ \Carbon\Carbon::now()->timezone(\Auth::user()->timezone)->format('H:00') }}">
           </div>
         </div>
-
 
         <button type="button" class="btn btn-lg btn-block btn-primary btn-material ladda-button onClickSchedule" data-style="zoom-in" data-spinner-color="#fff"><span class="ladda-label"><i class="mi schedule"></i> {{ trans('emailcampaigns::global.schedule') }}</span></button>
 
@@ -57,32 +63,52 @@ foreach ($email->forms as $form) {
     </div>
   </div>
 </div>
-
+<?php
+}
+?>
 @endsection
 
 @section('script')
+<?php if ($total_members > 0) { ?>
 <script>
 $(function() {
 
   /* Date picker */
-  $('.datepicker-schedule').datepicker({
+  $('#scheduled_at_date').datepicker({
     autoclose: true,
-    format: "yyyy-mm-dd",
+    /*format: "yyyy-mm-dd",*/
     todayHighlight: true,
-    startDate: 'today',
-    orientation: 'top'
+    /*startDate: moment().subtract(1, 'days').format('YYYY-MM-D'),*/
+    orientation: 'top',
+    format: {
+      toDisplay: function (date, format, language) {
+        $('#scheduled_at_date').attr('data-value', moment(date).format('YYYY-MM-D'));
+        return moment(date).format('ddd MMM Do YYYY');
+      },
+      toValue: function (date, format, language) {
+        var d = new Date($('#scheduled_at_date').attr('data-value'));
+        return new Date(d);
+      }
+    }
   }).on('show', function(e) {
     $('.datepicker-orient-top, .datepicker-orient-bottom').css({'margin-top':'54px'});
   });
 
   /* Time picker */
-  $('.timepicker-component').timepicker({
+  $('#scheduled_at_time').timepicker({
     minuteStep: 5,
     appendWidgetTo: 'body',
     showSeconds: false,
     showMeridian: true,
     showInputs: false,
     defaultTime: '00:00'
+  }).on('changeTime.timepicker', function(e) {
+    var hours = (e.time.meridian == 'PM') ? parseInt(e.time.hours) + 12: e.time.hours;
+    hours = (parseInt(hours) < 10) ? '0' + hours : hours;
+    var minutes = (parseInt(e.time.minutes) < 10) ? '0' + e.time.minutes : e.time.minutes;
+    var time = hours + ':' + minutes;
+    
+    $('#scheduled_at_time').attr('data-value', time);
   });
 
   $('.onClickSend').on('click', function() {
@@ -92,10 +118,34 @@ $(function() {
     ladda_button = $(this).ladda();
     ladda_button.ladda('start');
 
-    setTimeout(function() {
+    var jqxhr = $.ajax({
+      url: "{{ url('emailcampaigns/send-mailing') }}",
+      data: {sl: "{{ $sl }}", _token: '<?= csrf_token() ?>'},
+      method: 'POST'
+    })
+    .done(function(data) {
+
+      swal({
+        type: data.type,
+        title: data.msg,
+        confirmButtonText: '{{ trans('javascript.ok') }}',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+      }).then(function () {
+        window.parent.lfCloseModal();
+      }, function (dismiss) {
+        window.parent.lfCloseModal();
+      });
+
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
       ladda_button.ladda('stop');
       unblockUI();
-    }, 3000);
+    });
 
   });
 
@@ -106,13 +156,42 @@ $(function() {
     ladda_button = $(this).ladda();
     ladda_button.ladda('start');
 
-    setTimeout(function() {
+    var scheduled_at_date = $('#scheduled_at_date').attr('data-value');
+    var scheduled_at_time = $('#scheduled_at_time').attr('data-value');
+    var scheduled_at = scheduled_at_date + ' ' + scheduled_at_time + ':00';
+
+    var jqxhr = $.ajax({
+      url: "{{ url('emailcampaigns/schedule-mailing') }}",
+      data: {scheduled_at: scheduled_at, sl: "{{ $sl }}", _token: '<?= csrf_token() ?>'},
+      method: 'POST'
+    })
+    .done(function(data) {
+
+      swal({
+        type: data.type,
+        title: data.msg,
+        confirmButtonText: '{{ trans('javascript.ok') }}',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+      }).then(function () {
+        window.parent.lfCloseModal();
+      }, function (dismiss) {
+        window.parent.lfCloseModal();
+      });
+
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
       ladda_button.ladda('stop');
       unblockUI();
-    }, 3000);
+    });
 
   });
 
 });
 </script>
+<?php } ?>
 @endsection

@@ -62,6 +62,7 @@ $(function() {
       '/emailcampaigns/create': function () { loadRoute('emailcampaigns/create', 'emailcampaigns'); },
       '/emailcampaigns/edit/:sl': function (sl) { loadRoute('emailcampaigns/edit?sl=' + sl, 'emailcampaigns'); },
       '/emailcampaigns/emails/:sl': function (sl) { loadRoute('emailcampaigns/emails?sl=' + sl, 'emailcampaigns'); },
+      '/emailcampaigns/emails/order/:sl/:order': function (sl, order) { loadRoute('emailcampaigns/emails?sl=' + sl + '&order=' + order, 'emailcampaigns'); },
       '/emailcampaigns/emails/create/:sl': function (sl) { loadRoute('emailcampaigns/emails/create?sl=' + sl, 'emailcampaigns'); },
       '/emailcampaigns/emails/create/:sl/:template': function (sl, template) { loadRoute('emailcampaigns/emails/create/' + template + '?sl=' + sl, 'emailcampaigns'); },
       '/emailcampaigns/emails/editor/:sl': function (sl) { loadRoute('emailcampaigns/emails/editor?sl=' + sl, 'emailcampaigns', true, true); },

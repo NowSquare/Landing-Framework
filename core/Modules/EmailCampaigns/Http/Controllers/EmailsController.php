@@ -275,22 +275,39 @@ class EmailsController extends Controller
      */
     public function showEmails()
     {
+      $order = request()->input('order', '');
       $sl = request()->input('sl', '');
+      $cookie = null;
 
       if($sl != '') {
         $qs = Core\Secure::string2array($sl);
         $sl = urlencode($sl);
 
+        if ($order != '') {
+          $cookie = \Cookie::queue('e_order', $order, 60 * 24 * 7 * 4 * 6);
+        } else {
+          $order = request()->cookie('e_order', 'new_first');
+        }
+
+        switch($order) {
+          case 'new_first': $order_column = 'created_at'; $order_by = 'desc'; break;
+          case 'old_first': $order_column = 'created_at'; $order_by = 'asc'; break;
+          default: $order_column = 'created_at'; $order_by = 'desc';
+        }
+
         $email_campaign_id = $qs['email_campaign_id'];
         $email_campaign = Models\EmailCampaign::where('user_id', Core\Secure::userId())->where('id', $email_campaign_id)->first();
+
+        // Emails
+        $emails = Models\Email::where('user_id', Core\Secure::userId())->where('email_campaign_id', $email_campaign_id)->orderBy($order_column, $order_by)->get();
 
         // All campaigns
         $email_campaigns = Models\EmailCampaign::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->orderBy('name', 'asc')->get();
 
-        if (count($email_campaign->emails) == 0) {
+        if (count($emails) == 0) {
           return $this->showCreateEmail();
         } else {
-          return view('emailcampaigns::emails', compact('sl', 'email_campaigns', 'email_campaign'));
+          return view('emailcampaigns::emails', compact('sl', 'order', 'email_campaigns', 'email_campaign', 'emails'));
         }
       }
     }
@@ -437,53 +454,6 @@ class EmailsController extends Controller
     }
 
     /**
-     * Publish email
-     */
-    public function publishEmail(Request $request)
-    {
-      $sl = $request->input('sl', '');
-      $html = $request->input('html', '');
-
-      $publish = FunctionsController::saveEmail($sl, $html, true);
-
-      if ($publish) {
-        $response = ['success' => true, 'msg' => trans('javascript.publish_succes')];
-      } else {
-        $response = ['success' => false, 'msg' => 'An error occured'];
-      }
-
-      return response()->json($response);
-    }
-
-    /**
-     * Unpublish email
-     */
-    public function unpublishEmail(Request $request)
-    {
-      $sl = $request->input('sl', '');
-
-      if($sl != '') {
-        $qs = Core\Secure::string2array($sl);
-
-        $email_id = $qs['email_id'];
-        $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $email_id)->first();
-
-        $variant = 1;
-
-        // Update files
-        $storage_root = 'emails/email/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' .  Core\Secure::staticHash($email->email_campaign_id, true) . '/' . Core\Secure::staticHash($email->id, true) . '/' . $variant;
-
-        \Storage::disk('public')->deleteDirectory($storage_root . '/published');
-
-        $response = ['success' => true, 'msg' => trans('javascript.unpublish_succes')];
-      } else {
-        $response = ['success' => false, 'msg' => 'An error occured'];
-      }
-
-      return response()->json($response);
-    }
-
-    /**
      * Settings
      */
     public function editorModalSettings(Request $request)
@@ -612,6 +582,84 @@ class EmailsController extends Controller
           ]);
         }
       }
+    }
+
+    /**
+     * Send mailing now
+     */
+    public function postSendMailing(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+
+        if (is_numeric($email_id)) {
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+
+          //$email->tests = $email->tests + 1;
+          //$email->last_test = date('Y-m-d H:i:s');
+          //$email->last_test_email = $mailto;
+          //$email->save();
+
+          //$job = (new SendTestEmail($mailto, $email));
+          //dispatch($job);
+
+          return response()->json([
+            'type' => 'success', 
+            'reset' => false, 
+            'msg' => trans('emailcampaigns::global.mailing_sent')
+          ]);
+        }
+      }
+    }
+
+    /**
+     * Schedule mailing
+     */
+    public function postScheduleMailing(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $scheduled_at = $request->input('scheduled_at', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+
+        if (is_numeric($email_id)) {
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+          $email->scheduled_at = $scheduled_at;
+          $email->save();
+
+          //$job = (new SendTestEmail($mailto, $email));
+          //dispatch($job);
+
+          return response()->json([
+            'type' => 'success', 
+            'reset' => false, 
+            'msg' => trans('emailcampaigns::global.mailing_scheduled')
+          ]);
+        }
+      }
+    }
+
+    /**
+     * Process scheduled mailings
+     */
+    public static function processScheduledMailings()
+    {
+      /*
+      $html = 'Check scheduled mailings';
+      $response = \Mailgun::raw($html, function ($message) {
+        $message
+          ->subject('Scheduled mailings')
+          ->from('noreply@landingframework.com', 'Landing Framework')
+          ->to('info@s3m.nl')
+          ->trackClicks(false)
+          ->trackOpens(false);
+      });
+      */
     }
 
     /**

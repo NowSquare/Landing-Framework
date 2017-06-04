@@ -20,25 +20,25 @@ class FunctionsController extends Controller
   {
     $items = [];
 
-    $items[] = [
-      "icon" => 'handshake.svg',
-      "category" => "contact",
-      "name" => trans('forms::global.contact'),
-      "desc" => trans('forms::global.contact_desc')
+    $items['contact'] = [
+      'icon' => 'handshake.svg',
+      'category' => 'contact',
+      'name' => trans('forms::global.contact'),
+      'desc' => trans('forms::global.contact_desc')
     ];
 
-    $items[] = [
-      "icon" => 'avatarmaleplus.svg',
-      "category" => "opt_in",
-      "name" => trans('forms::global.opt_in'),
-      "desc" => trans('forms::global.opt_in_desc')
+    $items['opt_in'] = [
+      'icon' => 'avatarmaleplus.svg',
+      'category' => 'opt_in',
+      'name' => trans('forms::global.opt_in'),
+      'desc' => trans('forms::global.opt_in_desc')
     ];
 
-    $items[] = [
-      "icon" => 'attachmentadd.svg',
-      "category" => "download",
-      "name" => trans('forms::global.download'),
-      "desc" => trans('forms::global.download_desc')
+    $items['download'] = [
+      'icon' => 'attachmentadd.svg',
+      'category' => 'download',
+      'name' => trans('forms::global.download'),
+      'desc' => trans('forms::global.download_desc')
     ];
 
     return $items;

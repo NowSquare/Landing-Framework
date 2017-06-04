@@ -19,27 +19,27 @@ class FunctionsController extends Controller
    */
   public static function getCampaignCategories()
   {
-    $items = [];
+    //$items = [];
 
-    $items[] = [
-      "icon" => 'heartenvelope.svg',
-      "category" => "transactional_email",
-      "name" => trans('emailcampaigns::global.transactional_email'),
-      "desc" => trans('emailcampaigns::global.transactional_email_desc')
+    $items['transactional_email'] = [
+      'icon' => 'heartenvelope.svg',
+      'category' => 'transactional_email',
+      'name' => trans_choice('emailcampaigns::global.transactional_email', 1),
+      'desc' => trans('emailcampaigns::global.transactional_email_desc')
     ];
 
-    $items[] = [
-      "icon" => 'letter.svg',
-      "category" => "marketing_email",
-      "name" => trans('emailcampaigns::global.marketing_email'),
-      "desc" => trans('emailcampaigns::global.marketing_email_desc')
+    $items['marketing_email'] = [
+      'icon' => 'letter.svg',
+      'category' => 'marketing_email',
+      'name' => trans_choice('emailcampaigns::global.marketing_email', 1),
+      'desc' => trans('emailcampaigns::global.marketing_email_desc')
     ];
 /*
-    $items[] = [
-      "icon" => 'calendar.svg',
-      "category" => "drip_campaign",
-      "name" => trans('emailcampaigns::global.drip_campaign'),
-      "desc" => trans('emailcampaigns::global.drip_campaign_desc')
+    $items['drip_campaign'] = [
+      'icon' => 'calendar.svg',
+      'category' => 'drip_campaign',
+      'name' => trans_choice('emailcampaigns::global.drip_campaign', 1),
+      'desc' => trans('emailcampaigns::global.drip_campaign_desc')
     ];
 */
     return $items;
@@ -50,27 +50,27 @@ class FunctionsController extends Controller
    */
   public static function getEmailCategories()
   {
-    $items = [];
+    //$items = [];
 
-    $items[] = [
-      "icon" => 'chatbubble.svg',
-      "category" => "opt_in",
-      "name" => trans('emailcampaigns::global.opt_in'),
-      "desc" => trans('emailcampaigns::global.opt_in_desc')
+    $items['opt_in'] = [
+      'icon' => 'chatbubble.svg',
+      'category' => 'opt_in',
+      'name' => trans('emailcampaigns::global.opt_in'),
+      'desc' => trans('emailcampaigns::global.opt_in_desc')
     ];
 
-    $items[] = [
-      "icon" => 'newsletter.svg',
-      "category" => "news",
-      "name" => trans('emailcampaigns::global.news'),
-      "desc" => trans('emailcampaigns::global.news_desc')
+    $items['news'] = [
+      'icon' => 'newsletter.svg',
+      'category' => 'news',
+      'name' => trans('emailcampaigns::global.news'),
+      'desc' => trans('emailcampaigns::global.news_desc')
     ];
 
-    $items[] = [
-      "icon" => 'website.svg',
-      "category" => "other",
-      "name" => trans('emailcampaigns::global.other'),
-      "desc" => trans('emailcampaigns::global.other_desc')
+    $items['other'] = [
+      'icon' => 'website.svg',
+      'category' => 'other',
+      'name' => trans('emailcampaigns::global.other'),
+      'desc' => trans('emailcampaigns::global.other_desc')
     ];
 
     return $items;

@@ -60,7 +60,7 @@ Update settings
 
     var jqxhr = $.ajax({
       url: "{{ url('landingpages/editor/domain') }}",
-      data: {domain: $('#domain').val(), sl: "{{ $sl }}",  _token: '<?= csrf_token() ?>'},
+      data: {domain: $('#domain').val(), sl: "{{ $sl }}", _token: '<?= csrf_token() ?>'},
       method: 'POST'
     })
     .done(function(data) {
