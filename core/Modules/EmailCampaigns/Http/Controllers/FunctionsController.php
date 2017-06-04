@@ -22,7 +22,7 @@ class FunctionsController extends Controller
     //$items = [];
 
     $items['transactional_email'] = [
-      'icon' => 'heartenvelope.svg',
+      'icon' => 'refresh1.svg',
       'category' => 'transactional_email',
       'name' => trans_choice('emailcampaigns::global.transactional_email', 1),
       'desc' => trans('emailcampaigns::global.transactional_email_desc')
