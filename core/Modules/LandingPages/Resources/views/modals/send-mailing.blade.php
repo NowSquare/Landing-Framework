@@ -40,20 +40,24 @@ foreach ($email->forms as $form) {
 
 if ($total_members > 0) {
 ?>
-        <button type="button" class="btn btn-lg btn-block btn-primary btn-material ladda-button onClickSend" data-style="zoom-in" data-spinner-color="#fff"><span class="ladda-label"><i class="mi send"></i> {{ trans('emailcampaigns::global.send_now') }}</span></button>
+        <button type="button" class="btn btn-lg btn-block btn-primary btn-material ladda-button onClickSend" data-style="zoom-in" data-spinner-color="#fff"><span class="ladda-label"><i class="mi send"></i> <?php echo ($scheduled) ? trans('emailcampaigns::global.send_now') . ' &amp; ' . trans('emailcampaigns::global.remove_schedule') : trans('emailcampaigns::global.send_now'); ?></span></button>
 
         <h3 class="seperator"><span>{{ trans('global.or') }}</span></h3>
 
         <div class="form-group">
           <div class="input-group input-group-lg" style="width: 100%">
-            <input type="text" class="form-control" id="scheduled_at_date" value="{{ \Carbon\Carbon::tomorrow(\Auth::user()->timezone)->format('D M jS Y') }}" data-value="{{ \Carbon\Carbon::tomorrow(\Auth::user()->timezone)->format('Y-m-d') }}">
+            <input type="text" class="form-control" id="scheduled_at_date" value="{{ \Carbon\Carbon::parse($scheduled_at)->format('D M jS Y') }}" data-value="{{ \Carbon\Carbon::parse($scheduled_at)->format('Y-m-d') }}">
             <span class="input-group-addon b-0">@</span>
-            <input type="text" class="form-control" id="scheduled_at_time" value="{{ \Carbon\Carbon::now()->timezone(\Auth::user()->timezone)->format('H:00') }}" data-value="{{ \Carbon\Carbon::now()->timezone(\Auth::user()->timezone)->format('H:00') }}">
+            <input type="text" class="form-control" id="scheduled_at_time" value="{{ \Carbon\Carbon::parse($scheduled_at)->format('H:i') }}" data-value="{{ \Carbon\Carbon::parse($scheduled_at)->format('H:i') }}">
           </div>
         </div>
 
-        <button type="button" class="btn btn-lg btn-block btn-primary btn-material ladda-button onClickSchedule" data-style="zoom-in" data-spinner-color="#fff"><span class="ladda-label"><i class="mi schedule"></i> {{ trans('emailcampaigns::global.schedule') }}</span></button>
+        <button type="button" class="btn btn-lg btn-block btn-primary btn-material ladda-button onClickSchedule" data-style="zoom-in" data-spinner-color="#fff"><span class="ladda-label"><i class="mi schedule"></i> <?php echo ($scheduled) ? trans('emailcampaigns::global.update_schedule') : trans('emailcampaigns::global.schedule'); ?></span></button>
+<?php if ($scheduled) { ?>
+        <h3 class="seperator"><span>{{ trans('global.or') }}</span></h3>
 
+        <button type="button" class="btn btn-lg btn-block btn-danger btn-material ladda-button onClickRemoveSchedule" data-style="zoom-in" data-spinner-color="#fff"><span class="ladda-label"><i class="mi remove_circle_outline"></i> <?php echo trans('emailcampaigns::global.remove_schedule'); ?></span></button>
+<?php } ?>
       </form>
 
       <div class="editor-modal-footer">
@@ -82,7 +86,7 @@ $(function() {
     orientation: 'top',
     format: {
       toDisplay: function (date, format, language) {
-        $('#scheduled_at_date').attr('data-value', moment(date).format('YYYY-MM-D'));
+        $('#scheduled_at_date').attr('data-value', moment(date).format('YYYY-MM-DD'));
         return moment(date).format('ddd MMM Do YYYY');
       },
       toValue: function (date, format, language) {
@@ -163,6 +167,44 @@ $(function() {
     var jqxhr = $.ajax({
       url: "{{ url('emailcampaigns/schedule-mailing') }}",
       data: {scheduled_at: scheduled_at, sl: "{{ $sl }}", _token: '<?= csrf_token() ?>'},
+      method: 'POST'
+    })
+    .done(function(data) {
+
+      swal({
+        type: data.type,
+        title: data.msg,
+        confirmButtonText: '{{ trans('javascript.ok') }}',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false
+      }).then(function () {
+        window.parent.lfCloseModal();
+      }, function (dismiss) {
+        window.parent.lfCloseModal();
+      });
+
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
+      ladda_button.ladda('stop');
+      unblockUI();
+    });
+
+  });
+
+  $('.onClickRemoveSchedule').on('click', function() {
+
+    blockUI();
+
+    ladda_button = $(this).ladda();
+    ladda_button.ladda('start');
+
+    var jqxhr = $.ajax({
+      url: "{{ url('emailcampaigns/remove-schedule-mailing') }}",
+      data: {sl: "{{ $sl }}", _token: '<?= csrf_token() ?>'},
       method: 'POST'
     })
     .done(function(data) {

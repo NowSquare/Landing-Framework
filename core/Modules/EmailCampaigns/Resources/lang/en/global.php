@@ -54,6 +54,7 @@ return array(
   "test_email_sent" => "The test email has been queued for sending.",
   "mailing_sent" => "The mailing has been queued and will be sent ASAP.",
   "mailing_scheduled" => "The mailing has been scheduled.",
+  "mailing_schedule_removed" => "The schedule has been removed.",
   "select_forms_placeholder" => "Select one or more lists",
   "confirmation_thank_you" => "Thank you for confirming your email!",
   "confirmation_not_found" => "Email already confirmed or not found.",
@@ -64,6 +65,8 @@ return array(
   "amount_confirmed_members" => ":amount confirmed members",
   "send_now" => "Send now",
   "schedule" => "Schedule",
+  "update_schedule" => "Update schedule",
+  "remove_schedule" => "Remove schedule",
   "no_lists_selected" => "No lists selected.",
   "no_confirmed_members" => "There are no confirmed members to send this mailing to.",
 );

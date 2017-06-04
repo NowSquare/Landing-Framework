@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use \Platform\Controllers\Core;
 use Modules\EmailCampaigns\Http\Models;
 use Modules\EmailCampaigns\Jobs\SendTestEmail;
+use Modules\EmailCampaigns\Jobs\SendMailing;
 
 class EmailsController extends Controller
 {
@@ -16,69 +17,11 @@ class EmailsController extends Controller
      */
     public function sendEmail()
     {
-      $email = Models\Email::where('id', 1)->first();
-      $form = \Modules\Forms\Http\Models\Form::where('id', 1)->first();
-
-      $variant = 1;
-      $view = 'public.emails::' . Core\Secure::staticHash($email->user_id) . '.' . Core\Secure::staticHash($email->email_campaign_id, true) . '.' . $email->local_domain . '.' . $variant . '.index';
-
-      $mailto = 'info@';
-
-      $html = FunctionsController::parseEmail($mailto, $view, $email);
-      echo $html;
-
-      die();
-      $html = 'Hello, this is a <a href="https://landingframework.com">link</a>.';
-      $response = \Mailgun::raw($html, function ($message) {
-        $message
-          ->subject('Mailgun webhook test')
-          ->from('noreply@landingframework.com', 'Landing Framework')
-          ->to('info@s3m.nl')
-          ->tag(['f432', 'e23432'])
-          ->trackClicks(true)
-          ->trackOpens(true);
-      });
-
-      $message_id = $response['id'];
-
-      //dd($message_id);
-      
-      die();
-      \Mail::raw('Text to e-mail', function($message) {
-        $message->from('info@landingframework.com', 'Landing Framework');
-        $message->to('info@s3m.nl');
-      });
-      
-      
-      die();
-
-      // Check for transaction emails linked to this form
-      $forms = \Modules\Forms\Http\Models\Form::whereId(2)->get();
-
-      foreach ($forms as $form) {
-        $emails = $form->emails;
-        if ($emails->count() > 0) {
-          foreach ($emails as $email) {
-            if ($email->emailCampaign->type == 'transactional_email') {
-            echo $email->name;
-            }
-          }
-        }
-      }
 
       die();
       $email = Models\Email::where('id', 1)->first();
       $form = \Modules\Forms\Http\Models\Form::where('id', 1)->first();
 
-      $variant = 1;
-      $view = 'public.emails::' . Core\Secure::staticHash($email->user_id) . '.' . Core\Secure::staticHash($email->email_campaign_id, true) . '.' . $email->local_domain . '.' . $variant . '.index';
-
-      $mailto = 'info@';
-
-      $html = FunctionsController::parseEmail($mailto, $view, $email);
-      echo $html;
-
-      die();
     }
 
     /**
@@ -454,67 +397,6 @@ class EmailsController extends Controller
     }
 
     /**
-     * Settings
-     */
-    public function editorModalSettings(Request $request)
-    {
-      $sl = $request->input('sl', '');
-
-      if ($sl != '') {
-        $qs = Core\Secure::string2array($sl);
-        $email_id = $qs['email_id'];
-
-        if (is_numeric($email_id)) {
-          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
-
-          return view('landingpages::modals.email-settings', compact('email', 'sl'));
-        }
-      }
-    }
-
-    /**
-     * Post settings
-     */
-    public function editorPostSettings(Request $request)
-    {
-      $sl = $request->input('sl', '');
-      $email = $request->input('email', '');
-
-      $input = array(
-        'email' => $email
-      );
-
-      $rules = array(
-        'email' => 'required|max:64'
-      );
-
-      $validator = \Validator::make($input, $rules);
-
-      if($validator->fails()) {
-        $response = array(
-          'type' => 'error', 
-          'reset' => false, 
-          'msg' => $validator->messages()->first()
-        );
-        return response()->json($response);
-      }
-
-      if ($sl != '') {
-        $qs = Core\Secure::string2array($sl);
-        $email_id = $qs['email_id'];
-
-        if (is_numeric($email_id)) {
-          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
-          $email->tests = $email->tests + 1;
-          $email->last_test = date('Y-m-d H:i:s');
-          $email->save();
-
-          return response()->json(['success' => true]);
-        }
-      }
-    }
-
-    /**
      * Send mailing
      */
     public function editorModalSendMailing(Request $request)
@@ -528,7 +410,10 @@ class EmailsController extends Controller
         if (is_numeric($email_id)) {
           $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
 
-          return view('landingpages::modals.send-mailing', compact('email', 'sl'));
+          $scheduled = ($email->scheduled_at != null) ? true : false;
+          $scheduled_at = ($email->scheduled_at != null) ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $email->scheduled_at, 'UTC')->tz(\Auth::user()->timezone)->format('Y-m-d H:i:s')  : \Carbon\Carbon::now(\Auth::user()->timezone)->addDay()->format('Y-m-d H:00:00');
+
+          return view('landingpages::modals.send-mailing', compact('email', 'sl', 'scheduled', 'scheduled_at'));
         }
       }
     }
@@ -597,14 +482,11 @@ class EmailsController extends Controller
 
         if (is_numeric($email_id)) {
           $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+          $email->scheduled_at = null;
+          $email->save();
 
-          //$email->tests = $email->tests + 1;
-          //$email->last_test = date('Y-m-d H:i:s');
-          //$email->last_test_email = $mailto;
-          //$email->save();
-
-          //$job = (new SendTestEmail($mailto, $email));
-          //dispatch($job);
+          $job = (new SendMailing($email));
+          dispatch($job);
 
           return response()->json([
             'type' => 'success', 
@@ -629,11 +511,8 @@ class EmailsController extends Controller
 
         if (is_numeric($email_id)) {
           $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
-          $email->scheduled_at = $scheduled_at;
+          $email->scheduled_at = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $scheduled_at, \Auth::user()->timezone)->tz('UTC');
           $email->save();
-
-          //$job = (new SendTestEmail($mailto, $email));
-          //dispatch($job);
 
           return response()->json([
             'type' => 'success', 
@@ -645,21 +524,47 @@ class EmailsController extends Controller
     }
 
     /**
+     * Remove schedule mailing
+     */
+    public function postRemoveScheduleMailing(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+
+        if (is_numeric($email_id)) {
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+          $email->scheduled_at = null;
+          $email->save();
+
+          return response()->json([
+            'type' => 'success', 
+            'reset' => false, 
+            'msg' => trans('emailcampaigns::global.mailing_schedule_removed')
+          ]);
+        }
+      }
+    }
+
+    /**
      * Process scheduled mailings
      */
     public static function processScheduledMailings()
     {
-      /*
-      $html = 'Check scheduled mailings';
-      $response = \Mailgun::raw($html, function ($message) {
-        $message
-          ->subject('Scheduled mailings')
-          ->from('noreply@landingframework.com', 'Landing Framework')
-          ->to('info@s3m.nl')
-          ->trackClicks(false)
-          ->trackOpens(false);
-      });
-      */
+      $emails = Models\Email::where('scheduled_at', '<=', \Carbon\Carbon::now('UTC')->format('Y-m-d H:i:s'))->get();
+
+      if (count($emails) > 0) {
+        foreach ($emails as $email) {
+
+          $job = (new SendMailing($email));
+          dispatch($job);
+
+          $email->scheduled_at = null;
+          $email->save();
+        }
+      }
     }
 
     /**
