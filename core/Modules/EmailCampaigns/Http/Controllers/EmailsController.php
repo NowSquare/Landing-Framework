@@ -434,6 +434,48 @@ class EmailsController extends Controller
     }
 
     /**
+     * Email settings
+     */
+    public function editorModalSettings(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+
+        if (is_numeric($email_id)) {
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+
+          return view('landingpages::modals.email-settings', compact('email', 'sl'));
+        }
+      }
+    }
+
+    /**
+     * Post email settings
+     */
+    public function editorPostSettings(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $name = $request->input('name', '');
+      $name = substr($name, 0, 200);
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $email_id = $qs['email_id'];
+
+        if (is_numeric($email_id)) {
+          $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $qs['email_id'])->first();
+          $email->name = $name;
+          $email->save();
+
+          return response()->json(['success' => true]);
+        }
+      }
+    }
+
+    /**
      * Send mailing
      */
     public function editorModalSendMailing(Request $request)

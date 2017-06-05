@@ -58,7 +58,8 @@ $i = 1;
 foreach($email_campaigns as $campaign) {
   $sl_campaign = \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $campaign->id]);
 
-  $email_count = count($campaign->emails);
+  $emails = \Modules\EmailCampaigns\Http\Models\Email::where('email_campaign_id', $campaign->id)->orderBy('created_at', 'desc')->get();
+  $email_count = $emails->count();
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" id="item{{ $i }}">
 
@@ -85,8 +86,27 @@ foreach($email_campaigns as $campaign) {
          <table class="table" style="margin-bottom: 0">
            <tr>
              <td width="60" class="text-center" style="padding:0"><a href="#/emailcampaigns/emails/{{ $sl_campaign }}"><img src="{{ url('assets/images/icons/color/' . $categories[$campaign->type]['icon']) }}" style="height:24px;margin: 10px 0"></a></td>
-             <td style="vertical-align: middle"><a href="#/emailcampaigns/emails/{{ $sl_campaign }}" class="link campaign-name">{{ $campaign['name'] }}</a> ({{ number_format($email_count) }})</td>
-           </tr><?php /*
+             <td style="vertical-align: middle"><a href="#/emailcampaigns/emails/{{ $sl_campaign }}" class="link filter-this">{{ $campaign['name'] }}</a> ({{ number_format($email_count) }})</td>
+           </tr>
+<?php if ($email_count > 0) { ?>
+           <tr>
+             <td colspan="2" class="list-group-container">
+               <div class="list-group" style="margin-bottom: 0; margin-right: -1px !important">
+<?php
+
+foreach ($emails as $email) {
+  $sl_email = \Platform\Controllers\Core\Secure::array2string(['email_id' => $email->id]);
+?>
+                 <a href="#/emailcampaigns/emails/editor/{{ $sl_email }}" class="filter-this list-group-item" style="border-right:0;border-left:0">{{ $email->name }}</a>
+<?php
+}
+?>
+               </div>
+             </td>
+           </tr>
+<?php } ?>
+
+<?php /*
            <tr>
              <td width="33" class="text-center"><i class="mi open_in_browser"></i></td>
              <td>{{ trans('global.opens') }}:</td>
@@ -117,6 +137,14 @@ foreach($email_campaigns as $campaign) {
 </div>
 
 <style type="text/css">
+.list-group-container {
+  padding: 0 !important;
+}
+.
+td.list-group-container .list-group-item {
+  border: 0 !important;
+}
+
 .preview-container {
   text-align: center;
   display: block;
@@ -136,11 +164,17 @@ foreach($email_campaigns as $campaign) {
 
 <script>
 $(function() {
+  var $grid = $('.grid').masonry({
+    itemSelector: '.grid-item',
+    columnWidth: '.grid-sizer',
+    percentPosition: true,
+    transitionDuration: '0.2s'
+  });
 
   $('#grid').liveFilter('#grid_search', 'div.grid-item', {
-    filterChildSelector: '.campaign-name',
+    filterChildSelector: '.filter-this',
     after: function() {
-      //$grid.masonry();
+      $grid.masonry();
     }
   });
 
@@ -167,6 +201,7 @@ $('.onClickDelete').on('click', function() {
     })
     .done(function(data) {
       $item.remove();
+      $grid.masonry();
     })
     .fail(function() {
       console.log('error');

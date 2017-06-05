@@ -155,7 +155,7 @@ if (count($forms) == 0) {
       ', $email->name) }}");
 
       $( '#generic_title a' ).on( 'click', function () {
-        $( '#editor_frame' )[ 0 ].contentWindow.$( '.-x-el-fab-form-seo' ).trigger( 'click' );
+        $( '#editor_frame' )[ 0 ].contentWindow.$( '.-x-el-fab-email-settings' ).trigger( 'click' );
       } );
 
       $( '#editor_frame' ).removeClass( 'desktop_mode tablet_mode phone_mode' ); $( '#editor_frame' ).addClass( $( '#device_selector li.active' ).attr( 'id' ) );
