@@ -30,7 +30,7 @@ class LandingPagesController extends Controller
             if (! empty($page)) {
               $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $local_domain . '.' . $variant . '.index';
             } else {
-              return response()->view('errors.unpublished', ['msg' => trans('global.page_not_published')], 404);
+              return response()->view('layouts.simple-message', ['icon' => '&#xE8F5;', 'msg' => trans('global.page_not_published')], 404);
             }
           } else {
             $page = Models\Page::where('id', $landing_page_id)->first();
@@ -44,14 +44,14 @@ class LandingPagesController extends Controller
   
               $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $local_domain . '.' . $variant . '.published.index';
             } else {
-              return response()->view('errors.unpublished', ['msg' => trans('global.page_not_published')], 404);
+              return response()->view('layouts.simple-message', ['icon' => '&#xE8F5;', 'msg' => trans('global.page_not_published')], 404);
             }
           }
 
           try {
             $template = view($view);
           } catch(\Exception $e) {
-            return response()->view('errors.unpublished', ['msg' => trans('global.page_not_published')], 404);
+            return response()->view('layouts.simple-message', ['icon' => '&#xE8F5;', 'msg' => trans('global.page_not_published')], 404);
           }
 
           // Stats
@@ -74,10 +74,10 @@ class LandingPagesController extends Controller
           return $html;
 
         } else {
-          return response()->view('errors.404', ['msg' => trans('global.page_not_published')], 404);
+          return response()->view('layouts.simple-message', ['icon' => '&#xE14B;', 'msg' => trans('global.page_not_found')], 404);
         }
       } else {
-        return response()->view('errors.404', ['msg' => trans('global.page_not_published')], 404);
+        return response()->view('layouts.simple-message', ['icon' => '&#xE14B;', 'msg' => trans('global.page_not_found')], 404);
       }
     }
 

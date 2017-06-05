@@ -3,7 +3,7 @@
     <head>
         <title>{{ $msg }}</title>
 
-        <link href="//fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link href="//fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <style>
@@ -18,7 +18,7 @@
                 color: #555;
                 display: table;
                 font-weight: 100;
-                font-family: 'Lato', sans-serif;
+                font-family: 'Roboto', sans-serif;
             }
 
             .container {
@@ -28,12 +28,13 @@
             }
 
             .content {
+                margin: 1.5rem;
                 text-align: center;
                 display: inline-block;
             }
 
             .title {
-                font-size: 72px;
+                font-size: 64px;
                 margin-bottom: 40px;
             }
           

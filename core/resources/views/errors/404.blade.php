@@ -3,7 +3,7 @@
     <head>
         <title>{{ trans('global.page_not_found') }}</title>
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100" rel="stylesheet" type="text/css">
 
         <style>
             html, body {
@@ -17,7 +17,7 @@
                 color: #B0BEC5;
                 display: table;
                 font-weight: 100;
-                font-family: 'Lato', sans-serif;
+                font-family: 'Roboto', sans-serif;
             }
 
             .container {
@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">404 - {{ trans('global.page_not_found') }}</div>
+                <div class="title">{{ trans('global.page_not_found') }}</div>
             </div>
         </div>
     </body>

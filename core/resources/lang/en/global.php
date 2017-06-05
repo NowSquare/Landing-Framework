@@ -91,9 +91,9 @@ return array(
    */
 
   "page_not_found" => "Page not found",
+  "form_not_found" => "Form not found",
   "page_not_published" => "Page not published",
   "form_not_published" => "Form not published",
-  "email_not_published" => "Email not published",
 
   /*
    |--------------------------------------------------------------------------

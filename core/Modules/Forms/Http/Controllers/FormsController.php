@@ -30,7 +30,7 @@ class FormsController extends Controller
             if (! empty($form)) {
               $view = 'public.forms::' . Core\Secure::staticHash($form->user_id) . '.' . $local_domain . '.' . $variant . '.index';
             } else {
-              return response()->view('errors.unpublished', ['msg' => trans('global.form_not_published')], 404);
+              return response()->view('layouts.simple-message', ['icon' => '&#xE8F5;', 'msg' => trans('global.form_not_published')], 404);
             }
           } else {
             $form = Models\Form::where('id', $form_id)->first();
@@ -44,14 +44,14 @@ class FormsController extends Controller
   
               $view = 'public.forms::' . Core\Secure::staticHash($form->user_id) . '.' . $local_domain . '.' . $variant . '.published.index';
             } else {
-              return response()->view('errors.unpublished', ['msg' => trans('global.form_not_published')], 404);
+              return response()->view('layouts.simple-message', ['icon' => '&#xE8F5;', 'msg' => trans('global.form_not_published')], 404);
             }
           }
 
           try {
             $template = view($view);
           } catch(\Exception $e) {
-            return response()->view('errors.unpublished', ['msg' => trans('global.form_not_published')], 404);
+            return response()->view('layouts.simple-message', ['icon' => '&#xE8F5;', 'msg' => trans('global.form_not_published')], 404);
           }
 
           // Stats
@@ -76,10 +76,10 @@ class FormsController extends Controller
 
           return $html;
         } else {
-          return response()->view('errors.404', [], 404);
+          return response()->view('layouts.simple-message', ['icon' => '&#xE14B;', 'msg' => trans('global.form_not_found')], 404);
         }
       } else {
-        return response()->view('errors.404', [], 404);
+        return response()->view('layouts.simple-message', ['icon' => '&#xE14B;', 'msg' => trans('global.form_not_found')], 404);
       }
     }
 
