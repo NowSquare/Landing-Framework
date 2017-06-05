@@ -514,6 +514,17 @@ class LandingPagesController extends Controller
     }
 
     /**
+     * Editor modal to configure video
+     */
+    public function editorModalVideo(Request $request)
+    {
+      $el_class = $request->input('el_class', '');
+      $link = (boolean) $request->input('link', false);
+
+      return view('landingpages::modals.video', compact('el_class', 'link'));
+    }
+
+    /**
      * Editor modal to configure icon
      */
     public function editorModalIcon(Request $request)

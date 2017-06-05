@@ -206,6 +206,25 @@ var xTplImgButton = '<div class="-x-el-inline-button -x-el-img-edit -x-el-reset"
 '  </ul>' +
 '</div>';
 
+var xTplVideoButton = '<div class="-x-el-inline-button -x-el-video-edit -x-el-reset">' +
+'  <img src="' + _lang["url"] + '/assets/images/editor/icons/filmstrip.svg" class="-x-el-icon"' +
+'    onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/filmstrip-hover.svg\';"' +
+'    onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/filmstrip.svg\';"' +
+'  >' +
+'  <ul class="-x-el-dropdown -x-el-reset">' +
+'    <li class="-x-el-video-update"><a href="javascript:void(0);">' + _lang["modify_video"] + '</a></li>' +
+'    <li class="separator"><hr></li>' +
+'    <li class="-x-el-video-ratio"><a href="javascript:void(0);">' + _lang["ratio"] + ' <div class="-x-el-caret"></div></a>' +
+'      <ul>' +
+'        <li class="-x-el-video-ratio-select" data-x-ratio="21by9"><a href="javascript:void(0);">21:9 <div class="-x-el-checkmark"></div></a></li>' +
+'        <li class="-x-el-video-ratio-select" data-x-ratio="16by9"><a href="javascript:void(0);">16:9 <div class="-x-el-checkmark"></div></a></li>' +
+'        <li class="-x-el-video-ratio-select" data-x-ratio="4by3"><a href="javascript:void(0);">4:3 <div class="-x-el-checkmark"></div></a></li>' +
+'        <li class="-x-el-video-ratio-select" data-x-ratio="1by1"><a href="javascript:void(0);">1:1 <div class="-x-el-checkmark"></div></a></li>' +
+'      </ul>' +
+'   </li>' +
+'  </ul>' +
+'</div>';
+
 var xTplLinkButton = '<div class="-x-el-inline-button -x-el-link-edit -x-el-reset">' + 
   ' <img src="' + _lang["url"] + '/assets/images/editor/icons/link.svg" class="-x-el-icon"' +
   '   onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/link-hover.svg\';"' +

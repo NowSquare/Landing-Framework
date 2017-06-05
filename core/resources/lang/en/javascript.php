@@ -55,6 +55,7 @@ return array(
   "modify_list" => "Modify list",
   "modify_form" => "Modify form",
   "modify_image" => "Modify image",
+  "modify_video" => "Modify video",
   "modify_icon" => "Modify icon",
   "remove" => "Remove",
   "visible" => "Visible",
@@ -80,6 +81,7 @@ return array(
   "variables" => "Variables",
   "test_email" => "Test email",
   "send_mailing" => "Send mailing",
+  "ratio" => "Ratio",
   "" => "",
 
   /*

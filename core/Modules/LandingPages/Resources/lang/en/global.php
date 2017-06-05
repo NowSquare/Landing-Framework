@@ -32,6 +32,7 @@ return array(
 
   "background" => "Background",
   "image" => "Image",
+  "video" => "Video",
   "color" => "Color",
   "gradient" => "Gradient",
   "link" => "Link",

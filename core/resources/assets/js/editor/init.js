@@ -14,6 +14,7 @@ function lfSetPageIsDirty() {
 function lfInitEditor(editor) {
   lfInitBlocks();
   lfInitImages();
+  lfInitVideos();
   lfInitIcons();
   lfInitLinks();
   lfInitLists();
