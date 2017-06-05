@@ -9,6 +9,10 @@ Route::group(['middleware' => 'web', 'prefix' => 'ec', 'namespace' => 'Modules\E
   Route::get('confirm/{email_address}', 'EmailsController@confirmEmailTest');
   Route::get('confirm/{email_address}/{local_domain}/{entry_id}', 'EmailsController@confirmEmail');
 
+  // Unsubscribe email address
+  Route::get('unsubscribe/{email_address}', 'EmailsController@unsubscribeEmailTest');
+  Route::get('unsubscribe/{email_address}/{local_domain}/{entry_id}', 'EmailsController@unsubscribeEmail');
+
   // Public routes
   Route::get('{local_domain}', 'EmailsController@showEmail');
 

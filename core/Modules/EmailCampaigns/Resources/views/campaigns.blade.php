@@ -77,16 +77,15 @@ foreach($email_campaigns as $campaign) {
         </div>
 
         <div class="portlet-heading portlet-default">
-          <h3 class="portlet-title text-dark" title="{{ $campaign['name'] }}">{{ $campaign['name'] }}</h3>
+          <h3 class="portlet-title text-dark" title="{{ $campaign['name'] }}">{{ trans_choice('emailcampaigns::global.' . $campaign->type, $email_count) }}</h3>
           <div class="clearfix"></div>
         </div>
 
         <div class="portlet-body" style="padding:0">
-         <table class="table table-hover table-striped" style="margin-bottom: 0">
+         <table class="table" style="margin-bottom: 0">
            <tr>
-             <td width="33" class="text-center"><i class="mi mail_outline"></i></td>
-             <td><a href="#/emailcampaigns/emails/{{ $sl_campaign }}" class="link">{{ trans_choice('emailcampaigns::global.' . $campaign->type, $email_count) }}</a></td>
-             <td class="text-right"><strong>{{ number_format($email_count) }}</strong></td>
+             <td width="60" class="text-center" style="padding:0"><a href="#/emailcampaigns/emails/{{ $sl_campaign }}"><img src="{{ url('assets/images/icons/color/' . $categories[$campaign->type]['icon']) }}" style="height:24px;margin: 10px 0"></a></td>
+             <td style="vertical-align: middle"><a href="#/emailcampaigns/emails/{{ $sl_campaign }}" class="link campaign-name">{{ $campaign['name'] }}</a> ({{ number_format($email_count) }})</td>
            </tr><?php /*
            <tr>
              <td width="33" class="text-center"><i class="mi open_in_browser"></i></td>
@@ -100,13 +99,13 @@ foreach($email_campaigns as $campaign) {
            </tr>*/ ?>
          </table>
         </div>
-
+<?php /*
         <div>
           <a href="#/emailcampaigns/emails/{{ $sl_campaign }}" class="preview-container" id="container{{ $i }}" title="{{ $campaign['name'] }}">
             <img src="{{ url('assets/images/icons/color/' . $categories[$campaign->type]['icon']) }}">
           </a>
         </div>
-
+*/ ?>
       </div>
 
     </div>
@@ -139,7 +138,7 @@ foreach($email_campaigns as $campaign) {
 $(function() {
 
   $('#grid').liveFilter('#grid_search', 'div.grid-item', {
-    filterChildSelector: '.portlet-title',
+    filterChildSelector: '.campaign-name',
     after: function() {
       //$grid.masonry();
     }

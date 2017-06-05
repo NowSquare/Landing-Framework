@@ -117,36 +117,51 @@ $(function() {
 
   $('.onClickSend').on('click', function() {
 
-    blockUI();
-
     ladda_button = $(this).ladda();
     ladda_button.ladda('start');
 
-    var jqxhr = $.ajax({
-      url: "{{ url('emailcampaigns/send-mailing') }}",
-      data: {sl: "{{ $sl }}", _token: '<?= csrf_token() ?>'},
-      method: 'POST'
-    })
-    .done(function(data) {
+    swal({
+      title: "{{ trans('emailcampaigns::global.confirm_send_mail', ['amount' => $total_members]) }}",
+      confirmButtonText: '{{ trans('javascript.ok') }}',
+      showCancelButton: true,
+      cancelButtonText: '{{ trans('javascript.cancel') }}',
+      allowOutsideClick: false,
+      allowEscapeKey: false,
+      allowEnterKey: false
+    }).then(function () {
 
-      swal({
-        type: data.type,
-        title: data.msg,
-        confirmButtonText: '{{ trans('javascript.ok') }}',
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        allowEnterKey: false
-      }).then(function () {
-        window.parent.lfCloseModal();
-      }, function (dismiss) {
-        window.parent.lfCloseModal();
-      });
+      blockUI();
 
-    })
-    .fail(function() {
-      console.log('error');
-    })
-    .always(function() {
+      var jqxhr = $.ajax({
+        url: "{{ url('emailcampaigns/send-mailing') }}",
+        data: {sl: "{{ $sl }}", _token: '<?= csrf_token() ?>'},
+        method: 'POST'
+      })
+      .done(function(data) {
+
+        swal({
+          type: data.type,
+          title: data.msg,
+          confirmButtonText: '{{ trans('javascript.ok') }}',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false
+        }).then(function () {
+          window.parent.lfCloseModal();
+        }, function (dismiss) {
+          window.parent.lfCloseModal();
+        });
+
+      })
+      .fail(function() {
+        console.log('error');
+      })
+      .always(function() {
+        ladda_button.ladda('stop');
+        unblockUI();
+      });      
+
+    }, function (dismiss) {
       ladda_button.ladda('stop');
       unblockUI();
     });

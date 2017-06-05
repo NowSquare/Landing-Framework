@@ -31,8 +31,10 @@ class AnalyticsController extends Controller
     $date_start = request()->get('start', date('Y-m-d', strtotime(' - 30 day')));
     $date_end = request()->get('end', date('Y-m-d'));
 
-    $from =  $date_start . ' 00:00:00';
-    $to = $date_end . ' 23:59:59';
+    //$from =  $date_start . ' 00:00:00';
+    //$to = $date_end . ' 23:59:59';
+    $from = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date_start . ' 00:00:00', \Auth::user()->timezone)->tz('UTC')->format('Y-m-d H:i:s');
+    $to = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date_end . ' 23:59:59', \Auth::user()->timezone)->tz('UTC')->format('Y-m-d H:i:s');
 
     // All landing page sites
     $sites = Models\Site::where('user_id', Core\Secure::userId())->orderBy('name', 'asc')->get();

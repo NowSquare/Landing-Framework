@@ -122,8 +122,9 @@ class CreateUserTables implements ShouldQueue
           $table->foreign('landing_site_id')->references('id')->on('landing_sites')->onDelete('SET NULL');
           $table->bigInteger('landing_page_id')->unsigned()->nullable();
           $table->foreign('landing_page_id')->references('id')->on('landing_pages')->onDelete('SET NULL');
-          $table->text('message_id')->nullable();
           $table->boolean('confirmed')->default(false);
+          $table->dateTime('confirmed_at')->nullable();
+          $table->dateTime('unsubscribed_at')->nullable();
           $table->boolean('delivered')->default(false);
           $table->boolean('dropped')->default(false);
           $table->boolean('bounced')->default(false);
