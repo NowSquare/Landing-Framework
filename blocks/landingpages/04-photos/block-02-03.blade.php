@@ -8,8 +8,8 @@
           </div>
           <div class="col-md-7">
             <div class="content-padding">
-              <h2 class="-x-text">{!! trans('landingpages::block.photo_01_head') !!}</h2>
-              <div class="-x-text mt-4">
+              <div class="-x-text">
+                <h2>{!! trans('landingpages::block.photo_01_head') !!}</h2>
                 <p class="lead">{!! trans('landingpages::block.photo_p1') !!}</p>
                 <p class="lead">{!! trans('landingpages::block.photo_p2') !!}</p>
               </div>
