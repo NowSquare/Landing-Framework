@@ -14,7 +14,7 @@
                 <p class="lead">{!! trans('landingpages::block.photo_p2') !!}</p>
               </div>
               <div class="btn-container">
-                <a class="btn btn-outline-pink btn-pill -x-link" data-offset="0px 5px" data-attachment="left bottom" data-target-attachment="left top" href="#" role="button">More</i></a>
+                <a class="btn btn-outline-pink btn-pill -x-link" data-offset="0px 5px" data-attachment="left bottom" data-target-attachment="left top" href="#" role="button">{!! trans('landingpages::block.content_button') !!}</i></a>
               </div>
               <div class="mt-2 hor-spacing-sm-a -x-list color-pink" data-repeat="a">
                 <a href="#" role="button"><i class="fa fa-twitter" aria-hidden="true"></i></a>
