@@ -3,8 +3,10 @@
 return array(
   "headers" => "Headers",
   "content" => "Content",
-  "footers" => "Footers",
+  "columns" => "Columns",
   "photos" => "Photos",
+  "video" => "Video",
+  "footers" => "Footers",
 
   // Generic content
   "content_button" => "More",
@@ -44,13 +46,11 @@ return array(
   "content_01_button" => "Order Now",
   "photo_01_head" => "First make it work, then make it better",
 
-  "" => "",
-  "" => "",
-  "" => "",
-  "" => "",
-  "" => "",
-  "" => "",
-  "" => "",
+  // Video embeds
+  "video_embed_url1" => "//www.youtube.com/embed/jgvx9OfZKJw",
+  "video_embed_url2" => "//www.youtube.com/embed/NugRZGDbPFU",
+  "video_embed_url3" => "//www.youtube.com/embed/7KTm6uIi4T0",
+  "video_embed_url4" => "//www.youtube.com/embed/AN-41JjIPEg",
   "" => "",
   "" => ""
 );

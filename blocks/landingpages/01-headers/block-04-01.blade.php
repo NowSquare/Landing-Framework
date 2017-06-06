@@ -5,7 +5,7 @@
         <div class="header-padding-xl">
           <div class="row">
             <div class="col-md-12 text-center text-md-left">
-              <img src="/templates/assets/images/logos/logo-icon-dark.svg" alt="" class="mt-1 -x-img">
+              <img src="/templates/assets/images/logos/green-leaves.svg" alt="" class="mt-1 -x-img">
               <h1 class="-x-text display-2 mt-3">{!! trans('landingpages::block.get_full_access_now') !!}</h1>
               <p class="-x-text lead">{!! trans('landingpages::block.get_full_access_lead') !!}</p>
             </div>

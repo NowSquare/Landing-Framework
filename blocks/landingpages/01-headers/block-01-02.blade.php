@@ -13,7 +13,7 @@
                 <a class="btn btn-outline-dark-ghost btn-xlg btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.header_01_button') !!}</a>
               </div>
               <div class="-x-video embed-responsive embed-responsive-16by9 my-5">
-                <iframe class="embed-responsive-item" src="//www.youtube.com/embed/jgvx9OfZKJw" allowfullscreen=""></iframe>
+                <iframe class="embed-responsive-item" src="{!! trans('landingpages::block.video_embed_url1') !!}" allowfullscreen=""></iframe>
               </div>
             </div>
           </div>

@@ -48,6 +48,6 @@ $(window).resize($.debounce(100, previewSiteResize));
 
 function previewSiteResize()
 {
-	$('#editor_frame').css({ 'height' : (parseInt($(window).outerHeight()) - 64) + 'px'});
+	$('#editor_frame').css({ 'height' : (parseInt($(window).outerHeight()) - 60) + 'px'});
 }
 </script>
