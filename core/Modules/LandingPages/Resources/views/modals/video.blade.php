@@ -70,6 +70,8 @@ Update settings
   });
 
   $('.onClickParse').on('click', function() {
+    blockUI();
+
     $('#input-group-src').removeClass('has-success has-error');
     var jqxhr = $.ajax({
       url: "{{ url('landingpages/editor/parse-embed') }}",
@@ -77,9 +79,6 @@ Update settings
       method: 'POST'
     })
     .done(function(data) {
-
-      blockUI();
-
       if (! data.success) {
         $('#input-group-src').addClass('has-error');
         $('#src_help').html(data.msg);
@@ -88,7 +87,6 @@ Update settings
         $('#src').val(data.url)
         $('#src_help').html(data.msg);
       }
-
     })
     .fail(function() {
       console.log('error');
