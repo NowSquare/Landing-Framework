@@ -451,13 +451,13 @@ class LandingPagesController extends Controller
       $category = $request->input('c', '');
       $block = $request->input('b', '');
 
-      $view = \Cache::remember('landingpages_block_preview_' . $category . '_' . $block, (60 * 24 * 7), function () use($category, $block) {
+      //$view = \Cache::remember('landingpages_block_preview_' . $category . '_' . $block, 0, function () use($category, $block) {
 
         $html = view('block.landingpages::' . $category . '.' . $block);
         return view('landingpages::block-preview', compact('html'))->render();
-      });
+      //});
 
-      return $view;
+      //return $view;
     }
 
     /**

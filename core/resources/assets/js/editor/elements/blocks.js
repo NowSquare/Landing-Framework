@@ -224,6 +224,7 @@ function lfMakeNewBlockEditable($new_block, previous_el, position, block_class) 
 
   // Duplicate other elements
   lfDuplicateBlockImages($new_block);
+  lfDuplicateBlockVideos($new_block);
   lfDuplicateBlockIcons($new_block);
   lfDuplicateBlockLinks($new_block);
   lfDuplicateBlockLists($new_block);

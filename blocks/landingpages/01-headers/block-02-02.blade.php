@@ -1,6 +1,6 @@
 <section class="-x-block">
-  <div class="header text-light -x-block-bg-img" style="background-image:url('/templates/assets/images/headers/landscape-mountains-nature-sky.jpg')">
-    <div class="header-overlay -x-block-bg-color" style="background-color:rgba(37,75,98,0.7)">
+  <div class="header text-light -x-block-bg-img" style="background-image:url('/templates/assets/images/headers/starry-sky-during-night.jpg')">
+    <div id="particles-js-connect" class="header-overlay -x-block-bg-color" style="background-color:rgba(2,20,27,0.7)">
       <div class="container">
         <div class="header-padding no-padding-b">
           <div class="row">
@@ -23,8 +23,10 @@
                 <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button">{!! trans('landingpages::block.header_02_button') !!}</a>
               </div>
             </div>
-            <div class="col-sm-12 col-md-6 push-lg-1 col-lg-5 text-center text-md-right img-container my-2">
-              <img src="/templates/assets/images/visuals/iWatch-White-2.png" alt="" class="-x-img img-fluid">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <div class="-x-video embed-responsive embed-responsive-16by9 mt-sm-0 mt-md-5 mb-5">
+                <iframe class="embed-responsive-item" src="//www.youtube.com/embed/NugRZGDbPFU" allowfullscreen=""></iframe>
+              </div>
             </div>
           </div>
         </div>
