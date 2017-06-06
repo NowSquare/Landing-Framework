@@ -534,16 +534,19 @@ class LandingPagesController extends Controller
 
       if ($url != '') {
 
-        $info = Embed::create($url);
-        $code = $info->code;
-        preg_match('/src="([^"]+)"/', $code, $match);
-        $url = $match[1];
-
-        if (isset($url) && $url != '') {
-          $response = ['success' => true, 'msg' => trans('landingpages::global.url_embed_success'), 'url' => $url];
-        } else {
-          $response = ['success' => false, 'msg' => 'An error occured'];
+        try {
+          $info = Embed::create($url);
+          $code = $info->code;
+          preg_match('/src="([^"]+)"/', $code, $match);
+          $url = $match[1];
+        } catch (\Embed\Exceptions\InvalidUrlException $e) {
+          return response()->json([
+            'success' => false, 
+            'msg' => $e->getMessage()
+          ]);
         }
+
+        $response = ['success' => true, 'msg' => trans('landingpages::global.url_embed_success'), 'url' => $url];
 
         return response()->json($response);
       }

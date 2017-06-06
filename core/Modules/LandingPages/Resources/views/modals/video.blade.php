@@ -70,7 +70,7 @@ Update settings
   });
 
   $('.onClickParse').on('click', function() {
-    $('#input-group-src').removeClass('has-success');
+    $('#input-group-src').removeClass('has-success has-error');
     var jqxhr = $.ajax({
       url: "{{ url('landingpages/editor/parse-embed') }}",
       data: {url: $('#src').val(),  _token: '<?= csrf_token() ?>'},
@@ -81,18 +81,8 @@ Update settings
       blockUI();
 
       if (! data.success) {
-        swal({
-          type: data.type,
-          title: data.msg,
-          confirmButtonText: '{{ trans('javascript.ok') }}',
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          allowEnterKey: false
-        }).then(function () {
-
-        }, function (dismiss) {
-
-        });
+        $('#input-group-src').addClass('has-error');
+        $('#src_help').html(data.msg);
       } else {
         $('#input-group-src').addClass('has-success');
         $('#src').val(data.url)
