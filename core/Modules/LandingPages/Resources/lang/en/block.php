@@ -54,6 +54,16 @@ return array(
   "video_embed_url2" => "//www.youtube.com/embed/NugRZGDbPFU",
   "video_embed_url3" => "//www.youtube.com/embed/7KTm6uIi4T0",
   "video_embed_url4" => "//www.youtube.com/embed/AN-41JjIPEg",
+  "video_embed_url5" => "//player.vimeo.com/video/212562829",
+  "video_embed_url6" => "//player.vimeo.com/video/212562829",
+  "video_embed_url7" => "//player.vimeo.com/video/212562829",
+  "video_embed_url8" => "//player.vimeo.com/video/212562829",
+  "video_embed_url9" => "//player.vimeo.com/video/212562829",
+  "video_embed_url10" => "//player.vimeo.com/video/212562829",
+  "video_embed_url11" => "//player.vimeo.com/video/212562829",
+  "video_embed_url12" => "//player.vimeo.com/video/212562829",
+  "video_embed_url13" => "//player.vimeo.com/video/212562829",
+  "video_embed_url14" => "//player.vimeo.com/video/212562829",
   "" => "",
   "" => ""
 );
