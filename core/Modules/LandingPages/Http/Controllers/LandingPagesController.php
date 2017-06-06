@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use \Platform\Controllers\Core;
 use Modules\LandingPages\Http\Models;
+use Embed\Embed;
 
 class LandingPagesController extends Controller
 {
@@ -522,6 +523,30 @@ class LandingPagesController extends Controller
       $link = (boolean) $request->input('link', false);
 
       return view('landingpages::modals.video', compact('el_class', 'link'));
+    }
+
+    /**
+     * Parse url to see if there's an embedable version
+     */
+    public function editorParseEmbed(Request $request)
+    {
+      $url = $request->input('url', '');
+
+      if ($url != '') {
+
+        $info = Embed::create($url);
+        $code = $info->code;
+        preg_match('/src="([^"]+)"/', $code, $match);
+        $url = $match[1];
+
+        if (isset($url) && $url != '') {
+          $response = ['success' => true, 'msg' => trans('landingpages::global.url_embed_success'), 'url' => $url];
+        } else {
+          $response = ['success' => false, 'msg' => 'An error occured'];
+        }
+
+        return response()->json($response);
+      }
     }
 
     /**

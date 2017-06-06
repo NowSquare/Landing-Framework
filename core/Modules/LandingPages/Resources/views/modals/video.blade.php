@@ -8,19 +8,20 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-10 col-sm-6">
+    <div class="col-xs-12 col-sm-10">
 
       <div class="form-group">
         <label for="src">{{ trans('landingpages::global.url') }}</label>
-        <input type="text" class="form-control" id="src" name="src" autocomplete="off" value="">
 <?php /*
-        <div class="input-group">
+
+        <input type="text" class="form-control" id="src" name="src" autocomplete="off" value="">*/ ?>
+        <div class="input-group" id="input-group-src">
           <input type="text" class="form-control" id="src" name="src" autocomplete="off" value="">
           <div class="input-group-btn add-on">
-            <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="src-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+            <button type="button" class="btn btn-primary onClickParse">{{ trans('landingpages::global.parse') }}</button>
           </div>
-        </div>*/ ?>
-<?php /*        <small class="text-muted">{{ trans('landingpages::global.video_url_help') }}</small>*/ ?>
+        </div>
+        <small class="help-block" id="src_help">{{ trans('landingpages::global.video_url_help') }}</small>
       </div>
 
       <div class="editor-modal-footer">
@@ -66,6 +67,46 @@ Update settings
 <?php } ?>
 
     window.parent.lfCloseModal();
+  });
+
+  $('.onClickParse').on('click', function() {
+    $('#input-group-src').removeClass('has-success');
+    var jqxhr = $.ajax({
+      url: "{{ url('landingpages/editor/parse-embed') }}",
+      data: {url: $('#src').val(),  _token: '<?= csrf_token() ?>'},
+      method: 'POST'
+    })
+    .done(function(data) {
+
+      blockUI();
+
+      if (! data.success) {
+        swal({
+          type: data.type,
+          title: data.msg,
+          confirmButtonText: '{{ trans('javascript.ok') }}',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false
+        }).then(function () {
+
+        }, function (dismiss) {
+
+        });
+      } else {
+        $('#input-group-src').addClass('has-success');
+        $('#src').val(data.url)
+        $('#src_help').html(data.msg);
+      }
+
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
+      unblockUI();
+    });
+
   });
 });
 </script>
