@@ -1,6 +1,6 @@
 <section class="-x-block">
   <div class="header text-dark -x-block-bg-img" style="background-image:url('/templates/assets/images/headers/portrait-of-young-woman-against-white-background.jpg')">
-    <div id="particles-js-diamonds" class="header-overlay -x-block-bg-color" style="background-color:rgba(254,252,248,0.8)">
+    <div class="header-overlay -x-block-bg-color" style="background-color:rgba(254,252,248,0.8)">
       <div class="container">
         <div class="header-padding-xl">
           <div class="row">

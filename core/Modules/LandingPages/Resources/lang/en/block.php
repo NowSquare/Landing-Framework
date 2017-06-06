@@ -27,8 +27,8 @@ return array(
   "financial_freedom" => "How To Gain Financial Freedom",
   "financial_freedom_quote1" => "The speed of your success is limited only by your dedication and what you're willing to sacrifice.",
   "get_instant_access" => "Get Instant Access",
-  "" => "",
-  "" => "",
+  "no_credit_card_required" => "No Credit Card Required!",
+  "sign_up_takes_less_than" => "Sign Up Takes Less Than 60 Seconds",
   "" => "",
 
   // Specific content
