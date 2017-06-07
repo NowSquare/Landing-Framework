@@ -69,6 +69,27 @@ function lfInitVideo($video, unique_class) {
     $edit_button.find('.-x-el-video-ratio-select[data-x-ratio=1by1] .-x-el-checkmark').addClass('-x-checked');
   }
 
+  // Check shadow
+  $edit_button.find('.-x-el-video-shadow-select .-x-el-checkmark').removeClass('-x-checked');
+
+  if ($video.hasClass('mdl-shadow--2dp')) {
+    $edit_button.find('.-x-el-video-shadow-select[data-x-shadow=mdl-shadow--2dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($video.hasClass('mdl-shadow--3dp')) {
+    $edit_button.find('.-x-el-video-shadow-select[data-x-shadow=mdl-shadow--3dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($video.hasClass('mdl-shadow--4dp')) {
+    $edit_button.find('.-x-el-video-shadow-select[data-x-shadow=mdl-shadow--4dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($video.hasClass('mdl-shadow--6dp')) {
+    $edit_button.find('.-x-el-video-shadow-select[data-x-shadow=mdl-shadow--6dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($video.hasClass('mdl-shadow--8dp')) {
+    $edit_button.find('.-x-el-video-shadow-select[data-x-shadow=mdl-shadow--8dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($video.hasClass('mdl-shadow--16dp')) {
+    $edit_button.find('.-x-el-video-shadow-select[data-x-shadow=mdl-shadow--16dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($video.hasClass('mdl-shadow--xlarge')) {
+    $edit_button.find('.-x-el-video-shadow-select[data-x-shadow=mdl-shadow--xlarge] .-x-el-checkmark').addClass('-x-checked');
+  } else {
+    $edit_button.find('.-x-el-video-shadow-select[data-x-shadow=none] .-x-el-checkmark').addClass('-x-checked');
+  }
+
   new Tether({
     element: $edit_button,
     target: $video,
@@ -178,6 +199,37 @@ function lfInitVideos() {
       var $el = $('.' + el_class);
       $el.toggleClass('invisible');
       $(this).find('.-x-el-checkmark').toggleClass('-x-checked');
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+    }
+  });
+
+  /* 
+    Video shadow
+  */
+
+  $('body').on('click', '.-x-el-video-shadow-select', function() {
+    var el_class = $(this).parents('.-x-el-video-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      var selected_shadow = $(this).attr('data-x-shadow');
+
+        // Unselect all
+      $(this).parents('ul').find('.-x-el-video-shadow-select .-x-el-checkmark').removeClass('-x-checked');
+
+      // Select shadow
+      $(this).parents('ul').find('.-x-el-video-shadow-select[data-x-shadow=' + selected_shadow + '] .-x-el-checkmark').addClass('-x-checked');
+
+      // Remove all shadow classes
+      var $el = $('.' + el_class);
+      $el.removeClass('mdl-shadow--2dp mdl-shadow--3dp mdl-shadow--4dp mdl-shadow--6dp mdl-shadow--8dp mdl-shadow--16dp mdl-shadow--xlarge');
+
+      // Add shadow class
+      if (selected_shadow != 'none') {
+        $el.addClass(selected_shadow);
+      }
 
       // Hide dropdown after option has been clicked
       $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);

@@ -44,6 +44,16 @@ function lfInitBlocks() {
         gpu: true
       }
     });
+
+    // Check position on page
+    var offset_bottom = (parseInt($(document).outerHeight(true)) - parseInt($button.position().top));
+    var $dropdown = $button.find('.-x-el-dropdown');
+    $dropdown.removeClass('-x-el-dropdown-up'); 
+
+    if (offset_bottom < 250) {
+      $dropdown.addClass('-x-el-dropdown-up');
+    }
+
   });
 
   lfParseBlocks(true);
