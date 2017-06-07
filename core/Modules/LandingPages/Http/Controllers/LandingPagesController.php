@@ -416,6 +416,33 @@ class LandingPagesController extends Controller
     }
 
     /**
+     * Create screenshots for all blocks
+     */
+    public function createBlockScreenshots()
+    {
+      set_time_limit(0);
+      $lang = 'en';
+      \App::setLocale($lang);
+
+      $categories = FunctionsController::getBlockCategories();
+      foreach ($categories as $category) {
+        $cat_path = public_path() . '/blocks/landingpages/' . $category['dir'];
+
+        $blocks = FunctionsController::getBlocksByCategory($category['dir']);
+        $path = '';
+        foreach ($blocks as $block) {
+          $local_image = $cat_path . '/' . str_replace('.blade.php', '.' . $lang . '.png', $block['file']);
+
+          if (! \File::exists($local_image)) {
+            $url = 'http://prtscn.landingframework.test/grab?url=' . rawurlencode($block['preview'] . '&lang=' . $lang) . '&browser_width=1768&empty_cache=1';
+            $remote_image = file_get_contents($url);
+            \File::copy($remote_image, $local_image);
+          }
+        }
+      }
+    }
+
+    /**
      * Editor modal to insert a new block
      */
     public function editorModalInsertBlock(Request $request)
@@ -451,6 +478,11 @@ class LandingPagesController extends Controller
     {
       $category = $request->input('c', '');
       $block = $request->input('b', '');
+      $lang = $request->input('lang', '');
+
+      if ($lang != '') {
+        \App::setLocale($lang);
+      }
 
       //$view = \Cache::remember('landingpages_block_preview_' . $category . '_' . $block, 0, function () use($category, $block) {
 
@@ -459,6 +491,24 @@ class LandingPagesController extends Controller
       //});
 
       //return $view;
+    }
+
+    /**
+     * Get block html
+     */
+    public function editorBlockHtml(Request $request)
+    {
+      $category = $request->input('c', '');
+      $block = $request->input('b', '');
+      $lang = $request->input('lang', '');
+
+      if ($lang != '') {
+        \App::setLocale($lang);
+      }
+
+      $html = view('block.landingpages::' . $category . '.' . $block);
+      return $html;
+      //return view('landingpages::block-preview', compact('html'))->render();
     }
 
     /**

@@ -159,7 +159,7 @@ $(function() {
       .always(function() {
         ladda_button.ladda('stop');
         unblockUI();
-      });      
+      });
 
     }, function (dismiss) {
       ladda_button.ladda('stop');

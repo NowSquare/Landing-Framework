@@ -17,8 +17,8 @@ foreach($blocks as $block) {
 
       <div class="grid-item-content portlet shadow-box">
         <div>
-          <a href="javascript:void(0);" class="preview-container onClickInsert" data-category="{{ $category }}" data-block="{{ $block['file'] }}" id="container{{ $i }}">
-            <iframe src="{{ $block['preview'] }}" id="frame{{ $i }}" class="preview_frame" frameborder="0" seamless></iframe>
+          <a href="javascript:void(0);" class="preview-container onClickInsert" data-category="{{ $category }}" data-block="{{ str_replace('.blade.php', '', $block['file']) }}" id="container{{ $i }}">
+            <img src="{{ $block['screenshot'] }}" class="img-responsive">
           </a>
         </div>
       </div>
@@ -40,25 +40,9 @@ foreach($blocks as $block) {
 
 @section('script') 
 <style type="text/css">
-.preview-container {
-  display: block;
-  width:100%;
-  height: 120px;
-}
+
 .loader.loader-xs {
   margin: -6px auto 0;
-}
-.preview_frame {
-  pointer-events: none;
-  position: absolute;
-  width: 400%;
-  -ms-zoom: 0.25;
-  -moz-transform: scale(0.25);
-  -moz-transform-origin: 0 0;
-  -o-transform: scale(0.25);
-  -o-transform-origin: 0 0;
-  -webkit-transform: scale(0.25);
-  -webkit-transform-origin: 0 0;
 }
 </style>
 <script>
@@ -70,107 +54,95 @@ $(function() {
     transitionDuration: '0.2s'
   });
 
-  blockUI('.preview-container');
-  $(window).resize(resizeEditFrame);
-
-  function resizeEditFrame() {
-    $('.preview_frame').each(function() {
-      var frame_height = parseInt($(this).contents().find('html').height());
-      var frame_width = parseInt($(this).contents().find('html').width());
-
-      $(this).height(frame_height);
-
-      $(this).parent().height(frame_height / 4);
-      //$(this).parent().width(frame_width / 4);
-      $(this).parent().width('100%');
-    });
-  }
-
-<?php
-$i = 1;
-foreach($blocks as $block) {
-?>
-  $('#frame{{ $i }}').on('load', function() {
-    resizeEditFrame();
-    unblockUI('#container{{ $i }}');
-<?php if ($i == count($blocks)) { ?>
-    setTimeout(function() {
-      $grid.masonry('reloadItems').masonry();
-    }, 100);
-<?php } ?>
-  });
-<?php
-  $i++;
-}
-?>
-
 <?php /* ----------------------------------------------------------------------------
 Insert block
 */ ?>
 
   $('.onClickInsert').on('click', function() {
-    var html = $(this).find('.preview_frame')[0].contentWindow.document.body.innerHTML;
+    blockUI();
+    var c = $(this).attr('data-category');
+    var b = $(this).attr('data-block');
+    var lang = "{{ \App::getLocale() }}";
 
-<?php if ($el_class != '') { ?>
-    var $el = $('.{{ $el_class }}', window.parent.document);
+    var jqxhr = $.ajax({
+      url: "{{ url('landingpages/editor/block-html') }}",
+      data: {c: c, b: b, lang: lang, _token: '<?= csrf_token() ?>'},
+      method: 'POST'
+    })
+    .done(function(html) {
 
-<?php if ($position == 'above') { ?>
-    var $new_block = $(html).insertBefore($el);
+      //var html = $(this).find('.preview_frame')[0].contentWindow.document.body.innerHTML;
 
-    // Make new block editable
-    window.parent.lfMakeNewBlockEditable($new_block, '{{ $el_class }}', 'after');
+  <?php if ($el_class != '') { ?>
+      var $el = $('.{{ $el_class }}', window.parent.document);
 
-    // Scroll to element
-    window.parent.$('html, body').animate({
-      scrollTop: parseInt($el.offset().top) - parseInt($new_block[0].scrollHeight)
-    }, 400);
+  <?php if ($position == 'above') { ?>
+      var $new_block = $(html).insertBefore($el);
 
-<?php } else { ?>
-    var $new_block = $(html).insertAfter($el);
+      // Make new block editable
+      window.parent.lfMakeNewBlockEditable($new_block, '{{ $el_class }}', 'after');
 
-    // Make new block editable
-    window.parent.lfMakeNewBlockEditable($new_block, '{{ $el_class }}', 'above');
+      // Scroll to element
+      window.parent.$('html, body').animate({
+        scrollTop: parseInt($el.offset().top) - parseInt($new_block[0].scrollHeight)
+      }, 400);
 
-    // Scroll to element
-    window.parent.$('html, body').animate({
-      scrollTop: parseInt($el.offset().top) + parseInt($el[0].scrollHeight)
-    }, 400);
-
-<?php } ?>
-
-<?php } else { /* ----------------------------------------------------------------------------
-Insert block at bottom of page
-*/
-?>
-    // Check if there are blocks
-    var last_block_class = $('.-x-block[data-x-el]', window.parent.document).last().attr('data-x-el');
-
-    if (typeof last_block_class !== 'undefined' && last_block_class != null) {
-      var $el = $('.' + last_block_class, window.parent.document);
+  <?php } else { ?>
       var $new_block = $(html).insertAfter($el);
 
       // Make new block editable
-      window.parent.lfMakeNewBlockEditable($new_block, last_block_class, 'above');
-    } else {
-      // There are no blocks
-      var $el = $('body', window.parent.document);
-      var $new_block = $(html).prependTo($el);
+      window.parent.lfMakeNewBlockEditable($new_block, '{{ $el_class }}', 'above');
 
-      // Make new block editable
-      window.parent.lfMakeNewBlockEditable($new_block);
-    }
+      // Scroll to element
+      window.parent.$('html, body').animate({
+        scrollTop: parseInt($el.offset().top) + parseInt($el[0].scrollHeight)
+      }, 400);
 
-    // Scroll to element
-    window.parent.$('html, body').animate({
-      scrollTop: parseInt($el.offset().top) + parseInt($el[0].scrollHeight)
-    }, 400);
+  <?php } ?>
 
-<?php } ?>
+  <?php } else { /* ----------------------------------------------------------------------------
+  Insert block at bottom of page
+  */
+  ?>
+      // Check if there are blocks
+      var last_block_class = $('.-x-block[data-x-el]', window.parent.document).last().attr('data-x-el');
 
-    // Changes detected
-    window.parent.lfSetPageIsDirty();
+      if (typeof last_block_class !== 'undefined' && last_block_class != null) {
+        var $el = $('.' + last_block_class, window.parent.document);
+        var $new_block = $(html).insertAfter($el);
 
-    window.parent.lfCloseModal();
+        // Make new block editable
+        window.parent.lfMakeNewBlockEditable($new_block, last_block_class, 'above');
+      } else {
+        // There are no blocks
+        var $el = $('body', window.parent.document);
+        var $new_block = $(html).prependTo($el);
+
+        // Make new block editable
+        window.parent.lfMakeNewBlockEditable($new_block);
+      }
+
+      // Scroll to element
+      window.parent.$('html, body').animate({
+        scrollTop: parseInt($el.offset().top) + parseInt($el[0].scrollHeight)
+      }, 400);
+
+  <?php } ?>
+
+      // Changes detected
+      window.parent.lfSetPageIsDirty();
+
+      window.parent.lfCloseModal();
+
+
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
+      unblockUI();
+    });      
+
   });
 });
 </script>

@@ -265,7 +265,9 @@ class FunctionsController extends Controller
    */
   public static function getBlocksByCategory($category)
   {
+    $lang = \App::getLocale();
     $category_dir = base_path('../blocks/landingpages/' . $category);
+    $category_path = '/blocks/landingpages/' . $category;
 
     if (\File::exists($category_dir)) {
 
@@ -280,9 +282,34 @@ class FunctionsController extends Controller
         if (ends_with($category_block, '.blade.php')) {
           $block = basename($category_block);
 
+          // Preview screenshot
+          $local_image = $category_path . '/' . str_replace('.blade.php', '.' . $lang . '.png', $block);
+
+          // Create thumbnail for preview if not exists
+          $preview_path = base_path('../' . $local_image);
+          $preview_thumb = 'landingpages/blocks/' . $category . '/' . str_replace('.blade.php', '.' . $lang . '', $block) . '-600.jpg';
+
+          $exists = Storage::disk('public')->exists($preview_thumb);
+
+          if (! $exists) {
+            $img = \Image::make($preview_path);
+
+            $img->resize(600, null, function ($constraint) {
+              $constraint->aspectRatio();
+            });
+
+            $img_string = $img->encode('jpg', 60);
+
+            Storage::disk('public')->put($preview_thumb, $img_string->__toString());
+            $preview_url = Storage::disk('public')->url($preview_thumb);
+          } else {
+            $preview_url = Storage::disk('public')->url($preview_thumb);
+          }
+
           $blocks[] = [
             'file' => $block,
-            'preview' => url('landingpages/editor/block-preview?c=' . $category . '&b=' . str_replace('.blade.php', '', $block)),
+            'preview' => url('landingpages/editor/block-preview?c=' . $category . '&lang=' . $lang . '&b=' . str_replace('.blade.php', '', $block)),
+            'screenshot' => $preview_url,
             'blocks' => $blocks
           ];
         }

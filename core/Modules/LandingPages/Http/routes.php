@@ -2,6 +2,9 @@
 
 Route::group(['middleware' => 'web', 'prefix' => 'lp', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
 
+  // Create screenshots for all blocks
+  //Route::get('grab', 'LandingPagesController@createBlockScreenshots');
+
   // Public routes
   Route::get('{local_domain}', 'LandingPagesController@homePage');
 
@@ -9,7 +12,10 @@ Route::group(['middleware' => 'web', 'prefix' => 'lp', 'namespace' => 'Modules\L
   Route::group(['middleware' => 'auth:web'], function () {
     Route::get('edit/{local_domain}', 'LandingPagesController@editor');
   });
+});
 
+Route::group(['middleware' => ['web'], 'prefix' => 'landingpages', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
+  Route::get('editor/block-preview', 'LandingPagesController@editorBlockPreview');
 });
 
 Route::group(['middleware' => ['web', 'funnel', 'limitation:landingpages.visible'], 'prefix' => 'landingpages', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
@@ -29,7 +35,8 @@ Route::group(['middleware' => ['web', 'funnel', 'limitation:landingpages.visible
 
     // Previews
     Route::get('preview/{template}', 'LandingPagesController@previewTemplate');
-    Route::get('editor/block-preview', 'LandingPagesController@editorBlockPreview');
+    Route::post('editor/block-html', 'LandingPagesController@editorBlockHtml');
+    //Route::get('editor/block-preview', 'LandingPagesController@editorBlockPreview');
 
     // Pickers
     Route::get('editor/picker/button', 'LandingPagesController@editorPickerButton');
