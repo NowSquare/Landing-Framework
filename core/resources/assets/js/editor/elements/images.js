@@ -114,7 +114,7 @@ function lfInitImage($img, unique_class) {
   var $dropdown = $edit_button.find('.-x-el-dropdown');
   $dropdown.removeClass('-x-el-dropdown-up -x-el-dropdown-left');
 
-  if (offset_bottom < 400) {
+  if (offset_bottom < 370) {
     $dropdown.addClass('-x-el-dropdown-up');
   }
 

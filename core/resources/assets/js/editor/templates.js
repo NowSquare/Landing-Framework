@@ -206,7 +206,6 @@ var xTplImgButton = '<div class="-x-el-inline-button -x-el-img-edit -x-el-reset"
 '        <li class="-x-el-img-shadow-select" data-x-shadow="none"><a href="javascript:void(0);">' + _lang["none"] + ' <div class="-x-el-checkmark"></div></a></li>' +
 '        <li class="-x-el-img-shadow-select" data-x-shadow="mdl-shadow--2dp"><a href="javascript:void(0);">2 <div class="-x-el-checkmark"></div></a></li>' +
 '        <li class="-x-el-img-shadow-select" data-x-shadow="mdl-shadow--4dp"><a href="javascript:void(0);">4 <div class="-x-el-checkmark"></div></a></li>' +
-'        <li class="-x-el-img-shadow-select" data-x-shadow="mdl-shadow--3dp"><a href="javascript:void(0);">3 <div class="-x-el-checkmark"></div></a></li>' +
 '        <li class="-x-el-img-shadow-select" data-x-shadow="mdl-shadow--6dp"><a href="javascript:void(0);">6 <div class="-x-el-checkmark"></div></a></li>' +
 '        <li class="-x-el-img-shadow-select" data-x-shadow="mdl-shadow--8dp"><a href="javascript:void(0);">8 <div class="-x-el-checkmark"></div></a></li>' +
 '        <li class="-x-el-img-shadow-select" data-x-shadow="mdl-shadow--16dp"><a href="javascript:void(0);">16 <div class="-x-el-checkmark"></div></a></li>' +
