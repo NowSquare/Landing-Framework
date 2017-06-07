@@ -82,7 +82,10 @@ return array(
   "test_email" => "Test email",
   "send_mailing" => "Send mailing",
   "ratio" => "Ratio",
-  "" => "",
+  "shadow" => "Shadow",
+  "none" => "None",
+  "rounded" => "Rounded",
+  "bordered" => "Bordered",
 
   /*
   |--------------------------------------------------------------------------

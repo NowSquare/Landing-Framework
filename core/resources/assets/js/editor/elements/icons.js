@@ -99,6 +99,20 @@ function lfInitIcon($icon, unique_class) {
       gpu: true
     }
   });
+
+  // Check position on page
+  var offset_bottom = (parseInt($(document).outerHeight(true)) - parseInt($edit_button.position().top));
+  var offset_right = (parseInt($(document).outerWidth(true)) - parseInt($edit_button.position().left));
+  var $dropdown = $edit_button.find('.-x-el-dropdown');
+  $dropdown.removeClass('-x-el-dropdown-up -x-el-dropdown-left');
+
+  if (offset_bottom < 250) {
+    $dropdown.addClass('-x-el-dropdown-up');
+  }
+
+  if (offset_right < 250) {
+    $dropdown.addClass('-x-el-dropdown-left');
+  }
 }
 
 function lfInitIcons() {

@@ -59,6 +59,38 @@ function lfInitImage($img, unique_class) {
     $edit_button.find('.-x-el-img-visible .-x-el-checkmark').addClass('-x-checked');
   }
 
+  // Check shape
+  $edit_button.find('.-x-el-img-shape-select .-x-el-checkmark').removeClass('-x-checked');
+
+  if ($img.hasClass('rounded')) {
+    $edit_button.find('.-x-el-img-shape-select[data-x-shape=rounded] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($img.hasClass('img-thumbnail')) {
+    $edit_button.find('.-x-el-img-shape-select[data-x-shape=img-thumbnail] .-x-el-checkmark').addClass('-x-checked');
+  } else {
+    $edit_button.find('.-x-el-img-shape-select[data-x-shape=none] .-x-el-checkmark').addClass('-x-checked');
+  }
+
+  // Check shadow
+  $edit_button.find('.-x-el-img-shadow-select .-x-el-checkmark').removeClass('-x-checked');
+
+  if ($img.hasClass('mdl-shadow--2dp')) {
+    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--2dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($img.hasClass('mdl-shadow--3dp')) {
+    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--3dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($img.hasClass('mdl-shadow--4dp')) {
+    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--4dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($img.hasClass('mdl-shadow--6dp')) {
+    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--6dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($img.hasClass('mdl-shadow--8dp')) {
+    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--8dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($img.hasClass('mdl-shadow--16dp')) {
+    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--16dp] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($img.hasClass('mdl-shadow--xlarge')) {
+    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--xlarge] .-x-el-checkmark').addClass('-x-checked');
+  } else {
+    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=none] .-x-el-checkmark').addClass('-x-checked');
+  }
+
   new Tether({
     element: $edit_button,
     target: $img,
@@ -75,6 +107,20 @@ function lfInitImage($img, unique_class) {
       gpu: true
     }
   });
+
+  // Check position on page
+  var offset_bottom = (parseInt($(document).outerHeight(true)) - parseInt($edit_button.position().top));
+  var offset_right = (parseInt($(document).outerWidth(true)) - parseInt($edit_button.position().left));
+  var $dropdown = $edit_button.find('.-x-el-dropdown');
+  $dropdown.removeClass('-x-el-dropdown-up -x-el-dropdown-left');
+
+  if (offset_bottom < 400) {
+    $dropdown.addClass('-x-el-dropdown-up');
+  }
+
+  if (offset_right < 250) {
+    $dropdown.addClass('-x-el-dropdown-left');
+  }
 }
 
 function lfInitImages() {
@@ -156,6 +202,68 @@ function lfInitImages() {
 
       // Changes detected
       lfSetPageIsDirty();
+    }
+  });
+
+  /* 
+    Image shape
+  */
+
+  $('body').on('click', '.-x-el-img-shape-select', function() {
+    var el_class = $(this).parents('.-x-el-img-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      var selected_shape = $(this).attr('data-x-shape');
+
+      // Unselect all
+      $(this).parents('ul').find('.-x-el-img-shape-select .-x-el-checkmark').removeClass('-x-checked');
+
+      // Select shape
+      $(this).parents('ul').find('.-x-el-img-shape-select[data-x-shape=' + selected_shape + '] .-x-el-checkmark').addClass('-x-checked');
+
+      // Remove all shape classes
+      var $el = $('.' + el_class);
+      $el.removeClass('rounded img-thumbnail');
+
+      // Add shape class
+      if (selected_shape != 'none') {
+        $el.addClass(selected_shape);
+      }
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+    }
+  });
+
+  /* 
+    Image shadow
+  */
+
+  $('body').on('click', '.-x-el-img-shadow-select', function() {
+    var el_class = $(this).parents('.-x-el-img-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof el_class !== typeof undefined && el_class !== false) {
+
+      var selected_shadow = $(this).attr('data-x-shadow');
+
+        // Unselect all
+      $(this).parents('ul').find('.-x-el-img-shadow-select .-x-el-checkmark').removeClass('-x-checked');
+
+      // Select shadow
+      $(this).parents('ul').find('.-x-el-img-shadow-select[data-x-shadow=' + selected_shadow + '] .-x-el-checkmark').addClass('-x-checked');
+
+      // Remove all shadow classes
+      var $el = $('.' + el_class);
+      $el.removeClass('mdl-shadow--2dp mdl-shadow--3dp mdl-shadow--4dp mdl-shadow--6dp mdl-shadow--8dp mdl-shadow--16dp mdl-shadow--xlarge');
+
+      // Add shadow class
+      if (selected_shadow != 'none') {
+        $el.addClass(selected_shadow);
+      }
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
     }
   });
 }
