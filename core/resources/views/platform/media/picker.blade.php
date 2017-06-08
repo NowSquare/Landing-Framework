@@ -14,6 +14,11 @@
 <?php if($locale != 'en'){ ?>
   <script src="<?= url("assets/packages/elfinder/js/i18n/elfinder.$locale.js") ?>"></script>
 <?php } ?>
+<style type="text/css">
+  html, body {
+    overflow: hidden;
+  }
+</style>
 </head>
 <body class="elfinder-picker">
 <div id="elfinder" class="el-picker"></div>

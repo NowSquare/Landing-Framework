@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <title>elFinder 2.0</title>
   <style type="text/css">
-html, body {
-  background-color: transparent !important;
-}
-</style>
+  html, body {
+    background-color: transparent !important;
+    overflow: hidden !important;
+  }
+  </style>
   <link rel="stylesheet" href="<?= url('assets/packages/jquery-ui/jquery-ui.min.css') ?>" />
   <link href="{{ asset('assets/css/styles.min.css') }}" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="<?= url('assets/css/elfinder.min.css') ?>">
