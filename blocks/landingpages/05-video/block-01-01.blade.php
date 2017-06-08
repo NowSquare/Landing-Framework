@@ -4,7 +4,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
-            <img src="{{ url('/templates/assets/images/logos/logo-blue.svg') }}" class="-x-img" data-offset="10px 5px" data-attachment="bottom right" data-target-attachment="center left">
+            <img src="{{ url('/templates/assets/images/logos/logo-blue.svg') }}" class="-x-img" data-offset="5px 5px" data-attachment="top right" data-target-attachment="top left">
           </div>
           <div class="col-12">
             <div class="content-padding text-center">
