@@ -291,7 +291,7 @@ class FunctionsController extends Controller
 
           $exists = Storage::disk('public')->exists($preview_thumb);
 
-          if (! $exists) {
+          if (! $exists && \File::exists(base_path() . '/..' . $local_image)) {
             $img = \Image::make($preview_path);
 
             $img->resize(600, null, function ($constraint) {

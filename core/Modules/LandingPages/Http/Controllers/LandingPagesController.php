@@ -73,7 +73,6 @@ class LandingPagesController extends Controller
           $html = Core\Parser::beautifyHtml($dom);
 
           return $html;
-
         } else {
           return response()->view('layouts.simple-message', ['icon' => '&#xE14B;', 'msg' => trans('global.page_not_found')], 404);
         }
@@ -110,26 +109,20 @@ class LandingPagesController extends Controller
           // Put template html into variable.
           $template = view($view);
 
-          // Suppress libxml errors
-          // Resolves an issue with some servers.
+          // Suppress libxml errors, resolves an issue with some servers.
           libxml_use_internal_errors(true);
 
-          // Create a new PHPQuery object to manipulate
-          // the DOM in a similar way as jQuery.
+          // Create a new PHPQuery object to manipulate the DOM in a similar way as jQuery.
           $dom = \phpQuery::newDocumentHTML($template);
           \phpQuery::selectDocument($dom);
 
-          // Insert scripts right after last js include
-          // to make sure jQuery and Bootstrap 4 js are
-          // included in template, while inline <script>'s
-          // can safely run below.
+          // Insert scripts right after last js include to make sure jQuery and Bootstrap 4 js are included in template, while inline <script>'s can safely run below.
           pq('head')->find('script[src]:first')->before(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/translations?lang=' . $page->site->language) . '&editor=1"></script>');
           pq('head')->find('script[src]:last')->before(PHP_EOL . '<script class="-x-editor-asset">var lf_published_url = "' . $published_url . '";var lf_sl = "' . $sl . '";var lf_csrf_token = "' . csrf_token() . '";</script>');
           pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/javascript?lang=' . \App::getLocale()) . '"></script>');
           pq('head')->find('script[src]:last')->after(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/js/scripts.editor.min.js?v=' . config('version.editor')) . '"></script>');
 
-          // End stylesheet right before </head> to make
-          // sure it overrides other stylesheets.
+          // End stylesheet right before </head> to make sure it overrides other stylesheets.
           pq('head')->append(PHP_EOL . '<link class="-x-editor-asset" rel="stylesheet" type="text/css" href="' . url('assets/css/styles.editor.min.css?v=' . config('version.editor')) . '" />');
 
           // Init editor

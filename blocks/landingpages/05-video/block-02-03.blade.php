@@ -1,14 +1,14 @@
 <section class="-x-block">
   <div class="content -x-block-bg-img text-light" style="">
-    <div class="content-overlay -x-block-bg-color" style="background-color:rgba(255,87,34,1)">
+    <div class="content-overlay -x-block-bg-color" style="background-color:rgba(27,94,32,1)">
       <div class="container">
         <div class="row">
-          <div class="col-md-5">
+          <div class="col-md-5 push-md-7">
             <div class="-x-video embed-responsive embed-responsive-16by9 my-3">
-              <iframe class="embed-responsive-item" src="{!! trans('landingpages::block.video_embed_url13') !!}" allowfullscreen=""></iframe>
+              <iframe class="embed-responsive-item" src="{!! trans('landingpages::block.video_embed_url7') !!}" allowfullscreen=""></iframe>
             </div>
           </div>
-          <div class="col-md-7">
+          <div class="col-md-7 pull-md-5">
             <div class="content-padding">
               <div class="-x-text">
                 <h2>{!! trans('landingpages::block.photo_01_head') !!}</h2>

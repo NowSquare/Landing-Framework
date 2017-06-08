@@ -6,8 +6,10 @@
           <div class="row">
             <div class="col-md-12 text-center text-md-left">
               <img src="/templates/assets/images/logos/green-leaves.svg" alt="" class="mt-1 -x-img">
-              <h1 class="-x-text display-2 mt-3">{!! trans('landingpages::block.get_full_access_now') !!}</h1>
-              <p class="-x-text lead">{!! trans('landingpages::block.get_full_access_lead') !!}</p>
+              <div class="-x-text">
+                <h1 class="display-2 mt-3">{!! trans('landingpages::block.get_full_access_now') !!}</h1>
+                <p class="lead">{!! trans('landingpages::block.get_full_access_lead') !!}</p>
+              </div>
             </div>
           </div>
           <div class="mt-3 mb-1 text-center text-md-left">

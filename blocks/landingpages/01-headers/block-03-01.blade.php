@@ -6,8 +6,8 @@
           <div class="row">
             <div class="col-md-12 col-lg-7 push-lg-5 text-center text-lg-right">
               <img src="/templates/assets/images/logos/logo-icon-light.svg" alt="" class="mb-3 -x-img" data-offset="0px 0px" data-attachment="bottom left" data-target-attachment="top right" data-dropdown-position="left">
-              <h1 class="display-3 -x-text">{!! trans('landingpages::block.header_03_head') !!}</h1>
               <div class="-x-text">
+                <h1 class="display-3">{!! trans('landingpages::block.header_03_head') !!}</h1>
                 <p class="lead">{!! trans('landingpages::block.header_01_line') !!}</p>
               </div>
               <div class="btn-container btn-stack-md hor-spacing-md-a mb-3">

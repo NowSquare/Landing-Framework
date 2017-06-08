@@ -5,9 +5,10 @@
         <div class="header-padding-xl">
           <div class="row">
             <div class="col-md-6 text-center text-md-left">
-              <h1 class="-x-text display-4 mt-3">{!! trans('landingpages::block.get_full_access_now') !!}</h1>
-              <p class="-x-text lead">{!! trans('landingpages::block.get_full_access_lead') !!}</p>
-
+              <div class="-x-text">
+                <h1 class="display-4 mt-3">{!! trans('landingpages::block.get_full_access_now') !!}</h1>
+                <p class="lead">{!! trans('landingpages::block.get_full_access_lead') !!}</p>
+              </div>
               <div class="mt-3 mb-1 text-center text-md-left">
                 <a class="btn btn-outline-ghost btn-xlg btn-pill -x-link" href="#" role="button" data-target-attachment="left top" data-offset="0px 25px">{!! trans('landingpages::block.get_full_access_now') !!}</a>
                 <div class="-x-text my-2">

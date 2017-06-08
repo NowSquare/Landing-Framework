@@ -5,8 +5,8 @@
         <div class="header-padding-xl">
           <div class="row">
             <div class="col-md-12 col-lg-6 push-lg-6 text-center text-lg-right">
-              <h1 class="display-3 -x-text">{!! trans('landingpages::block.header_03_head') !!}</h1>
               <div class="-x-text">
+                <h1 class="display-3">{!! trans('landingpages::block.header_03_head') !!}</h1>
                 <p class="lead">{!! trans('landingpages::block.header_01_line') !!}</p>
               </div>
               <div class="btn-container btn-stack-md hor-spacing-md-a mb-3">

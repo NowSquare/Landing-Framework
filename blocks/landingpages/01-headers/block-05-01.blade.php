@@ -8,8 +8,10 @@
               <img src="/templates/assets/images/visuals/iWatch-White.png" alt="" class="img-fluid -x-img">
             </div>
             <div class="col-12 col-lg-6 pull-lg-6 text-md-center text-lg-right">
-              <h1 class="display-3 mt-3 -x-text">{!! trans('landingpages::block.financial_freedom') !!}</h1>
-              <p class="lead -x-text">{!! trans('landingpages::block.financial_freedom_quote1') !!}</p>
+              <div class="-x-text">
+                <h1 class="display-3 mt-3">{!! trans('landingpages::block.financial_freedom') !!}</h1>
+                <p class="lead">{!! trans('landingpages::block.financial_freedom_quote1') !!}</p>
+              </div>
               <div class="btn-container btn-stack-md">
                 <a class="btn btn-dark-ghost btn-xlg -x-link" href="#" role="button">{!! trans('landingpages::block.get_instant_access') !!}</a>
               </div>
