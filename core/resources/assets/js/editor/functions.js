@@ -247,6 +247,9 @@ function lfGetHtml() {
   // Get full html including DOCTYPE
   var html = lfGetDocTypeAsString() + $html[0].outerHTML;
 
+  html = html.replace(/url\(&quot;/g, "url('");
+  html = html.replace(/&quot;\)/g, "')");
+
   return html;
 }
 
