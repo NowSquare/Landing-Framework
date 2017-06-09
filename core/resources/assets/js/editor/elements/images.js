@@ -71,24 +71,28 @@ function lfInitImage($img, unique_class) {
   }
 
   // Check shadow
-  $edit_button.find('.-x-el-img-shadow-select .-x-el-checkmark').removeClass('-x-checked');
-
-  if ($img.hasClass('mdl-shadow--2dp')) {
-    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--2dp] .-x-el-checkmark').addClass('-x-checked');
-  } else if ($img.hasClass('mdl-shadow--3dp')) {
-    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--3dp] .-x-el-checkmark').addClass('-x-checked');
-  } else if ($img.hasClass('mdl-shadow--4dp')) {
-    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--4dp] .-x-el-checkmark').addClass('-x-checked');
-  } else if ($img.hasClass('mdl-shadow--6dp')) {
-    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--6dp] .-x-el-checkmark').addClass('-x-checked');
-  } else if ($img.hasClass('mdl-shadow--8dp')) {
-    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--8dp] .-x-el-checkmark').addClass('-x-checked');
-  } else if ($img.hasClass('mdl-shadow--16dp')) {
-    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--16dp] .-x-el-checkmark').addClass('-x-checked');
-  } else if ($img.hasClass('mdl-shadow--xlarge')) {
-    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--xlarge] .-x-el-checkmark').addClass('-x-checked');
+  if ($img.hasClass('-x-no-shadow')) {
+    $edit_button.find('.-x-el-img-shadow').addClass('-x-el-disabled');
   } else {
-    $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=none] .-x-el-checkmark').addClass('-x-checked');
+    $edit_button.find('.-x-el-img-shadow-select .-x-el-checkmark').removeClass('-x-checked');
+
+    if ($img.hasClass('mdl-shadow--2dp')) {
+      $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--2dp] .-x-el-checkmark').addClass('-x-checked');
+    } else if ($img.hasClass('mdl-shadow--3dp')) {
+      $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--3dp] .-x-el-checkmark').addClass('-x-checked');
+    } else if ($img.hasClass('mdl-shadow--4dp')) {
+      $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--4dp] .-x-el-checkmark').addClass('-x-checked');
+    } else if ($img.hasClass('mdl-shadow--6dp')) {
+      $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--6dp] .-x-el-checkmark').addClass('-x-checked');
+    } else if ($img.hasClass('mdl-shadow--8dp')) {
+      $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--8dp] .-x-el-checkmark').addClass('-x-checked');
+    } else if ($img.hasClass('mdl-shadow--16dp')) {
+      $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--16dp] .-x-el-checkmark').addClass('-x-checked');
+    } else if ($img.hasClass('mdl-shadow--xlarge')) {
+      $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=mdl-shadow--xlarge] .-x-el-checkmark').addClass('-x-checked');
+    } else {
+      $edit_button.find('.-x-el-img-shadow-select[data-x-shadow=none] .-x-el-checkmark').addClass('-x-checked');
+    }
   }
 
   new Tether({

@@ -124,6 +124,14 @@ var xTplBlockButton = '<div class="-x-el-inline-button -x-el-block-edit -x-el-re
   '  <ul class="-x-el-dropdown -x-el-reset">' +
   '    <li class="-x-el-block-background"><a href="javascript:void(0);">' + _lang["background"] + '</a></li>' +
   '    <li class="separator"><hr></li>' +
+  '    <li class="-x-el-block-padding -x-el-disabled"><a href="javascript:void(0);">' + _lang["padding"] + ' <div class="-x-el-caret"></div></a>' +
+  '      <ul>' +
+  '       <li class="-x-el-block-padding-select" data-x-padding="none"><a href="javascript:void(0);">' + _lang["none"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-block-padding-select" data-x-padding="l"><a href="javascript:void(0);">' + _lang["L"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-block-padding-select" data-x-padding="xl"><a href="javascript:void(0);">' + _lang["XL"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-block-padding-select" data-x-padding="xxl"><a href="javascript:void(0);">' + _lang["XXL"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '      </ul>' +
+  '    </li>' +
   '    <li class="-x-el-block-move"><a href="javascript:void(0);">' + _lang["move"] + ' <div class="-x-el-caret"></div></a>' +
   '      <ul>' +
   '        <li class="-x-el-block-move-up"><a href="javascript:void(0);">' + _lang["move_up"] + '</a></li>' +

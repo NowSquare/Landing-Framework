@@ -86,6 +86,7 @@ return array(
   "none" => "None",
   "rounded" => "Rounded",
   "bordered" => "Bordered",
+  "padding" => "Padding",
 
   /*
   |--------------------------------------------------------------------------

@@ -1,4 +1,8 @@
+// Elements with padding config
+var lf_padding_elements = ['content', 'photos', 'footer', 'cards'];
+
 function lfInitBlocks() {
+
   /*
     Loop through all blocks, generate semi-unique class
     to reference block for use in the editor. Add `-clone`
@@ -177,6 +181,46 @@ function lfInitBlocks() {
       lfMakeNewBlockEditable($new_block, block_class, 'after', block_class);
     }
   });
+
+  /* 
+    Change padding
+  */
+
+  $('body').on('click', '.-x-el-block-padding-select', function() {
+    var block_class = $(this).parents('.-x-el-block-edit-clone').attr('data-x-el');
+
+    if (! $(this).hasClass('-x-el-disabled') && typeof block_class !== typeof undefined && block_class !== false) {
+
+      var selected_padding = $(this).attr('data-x-padding');
+
+      // Unselect all
+      $(this).parents('ul').find('.-x-el-block-padding-select .-x-el-checkmark').removeClass('-x-checked');
+
+      // Select padding
+      $(this).parents('ul').find('.-x-el-block-padding-select[data-x-padding=' + selected_padding + '] .-x-el-checkmark').addClass('-x-checked');
+
+      // Find element type
+      for (var i = 0, len = lf_padding_elements.length; i < len; i++) {
+        var padding_element = lf_padding_elements[i];
+        var $el = $('.' + block_class);
+        
+        if ($el.find('.' + padding_element).length) {
+          var $padding_element = $el.find('.' + padding_element);
+          // Remove all padding classes
+          $padding_element.removeClass(padding_element + '-padding-l ' + padding_element + '-padding-xl ' + padding_element + '-padding-xxl');
+
+          // Add padding class
+          if (selected_padding != 'none') {
+            $padding_element.addClass(padding_element + '-padding-' + selected_padding);
+          }
+        }
+      }
+
+      // Hide dropdown after option has been clicked
+      $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+    }
+  });
+
 }
 
 /* 
@@ -257,7 +301,8 @@ function lfParseBlocks(init) {
   var zIndex = 200;
   
   $('.-x-block').each(function() {
-    var block_class = $(this).attr('data-x-el');
+    var $block = $(this);
+    var block_class = $block.attr('data-x-el');
     var $block_settings = $('.-x-el-block-edit-clone[data-x-el=' + block_class + ']');
 
     // Check if block is first
@@ -282,6 +327,26 @@ function lfParseBlocks(init) {
     } else {
       $block_settings.find('.-x-el-block-move-down').removeClass('-x-el-disabled');
       $('.' + block_class).attr('data-x-next', next.attr('data-x-el'));
+    }
+
+    // Check padding
+    for (var i = 0, len = lf_padding_elements.length; i < len; i++) {
+      var padding_element = lf_padding_elements[i];
+
+      if ($block.find('.' + padding_element).length) {
+        $block_padding = $block.find('.' + padding_element);
+        $block_settings.find('.-x-el-block-padding').removeClass('-x-el-disabled');
+
+        if ($block_padding.hasClass(padding_element + '-padding-l')) {
+          $block_settings.find('.-x-el-block-padding-select[data-x-padding=l] .-x-el-checkmark').addClass('-x-checked');
+        } else if ($block_padding.hasClass('photos-padding-xl')) {
+          $block_settings.find('.-x-el-block-padding-select[data-x-padding=xl] .-x-el-checkmark').addClass('-x-checked');
+        } else if ($block_padding.hasClass('photos-padding-xxl')) {
+          $block_settings.find('.-x-el-block-padding-select[data-x-padding=xxl] .-x-el-checkmark').addClass('-x-checked');
+        } else {
+          $block_settings.find('.-x-el-block-padding-select[data-x-padding=none] .-x-el-checkmark').addClass('-x-checked');
+        }
+      }
     }
 
     // Set z-index to prevent overlapping of dropdown menus
