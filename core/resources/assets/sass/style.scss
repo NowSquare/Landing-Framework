@@ -178,18 +178,19 @@ html.editor-modal body {
 
 .btn-close {
   z-index: 100;
+  background: url(../images/icons/close.svg) no-repeat !important;
   position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 24px;
-  height: 24px;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
   opacity: 0.3;
 }
 
 .btn-close:hover {
   opacity: 1;
 }
-
+/*
 .btn-close:before, .btn-close:after {
   position: absolute;
   content: ' ';
@@ -204,7 +205,7 @@ html.editor-modal body {
 
 .btn-close:after {
   transform: rotate(-45deg);
-}
+}*/
 
 h3.seperator {
   color: #aaa;
@@ -291,19 +292,19 @@ h3.seperator {
 }
 
 #cboxClose {
-  background: none !important;
-/*  background: url(../images/colorbox/controls.png) no-repeat -52px -3px!important;*/
-  margin-top: 33px!important;
-  margin-right: 17px!important;
-  width: 24px!important;
-  height: 24px!important;
+/*  background: none !important;*/
+  background: url(../images/icons/close.svg) no-repeat !important;
+  margin-top: 36px!important;
+  margin-right: 16px!important;
+  width: 20px!important;
+  height: 20px!important;
   opacity: 0.3;
 }
 
 #cboxClose:hover {
   opacity: 1;
 }
-
+/*
 #cboxClose:before, #cboxClose:after {
   position: absolute;
   content: ' ';
@@ -318,7 +319,7 @@ h3.seperator {
   height: 24px;
   transform: rotate(-45deg);
 }
-
+*/
 #colorbox,
 #cboxWrapper {
   width: 100% !important;
@@ -337,17 +338,18 @@ h3.seperator {
 
   #cboxClose {
     background-color: #fff!important;
+    background: url(../images/icons/close-circle.svg) no-repeat !important;
     border-radius: 50%;
     width: 32px !important;
     height: 32px !important;
     margin-top: 28px!important;
     margin-right: 25px!important;
   }
-
+/*
   #cboxClose:before, #cboxClose:after {
     top: 4px;
     left: 15px;
-  }
+  }*/
 }
 
 #cboxContent {
