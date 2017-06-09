@@ -105,7 +105,7 @@ $(function() {
 Set settings
 */ ?>
 
-<?php if ($el_class != '') { ?>
+<?php if ($el_class != '' && $el_class != 'body') { ?>
   var $el = $('.{{ $el_class }}', window.parent.document);
 
 <?php if ($bg_img) { ?>
@@ -139,6 +139,28 @@ Set settings
   $colorpicker_gradient_end.colorpicker('setValue', bg_gradient_end);
 <?php } ?>
 
+<?php } elseif ($el_class == 'body') { ?>
+
+  var $el = $('{{ $el_class }}', window.parent.document);
+
+<?php if ($bg_img) { ?>
+  var bg_img = $el.css('background-image');
+  if (bg_img == 'none') bg_img = '';
+  bg_img = bg_img.replace(/^url\(['"]?(.+?)['"]?\)/,'$1');
+
+  $('#bg_img').val(bg_img);
+
+  if (bg_img != '') {
+    updateImagePreview($('#select_bg_img'));
+  }
+<?php } ?>
+
+<?php if ($bg_color) { ?>
+  var bg_color = $el.css('background-color');
+  $('#bg_color').val(bg_color);
+  $colorpicker.colorpicker('setValue', bg_color);
+<?php } ?>
+
 <?php } ?>
 
 <?php /* ----------------------------------------------------------------------------
@@ -146,7 +168,7 @@ Update settings
 */ ?>
 
   $('.onClickUpdate').on('click', function() {
-<?php if ($el_class != '') { ?>
+<?php if ($el_class != '' && $el_class != 'body') { ?>
 
 <?php if ($bg_img) { ?>
     var bg_img = ($('#bg_img').val() == '' || $('#bg_img').val() == 'none') ? 'none' : 'url("' + $('#bg_img').val() + '")';
@@ -168,6 +190,17 @@ Update settings
 
     // Changes detected
     window.parent.lfSetPageIsDirty();
+
+<?php } elseif ($el_class == 'body') { ?>
+
+<?php if ($bg_img) { ?>
+    var bg_img = ($('#bg_img').val() == '' || $('#bg_img').val() == 'none') ? 'none' : 'url("' + $('#bg_img').val() + '")';
+    $el.css('background-image', bg_img);
+<?php } ?>
+
+<?php if ($bg_color) { ?>
+    $el.css('background-color', $('#bg_color').val());
+<?php } ?>
 
 <?php } ?>
 

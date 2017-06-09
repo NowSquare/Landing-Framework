@@ -263,4 +263,15 @@ function lfInitFabLandingpages() {
     // Hide dropdown
     $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
   });
+
+  /* 
+    Background
+  */
+
+  $('body').on('click', '.-x-el-fab-page-background', function() {    
+    lfOpenModal(_lang["url"] + '/landingpages/editor/modal/background?el_class=body&bg_img=1&bg_color=1&sl=' + lf_sl);
+  
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+  });
 }

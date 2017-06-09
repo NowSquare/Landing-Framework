@@ -22,6 +22,7 @@ var xTplFabLandingpages = '<div class="-x-el-inline-button -x-el-fab -x-el-reset
   '      <ul>' +
   '        <li class="-x-el-fab-page-seo"><a href="javascript:void(0);">' + _lang["seo"] + '</a></li>' +
   '        <li class="-x-el-fab-page-domain"><a href="javascript:void(0);">' + _lang["domain"] + '</a></li>' +
+  '        <li class="-x-el-fab-page-background"><a href="javascript:void(0);">' + _lang["background"] + '</a></li>' +
   '      </ul>' +
   '    <li class="separator"><hr></li>' +
   '    <li class="-x-el-fab-view"><a href="javascript:void(0);">' + _lang["view"] + ' <div class="-x-el-caret"></div></a>' +
