@@ -1,5 +1,5 @@
 <section class="-x-block">
-  <div class="header text-light -x-block-bg-img" style="background-image:url()">
+  <div class="header text-light -x-block-bg-img" style="">
     <div class="header-overlay -x-block-bg-color" style="background-color:rgba(0,144,255,1)">
       <div class="container">
         <div class="header-padding-xl">

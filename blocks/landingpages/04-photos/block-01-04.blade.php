@@ -1,5 +1,5 @@
 <section class="-x-block">
-  <div class="photos photos-padding-xl -x-block-bg-img" style="background-image:url()">
+  <div class="photos photos-padding-xl -x-block-bg-img" style="">
     <div class="photos-overlay -x-block-bg-color" style="background-color:rgba(198,255,0,1)">
       <div class="container">
         <div class="row row-grid">
