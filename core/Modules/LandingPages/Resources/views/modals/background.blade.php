@@ -90,7 +90,7 @@
 <script>
 $(function() {
   var $colorpicker = $('.colorpicker-rgba').colorpicker({
-    format: 'rgba'
+    format: '<?php echo ($el_class == 'body') ? 'hex' : 'rgba'; ?>'
   });
 
   var $colorpicker_gradient_start = $('.colorpicker-gradient-start').colorpicker({
