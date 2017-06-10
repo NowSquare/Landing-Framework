@@ -436,28 +436,32 @@ function processAjaxForm($form, $clone) {
       method: 'POST'
     })
     .done(function(data) {
-      swal({
-        title: data.title,
-        text: data.text,
-        confirmButtonColor: $btn.css('border-top-color'),
-        confirmButtonText: _trans['ok'],
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        allowEnterKey: false
-      }).then(function (result) {
+      if (typeof data.redir !== 'undefined') {
+        document.location = data.redir;
+      } else {
+        swal({
+          title: data.title,
+          text: data.text,
+          confirmButtonColor: $btn.css('border-top-color'),
+          confirmButtonText: _trans['ok'],
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false
+        }).then(function (result) {
 
-        // Reset form
-        if (data.success) {
-          $form.resetForm();
-        }
+          // Reset form
+          if (data.success) {
+            $form.resetForm();
+          }
 
-        // Loading state
-        ladda_button.ladda('stop');
+          // Loading state
+          ladda_button.ladda('stop');
 
-      }, function (dismiss) {
-        // Do nothing on cancel
-        // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
-      });
+        }, function (dismiss) {
+          // Do nothing on cancel
+          // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
+        });
+      }
     })
     .fail(function() {
       alert('Request failed, please try again (' + textStatus + ')');

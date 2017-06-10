@@ -22,7 +22,7 @@ if ($email->forms->count() > 0) {
         <ul class="m-b-30">
 <?php
 foreach ($email->forms as $form) { 
-  $confirmed_members = \DB::table('x_form_entries_' . $form->user_id)->whereId($form->id)->where('confirmed', true)->count();
+  $confirmed_members = \DB::table('form_entries')->where('form_id', $form->id)->where('confirmed', true)->count();
   $total_members += $confirmed_members;
 ?>
           <li>{{ $form->name }} ({{ trans('emailcampaigns::global.amount_confirmed_members', ['amount' => $confirmed_members]) }})</li>

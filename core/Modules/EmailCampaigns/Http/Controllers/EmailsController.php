@@ -35,17 +35,16 @@ class EmailsController extends Controller
       // Get entry
       $form = \Modules\Forms\Http\Models\Form::whereId($form_id)->first();
 
-      $tbl_name = 'x_form_entries_' . $form->user_id;
+      //$tbl_name = 'x_form_entries_' . $form->user_id;
+      //$Entry = new \Modules\Forms\Http\Models\Entry([]);
+      //$Entry->setTable($tbl_name);
 
-      $Entry = new \Modules\Forms\Http\Models\Entry([]);
-      $Entry->setTable($tbl_name);
-
-      $form_entry = $Entry->where('form_id', $form->id)->where('email', $email)->where('id', $entry_id)->where('confirmed', 0)->first();
+      $form_entry = \Modules\Forms\Http\Models\Entry::where('form_id', $form->id)->where('email', $email)->where('id', $entry_id)->where('confirmed', 0)->first();
 
       if (empty($form_entry)) {
         return response()->view('layouts.simple-message', ['icon' => '&#xE5CD;', 'msg' => trans('emailcampaigns::global.confirmation_not_found')], 200);
       } else {
-        $form_entry->setTable($tbl_name);
+        //$form_entry->setTable($tbl_name);
         $form_entry->confirmed = 1;
         $form_entry->save();
 
@@ -72,17 +71,16 @@ class EmailsController extends Controller
       // Get entry
       $form = \Modules\Forms\Http\Models\Form::whereId($form_id)->first();
 
-      $tbl_name = 'x_form_entries_' . $form->user_id;
+      //$tbl_name = 'x_form_entries_' . $form->user_id;
+      //$Entry = new \Modules\Forms\Http\Models\Entry([]);
+      //$Entry->setTable($tbl_name);
 
-      $Entry = new \Modules\Forms\Http\Models\Entry([]);
-      $Entry->setTable($tbl_name);
-
-      $form_entry = $Entry->where('form_id', $form->id)->where('email', $email)->where('id', $entry_id)->where('confirmed', 1)->first();
+      $form_entry = \Modules\Forms\Http\Models\Entry::where('form_id', $form->id)->where('email', $email)->where('id', $entry_id)->where('confirmed', 1)->first();
 
       if (empty($form_entry)) {
         return response()->view('layouts.simple-message', ['icon' => '&#xE5CD;', 'msg' => trans('emailcampaigns::global.unsubscribe_not_found')], 200);
       } else {
-        $form_entry->setTable($tbl_name);
+        //$form_entry->setTable($tbl_name);
         $form_entry->confirmed = 0;
         $form_entry->save();
         return response()->view('layouts.simple-message', ['icon' => '&#xE5CA;', 'msg' => trans('emailcampaigns::global.unsubscribe_thank_you')], 200);
@@ -395,8 +393,8 @@ class EmailsController extends Controller
           $email = Models\Email::where('user_id', Core\Secure::userId())->where('id', $email_id)->first();
 
           // Delete records
-          $tbl_name = 'x_email_mailings_' . Core\Secure::userId();
-          \DB::table($tbl_name)->where('email_id', $email_id)->delete();
+          //$tbl_name = 'x_email_mailings_' . Core\Secure::userId();
+          //\DB::table($tbl_name)->where('email_id', $email_id)->delete();
 
           // Delete files
           $storage_root = 'emails/email/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($email->email_campaign_id, true) . '/' . Core\Secure::staticHash($email_id, true);
@@ -800,7 +798,8 @@ class EmailsController extends Controller
       if ($user_id > 0 && $form_id > 0 && $email_id > 0 && $entry_id > 0) {
 
         // Insert mail event
-        $tbl_name = 'x_email_events_' . $user_id;
+        //$tbl_name = 'x_email_events_' . $user_id;
+        $tbl_name = 'email_events';
 
         \DB::table($tbl_name)->insert(
           [

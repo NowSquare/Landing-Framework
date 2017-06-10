@@ -192,8 +192,8 @@ class EmailCampaignsController extends Controller
           Models\EmailCampaign::where('user_id', Core\Secure::userId())->where('id', $campaign_id)->delete();
 
           // Delete records
-          $tbl_name = 'x_email_mailings_' . Core\Secure::userId();
-          \DB::table($tbl_name)->where('email_campaign_id', $campaign_id)->delete();
+          //$tbl_name = 'x_email_mailings_' . Core\Secure::userId();
+          //\DB::table($tbl_name)->where('email_campaign_id', $campaign_id)->delete();
 
           // Delete files
           $storage_root = 'emails/email/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($campaign_id, true);

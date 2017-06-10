@@ -19,7 +19,7 @@ return array(
 	*/
 
   "transactional_email" => "Transactional email|Transactional emails",
-  "transactional_email_desc" => "A response to a form submit. A double opt-in, thank you or autoresponder.",
+  "transactional_email_desc" => "A response to a form submit. An opt-in, thank you or other autoresponder.",
   "marketing_email" => "Marketing email|Marketing emails",
   "marketing_email_desc" => "Marketing emails are timed and sent strategically to your recipient list.",
   "drip_campaign" => "Drip campaign|Drip campaign emails",

@@ -302,15 +302,14 @@ class FunctionsController extends Controller
       $form_local_domain = '/' . $form->local_domain;
 
       // Get entry
-      $tbl_name = 'x_form_entries_' . $form->user_id;
+    //  $tbl_name = 'x_form_entries_' . $form->user_id;
+      //$Entry = new \Modules\Forms\Http\Models\Entry([]);
+      //$Entry->setTable($tbl_name);
 
-      $Entry = new \Modules\Forms\Http\Models\Entry([]);
-      $Entry->setTable($tbl_name);
-
-      $form_entry = $Entry->where('form_id', $form->id)->where('email', $email_address)->orderBy('created_at', 'desc')->first();
+      $form_entry = \Modules\Forms\Http\Models\Entry::where('form_id', $form->id)->where('email', $email_address)->orderBy('created_at', 'desc')->first();
 
       if (! empty($form_entry)) {
-        $form_columns = $Entry->getColumns($form->id);
+        $form_columns = $form_entry->getColumns($form->id);
         $form_columns = (isset($form_columns['form'])) ? $form_columns['form'] : [];
         $form_local_domain .= '/' . Core\Secure::staticHash($form_entry->id, true);
         $form_entry = $form_entry->toArray();
@@ -394,15 +393,14 @@ class FunctionsController extends Controller
       $form_local_domain = '/' . $form->local_domain;
 
       // Get entry
-      $tbl_name = 'x_form_entries_' . $form->user_id;
+      //$tbl_name = 'x_form_entries_' . $form->user_id;
+      //$Entry = new \Modules\Forms\Http\Models\Entry([]);
+      //$Entry->setTable($tbl_name);
 
-      $Entry = new \Modules\Forms\Http\Models\Entry([]);
-      $Entry->setTable($tbl_name);
-
-      $form_entry = $Entry->where('form_id', $form->id)->where('email', $email_address)->orderBy('created_at', 'desc')->first();
+      $form_entry = \Modules\Forms\Http\Models\Entry::where('form_id', $form->id)->where('email', $email_address)->orderBy('created_at', 'desc')->first();
 
       if (! empty($form_entry)) {
-        $form_columns = $Entry->getColumns($form->id);
+        $form_columns = $form_entry->getColumns($form->id);
         $form_columns = (isset($form_columns['form'])) ? $form_columns['form'] : [];
         $form_local_domain .= '/' . Core\Secure::staticHash($form_entry->id, true);
         $form_entry = $form_entry->toArray();

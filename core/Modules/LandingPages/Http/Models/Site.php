@@ -27,7 +27,7 @@ class Site extends Model {
     static::deleting(function ($model) {
 
       // Delete records
-      \DB::table('x_landing_stats_' . $model->user_id)->where('landing_site_id', $model->id)->delete();
+      //\DB::table('x_landing_stats_' . $model->user_id)->where('landing_site_id', $model->id)->delete();
 
       // Delete files
       $storage_root = 'landingpages/site/' . Core\Secure::staticHash($model->user_id) . '/' . Core\Secure::staticHash($model->id, true);

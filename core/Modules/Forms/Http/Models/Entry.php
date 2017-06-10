@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entry extends Model {
 
+  protected $table = 'form_entries';
+
   protected $casts = [
     'entry' => 'json',
     'meta' => 'json'

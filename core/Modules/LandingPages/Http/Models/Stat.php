@@ -4,6 +4,8 @@ namespace Modules\LandingPages\Http\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Stat extends Model {
+  
+  protected $table = 'landing_stats';
 
   protected $casts = [
     'entry' => 'json',

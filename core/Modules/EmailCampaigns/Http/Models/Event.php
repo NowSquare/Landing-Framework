@@ -5,6 +5,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model {
 
+  protected $table = 'email_events';
+
   protected $casts = [
     'meta' => 'json'
   ];

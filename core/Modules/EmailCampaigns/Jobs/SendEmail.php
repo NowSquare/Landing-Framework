@@ -49,12 +49,11 @@ class SendEmail implements ShouldQueue
 
       // Get entry id
       $entry_id = 0;
-      $tbl_name = 'x_form_entries_' . $this->form->user_id;
+      //$tbl_name = 'x_form_entries_' . $this->form->user_id;
+      //$Entry = new \Modules\Forms\Http\Models\Entry([]);
+      //$Entry->setTable($tbl_name);
 
-      $Entry = new \Modules\Forms\Http\Models\Entry([]);
-      $Entry->setTable($tbl_name);
-
-      $form_entry = $Entry->where('form_id', $this->form->id)->where('email', $this->mailto)->orderBy('created_at', 'desc')->first();
+      $form_entry = \Modules\Forms\Http\Models\Entry::where('form_id', $this->form->id)->where('email', $this->mailto)->orderBy('created_at', 'desc')->first();
 
       if (! empty($form_entry)) {
         $entry_id = $form_entry->id;
@@ -64,6 +63,15 @@ class SendEmail implements ShouldQueue
 
       // Increment email sent
       \DB::table('emails')->whereId($this->email->id)->increment('sent');
+
+      // Increment email sent
+      \DB::table('form_entries')
+        ->where('id', $form_entry->id)
+        ->update([
+          'sent' => $form_entry->sent + 1,
+          'last_send' => date('Y-m-d H:i:s')
+        ]
+      );
 
       $response = \Mailgun::raw($html, function ($message) use ($subject, $tag) {
         $message

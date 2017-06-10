@@ -220,18 +220,18 @@ function lfInitFabForms() {
   });
 
   /* 
-    Open QR
+    Settings
   */
 
-  $('body').on('click', '.-x-el-fab-view-qr', function() {
-    lfOpenModal(_lang["url"] + '/landingpages/editor/modal/qr?url=' + lf_published_url);
-
+  $('body').on('click', '.-x-el-fab-form-settings', function() {    
+    lfOpenModal(_lang["url"] + '/forms/editor/modal/settings?sl=' + lf_sl);
+  
     // Hide dropdown
     $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
   });
 
   /* 
-    Settings
+    SEO
   */
 
   $('body').on('click', '.-x-el-fab-form-seo', function() {    

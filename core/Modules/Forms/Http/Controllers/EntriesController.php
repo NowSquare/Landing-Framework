@@ -44,10 +44,10 @@ class EntriesController extends Controller
 
     if ($form_id > 0) {
 
-      $tbl_name = 'x_form_entries_' . Core\Secure::userId();
-
-      $Entry = new Models\Entry([]);
-      $Entry->setTable($tbl_name);
+      //$tbl_name = 'x_form_entries_' . Core\Secure::userId();
+      //$Entry = new Models\Entry([]);
+      //$Entry->setTable($tbl_name);
+      $Entry = new Models\Entry;
 
       $columns['form'] = [];
       $columns['custom'] = [];
@@ -96,10 +96,10 @@ class EntriesController extends Controller
       $filename = str_slug(Core\Reseller::get()->name . '-' . $form->name . '-' . date('Y-m-d h:i:s'));
 
       // Entry model
-      $tbl_name = 'x_form_entries_' . Core\Secure::userId();
-
-      $Entry = new Models\Entry([]);
-      $Entry->setTable($tbl_name);
+      //$tbl_name = 'x_form_entries_' . Core\Secure::userId();
+      //$Entry = new Models\Entry([]);
+      //$Entry->setTable($tbl_name);
+      $Entry = new Models\Entry;
 
       $columns = $Entry->getColumns($form_id);
 
@@ -144,10 +144,10 @@ class EntriesController extends Controller
     $sl = request()->input('sl', '');
 
     // Entry model
-    $tbl_name = 'x_form_entries_' . Core\Secure::userId();
-
-    $Entry = new Models\Entry([]);
-    $Entry->setTable($tbl_name);
+    //$tbl_name = 'x_form_entries_' . Core\Secure::userId();
+    //$Entry = new Models\Entry([]);
+    //$Entry->setTable($tbl_name);
+    $Entry = new Models\Entry;
 
     if(\Auth::check() && $sl != '') {
       $qs = Core\Secure::string2array($sl);
@@ -203,10 +203,10 @@ class EntriesController extends Controller
     $data = array();    
 
     // Entry model
-    $tbl_name = 'x_form_entries_' . Core\Secure::userId();
-
-    $Entry = new Models\Entry([]);
-    $Entry->setTable($tbl_name);
+    //$tbl_name = 'x_form_entries_' . Core\Secure::userId();
+    //$Entry = new Models\Entry([]);
+    //$Entry->setTable($tbl_name);
+    $Entry = new Models\Entry;
 
     $columns = $Entry->getColumns($form_id);
 

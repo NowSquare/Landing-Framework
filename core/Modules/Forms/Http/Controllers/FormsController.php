@@ -228,11 +228,34 @@ class FormsController extends Controller
             }
           }
 
-          $response = [
+          // Process response
+          $after_submit = (isset($form->meta['after_submit'])) ? $form->meta['after_submit'] : 'message';
+
+          $title = (isset($form->meta['title'])) ? $form->meta['title'] : trans('forms::global.thank_you_title');
+          $text = (isset($form->meta['text'])) ? $form->meta['text'] : trans('forms::global.thank_you_text');
+
+          if ($after_submit == 'url' && isset($form->meta['url']) && $form->meta['url'] != '') {
+            return response()->json([
+              'success' => true,
+              'redir' => $form->meta['url']
+            ]);
+          }
+
+          if ($after_submit == 'lp' && isset($form->meta['landing_page']) && $form->meta['landing_page'] != '') {
+            $site = \Modules\LandingPages\Http\Models\Site::where('id', $form->meta['landing_page'])->first();
+
+            return response()->json([
+              'success' => true,
+              'redir' => $site->pages->first()->url()
+            ]);
+          }
+
+          // Else response with modal
+          return response()->json([
             'success' => true,
-            'title' => trans('forms::global.thank_you_title'),
-            'text' => trans('forms::global.thank_you_text')
-          ];
+            'title' => $title,
+            'text' => $text
+          ]);
         }
       }
       return response()->json($response);
@@ -510,14 +533,89 @@ class FormsController extends Controller
           Models\Form::where('user_id', Core\Secure::userId())->where('id', $form_id)->delete();
 
           // Delete records
-          $tbl_name = 'x_form_entries_' . Core\Secure::userId();
-          \DB::table($tbl_name)->where('form_id', $form_id)->delete();
+          //$tbl_name = 'x_form_entries_' . Core\Secure::userId();
+          //\DB::table($tbl_name)->where('form_id', $form_id)->delete();
   
           // Delete files
           $storage_root = 'forms/form/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($form_id, true);
           \Storage::disk('public')->deleteDirectory($storage_root);
 
           return response()->json(['success' => true]);
+        }
+      }
+    }
+
+    /**
+     * Form settings
+     */
+    public function editorModalSettings(Request $request)
+    {
+      $sl = $request->input('sl', '');
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $form_id = $qs['form_id'];
+
+        if (is_numeric($form_id)) {
+          $sites = \Modules\LandingPages\Http\Models\Site::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->orderBy('name', 'asc')->get();
+          $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $qs['form_id'])->first();
+
+          return view('landingpages::modals.form-settings', compact('sites', 'form', 'sl'));
+        }
+      }
+    }
+
+    /**
+     * Post form settings
+     */
+    public function editorPostSettings(Request $request)
+    {
+      $sl = $request->input('sl', '');
+      $after_submit = $request->input('after_submit', 'message');
+      $title = $request->input('title', '');
+      $text = $request->input('text', '');
+      $landing_page = $request->input('landing_page', '');
+      $url = $request->input('url', '');
+
+      $input = array(
+        'after_submit' => $after_submit,
+        'title' => $title,
+        'text' => $text,
+        'landing_page' => $landing_page,
+        'url' => $url
+      );
+
+      $rules = array(
+        'title' => 'required|max:32',
+        'text' => 'required|max:164',
+        'url' => ($after_submit == 'url') ? 'required|url' : 'nullable|url',
+        'landing_page' => ($after_submit == 'lp') ? 'required' : 'nullable'
+      );
+
+      $validator = \Validator::make($input, $rules);
+
+      if($validator->fails()) {
+        $response = [
+          'type' => 'error',
+          'reset' => false,
+          'msg' => $validator->messages()->first()
+        ];
+        return response()->json($response);
+      }
+
+      if ($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+        $form_id = $qs['form_id'];
+
+        if (is_numeric($form_id)) {
+          $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $qs['form_id'])->first();
+          $form->meta = $input;
+          $form->save();
+
+          return response()->json([
+            'type' => 'success', 
+            'fn' => 'formSaved'
+          ]);
         }
       }
     }

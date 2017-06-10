@@ -42,11 +42,14 @@ class SendTestEmail implements ShouldQueue
       $html = \Modules\EmailCampaigns\Http\Controllers\FunctionsController::parseEmail($this->mailto, $view);
       $subject = \Modules\EmailCampaigns\Http\Controllers\FunctionsController::parseString($this->mailto, $this->email->subject);
 
-      $response = \Mailgun::raw($html, function ($message) use ($subject) {
+      $mail_from = ($this->email->emailCampaign->mail_from == '') ? auth()->user()->email : $this->email->emailCampaign->mail_from;
+      $mail_from_name = ($this->email->emailCampaign->mail_from_name == '') ? auth()->user()->name : $this->email->emailCampaign->mail_from_name;
+
+      $response = \Mailgun::raw($html, function ($message) use ($subject, $mail_from, $mail_from_name) {
         $message
           ->subject($subject)
-          ->from($this->email->emailCampaign->mail_from, $this->email->emailCampaign->mail_from_name)
-          ->replyTo($this->email->emailCampaign->mail_from, $this->email->emailCampaign->mail_from_name)
+          ->from($mail_from, $mail_from_name)
+          ->replyTo($mail_from, $mail_from_name)
           ->to($this->mailto)
           ->trackClicks(false)
           ->trackOpens(false);

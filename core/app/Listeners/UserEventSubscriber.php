@@ -35,9 +35,9 @@ class UserEventSubscriber {
     $event->user->save();
 
     // Create user tables, prefix with `x_` to have them grouped
-    if ($event->user->logins <= 1) {
-      dispatch(new \App\Jobs\CreateUserTables($event->user->id));
-    }
+    //if ($event->user->logins <= 1) {
+    //  dispatch(new \App\Jobs\CreateUserTables($event->user->id));
+    //}
   }
 
   /**

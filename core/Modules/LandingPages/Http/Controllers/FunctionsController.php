@@ -94,7 +94,8 @@ class FunctionsController extends Controller
 
     $hash = md5($hash);
 
-    $tbl_name = 'x_landing_stats_' . $page->user_id;
+    //$tbl_name = 'x_landing_stats_' . $page->user_id;
+    $tbl_name = 'landing_stats';
 
     $stats = \DB::table($tbl_name)
               ->where('fingerprint', $hash)

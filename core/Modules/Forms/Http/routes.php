@@ -34,6 +34,8 @@ Route::group(['middleware' => ['web', 'funnel', 'limitation:forms.visible'], 'pr
     Route::get('preview/{template}', 'FormsController@previewTemplate');
 
     // Editor modals
+    Route::get('editor/modal/settings', 'FormsController@editorModalSettings');
+    Route::post('editor/settings', 'FormsController@editorPostSettings');
     Route::get('editor/modal/seo', 'FormsController@editorModalSeo');
     Route::post('editor/seo', 'FormsController@editorPostSeo');
     Route::get('editor/modal/design', 'FormsController@editorModalDesign');

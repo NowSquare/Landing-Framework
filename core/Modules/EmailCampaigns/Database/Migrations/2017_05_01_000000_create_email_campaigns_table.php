@@ -77,6 +77,47 @@ class CreateEmailCampaignsTable extends Migration
       $table->bigInteger('form_id')->unsigned();
       $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
     });
+
+    Schema::create('email_mailings', function(Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->bigInteger('email_campaign_id')->unsigned();
+      $table->foreign('email_campaign_id')->references('id')->on('email_campaigns')->onDelete('cascade');
+      $table->bigInteger('email_id')->unsigned();
+      $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
+      $table->integer('recepients')->unsigned()->default(1);
+      $table->integer('clicks')->unsigned()->default(0);
+      $table->integer('opens')->unsigned()->default(0);
+      $table->dateTime('schedule')->nullable();
+      $table->json('meta')->nullable();
+      $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+    });
+
+    Schema::create('email_sequence', function(Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->bigInteger('email_id')->unsigned();
+      $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
+      $table->string('email', 96);
+      $table->integer('clicks')->unsigned()->default(0);
+      $table->integer('opens')->unsigned()->default(0);
+      $table->json('meta')->nullable();
+      $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+    });
+
+    Schema::create('email_events', function(Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->bigInteger('form_id')->unsigned();
+      $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
+      $table->bigInteger('email_id')->unsigned();
+      $table->foreign('email_id')->references('id')->on('emails')->onDelete('cascade');
+      $table->bigInteger('entry_id')->unsigned();
+      $table->text('message_id');
+      $table->string('event', 64);
+      $table->text('link')->nullable();
+      $table->string('recipient', 96)->nullable();
+      $table->json('meta')->nullable();
+      $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+    });
+
   }
 
   /**
@@ -86,6 +127,10 @@ class CreateEmailCampaignsTable extends Migration
    */
   public function down()
   {
+    Schema::drop('email_events');
+    Schema::drop('email_sequence');
+    Schema::drop('email_mailings');
+    Schema::drop('email_forms');
     Schema::drop('emails');
     Schema::drop('email_campaigns');
   }

@@ -123,7 +123,8 @@ class FunctionsController extends Controller
 
     $hash = md5($hash);
 
-    $tbl_name = 'x_form_stats_' . $form->user_id;
+    //$tbl_name = 'x_form_stats_' . $form->user_id;
+    $tbl_name = 'form_stats';
 
     $stats = \DB::table($tbl_name)
               ->where('fingerprint', $hash)
@@ -241,7 +242,8 @@ class FunctionsController extends Controller
 
     $hash = md5($hash);
 
-    $tbl_name = 'x_form_entries_' . $form->user_id;
+    //$tbl_name = 'x_form_entries_' . $form->user_id;
+    $tbl_name = 'form_entries';
 
     $landing_site_id = null;
     $landing_page_id = null;

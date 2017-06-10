@@ -1,11 +1,15 @@
 <style type="text/css" media="screen">
-    #editor { 
-        position: absolute;
-        top: 60px;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
+html, body {
+  overflow: hidden;
+}
+
+#editor { 
+  position: absolute;
+  top: 60px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
 </style>
 
 <div id="editor">{{ $html }}</div>

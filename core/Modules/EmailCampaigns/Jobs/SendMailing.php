@@ -37,16 +37,16 @@ class SendMailing implements ShouldQueue
       $view = 'public.emails::' . Core\Secure::staticHash($this->email->user_id) . '.' . Core\Secure::staticHash($this->email->email_campaign_id, true) . '.' . $this->email->local_domain . '.' . $variant . '.index';
 
       // Set user table
-      $tbl_name = 'x_form_entries_' . $this->email->user_id;
-      $Entry = new \Modules\Forms\Http\Models\Entry([]);
-      $Entry->setTable($tbl_name);
+      //$tbl_name = 'x_form_entries_' . $this->email->user_id;
+      //$Entry = new \Modules\Forms\Http\Models\Entry([]);
+      //$Entry->setTable($tbl_name);
 
       // Loop through all forms
       $email_increment = 0;
       foreach ($this->email->forms as $form) {
 
         // Get confirmed entries
-        $form_entries = $Entry->where('form_id', $form->id)->where('confirmed', 1)->orderBy('created_at', 'desc')->get();
+        $form_entries = \Modules\Forms\Http\Models\Entry::where('form_id', $form->id)->where('confirmed', 1)->orderBy('created_at', 'desc')->get();
 
         if (count($form_entries) > 0) {
           foreach ($form_entries as $form_entry) {
@@ -68,7 +68,7 @@ class SendMailing implements ShouldQueue
             });
 
             // Increment email sent
-            \DB::table($tbl_name)
+            \DB::table('form_entries')
               ->where('id', $form_entry->id)
               ->update([
                 'sent' => $form_entry->sent + 1,

@@ -54,6 +54,37 @@ class CreateLandingPagesTable extends Migration
       $table->json('meta')->nullable();
       $table->timestamps();
     });
+
+    Schema::create('landing_stats', function(Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->bigInteger('landing_site_id')->unsigned();
+      $table->foreign('landing_site_id')->references('id')->on('landing_sites')->onDelete('cascade');
+      $table->bigInteger('landing_page_id')->unsigned();
+      $table->foreign('landing_page_id')->references('id')->on('landing_pages')->onDelete('cascade');
+      $table->char('fingerprint', 32)->nullable();
+      $table->bigInteger('views')->unsigned()->default(1);
+      $table->boolean('is_bot')->default(false);
+      $table->string('ip', 40)->nullable();
+      $table->string('language', 5)->nullable();
+      $table->string('client_type', 32)->nullable();
+      $table->string('client_name', 32)->nullable();
+      $table->string('client_version', 32)->nullable();
+      $table->string('os_name', 32)->nullable();
+      $table->string('os_version', 32)->nullable();
+      $table->string('os_platform', 32)->nullable();
+      $table->string('device', 12)->nullable();
+      $table->string('brand', 32)->nullable();
+      $table->string('model', 32)->nullable();
+      $table->string('bot_name', 32)->nullable();
+      $table->string('bot_category', 32)->nullable();
+      $table->string('bot_url', 200)->nullable();
+      $table->string('bot_producer_name', 48)->nullable();
+      $table->string('bot_producer_url', 128)->nullable();
+      $table->decimal('lat', 10, 8)->nullable();
+      $table->decimal('lng', 11, 8)->nullable();
+      $table->json('meta')->nullable();
+      $table->dateTime('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+    });
   }
 
   /**

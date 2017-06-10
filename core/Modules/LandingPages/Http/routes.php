@@ -3,7 +3,7 @@
 Route::group(['middleware' => 'web', 'prefix' => 'lp', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
 
   // Create screenshots for all blocks
-  //Route::get('grab', 'LandingPagesController@createBlockScreenshots');
+  Route::get('grab', 'LandingPagesController@createBlockScreenshots');
 
   // Public routes
   Route::get('{local_domain}', 'LandingPagesController@homePage');

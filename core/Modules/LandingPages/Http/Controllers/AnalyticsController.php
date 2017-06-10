@@ -27,7 +27,7 @@ class AnalyticsController extends Controller
       $sl = rawurlencode($sl);
     }
 
-    // Range
+    // Ranges
     $date_start = request()->get('start', date('Y-m-d', strtotime(' - 30 day')));
     $date_end = request()->get('end', date('Y-m-d'));
 
@@ -48,10 +48,11 @@ class AnalyticsController extends Controller
 
     if ($landing_page_id > 0) {
 
-      $tbl_name = 'x_landing_stats_' . Core\Secure::userId();
+      //$tbl_name = 'x_landing_stats_' . Core\Secure::userId();
 
-      $Stat = new Models\Stat([]);
-      $Stat->setTable($tbl_name);
+      //$Stat = new Models\Stat([]);
+      //$Stat->setTable($tbl_name);
+      $Stat = new Models\Stat;
 
       $Stat = $Stat->where('landing_page_id', $landing_page_id)->orderBy('created_at', 'asc')->first();
 
@@ -109,10 +110,11 @@ class AnalyticsController extends Controller
     $data = array();    
 
     // Stat model
-    $tbl_name = 'x_landing_stats_' . Core\Secure::userId();
+    //$tbl_name = 'x_landing_stats_' . Core\Secure::userId();
 
-    $Stat = new Models\Stat([]);
-    $Stat->setTable($tbl_name);
+    //$Stat = new Models\Stat([]);
+    //$Stat->setTable($tbl_name);
+    $Stat = new Models\Stat;
 
     // Columns
     $aColumn = [];
@@ -226,10 +228,11 @@ class AnalyticsController extends Controller
     $to = $date_end . ' 23:59:59';
 
     // Stat model
-    $tbl_name = 'x_landing_stats_' . Core\Secure::userId();
+    //$tbl_name = 'x_landing_stats_' . Core\Secure::userId();
 
-    $Stat = new Models\Stat([]);
-    $Stat->setTable($tbl_name);
+    //$Stat = new Models\Stat([]);
+    //$Stat->setTable($tbl_name);
+    $Stat = new Models\Stat;
 
     $stats_visits = $Stat->where('landing_page_id', $landing_page_id)
       ->select(\DB::raw('DATE(created_at) as date'), \DB::raw('count(id) as visits'))
