@@ -10,12 +10,12 @@
   <div class="row">
     <div class="col-xs-12 col-sm-10">
 
-      <div class="form-group">
+      <div class="form-group" id="input-group-src">
         <label for="src">{{ trans('landingpages::global.url') }}</label>
 <?php /*
 
         <input type="text" class="form-control" id="src" name="src" autocomplete="off" value="">*/ ?>
-        <div class="input-group" id="input-group-src">
+        <div class="input-group">
           <input type="text" class="form-control" id="src" name="src" autocomplete="off" value="">
           <div class="input-group-btn add-on">
             <button type="button" class="btn btn-primary onClickParse">{{ trans('landingpages::global.parse') }}</button>
