@@ -73,12 +73,6 @@ $('#order').on('change', function() {
 <?php 
 $i = 1;
 
-$entry_id = 0;
-$tbl_name = 'x_email_events_' . auth()->user()->id;
-
-$Event = new \Modules\EmailCampaigns\Http\Models\Event([]);
-$Event->setTable($tbl_name);
-
 foreach($emails as $email) {
   $email_id = $email->id;
   $sl_campaign = \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $email_campaign->id]);
@@ -89,8 +83,8 @@ foreach($emails as $email) {
   $url = $email->url();
 
   $sent = number_format($email->sent);
-  $opens = number_format($Event->where('email_id', $email->id)->where('event', 'opened')->count());
-  $clicks = number_format($Event->where('email_id', $email->id)->where('event', 'clicked')->count());
+  $opens = number_format(\Modules\EmailCampaigns\Http\Models\Event::where('email_id', $email->id)->where('event', 'opened')->count());
+  $clicks = number_format(\Modules\EmailCampaigns\Http\Models\Event::where('email_id', $email->id)->where('event', 'clicked')->count());
 
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" style="max-width: 250px" id="item{{ $i }}">
