@@ -22,7 +22,7 @@
   }
 </style>
 <script>
-$('#generic_title a').text("{{ str_replace('"', '&quot;', $form->name) }}");
+$('#generic_title a').text("{!! str_replace('"', '&quot;', $form->name) !!}");
 
 $('#generic_title a').on('click', function() {
   $('#editor_frame')[0].contentWindow.$('.-x-el-fab-form-seo').trigger('click');

@@ -150,31 +150,29 @@ if (count($forms) == 0) {
   }
 </style>
 <script>
-  $( '#generic_title a' ).text( "{{ str_replace('"
-      ', ' & quot;
-      ', $email->name) }}");
+  $('#generic_title a' ).html( "{!! str_replace('"', '&quot;', $email->name) !!}");
 
-      $( '#generic_title a' ).on( 'click', function () {
-        $( '#editor_frame' )[ 0 ].contentWindow.$( '.-x-el-fab-email-settings' ).trigger( 'click' );
+    $( '#generic_title a' ).on( 'click', function () {
+      $( '#editor_frame' )[ 0 ].contentWindow.$( '.-x-el-fab-email-settings' ).trigger( 'click' );
+    } );
+
+    $( '#editor_frame' ).removeClass( 'desktop_mode tablet_mode phone_mode' ); $( '#editor_frame' ).addClass( $( '#device_selector li.active' ).attr( 'id' ) );
+
+    $( '#device_selector a' ).on( 'click', function () {
+      $( '#device_selector li' ).removeClass( 'active' );
+      $( this ).parent( 'li' ).addClass( 'active' );
+      var mode = $( this ).parent( 'li' ).attr( 'id' );
+      $( '#editor_frame' ).removeClass( 'desktop_mode tablet_mode phone_mode' );
+      $( '#editor_frame' ).addClass( mode );
+    } );
+
+    previewSiteResize();
+
+    $( window ).resize( $.debounce( 100, previewSiteResize ) );
+
+    function previewSiteResize() {
+      $( '#editor_frame' ).css( {
+        'height': ( parseInt( $( window ).outerHeight() ) - 170 ) + 'px'
       } );
-
-      $( '#editor_frame' ).removeClass( 'desktop_mode tablet_mode phone_mode' ); $( '#editor_frame' ).addClass( $( '#device_selector li.active' ).attr( 'id' ) );
-
-      $( '#device_selector a' ).on( 'click', function () {
-        $( '#device_selector li' ).removeClass( 'active' );
-        $( this ).parent( 'li' ).addClass( 'active' );
-        var mode = $( this ).parent( 'li' ).attr( 'id' );
-        $( '#editor_frame' ).removeClass( 'desktop_mode tablet_mode phone_mode' );
-        $( '#editor_frame' ).addClass( mode );
-      } );
-
-      previewSiteResize();
-
-      $( window ).resize( $.debounce( 100, previewSiteResize ) );
-
-      function previewSiteResize() {
-        $( '#editor_frame' ).css( {
-          'height': ( parseInt( $( window ).outerHeight() ) - 170 ) + 'px'
-        } );
-      }
+    }
 </script>

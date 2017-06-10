@@ -25,7 +25,7 @@
   }
 </style>
 <script>
-$('#generic_title a').text("{{ str_replace('"', '&quot;', $page->name) }}");
+$('#generic_title a').text("{!! str_replace('"', '&quot;', $page->name) !!}");
 
 $('#generic_title a').on('click', function() {
   $('#editor_frame')[0].contentWindow.$('.-x-el-fab-page-seo').trigger('click');
