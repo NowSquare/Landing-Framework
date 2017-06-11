@@ -7,6 +7,8 @@ return array(
   "photos" => "Photos",
   "video" => "Video",
   "footers" => "Footers",
+  "countdowns" => "Countdowns",
+  "testimonials" => "Testimonials",
 
   // Generic content
   "content_button" => "More",
@@ -29,6 +31,7 @@ return array(
   "photo_p2" => "Start with a minimum viable product and see if you can help solve problems that exist in the market today.",
   "get_full_access_now" => "Get Full Access Now",
   "get_full_access_lead" => "Get full access to all content for only $299!",
+  "sale_ends_in" => "Hurry! Sale ends in:",
   "financial_freedom" => "How To Gain Financial Freedom",
   "financial_freedom_quote1" => "The speed of your success is limited only by your dedication and what you're willing to sacrifice.",
   "get_instant_access" => "Get Instant Access",

@@ -47,6 +47,7 @@ Route::group(['middleware' => ['web', 'funnel', 'limitation:landingpages.visible
     Route::get('editor/modal/background', 'LandingPagesController@editorModalBackground');
     Route::get('editor/modal/link', 'LandingPagesController@editorModalLink');
     Route::get('editor/modal/list', 'LandingPagesController@editorModalList');
+    Route::get('editor/modal/countdown', 'LandingPagesController@editorModalCountdown');
     Route::get('editor/modal/form', 'LandingPagesController@editorModalForm');
     Route::get('editor/modal/image', 'LandingPagesController@editorModalImage');
     Route::get('editor/modal/video', 'LandingPagesController@editorModalVideo');

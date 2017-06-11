@@ -56,6 +56,7 @@ return array(
   "modify_form" => "Modify form",
   "modify_image" => "Modify image",
   "modify_video" => "Modify video",
+  "modify_countdown" => "Modify timer",
   "modify_icon" => "Modify icon",
   "remove" => "Remove",
   "visible" => "Visible",

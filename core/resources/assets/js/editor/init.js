@@ -18,6 +18,7 @@ function lfInitEditor(editor) {
   lfInitIcons();
   lfInitLinks();
   lfInitLists();
+  lfInitCountdowns();
   lfInitForms();
   lfInitText();
 

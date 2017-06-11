@@ -537,6 +537,16 @@ class LandingPagesController extends Controller
     }
 
     /**
+     * Editor modal to configure countdown
+     */
+    public function editorModalCountdown(Request $request)
+    {
+      $el_class = $request->input('el_class', '');
+
+      return view('landingpages::modals.countdown', compact('el_class'));
+    }
+
+    /**
      * Editor modal to configure form
      */
     public function editorModalForm(Request $request)

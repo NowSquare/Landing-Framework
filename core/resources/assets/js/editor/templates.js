@@ -167,6 +167,18 @@ var xTplListButton = '<div class="-x-el-inline-button -x-el-list-edit -x-el-rese
   ' </ul>' +
   '</div>';
 
+var xTplCountdownButton = '<div class="-x-el-inline-button -x-el-countdown-edit -x-el-reset">' + 
+  ' <img src="' + _lang["url"] + '/assets/images/editor/icons/timer.svg" class="-x-el-icon"' +
+  '   onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/timer-hover.svg\';"' +
+  '   onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/timer.svg\';"' +
+  ' >' +
+  ' <ul class="-x-el-dropdown -x-el-reset">' +
+  '   <li class="-x-el-countdown-edit"><a href="javascript:void(0);">' + _lang["modify_countdown"] + '</a></li>' +
+  '   <li class="separator"><hr></li>' +
+  '   <li class="-x-el-countdown-visible"><a href="javascript:void(0);">' + _lang["visible"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  ' </ul>' +
+  '</div>';
+
 var xTplFormButton = '<div class="-x-el-inline-button -x-el-form-edit -x-el-reset">' + 
   ' <img src="' + _lang["url"] + '/assets/images/editor/icons/email.svg" class="-x-el-icon"' +
   '   onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/email-hover.svg\';"' +

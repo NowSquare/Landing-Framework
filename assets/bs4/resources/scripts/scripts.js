@@ -203,69 +203,71 @@ $(function($) {
    * Countdown timer
    */
 
-	if ($('div[data-countdown]').length) {
-    $('div[data-countdown]').each(function() {
-      var that = $(this);
-      var countdown = $(this).attr('data-countdown');
-      var clientTime = new Date().getTime();
-
-      var dateTimePartsCountdown = countdown.split(' '),
-          timePartsCountdown = dateTimePartsCountdown[1].split(':'),
-          datePartsCountdown = dateTimePartsCountdown[0].split('-'),
-          counterEnds;
-
-      counterEnds = new Date(datePartsCountdown[0], parseInt(datePartsCountdown[1], 10) - 1, datePartsCountdown[2], timePartsCountdown[0], timePartsCountdown[1]);
-      counterEnds = counterEnds.getTime();
-
-      var serverTime = new Date().getTime();
-
-      if ($(this)[0].hasAttribute('data-server-time')) {
-        serverTime = $(this).attr('data-server-time');
-
-        var dateTimePartsServerTime = serverTime.split(' '),
-            timePartsServerTime = dateTimePartsServerTime[1].split(':'),
-            datePartsServerTime = dateTimePartsServerTime[0].split('-'),
-
-        serverTime = new Date(datePartsServerTime[0], parseInt(datePartsServerTime[1], 10) - 1, datePartsServerTime[2], timePartsServerTime[0], timePartsServerTime[1]);
-        serverTime = serverTime.getTime();
-      }
-
-      var end = counterEnds - serverTime + clientTime;
-
-      var _second = 1000;
-      var _minute = _second * 60;
-      var _hour = _minute * 60;
-      var _day = _hour * 24
-      var timer;
-
-      function showRemaining() {
-        var now = new Date();
-        var distance = end - now;
-        if (distance < 0) {
-          // Countdown is zero
-        }
-        var days = Math.floor(distance / _day);
-        var hours = Math.floor( (distance % _day ) / _hour );
-        var minutes = Math.floor( (distance % _hour) / _minute );
-        var seconds = Math.floor( (distance % _minute) / _second );
-
-        if (hours < 10) hours = '0' + hours;
-        if (minutes < 10) minutes = '0' + minutes;
-        if (seconds < 10) seconds = '0' + seconds;
-
-        $(that).find('.day').text(days);
-        $(that).find('.hour').text(hours);
-        $(that).find('.minute').text(minutes);
-        $(that).find('.second').text(seconds);
-      }
-
-      timer = setInterval(showRemaining, 1000);
-
+	if ($('[data-countdown]').length) {
+    $('[data-countdown]').each(function() {
+      bindCountdown($(this));
     });
 	}
 
 });
 
+var countdownTimer = new Array();
+
+function bindCountdown($countdown) {
+  var countdown = $countdown.attr('data-countdown');
+
+  var dateTimePartsCountdown = countdown.split(' '),
+      timePartsCountdown = dateTimePartsCountdown[1].split(':'),
+      datePartsCountdown = dateTimePartsCountdown[0].split('-'),
+      counterEnds;
+
+  counterEnds = new Date(datePartsCountdown[0], parseInt(datePartsCountdown[1], 10) - 1, datePartsCountdown[2], timePartsCountdown[0], timePartsCountdown[1]);
+  counterEnds = counterEnds.getTime();
+
+  var end = counterEnds;
+  
+  var _second = 1000;
+  var _minute = _second * 60;
+  var _hour = _minute * 60;
+  var _day = _hour * 24
+
+  var _path = getElementPath($countdown);
+
+  if (typeof countdownTimer[_path] !== 'undefined') {
+    clearInterval(countdownTimer[_path]);
+  }
+
+  function showRemaining() {
+    var now = new Date();
+    var utc = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds());
+    now = utc.getTime();
+    var distance = end - now;
+
+    var days = Math.floor(distance / _day);
+    var hours = Math.floor( (distance % _day ) / _hour );
+    var minutes = Math.floor( (distance % _hour) / _minute );
+    var seconds = Math.floor( (distance % _minute) / _second );
+
+    if (hours < 10) hours = '0' + hours;
+    if (minutes < 10) minutes = '0' + minutes;
+    if (seconds < 10) seconds = '0' + seconds;
+
+    // Countdown is zero
+    if (distance < 0) {
+      days = '0';
+      hours = '00';
+      minutes = '00';
+      seconds = '00';
+    }
+
+    $countdown.find('.day').text(days);
+    $countdown.find('.hour').text(hours);
+    $countdown.find('.minute').text(minutes);
+    $countdown.find('.second').text(seconds);
+  }
+
+  countdownTimer[_path] = setInterval(showRemaining, 1000);
+}
 
 /*
  * Ajax form links
@@ -677,4 +679,33 @@ function unblockUI(el) {
   } else {
     $(el).unblock();
   }
+}
+
+/*
+ * https://stackoverflow.com/questions/2068272/getting-a-jquery-selector-for-an-element/2068381#2068381
+ */
+
+function getElementPath($el) {
+  var path, node = $el;
+  while (node.length) {
+    var realNode = node[0], name = realNode.localName;
+    if (!name) break;
+    name = name.toLowerCase();
+
+    var parent = node.parent();
+
+    var sameTagSiblings = parent.children(name);
+    if (sameTagSiblings.length > 1) { 
+      allSiblings = parent.children();
+      var index = allSiblings.index(realNode) + 1;
+      if (index > 1) {
+        name += ':nth-child(' + index + ')';
+      }
+    }
+
+    path = name + (path ? '>' + path : '');
+    node = parent;
+  }
+
+  return path;
 }

@@ -43,6 +43,7 @@
     "masonry": "^4.2.0",
     "sweetalert2": "^6.6.3",
     "ace-builds": "^1.2.6",
-    "bluebird": "^3.5.0"
+    "bluebird": "^3.5.0",
+    "moment-timezone": "^0.5.13"
   }
 }
