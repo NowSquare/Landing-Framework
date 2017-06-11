@@ -236,6 +236,7 @@ var xTplImgButton = '<div class="-x-el-inline-button -x-el-img-edit -x-el-reset"
 '    <li class="-x-el-img-shape"><a href="javascript:void(0);">' + _lang["shape"] + ' <div class="-x-el-caret"></div></a>' +
 '      <ul>' +
 '        <li class="-x-el-img-shape-select" data-x-shape="none"><a href="javascript:void(0);">' + _lang["none"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+'        <li class="-x-el-img-shape-select" data-x-shape="round"><a href="javascript:void(0);">' + _lang["round"] + ' <div class="-x-el-checkmark"></div></a></li>' +
 '        <li class="-x-el-img-shape-select" data-x-shape="rounded"><a href="javascript:void(0);">' + _lang["rounded"] + ' <div class="-x-el-checkmark"></div></a></li>' +
 '        <li class="-x-el-img-shape-select" data-x-shape="img-thumbnail"><a href="javascript:void(0);">' + _lang["bordered"] + ' <div class="-x-el-checkmark"></div></a></li>' +
 '      </ul>' +

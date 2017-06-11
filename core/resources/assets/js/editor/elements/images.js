@@ -64,6 +64,8 @@ function lfInitImage($img, unique_class) {
 
   if ($img.hasClass('rounded')) {
     $edit_button.find('.-x-el-img-shape-select[data-x-shape=rounded] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($img.hasClass('round')) {
+    $edit_button.find('.-x-el-img-shape-select[data-x-shape=round] .-x-el-checkmark').addClass('-x-checked');
   } else if ($img.hasClass('img-thumbnail')) {
     $edit_button.find('.-x-el-img-shape-select[data-x-shape=img-thumbnail] .-x-el-checkmark').addClass('-x-checked');
   } else {
@@ -228,7 +230,7 @@ function lfInitImages() {
 
       // Remove all shape classes
       var $el = $('.' + el_class);
-      $el.removeClass('rounded img-thumbnail');
+      $el.removeClass('rounded round img-thumbnail');
 
       // Add shape class
       if (selected_shape != 'none') {

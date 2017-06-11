@@ -85,6 +85,7 @@ return array(
   "ratio" => "Ratio",
   "shadow" => "Shadow",
   "none" => "None",
+  "round" => "Round",
   "rounded" => "Rounded",
   "bordered" => "Bordered",
   "padding" => "Padding",

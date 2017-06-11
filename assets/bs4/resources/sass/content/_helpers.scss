@@ -21,6 +21,12 @@ $mdl-shadow--xlarge: 0 26px 34px 5px rgba(0, 0, 0, 0.02), 0 12px 40px 7px rgba(0
 .mdl-shadow--16dp { box-shadow: $mdl-shadow--16dp; }
 .mdl-shadow--xlarge { box-shadow: $mdl-shadow--xlarge; }
 
+/* Image helpers */
+
+img.round {
+  border-radius: 50%;
+}
+
 /* Padding and margin helpers */
 
 .no-padding-t {
