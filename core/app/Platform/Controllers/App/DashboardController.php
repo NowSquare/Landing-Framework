@@ -55,6 +55,12 @@ class DashboardController extends \App\Http\Controllers\Controller {
       return \App::make('\Platform\Controllers\App\FunnelController')->showFunnels();
     }
 
-    return view('platform.dashboard.dashboard', compact('active_modules'));
+    $sites = false;
+
+    if (Gate::allows('limitation', 'landingpages.visible')) {
+      $sites = \Modules\LandingPages\Http\Models\Site::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->select('landing_sites.*')->addSelect(\DB::raw('((landing_sites.conversions / landing_sites.visits) * 100) as conversion'))->orderBy('name', 'asc')->get();
+    }
+
+    return view('platform.dashboard.dashboard', compact('active_modules', 'sites'));
   }
 }
