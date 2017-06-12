@@ -31,6 +31,12 @@
     }
   }
 
+  &.cards-padding-none {
+    .cards-overlay {
+      padding: 0;
+    }
+  }
+
   .cards-padding {
     padding: 1rem;
   }

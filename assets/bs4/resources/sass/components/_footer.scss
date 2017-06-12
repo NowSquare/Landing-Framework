@@ -90,6 +90,12 @@
     }
   }
 
+  &.footer-padding-none {
+    .footer-overlay {
+      padding: 0;
+    }
+  }
+
   .footer-padding {
     padding: 1rem;
   }

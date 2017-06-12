@@ -43,6 +43,12 @@
     }
   }
 
+  &.photos-padding-none {
+    .photos-overlay {
+      padding: 0;
+    }
+  }
+
   .photos-padding {
     padding: 1rem;
   }

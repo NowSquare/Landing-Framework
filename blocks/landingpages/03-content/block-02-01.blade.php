@@ -1,12 +1,12 @@
 <section class="-x-block">
-  <div class="content content-padding-l -x-block-bg-img" style="">
+  <div class="content content-padding-none -x-block-bg-img" style="">
     <div class="content-overlay -x-block-bg-color" style="background-color:rgba(255,255,255,1)">
       <div class="container">
         <div class="row">
           <div class="col-md-6">
             <img src="/templates/assets/images/visuals/iPhone-6S---isometric-view.png" alt="" class="img-fluid -x-img">
           </div>
-          <div class="col-md-6 text-xs-center text-md-left">
+          <div class="col-md-6 text-center text-md-left">
             <div class="content-padding">
               <div class="-x-text">
                 <h2>{!! trans('landingpages::block.content_title5') !!}</h2>

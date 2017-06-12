@@ -109,7 +109,7 @@ Set settings
   var $el = $('.{{ $el_class }}', window.parent.document);
 
 <?php if ($bg_img) { ?>
-  var bg_img = $el.find('.-x-block-bg-img').css('background-image');
+  var bg_img = $el.find('.-x-block-bg-img').css('background-image');console.log('ss' + bg_img);
   if (bg_img == 'none') bg_img = '';
   bg_img = bg_img.replace(/^url\(['"]?(.+?)['"]?\)/,'$1');
 

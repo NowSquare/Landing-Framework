@@ -6,7 +6,7 @@
           <div class="col-md-6 push-md-6">
             <img src="/templates/assets/images/visuals/iPhone-6S---isometric-view-right.png" alt="" class="img-fluid -x-img">
           </div>
-          <div class="col-md-6 pull-md-6 text-xs-center text-md-right">
+          <div class="col-md-6 pull-md-6 text-center text-md-right">
             <div class="content-padding">
               <div class="-x-text">
                 <h2>{!! trans('landingpages::block.content_title5') !!}</h2>

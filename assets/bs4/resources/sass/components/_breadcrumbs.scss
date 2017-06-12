@@ -41,6 +41,12 @@ $breadcrumb-width-xl: 280px !default;
     }
   }
 
+  &.breadcrumbs-padding-none {
+    .breadcrumbs-overlay {
+      padding: 0;
+    }
+  }
+
   .breadcrumbs-padding {
     padding: 1rem 0;
   }

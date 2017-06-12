@@ -207,10 +207,14 @@ function lfInitBlocks() {
         if ($el.find('.' + padding_element).length) {
           var $padding_element = $el.find('.' + padding_element);
           // Remove all padding classes
-          $padding_element.removeClass(padding_element + '-padding-l ' + padding_element + '-padding-xl ' + padding_element + '-padding-xxl');
+          $padding_element.removeClass(padding_element + '-padding-none ' + padding_element + '-padding ' + padding_element + '-padding-l ' + padding_element + '-padding-xl ' + padding_element + '-padding-xxl');
 
           // Add padding class
-          if (selected_padding != 'none') {
+          if (selected_padding == 'none') {
+            $padding_element.addClass(padding_element + '-padding-none');
+          } else if (selected_padding == 's') {
+            $padding_element.addClass(padding_element + '-padding');
+          } else if (selected_padding != 'none') {
             $padding_element.addClass(padding_element + '-padding-' + selected_padding);
           }
         }
@@ -338,14 +342,16 @@ function lfParseBlocks(init) {
         $block_padding = $block.find('.' + padding_element);
         $block_settings.find('.-x-el-block-padding').removeClass('-x-el-disabled');
 
-        if ($block_padding.hasClass(padding_element + '-padding-l')) {
+        if ($block_padding.hasClass(padding_element + '-padding-none')) {
+          $block_settings.find('.-x-el-block-padding-select[data-x-padding=none] .-x-el-checkmark').addClass('-x-checked');
+        } else if ($block_padding.hasClass(padding_element + '-padding-l')) {
           $block_settings.find('.-x-el-block-padding-select[data-x-padding=l] .-x-el-checkmark').addClass('-x-checked');
-        } else if ($block_padding.hasClass('photos-padding-xl')) {
+        } else if ($block_padding.hasClass(padding_element + '-padding-xl')) {
           $block_settings.find('.-x-el-block-padding-select[data-x-padding=xl] .-x-el-checkmark').addClass('-x-checked');
-        } else if ($block_padding.hasClass('photos-padding-xxl')) {
+        } else if ($block_padding.hasClass(padding_element + '-padding-xxl')) {
           $block_settings.find('.-x-el-block-padding-select[data-x-padding=xxl] .-x-el-checkmark').addClass('-x-checked');
         } else {
-          $block_settings.find('.-x-el-block-padding-select[data-x-padding=none] .-x-el-checkmark').addClass('-x-checked');
+          $block_settings.find('.-x-el-block-padding-select[data-x-padding=m] .-x-el-checkmark').addClass('-x-checked');
         }
       }
     }

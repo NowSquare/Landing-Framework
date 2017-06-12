@@ -27,6 +27,41 @@ img.round {
   border-radius: 50%;
 }
 
+.bg-img {
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover !important;
+  background-position: 50% 50% !important;
+  background-repeat: no-repeat;
+/*
+  position: relative;
+  background-size: cover;
+  background-position: center center;*/
+  img {
+    max-width: 100%;
+  }
+}
+
+/* Min height */
+
+$min-height-list: 300, 400, 500, 600;
+
+@each $min-height in $min-height-list {
+  .min-height-#{$min-height} {
+    min-height: $min-height + unquote("px") !important;
+  }
+
+  @include media-breakpoint-down(sm) {
+    .min-height-#{$min-height} {
+      min-height: ($min-height / 2) + unquote("px") !important;
+    }
+  }
+}
+
 /* Padding and margin helpers */
 
 .no-padding-t {
