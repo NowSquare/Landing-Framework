@@ -66,10 +66,10 @@ $(function() {
     showInputs: false,
     defaultTime: '00:00'
   }).on('changeTime.timepicker', function(e) {
-    var hours = (e.time.meridian == 'PM') ? parseInt(e.time.hours) + 12: e.time.hours;
+    var hours = e.time.hours;
     hours = (parseInt(hours) < 10) ? '0' + hours : hours;
     var minutes = (parseInt(e.time.minutes) < 10) ? '0' + e.time.minutes : e.time.minutes;
-    var time = hours + ':' + minutes;
+    var time = hours + ':' + minutes + ' ' + e.time.meridian;
     
     $('#countdown_to_time').attr('data-value', time);
   });
@@ -92,9 +92,10 @@ Set settings
 
   var countdown_to = $el.attr('data-countdown');
 
-  $('#countdown_to_date').datepicker("setDate", moment.tz(countdown_to, 'UTC').tz('{{ \Auth::user()->timezone }}').toDate());
+  $('#countdown_to_date').datepicker('setDate', moment.tz(countdown_to, 'UTC').tz('{{ \Auth::user()->timezone }}').toDate());
   $('#countdown_to_date').datepicker('update');
-  $('#countdown_to_time').timepicker("setTime", moment.tz(countdown_to, 'UTC').tz('{{ \Auth::user()->timezone }}').toDate());
+  $('#countdown_to_time').timepicker('setTime', moment.tz(countdown_to, 'UTC').tz('{{ \Auth::user()->timezone }}').toDate());
+  $('#countdown_to_time').timepicker('update');
 
 <?php } ?>
 
@@ -116,7 +117,7 @@ Update settings
 
     var countdown_to_date = $('#countdown_to_date').attr('data-value');
     var countdown_to_time = $('#countdown_to_time').attr('data-value');
-    var countdown_to = countdown_to_date + ' ' + countdown_to_time + ':00';
+    var countdown_to = countdown_to_date + ' ' + countdown_to_time;
 
     countdown_to = moment(countdown_to).tz('UTC').format('YYYY-MM-DD H:mm:00');
 
