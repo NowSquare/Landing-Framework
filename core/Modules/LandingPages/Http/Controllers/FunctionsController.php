@@ -146,7 +146,7 @@ class FunctionsController extends Controller
     $items = [];
 
     $items[] = [
-      "icon" => 'presentation.svg',
+      "icon" => 'localstore.svg',
       "category" => 'business_services',
       "name" => trans('landingpages::global.business_services'),
       "desc" => trans('landingpages::global.business_services_desc')

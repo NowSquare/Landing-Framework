@@ -200,16 +200,11 @@ var xTplIconButton = '<div class="-x-el-inline-button -x-el-icon-edit -x-el-rese
   '   <li class="separator"><hr></li>' +
   '   <li class="-x-el-icon-size"><a href="javascript:void(0);">' + _lang["size"] + ' <div class="-x-el-caret"></div></a>' +
   '     <ul>' +
-/*  '       <li class="-x-el-icon-size-select" data-x-size="xs"><a href="javascript:void(0);">' + _lang["XS"] + ' <div class="-x-el-checkmark"></div></a></li>' +
-  '       <li class="-x-el-icon-size-select" data-x-size="s"><a href="javascript:void(0);">' + _lang["S"] + ' <div class="-x-el-checkmark"></div></a></li>' +
-  '       <li class="-x-el-icon-size-select" data-x-size="m"><a href="javascript:void(0);">' + _lang["M"] + ' <div class="-x-el-checkmark"></div></a></li>' +
-  '       <li class="-x-el-icon-size-select" data-x-size="l"><a href="javascript:void(0);">' + _lang["L"] + ' <div class="-x-el-checkmark"></div></a></li>' +
-  '       <li class="-x-el-icon-size-select" data-x-size="xl"><a href="javascript:void(0);">' + _lang["XL"] + ' <div class="-x-el-checkmark"></div></a></li>' +
-  '       <li class="-x-el-icon-size-select" data-x-size="xxl"><a href="javascript:void(0);">' + _lang["XXL"] + ' <div class="-x-el-checkmark"></div></a></li>' +*/
-  '       <li class="-x-el-icon-size-select" data-x-size="xs"><a href="javascript:void(0);">' + _lang["S"] + ' <div class="-x-el-checkmark"></div></a></li>' +
-  '       <li class="-x-el-icon-size-select" data-x-size="m"><a href="javascript:void(0);">' + _lang["M"] + ' <div class="-x-el-checkmark"></div></a></li>' +
-  '       <li class="-x-el-icon-size-select" data-x-size="xl"><a href="javascript:void(0);">' + _lang["L"] + ' <div class="-x-el-checkmark"></div></a></li>' +
-  '       <li class="-x-el-icon-size-select" data-x-size="xxl"><a href="javascript:void(0);">' + _lang["XL"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="2"><a href="javascript:void(0);">' + _lang["XS"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="5"><a href="javascript:void(0);">' + _lang["S"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="7"><a href="javascript:void(0);">' + _lang["M"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="9"><a href="javascript:void(0);">' + _lang["L"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  '       <li class="-x-el-icon-size-select" data-x-size="10"><a href="javascript:void(0);">' + _lang["XL"] + ' <div class="-x-el-checkmark"></div></a></li>' +
   '     </ul>' +
   '   </li>' +
   '   <li class="-x-el-icon-visible"><a href="javascript:void(0);">' + _lang["visible"] + ' <div class="-x-el-checkmark"></div></a></li>' +

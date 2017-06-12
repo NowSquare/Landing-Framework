@@ -46,6 +46,7 @@ return array(
   "get_full_access_now" => "Get Full Access Now",
   "get_full_access_lead" => "Get full access to all content for only $299!",
   "sale_ends_in" => "Hurry! Sale ends in:",
+  "get_started_for_free" => "Get started for free",
   "financial_freedom" => "How To Gain Financial Freedom",
   "financial_freedom_quote1" => "The speed of your success is limited only by your dedication and what you're willing to sacrifice.",
   "get_instant_access" => "Get Instant Access",

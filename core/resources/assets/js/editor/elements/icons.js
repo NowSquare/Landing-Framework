@@ -69,18 +69,26 @@ function lfInitIcon($icon, unique_class) {
     $edit_button.find('.-x-el-icon-visible .-x-el-checkmark').addClass('-x-checked');
   }
 
-  if ($icon.hasClass('icon-xs')) {
-    $edit_button.find('.-x-el-icon-size-select[data-x-size=xs] .-x-el-checkmark').addClass('-x-checked');
-  } else if ($icon.hasClass('icon-s')) {
-    $edit_button.find('.-x-el-icon-size-select[data-x-size=s] .-x-el-checkmark').addClass('-x-checked');
-  } else if ($icon.hasClass('icon-m')) {
-    $edit_button.find('.-x-el-icon-size-select[data-x-size=m] .-x-el-checkmark').addClass('-x-checked');
-  } else if ($icon.hasClass('icon-l')) {
-    $edit_button.find('.-x-el-icon-size-select[data-x-size=l] .-x-el-checkmark').addClass('-x-checked');
-  } else if ($icon.hasClass('icon-xl')) {
-    $edit_button.find('.-x-el-icon-size-select[data-x-size=xl] .-x-el-checkmark').addClass('-x-checked');
-  } else if ($icon.hasClass('icon-xxl')) {
-    $edit_button.find('.-x-el-icon-size-select[data-x-size=xxl] .-x-el-checkmark').addClass('-x-checked');
+  if ($icon.hasClass('icon-1')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=1] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-2')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=2] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-3')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=3] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-4')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=4] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-5')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=5] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-6')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=6] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-7')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=7] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-8')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=8] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-9')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=9] .-x-el-checkmark').addClass('-x-checked');
+  } else if ($icon.hasClass('icon-10')) {
+    $edit_button.find('.-x-el-icon-size-select[data-x-size=10] .-x-el-checkmark').addClass('-x-checked');
   }
 
   new Tether({
@@ -166,7 +174,7 @@ function lfInitIcons() {
 
       // Remove all size classes
       var $el = $('.' + el_class);
-      $el.removeClass('icon-xs icon-s icon-m icon-l icon-xl icon-xxl');
+      $el.removeClass('icon-1 icon-2 icon-3 icon-4 icon-5 icon-6 icon-7 icon-8 icon-9 icon-10');
 
       // Add size class
       $el.addClass('icon-' + selected_size);

@@ -3,26 +3,10 @@
  * Font icon related styles
  */
 
-.icon-xs {
-  font-size: 5rem !important;
-}
+$icon-size-list: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
 
-.icon-s {
-  font-size: 6rem !important;
-}
-
-.icon-m {
-  font-size: 7rem !important;
-}
-
-.icon-l {
-  font-size: 8rem !important;
-}
-
-.icon-xl {
-  font-size: 9rem !important;
-}
-
-.icon-xxl {
-  font-size: 10rem !important;
+@each $icon-size in $icon-size-list {
+  .icon-#{$icon-size} {
+    font-size: $icon-size + unquote("rem") !important;
+  }
 }

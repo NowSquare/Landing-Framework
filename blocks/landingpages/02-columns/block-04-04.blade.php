@@ -6,7 +6,7 @@
           <div class="col-12 col-sm-6 col-lg-3 text-center">
             <div class="row">
               <div class="col-6 push-3 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
-                <i class="mb-3 icon-xl color-grey -x-icon mi store" data-attachment="bottom left" data-target-attachment="top left"></i>
+                <i class="mb-3 icon-9 color-grey -x-icon mi store" data-attachment="bottom left" data-target-attachment="top left"></i>
               </div>
               <div class="col-12">
                 <h2 class="mt-1 -x-text">{!! trans('landingpages::block.content_title1') !!}</h2>
@@ -22,7 +22,7 @@
           <div class="col-12 col-sm-6 col-lg-3 text-center">
             <div class="row">
               <div class="col-6 push-3 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
-                <i class="mb-3 icon-xl color-grey -x-icon mi touch_app" data-attachment="bottom left" data-target-attachment="top left"></i>
+                <i class="mb-3 icon-9 color-grey -x-icon mi touch_app" data-attachment="bottom left" data-target-attachment="top left"></i>
               </div>
               <div class="col-12">
                 <h2 class="mt-1 -x-text">{!! trans('landingpages::block.content_title2') !!}</h2>
@@ -38,7 +38,7 @@
           <div class="col-12 col-sm-6 col-lg-3 text-center">
             <div class="row">
               <div class="col-6 push-3 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
-                <i class="mb-3 icon-xl color-grey -x-icon mi mic" data-attachment="bottom left" data-target-attachment="top left"></i>
+                <i class="mb-3 icon-9 color-grey -x-icon mi mic" data-attachment="bottom left" data-target-attachment="top left"></i>
               </div>
               <div class="col-12">
                 <h2 class="mt-1 -x-text">{!! trans('landingpages::block.content_title3') !!}</h2>
@@ -54,7 +54,7 @@
           <div class="col-12 col-sm-6 col-lg-3 text-center">
             <div class="row">
               <div class="col-6 push-3 col-sm-8 push-sm-2 col-lg-8 push-lg-2 text-center">
-                <i class="mb-3 icon-xl color-grey -x-icon mi business" data-attachment="bottom left" data-target-attachment="top left"></i>
+                <i class="mb-3 icon-9 color-grey -x-icon mi business" data-attachment="bottom left" data-target-attachment="top left"></i>
               </div>
               <div class="col-12">
                 <h2 class="mt-1 -x-text">{!! trans('landingpages::block.content_title4') !!}</h2>
