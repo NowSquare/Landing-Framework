@@ -1,5 +1,5 @@
 <section class="-x-block">
-  <div class="content content-padding-none -x-block-bg-img" style="">
+  <div class="content content-padding-l -x-block-bg-img" style="">
     <div class="content-overlay -x-block-bg-color" style="background-color:rgba(255,255,255,1)">
       <div class="container">
         <div class="row">
