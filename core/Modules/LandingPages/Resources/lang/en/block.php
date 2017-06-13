@@ -82,6 +82,9 @@ return array(
   "photo_01_head" => "First make it work, then make it better",
   "header_04_head" => "10 best practices",
   "header_05_head" => "Sustainable investments",
+  "header_06_head" => "Get access",
+  "header_07_head" => "Coffee break",
+  "header_07_line" => "Hi there, the coffee is ready!",
 
   // Video embeds
   "video_embed_url1" => "//www.youtube.com/embed/jgvx9OfZKJw",

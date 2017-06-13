@@ -6,7 +6,7 @@
           <div class="row">
             <div class="col-md-6 text-center text-md-left">
               <div class="-x-text">
-                <h1 class="display-4 mt-3">{!! trans('landingpages::block.get_full_access_now') !!}</h1>
+                <h1 class="display-4 mt-3">{!! trans('landingpages::block.header_06_head') !!}</h1>
                 <p class="lead">{!! trans('landingpages::block.get_full_access_lead') !!}</p>
               </div>
               <div class="mt-3 mb-1 text-center text-md-left">
