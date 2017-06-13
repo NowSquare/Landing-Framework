@@ -53,6 +53,8 @@ return array(
   "get_full_access_lead" => "Get full access to all content for only $299!",
   "sale_ends_in" => "Hurry! Sale ends in:",
   "get_started_for_free" => "Get started for free",
+  "get_discount" => "Get discount",
+  "discover" => "Discover",
   "financial_freedom" => "How To Gain Financial Freedom",
   "financial_freedom_quote1" => "The speed of your success is limited only by your dedication and what you're willing to sacrifice.",
   "get_instant_access" => "Get Instant Access",
@@ -85,6 +87,8 @@ return array(
   "header_06_head" => "Get access",
   "header_07_head" => "Coffee break",
   "header_07_line" => "Hi there, the coffee is ready!",
+  "header_08_head" => "New shoes today",
+  "header_08_line" => "Discover our large selection of shoes online.",
 
   // Video embeds
   "video_embed_url1" => "//www.youtube.com/embed/jgvx9OfZKJw",
