@@ -9,8 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="/assets/bs4/css/style.min.css">
-    <link href="//fonts.googleapis.com/css?family=Poppins:200,400%7CNoto+Sans:300,400,700" rel="stylesheet">
-    <style type="text/css"> body { font-family: 'Noto+Sans', sans-serif; font-weight: 300; } h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 300 !important; } </style>
+    <link href="//fonts.googleapis.com/css?family=Poppins:300%7CNoto+Sans:400,700" rel="stylesheet">
+    <style type="text/css"> body { font-family: 'Noto+Sans', sans-serif; font-weight: 400; } h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 300 !important; } </style>
     <script src="/assets/bs4/js/scripts.min.js"></script>
   </head>
   <body>
