@@ -48,7 +48,7 @@ img.round {
 
 /* Min height */
 
-$min-height-list: 300, 400, 500, 600;
+$min-height-list: 100, 200, 300, 400, 500, 600;
 
 @each $min-height in $min-height-list {
   .min-height-#{$min-height} {
@@ -58,6 +58,22 @@ $min-height-list: 300, 400, 500, 600;
   @include media-breakpoint-down(sm) {
     .min-height-#{$min-height} {
       min-height: ($min-height / 2) + unquote("px") !important;
+    }
+  }
+}
+
+/* Max height */
+
+$max-height-list: 100, 200, 300, 400, 500, 600;
+
+@each $max-height in $max-height-list {
+  .max-height-#{$max-height} {
+    max-height: $max-height + unquote("px") !important;
+  }
+
+  @include media-breakpoint-down(sm) {
+    .max-height-#{$max-height} {
+      max-height: ($max-height / 2) + unquote("px") !important;
     }
   }
 }
