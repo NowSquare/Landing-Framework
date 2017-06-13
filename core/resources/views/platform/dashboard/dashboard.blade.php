@@ -55,16 +55,17 @@ foreach($sites as $site) {
   }
 
   $chart_color = '138dfa';
+  $percent = ($site->conversion == '') ? 0 : $site->conversion;
 ?>
     <div class="col-sm-6 col-lg-3">
-      <div class="card-box widget-icon">
+      <div class="card-box widget-icon mdl-shadow--2dp" style="border:0">
         <a href="#/platform#/landingpages/analytics/{{ $sl_page }}">
 
           <div id="circliful-lp-{{ $i }}" style="width: 80px; float:left; top: -16px; left: -8px; position: relative"></div>
 
           <script>
           $('#circliful-lp-{{ $i }}').circliful({
-            percent: {{ $site->conversion }},
+            percent: {{ $percent }},
             icon: 'e152',
             iconSize: 50,
             iconPosition: 'bottom',
@@ -86,12 +87,6 @@ foreach($sites as $site) {
 }
 ?>
   </div>
-
-<style type="text/css">
-svg .icon {
-  font-family: Material Icons;
-}
-</style>
 
 <?php
 } // count($sites) > 0
@@ -138,16 +133,17 @@ foreach($forms as $form) {
   }
 
   $chart_color = '138dfa';
+  $percent = ($form->conversion == '') ? 0 : $form->conversion;
 ?>
     <div class="col-sm-6 col-lg-3">
-      <div class="card-box widget-icon">
+      <div class="card-box widget-icon mdl-shadow--2dp" style="border:0">
         <a href="#/platform#/forms/entries/{{ $sl_form }}">
 
           <div id="circliful-f-{{ $i }}" style="width: 80px; float:left; top: -16px; left: -8px; position: relative"></div>
 
           <script>
           $('#circliful-f-{{ $i }}').circliful({
-            percent: {{ $form->conversion }},
+            percent: {{ $percent }},
             icon: 'e152',
             iconSize: 50,
             iconPosition: 'bottom',
@@ -169,16 +165,15 @@ foreach($forms as $form) {
 }
 ?>
   </div>
-
-<style type="text/css">
-svg .icon {
-  font-family: Material Icons;
-}
-</style>
-
 <?php
 } // count($forms) > 0
 ?>
+  <style type="text/css">
+  svg .icon {
+    font-family: Material Icons;
+  }
+  </style>
+
   <div class="row<?php if (count($sites) == 0 && count($forms) == 0) { ?> m-t<?php } ?>">
     <div class="col-sm-12">
       <nav class="navbar navbar-default card-box sub-navbar">
