@@ -58,7 +58,7 @@ foreach($sites as $site) {
   $percent = ($site->conversion == '') ? 0 : $site->conversion;
 ?>
     <div class="col-sm-6 col-lg-3">
-      <div class="card-box widget-icon mdl-shadow--2dp" style="border:0">
+      <div class="card-box widget-icon card-box-link" style="border:0">
         <a href="#/platform#/landingpages/analytics/{{ $sl_page }}">
 
           <div id="circliful-lp-{{ $i }}" style="width: 80px; float:left; top: -16px; left: -8px; position: relative"></div>
@@ -136,7 +136,7 @@ foreach($forms as $form) {
   $percent = ($form->conversion == '') ? 0 : $form->conversion;
 ?>
     <div class="col-sm-6 col-lg-3">
-      <div class="card-box widget-icon mdl-shadow--2dp" style="border:0">
+      <div class="card-box widget-icon card-box-link" style="border:0">
         <a href="#/platform#/forms/entries/{{ $sl_form }}">
 
           <div id="circliful-f-{{ $i }}" style="width: 80px; float:left; top: -16px; left: -8px; position: relative"></div>
@@ -171,6 +171,13 @@ foreach($forms as $form) {
   <style type="text/css">
   svg .icon {
     font-family: Material Icons;
+  }
+  .card-box-link {
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.2s ease-in-out;
+  }
+  .card-box-link:hover {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
   }
   </style>
 <?php if (count($sites) == 0 && count($forms) == 0) { ?>
