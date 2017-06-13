@@ -5,7 +5,7 @@
         <div class="header-padding-xl">
           <div class="row">
             <div class="col-md-12 text-center text-md-left">
-              <img src="/templates/assets/images/mockups/mug-light-small.png" alt="" class="mt-1 -x-img">
+              <img src="/templates/assets/images/mockups/mug-light-small.png" alt="" class="my-4 -x-img">
               <div class="-x-text">
                 <h1 class="display-2 mt-3">{!! trans('landingpages::block.header_07_head') !!}</h1>
                 <p class="lead">{!! trans('landingpages::block.header_07_line') !!}</p>
