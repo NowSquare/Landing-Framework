@@ -19,14 +19,29 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
+  "video_promotion" => "Video promotion",
+  "video_promotion_desc" => "For all your video promotions.",
+  "thank_you_pages" => "Thank you pages",
+  "thank_you_pages_desc" => "Pages for after a form submission.",
+  "coming_soon" => "Coming soon",
+  "coming_soon_desc" => "Pre-launch pages.",
+  "sales_pages" => "Sales pages",
+  "sales_pages_desc" => "Convert visitors into customers.",
+  "company_page" => "Company pages",
+  "company_page_desc" => "Agency and business pages.",
+  "" => "",
+  "" => "",
+  "" => "",
+  "" => "",
+
 	"create_landing_page" => "Create Landing Page",
 	"custom_domain" => "Custom domain",
 	"personal" => "Personal",
-	"personal_desc" => "A landing page for freelancers, a portfolio or resumes.",
+	"personal_desc" => "Promote yourself.",
 	"business_services" => "Business & Services",
 	"business_services_desc" => "Landing pages for businesses to showcase a product or service.",
   "food_drinks" => "Food & Drinks",
-  "food_drinks_desc" => "Food, drinks, delivery. Tasty landing pages.",
+  "food_drinks_desc" => "Tasty landing pages.",
   "digital_tech" => "Digital & Tech",
   "digital_tech_desc" => "Landing pages for ventures in the world of technology.",
 

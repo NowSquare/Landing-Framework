@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="messegebox" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 192 172.6408" width="100px" height="100px" enable-background="new 0 0 192 172.6408" xml:space="preserve">
+<g>
+	<path fill="#A48659" d="M179.9748,0H12.0236C5.3944,0,0,5.3692,0,11.9668v104.0664C0,122.6308,5.3944,128,12.0236,128H89.588
+		v40.6408c0,1.5604,0.908,2.9784,2.324,3.6328c0.5352,0.246,1.1076,0.3672,1.676,0.3672c0.9336,0,1.8572-0.3264,2.5956-0.9572
+		L147.3984,128h32.5764C186.6056,128,192,122.6308,192,116.0332V11.9668C192,5.3692,186.6056,0,179.9748,0z M26,20h122v8H26V20z
+		 M26,40h96v8H26V40z M122,108H26v-8h96V108z M122,88H26v-8h96V88z M168,68H26v-8h142V68z"/>
+	<rect x="26" y="20" fill="#DBEEF7" width="122" height="8"/>
+	<rect x="26" y="40" fill="#DBEEF7" width="96" height="8"/>
+	<rect x="26" y="60" fill="#DBEEF7" width="142" height="8"/>
+	<rect x="26" y="80" fill="#DBEEF7" width="96" height="8"/>
+	<rect x="26" y="100" fill="#DBEEF7" width="96" height="8"/>
+</g>
+</svg>

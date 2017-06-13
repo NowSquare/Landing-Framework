@@ -47,7 +47,6 @@ class CreateLandingPagesTable extends Migration
       $table->boolean('show_in_menu')->default(true);
       $table->string('name', 64);
       $table->string('template', 48)->nullable();
-      $table->string('type', 32)->nullable();
       $table->string('slug', 128)->nullable();
       $table->bigInteger('visits')->unsigned()->default(0);
       $table->bigInteger('conversions')->unsigned()->default(0);

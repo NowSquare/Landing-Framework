@@ -147,9 +147,16 @@ class FunctionsController extends Controller
 
     $items[] = [
       "icon" => 'localstore.svg',
-      "category" => 'business_services',
-      "name" => trans('landingpages::global.business_services'),
-      "desc" => trans('landingpages::global.business_services_desc')
+      "category" => 'sales_pages',
+      "name" => trans('landingpages::global.sales_pages'),
+      "desc" => trans('landingpages::global.sales_pages_desc')
+    ];
+
+    $items[] = [
+      "icon" => 'businesscenter.svg',
+      "category" => 'company_page',
+      "name" => trans('landingpages::global.company_page'),
+      "desc" => trans('landingpages::global.company_page_desc')
     ];
 
     $items[] = [
@@ -157,6 +164,42 @@ class FunctionsController extends Controller
       "category" => 'food_drinks',
       "name" => trans('landingpages::global.food_drinks'),
       "desc" => trans('landingpages::global.food_drinks_desc')
+    ];
+
+    $items[] = [
+      "icon" => 'moviecut.svg',
+      "category" => 'video_promotion',
+      "name" => trans('landingpages::global.video_promotion'),
+      "desc" => trans('landingpages::global.video_promotion_desc')
+    ];
+
+    $items[] = [
+      "icon" => 'pictureprofile.svg',
+      "category" => 'personal',
+      "name" => trans('landingpages::global.personal'),
+      "desc" => trans('landingpages::global.personal_desc')
+    ];
+
+    $items[] = [
+      "icon" => 'stopwatch.svg',
+      "category" => 'coming_soon',
+      "name" => trans('landingpages::global.coming_soon'),
+      "desc" => trans('landingpages::global.coming_soon_desc')
+    ];
+
+    $items[] = [
+      "icon" => 'messegebox.svg',
+      "category" => 'thank_you',
+      "name" => trans('landingpages::global.thank_you_pages'),
+      "desc" => trans('landingpages::global.thank_you_pages_desc')
+    ];
+
+/*
+    $items[] = [
+      "icon" => 'localstore.svg',
+      "category" => 'business_services',
+      "name" => trans('landingpages::global.business_services'),
+      "desc" => trans('landingpages::global.business_services_desc')
     ];
 
     $items[] = [
@@ -172,7 +215,7 @@ class FunctionsController extends Controller
       "name" => trans('landingpages::global.personal'),
       "desc" => trans('landingpages::global.personal_desc')
     ];
-
+*/
     return $items;
   }
 
@@ -352,7 +395,6 @@ class FunctionsController extends Controller
       $page->landing_site_id = $site_id;
       $page->name = $name;
       $page->template = $template;
-      $page->type = $config['type'];
       $page->save();
 
       $local_domain = Core\Secure::staticHash($site_id, true);
