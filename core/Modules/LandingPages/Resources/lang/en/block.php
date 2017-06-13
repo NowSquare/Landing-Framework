@@ -80,6 +80,8 @@ return array(
   "content_01_line" => "We provide high quality assets for your business. We help entrepreneurs with great ideas achieving their goals faster with our premium consultancy.",
   "content_01_button" => "Order Now",
   "photo_01_head" => "First make it work, then make it better",
+  "header_04_head" => "10 best practices",
+  "header_05_head" => "Sustainable investments",
 
   // Video embeds
   "video_embed_url1" => "//www.youtube.com/embed/jgvx9OfZKJw",
