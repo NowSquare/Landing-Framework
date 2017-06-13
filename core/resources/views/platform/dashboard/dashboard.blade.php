@@ -27,6 +27,7 @@
 
   <div class="row">
 <?php
+$i = 0;
 foreach($sites as $site) {
   $page = $site->pages->first();
   $page_id = $page->id;
@@ -39,36 +40,146 @@ foreach($sites as $site) {
 
   $trend_icon = ($today < $yesterday) ? 'trending_down' : 'trending_up';
   $trend_color = ($today < $yesterday) ? 'danger' : 'success';
-  $trend_diff = ($today > 0) ? $today - $yesterday : 0;
-  $trend_diff_perc = ($today > 0) ? round((1 - $yesterday / $today) * 100, 0) : 0;
-  if ($today == 0 && $yesterday > 0) $trend_diff_perc = -100;
+  $chart_color = ($today < $yesterday) ? 'da4429' : '15cd72';
+
+  $trend_diff = $today - $yesterday;
+  $trend_diff_sign = ($trend_diff > 0) ? '+' : '';
+  $trend_diff_perc = ($today > 0) ? abs(round((1 - $yesterday / $today) * 100, 0)) : 0;
+  if ($today == 0 && $yesterday > 0) $trend_diff_perc = 100;
 
   if ($today == $yesterday) {
     $trend_icon = 'trending_flat';
     $trend_color = 'primary';
     $trend_diff = 0;
+    $chart_color = '138dfa';
   }
 
+  $chart_color = '138dfa';
 ?>
     <div class="col-sm-6 col-lg-3">
       <div class="card-box widget-icon">
         <a href="#/platform#/landingpages/analytics/{{ $sl_page }}">
-          <img src="{{ url('assets/images/icons/color/onepagelayout.svg') }}" alt="{{ $site->name }}" style="width:60px; float:left; top: -6px; position: relative;">
+
+          <div id="circliful-lp-{{ $i }}" style="width: 80px; float:left; top: -16px; left: -8px; position: relative"></div>
+
+          <script>
+          $('#circliful-lp-{{ $i }}').circliful({
+            percent: {{ $site->conversion }},
+            icon: 'e152',
+            iconSize: 50,
+            iconPosition: 'bottom',
+            fgcolor: '#{{ $chart_color }}',
+            bgcolor: '#ebeff2',
+            showPercent: 0,
+            textAdditionalCss: 'display:none'
+          });
+          </script>
           <div class="wid-icon-info">
             <p class="text-muted m-b-5 font-13 text-uppercase">{{ $site->name }}</p>
-            <h4 class="m-t-0 m-b-5 text-{{ $trend_color }}"><i class="mi {{ $trend_icon }}" style="font-size: 14px; position: relative; top: 3px"></i> &nbsp; <span class="counter">{{ $trend_diff }}</span> (<span class="counter">{{ $trend_diff_perc }}</span>%)</h4>
+            <h4 class="m-t-0 m-b-5 text-{{ $trend_color }}"><i class="mi {{ $trend_icon }}" style="font-size: 14px; position: relative; top: 3px"></i> &nbsp; {{ $trend_diff_sign }}<span class="counter">{{ $trend_diff }}</span> (<span class="counter">{{ $trend_diff_perc }}</span>%)</h4>
           </div>
         </a>
       </div>
     </div>
 <?php
+  $i++;
 }
 ?>
   </div>
+
+<style type="text/css">
+svg .icon {
+  font-family: Material Icons;
+}
+</style>
+
 <?php
 } // count($sites) > 0
 ?>
+
+<?php if (count($forms) > 0) { ?>
+
   <div class="row<?php if (count($sites) == 0) { ?> m-t<?php } ?>">
+    <div class="col-sm-12">
+      <nav class="navbar navbar-default card-box sub-navbar">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('forms::global.module_name_plural') }} ({{ count($forms) }})</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="row">
+<?php
+$i = 0;
+foreach($forms as $form) {
+  $sl_form = \Platform\Controllers\Core\Secure::array2string(['form_id' => $form->id]);
+
+  // Entries
+  $today = \Modules\Forms\Http\Models\Stat::where('form_id', $form->id)->where(\DB::raw('DATE(created_at)'), \Carbon\Carbon::now(\Auth::user()->timezone)->tz('UTC')->format('Y-m-d'))->count();
+  $yesterday = \Modules\Forms\Http\Models\Stat::where('form_id', $form->id)->where(\DB::raw('DATE(created_at)'), \Carbon\Carbon::yesterday(\Auth::user()->timezone)->tz('UTC')->format('Y-m-d'))->count();
+
+  $trend_icon = ($today < $yesterday) ? 'trending_down' : 'trending_up';
+  $trend_color = ($today < $yesterday) ? 'danger' : 'success';
+  $chart_color = ($today < $yesterday) ? 'da4429' : '15cd72';
+
+  $trend_diff = $today - $yesterday;
+  $trend_diff_sign = ($trend_diff > 0) ? '+' : '';
+  $trend_diff_perc = ($today > 0) ? abs(round((1 - $yesterday / $today) * 100, 0)) : 0;
+  if ($today == 0 && $yesterday > 0) $trend_diff_perc = 100;
+
+  if ($today == $yesterday) {
+    $trend_icon = 'trending_flat';
+    $trend_color = 'primary';
+    $trend_diff = 0;
+    $chart_color = '138dfa';
+  }
+
+  $chart_color = '138dfa';
+?>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card-box widget-icon">
+        <a href="#/platform#/forms/entries/{{ $sl_form }}">
+
+          <div id="circliful-f-{{ $i }}" style="width: 80px; float:left; top: -16px; left: -8px; position: relative"></div>
+
+          <script>
+          $('#circliful-f-{{ $i }}').circliful({
+            percent: {{ $form->conversion }},
+            icon: 'e152',
+            iconSize: 50,
+            iconPosition: 'bottom',
+            fgcolor: '#{{ $chart_color }}',
+            bgcolor: '#ebeff2',
+            showPercent: 0,
+            textAdditionalCss: 'display:none'
+          });
+          </script>
+          <div class="wid-icon-info">
+            <p class="text-muted m-b-5 font-13 text-uppercase">{{ $form->name }}</p>
+            <h4 class="m-t-0 m-b-5 text-{{ $trend_color }}"><i class="mi {{ $trend_icon }}" style="font-size: 14px; position: relative; top: 3px"></i> &nbsp; {{ $trend_diff_sign }}<span class="counter">{{ $trend_diff }}</span> (<span class="counter">{{ $trend_diff_perc }}</span>%)</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+<?php
+  $i++;
+}
+?>
+  </div>
+
+<style type="text/css">
+svg .icon {
+  font-family: Material Icons;
+}
+</style>
+
+<?php
+} // count($forms) > 0
+?>
+  <div class="row<?php if (count($sites) == 0 && count($forms) == 0) { ?> m-t<?php } ?>">
     <div class="col-sm-12">
       <nav class="navbar navbar-default card-box sub-navbar">
         <div class="container-fluid">

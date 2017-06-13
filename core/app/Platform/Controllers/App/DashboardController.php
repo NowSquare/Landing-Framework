@@ -58,9 +58,13 @@ class DashboardController extends \App\Http\Controllers\Controller {
     $sites = false;
 
     if (Gate::allows('limitation', 'landingpages.visible')) {
-      $sites = \Modules\LandingPages\Http\Models\Site::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->select('landing_sites.*')->addSelect(\DB::raw('((landing_sites.conversions / landing_sites.visits) * 100) as conversion'))->orderBy('name', 'asc')->get();
+      $sites = \Modules\LandingPages\Http\Models\Site::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->select('landing_sites.*')->addSelect(\DB::raw('((landing_sites.conversions / landing_sites.visits) * 100) as conversion'))->orderBy('conversion', 'desc')->get();
     }
 
-    return view('platform.dashboard.dashboard', compact('active_modules', 'sites'));
+    if (Gate::allows('limitation', 'forms.visible')) {
+      $forms = \Modules\Forms\Http\Models\Form::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->select('forms.*')->addSelect(\DB::raw('((forms.entries / forms.visits) * 100) as conversion'))->orderBy('entries', 'desc')->get();
+    }
+
+    return view('platform.dashboard.dashboard', compact('active_modules', 'sites', 'forms'));
   }
 }
