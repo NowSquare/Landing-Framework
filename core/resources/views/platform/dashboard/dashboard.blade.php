@@ -173,7 +173,7 @@ foreach($forms as $form) {
     font-family: Material Icons;
   }
   </style>
-
+<?php if (count($sites) == 0 && count($forms) == 0) { ?>
   <div class="row<?php if (count($sites) == 0 && count($forms) == 0) { ?> m-t<?php } ?>">
     <div class="col-sm-12">
       <nav class="navbar navbar-default card-box sub-navbar">
@@ -220,5 +220,7 @@ foreach ($active_modules as $module) {
     </div>
 <?php } ?>
   </div>
+
+<?php } ?>
 <?php } ?>
 </div>
