@@ -102,7 +102,7 @@ return array(
   "video_embed_url7" => "//www.youtube.com/embed/_27eD49ePQE",
   "video_embed_url8" => "//www.youtube.com/embed/_27eD49ePQE",
   "video_embed_url9" => "//player.vimeo.com/video/212562829",
-  "video_embed_url10" => "//www.youtube.com/embed/Vg6DHIdfW-A",
+  "video_embed_url10" => "//www.youtube.com/embed/WSKi8HfcxEk",
   "video_embed_url11" => "//player.vimeo.com/video/212562829",
   "video_embed_url12" => "//www.youtube.com/embed/Vg6DHIdfW-A",
   "video_embed_url13" => "//player.vimeo.com/video/212562829",
