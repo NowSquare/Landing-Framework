@@ -319,16 +319,23 @@ class FunctionsController extends Controller
   {
     $category_templates = [];
 
-    $templates = array_sort(\File::directories(base_path('../templates/forms/')), function($dir) {
-      if (\File::exists($dir . '/config.php')) {
-        $config = include $dir . '/config.php';
-        return $config['created_at'];
-      } else {
-        return $dir;
-      }
-    });
+    $templates = \File::directories(base_path('../templates/forms/'));
 
-    rsort($templates);
+    usort($templates, function ($dir1, $dir2) {
+      if (\File::exists($dir1 . '/config.php')) {
+        $config1 = include $dir1 . '/config.php';
+      } else {
+        return false;
+      }
+
+      if (\File::exists($dir2 . '/config.php')) {
+        $config2 = include $dir2 . '/config.php';
+      } else {
+        return false;
+      }
+
+      return $config2['created_at'] <=> $config1['created_at'];
+    });
 
     foreach ($templates as $template) {
       if (\File::exists($template . '/config.php') && \File::exists($template . '/index.blade.php')) {
