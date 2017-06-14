@@ -3,7 +3,7 @@
 return [
   'name' => 'Creso',
   'active' => true,
-  'categories' => ['sales_pages', 'company_page', 'food_drinks', 'video_promotion', 'personal', 'coming_soon', 'thank_you'],
+  'categories' => ['company_page'],
   'type' => 'lead_capture', // webinar_funnel, launch_funnel, membership_funnel
   'created_at' => '2017-05-14',
   'updated_at' => '2017-05-14',

@@ -6,6 +6,7 @@ return array(
   "columns" => "Columns",
   "photos" => "Photos",
   "video" => "Video",
+  "maps" => "Maps",
   "footers" => "Footers",
   "countdowns" => "Countdowns",
   "testimonials" => "Testimonials",
@@ -55,6 +56,7 @@ return array(
   "get_started_for_free" => "Get started for free",
   "get_discount" => "Get discount",
   "discover" => "Discover",
+  "visit_us_here" => "Visit us here",
   "financial_freedom" => "How To Gain Financial Freedom",
   "financial_freedom_quote1" => "The speed of your success is limited only by your dedication and what you're willing to sacrifice.",
   "get_instant_access" => "Get Instant Access",
@@ -105,6 +107,10 @@ return array(
   "video_embed_url12" => "//www.youtube.com/embed/Vg6DHIdfW-A",
   "video_embed_url13" => "//player.vimeo.com/video/212562829",
   "video_embed_url14" => "//www.youtube.com/embed/Vg6DHIdfW-A",
+
+  "google_maps_embed01" => "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6305.661187702458!2d-122.4002086321238!3d37.79400969108923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x2a0a498915100cb5!2sEmbarcadero+Center!5e0!3m2!1snl!2snl!4v1497436730157",
+  "google_maps_embed02" => "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.6921871971317!2d-73.99560704827222!3d40.70277637923157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a30b7c011d3%3A0xf7781188dafd21!2s19+Cadman+Plaza+W%2C+Brooklyn%2C+NY+11201%2C+!5e0!3m2!1snl!2snl!4v1497437274530",
+  "" => "",
   "" => "",
   "" => ""
 );
