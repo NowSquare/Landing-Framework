@@ -154,9 +154,9 @@ class FunctionsController extends Controller
 
     $items[] = [
       "icon" => 'businesscenter.svg',
-      "category" => 'company_page',
-      "name" => trans('landingpages::global.company_page'),
-      "desc" => trans('landingpages::global.company_page_desc')
+      "category" => 'company_pages',
+      "name" => trans('landingpages::global.company_pages'),
+      "desc" => trans('landingpages::global.company_pages_desc')
     ];
 
     $items[] = [
@@ -190,8 +190,8 @@ class FunctionsController extends Controller
     $items[] = [
       "icon" => 'messegebox.svg',
       "category" => 'thank_you',
-      "name" => trans('landingpages::global.thank_you_pages'),
-      "desc" => trans('landingpages::global.thank_you_pages_desc')
+      "name" => trans('landingpages::global.thank_you'),
+      "desc" => trans('landingpages::global.thank_you_desc')
     ];
 
 /*
