@@ -573,9 +573,8 @@ class LandingPagesController extends Controller
     public function editorModalVideo(Request $request)
     {
       $el_class = $request->input('el_class', '');
-      $link = (boolean) $request->input('link', false);
 
-      return view('landingpages::modals.video', compact('el_class', 'link'));
+      return view('landingpages::modals.video', compact('el_class'));
     }
 
     /**
@@ -603,6 +602,16 @@ class LandingPagesController extends Controller
 
         return response()->json($response);
       }
+    }
+
+    /**
+     * Editor modal to configure iframe
+     */
+    public function editorModalFrame(Request $request)
+    {
+      $el_class = $request->input('el_class', '');
+
+      return view('landingpages::modals.frame', compact('el_class'));
     }
 
     /**

@@ -15,6 +15,7 @@ function lfInitEditor(editor) {
   lfInitBlocks();
   lfInitImages();
   lfInitVideos();
+  lfInitFrames();
   lfInitIcons();
   lfInitLinks();
   lfInitLists();
