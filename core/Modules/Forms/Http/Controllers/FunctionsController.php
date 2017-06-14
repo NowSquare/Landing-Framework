@@ -328,6 +328,8 @@ class FunctionsController extends Controller
       }
     });
 
+    rsort($templates);
+
     foreach ($templates as $template) {
       if (\File::exists($template . '/config.php') && \File::exists($template . '/index.blade.php')) {
         $config = include $template . '/config.php';
