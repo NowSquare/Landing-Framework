@@ -89,6 +89,10 @@ foreach ($active_modules as $module) {
           </li>
         </ul>
 
+        <ul class="nav navbar-nav navbar-right pull-right" id="edit_buttons">
+          <li id="save_button"><a href="javascript:void(0);" class="waves-effect waves-light" style="font-size:16px;"><i class="mi save" style="font-size:18px;"></i> {{ trans('global.save') }}</a></li>
+        </ul>
+
         <ul class="nav navbar-nav navbar-right pull-right" id="device_selector">
           <li class="menu-icon-button active" id="desktop_mode"><a href="javascript:void(0);"><i class="material-icons">&#xE30C;</i></a></li>
           <li class="menu-icon-button" id="tablet_mode"><a href="javascript:void(0);"><i class="material-icons">&#xE330;</i></a></li>

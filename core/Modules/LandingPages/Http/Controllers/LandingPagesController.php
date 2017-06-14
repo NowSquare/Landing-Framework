@@ -182,7 +182,45 @@ class LandingPagesController extends Controller
           $html = \Storage::disk('public')->get($storage_root . '/index.blade.php');
 
           if (! empty($page)) {
-            return view('landingpages::source', compact('page', 'html'));
+            return view('landingpages::source', compact('page', 'sl', 'html'));
+          }
+        }
+      }
+    }
+
+    /**
+     * Landing page source editor post
+     */
+    public function postSourceEditor()
+    {
+      $sl = request()->input('sl', '');
+      $html = request()->input('html', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        if (isset($qs['landing_page_id'])) {
+          $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $qs['landing_page_id'])->first();
+
+          // Sanitize html
+          $html = preg_replace('/<\\?.*(\\?>|$)/Us', '', $html);
+          $html = preg_replace('/{{[^[]*}}/Us', '', $html);
+
+          //$html = \Storage::disk('public')->get($storage_root . '/index.blade.php');
+
+          if (! empty($page)) {
+            // Save html
+            $variant = 1;
+            $storage_root = 'landingpages/site/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' .  Core\Secure::staticHash($page->landing_site_id, true) . '/' . Core\Secure::staticHash($page->id, true) . '/' . $variant;
+
+            // Beautify html
+            $html = Core\Parser::beautifyHtml($html);
+
+            \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
+            \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
+            \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
+
+            return response()->json(['success' => true, 'msg' => trans('javascript.save_succes')]);
           }
         }
       }

@@ -27,6 +27,8 @@
 <script>
 $('#generic_title a').text("{!! str_replace('"', '&quot;', $page->name) !!}");
 
+$('#generic_title a').unbind();
+
 $('#generic_title a').on('click', function() {
   $('#editor_frame')[0].contentWindow.$('.-x-el-fab-page-seo').trigger('click');
 });
@@ -34,6 +36,8 @@ $('#generic_title a').on('click', function() {
 $('#editor_frame').removeClass('desktop_mode tablet_mode phone_mode');
 $('#editor_frame').addClass($('#device_selector li.active').attr('id'));
 
+$('#device_selector a').unbind();
+  
 $('#device_selector a').on('click', function() {
   $('#device_selector li').removeClass('active');
   $(this).parent('li').addClass('active');

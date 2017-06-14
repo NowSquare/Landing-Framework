@@ -68,6 +68,7 @@ Route::group(['middleware' => ['web', 'funnel', 'limitation:landingpages.visible
     // Edit html
     Route::group(['middleware' => ['auth:web', 'limitation:landingpages.edit_html']], function () {
       Route::get('source', 'LandingPagesController@sourceEditor');
+      Route::post('source', 'LandingPagesController@postSourceEditor');
     });
 
   });

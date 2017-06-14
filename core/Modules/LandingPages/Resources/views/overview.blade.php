@@ -87,7 +87,7 @@ foreach($sites as $site) {
           </button>
           <ul class="dropdown-menu m-t-0">
             <li><a href="{{ $edit_url }}">{{ trans('landingpages::global.edit_landing_page') }}</a></li>
-<?php if (1==2 && Gate::allows('limitation', 'landingpages.edit_html')) { ?>
+<?php if (Gate::allows('limitation', 'landingpages.edit_html')) { ?>
             <li><a href="{{ '#/landingpages/source/' . $sl_page }}">{{ trans('landingpages::global.edit_html') }}</a></li>
 <?php } ?>
             <li><a href="#/landingpages/analytics/{{ $sl_page }}">{{ trans('global.view_analytics') }}</a></li>

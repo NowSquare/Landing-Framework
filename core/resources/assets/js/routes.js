@@ -46,7 +46,7 @@ $(function() {
       '/landingpages/create': function () { loadRoute('landingpages/create', 'landingpages'); },
       '/landingpages/create/:cat': function (cat) { loadRoute('landingpages/create/' + cat, 'landingpages'); },
       '/landingpages/editor/:sl': function (sl) { loadRoute('landingpages/editor?sl=' + sl, 'landingpages', true, true); },
-      '/landingpages/source/:sl': function (sl) { loadRoute('landingpages/source?sl=' + sl, 'landingpages'); },
+      '/landingpages/source/:sl': function (sl) { loadRoute('landingpages/source?sl=' + sl, 'landingpages', true, false, true); },
       '/landingpages/analytics/:sl': function (sl) { loadRoute('landingpages/analytics?sl=' + sl, 'landingpages'); },
 
       '/forms': function () { loadRoute('forms', 'forms'); },
@@ -93,7 +93,7 @@ $(function() {
 
     router.init('#/');
 
-    function loadRoute(url, route, showGenericTitle, showDeviceSelection) {
+    function loadRoute(url, route, showGenericTitle, showDeviceSelection, showEditButtons) {
       $('#view').load(url, function() {
         onPartialLoaded();
 
@@ -103,10 +103,24 @@ $(function() {
 
         if (showDeviceSelection) {
           $('#device_selector').show();
-          $('#funnel_selector').hide();
         } else {
           $('#device_selector').hide();
+        }
+
+        if (showEditButtons) {
+          $('#edit_buttons').show();
+        } else {
+          $('#edit_buttons').hide();
+        }
+
+        if (
+          (typeof showGenericTitle == 'undefined' || ! showGenericTitle) &&
+          (typeof showDeviceSelection == 'undefined' || ! showDeviceSelection) &&
+          (typeof showEditButtons == 'undefined' || ! showEditButtons)
+        ) {
           $('#funnel_selector').show();
+        } else {
+          $('#funnel_selector').hide();
         }
 
         $('.navigation-menu li').removeClass('active');

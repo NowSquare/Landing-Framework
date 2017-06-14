@@ -150,29 +150,34 @@ if (count($forms) == 0) {
   }
 </style>
 <script>
-  $('#generic_title a' ).html( "{!! str_replace('"', '&quot;', $email->name) !!}");
+$('#generic_title a' ).html( "{!! str_replace('"', '&quot;', $email->name) !!}");
 
-    $( '#generic_title a' ).on( 'click', function () {
-      $( '#editor_frame' )[ 0 ].contentWindow.$( '.-x-el-fab-email-settings' ).trigger( 'click' );
-    } );
+$('#generic_title a').unbind();
 
-    $( '#editor_frame' ).removeClass( 'desktop_mode tablet_mode phone_mode' ); $( '#editor_frame' ).addClass( $( '#device_selector li.active' ).attr( 'id' ) );
+$('#generic_title a' ).on('click', function () {
+  $( '#editor_frame' )[ 0 ].contentWindow.$( '.-x-el-fab-email-settings' ).trigger( 'click' );
+});
 
-    $( '#device_selector a' ).on( 'click', function () {
-      $( '#device_selector li' ).removeClass( 'active' );
-      $( this ).parent( 'li' ).addClass( 'active' );
-      var mode = $( this ).parent( 'li' ).attr( 'id' );
-      $( '#editor_frame' ).removeClass( 'desktop_mode tablet_mode phone_mode' );
-      $( '#editor_frame' ).addClass( mode );
-    } );
+$('#editor_frame').removeClass('desktop_mode tablet_mode phone_mode'); 
+$('#editor_frame' ).addClass($('#device_selector li.active').attr('id'));
 
-    previewSiteResize();
+$('#device_selector a').unbind();
 
-    $( window ).resize( $.debounce( 100, previewSiteResize ) );
+$('#device_selector a').on('click', function() {
+  $('#device_selector li').removeClass('active');
+  $( this ).parent( 'li' ).addClass( 'active' );
+  var mode = $( this ).parent('li').attr('id');
+  $('#editor_frame').removeClass('desktop_mode tablet_mode phone_mode');
+  $('#editor_frame').addClass( mode );
+});
 
-    function previewSiteResize() {
-      $( '#editor_frame' ).css( {
-        'height': ( parseInt( $( window ).outerHeight() ) - 170 ) + 'px'
-      } );
-    }
+previewSiteResize();
+
+$(window ).resize($.debounce(100, previewSiteResize ));
+
+function previewSiteResize() {
+  $('#editor_frame').css({
+    'height': (parseInt($( window ).outerHeight()) - 170) + 'px'
+  });
+}
 </script>
