@@ -168,6 +168,83 @@ foreach($forms as $form) {
 <?php
 } // count($forms) > 0
 ?>
+
+<?php if (1==2 && count($email_campaigns) > 0) { ?>
+
+  <div class="row<?php if (count($sites) == 0 && count($forms) == 0) { ?> m-t<?php } ?>">
+    <div class="col-sm-12">
+      <nav class="navbar navbar-default card-box sub-navbar">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('emailcampaigns::global.module_name_plural') }} ({{ count($email_campaigns) }})</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="row">
+<?php
+$i = 0;
+foreach($email_campaigns as $email_campaign) {
+  $sl_email_campaign = \Platform\Controllers\Core\Secure::array2string(['email_campaign_id' => $email_campaign->id]);
+
+  // Entries
+  $today = \Modules\Forms\Http\Models\Stat::where('form_id', $email_campaign->id)->where(\DB::raw('DATE(created_at)'), \Carbon\Carbon::now(\Auth::user()->timezone)->tz('UTC')->format('Y-m-d'))->count();
+  $yesterday = \Modules\Forms\Http\Models\Stat::where('form_id', $email_campaign->id)->where(\DB::raw('DATE(created_at)'), \Carbon\Carbon::yesterday(\Auth::user()->timezone)->tz('UTC')->format('Y-m-d'))->count();
+
+  $trend_icon = ($today < $yesterday) ? 'trending_down' : 'trending_up';
+  $trend_color = ($today < $yesterday) ? 'danger' : 'success';
+  $chart_color = ($today < $yesterday) ? 'da4429' : '15cd72';
+
+  $trend_diff = $today - $yesterday;
+  $trend_diff_sign = ($trend_diff > 0) ? '+' : '';
+  $trend_diff_perc = ($today > 0) ? abs(round((1 - $yesterday / $today) * 100, 0)) : 0;
+  if ($today == 0 && $yesterday > 0) $trend_diff_perc = 100;
+
+  if ($today == $yesterday) {
+    $trend_icon = 'trending_flat';
+    $trend_color = 'primary';
+    $trend_diff = 0;
+    $chart_color = '138dfa';
+  }
+
+  $chart_color = '138dfa';
+  $percent = 50;
+?>
+    <div class="col-sm-6 col-lg-3">
+      <div class="card-box widget-icon card-box-link" style="border:0">
+        <a href="#/platform#/emailcampaigns/emails/{{ $sl_email_campaign }}">
+
+          <div id="circliful-ec-{{ $i }}" style="width: 80px; float:left; top: -16px; left: -8px; position: relative"></div>
+
+          <script>
+          $('#circliful-ec-{{ $i }}').circliful({
+            percent: {{ $percent }},
+            icon: 'e152',
+            iconSize: 48,
+            iconPosition: 'bottom',
+            fgcolor: '#{{ $chart_color }}',
+            bgcolor: '#ebeff2',
+            showPercent: 0,
+            textAdditionalCss: 'display:none'
+          });
+          </script>
+          <div class="wid-icon-info">
+            <p class="text-muted m-b-5 font-13 text-uppercase">{{ $email_campaign->name }}</p>
+            <h4 class="m-t-0 m-b-5 text-{{ $trend_color }}"><i class="mi {{ $trend_icon }}" style="font-size: 14px; position: relative; top: 3px"></i> &nbsp; {{ $trend_diff_sign }}<span class="counter">{{ $trend_diff }}</span> (<span class="counter">{{ $trend_diff_perc }}</span>%)</h4>
+          </div>
+        </a>
+      </div>
+    </div>
+<?php
+  $i++;
+}
+?>
+  </div>
+<?php
+} // count(email_campaigns) > 0
+?>
   <style type="text/css">
   svg .icon {
     font-family: Material Icons;

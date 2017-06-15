@@ -20,12 +20,12 @@ body .ace_scrollbar {
 <script>
   var editor = ace.edit("editor");
   editor.setTheme("ace/theme/merbivore");
+  editor.setOptions({ fontSize: '14px' });
   editor.setDisplayIndentGuides(false);
   editor.setShowPrintMargin(false);
   editor.getSession().setTabSize(2);
   editor.getSession().setMode("ace/mode/html");
   editor.getSession().setUseWrapMode(true);
-  document.getElementById('editor').style.fontSize='14px';
 
   $('#generic_title a').text("{!! str_replace('"', '&quot;', $page->name) !!}");
 
