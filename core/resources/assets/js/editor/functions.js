@@ -170,6 +170,9 @@ function lfGetHtml() {
   // Remove generated form classes
   $html.find('.form-group').removeClass('has-error has-danger');
 
+  // Remove form related classes
+  $('button[type=submit]').removeClass('disabled');
+
   // Remove all localhost script
   $html.find('script[src]').each(function() {
     var src = $(this).attr('src');
