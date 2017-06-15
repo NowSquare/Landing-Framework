@@ -241,6 +241,9 @@ function lfGetHtml() {
   $html.find('[id*=mceDefaultStyles]').remove();
   $html.find('[id*=mce]').remove();
 
+  // Remove form added attributes
+  $html.find('[novalidate]').attr('novalidate', null);
+
   // Various
   $html.find('[data-tether-id]').remove();
 
