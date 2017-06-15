@@ -49,4 +49,10 @@ Route::group(['middleware' => ['web', 'funnel', 'limitation:forms.visible'], 'pr
     Route::post('entries/data', 'EntriesController@getData');
     Route::get('entries/export', 'EntriesController@getExport'); 
   });
+
+    // Edit html
+    Route::group(['middleware' => ['auth:web', 'limitation:forms.edit_html']], function () {
+      Route::get('source', 'FormsController@sourceEditor');
+      Route::post('source', 'FormsController@postSourceEditor');
+    });
 });

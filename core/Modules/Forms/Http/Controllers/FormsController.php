@@ -546,6 +546,72 @@ class FormsController extends Controller
     }
 
     /**
+     * Form source editor
+     */
+    public function sourceEditor()
+    {
+      $sl = request()->input('sl', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        if (isset($qs['form_id'])) {
+          $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $qs['form_id'])->first();
+
+          $variant = 1;
+
+          // Get html
+          $storage_root = 'forms/form/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($form->id, true) . '/' . $variant;
+
+          // Beautify html
+          $html = \Storage::disk('public')->get($storage_root . '/index.blade.php');
+
+          if (! empty($form)) {
+            return view('forms::source', compact('form', 'sl', 'html'));
+          }
+        }
+      }
+    }
+
+    /**
+     * Form source editor post
+     */
+    public function postSourceEditor()
+    {
+      $sl = request()->input('sl', '');
+      $html = request()->input('html', '');
+
+      if($sl != '') {
+        $qs = Core\Secure::string2array($sl);
+
+        if (isset($qs['form_id'])) {
+          $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $qs['form_id'])->first();
+
+          // Sanitize html
+          $html = preg_replace('/<\\?.*(\\?>|$)/Us', '', $html);
+          $html = preg_replace('/{{[^[]*}}/Us', '', $html);
+
+          //$html = \Storage::disk('public')->get($storage_root . '/index.blade.php');
+
+          if (! empty($form)) {
+            // Save html
+            $variant = 1;
+            $storage_root = 'forms/form/' . Core\Secure::staticHash(Core\Secure::userId()) . '/' . Core\Secure::staticHash($form->id, true) . '/' . $variant;
+
+            // Beautify html
+            $html = Core\Parser::beautifyHtml($html);
+
+            \Storage::disk('public')->makeDirectory($storage_root . '/' . date('Y-m-d-H-i-s'));
+            \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
+            \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
+
+            return response()->json(['success' => true, 'msg' => trans('javascript.save_succes')]);
+          }
+        }
+      }
+    }
+
+    /**
      * Form settings
      */
     public function editorModalSettings(Request $request)

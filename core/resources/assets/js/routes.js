@@ -54,7 +54,7 @@ $(function() {
       '/forms/create': function () { loadRoute('forms/create', 'forms'); },
       '/forms/create/:cat': function (cat) { loadRoute('forms/create/' + cat, 'forms'); },
       '/forms/editor/:sl': function (sl) { loadRoute('forms/editor?sl=' + sl, 'forms', true, true); },
-      '/forms/source/:sl': function (sl) { loadRoute('forms/source?sl=' + sl, 'forms'); },
+      '/forms/source/:sl': function (sl) { loadRoute('forms/source?sl=' + sl, 'forms', true, false, true); },
       '/forms/entries/:sl': function (sl) { loadRoute('forms/entries?sl=' + sl, 'forms'); },
 
       '/emailcampaigns': function () { loadRoute('emailcampaigns', 'emailcampaigns'); },
