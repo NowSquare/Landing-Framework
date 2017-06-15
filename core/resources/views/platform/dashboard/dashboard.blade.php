@@ -67,7 +67,7 @@ foreach($sites as $site) {
           $('#circliful-lp-{{ $i }}').circliful({
             percent: {{ $percent }},
             icon: 'e152',
-            iconSize: 50,
+            iconSize: 48,
             iconPosition: 'bottom',
             fgcolor: '#{{ $chart_color }}',
             bgcolor: '#ebeff2',
@@ -145,7 +145,7 @@ foreach($forms as $form) {
           $('#circliful-f-{{ $i }}').circliful({
             percent: {{ $percent }},
             icon: 'e152',
-            iconSize: 50,
+            iconSize: 48,
             iconPosition: 'bottom',
             fgcolor: '#{{ $chart_color }}',
             bgcolor: '#ebeff2',

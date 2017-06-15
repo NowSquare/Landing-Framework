@@ -230,6 +230,10 @@ i.help-icon:hover {
   border: 1px solid #eee !important;
   border-radius: 0px;
 
+  .mi {
+    top: 4px;
+  }
+
   &.select2-container--open {
     border: 0 !important;
     margin-top: 0px;
@@ -263,7 +267,7 @@ i.help-icon:hover {
     border: none !important;
     height: auto  !important;
     padding: 0px !important;
-    line-height: 21px !important;
+    line-height: 19px !important;
     background-color: #fafafa !important;
     box-shadow: none !important;
     color: @dark !important;
@@ -286,7 +290,7 @@ i.help-icon:hover {
   }
   
   .selection .select2-selection--single {
-    padding: 5px 20px 5px 12px !important;
+    padding: 7px 20px 6px 12px !important;
     
     .select2-selection__arrow {
       top: 3px;
@@ -330,22 +334,34 @@ i.help-icon:hover {
     .select2-selection {
       .border-radius(12px);
     }
+
+    .selection .select2-selection--single {
+      padding: 3px 20px 4px 12px!important;
+    }
+  }
+
+  .select2-results__option {
+    padding: 4px 6px 6px;
   }
 }
+
 .select2-results .select2-highlighted {
   color: #ffffff;
   background-color: @primary;
 }
+
 .select2-drop-active {
   border: 1px solid #e3e3e3 !important;
   padding-top: 5px;
   .box-shadow( 0 2px 2px rgba(0, 0, 0, .15));
 }
+
 .select2-search {
   input{
     border: 1px solid #e3e3e3;
   }
 }
+
 .select2-container-multi {
   width: 100%;
 

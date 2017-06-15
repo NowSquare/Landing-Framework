@@ -172,11 +172,11 @@ $(function() {
       if (!result.id) return result.text;
 
       if (result.id == -1) {
-        return $('<span><i class="mi add"></i> ' + result.text + '</span>');
+        return $('<span style="display:block;margin-bottom:3px;"><i class="mi add"></i> ' + result.text + '</span>');
       } else if (result.id == -2) {
-        return $('<span><i class="mi view_headline"></i> ' + result.text + '</span>');
+        return $('<span style="display:block;margin-bottom:3px;"><i class="mi view_headline"></i> ' + result.text + '</span>');
       } else {
-        return $('<span><i class="mi filter_list"></i> ' + result.text + '</span>');
+        return $('<span style="display:block;margin-bottom:3px;"><i class="mi filter_list"></i> ' + result.text + '</span>');
         //return result.text;
       }
     },
@@ -184,11 +184,11 @@ $(function() {
       if (!result.id) return result.text;
 
       if (result.id == -1) {
-        return $('<span><i class="mi add"></i> ' + result.text + '</span>');
+        return $('<span style="display:block;margin-bottom:3px;"><i class="mi add"></i> ' + result.text + '</span>');
       } else if (result.id == -2) {
-        return $('<span><i class="mi view_headline"></i> ' + result.text + '</span>');
+        return $('<span style="display:block;margin-bottom:3px;"><i class="mi view_headline"></i> ' + result.text + '</span>');
       } else {
-        return $('<span><i class="mi filter_list"></i> ' + result.text + '</span>');
+        return $('<span style="display:block;margin-bottom:3px;"><i class="mi filter_list"></i> ' + result.text + '</span>');
         //return result.text;
       }
     }
