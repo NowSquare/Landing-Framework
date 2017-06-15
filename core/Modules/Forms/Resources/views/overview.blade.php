@@ -88,6 +88,7 @@ foreach($forms as $form) {
 <?php if (Gate::allows('limitation', 'forms.edit_html')) { ?>
             <li><a href="{{ '#/forms/source/' . $sl_form }}">{{ trans('forms::global.edit_html') }}</a></li>
 <?php } ?>
+            <li role="separator" class="divider"></li>
             <li><a href="#/forms/entries/{{ $sl_form }}">{{ trans('forms::global.view_entries') }}</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="javascript:void(0);" class="onClickDelete">{{ trans('global.delete') }}</a></li>

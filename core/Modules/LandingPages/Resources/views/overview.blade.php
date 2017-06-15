@@ -90,6 +90,7 @@ foreach($sites as $site) {
 <?php if (Gate::allows('limitation', 'landingpages.edit_html')) { ?>
             <li><a href="{{ '#/landingpages/source/' . $sl_page }}">{{ trans('landingpages::global.edit_html') }}</a></li>
 <?php } ?>
+            <li role="separator" class="divider"></li>
             <li><a href="#/landingpages/analytics/{{ $sl_page }}">{{ trans('global.view_analytics') }}</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="javascript:void(0);" class="onClickDelete">{{ trans('global.delete') }}</a></li>
