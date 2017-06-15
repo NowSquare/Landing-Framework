@@ -30,12 +30,16 @@ body .ace_scrollbar {
   $('#generic_title a').text("{!! str_replace('"', '&quot;', $form->name) !!}");
 
   $('#edit_buttons #save_button').unbind();
-  $('#edit_buttons #save_button').on('click', function() {
+  $('#edit_buttons #save_publish_button').unbind();
+
+  $('#edit_buttons #save_button, #edit_buttons #save_publish_button').on('click', function() {
     blockUI();
+
+    var publish = ($(this).attr('id') == 'save_publish_button') ? 1 : 0;
 
     var jqxhr = $.ajax({
       url: "{{ url('forms/source') }}",
-      data: {sl: "{{ $sl }}", html: editor.getValue(), _token: '<?= csrf_token() ?>'},
+      data: {sl: "{{ $sl }}", html: editor.getValue(), publish: publish, _token: '<?= csrf_token() ?>'},
       method: 'POST'
     })
     .done(function(data) {

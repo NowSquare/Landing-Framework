@@ -29,8 +29,8 @@ return array(
   "sales_pages_desc" => "Convert visitors into customers.",
   "company_pages" => "Company pages",
   "company_pages_desc" => "Agency and business pages.",
-  "" => "",
-  "" => "",
+  "other" => "Other",
+  "other_desc" => "Various uncategorized templates.",
   "" => "",
   "" => "",
 

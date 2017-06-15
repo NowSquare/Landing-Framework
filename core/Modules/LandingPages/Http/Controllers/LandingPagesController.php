@@ -195,6 +195,7 @@ class LandingPagesController extends Controller
     {
       $sl = request()->input('sl', '');
       $html = request()->input('html', '');
+      $publish = (boolean) request()->input('publish', false);
 
       if($sl != '') {
         $qs = Core\Secure::string2array($sl);
@@ -220,7 +221,13 @@ class LandingPagesController extends Controller
             \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
             \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
 
-            return response()->json(['success' => true, 'msg' => trans('javascript.save_succes')]);
+            if ($publish) {
+              \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $html);
+            }
+
+            $msg = ($publish) ? trans('javascript.publish_succes'): trans('javascript.save_succes');
+
+            return response()->json(['success' => true, 'msg' => $msg]);
           }
         }
       }

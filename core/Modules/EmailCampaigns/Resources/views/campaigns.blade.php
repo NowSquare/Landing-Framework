@@ -91,7 +91,7 @@ foreach($email_campaigns as $campaign) {
 <?php if ($email_count > 0) { ?>
            <tr>
              <td colspan="2" class="list-group-container">
-               <div class="list-group" style="margin-bottom: 0; margin-right: -1px !important">
+               <div class="list-group" style="margin-bottom: 0;">
 <?php
 
 foreach ($emails as $email) {

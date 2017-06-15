@@ -194,6 +194,13 @@ class FunctionsController extends Controller
       "desc" => trans('landingpages::global.thank_you_desc')
     ];
 
+    $items[] = [
+      "icon" => 'box.svg',
+      "category" => 'other',
+      "name" => trans('landingpages::global.other'),
+      "desc" => trans('landingpages::global.other_desc')
+    ];
+
 /*
     $items[] = [
       "icon" => 'localstore.svg',

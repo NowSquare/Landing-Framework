@@ -8,12 +8,14 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-10 col-sm-6">
+    <div class="col-xs-12 col-sm-10">
 
-      <div class="form-group">
-        <label for="text">{{ trans('landingpages::global.text') }}</label>
-          <input type="text" class="form-control" id="text" name="text" autocomplete="off" value="">
-      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-8">
+          <div class="form-group">
+            <label for="text">{{ trans('landingpages::global.text') }}</label>
+              <input type="text" class="form-control" id="text" name="text" autocomplete="off" value="">
+          </div>
 
 <?php if (! $submit) { ?>
 
@@ -54,10 +56,10 @@ echo Former::select('target')
           </div>
 
 <?php if (Gate::allows('limitation', 'forms.visible')) { ?>
-        </div>
-        <div class="tab-pane<?php if($tab == 'form') echo ' active'; ?>" id="tab_form">
+          </div>
 
-          <div class="form-group" style="margin-bottom: 0">
+          <div class="tab-pane<?php if($tab == 'form') echo ' active'; ?>" id="tab_form">
+            <div class="form-group" style="margin-bottom: 0">
 <?php
 
 echo Former::select('form')
@@ -67,14 +69,15 @@ echo Former::select('form')
   ->fromQuery($forms, 'name', 'local_domain')
   ->label(false);
 ?>
+              </div>
+            </div>
           </div>
+<?php } ?>
+
+<?php } ?>
 
         </div>
-
       </div>
-<?php } ?>
-
-<?php } ?>
 
 <?php if ($color) { ?>
       <div class="form-group">
