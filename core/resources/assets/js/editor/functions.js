@@ -253,6 +253,11 @@ function lfGetHtml() {
   html = html.replace(/url\(&quot;/g, "url('");
   html = html.replace(/&quot;\)/g, "')");
 
+  // This is added by TinyMCE
+  html = html.replace(/ style="position: relative;"/g, "");
+  html = html.replace(/style="position: relative;" /g, "");
+  html = html.replace(/style="position: relative;"/g, "");
+
   return html;
 }
 
