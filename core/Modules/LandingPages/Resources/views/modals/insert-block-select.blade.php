@@ -54,6 +54,10 @@ $(function() {
     transitionDuration: '0.2s'
   });
 
+  setTimeout(function() {
+    $grid.masonry();
+  }, 200);
+
 <?php /* ----------------------------------------------------------------------------
 Insert block
 */ ?>
