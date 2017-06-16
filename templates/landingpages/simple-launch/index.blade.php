@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="/assets/bs4/css/style.min.css">
     <link href="//fonts.googleapis.com/css?family=Poppins:200,400%7CNoto%20Sans:300,400,700" rel="stylesheet">
-    <style type="text/css"> body, html { height:100% } body { font-family: 'Noto Sans', sans-serif; font-weight: 300; background-size: cover; background-repeat: no-repeat; background-position: center center; } h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 300 !important; } </style>
+    <style type="text/css"> body, html { height:100%; min-height: 720px; } body { font-family: 'Noto Sans', sans-serif; font-weight: 300; background-size: cover; background-repeat: no-repeat; background-position: center center; } h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 300 !important; } </style>
     <script src="/assets/bs4/js/scripts.min.js"></script>
   </head>
   <body style="background-image: url('{{ url('templates/assets/images/headers/starry-sky-during-night.jpg') }}'); background-color: rgb(255, 255, 255);">
