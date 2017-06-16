@@ -281,6 +281,20 @@ class FunctionsController extends Controller
         \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $html);
       }
 
+      // Limit history
+      $limit = 11;
+      $saves = \Storage::disk('public')->directories($storage_root);
+
+      usort($saves, function ($dir1, $dir2) {
+        return $dir2 <=> $dir1;
+      });
+
+      if (count($saves) > $limit) {
+        for($i = $limit; $i < count($saves); $i++) {
+          \Storage::disk('public')->deleteDirectory($saves[$i]);
+        }
+      }
+
       return true;
     } else {
       return false;

@@ -445,6 +445,20 @@ class FormsController extends Controller
         \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
         \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
 
+        // Limit history
+        $limit = 11;
+        $saves = \Storage::disk('public')->directories($storage_root);
+
+        usort($saves, function ($dir1, $dir2) {
+          return $dir2 <=> $dir1;
+        });
+
+        if (count($saves) > $limit) {
+          for($i = $limit; $i < count($saves); $i++) {
+            \Storage::disk('public')->deleteDirectory($saves[$i]);
+          }
+        }
+
         $response = ['success' => true, 'msg' => trans('javascript.save_succes')];
       } else {
         $response = ['success' => false, 'msg' => 'An error occured'];
@@ -481,6 +495,20 @@ class FormsController extends Controller
         \Storage::disk('public')->put($storage_root . '/' . date('Y-m-d-H-i-s') . '/index.blade.php', $html);
         \Storage::disk('public')->put($storage_root . '/index.blade.php', $html);
         \Storage::disk('public')->put($storage_root . '/published/index.blade.php', $html);
+
+        // Limit history
+        $limit = 11;
+        $saves = \Storage::disk('public')->directories($storage_root);
+
+        usort($saves, function ($dir1, $dir2) {
+          return $dir2 <=> $dir1;
+        });
+
+        if (count($saves) > $limit) {
+          for($i = $limit; $i < count($saves); $i++) {
+            \Storage::disk('public')->deleteDirectory($saves[$i]);
+          }
+        }
 
         $response = ['success' => true, 'msg' => trans('javascript.publish_succes')];
       } else {
