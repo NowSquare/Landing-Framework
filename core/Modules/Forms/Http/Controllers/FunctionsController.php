@@ -33,14 +33,14 @@ class FunctionsController extends Controller
       'name' => trans('forms::global.opt_in'),
       'desc' => trans('forms::global.opt_in_desc')
     ];
-
+/*
     $items['download'] = [
       'icon' => 'attachmentadd.svg',
       'category' => 'download',
       'name' => trans('forms::global.download'),
       'desc' => trans('forms::global.download_desc')
     ];
-
+*/
     return $items;
   }
 
