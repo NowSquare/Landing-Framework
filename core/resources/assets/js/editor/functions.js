@@ -247,6 +247,12 @@ function lfGetHtml() {
   // Remove form added attributes
   $html.find('[novalidate]').attr('novalidate', null);
 
+  // Reset countdown
+  $html.find('span.day').text('_');
+  $html.find('span.hour').text('__');
+  $html.find('span.minute').text('__');
+  $html.find('span.second').text('__');
+
   // Various
   $html.find('[data-tether-id]').remove();
 
