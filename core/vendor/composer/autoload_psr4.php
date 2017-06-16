@@ -38,6 +38,7 @@ return array(
     'Platform\\' => array($baseDir . '/app/Platform'),
     'PhpParser\\' => array($vendorDir . '/nikic/php-parser/lib/PhpParser'),
     'Nwidart\\Modules\\' => array($vendorDir . '/nwidart/laravel-modules/src'),
+    'Namshi\\JOSE\\' => array($vendorDir . '/namshi/jose/src/Namshi/JOSE'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Modules\\' => array($baseDir . '/Modules'),
     'League\\Flysystem\\Cached\\' => array($vendorDir . '/league/flysystem-cached-adapter/src'),

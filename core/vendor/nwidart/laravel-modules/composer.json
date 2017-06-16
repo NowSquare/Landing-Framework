@@ -31,11 +31,24 @@
   "autoload": {
     "psr-4": {
       "Nwidart\\Modules\\": "src"
-    }
+    },
+    "files": [
+      "src/helpers.php"
+    ]
   },
   "autoload-dev": {
     "psr-4": {
       "Nwidart\\Modules\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Nwidart\\Modules\\LaravelModulesServiceProvider"
+      ],
+      "aliases": {
+        "Module": "Nwidart\\Modules\\Facades\\Module"
+      }
     }
   },
   "minimum-stability": "dev",
