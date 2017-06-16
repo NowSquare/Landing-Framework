@@ -18,7 +18,7 @@
           <div class="container">
             <div class="row">
               <div class="col-12 text-center">
-                <img src="/templates/assets/images/logos/logo-white.svg" class="-x-img my-3" data-offset="5px 5px" data-attachment="top right" data-target-attachment="top left">
+                <img src="/templates/assets/images/logos/logo-white.svg" class="-x-img mb-3" data-offset="5px 5px" data-attachment="top right" data-target-attachment="top left">
               </div>
               <div class="col-12">
                 <div class="content-padding text-center">
