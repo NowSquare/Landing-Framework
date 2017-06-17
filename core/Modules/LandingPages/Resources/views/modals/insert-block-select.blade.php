@@ -91,6 +91,10 @@ Insert block
         scrollTop: parseInt($el.offset().top) - parseInt($new_block[0].scrollHeight)
       }, 400);
 
+      if (typeof window.parent.lfInsertBlockHook === 'function') {
+        window.parent.lfInsertBlockHook($new_block);
+      }
+
   <?php } else { ?>
       var $new_block = $(html).insertAfter($el);
 
@@ -101,6 +105,10 @@ Insert block
       window.parent.$('html, body').animate({
         scrollTop: parseInt($el.offset().top) + parseInt($el[0].scrollHeight)
       }, 400);
+
+      if (typeof window.parent.lfInsertBlockHook === 'function') {
+        window.parent.lfInsertBlockHook($new_block);
+      }
 
   <?php } ?>
 
@@ -130,6 +138,10 @@ Insert block
       window.parent.$('html, body').animate({
         scrollTop: parseInt($el.offset().top) + parseInt($el[0].scrollHeight)
       }, 400);
+
+      if (typeof window.parent.lfInsertBlockHook === 'function') {
+        window.parent.lfInsertBlockHook($new_block);
+      }
 
   <?php } ?>
 
