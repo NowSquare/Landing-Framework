@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="/assets/bs4/css/style.min.css">
     <link href="//fonts.googleapis.com/css?family=Raleway:300|Prompt:300" rel="stylesheet">
-    <style type="text/css"> body, html { height:100% } body { font-family: 'Pavanam', sans-serif; font-weight: 400; } h1, h2, h3, h4, h5, h6 { font-family: 'Raleway', sans-serif; font-weight: 300 !important; } </style>
+    <style type="text/css"> body { font-family: 'Pavanam', sans-serif; font-weight: 400; } h1, h2, h3, h4, h5, h6 { font-family: 'Raleway', sans-serif; font-weight: 300 !important; } </style>
     <script src="/assets/bs4/js/scripts.min.js"></script>
   </head>
   <body>
