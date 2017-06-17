@@ -7,10 +7,17 @@ var ladda_button;
  */
 
 function lfDuplicateBlockHook($new_block) {
+
+  /*
+   * Social buttons
+   */
+
+  lfParseSocialButtons($new_block);
+
   /*
    * Flat Surface Shader
    * http://matthew.wagerfield.com/flat-surface-shader/
-   */
+   * /
 
 	if ($('.polygon-bg').length) {
     $('.polygon-bg').each(function() {
@@ -50,6 +57,7 @@ function lfDuplicateBlockHook($new_block) {
       animateFss();
     });
 	}
+  */
 }
 
 /*

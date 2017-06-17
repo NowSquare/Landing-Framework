@@ -9,6 +9,7 @@ return array(
   "call_to_action" => "Call to action",
   "maps" => "Maps",
   "footers" => "Footers",
+  "social" => "Social",
   "countdowns" => "Countdowns",
   "testimonials" => "Testimonials",
 

@@ -1,1 +1,1 @@
-http://landingframework.dev/landingpages/editor/block-preview?c=01-headers&lang=en&b=block-06-01
+http://landingframework.dev/landingpages/editor/block-preview?c=10-social&lang=en&b=block-01-01
