@@ -53,6 +53,171 @@ function lfDuplicateBlockHook($new_block) {
 }
 
 /*
+ * This function is called when the editor inserts a block.
+ */
+
+function lfInsertBlockHook($new_block) {
+
+  /*
+   * Social buttons
+   */
+
+  lfParseSocialButtons($new_block);
+}
+
+/*
+ * Social buttons
+ * https://jonsuh.com/blog/social-share-links/
+ */
+
+function lfParseSocialButtons($new_block) {
+  $container = (typeof $new_block !== 'undefined') ? $new_block : $('body');
+
+  var url = $(this).attr('data-url');
+  url = (typeof url !== typeof undefined && url !== false) ? url : window.location.href;
+
+  var title = $(this).attr('data-title');
+  title = (typeof title !== typeof undefined && title !== false) ? title : $(document).find('title').text();
+
+  var description = $(this).attr('data-description');
+  description = (typeof description !== typeof undefined && description !== false) ? description : $('meta[name=description]').attr('content');
+  description = (typeof description !== typeof undefined && description !== false) ? description : '';
+
+  if ($container.find('.btn-twitter').length) {
+    $container.find('.btn-twitter').each(function() {
+
+      var hashtags = $(this).attr('data-hashtags');
+      hashtags = (typeof hashtags !== typeof undefined && hashtags !== false) ? hashtags : '';
+
+      var via = $(this).attr('data-via');
+      via = (typeof via !== typeof undefined && via !== false) ? via : '';
+
+      // Build query string
+      var qs = {};
+      qs.text = (description != '') ? description : title;
+      qs.url = url;
+      if (via != '') qs.via = via;
+      if (hashtags != '') qs.hashtags = hashtags;
+
+      var share = 'https://twitter.com/intent/tweet?' + $.param(qs);
+
+      $(this).unbind();
+      $(this).on('click', function(e) {
+        e.preventDefault();
+        windowPopup(share, 500, 300);
+      });
+
+      //$(this).attr('href', share);
+    });
+  }
+
+  if ($container.find('.btn-facebook').length) {
+    $container.find('.btn-facebook').each(function() {
+
+      // Build query string
+      var qs = {};
+      qs.url = url;
+
+      var share = 'https://www.facebook.com/sharer/sharer.php?' + $.param(qs);
+
+      $(this).unbind();
+      $(this).on('click', function(e) {
+        e.preventDefault();
+        windowPopup(share, 500, 200);
+      });
+
+      //$(this).attr('href', share);
+    });
+  }
+
+  if ($container.find('.btn-gplus').length) {
+    $container.find('.btn-gplus').each(function() {
+
+      // Build query string
+      var qs = {};
+      qs.url = url;
+
+      var share = 'https://plus.google.com/share?' + $.param(qs);
+
+      $(this).unbind();
+      $(this).on('click', function(e) {
+        e.preventDefault();
+        windowPopup(share, 500, 300);
+      });
+
+      //$(this).attr('href', share);
+    });
+  }
+
+  if ($container.find('.btn-linkedin').length) {
+    $container.find('.btn-linkedin').each(function() {
+
+      // Build query string
+      var qs = {};
+      qs.mini = 'true';
+      qs.url = url;
+      qs.source = url;
+      qs.title = title;
+      if (description != '') qs.summary = description;
+
+      var share = 'https://www.linkedin.com/shareArticle?' + $.param(qs);
+
+      $(this).unbind();
+      $(this).on('click', function(e) {
+        e.preventDefault();
+        windowPopup(share, 550, 500);
+      });
+
+      //$(this).attr('href', share);
+    });
+  }
+
+  if ($container.find('.btn-pinterest').length) {
+    $container.find('.btn-pinterest').each(function() {
+
+      var media = $(this).attr('data-media');
+      media = (typeof media !== typeof undefined && media !== false) ? media : '';
+
+      var hashtags = $(this).attr('data-hashtags');
+      hashtags = (typeof hashtags !== typeof undefined && hashtags !== false) ? hashtags : '';
+
+      // Build query string
+      var qs = {};
+      qs.url = url;
+      if (media != '') qs.media = media;
+      qs.description = (description != '') ? description : title;
+      if (hashtags != '') qs.hashtags = hashtags;
+
+      var share = 'https://www.pinterest.com/pin/create/button/?' + $.param(qs);
+
+      $(this).unbind();
+      $(this).on('click', function(e) {
+        e.preventDefault();
+        windowPopup(share, 800, 600);
+      });
+
+      //$(this).attr('href', 'https://www.pinterest.com/pin/create/button/?' + $.param(qs));
+    });
+  }
+}
+
+function windowPopup(url, width, height) {
+  // Calculate the position of the popup so
+  // it’s centered on the screen.
+  var left = (window.screen.width / 2) - (width / 2),
+      top = (window.screen.height / 2) - (height / 2);
+
+  left = (window.screen.availLeft + (window.screen.availWidth / 2)) - (width / 2);
+  top = (window.screen.availTop + (window.screen.availHeight / 2)) - (height / 2);
+
+  window.open(
+    url,
+    "",
+    "menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=" + width + ",height=" + height + ",top=" + top + ",left=" + left
+  );
+}
+
+/*
  * Particles.js
  * http://vincentgarreau.com/particles.js/
  */
@@ -77,6 +242,12 @@ $(function($) {
 	 */
 
   bindAjaxFormLinks();
+
+	/*
+	 * Parse social links
+	 */
+  
+  lfParseSocialButtons();
 
   /*
    * jQuery.scrollTo

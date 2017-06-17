@@ -78,6 +78,38 @@ $max-height-list: 100, 200, 300, 400, 500, 600;
   }
 }
 
+/* Min width */
+
+$min-width-list: 30, 40, 50, 100, 200;
+
+@each $min-width in $min-width-list {
+  .min-width-#{$min-width} {
+    min-width: $min-width + unquote("px") !important;
+  }
+
+  @include media-breakpoint-down(sm) {
+    .min-width-#{$min-width} {
+      min-width: ($min-width / 2) + unquote("px") !important;
+    }
+  }
+}
+
+/* Max width */
+
+$max-width-list: 30, 40, 50, 100, 200;
+
+@each $max-width in $max-width-list {
+  .max-width-#{$max-width} {
+    max-width: $max-width + unquote("px") !important;
+  }
+
+  @include media-breakpoint-down(sm) {
+    .max-width-#{$max-width} {
+      max-width: ($max-width / 2) + unquote("px") !important;
+    }
+  }
+}
+
 /* Padding and margin helpers */
 
 .no-padding-t {
