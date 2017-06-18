@@ -11,33 +11,33 @@
     <div class="col-xs-12 col-sm-10">
 
       <div class="form-group">
-        <label for="url">{{ trans('landingpages::global.url') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('landingpages::global.share_url_help') }}">&#xE887;</i></label>
-          <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="">
+        <label for="url">{{ trans('landingpages::global.url') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-content="{{ trans('landingpages::global.share_url_help') }}">&#xE887;</i></label>
+        <input type="text" class="form-control" id="url" name="url" autocomplete="off" value="">
       </div>
 
       <div class="form-group">
         <label for="title">{{ trans('landingpages::global.title') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('landingpages::global.share_title_help') }}">&#xE887;</i></label>
-          <input type="text" class="form-control" id="title" name="title" autocomplete="off" value="">
+        <input type="text" class="form-control" id="title" name="title" autocomplete="off" value="">
       </div>
 
       <div class="form-group">
         <label for="description">{{ trans('landingpages::global.description') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('landingpages::global.share_description_help') }}">&#xE887;</i></label>
-          <textarea class="form-control" id="description" name="description" autocomplete="off" rows="4"></textarea>
+        <textarea class="form-control" id="description" name="description" autocomplete="off" rows="2"></textarea>
       </div>
 
       <div class="form-group">
         <label for="hashtags">{{ trans('landingpages::global.hashtags') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('landingpages::global.share_hashtags_help') }}">&#xE887;</i></label>
-          <input type="text" class="form-control" id="hashtags" name="hashtags" autocomplete="off" value="">
+        <input type="text" class="form-control" id="hashtags" name="hashtags" autocomplete="off" value="">
       </div>
 
       <div class="form-group">
         <label for="media">{{ trans('landingpages::global.media') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('landingpages::global.share_media_help') }}">&#xE887;</i></label>
-          <input type="text" class="form-control" id="media" name="media" autocomplete="off" value="">
+        <input type="text" class="form-control" id="media" name="media" autocomplete="off" value="">
       </div>
 
       <div class="form-group">
         <label for="via">{{ trans('landingpages::global.twitter_username') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('landingpages::global.share_twitter_username_help') }}">&#xE887;</i></label>
-          <input type="text" class="form-control" id="via" name="via" autocomplete="off" value="">
+        <input type="text" class="form-control" id="via" name="via" autocomplete="off" value="">
       </div>
 
       <div class="editor-modal-footer">
