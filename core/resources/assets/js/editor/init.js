@@ -20,6 +20,7 @@ function lfInitEditor(editor) {
   lfInitLinks();
   lfInitLists();
   lfInitCountdowns();
+  lfInitShares();
   lfInitForms();
   lfInitText();
 

@@ -180,6 +180,18 @@ var xTplCountdownButton = '<div class="-x-el-inline-button -x-el-countdown-edit 
   ' </ul>' +
   '</div>';
 
+var xTplShareButton = '<div class="-x-el-inline-button -x-el-share-edit -x-el-reset">' + 
+  ' <img src="' + _lang["url"] + '/assets/images/editor/icons/share.svg" class="-x-el-icon"' +
+  '   onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/share-hover.svg\';"' +
+  '   onMouseOut="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/share.svg\';"' +
+  ' >' +
+  ' <ul class="-x-el-dropdown -x-el-reset">' +
+  '   <li class="-x-el-share-edit"><a href="javascript:void(0);">' + _lang["share_settings"] + '</a></li>' +
+  '   <li class="separator"><hr></li>' +
+  '   <li class="-x-el-share-visible"><a href="javascript:void(0);">' + _lang["visible"] + ' <div class="-x-el-checkmark"></div></a></li>' +
+  ' </ul>' +
+  '</div>';
+
 var xTplFormButton = '<div class="-x-el-inline-button -x-el-form-edit -x-el-reset">' + 
   ' <img src="' + _lang["url"] + '/assets/images/editor/icons/email.svg" class="-x-el-icon"' +
   '   onMouseOver="this.src = \'' + _lang["url"] + '/assets/images/editor/icons/email-hover.svg\';"' +

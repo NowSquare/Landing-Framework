@@ -54,6 +54,7 @@ Route::group(['middleware' => ['web', 'funnel', 'limitation:landingpages.visible
     Route::post('editor/parse-embed', 'LandingPagesController@editorParseEmbed');
     Route::get('editor/modal/frame', 'LandingPagesController@editorModalFrame');
     Route::get('editor/modal/icon', 'LandingPagesController@editorModalIcon');
+    Route::get('editor/modal/share', 'LandingPagesController@editorModalShare');
     Route::get('editor/modal/qr', 'LandingPagesController@editorModalQr');
     Route::get('editor/modal/seo', 'LandingPagesController@editorModalSeo');
     Route::post('editor/seo', 'LandingPagesController@editorPostSeo');

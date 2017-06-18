@@ -670,6 +670,16 @@ class LandingPagesController extends Controller
     }
 
     /**
+     * Editor modal to configure share settings
+     */
+    public function editorModalShare(Request $request)
+    {
+      $el_class = $request->input('el_class', '');
+
+      return view('landingpages::modals.share', compact('el_class'));
+    }
+
+    /**
      * Editor button picker
      */
     public function editorPickerButton(Request $request)

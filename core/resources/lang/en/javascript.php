@@ -58,6 +58,7 @@ return array(
   "modify_video" => "Modify video",
   "modify_frame" => "Modify frame",
   "modify_countdown" => "Modify timer",
+  "share_settings" => "Share settings",
   "modify_icon" => "Modify icon",
   "remove" => "Remove",
   "visible" => "Visible",

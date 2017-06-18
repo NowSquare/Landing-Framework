@@ -288,6 +288,7 @@ function lfMakeNewBlockEditable($new_block, previous_el, position, block_class) 
   lfDuplicateBlockLinks($new_block);
   lfDuplicateBlockLists($new_block);
   lfDuplicateBlockCountdowns($new_block);
+  lfDuplicateBlockShares($new_block);
   lfDuplicateBlockForms($new_block);
   lfDuplicateBlockText($new_block);
 
