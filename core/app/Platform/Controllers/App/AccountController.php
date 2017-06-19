@@ -170,6 +170,7 @@ class AccountController extends \App\Http\Controllers\Controller {
           "in_plan_amount" => config($namespace . '.in_plan_amount'),
           "in_plan_default_amount" => config($namespace . '.in_plan_default_amount'),
           "extra_plan_config_boolean" => config($namespace . '.extra_plan_config_boolean'),
+          "extra_plan_config_string" => config($namespace . '.extra_plan_config_string'),
           "order" => config($namespace . '.order'),
           "name" => trans($namespace . '::global.module_name'),
           "desc" => trans($namespace . '::global.module_desc')

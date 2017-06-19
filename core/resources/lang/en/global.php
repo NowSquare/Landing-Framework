@@ -25,6 +25,7 @@ return array(
   "create" => "Create",
   "create_new" => "Create a new...",
   "add" => "Add",
+  "got_it" => "Got it!",
   "submit" => "Submit",
   "changes_saved" => "Changes saved successfully.",
   "saved" => "Saved",
@@ -323,6 +324,7 @@ return array(
   "subtitle" => "Subtitle",
   "create_plan" => "Create Plan",
   "edit_plan" => "Edit plan",
+  "change_plan" => "Change plan",
   "order_now" => "Order Now",
   "upgrade" => "Upgrade",
   "order_url" => "Order url",
@@ -343,6 +345,7 @@ return array(
   "maximum" => "Maximum",
   "account_limit_reached" => "Your account limit has been reached.",
   "no_access_to_feature" => "Your current account has no access to this feature. Upgrade your account if you want to use this feature.",
+  "upgrade_before_link" => "Processing the payment may take a couple of minutes. Refresh the system or login again to see your new subscription active.",
 
   /*
    |--------------------------------------------------------------------------

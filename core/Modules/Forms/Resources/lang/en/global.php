@@ -64,6 +64,7 @@ return array(
 
   "no_entries_found" => "No entries found",
   "no_entries_found_text" => "This form has received no submissions yet. Here's the link: <a href=':link' target='_blank'>:link</a>. Go forth and spread the word!",
+  "max_entries" => "Maximum amount of entries",
   "" => "",
   "" => ""
 );

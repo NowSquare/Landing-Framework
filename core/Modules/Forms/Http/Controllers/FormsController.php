@@ -205,6 +205,19 @@ class FormsController extends Controller
             $form = Models\Form::where('id', $qs_f['form_id'])->first();
 
             if (! empty($form)) {
+              // Check entry limitation
+              $entries_limit = $form->user->plan->limitations['forms']['max_entries'];
+              $current_amount_of_entries = \DB::table('form_entries')->where('user_id', $form->user_id)->count();
+
+              if ($entries_limit > 0 && $current_amount_of_entries >= $entries_limit) {
+                $response = [
+                  'success' => false,
+                  'title' => trans('forms::global.rate_limit_error'),
+                  'text' => trans('global.account_limit_reached')
+                ];
+                return response()->json($response);
+              }
+
               // Check if this form belongs to the logged in user
               if (Core\Secure::userId() != $form->user_id) {
                 $inserted = FunctionsController::addEntry($form, $form_vars, $custom_vars, $page);

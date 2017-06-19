@@ -74,6 +74,8 @@ class CreateFormsTable extends Migration
 
     Schema::create('form_entries', function(Blueprint $table) {
       $table->bigIncrements('id');
+      $table->integer('user_id')->unsigned()->nullable();
+      $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->bigInteger('form_id')->unsigned();
       $table->foreign('form_id')->references('id')->on('forms')->onDelete('cascade');
       $table->bigInteger('landing_site_id')->unsigned()->nullable();

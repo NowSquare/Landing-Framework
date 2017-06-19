@@ -35,6 +35,7 @@ class Plan extends Model
         $in_plan_amount = config($namespace . '.in_plan_amount');
         $in_plan_default_amount = config($namespace . '.in_plan_default_amount');
         $extra_plan_config_boolean = config($namespace . '.extra_plan_config_boolean');
+        $extra_plan_config_string = config($namespace . '.extra_plan_config_string');
 
         if ($enabled && $in_plan) {
           $key[$namespace]['visible'] = 1;
@@ -42,6 +43,11 @@ class Plan extends Model
           if ($extra_plan_config_boolean && ! empty($extra_plan_config_boolean)) {
             foreach($extra_plan_config_boolean as $config => $value) {
               $key[$namespace][$config] = 1;
+            }
+          }
+          if ($extra_plan_config_string && ! empty($extra_plan_config_string)) {
+            foreach($extra_plan_config_string as $config => $value) {
+              $key[$namespace][$config] = $value;
             }
           }
         }
@@ -61,12 +67,18 @@ class Plan extends Model
         $in_plan_amount = config($namespace . '.in_plan_amount');
         $in_plan_default_amount = config($namespace . '.in_plan_default_amount');
         $extra_plan_config_boolean = config($namespace . '.extra_plan_config_boolean');
+        $extra_plan_config_string = config($namespace . '.extra_plan_config_string');
 
         if ($enabled && $in_plan) {
           if (! isset($key[$namespace]['visible'])) $key[$namespace]['visible'] = ($in_free_plan) ? 1 : 0;
           if (! isset($key[$namespace]['max']) && $in_plan_amount) $key[$namespace]['max'] = ($in_free_plan_default_amount) ? $in_free_plan_default_amount : 0;
           if ($extra_plan_config_boolean && ! empty($extra_plan_config_boolean)) {
             foreach($extra_plan_config_boolean as $config => $value) {
+              if (! isset($key[$namespace][$config])) $key[$namespace][$config] = $value;
+            }
+          }
+          if ($extra_plan_config_string && ! empty($extra_plan_config_string)) {
+            foreach($extra_plan_config_string as $config => $value) {
               if (! isset($key[$namespace][$config])) $key[$namespace][$config] = $value;
             }
           }

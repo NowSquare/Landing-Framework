@@ -269,6 +269,7 @@ class FunctionsController extends Controller
       \DB::table('forms')->whereId($form->id)->increment('entries');
 
       $stats = [
+        'user_id' => $form->user_id,
         'form_id' => $form->id,
         'landing_site_id' => $landing_site_id,
         'landing_page_id' => $landing_page_id,

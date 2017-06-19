@@ -64,7 +64,9 @@ class AppServiceProvider extends ServiceProvider
         if ($reseller->mail_from_name != '') config(['mail.from.name' => $reseller->mail_from_name]);
         if ($reseller->mail_driver != '') config(['mail.driver' => $reseller->mail_driver]);
         if ($reseller->mail_mailgun_domain != '') config(['services.mailgun.domain' => $reseller->mail_mailgun_domain]);
+        if ($reseller->mail_mailgun_domain != '') config(['mailgun.domain' => $reseller->mail_mailgun_domain]);
         if ($reseller->mail_mailgun_secret != '') config(['services.mailgun.secret' => $reseller->mail_mailgun_secret]);
+        if ($reseller->mail_mailgun_secret != '') config(['mailgun.api_key' => $reseller->mail_mailgun_secret]);
         if ($reseller->mail_host != '') config(['mail.host' => $reseller->mail_host]);
         if ($reseller->mail_port != '') config(['mail.port' => $reseller->mail_port]);
         if ($reseller->mail_encryption != '') config(['mail.encryption' => $reseller->mail_encryption]);

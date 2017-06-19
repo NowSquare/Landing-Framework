@@ -130,6 +130,18 @@ if (isset($item['extra_plan_config_boolean']) && count($item['extra_plan_config_
   }
 }
 ?>
+<?php 
+if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
+  foreach ($item['extra_plan_config_string'] as $config => $value) {
+?>
+                  <div class="form-group">
+                    <label for="limitations_{{ $item['namespace'] }}_{{ $config }}">{{ trans($item['namespace'] . '::global.' . $config) }} <sup>*</sup></label>
+                    <input type="text" class="form-control" name="limitations[{{ $item['namespace'] }}][{{ $config }}]" id="limitations_{{ $item['namespace'] }}_{{ $config }}" value="{{ $plan->limitations[$item['namespace']][$config] }}" required autocomplete="off"<?php if($plan->id == 1)echo ' disabled'; ?>>
+                  </div>
+<?php 
+  }
+}
+?>
                 </fieldset>
 <?php 
   } 

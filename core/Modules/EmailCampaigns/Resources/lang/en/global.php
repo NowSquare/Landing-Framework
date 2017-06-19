@@ -43,7 +43,6 @@ return array(
   "create_email" => "Create Email",
   "default_email_subject" => "Hi --personal_name=there--!",
   "enter_name_text" => "Enter a name for your email campaign. You can change this at any time.",
-
   "edit_email_campaign" => "Edit email campaign",
   "edit_email" => "Edit email",
   "manage_emails" => "Manage emails",

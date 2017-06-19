@@ -61,11 +61,18 @@ if (! empty($default_plan) && $default_plan->active == 1) {
 foreach($items as $item) {
   if ($item['creatable']) {
 
-    $max = ($item['in_plan_amount']) ? ' - ' . $default_plan->limitations[$item['namespace']]['max'] : '';
+    $max = ($item['in_plan_amount']) ? ' (' . $default_plan->limitations[$item['namespace']]['max'] . ')' : '';
 ?>
                  <li><?php echo ($default_plan->limitations[$item['namespace']]['visible'] == 1) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
-                </fieldset>
 <?php 
+    if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
+      foreach ($item['extra_plan_config_string'] as $config => $value) {
+        $val = (isset($default_plan->limitations[$item['namespace']][$config])) ? $default_plan->limitations[$item['namespace']][$config] : '-';
+?>
+                 <li>{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</li>
+<?php 
+      }
+    }
   } 
 }
 ?>
@@ -96,6 +103,7 @@ if (\Auth::user()->plan_id == $default_plan->id) {
   $btn_class = 'warning';
 }
 
+if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurchaseUrl(\'' . $btn_link . '\');';
 ?>
                     <a href="{{ $btn_link }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($disabled || \Auth::user()->plan_id == $default_plan->id || $btn_link == 'javascript:void(0);') echo ' disabled'; ?><?php if ($btn_target != '') echo ' target="' . $btn_target . '"'; ?>>{{ $btn_text }}</a>
                 </div>
@@ -117,11 +125,19 @@ if (\Auth::user()->plan_id == $default_plan->id) {
 foreach($items as $item) {
   if ($item['creatable']) {
 
-    $max = ($item['in_free_plan_default_amount'] && $item['in_free_plan']) ? ' - ' . $item['in_free_plan_default_amount'] : '';
+    $max = ($item['in_free_plan_default_amount'] && $item['in_free_plan']) ? ' (' . $item['in_free_plan_default_amount'] . ')' : '';
 ?>
                  <li><?php echo ($item['in_free_plan']) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
-                </fieldset>
 <?php 
+    if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
+      foreach ($item['extra_plan_config_string'] as $config => $value) {
+        $val = (isset($plan->limitations[$item['namespace']][$config])) ? $plan->limitations[$item['namespace']][$config] : '-';
+?>
+                 <li>{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</li>
+
+<?php 
+      }
+    }
   } 
 }
 ?>
@@ -139,6 +155,8 @@ if (\Auth::user()->plan_id == 0) {
   $btn_link = 'javascript:void(0);';
   $btn_class = 'default';
 }
+
+if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurchaseUrl(\'' . $btn_link . '\');';
 ?>
                     <a href="{{ $btn_link }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light" disabled>{{ $btn_text }}</a>
                 </div>
@@ -169,11 +187,19 @@ foreach($plans as $plan) {
 foreach($items as $item) {
   if ($item['creatable']) {
 
-    $max = ($item['in_plan_amount'] && $plan->limitations[$item['namespace']]['visible'] == 1) ? ' - ' . $plan->limitations[$item['namespace']]['max'] : '';
+    $max = ($item['in_plan_amount'] && $plan->limitations[$item['namespace']]['visible'] == 1) ? ' (' . $plan->limitations[$item['namespace']]['max'] . ')' : '';
 ?>
                  <li><?php echo ($plan->limitations[$item['namespace']]['visible'] == 1) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
-                </fieldset>
 <?php 
+    if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
+      foreach ($item['extra_plan_config_string'] as $config => $value) {
+        $val = (isset($plan->limitations[$item['namespace']][$config])) ? $plan->limitations[$item['namespace']][$config] : '-';
+?>
+                 <li>{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</li>
+
+<?php 
+      }
+    }
   } 
 }
 ?>
@@ -204,6 +230,7 @@ if (\Auth::user()->plan_id == $plan->id) {
   $btn_class = 'warning';
 }
 
+if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurchaseUrl(\'' . $btn_link . '\');';
 ?>
                     <a href="{{ $btn_link }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($disabled || \Auth::user()->plan_id == $plan->id || $btn_link == 'javascript:void(0);') echo ' disabled'; ?><?php if ($btn_target != '') echo ' target="' . $btn_target . '"'; ?>>{{ $btn_text }}</a>
                 </div>
@@ -219,3 +246,23 @@ if (\Auth::user()->plan_id == $plan->id) {
   </div>
 
 </div>
+<script>
+function openExternalPurchaseUrl(url) {
+
+  swal({
+    title: "{{ trans('global.change_plan') }}", 
+    text: "{{ trans('global.upgrade_before_link') }}", 
+    showCancelButton: true,
+    cancelButtonText: "{{ trans('global.cancel') }}",
+    confirmButtonColor: "#138dfa",
+    confirmButtonText: "{{ trans('global.got_it') }}"
+  }).then(function (result) {
+
+    window.open(url);
+
+  }, function (dismiss) {
+    // Do nothing on cancel
+    // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
+  });
+}
+</script>
