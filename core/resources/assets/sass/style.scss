@@ -18,6 +18,13 @@ $mi_path: "../bs4/fonts/material-icons" !default;
 @import "shadow-boxes";
 @import "sweet-alert2";
 
+.mdl-shadow--2dp { box-shadow: $mdl-shadow--2dp; }
+.mdl-shadow--3dp { box-shadow: $mdl-shadow--3dp; }
+.mdl-shadow--4dp { box-shadow: $mdl-shadow--4dp; }
+.mdl-shadow--6dp { box-shadow: $mdl-shadow--6dp; }
+.mdl-shadow--8dp { box-shadow: $mdl-shadow--8dp; }
+.mdl-shadow--16dp { box-shadow: $mdl-shadow--16dp; }
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 2px;
@@ -211,6 +218,12 @@ html.editor-modal body {
   top: 4px;
 }
 
+.menu-extras {
+  .dropdown-menu>li>a {
+    padding: 3px 20px 6px;
+  }
+}
+
 h3.seperator {
   color: #aaa;
   position: relative;
@@ -383,13 +396,6 @@ abbr[title], acronym[title] {
 .flex-eq-height {
   flex: 1;
 }
-
-.mdl-shadow--2dp { box-shadow: $mdl-shadow--2dp; }
-.mdl-shadow--3dp { box-shadow: $mdl-shadow--3dp; }
-.mdl-shadow--4dp { box-shadow: $mdl-shadow--4dp; }
-.mdl-shadow--6dp { box-shadow: $mdl-shadow--6dp; }
-.mdl-shadow--8dp { box-shadow: $mdl-shadow--8dp; }
-.mdl-shadow--16dp { box-shadow: $mdl-shadow--16dp; }
 
 .tab-content.navtab-shadow,
 .navtab-shadow li.active > a {
