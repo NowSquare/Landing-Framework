@@ -42,7 +42,7 @@
               <input type="email" class="form-control form-control-lg" id="email" required name="email" placeholder="Enter your email address">
             </div>
 
-            <button type="submit" class="btn btn-xlg btn-block btn-pill btn-red mb-4 ladda-button -x-link" data-attachment="bottom right" data-target-attachment="top left" data-style="zoom-in" data-spinner-color="#ffffff"><span class="ladda-label">Download Now</span></button>
+            <button type="submit" class="btn btn-xlg btn-block btn-pill btn-red mb-4 ladda-button -x-link" data-attachment="bottom right" data-target-attachment="top left" data-style="zoom-in" data-spinner-color="#ffffff"><span class="ladda-label">Submit</span></button>
           </form>
         </div>
 
