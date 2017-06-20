@@ -172,7 +172,7 @@ class AccountController extends \App\Http\Controllers\Controller {
           "extra_plan_config_boolean" => config($namespace . '.extra_plan_config_boolean'),
           "extra_plan_config_string" => config($namespace . '.extra_plan_config_string'),
           "order" => config($namespace . '.order'),
-          "name" => trans($namespace . '::global.module_name'),
+          "name" => trans($namespace . '::global.module_name_plan'),
           "desc" => trans($namespace . '::global.module_desc')
         ];
       }

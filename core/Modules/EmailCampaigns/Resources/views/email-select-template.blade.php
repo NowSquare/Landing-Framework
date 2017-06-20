@@ -85,7 +85,7 @@ $('.onClickSelect').on('click', function() {
 
   swal({
     title: '{{ trans('global.enter_name') }}',
-    text: '{{ trans('emailcampaigns::global.enter_name_text') }}',
+    text: '{{ trans('emailcampaigns::global.enter_email_name_text') }}',
     input: 'text',
     showCancelButton: true,
     cancelButtonText: _lang['cancel'],

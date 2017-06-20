@@ -71,22 +71,83 @@ class AvangateController extends \App\Http\Controllers\Controller {
       $remote_id = request()->input('AVANGATE_CUSTOMER_REFERENCE', '');
 
       $user_email = '-';
-      if ($user_id != '' && $EXPIRED == 0)
+      $user_id = \Request::get('EXTERNAL_CUSTOMER_REFERENCE', '');
+
+      if ($user_id != '')
       {
-        $user = \App\User::where('id', $user_id)->first();
-        if (! empty($user)) {
+        $remote_id = \Request::get('AVANGATE_CUSTOMER_REFERENCE', '');
+  
+        $user = \User::where('id', $user_id)->first();
+        
+        if (! empty($user))
+        {
+          $action = 'Plan id was ' . $user->plan_id;
+
           $user_email = $user->email;
           $user->remote_id = $remote_id;
-          $user->expires = $EXPIRATION_DATE;
-          $plan = \App\Plan::where('remote_product_id1', $LICENSE_PRODUCT)->orWhere('remote_product_id2', $LICENSE_PRODUCT)->first();
-          
-          if (! empty($plan)) {
-            $user->plan_id = $plan->id;
+  
+          if ($EXPIRATION_DATE != '') $user->expires = $EXPIRATION_DATE;
+  
+          $plans = \App\Plan::orderBy('sort', 'asc')->get();
+  
+          if ($DISABLED == 0 && $EXPIRED == 0) {
+            // Switch plan
+            $plan_id = 0;
+
+            foreach ($plans as $plan) {
+              $settings = json_decode($plan->settings);
+              $product_id = $plan->remote_product_id1;
+              if ($product_id == $LICENSE_PRODUCT)
+              {
+                $action .= ' but  ' . $plan->id . ' is found in the plans loop, ';
+                $plan_id = $plan->id;
+                break;
+              }
+            }
+
+            if ($plan_id > 0)
+            {
+              $action .= ' is set to ' . $plan_id;
+
+              $user->plan_id = $plan_id;
+            }
+            else
+            {
+              // Switch to free account
+              $action .= ' is set to free {} ' . $plans{0}->id;
+
+              $user->plan_id = null; //$plans{0}->id;
+              //$user->expires = NULL;
+            }
+          }
+          else
+          {
+            // Switch to free account
+            if ($DISABLED != 0)
+            {
+              $action .= ' is set to free ' . $plans{0}->id . ' because DISABLED was ' . $DISABLED;
+            }
+            else
+            {
+              $action .= ' is set to free ' . $plans{0}->id . ' because EXPIRED was ' . $EXPIRED;
+            }
+
+            $user->plan_id = $plans{0}->id;
+            //$user->expires = NULL;
           }
 
+          $user->settings = \App\Core\Settings::json(array(
+            'EMAIL' => $EMAIL,
+            'COUNTRY' => $COUNTRY,
+            'CITY' => $CITY,
+            'LICENSE_CODE' => $LICENSE_CODE,
+            'LICENSE_PRODUCT' => $LICENSE_PRODUCT
+          ), $user->settings);
+  
           $user->save();
         }
       }
+
 
       $your_signature = $this->hmac($secret_key, $this->array_to_string([$LICENSE_CODE, $EXPIRATION_DATE, $date]));
 

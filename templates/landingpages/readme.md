@@ -1,5 +1,12 @@
+# Settings and resources
+
+## Resources
+ - http://fontjoy.com/
+
 # Screenshot sizes
 
-1280
+## Landing pages
+Width 1280
 
-http://fontjoy.com/
+## Forms
+Width 1024

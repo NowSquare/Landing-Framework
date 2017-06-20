@@ -372,8 +372,21 @@ class EmailsController extends Controller
 
       $template = view('template.emails::' . $template . '.index');
 
+      // Suppress libxml errors
+      // Resolves an issue with some servers.
+      libxml_use_internal_errors(true);
+
+      // Create a new PHPQuery object to manipulate
+      // the DOM in a similar way as jQuery.
+      $dom = \phpQuery::newDocumentHTML($template);
+      \phpQuery::selectDocument($dom);
+
+      // Insert scripts
+      pq('head')->append(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/bs4/js/scripts.lite.min.js?v=' . config('version.editor')) . '"></script>');
+      pq('head')->append(PHP_EOL . '<script class="-x-editor-asset">$(function(){ $(\'a\').on(\'click\', function(e) { e.preventDefault(); return false; }); });</script>');
+
       // Beautify html
-      $html = Core\Parser::beautifyHtml($template);
+      $html = Core\Parser::beautifyHtml($dom);
 
       return $html;
     }

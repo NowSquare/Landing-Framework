@@ -57,7 +57,13 @@ class UserEventSubscriber {
    * Handle user registration events.
    */
   public function onLogRegisteredUser($event) {
+    // Set expiration date, first check for default account
+    $default_plan = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 1)->first();
+    $trial_days = (! empty($default_plan) && is_numeric($default_plan->trial_days)) ? $default_plan->trial_days : 14;
+    $expires = Carbon::now()->addDays($trial_days);
+
     $event->user->reseller_id = Core\Reseller::get()->id;
+    $event->user->expires = $expires;
     $event->user->save();
   }
 

@@ -103,6 +103,8 @@ if (\Auth::user()->plan_id == $default_plan->id) {
   $btn_class = 'warning';
 }
 
+if (\Platform\Controllers\Core\Reseller::get()->avangate_affiliate != '') $btn_link .= '&AVGAFFILIATE=' . \Platform\Controllers\Core\Reseller::get()->avangate_affiliate;
+
 if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurchaseUrl(\'' . $btn_link . '\');';
 ?>
                     <a href="{{ $btn_link }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($disabled || \Auth::user()->plan_id == $default_plan->id || $btn_link == 'javascript:void(0);') echo ' disabled'; ?><?php if ($btn_target != '') echo ' target="' . $btn_target . '"'; ?>>{{ $btn_text }}</a>
@@ -155,6 +157,8 @@ if (\Auth::user()->plan_id == 0) {
   $btn_link = 'javascript:void(0);';
   $btn_class = 'default';
 }
+
+if (\Platform\Controllers\Core\Reseller::get()->avangate_affiliate != '') $btn_link .= '&AVGAFFILIATE=' . \Platform\Controllers\Core\Reseller::get()->avangate_affiliate;
 
 if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurchaseUrl(\'' . $btn_link . '\');';
 ?>
@@ -229,6 +233,8 @@ if (\Auth::user()->plan_id == $plan->id) {
   $btn_target = '';
   $btn_class = 'warning';
 }
+
+if (\Platform\Controllers\Core\Reseller::get()->avangate_affiliate != '') $btn_link .= '&AVGAFFILIATE=' . \Platform\Controllers\Core\Reseller::get()->avangate_affiliate;
 
 if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurchaseUrl(\'' . $btn_link . '\');';
 ?>
