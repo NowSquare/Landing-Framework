@@ -42,27 +42,25 @@
           </div>
 
           <form class="form ajax -x-form lead">
+
             <div class="form-group">
               <label for="personal_name">Your name</label>
-
               <input type="text" class="form-control" id="personal_name" name="personal_name" placeholder="" required="">
             </div>
             <div class="form-group">
               <label for="email">Your email address</label>
-
               <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="" required="">
             </div>
             <div class="form-group">
               <label for="personal_phone">Phone</label>
-
               <input type="tel" class="form-control" id="personal_phone" name="personal_phone" placeholder="">
             </div>
             <div class="form-group">
               <label for="general_textarea">Message</label>
-
-              <textarea class="form-control" id="general_textarea-1" name="general_textarea[]" placeholder="" rows="4"></textarea>
+              <textarea class="form-control" id="general_textarea-1" name="general_textarea[]" placeholder="" required="" rows="4"></textarea>
             </div>
             <button type="submit" class="btn btn-xlg btn-block btn-blue-grey mb-4 ladda-button -x-link disabled" data-attachment="bottom right" data-target-attachment="top left" data-style="zoom-in" data-spinner-color="#ffffff"><span class="ladda-label">Send message</span></button>
+
           </form>
         </div>
       </div>

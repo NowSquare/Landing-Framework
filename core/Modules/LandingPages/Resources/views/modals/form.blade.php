@@ -59,8 +59,6 @@
   display: block;
 }
 
-
-
 .no-placeholder .placeholder-holder {
   display: none;
 }
