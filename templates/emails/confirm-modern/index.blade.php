@@ -120,7 +120,7 @@
                   <tbody>
                     <tr>
                       <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="center">
-                        <div style="cursor:auto;color:#9B9B9B;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:24px;text-align:center;">Here Comes a Good Headline</div>
+                        <div style="cursor:auto;color:#9B9B9B;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:24px;text-align:center;" class="-x-mail">Here Comes a Good Headline</div>
                       </td>
                     </tr>
                   </tbody>
@@ -152,12 +152,12 @@
         <tr>
           <td style="vertical-align:top;width:210px;">
       <![endif]-->
-              <div class="mj-column-per-35 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+              <div class="mj-column-per-65 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
                 <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
                   <tbody>
                     <tr>
                       <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="left">
-                        <div style="cursor:auto;color:#000000;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:20px;font-weight:500;line-height:24px;text-align:left;">// BR&AND</div>
+                        <div style="cursor:auto;color:#000000;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:20px;font-weight:500;line-height:24px;text-align:left;" class="-x-mail">// BR&AND</div>
                       </td>
                     </tr>
                   </tbody>
@@ -166,12 +166,12 @@
               <!--[if mso | IE]>
       </td><td style="vertical-align:top;width:390px;">
       <![endif]-->
-              <div class="mj-column-per-65 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
+              <div class="mj-column-per-35 outlook-group-fix" style="vertical-align:top;display:inline-block;direction:ltr;font-size:13px;text-align:left;width:100%;">
                 <table role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
                   <tbody>
                     <tr>
                       <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="right">
-                        <div style="cursor:auto;color:#000000;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:24px;text-align:right;"><a href="#" style="color: #000000; text-decoration: none;">Visit Website</a></div>
+                        <div style="cursor:auto;color:#000000;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:24px;text-align:right;" class="-x-mail"><a href="#" style="color: #000000; text-decoration: none;">Visit Website</a></div>
                       </td>
                     </tr>
                   </tbody>
@@ -208,7 +208,7 @@
                   <tbody>
                     <tr>
                       <td style="word-wrap:break-word;font-size:0px;padding:30px 40px 10px 40px;" align="center">
-                        <div style="cursor:auto;color:#5FA91D;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:32px;font-weight:300;line-height:40x;text-align:center;">Confirm Your Newsletter Subscription</div>
+                        <div style="cursor:auto;color:#5FA91D;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:32px;font-weight:300;line-height:40x;text-align:center;" class="-x-mail">Confirm Your Newsletter Subscription</div>
                       </td>
                     </tr>
                   </tbody>
@@ -283,7 +283,7 @@
                   <tbody>
                     <tr>
                       <td style="word-wrap:break-word;font-size:0px;padding:0px;padding-top:10px;" align="center">
-                        <div style="cursor:auto;color:#000000;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:16px;font-weight:500;line-height:24px;text-align:center;">And Reveice All Important Updates.</div>
+                        <div style="cursor:auto;color:#000000;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:16px;font-weight:500;line-height:24px;text-align:center;" class="-x-mail">And Reveice All Important Updates.</div>
                       </td>
                     </tr>
                   </tbody>
@@ -336,7 +336,7 @@
                     </tr>
                     <tr>
                       <td style="word-wrap:break-word;font-size:0px;padding:50px 40px 0px 40px;" align="center">
-                        <div style="cursor:auto;color:#000000;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:16px;font-weight:300;line-height:24px;text-align:center;">Promotions, competitions, the latest news and special offers - you can find them all and more in the newsletter. Confirm your email address now and start enjoying the benefits.</div>
+                        <div style="cursor:auto;color:#000000;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:16px;font-weight:300;line-height:24px;text-align:center;" class="-x-mail">Promotions, competitions, the latest news and special offers - you can find them all and more in the newsletter. Confirm your email address now and start enjoying the benefits.</div>
                       </td>
                     </tr>
                     <tr>
@@ -344,7 +344,7 @@
                         <table role="presentation" cellpadding="0" cellspacing="0" style="border-collapse:separate;" align="center" border="0">
                           <tbody>
                             <tr>
-                              <td style="border:none;border-radius:2px;color:#FFFFFF;cursor:auto;padding:15px 30px;" align="center" valign="middle" bgcolor="#5FA91D"><a href="--confirm--" style="text-decoration:none;background:#5FA91D;color:#FFFFFF;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:13px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank">CONFIRM EMAIL ADDRESS</a></td>
+                              <td style="border:none;border-radius:2px;color:#FFFFFF;cursor:auto;padding:15px 30px;" align="center" valign="middle" bgcolor="#5FA91D"><a href="--confirm--" style="text-decoration:none;background:#5FA91D;color:#FFFFFF;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:13px;font-weight:normal;line-height:120%;text-transform:none;margin:0px;" target="_blank" class="-x-mail">CONFIRM EMAIL ADDRESS</a></td>
                             </tr>
                           </tbody>
                         </table>
@@ -432,7 +432,7 @@
                   <tbody>
                     <tr>
                       <td style="word-wrap:break-word;font-size:0px;padding:10px 25px;" align="center">
-                        <div style="cursor:auto;color:#9B9B9B;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:24px;text-align:center;">
+                        <div style="cursor:auto;color:#9B9B9B;font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:11px;font-weight:400;line-height:24px;text-align:center;" class="-x-mail">
                           52 Edison Court Suite 259 / East Aidabury / Cambodi<br>
                           <a href="#" style="color: #9B9B9B; text-decoration:none;">Visit Our Website</a></div>
                       </td>

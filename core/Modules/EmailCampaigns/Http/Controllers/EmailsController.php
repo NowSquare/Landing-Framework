@@ -239,6 +239,7 @@ class EmailsController extends Controller
 
           // Editor toolbar
           pq('body')->prepend(PHP_EOL . '<div class="-x-editor-asset" id="editor_toolbar"></div>');
+          pq('body')->prepend(PHP_EOL . '<style type="text/css" class="-x-editor-asset">body { margin-top: 36px; } </style>');
 
           // Beautify html
           $html = Core\Parser::beautifyHtml($dom);

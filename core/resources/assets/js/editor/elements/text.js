@@ -115,97 +115,101 @@ function lfInitText() {
     });
 
     if ($('.-x-mail').length) {
-      var $el = $('.-x-mail');
+      //$('body').on('click', '.-x-mail', function() {
+        var $el = $(this);
+      //  var $el = $('.-x-mail');
 
-      // Check if TinyMCE already is attached
-      if ($el.hasClass('mce-content-body')) return false;
+        // Check if TinyMCE already is attached
+        if ($el.hasClass('mce-content-body')) return false;
 
-      // Check if element has id, if not generate a semi-unique id.
-      // This is needed for TinyMCE to have separate inline editors
-      // per element.
-      var id = $el.attr('id');
+        // Check if element has id, if not generate a semi-unique id.
+        // This is needed for TinyMCE to have separate inline editors
+        // per element.
+        var id = $el.attr('id');
 
-      if (typeof id == 'undefined') {
-        var timestamp = new Date().getTime();
-        var id = 'mce_' + timestamp;
-        $el.attr('id', id);
-      }
+        if (typeof id == 'undefined') {
+          var timestamp = new Date().getTime();
+          var id = 'mce_' + timestamp;
+          $el.attr('id', id);
+        }
 
-      var toolbar = 'mail_vars | undo redo | bold italic link | styleselect | image | bullist | forecolor';
-      var plugins = 'advlist autolink lists link image anchor code media table contextmenu paste colorpicker textcolor';
+        var toolbar = 'mail_vars | undo redo | bold italic link | styleselect | image | bullist | forecolor';
+        var plugins = 'advlist autolink lists link image anchor code media table contextmenu paste colorpicker textcolor';
 
-      $.getJSON(_lang["url"] + '/emailcampaigns/emails/editor/variables')
-      .done(function(menu) {
-        var menu = menu;
+        $.getJSON(_lang["url"] + '/emailcampaigns/emails/editor/variables')
+        .done(function(menu) {
+          var menu = menu;
 
-        tinymce.init({
-          selector: '#' + id,
-          skin: 'dark',
-          fixed_toolbar_container: '#editor_toolbar',
-          inline: true,
-          menubar: false,
-          schema: 'html5',
-          convert_urls: false,
-          relative_urls: false,
-          apply_source_formatting: false, 
-          extended_valid_elements: 'span[style,class],script[charset|defer|language|src|type]',
-          verify_html: false, 
-          file_browser_callback: lfelFinderBrowser,
-          plugins: plugins,
-          toolbar: toolbar,
-          init_instance_callback : function(editor) {
-            editor.serializer.addNodeFilter('script,style', function(nodes, name) {
-              var i = nodes.length, node, value, type;
+          tinymce.init({
+            /*selector: '#' + id,*/
+            selector: '.-x-mail',
+            skin: 'dark',
+            fixed_toolbar_container: '#editor_toolbar',
+            inline: true,
+            menubar: false,
+            schema: 'html5',
+            convert_urls: false,
+            relative_urls: false,
+            apply_source_formatting: false, 
+            extended_valid_elements: 'span[style,class],script[charset|defer|language|src|type]',
+            verify_html: false, 
+            file_browser_callback: lfelFinderBrowser,
+            plugins: plugins,
+            toolbar: toolbar,
+            init_instance_callback : function(editor) {
+              editor.serializer.addNodeFilter('script,style', function(nodes, name) {
+                var i = nodes.length, node, value, type;
 
-              function trim(value) {
-                return value.replace(/(<!--\[CDATA\[|\]\]-->)/g, '\n')
-                        .replace(/^[\r\n]*|[\r\n]*$/g, '')
-                        .replace(/^\s*((<!--)?(\s*\/\/)?\s*<!\[CDATA\[|(<!--\s*)?\/\*\s*<!\[CDATA\[\s*\*\/|(\/\/)?\s*<!--|\/\*\s*<!--\s*\*\/)\s*[\r\n]*/gi, '')
-                        .replace(/\s*(\/\*\s*\]\]>\s*\*\/(-->)?|\s*\/\/\s*\]\]>(-->)?|\/\/\s*(-->)?|\]\]>|\/\*\s*-->\s*\*\/|\s*-->\s*)\s*$/g, '');
-              }
-              while (i--) {
-                node = nodes[i];
-                value = node.firstChild ? node.firstChild.value : '';
-
-                if (value.length > 0) {
-                  node.firstChild.value = trim(value);
+                function trim(value) {
+                  return value.replace(/(<!--\[CDATA\[|\]\]-->)/g, '\n')
+                          .replace(/^[\r\n]*|[\r\n]*$/g, '')
+                          .replace(/^\s*((<!--)?(\s*\/\/)?\s*<!\[CDATA\[|(<!--\s*)?\/\*\s*<!\[CDATA\[\s*\*\/|(\/\/)?\s*<!--|\/\*\s*<!--\s*\*\/)\s*[\r\n]*/gi, '')
+                          .replace(/\s*(\/\*\s*\]\]>\s*\*\/(-->)?|\s*\/\/\s*\]\]>(-->)?|\/\/\s*(-->)?|\]\]>|\/\*\s*-->\s*\*\/|\s*-->\s*)\s*$/g, '');
                 }
-              }
-            });
-          },
-          setup: function (editor) {
-            emailEditor = editor;
+                while (i--) {
+                  node = nodes[i];
+                  value = node.firstChild ? node.firstChild.value : '';
 
-            editor.addButton('mail_vars', {
-              type: 'listbox',
-              text: _lang['variables'],
-              icon: false,
-              autofocus: false,
-              onselect: function (e) {
-                editor.insertContent(this.value());
-                this.value(null);
-              },
-              menu: menu,
-              onPostRender: function () {
-                // Select the second item by default
-                //this.value('&nbsp;<em>Some italic text!</em>');
-              }
-            });
+                  if (value.length > 0) {
+                    node.firstChild.value = trim(value);
+                  }
+                }
+              });
+            },
+            setup: function (editor) {
+              emailEditor = editor;
 
-            editor.on('Change', function (e) {
-              lfSetPageIsDirty();
-              if (typeof Tether !== 'undefined') {
-                Tether.position();
-              }
-            });
+              editor.addButton('mail_vars', {
+                type: 'listbox',
+                text: _lang['variables'],
+                icon: false,
+                autofocus: false,
+                onselect: function (e) {
+                  editor.insertContent(this.value());
+                  this.value(null);
+                },
+                menu: menu,
+                onPostRender: function () {
+                  // Select the second item by default
+                  //this.value('&nbsp;<em>Some italic text!</em>');
+                }
+              });
 
-            // Hack to prevent editor from hiding
-            editor.on('blur', function () {
-              return false;
-            });
-          }
-        }); // tinymce.init
-      }); // getJSON
+              editor.on('Change', function (e) {
+                lfSetPageIsDirty();
+                if (typeof Tether !== 'undefined') {
+                  Tether.position();
+                }
+              });
+
+              // Hack to prevent editor from hiding
+              editor.on('blur', function () {
+                return false;
+              });
+            }
+          }); // tinymce.init
+        }); // getJSON
+      //});
     };
   });
 }
