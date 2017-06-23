@@ -90,7 +90,7 @@ foreach ($active_modules as $module) {
         </ul>
 
         <ul class="nav navbar-nav navbar-right pull-right" id="edit_buttons">
-          <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true" style="font-size:16px;"><i class="mi save" style="font-size:18px;"></i> {{ trans('global.save') }}</a>
+          <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true" style="font-size:16px;"><i class="mi save" style="font-size:16px;"></i> {{ trans('global.save') }} <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="javascript:void(0);" id="save_button" style="padding: 12px 20px;">{{ trans('global.save') }}</a></li>
               <li><a href="javascript:void(0);" id="save_publish_button" style="padding: 12px 20px;">{{ trans('javascript.save_and_publish') }}</a></li>
