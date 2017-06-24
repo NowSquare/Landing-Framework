@@ -98,8 +98,10 @@ class FunctionsController extends Controller
         return false;
       }
 
-      return $config2['created_at'] <=> $config1['created_at'];
+      return strtotime($config1['created_at']) <=> strtotime($config2['created_at']);
     });
+   
+    $templates = array_reverse($templates);
 
     foreach ($templates as $template) {
       if (\File::exists($template . '/config.php') && \File::exists($template . '/index.blade.php')) {
