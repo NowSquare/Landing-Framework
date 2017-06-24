@@ -24,7 +24,7 @@
                     <p class="lead">We're working hard to improve our website.</p>
                   </div>
                   <div class="btn-container btn-stack-md my-3" style="display: inline-block"> <a class="btn btn-blue btn-pill btn-xlg mdl-shadow--8dp -x-link" href="#" role="button">NOTIFY ME</a> </div>
-                  <h1 class="display-4 -x-countdown my-5" data-countdown="2017-07-24 09:31:49">
+                  <h1 class="display-4 -x-countdown my-5" data-countdown="{{ \Carbon\Carbon::now('UTC')->addDays(30)->format('Y-m-d H:i:s') }}">
                     <span class="day">_</span> days <span class="hour">__</span> : <span class="minute">__</span> : <span class="second">__</span> 
                   </h1>
                 </div>

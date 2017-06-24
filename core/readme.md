@@ -57,6 +57,7 @@ Once the configuration file has been created, you may update the Supervisor conf
 `sudo supervisorctl update`
 
 `sudo supervisorctl start name_of_your_app:*`
+`sudo supervisorctl start 0landingframework:*`
 
 For more information on Supervisor, consult the [Supervisor documentation](http://supervisord.org/index.html).
 

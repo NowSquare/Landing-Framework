@@ -3,7 +3,7 @@
 return [
   'name' => 'Melissa Ricks',
   'active' => true,
-  'categories' => ['personal'],
+  'categories' => ['personal', 'other'],
   'created_at' => '2017-06-16',
   'updated_at' => '2017-06-16',
   'author_name' => 'Landing Framework',

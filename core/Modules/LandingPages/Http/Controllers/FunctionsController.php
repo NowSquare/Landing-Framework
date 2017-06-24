@@ -158,26 +158,19 @@ class FunctionsController extends Controller
       "name" => trans('landingpages::global.company_pages'),
       "desc" => trans('landingpages::global.company_pages_desc')
     ];
-
+/*
     $items[] = [
       "icon" => 'chefavatar-food-grocery-kitchen-restaurant-drink.svg',
       "category" => 'food_drinks',
       "name" => trans('landingpages::global.food_drinks'),
       "desc" => trans('landingpages::global.food_drinks_desc')
     ];
-
+*/
     $items[] = [
       "icon" => 'moviecut.svg',
       "category" => 'video_promotion',
       "name" => trans('landingpages::global.video_promotion'),
       "desc" => trans('landingpages::global.video_promotion_desc')
-    ];
-
-    $items[] = [
-      "icon" => 'pictureprofile.svg',
-      "category" => 'personal',
-      "name" => trans('landingpages::global.personal'),
-      "desc" => trans('landingpages::global.personal_desc')
     ];
 
     $items[] = [
@@ -193,7 +186,14 @@ class FunctionsController extends Controller
       "name" => trans('landingpages::global.thank_you'),
       "desc" => trans('landingpages::global.thank_you_desc')
     ];
-
+/*
+    $items[] = [
+      "icon" => 'pictureprofile.svg',
+      "category" => 'personal',
+      "name" => trans('landingpages::global.personal'),
+      "desc" => trans('landingpages::global.personal_desc')
+    ];
+*/
     $items[] = [
       "icon" => 'box.svg',
       "category" => 'other',

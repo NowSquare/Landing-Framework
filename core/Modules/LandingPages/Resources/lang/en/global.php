@@ -25,7 +25,7 @@ return array(
   "thank_you" => "Thank you",
   "thank_you_desc" => "Pages for after a form submission.",
   "coming_soon" => "Coming soon",
-  "coming_soon_desc" => "Pre-launch pages.",
+  "coming_soon_desc" => "Pre-launch and back soon pages.",
   "sales_pages" => "Sales pages",
   "sales_pages_desc" => "Convert visitors into customers.",
   "company_pages" => "Company pages",
