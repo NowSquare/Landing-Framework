@@ -68,6 +68,8 @@ $(function() {
       '/emailcampaigns/emails/editor/:sl': function (sl) { loadRoute('emailcampaigns/emails/editor?sl=' + sl, 'emailcampaigns', true, true); },
       '/emailcampaigns/emails/source/:sl': function (sl) { loadRoute('emailcampaigns/emails/source?sl=' + sl, 'emailcampaigns'); },
 
+      /*'/beacons': function () { loadRoute('beacons', 'beacons'); },*/
+
       '/admin/plans': function () { loadRoute('platform/admin/plans'); },
       '/admin/plan': function () { loadRoute('platform/admin/plan/new', 'admin/plans'); },
       '/admin/plan/:sl': function (sl) { loadRoute('platform/admin/plan/edit?sl=' + sl, 'admin/plans'); },
