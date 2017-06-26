@@ -1084,7 +1084,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
     protected function getSharedWebContentLink($raw)
     {
         $fExtension = pathinfo($raw->name, PATHINFO_EXTENSION);
-        $fType = explode('/', self::mimetypeInternalDetect($raw->name))[0];
+        list($fType) = explode('/', self::mimetypeInternalDetect($raw->name));
 
         if ($raw->shared_link->url && ($fType == 'image' || $fType == 'video' || $fType == 'audio')) {
             if ($fExtension == 'jpg' && $fType == 'image') {
@@ -1123,6 +1123,13 @@ class elFinderVolumeBox extends elFinderVolumeDriver
      **/
     public function getContentUrl($hash, $options = array())
     {
+        if (!empty($options['temporary'])) {
+            // try make temporary file
+            $url = parent::getContentUrl($hash, $options);
+            if ($url) {
+                return $url;
+            }
+        }
         if (($file = $this->file($hash)) == false || !$file['url'] || $file['url'] == 1) {
             $path = $this->decode($hash);
 

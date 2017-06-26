@@ -29,28 +29,43 @@
 			return lang;
 		})(),
 		
-		// elFinder options (REQUIRED)
-		// Documentation for client options:
-		// https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
-		opts = {
-			url : 'php/connector.minimal.php', // connector URL (REQUIRED)
-			lang: lang                         // auto detected language (optional)
-		},
-		
 		// Start elFinder (REQUIRED)
-		start = function(elFinder) {
+		start = function(elFinder, editors, config) {
 			// load jQueryUI CSS
 			elFinder.prototype.loadCss('//cdnjs.cloudflare.com/ajax/libs/jqueryui/'+uiver+'/themes/smoothness/jquery-ui.css');
 			
 			$(function() {
+				var optEeditors = {
+						commandsOptions: {
+							edit: {
+								editors: Array.isArray(editors)? editors : []
+							}
+						}
+					},
+					opts = {};
 				// Optional for Japanese decoder "extras/encoding-japanese.min"
 				if (window.Encoding && Encoding.convert) {
 					elFinder.prototype._options.rawStringDecoder = function(s) {
 						return Encoding.convert(s,{to:'UNICODE',type:'string'});
 					};
 				}
-				// Make elFinder (REQUIRED)
-				$('#elfinder').elfinder(opts);
+				
+				// Interpretation of "elFinderConfig"
+				if (config && config.managers) {
+					$.each(config.managers, function(id, mOpts) {
+						opts = Object.assign({}, config.defaultOpts || {});
+						// editors marges to opts.commandOptions.edit
+						try {
+							mOpts.commandsOptions.edit.editors = mOpts.commandsOptions.edit.editors.concat(editors || []);
+						} catch(e) {
+							Object.assign(mOpts, optEeditors);
+						}
+						// Make elFinder
+						$('#' + id).elfinder($.extend(true, { lang: lang }, opts, mOpts || {}));
+					});
+				} else {
+					alert('"elFinderConfig" object is wrong.');
+				}
 			});
 		},
 		
@@ -59,6 +74,8 @@
 			require(
 				[
 					'elfinder'
+					, 'extras/editors.default'                   // load text, image editors
+					, 'elFinderConfig'
 					, (lang !== 'en')? 'elfinder.lang' : null    // load detected language
 				//	, 'extras/quicklook.googledocs'              // optional preview for GoogleApps contents on the GoogleDrive volume
 				//	, (lang === 'jp')? 'extras/encoding-japanese.min' : null // optional Japanese decoder for archive preview
@@ -87,6 +104,37 @@
 		},
 		waitSeconds : 10 // optional
 	});
+
+	// check elFinderConfig and fallback
+	if (! require.defined('elFinderConfig')) {
+		define('elFinderConfig', {
+			// elFinder options (REQUIRED)
+			// Documentation for client options:
+			// https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
+			defaultOpts : {
+				url : 'php/connector.minimal.php' // connector URL (REQUIRED)
+				,commandsOptions : {
+					edit : {
+						extraOptions : {
+							// set API key to enable Creative Cloud image editor
+							// see https://console.adobe.io/
+							creativeCloudApiKey : '',
+							// browsing manager URL for CKEditor, TinyMCE
+							// uses self location with the empty value
+							managerUrl : ''
+						}
+					}
+					,quicklook : {
+						// to enable preview with Google Docs Viewer
+						googleDocsMimes : ['application/pdf', 'image/tiff', 'application/vnd.ms-office', 'application/msword', 'application/vnd.ms-word', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
+					}
+				}
+			},
+			managers : {
+				'elfinder': {},
+			}
+		});
+	}
 
 	// load JavaScripts (REQUIRED)
 	load();

@@ -2,6 +2,7 @@
 
 return [
   'name' => 'Travel In Style',
+  'keywords' => ['hotel', 'hotels', 'travel', 'booking', 'bookings', 'tourism', 'tourist'],
   'active' => true,
   'categories' => ['sales_pages', 'company_pages'],
   'created_at' => '2017-06-24',
