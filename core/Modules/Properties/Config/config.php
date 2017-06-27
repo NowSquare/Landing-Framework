@@ -4,7 +4,7 @@ return [
   // Only enabled modules are used within the system
   'enabled' => true,
   // If a module is 'creatable', it can be selected when creating a new item
-  'creatable' => false,
+  'creatable' => env('REAL_ESTATE', false),
   // If a module is 'in_plan', it can be turned on or off for a plan
   'in_plan' => true,
   // If a module is 'in_free_plan', it is enabled for default free plans
@@ -24,9 +24,9 @@ return [
     'max_entries' => 0 // 0 = unlimited
   ],
   // The order number is used for sorting purposes
-  'order' => 50,
+  'order' => 10,
   // The icon must have a normal and active version, and it must exist in /assets/images/icons/
-  'icon' => 'antenna.svg',
+  'icon' => 'blocks.svg',
   // Internal name, don't change
   'name' => 'Properties'
 ];

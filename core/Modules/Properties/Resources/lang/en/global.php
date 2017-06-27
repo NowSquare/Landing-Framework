@@ -11,7 +11,7 @@ return array(
 	"module_name" => "Property",
 	"module_name_plural" => "Properties",
 	"module_name_plan" => "Properties",
-	"module_desc" => "Properties.",
+	"module_desc" => "Add a property for sale or rent.",
 
 	/*
 	|--------------------------------------------------------------------------

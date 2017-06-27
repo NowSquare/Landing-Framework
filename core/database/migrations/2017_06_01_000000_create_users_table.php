@@ -20,7 +20,10 @@ class CreateUsersTable extends Migration
       $table->string('name', 32);
       $table->string('domain', 250);
       $table->string('default_language', 5)->default('en');
+      $table->string('default_locale', 5)->default('en');
       $table->string('default_timezone', 32)->default('UTC');
+      $table->char('default_currency_code', 3)->default('USD');
+      $table->char('default_country_code', 2)->nullable();
       $table->string('mail_from_address', 64)->nullable();
       $table->string('mail_from_name', 64)->nullable();
       $table->string('mail_driver', 32)->nullable();
@@ -98,7 +101,10 @@ class CreateUsersTable extends Migration
       $table->boolean('confirmed')->default(false);
       $table->string('confirmation_code')->nullable();
       $table->string('language', 5)->default('en');
+      $table->char('country_code', 2)->nullable();
+      $table->string('locale', 5)->default('en');
       $table->string('timezone', 32)->default('UTC');
+      $table->char('currency_code', 3)->default('USD');
       $table->integer('logins')->default(0)->unsigned();
       $table->ipAddress('last_ip')->nullable();
       $table->date('expires')->nullable();

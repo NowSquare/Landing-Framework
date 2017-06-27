@@ -191,6 +191,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Milon\Barcode\BarcodeServiceProvider::class,
         Bogardo\Mailgun\MailgunServiceProvider::class,
+        Jenssegers\Date\DateServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -264,7 +265,8 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
         'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
-        'Mailgun' => Bogardo\Mailgun\Facades\Mailgun::class
+        'Mailgun' => Bogardo\Mailgun\Facades\Mailgun::class,
+        'Date' => Jenssegers\Date\Date::class
 
     ],
 

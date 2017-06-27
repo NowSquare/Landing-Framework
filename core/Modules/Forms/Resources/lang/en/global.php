@@ -11,7 +11,7 @@ return array(
 	"module_name" => "Form",
 	"module_name_plural" => "Lists",
 	"module_name_plan" => "Forms",
-	"module_desc" => "Collect information. Reservations, proposals, contacts and more.",
+	"module_desc" => "Collect leads for your lists.",
   "edit_html" => "Edit HTML",
 
 	/*

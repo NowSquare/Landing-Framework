@@ -24,7 +24,7 @@ return [
     'max_entries' => 0 // 0 = unlimited
   ],
   // The order number is used for sorting purposes
-  'order' => 50,
+  'order' => 20,
   // The icon must have a normal and active version, and it must exist in /assets/images/icons/
   'icon' => 'antenna.svg',
   // Internal name, don't change

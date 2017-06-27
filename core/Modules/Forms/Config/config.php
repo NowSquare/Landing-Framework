@@ -24,7 +24,7 @@ return [
     'max_entries' => 0 // 0 = unlimited
   ],
   // The order number is used for sorting purposes
-  'order' => 20,
+  'order' => 40,
   // The icon must have a normal and active version, and it must exist in /assets/images/icons/
   'icon' => 'login.svg',
   // Internal name, don't change

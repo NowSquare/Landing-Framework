@@ -23,7 +23,7 @@ return [
   // Extra string options for plan with default value - make sure to update global language file with $key
   'extra_plan_config_string' => [],
   // The order number is used for sorting purposes
-  'order' => 10,
+  'order' => 30,
   // The icon must have a normal and active version, and it must exist in /assets/images/icons/
   'icon' => 'onepagelayout.svg',
   // Internal name, don't change
