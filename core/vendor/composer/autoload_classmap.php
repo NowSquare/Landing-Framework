@@ -2373,6 +2373,8 @@ return array(
     'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => $vendorDir . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
     'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => $vendorDir . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
     'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => $vendorDir . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+    'Jenssegers\\Date\\Date' => $vendorDir . '/jenssegers/date/src/Date.php',
+    'Jenssegers\\Date\\DateServiceProvider' => $vendorDir . '/jenssegers/date/src/DateServiceProvider.php',
     'JmesPath\\AstRuntime' => $vendorDir . '/mtdowling/jmespath.php/src/AstRuntime.php',
     'JmesPath\\CompilerRuntime' => $vendorDir . '/mtdowling/jmespath.php/src/CompilerRuntime.php',
     'JmesPath\\DebugRuntime' => $vendorDir . '/mtdowling/jmespath.php/src/DebugRuntime.php',
