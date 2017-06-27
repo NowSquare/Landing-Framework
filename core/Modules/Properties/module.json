@@ -1,0 +1,16 @@
+{
+    "name": "Properties",
+    "alias": "properties",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 6,
+    "providers": [
+        "Modules\\Properties\\Providers\\PropertiesServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}
