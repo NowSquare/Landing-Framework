@@ -75,6 +75,7 @@ return array(
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Cron\\' => array($vendorDir . '/mtdowling/cron-expression/src/Cron'),
     'Composer\\CaBundle\\' => array($vendorDir . '/composer/ca-bundle/src'),
+    'CommerceGuys\\Intl\\' => array($vendorDir . '/commerceguys/intl/src'),
     'Codesleeve\\Stapler\\' => array($vendorDir . '/codesleeve/stapler/src'),
     'Codesleeve\\LaravelStapler\\' => array($vendorDir . '/codesleeve/laravel-stapler/src'),
     'Clue\\StreamFilter\\' => array($vendorDir . '/clue/stream-filter/src'),

@@ -6544,5 +6544,51 @@
             "interactive",
             "shell"
         ]
+    },
+    {
+        "name": "commerceguys/intl",
+        "version": "v0.7.4",
+        "version_normalized": "0.7.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/commerceguys/intl.git",
+            "reference": "edfcfc26ed8505c4f6fcf862eb36dfda1af74b00"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/commerceguys/intl/zipball/edfcfc26ed8505c4f6fcf862eb36dfda1af74b00",
+            "reference": "edfcfc26ed8505c4f6fcf862eb36dfda1af74b00",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "mikey179/vfsstream": "1.*",
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2016-12-13T12:33:19+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "CommerceGuys\\Intl\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Bojan Zivanovic"
+            }
+        ],
+        "description": "Internationalization library powered by CLDR data."
     }
 ]

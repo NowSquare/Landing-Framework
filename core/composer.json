@@ -13,6 +13,7 @@
         "barryvdh/laravel-elfinder": "^0.3.10",
         "bogardo/mailgun": "^5.0",
         "codesleeve/laravel-stapler": "^1.0",
+        "commerceguys/intl": "^0.7.4",
         "doctrine/cache": "^1.6",
         "electrolinux/phpquery": "^0.9.6",
         "embed/embed": "^3.0",
