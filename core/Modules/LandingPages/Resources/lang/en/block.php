@@ -29,6 +29,9 @@ return array(
   "content_feature" => "Feature",
   "content_feature_line" => "This is an awesome feature.",
   "copyright" => "Copyright",
+  "great_event" => "Great Event",
+  "festival_head" => "Fun Fair Festival featuring rides, food, and music",
+  "get_tickets" => "Get Tickets",
   "all_right_reserved" => "All Rights Reserved",
   "disclaimer" => "Disclaimer",
   "what_our_customers_are_saying" => "What our customers are saying",
@@ -96,6 +99,8 @@ return array(
   "header_07_line" => "Hi there, the coffee is ready!",
   "header_08_head" => "New shoes today",
   "header_08_line" => "Discover our large selection of shoes online.",
+  "header_09_head" => "Sound &amp; Music Studios",
+  "header_09_line" => "The number one music and media agency.",
 
   // Video embeds
   "video_embed_url1" => "//www.youtube.com/embed/jgvx9OfZKJw",
