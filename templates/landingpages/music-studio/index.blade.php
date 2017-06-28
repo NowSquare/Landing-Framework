@@ -53,19 +53,19 @@
             <div class="row">
               <div class="col-md-12 text-center my-1">
                 <div class="-x-share" data-url="" data-title="" data-description="" data-media="" data-hashtags="" data-via="">
-                  <a href="javascript:void(0);" class="btn btn-lg min-width-50 btn-twitter m-1">
+                  <a href="javascript:void(0);" class="btn btn-lg min-width-70 btn-twitter m-1">
                     <i class="fa fa-twitter" aria-hidden="true"></i>
                   </a>
-                  <a href="javascript:void(0);" class="btn btn-lg min-width-50 btn-facebook m-1">
+                  <a href="javascript:void(0);" class="btn btn-lg min-width-70 btn-facebook m-1">
                     <i class="fa fa-facebook" aria-hidden="true"></i>
                   </a>
-                  <a href="javascript:void(0);" class="btn btn-lg min-width-50 btn-gplus m-1">
+                  <a href="javascript:void(0);" class="btn btn-lg min-width-70 btn-gplus m-1">
                     <i class="fa fa-google-plus" aria-hidden="true"></i>
                   </a>
-                  <a href="javascript:void(0);" class="btn btn-lg min-width-50 btn-linkedin m-1">
+                  <a href="javascript:void(0);" class="btn btn-lg min-width-70 btn-linkedin m-1">
                     <i class="fa fa-linkedin" aria-hidden="true"></i>
                   </a>
-                  <a href="javascript:void(0);" class="btn btn-lg min-width-50 btn-pinterest m-1">
+                  <a href="javascript:void(0);" class="btn btn-lg min-width-70 btn-pinterest m-1">
                     <i class="fa fa-pinterest" aria-hidden="true"></i>
                   </a>
                 </div>

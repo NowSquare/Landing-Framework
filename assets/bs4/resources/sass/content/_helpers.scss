@@ -80,7 +80,7 @@ $max-height-list: 100, 200, 300, 400, 500, 600;
 
 /* Min width */
 
-$min-width-list: 30, 40, 50, 100, 200;
+$min-width-list: 30, 40, 50, 60, 70, 80, 90, 100, 200;
 
 @each $min-width in $min-width-list {
   .min-width-#{$min-width} {
@@ -96,7 +96,7 @@ $min-width-list: 30, 40, 50, 100, 200;
 
 /* Max width */
 
-$max-width-list: 30, 40, 50, 100, 200;
+$max-width-list: 30, 40, 50, 60, 70, 80, 90, 100, 200;
 
 @each $max-width in $max-width-list {
   .max-width-#{$max-width} {

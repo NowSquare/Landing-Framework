@@ -82,23 +82,24 @@ function lfParseSocialButtons($new_block) {
   $container = (typeof $new_block !== 'undefined') ? $new_block : $('body');
 
   var url = $container.find('[data-url]').attr('data-url');
-  url = (typeof url !== typeof undefined && url !== false) ? url : window.location.href;
+  
+  url = (typeof url !== typeof undefined && url !== false && url != '') ? url : window.location.href;
 
   var title = $container.find('[data-title]').attr('data-title');
   title = (typeof title !== typeof undefined && title !== false && title != '') ? title : $(document).find('title').text();
 
   var description = $container.find('[data-description]').attr('data-description');
-  description = (typeof description !== typeof undefined && description !== false) ? description : $('meta[name=description]').attr('content');
-  description = (typeof description !== typeof undefined && description !== false) ? description : '';
+  description = (typeof description !== typeof undefined && description !== false && description != '') ? description : $('meta[name=description]').attr('content');
+  description = (typeof description !== typeof undefined && description !== false && description != '') ? description : '';
 
   if ($container.find('.btn-twitter').length) {
     $container.find('.btn-twitter').each(function() {
 
       var hashtags = $(this).closest('[data-url]').attr('data-hashtags');
-      hashtags = (typeof hashtags !== typeof undefined && hashtags !== false) ? hashtags : '';
+      hashtags = (typeof hashtags !== typeof undefined && hashtags !== false && hashtags != '') ? hashtags : '';
 
       var via = $(this).closest('[data-via]').attr('data-via');
-      via = (typeof via !== typeof undefined && via !== false) ? via : '';
+      via = (typeof via !== typeof undefined && via !== false && via != '') ? via : '';
 
       // Build query string
       var qs = {};
@@ -184,10 +185,10 @@ function lfParseSocialButtons($new_block) {
     $container.find('.btn-pinterest').each(function() {
 
       var media = $(this).closest('[data-media]').attr('data-media');
-      media = (typeof media !== typeof undefined && media !== false) ? media : '';
+      media = (typeof media !== typeof undefined && media !== false && media != '') ? media : '';
 
       var hashtags = $(this).closest('[data-hashtags]').attr('data-hashtags');
-      hashtags = (typeof hashtags !== typeof undefined && hashtags !== false) ? hashtags : '';
+      hashtags = (typeof hashtags !== typeof undefined && hashtags !== false && hashtags != '') ? hashtags : '';
 
       // Build query string
       var qs = {};
