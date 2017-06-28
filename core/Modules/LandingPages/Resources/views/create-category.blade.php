@@ -78,6 +78,10 @@ var $grid = $('.grid').masonry({
   transitionDuration: '0.2s'
 });
 
+setTimeout(function() {
+  $grid.masonry('reloadItems').masonry();
+}, 200);
+
 $('.onClickSelect').on('click', function() {
   var template = $(this).parents('.grid-item-content').attr('data-template');
 
