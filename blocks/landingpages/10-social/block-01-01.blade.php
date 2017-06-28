@@ -5,11 +5,11 @@
         <div class="row">
           <div class="col-md-12 text-center my-1">
             <div class="-x-share" data-url="" data-title="" data-description="" data-media="" data-hashtags="" data-via="">
-              <a href="javascript:void(0);" target="_blank" class="btn btn-sm min-width-40 btn-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-              <a href="javascript:void(0);" target="_blank" class="btn btn-sm min-width-40 btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href="javascript:void(0);" target="_blank" class="btn btn-sm min-width-40 btn-gplus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-              <a href="javascript:void(0);" target="_blank" class="btn btn-sm min-width-40 btn-linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-              <a href="javascript:void(0);" target="_blank" class="btn btn-sm min-width-40 btn-pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+              <a href="javascript:void(0);" class="btn btn-sm min-width-40 btn-twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+              <a href="javascript:void(0);" class="btn btn-sm min-width-40 btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+              <a href="javascript:void(0);" class="btn btn-sm min-width-40 btn-gplus"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+              <a href="javascript:void(0);" class="btn btn-sm min-width-40 btn-linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+              <a href="javascript:void(0);" class="btn btn-sm min-width-40 btn-pinterest"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>
