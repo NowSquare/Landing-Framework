@@ -33,7 +33,7 @@ class PropertiesDatabaseSeeder extends Seeder
           'split_level',
           'intermediate_house',
           'corner_house',
-          'semidetached',
+          'semi_detached',
           'detached_house',
           'villa',
           'caravan',

@@ -44,7 +44,7 @@ return array(
   "split_level" => "Split level",
   "intermediate_house" => "Intermediate house",
   "corner_house" => "Corner house",
-  "semidetached" => "Semidetached",
+  "semi_detached" => "Semi-detached",
   "detached_house" => "Detached house",
   "villa" => "Villa",
   "caravan" => "Caravan",

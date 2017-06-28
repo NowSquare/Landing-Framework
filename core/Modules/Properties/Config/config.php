@@ -2,11 +2,11 @@
 
 return [
   // Only enabled modules are used within the system
-  'enabled' => true,
+  'enabled' => env('REAL_ESTATE', false),
   // If a module is 'creatable', it can be selected when creating a new item
   'creatable' => env('REAL_ESTATE', false),
   // If a module is 'in_plan', it can be turned on or off for a plan
-  'in_plan' => true,
+  'in_plan' => env('REAL_ESTATE', false),
   // If a module is 'in_free_plan', it is enabled for default free plans
   'in_free_plan' => false,
   // The default allowable amount for a default free plan (if applicable)

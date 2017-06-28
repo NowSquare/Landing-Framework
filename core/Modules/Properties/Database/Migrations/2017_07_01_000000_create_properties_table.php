@@ -35,6 +35,7 @@ class CreatePropertiesTable extends Migration
       $table->integer('property_sales_type_id')->nullable();
       $table->integer('county_id')->nullable();
       $table->integer('city_id')->nullable();
+      $table->char('country_code', 2)->nullable();
 
       $table->boolean('active')->default(true);
       $table->string('name', 100);
@@ -49,7 +50,6 @@ class CreatePropertiesTable extends Migration
       $table->string('address_1')->nullable();
       $table->string('address_2')->nullable();
       $table->string('address_3')->nullable();
-      $table->char('country_code', 2)->nullable();
       $table->string('zip')->nullable();
       $table->string('city')->nullable();
       $table->integer('built')->unsigned()->nullable();
