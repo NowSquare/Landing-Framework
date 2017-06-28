@@ -35,6 +35,7 @@ return array(
   "all_right_reserved" => "All Rights Reserved",
   "disclaimer" => "Disclaimer",
   "what_our_customers_are_saying" => "What our customers are saying",
+  "dont_take_our_word_for_it" => "Don't take our word for it",
   "testimonial01" => "Thank you so much for a job well done.",
   "testimonial02" => "You guys are the best! Keep up the great work!",
   "testimonial03" => "I just wanted to let you know that it's been great working with you.",
