@@ -3266,6 +3266,7 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         'Modules\\LandingPages\\Providers\\LandingPagesServiceProvider' => __DIR__ . '/../..' . '/Modules/LandingPages/Providers/LandingPagesServiceProvider.php',
         'Modules\\Properties\\Database\\Seeders\\PropertiesDatabaseSeeder' => __DIR__ . '/../..' . '/Modules/Properties/Database/Seeders/PropertiesDatabaseSeeder.php',
         'Modules\\Properties\\Http\\Controllers\\PropertiesController' => __DIR__ . '/../..' . '/Modules/Properties/Http/Controllers/PropertiesController.php',
+        'Modules\\Properties\\Http\\Controllers\\WebsiteController' => __DIR__ . '/../..' . '/Modules/Properties/Http/Controllers/WebsiteController.php',
         'Modules\\Properties\\Http\\Models\\Property' => __DIR__ . '/../..' . '/Modules/Properties/Http/Models/Property.php',
         'Modules\\Properties\\Http\\Models\\PropertyFeature' => __DIR__ . '/../..' . '/Modules/Properties/Http/Models/PropertyFeature.php',
         'Modules\\Properties\\Http\\Models\\PropertyGarage' => __DIR__ . '/../..' . '/Modules/Properties/Http/Models/PropertyGarage.php',

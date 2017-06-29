@@ -2698,6 +2698,7 @@ return array(
     'Modules\\LandingPages\\Providers\\LandingPagesServiceProvider' => $baseDir . '/Modules/LandingPages/Providers/LandingPagesServiceProvider.php',
     'Modules\\Properties\\Database\\Seeders\\PropertiesDatabaseSeeder' => $baseDir . '/Modules/Properties/Database/Seeders/PropertiesDatabaseSeeder.php',
     'Modules\\Properties\\Http\\Controllers\\PropertiesController' => $baseDir . '/Modules/Properties/Http/Controllers/PropertiesController.php',
+    'Modules\\Properties\\Http\\Controllers\\WebsiteController' => $baseDir . '/Modules/Properties/Http/Controllers/WebsiteController.php',
     'Modules\\Properties\\Http\\Models\\Property' => $baseDir . '/Modules/Properties/Http/Models/Property.php',
     'Modules\\Properties\\Http\\Models\\PropertyFeature' => $baseDir . '/Modules/Properties/Http/Models/PropertyFeature.php',
     'Modules\\Properties\\Http\\Models\\PropertyGarage' => $baseDir . '/Modules/Properties/Http/Models/PropertyGarage.php',
