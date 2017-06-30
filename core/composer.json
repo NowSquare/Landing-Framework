@@ -18,6 +18,7 @@
         "electrolinux/phpquery": "^0.9.6",
         "embed/embed": "^3.0",
         "gajus/dindent": "^2.0",
+        "google/apiclient": "^2.1",
         "graham-campbell/flysystem": "^3.7",
         "guzzlehttp/guzzle": "^6.2",
         "hashids/hashids": "^2.0",

@@ -13,6 +13,52 @@ class WebsiteController extends Controller
      */
     public function home()
     {
+      // Define scopes
+      $scopes = ['https://www.googleapis.com/auth/userlocation.beacon.registry'];
+
+      // Register client
+      $client = new \Google_Client();
+      $client->setAuthConfig(storage_path('app/google_keys/Mobile Site Builder Pro-c7613e6b52be.json'));
+      $client->setScopes($scopes);
+
+      $proximitybeaconService = new \Google_Service_Proximitybeacon($client);
+
+
+      $list_beacons = $proximitybeaconService->beacons->listBeacons([
+        /*'q' => 'description:"user_"',*/
+        'q' => 'status:ACTIVE', // https://developers.google.com/beacons/proximity/reference/rest/v1beta1/beacons#Status
+        'pageSize' => '1000'
+      ]);
+
+      echo 'Count: ' . $list_beacons->getTotalCount() . '<br>';
+      echo '<hr>';
+
+      $beacons = $list_beacons->getBeacons();
+
+      foreach ($beacons as $beacon) {
+        $beacon_name = $beacon->getBeaconName();
+        echo 'Name: ' . $beacon_name . '<br>';
+        echo 'Description: ' . $beacon->getDescription() . '<br>';
+        echo 'Status: ' . $beacon->getStatus() . '<br>';
+        echo '<hr>';
+
+        // Attachments
+        $attachments = $proximitybeaconService->beacons_attachments->listBeaconsAttachments($beacon_name, [
+          'namespacedType' => 'com.google.nearby/*'
+        ])->getAttachments();
+
+        foreach ($attachments as $attachment) {
+          $attachment_name = $attachment->getAttachmentName();
+          echo 'Name: ' . $attachment_name . '<br>';
+          echo 'Description: ' . $beacon->getCreationTimeMs() . '<br>';
+          echo 'Status: ' . $beacon->getStatus() . '<br>';
+          echo '<hr>';
+        }
+        //dd($attachments);
+      }
+
+      die();
+      /*
       $browser_language = new \Sinergi\BrowserDetector\Language();
       $language = $browser_language->getLanguage();
       $language_locale = str_replace('_', '-', $browser_language->getLanguageLocale());
@@ -94,6 +140,7 @@ class WebsiteController extends Controller
 
       $allCountries = $countryRepository->getAll($language_locale);
       //dd($allCountries);
+      */
     }
 
 }
