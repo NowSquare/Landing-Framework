@@ -76,7 +76,7 @@ return array(
   "domain" => "Domain",
   "custom_domain" => "Custom domain",
   "custom_domain_help" => "Enter a domain and point its CNAME to <strong>:host</strong>.",
-  "custom_domain_intro" => "Here you can link your own domain or subdomain to this landing page. Update the domain DNS settings as described below.",
+  "custom_domain_intro" => "Here you can link your own domain or subdomain to this landing page.",
   "type" => "Type",
   "settings" => "Settings",
   "placeholder" => "Placeholder",
