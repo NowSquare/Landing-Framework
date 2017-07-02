@@ -1,11 +1,11 @@
 <?php
-namespace Modules\Beacons\Http\Models;
+namespace Modules\Eddystones\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Beacon extends Model {
+class Eddystone extends Model {
 
-  protected $table = 'beacons';
+  protected $table = 'eddystones';
 
   protected $casts = [
     'meta' => 'json'

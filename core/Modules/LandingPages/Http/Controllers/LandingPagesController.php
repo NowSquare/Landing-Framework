@@ -19,9 +19,11 @@ class LandingPagesController extends Controller
       if(isset($local_domain) && $local_domain != '') {
 
         $preview = (boolean) request()->input('preview', false);
-        $landing_page_id = Core\Secure::staticHashDecode($local_domain, true);
 
-        if (is_numeric($landing_page_id)) {
+        $site = Models\Site::where('local_domain', $local_domain)->first();
+
+        if (! empty($site)) {
+          $landing_page_id = $site->pages->first()->id;
 
           $variant = 1;
 
@@ -88,17 +90,12 @@ class LandingPagesController extends Controller
     {
       if(isset($local_domain) && $local_domain != '') {
 
-        $landing_page_id = Core\Secure::staticHashDecode($local_domain, true);
+        $site = Models\Site::where('user_id', Core\Secure::userId())->where('local_domain', $local_domain)->first();
 
-        if (is_numeric($landing_page_id)) {
+        if (! empty($site)) {
+          $page = $site->pages->first();
 
           $variant = 1;
-
-          $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
-
-          if (empty($page)) {
-            return response()->view('errors.404', [], 404);
-          }
 
           $sl = Core\Secure::array2string(['landing_page_id' => $page->id]);
 
@@ -134,6 +131,8 @@ class LandingPagesController extends Controller
           $html = Core\Parser::beautifyHtml($dom);
 
           return $html;
+        } else {
+          return response()->view('errors.404', [], 404);
         }
       }
     }

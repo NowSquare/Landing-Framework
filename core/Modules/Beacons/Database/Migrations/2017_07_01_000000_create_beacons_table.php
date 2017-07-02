@@ -102,6 +102,8 @@ class CreateBeaconsTable extends Migration
       $table->bigIncrements('id');
       $table->integer('user_id')->unsigned();
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+      $table->bigInteger('funnel_id')->unsigned()->nullable();
+      $table->foreign('funnel_id')->references('id')->on('funnels')->onDelete('cascade');
       $table->bigInteger('location_group_id')->unsigned()->nullable();
       $table->foreign('location_group_id')->references('id')->on('location_groups');
       $table->boolean('active')->default(true);

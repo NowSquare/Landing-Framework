@@ -196,7 +196,7 @@ class WebsiteController extends Controller
         /*'q' => 'description:"user_"',
         property:"user_id=312" // https://labs.ribot.co.uk/exploring-google-eddystone-with-the-proximity-beacon-api-bc9256c97e05
         */
-        'q' => 'status:ACTIVE property:"user_id=312"', // https://developers.google.com/beacons/proximity/reference/rest/v1beta1/beacons#Status
+        'q' => 'status:ACTIVE property:"user_id=312" property:"funnel_id=21"', // https://developers.google.com/beacons/proximity/reference/rest/v1beta1/beacons#Status
         //'q' => 'status:ACTIVE', // https://developers.google.com/beacons/proximity/reference/rest/v1beta1/beacons#Status
         'pageSize' => '1000'
       ]);

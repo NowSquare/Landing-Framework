@@ -63,6 +63,29 @@ class Localization extends \App\Http\Controllers\Controller {
   }
 
   /**
+   * \Platform\Controllers\Core\Localization::getAllLanguages();
+   * Get all base languages
+   */
+  public static function getAllLanguages($two_char_only = true)
+  {
+    $current_language = (auth()->check()) ? auth()->user()->language : \App::getLocale();
+
+    // Reads the language definitions from resources/language.
+    $languageRepository = new \CommerceGuys\Intl\Language\LanguageRepository;
+    $languages = $languageRepository->getAll($current_language);
+
+    foreach ($languages as $language_code => $language) {
+
+      if ($two_char_only && strlen($language_code) == 2) {
+        $return[$language_code] = ['name' => $language->getName()];
+      } elseif(! $two_char_only) {
+        $return[$language_code] = ['name' => $language->getName()];
+      }
+    }
+    return $return;
+  }
+
+  /**
    * Get language from browser
    */
 

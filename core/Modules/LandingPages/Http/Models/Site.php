@@ -58,7 +58,7 @@ class Site extends Model {
   }
 
   public function funnel() {
-    return $this->hasOne('Platform\Models\Funnels\Funnel');
+    return $this->belongsTo('Platform\Models\Funnels\Funnel');
   }
 
   public function pages() {
