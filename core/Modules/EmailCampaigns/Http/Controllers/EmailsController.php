@@ -148,7 +148,7 @@ class EmailsController extends Controller
           // Beautify html
           $html = Core\Parser::beautifyHtml($dom);
 
-          return $html;
+          return response($html, 200);
 
         } else {
           return response()->view('errors.404', ['msg' => trans('global.page_not_published')], 404);
@@ -244,7 +244,7 @@ class EmailsController extends Controller
           // Beautify html
           $html = Core\Parser::beautifyHtml($dom);
 
-          return $html;
+          return response($html, 200);
         }
       }
     }
@@ -389,7 +389,7 @@ class EmailsController extends Controller
       // Beautify html
       $html = Core\Parser::beautifyHtml($dom);
 
-      return $html;
+      return response($html, 200);
     }
 
     /**
