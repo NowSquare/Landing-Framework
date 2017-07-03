@@ -74,7 +74,7 @@ class FormsController extends Controller
           // Beautify html
           $html = Core\Parser::beautifyHtml($dom);
 
-          return $html;
+          return response($html, 200);
         } else {
           return response()->view('layouts.simple-message', ['icon' => '&#xE14B;', 'msg' => trans('global.form_not_found')], 404);
         }
@@ -163,7 +163,7 @@ class FormsController extends Controller
           // Beautify html
           $html = Core\Parser::beautifyHtml($dom);
 
-          return $html;
+          return response($html, 200);
         }
       }
     }
@@ -324,7 +324,7 @@ class FormsController extends Controller
 
       $html = Core\Parser::beautifyHtml($dom);
 
-      return $html;
+      return response($html, 200);
     }
 
     /**

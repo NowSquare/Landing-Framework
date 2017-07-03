@@ -74,7 +74,7 @@ class LandingPagesController extends Controller
           // Beautify html
           $html = Core\Parser::beautifyHtml($dom);
 
-          return $html;
+          return response($html, 200);
         } else {
           return response()->view('layouts.simple-message', ['icon' => '&#xE14B;', 'msg' => trans('global.page_not_found')], 404);
         }
@@ -130,7 +130,8 @@ class LandingPagesController extends Controller
           // Beautify html
           $html = Core\Parser::beautifyHtml($dom);
 
-          return $html;
+          return response($html, 200);
+          //return $html;
         } else {
           return response()->view('errors.404', [], 404);
         }
@@ -285,7 +286,8 @@ class LandingPagesController extends Controller
       // Beautify html
       $html = Core\Parser::beautifyHtml($template);
 
-      return $html;
+      return response($html, 200);
+      //return $html;
     }
 
     /**
@@ -544,7 +546,8 @@ class LandingPagesController extends Controller
       }
 
       $html = view('block.landingpages::' . $category . '.' . $block);
-      return $html;
+      return response($html, 200);
+      //return $html;
       //return view('landingpages::block-preview', compact('html'))->render();
     }
 
