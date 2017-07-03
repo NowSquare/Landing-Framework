@@ -67,6 +67,11 @@ class FunctionsController extends Controller
 
     } else {
       $clientInfo = $dd->getClient(); // holds information about browser, feed reader, media player, ...
+      if (! is_array($clientInfo)) {
+        // The physical web url checker fails because it's not recognized as a bot
+        // Stop stats if no client info is found
+        return true;
+      }
       $osInfo = $dd->getOs();
       $device = $dd->getDevice();
       $brand = $dd->getBrandName();
@@ -437,7 +442,7 @@ class FunctionsController extends Controller
 
       // Update page
       pq('title')->text($name);
-      pq('head')->find('title')->after('<link rel="icon" type="image/x-icon" href="' . url('public/' . $storage_root . '/favicon.ico') . '">');
+      pq('head')->find('title')->after('<link rel="shortcut icon" type="image/x-icon" href="' . url('public/' . $storage_root . '/favicon.ico') . '">');
       pq('head')->find('title')->after('<meta name="description" content="">');
 
       //$html = str_replace('</section><section', "</section>\n\n<section", $html);

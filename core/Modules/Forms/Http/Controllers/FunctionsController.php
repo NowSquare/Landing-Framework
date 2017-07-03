@@ -96,6 +96,11 @@ class FunctionsController extends Controller
 
     } else {
       $clientInfo = $dd->getClient(); // holds information about browser, feed reader, media player, ...
+      if (! is_array($clientInfo)) {
+        // The physical web url checker fails because it's not recognized as a bot
+        // Stop stats if no client info is found
+        return true;
+      }
       $osInfo = $dd->getOs();
       $device = $dd->getDevice();
       $brand = $dd->getBrandName();
