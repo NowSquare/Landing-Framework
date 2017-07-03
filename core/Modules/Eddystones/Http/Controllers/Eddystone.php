@@ -143,6 +143,8 @@ class Eddystone extends Controller
         'funnel_id' => (string) $funnel_id
       ]);
 
+      $result = null;
+
       try {
         $result = $proximitybeaconService->beacons->register($new_beacon);
       } catch (\Exception $e) {

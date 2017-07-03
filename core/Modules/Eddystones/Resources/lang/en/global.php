@@ -33,7 +33,7 @@ return array(
 	*/
 
   "eddystone_explanation" => "About Eddystone beacons",
-  "eddystone_explanation1" => "Eddystone beacons can broadcast <a href=\"https://developers.google.com/nearby/notifications/overview\" class=\"link\" target=\"_blank\">Nearby Notifications</a> to Android phones in range of the beacon. This technology is currently limited to phones with Android 4.4 and newer. Integration with Android is evolving with every update, but the good part is that users don't need an app to receive notifications. Notifications will automatically show up in the notification shade when a phone is in range of an Eddystone beacon.",
+  "eddystone_explanation1" => "Eddystone beacons can broadcast <a href=\"https://developers.google.com/nearby/notifications/overview\" class=\"link\" target=\"_blank\">Nearby Notifications</a> to Android phones in range of the beacon. This technology is currently limited to phones with Android 4.4 and newer. Google is evolving integration with Android with every update, but the good part is that users don't need an app to receive notifications. Notifications will automatically show up in the notification shade when a phone is in range of an Eddystone beacon.",
   "eddystone_explanation2" => "You need Eddystone beacons that support the UID protocol in order to use this feature. A list of manufacturers can be found on this <a href=\"https://developers.google.com/beacons/eddystone\" target=\"_blank\">Eddystone format</a> page.",
   "eddystone_explanation3" => "Though physical web beacons can be detected by iOS devices with Chrome installed, this does not apply to Nearby Notifications. These are (currently) only supported by Android.",
   "id" => "ID",

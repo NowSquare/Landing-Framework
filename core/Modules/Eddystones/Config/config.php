@@ -16,13 +16,9 @@ return [
   // Numeric, the default amount for the system owner
   'in_plan_default_amount' => 100,
   // Extra boolean options for plan with default value - make sure to update global language file with $key
-  'extra_plan_config_boolean' => [
-    'edit_html' => 0
-  ],
+  'extra_plan_config_boolean' => [],
   // Extra string options for plan with default value - make sure to update global language file with $key
-  'extra_plan_config_string' => [
-    'max_entries' => 0 // 0 = unlimited
-  ],
+  'extra_plan_config_string' => [],
   // The order number is used for sorting purposes
   'order' => 70,
   // The icon must have a normal and active version, and it must exist in /assets/images/icons/
