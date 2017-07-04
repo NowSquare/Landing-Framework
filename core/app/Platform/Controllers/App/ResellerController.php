@@ -75,6 +75,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
       'timezone' => request()->input('timezone'),
       'language' => request()->input('language'),
       'name' => request()->input('name'),
+      'support_email' => request()->input('support_email'),
       'domain' => request()->input('domain'),
       'logo' => request()->input('logo', null),
       'logo_square' => request()->input('logo_square', null),
@@ -96,7 +97,8 @@ class ResellerController extends \App\Http\Controllers\Controller {
 
     $rules = array(
       'domain' => 'required|unique:resellers',
-      'name' => 'required|max:32'
+      'name' => 'required|max:32',
+      'support_email' => 'required|email'
     );
 
     $validator = \Validator::make($input, $rules);
@@ -115,6 +117,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
 
       $reseller->api_token = str_random(60);
       $reseller->name = $input['name'];
+      $reseller->support_email = $input['support_email'];
       $reseller->domain = $input['domain'];
       $reseller->logo = $input['logo'];
       $reseller->logo_square = $input['logo_square'];
@@ -186,6 +189,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
         'timezone' => request()->input('timezone'),
         'language' => request()->input('language'),
         'name' => request()->input('name'),
+        'support_email' => request()->input('support_email'),
         'domain' => request()->input('domain'),
         'logo' => request()->input('logo', null),
         'logo_square' => request()->input('logo_square', null),
@@ -207,7 +211,8 @@ class ResellerController extends \App\Http\Controllers\Controller {
 
       $rules = array(
         'domain' => 'required|unique:resellers,domain,' . $qs['reseller_id'],
-        'name' => 'required|max:32'
+        'name' => 'required|max:32',
+        'support_email' => 'required|email'
       );
 
       $validator = \Validator::make($input, $rules);
@@ -223,6 +228,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
       else
       {
         $reseller->name = $input['name'];
+        $reseller->support_email = $input['support_email'];
         $reseller->domain = $input['domain'];
         $reseller->logo = $input['logo'];
         $reseller->logo_square = $input['logo_square'];

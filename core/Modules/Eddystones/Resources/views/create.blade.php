@@ -22,7 +22,10 @@
 
         <div class="panel panel-default">
           <fieldset class="panel-body">
-            <div class="form-group">
+
+           <p>{{ trans('eddystones::global.create_eddystone_help') }}</p>
+
+            <div class="form-group m-t-20">
               <label for="name">{{ trans('global.name') }} <sup>*</sup></label>
               <input type="text" class="form-control" name="name" id="name" value="" maxlength="127" required autocomplete="off">
             </div>

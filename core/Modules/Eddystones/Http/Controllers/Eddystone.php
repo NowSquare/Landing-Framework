@@ -12,11 +12,10 @@ class Eddystone extends Controller
     /**
      * List all beacons
      */
-    public static function listBeacons()
+    public static function listBeacons($user_id = null)
     {
       // General config
-      $user_id = Core\Secure::userId();
-      $funnel_id = Core\Secure::funnelId();
+      if ($user_id == null) $user_id = Core\Secure::userId();
 
       // Define scopes
       $scopes = ['https://www.googleapis.com/auth/userlocation.beacon.registry'];

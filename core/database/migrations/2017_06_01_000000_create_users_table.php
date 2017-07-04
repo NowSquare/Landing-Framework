@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
       $table->string('api_token', 60)->nullable()->unique();
       $table->string('name', 32);
       $table->string('domain', 250);
+      $table->string('phone', 16)->nullable();
+      $table->string('support_email', 64)->nullable();
       $table->string('default_language', 5)->default('en');
       $table->string('default_locale', 5)->default('en');
       $table->string('default_timezone', 32)->default('UTC');
@@ -94,6 +96,7 @@ class CreateUsersTable extends Migration
       $table->foreign('plan_id')->references('id')->on('plans');
       $table->string('role', 20)->default('user');
       $table->string('name', 64);
+      $table->string('phone', 16)->nullable();
       $table->string('email');
       $table->string('password', 60)->nullable();
       $table->string('api_token', 60)->nullable()->unique();
@@ -107,7 +110,8 @@ class CreateUsersTable extends Migration
       $table->char('currency_code', 3)->default('USD');
       $table->integer('logins')->default(0)->unsigned();
       $table->ipAddress('last_ip')->nullable();
-      $table->date('expires')->nullable();
+      $table->timestamp('expires')->nullable();
+      $table->tinyInteger('expires_reminders_sent')->default(0)->unsigned();
       $table->dateTime('last_login')->nullable();
       $table->json('settings')->nullable();
 
@@ -128,6 +132,7 @@ class CreateUsersTable extends Migration
       $table->string('card_brand')->nullable();
       $table->string('card_last_four')->nullable();
       $table->timestamp('trial_ends_at')->nullable();
+      $table->tinyInteger('trial_ends_reminders_sent')->default(0)->unsigned();
 
       $table->rememberToken();
       $table->timestamps();

@@ -37,7 +37,7 @@ class AnalyticsController extends Controller
     $to = \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date_end . ' 23:59:59', \Auth::user()->timezone)->tz('UTC')->format('Y-m-d H:i:s');
 
     // All landing page sites
-    $sites = Models\Site::where('user_id', Core\Secure::userId())->orderBy('name', 'asc')->get();
+    $sites = Models\Site::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->orderBy('name', 'asc')->get();
 
     // This page
     $this_page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();

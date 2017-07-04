@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use \Platform\Controllers\Core;
 
 class MemberPasswordUpdated extends Notification
 {
@@ -43,10 +44,10 @@ class MemberPasswordUpdated extends Notification
     public function toMail($notifiable)
     {
       return (new MailMessage)
-                  ->subject('[' . config('app.name', 'Platform') . '] ' . trans('global.new_password_subject'))
+                  ->subject(trans('global.new_password_subject'), ['product_name' => Core\Reseller::get()->name])
                   ->greeting(trans('global.mail_greeting', ['name' => $notifiable->name]))
                   ->line(trans('global.new_password_mail_line1', ['password' => $this->password]))
-                  ->line(trans('global.member_mail_closing'));
+                  ->line(trans('global.mail_closing', ['product_name' => Core\Reseller::get()->name]));
     }
 
     /**

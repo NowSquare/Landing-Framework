@@ -53,6 +53,11 @@
             </div>
 
             <div class="form-group">
+              <label for="support_email">{{ trans('global.support_email') }} <sup>*</sup></label>
+              <input type="text" class="form-control" name="support_email" id="support_email" value="{{ $reseller->support_email }}" required autocomplete="off">
+            </div>
+
+            <div class="form-group">
               <div class="checkbox checkbox-primary">
                 <input name="active" id="active" type="checkbox" value="1" <?php if($reseller->active == 1) echo ' checked'; ?>>
                 <label for="active"> {{ trans('global.active') }}</label>

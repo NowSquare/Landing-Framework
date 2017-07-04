@@ -49,7 +49,7 @@ class User extends Authenticatable implements StaplerableInterface
   ];
 
   public function getDates() {
-    return array('created_at', 'updated_at', 'last_login', 'expires');
+    return array('created_at', 'updated_at', 'last_login', 'expires', 'trial_ends_at');
   }
 
   public function getFreePlanAttribute() {

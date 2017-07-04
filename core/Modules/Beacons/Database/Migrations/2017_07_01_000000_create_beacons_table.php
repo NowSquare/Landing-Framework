@@ -45,7 +45,7 @@ class CreateBeaconsTable extends Migration
       $table->string('name', 64);
       $table->boolean('active')->default(true);
     });
-*/
+* /
     Schema::create('location_groups', function($table)
     {
       $table->bigIncrements('id')->unsigned();
@@ -88,7 +88,7 @@ class CreateBeaconsTable extends Migration
 
       $table->timestamps();
     });
-*/
+* /
     Schema::create('beacon_uuids', function(Blueprint $table)
     {
       $table->increments('id');
@@ -126,7 +126,7 @@ class CreateBeaconsTable extends Migration
 
       /**
        * Enter region
-       */
+       * /
 
       // Enter region interaction
       $table->bigInteger('monitor_enter_region_id')->unsigned()->nullable();
@@ -146,7 +146,7 @@ class CreateBeaconsTable extends Migration
 
       /**
        * Exit region
-       */
+       * /
 
       // Exit region interaction
       $table->bigInteger('monitor_exit_region_id')->unsigned()->nullable();
@@ -166,7 +166,7 @@ class CreateBeaconsTable extends Migration
 
       /**
        * Range immediate
-       */
+       * /
 
       // Range immediate interaction
       $table->bigInteger('range_immediate_id')->unsigned()->nullable();
@@ -183,7 +183,7 @@ class CreateBeaconsTable extends Migration
 
       /**
        * Range near
-       */
+       * /
 
       // Range near interaction
       $table->bigInteger('range_near_id')->unsigned()->nullable();
@@ -200,7 +200,7 @@ class CreateBeaconsTable extends Migration
 
       /**
        * Range far
-       */
+       * /
 
       // Range far interaction
 
@@ -252,7 +252,7 @@ class CreateBeaconsTable extends Migration
       $table->foreign('beacon_id')->references('id')->on('beacons')->onDelete('cascade');
       $table->foreign('scenario_id')->references('id')->on('scenarios')->onDelete('cascade');
     });
-    */
+    * /
     Schema::create('beacon_interactions', function(Blueprint $table)
     {
       $table->bigIncrements('id');
@@ -312,6 +312,7 @@ class CreateBeaconsTable extends Migration
       $table->string('platform', 16)->nullable();
       $table->dateTime('created_at')->nullable();
     });
+    *///
   }
 
   /**
@@ -321,6 +322,7 @@ class CreateBeaconsTable extends Migration
    */
   public function down()
   {
+    /*
     Schema::drop('beacon_visits');
     Schema::drop('beacon_dwelling_time');
     Schema::drop('beacon_interactions');
@@ -333,5 +335,6 @@ class CreateBeaconsTable extends Migration
     Schema::drop('scenario_day');
     Schema::drop('scenario_then');
     Schema::drop('scenario_if');
+    */
   }
 }

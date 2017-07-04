@@ -27,6 +27,14 @@ class Kernel extends ConsoleKernel
       $schedule->call(function () {
         \Modules\EmailCampaigns\Http\Controllers\EmailsController::processScheduledMailings();
       })->everyFiveMinutes();
+
+      $schedule->call(function () {
+        \Platform\Controllers\App\UserController::checkExpiringTrials();
+      })->hourly();
+
+      $schedule->call(function () {
+        \Platform\Controllers\App\UserController::checkExpiringAccounts();
+      })->hourly();
     }
 
     /**

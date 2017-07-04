@@ -71,7 +71,15 @@ $style = [
                     <tr>
                         <td style="{{ $style['email-masthead'] }}">
                             <a style="{{ $fontFamily }} {{ $style['email-masthead_name'] }}" href="{{ url('/') }}" target="_blank">
-                                {{ \Platform\Controllers\Core\Reseller::get()->name }}
+                                @if (! empty($subject))
+                                    {!! $subject !!}
+                                @else
+                                    @if ($level == 'error')
+                                        Whoops!
+                                    @else
+                                        {!! \Platform\Controllers\Core\Reseller::get()->name !!}
+                                    @endif
+                                @endif
                             </a>
                         </td>
                     </tr>
@@ -140,7 +148,7 @@ $style = [
 
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
-                                          {!! trans('global.mail_signature') !!}
+                                          {!! trans('global.mail_signature', ['product_name' => \Platform\Controllers\Core\Reseller::get()->name]) !!}
                                         </p>
 
                                         <!-- Sub Copy -->
@@ -174,9 +182,7 @@ $style = [
                                 <tr>
                                     <td style="{{ $fontFamily }} {{ $style['email-footer_cell'] }}">
                                         <p style="{{ $style['paragraph-sub'] }}">
-                                            &copy; {{ date('Y') }}
-                                            <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ \Platform\Controllers\Core\Reseller::get()->name }}</a>.
-                                            {{ trans('global.mail_copyright') }}
+                                            <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ \Platform\Controllers\Core\Reseller::get()->name }}</a> - {{ trans('global.mail_footer') }}
                                         </p>
                                     </td>
                                 </tr>

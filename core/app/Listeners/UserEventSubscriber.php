@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use \Platform\Controllers\Core;
 use Platform\Controllers\Helper;
 use Carbon\Carbon;
+use App\Notifications\SendEmail;
 
 class UserEventSubscriber {
   /**
@@ -57,14 +58,32 @@ class UserEventSubscriber {
    * Handle user registration events.
    */
   public function onLogRegisteredUser($event) {
-    // Set expiration date, first check for default account
-    $default_plan = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 1)->first();
-    $trial_days = (! empty($default_plan) && is_numeric($default_plan->trial_days)) ? $default_plan->trial_days : 14;
-    $expires = Carbon::now()->addDays($trial_days);
+    // Get reseller
+    $reseller = Core\Reseller::get();
 
-    $event->user->reseller_id = Core\Reseller::get()->id;
-    $event->user->expires = $expires;
+    // Set expiration date, first check for default account
+    $default_plan = \App\Plan::where('reseller_id', $reseller->id)->where('active', 1)->where('default', 1)->first();
+    $trial_days = (! empty($default_plan) && is_numeric($default_plan->trial_days)) ? $default_plan->trial_days : 14;
+    //$expires = Carbon::now()->addDays($trial_days);
+    $trial_ends_at = Carbon::now()->addDays($trial_days);
+
+    $event->user->reseller_id = $reseller->id;
+    //$event->user->expires = $expires;
+    $event->user->trial_ends_at = $trial_ends_at;
     $event->user->save();
+
+    // Set language
+    app()->setLocale($event->user->language);
+
+    $mail_from = $reseller->mail_from_address;
+    $mail_from_name = $reseller->mail_from_name;
+    $subject = trans('global.new_user_subject', ['product_name' => $reseller->name]);
+    $body_line1 = trans('global.new_user_mail_line1', ['product_name' => $reseller->name, 'trial_days' => $trial_days]);
+    $body_line2 = trans('global.new_user_mail_line2', ['support_email' => $reseller->support_email]);
+    $body_cta = trans('global.new_user_cta');
+    $body_cta_link = url('login');
+
+    $event->user->notify(new SendEmail($mail_from, $mail_from_name, $subject, $body_line1, $body_line2, $body_cta, $body_cta_link));
   }
 
   /**

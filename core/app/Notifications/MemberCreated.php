@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use \Platform\Controllers\Core;
 
 class MemberCreated extends Notification
 {
@@ -45,10 +46,10 @@ class MemberCreated extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                  ->subject('[' . config('app.name', 'Platform') . '] ' . trans('global.member_registration_subject'))
+                  ->subject(trans('global.member_registration_subject', ['product_name' => Core\Reseller::get()->name]))
                   ->greeting(trans('global.mail_greeting', ['name' => $notifiable->name]))
                   ->line(trans('global.member_registration_mail_line1', ['domain' => $this->domain, 'email' => $notifiable->email, 'password' => $this->password]))
-                  ->line(trans('global.member_mail_closing'));
+                  ->line(trans('global.mail_closing', ['product_name' => Core\Reseller::get()->name]));
     }
 
     /**

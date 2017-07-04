@@ -1,5 +1,10 @@
 <?php
 
+Route::get('test-expiration', function() {
+  return App::make('\Platform\Controllers\App\UserController')->checkExpiringTrials();
+  //return App::make('\Platform\Controllers\App\UserController')->checkExpiringAccounts();
+});
+
 /*
  |--------------------------------------------------------------------------
  | Globals

@@ -6,22 +6,33 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use \Platform\Controllers\Core;
 
-class PasswordUpdated extends Notification
+class SendEmail extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public $password;
+    protected $mail_from;
+    protected $mail_from_name;
+    protected $subject;
+    protected $body_line1;
+    protected $body_line2;
+    protected $body_cta;
+    protected $body_cta_link;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($password)
+    public function __construct($mail_from, $mail_from_name, $subject, $body_line1, $body_line2, $body_cta, $body_cta_link)
     {
-        $this->password = $password;
+      $this->mail_from = $mail_from;
+      $this->mail_from_name = $mail_from_name;
+      $this->subject = $subject;
+      $this->body_line1 = $body_line1;
+      $this->body_line2 = $body_line2;
+      $this->body_cta = $body_cta;
+      $this->body_cta_link = $body_cta_link;
     }
 
     /**
@@ -44,10 +55,14 @@ class PasswordUpdated extends Notification
     public function toMail($notifiable)
     {
       return (new MailMessage)
-                  ->subject(trans('global.new_password_subject', ['product_name' => Core\Reseller::get()->name]))
+                  ->from($this->mail_from, $this->mail_from_name)
+                  ->replyTo($this->mail_from, $this->mail_from_name)
+                  ->subject($this->subject)
                   ->greeting(trans('global.mail_greeting', ['name' => $notifiable->name]))
-                  ->line(trans('global.new_password_mail_line1', ['password' => $this->password]))
-                  ->line(trans('global.mail_closing', ['product_name' => Core\Reseller::get()->name]));
+                  ->line($this->body_line1)
+                  ->action($this->body_cta, $this->body_cta_link)
+                  ->line($this->body_line2);
+
     }
 
     /**

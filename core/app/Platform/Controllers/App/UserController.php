@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Notifications\PasswordUpdated;
 use App\Notifications\UserCreated;
 use Illuminate\Support\Facades\Schema;
+use App\Notifications\SendEmail;
 
 class UserController extends \App\Http\Controllers\Controller {
 
@@ -16,6 +17,141 @@ class UserController extends \App\Http\Controllers\Controller {
    | User related logic
    |--------------------------------------------------------------------------
    */
+
+  /**
+   * Check if there are accounts expiring and/or ending
+   */
+  public static function checkExpiringAccounts()
+  {
+  }
+
+  /**
+   * Check if there are trials expiring and/or ending
+   */
+  public static function checkExpiringTrials()
+  {
+    // Check users where trial expires in 3 days
+    $now = \Carbon\Carbon::now()->tz('UTC')->format('Y-m-d H:i:s');
+    $tomorrow = \Carbon\Carbon::now()->addDays(1)->tz('UTC')->format('Y-m-d H:i:s');
+    $in_two_days = \Carbon\Carbon::now()->addDays(2)->tz('UTC')->format('Y-m-d H:i:s');
+    $in_three_days = \Carbon\Carbon::now()->addDays(3)->tz('UTC')->format('Y-m-d H:i:s');
+
+    // Trial ends in 3 days
+    $users = \App\User::where('active', true)
+      ->whereNull('is_reseller_id')
+      ->where('trial_ends_at', '>', $in_two_days)
+      ->where('trial_ends_at', '<', $in_three_days)
+      ->where('trial_ends_reminders_sent', 0)
+      ->get();
+
+    foreach ($users as $user) {
+      $user->trial_ends_reminders_sent = 1;
+      $user->save();
+      //echo 'Your trial ends in 3 days';
+
+      // Set language
+      app()->setLocale($user->language);
+
+      // Get reseller
+      $reseller = Core\Reseller::get($user->reseller_id);
+
+      $mail_from = $reseller->mail_from_address;
+      $mail_from_name = $reseller->mail_from_name;
+      $subject = trans('global.trial_ends_in_3_days_subject', ['product_name' => $reseller->name]);
+      $body_line1 = trans('global.trial_ends_in_3_days_mail_line1', ['product_name' => $reseller->name]);
+      $body_line2 = trans('global.trial_ends_in_3_days_mail_line2', ['product_name' => $reseller->name]);
+      $body_cta = trans('global.trial_ends_in_3_days_cta');
+      $body_cta_link = url('login');
+
+      $user->notify(new SendEmail($mail_from, $mail_from_name, $subject, $body_line1, $body_line2, $body_cta, $body_cta_link));
+    }
+
+    // Trial ends in 1 day
+    $users = \App\User::where('active', true)
+      ->whereNull('is_reseller_id')
+      ->where('trial_ends_at', '>', $now)
+      ->where('trial_ends_at', '<', $tomorrow)
+      ->where('trial_ends_reminders_sent', 1)
+      ->get();
+
+    foreach ($users as $user) {
+      $user->trial_ends_reminders_sent = 2;
+      $user->save();
+      //echo 'Your trial ends tomorrow';
+
+      // Set language
+      app()->setLocale($user->language);
+
+      // Get reseller
+      $reseller = Core\Reseller::get($user->reseller_id);
+
+      $mail_from = $reseller->mail_from_address;
+      $mail_from_name = $reseller->mail_from_name;
+      $subject = trans('global.trial_ends_tomorrow_subject', ['product_name' => $reseller->name]);
+      $body_line1 = trans('global.trial_ends_tomorrow_mail_line1', ['product_name' => $reseller->name]);
+      $body_line2 = trans('global.trial_ends_tomorrow_mail_line2', ['product_name' => $reseller->name]);
+      $body_cta = trans('global.trial_ends_tomorrow_cta');
+      $body_cta_link = url('login');
+
+      $user->notify(new SendEmail($mail_from, $mail_from_name, $subject, $body_line1, $body_line2, $body_cta, $body_cta_link));
+    }
+
+    // Trial has ended
+    $users = \App\User::where('active', true)
+      ->whereNull('is_reseller_id')
+      ->where('trial_ends_at', '<', $now)
+      ->where('trial_ends_reminders_sent', 2)
+      ->get();
+
+    foreach ($users as $user) {
+
+      // User hash
+      $user_hash = Core\Secure::staticHash($user->id);
+
+      // Delete uploads
+      $user_upload_dir = public_path() . '/public/uploads/' . $user_hash;
+      \File::deleteDirectory($user_upload_dir);
+
+      // Delete landing page files
+      \Storage::disk('public')->deleteDirectory('/landingpages/site/' . $user_hash);
+
+      // Delete form files
+      \Storage::disk('public')->deleteDirectory('/forms/form/' . $user_hash);
+
+      // Delete email files
+      \Storage::disk('public')->deleteDirectory('/emails/email/' . $user_hash);
+
+      // Delete Eddystones
+      $eddystones = \Modules\Eddystones\Http\Controllers\Eddystone::listBeacons($user->id);
+
+      foreach($eddystones['beacons'] as $eddystone) {
+        $beaconName = $eddystone->getBeaconName();
+        $response = \Modules\Eddystones\Http\Controllers\Eddystone::deleteBeacon($beaconName);
+      }
+
+      // Set language
+      app()->setLocale($user->language);
+
+      // Get reseller
+      $reseller = Core\Reseller::get($user->reseller_id);
+
+      $mail_from = $reseller->mail_from_address;
+      $mail_from_name = $reseller->mail_from_name;
+      $subject = trans('global.trial_has_ended_subject', ['product_name' => $reseller->name]);
+      $body_line1 = trans('global.trial_has_ended_mail_line1', ['product_name' => $reseller->name]);
+      $body_line2 = trans('global.trial_has_ended_mail_line2', ['product_name' => $reseller->name]);
+      $body_cta = trans('global.trial_has_ended_cta');
+      $body_cta_link = url('register');
+
+      $user->notify(new SendEmail($mail_from, $mail_from_name, $subject, $body_line1, $body_line2, $body_cta, $body_cta_link));
+
+      // Delete user
+      $user->forceDelete();
+
+      //echo 'Sad to see you go!';
+    }
+
+  }
 
   /**
    * User management

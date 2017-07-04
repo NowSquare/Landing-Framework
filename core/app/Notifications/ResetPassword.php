@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use \Platform\Controllers\Core;
 
 class ResetPassword extends Notification
 {
@@ -51,11 +52,11 @@ class ResetPassword extends Notification
       $reset_link = url('/password/reset', $this->token);
 
       return (new MailMessage)
-                  ->subject('[' . config('app.name', 'Platform') . '] ' . trans('global.reset_password_subject'))
+                  ->subject(trans('global.reset_password_subject', ['product_name' => Core\Reseller::get()->name]))
                   ->greeting(trans('global.mail_greeting', ['name' => $notifiable->name]))
                   ->line(trans('global.reset_password_mail_line1'))
                   ->action(trans('global.reset_password'), $reset_link)
-                  ->line(trans('global.mail_closing'));
+                  ->line(trans('global.mail_closing', ['product_name' => Core\Reseller::get()->name]));
     }
 
     /**

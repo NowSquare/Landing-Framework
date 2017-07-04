@@ -34,7 +34,7 @@ class EntriesController extends Controller
     $to = $date_end . ' 23:59:59';
 
     // All forms
-    $forms = Models\Form::where('user_id', Core\Secure::userId())->orderBy('name', 'asc')->get();
+    $forms = Models\Form::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->orderBy('name', 'asc')->get();
 
     // This form
     $this_form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $form_id)->first();

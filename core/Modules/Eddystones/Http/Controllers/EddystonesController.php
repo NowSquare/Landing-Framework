@@ -105,6 +105,20 @@ class EddystonesController extends Controller
      */
     public function postCreateEddystone(Request $request)
     {
+      // Verify limit
+      $eddystones = Eddystone::listBeacons();
+
+      $current_count = $eddystones['count'];
+      $current_count_limit = \Auth::user()->plan->limitations['eddystones']['max'];
+
+      if ($current_count >= $current_count_limit) {
+        return response()->json([
+          'type' => 'error', 
+          'msg' => trans('global.account_limit_reached'),
+          'reset' => false
+        ]);
+      }
+
       $name = $request->input('name', '');
       $namespace_id = $request->input('namespace_id', '');
       $instance_id = $request->input('instance_id', '');

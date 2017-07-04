@@ -143,6 +143,7 @@ $('#remove_avatar').on('click', function() {
 });
 
 </script>
+<?php /*
           <div class="text-left m-t-40">
             <table width="100%" class="table table-cutoff m-b-0">
               <tbody>
@@ -161,6 +162,7 @@ $('#remove_avatar').on('click', function() {
               </tbody>
             </table>
           </div>
+          */ ?>
         </div>
       </div>
       <!-- end card-box --> 

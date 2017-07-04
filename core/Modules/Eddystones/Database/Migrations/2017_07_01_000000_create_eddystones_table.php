@@ -13,6 +13,7 @@ class CreateEddystonesTable extends Migration
    */
   public function up()
   {
+    /*
     Schema::create('eddystones', function(Blueprint $table)
     {
       $table->bigIncrements('id');
@@ -52,7 +53,7 @@ class CreateEddystonesTable extends Migration
       $table->json('data')->nullable();
       $table->timestamps();
     });
-
+    */
   }
 
   /**
@@ -62,7 +63,7 @@ class CreateEddystonesTable extends Migration
    */
   public function down()
   {
-    Schema::drop('eddystone_attachments');
-    Schema::drop('eddystones');
+    //Schema::drop('eddystone_attachments');
+    //Schema::drop('eddystones');
   }
 }

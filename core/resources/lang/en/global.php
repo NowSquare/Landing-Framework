@@ -358,6 +358,7 @@ return array(
   "create_reseller" => "Create Reseller",
   "edit_reseller" => "Edit reseller",
   "domain" => "Domain",
+  "support_email" => "Support email address",
   "domain_help" => "Point the CNAME of this domain to :host",
   "platform_name" => "Platform name",
   "reseller_name" => "Reseller name",
@@ -461,29 +462,57 @@ return array(
    */
 
    // General
-  "mail_closing" => "Thank you for using our application!",
+  "mail_closing" => "Thank you for using :product_name.",
   "mail_greeting" => "Hello :name,",
-  "mail_copyright" => "All rights reserved.",
+  "mail_footer" => "Rapid Marketing Tools",
   "mail_copy_action_text" => "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below into your web browser:",
-  "mail_signature" => "Regards,<br>" . config('app.name'),
+  "mail_signature" => "-- The :product_name Team",
+
+  // User created credentials
+  "send_credentials_subject" => "Welcome to :product_name",
+  "send_credentials_mail_line1" => "An account has been created for you at :domain.<br><br>You can login with the following credentials.<br><br>Email: <strong>:email</strong><br>Password: <strong>:password</strong>",
+
+  // New user registration
+  "new_user_subject" => "Thank you for trying :product_name!",
+  "new_user_mail_line1" => "Thanks for trying :product_name. Your :trial_days day trial has started.",
+  "new_user_cta" => "Get started with Rapid Marketing",
+  "new_user_mail_line2" => "Take us for a spin, and please email us at :support_email if you experience any issues.",
 
    // General Member
   "member_mail_closing" => "Thank you for using our service!",
 
   // Reset password
-  "reset_password_subject" => "Reset your Password",
+  "reset_password_subject" => "Reset your :product_name password",
   "reset_password_mail_line1" => "Please click the link below to choose a new password.",
   "reset_password" => "Reset Password",
 
   // User updated, new password
-  "new_password_subject" => "New password",
+  "new_password_subject" => "Your new :product_name password",
   "new_password_mail_line1" => "A new password has been set for your account: <strong>:password</strong>",
 
   // User created credentials
-  "send_credentials_subject" => "An account has been created for you",
-  "send_credentials_mail_line1" => "An account has been created for you at :domain.<br><br>You can login with the following credentials.<br><br>Email: :email<br>Password: :password",
+  "send_credentials_subject" => "Welcome to :product_name",
+  "send_credentials_mail_line1" => "An account has been created for you at :domain.<br><br>You can login with the following credentials.<br><br>Email: <strong>:email</strong><br>Password: <strong>:password</strong>",
 
   // Member created credentials
-  "member_registration_subject" => "Thank you for creating an account!",
-  "member_registration_mail_line1" => "Your password is <strong>:password</strong>. You can login with the credentials below and change your password after logging in at \"My settings\" .<br><br>Email: :email<br>Password: :password"
+  "member_registration_subject" => "Welcome to :product_name",
+  "member_registration_mail_line1" => "Your password is <strong>:password</strong>. You can login with the credentials below and change your password after logging in.<br><br>Email: <strong>:email</strong><br>Password: <strong>:password</strong>",
+
+  // Trial ends in 3 days
+  "trial_ends_in_3_days_subject" => "Your :product_name trial ends in 3 days",
+  "trial_ends_in_3_days_mail_line1" => "Thanks for trying :product_name. When your trial expires, all data will be deleted permanently.",
+  "trial_ends_in_3_days_cta" => "Upgrade your account",
+  "trial_ends_in_3_days_mail_line2" => "Regardless of your choice, we want to say thank you for trying :product_name. We know it's an investment of your time, and we appreciate you giving us a chance.",
+
+  // Trial ends tomorrow
+  "trial_ends_tomorrow_subject" => "Your :product_name trial ends tomorrow",
+  "trial_ends_tomorrow_mail_line1" => "This is a kind reminder your :product_name account expires tomorrow. When your trial expires, all data will be deleted permanently. This can not be undone.",
+  "trial_ends_tomorrow_cta" => "Upgrade your account",
+  "trial_ends_tomorrow_mail_line2" => "Regardless of your choice, we want to say thank you for trying :product_name. We know it's an investment of your time, and we appreciate you giving us a chance.",
+
+  // Trial has ended
+  "trial_has_ended_subject" => "Your :product_name trial has ended",
+  "trial_has_ended_mail_line1" => "Thanks for trying :product_name. Your account and all associated data has been deleted. But no worries, you're always welcome to create a new account!",
+  "trial_has_ended_cta" => "Create a new account",
+  "trial_has_ended_mail_line2" => "Again, thank you for trying :product_name. We know it's an investment of your time, and we appreciate you giving us a chance."
 );
