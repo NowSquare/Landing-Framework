@@ -13,7 +13,7 @@ class CreatePropertiesTable extends Migration
    */
   public function up()
   {
-
+/*
 		Schema::create('property_types', function(Blueprint $table)
     {
       $table->increments('id');
@@ -94,7 +94,7 @@ class CreatePropertiesTable extends Migration
 
       /**
        * Enter region
-       */
+       * /
 
       // Enter region interaction
       $table->bigInteger('monitor_enter_region_id')->unsigned()->nullable();
@@ -114,7 +114,7 @@ class CreatePropertiesTable extends Migration
 
       /**
        * Exit region
-       */
+       * /
 
       // Exit region interaction
       $table->bigInteger('monitor_exit_region_id')->unsigned()->nullable();
@@ -134,7 +134,7 @@ class CreatePropertiesTable extends Migration
 
       /**
        * Range immediate
-       */
+       * /
 
       // Range immediate interaction
       $table->bigInteger('range_immediate_id')->unsigned()->nullable();
@@ -151,7 +151,7 @@ class CreatePropertiesTable extends Migration
 
       /**
        * Range near
-       */
+       * /
 
       // Range near interaction
       $table->bigInteger('range_near_id')->unsigned()->nullable();
@@ -168,7 +168,7 @@ class CreatePropertiesTable extends Migration
 
       /**
        * Range far
-       */
+       * /
 
       // Range far interaction
 
@@ -256,7 +256,7 @@ class CreatePropertiesTable extends Migration
     {
       $table->bigIncrements('id');
       $table->bigInteger('order');
-      $table->integer('property_id')->unsigned();
+      $table->bigInteger('property_id')->unsigned();
       $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
       $table->string('name', 100)->nullable();
 
@@ -268,7 +268,7 @@ class CreatePropertiesTable extends Migration
 
       $table->timestamps();
     });
-
+*/
   }
 
   /**
@@ -278,9 +278,11 @@ class CreatePropertiesTable extends Migration
    */
   public function down()
   {
+    /*
     Schema::drop('property_photos');
     Schema::drop('properties');
     Schema::drop('sales_types');
     Schema::drop('house_types');
+    */
   }
 }

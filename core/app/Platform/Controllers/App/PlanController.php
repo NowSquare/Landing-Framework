@@ -55,7 +55,9 @@ class PlanController extends \App\Http\Controllers\Controller {
       return $value['order'];
     }));
 
-    return view('platform.admin.plans.plan-new', compact('items'));
+    $currencies = \Platform\Controllers\Core\Localization::getAllCurrencies();
+
+    return view('platform.admin.plans.plan-new', compact('items', 'currencies'));
   }
 
   /**
@@ -98,7 +100,9 @@ class PlanController extends \App\Http\Controllers\Controller {
         return $value['order'];
       }));
 
-      return view('platform.admin.plans.plan-edit', compact('sl', 'plan', 'items'));
+      $currencies = \Platform\Controllers\Core\Localization::getAllCurrencies();
+
+      return view('platform.admin.plans.plan-edit', compact('sl', 'plan', 'items', 'currencies'));
     }
   }
 
@@ -109,12 +113,15 @@ class PlanController extends \App\Http\Controllers\Controller {
   {
     $input = array(
       'name' => request()->input('name'),
-      'price1' => request()->input('price1'),
-      'price1_string' => request()->input('price1_string'),
-      'price1_period_string' => request()->input('price1_period_string'),
-      'price1_subtitle' => request()->input('price1_subtitle'),
-      'order_url' => request()->input('order_url'),
-      'upgrade_url' => request()->input('upgrade_url'),
+      'currency' => request()->input('currency'),
+      'monthly_price' => request()->input('monthly_price'),
+      'monthly_remote_product_id' => request()->input('monthly_remote_product_id'),
+      'monthly_order_url' => request()->input('monthly_order_url'),
+      'monthly_upgrade_url' => request()->input('monthly_upgrade_url'),
+      'annual_price' => request()->input('annual_price'),
+      'annual_remote_product_id' => request()->input('annual_remote_product_id'),
+      'annual_order_url' => request()->input('annual_order_url'),
+      'annual_upgrade_url' => request()->input('annual_upgrade_url'),
       'default' => (bool) request()->input('default', false),
       'active' => (bool) request()->input('active', false),
       'limitations' => request()->input('limitations', [])
@@ -122,10 +129,11 @@ class PlanController extends \App\Http\Controllers\Controller {
 
     $rules = array(
       'name' => 'required',
-      'price1' => 'required|numeric',
-      'price1_string' => 'required',
-      'order_url' => 'nullable|url',
-      'upgrade_url' => 'nullable|url'
+      'monthly_price' => 'required',
+      'monthly_order_url' => 'nullable|url',
+      'monthly_upgrade_url' => 'nullable|url',
+      'annual_order_url' => 'nullable|url',
+      'annual_upgrade_url' => 'nullable|url'
     );
 
     $validator = \Validator::make($input, $rules);
@@ -151,12 +159,15 @@ class PlanController extends \App\Http\Controllers\Controller {
       $plan->order = $order;
       $plan->reseller_id = $reseller->id;
       $plan->name = $input['name'];
-      $plan->price1 = $input['price1'];
-      $plan->price1_string = $input['price1_string'];
-      $plan->price1_period_string = $input['price1_period_string'];
-      $plan->price1_subtitle = $input['price1_subtitle'];
-      $plan->order_url = $input['order_url'];
-      $plan->upgrade_url = $input['upgrade_url'];
+      $plan->currency = $input['currency'];
+      $plan->monthly_price = $input['monthly_price'];
+      $plan->monthly_remote_product_id = $input['monthly_remote_product_id'];
+      $plan->monthly_order_url = $input['monthly_order_url'];
+      $plan->monthly_upgrade_url = $input['monthly_upgrade_url'];
+      $plan->annual_price = $input['annual_price'];
+      $plan->annual_remote_product_id = $input['annual_remote_product_id'];
+      $plan->annual_order_url = $input['annual_order_url'];
+      $plan->annual_upgrade_url = $input['annual_upgrade_url'];
       $plan->limitations = $input['limitations'];
       $plan->default = $input['default'];
       $plan->active = $input['active'];
@@ -199,12 +210,15 @@ class PlanController extends \App\Http\Controllers\Controller {
 
       $input = array(
         'name' => request()->input('name'),
-        'price1' => request()->input('price1'),
-        'price1_string' => request()->input('price1_string'),
-        'price1_period_string' => request()->input('price1_period_string'),
-        'price1_subtitle' => request()->input('price1_subtitle'),
-        'order_url' => request()->input('order_url'),
-        'upgrade_url' => request()->input('upgrade_url'),
+        'currency' => request()->input('currency'),
+        'monthly_price' => request()->input('monthly_price'),
+        'monthly_remote_product_id' => request()->input('monthly_remote_product_id'),
+        'monthly_order_url' => request()->input('monthly_order_url'),
+        'monthly_upgrade_url' => request()->input('monthly_upgrade_url'),
+        'annual_price' => request()->input('annual_price'),
+        'annual_remote_product_id' => request()->input('annual_remote_product_id'),
+        'annual_order_url' => request()->input('annual_order_url'),
+        'annual_upgrade_url' => request()->input('annual_upgrade_url'),
         'default' => (bool) request()->input('default', false),
         'active' => (bool) request()->input('active', false),
         'limitations' => request()->input('limitations', [])
@@ -212,10 +226,11 @@ class PlanController extends \App\Http\Controllers\Controller {
 
       $rules = array(
         'name' => 'required',
-        'price1' => 'required|numeric',
-        'price1_string' => 'required',
-        'order_url' => 'nullable|url',
-        'upgrade_url' => 'nullable|url'
+        'monthly_price' => 'required',
+        'monthly_order_url' => 'nullable|url',
+        'monthly_upgrade_url' => 'nullable|url',
+        'annual_order_url' => 'nullable|url',
+        'annual_upgrade_url' => 'nullable|url'
       );
 
       $validator = \Validator::make($input, $rules);
@@ -231,12 +246,15 @@ class PlanController extends \App\Http\Controllers\Controller {
       else
       {
         $plan->name = $input['name'];
-        $plan->price1 = $input['price1'];
-        $plan->price1_string = $input['price1_string'];
-        $plan->price1_period_string = $input['price1_period_string'];
-        $plan->price1_subtitle = $input['price1_subtitle'];
-        $plan->order_url = $input['order_url'];
-        $plan->upgrade_url = $input['upgrade_url'];
+        $plan->currency = $input['currency'];
+        $plan->monthly_price = $input['monthly_price'];
+        $plan->monthly_remote_product_id = $input['monthly_remote_product_id'];
+        $plan->monthly_order_url = $input['monthly_order_url'];
+        $plan->monthly_upgrade_url = $input['monthly_upgrade_url'];
+        $plan->annual_price = $input['annual_price'];
+        $plan->annual_remote_product_id = $input['annual_remote_product_id'];
+        $plan->annual_order_url = $input['annual_order_url'];
+        $plan->annual_upgrade_url = $input['annual_upgrade_url'];
 
         if ($qs['plan_id'] != 1) {
           $plan->limitations = $input['limitations'];

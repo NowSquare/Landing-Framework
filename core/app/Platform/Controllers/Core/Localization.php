@@ -86,6 +86,35 @@ class Localization extends \App\Http\Controllers\Controller {
   }
 
   /**
+   * \Platform\Controllers\Core\Localization::getAllCurrencies();
+   * Get all currencies
+   */
+  public static function getAllCurrencies($flat_array = true)
+  {
+    $availableCurrencies = ['USD', 'EUR', 'GBP', 'RON', 'AUD', 'CAD', 'CHF', 'CZK', 'DKK', 'HUF', 'JPY', 'NOK', 'PLN', 'SEK', 'TRY', 'RUB', 'CNY', 'BGN', 'BRL', 'HKD', 'KRW', 'MXN', 'NZD', 'SGD', 'ZAR', 'MDL', 'AED', 'EGP', 'INR', 'RSD', 'UAH', 'TWD', 'ILS', 'SYP', 'QAR', 'SAR', 'ARS', 'CLP', 'BOB', 'COP', 'PYG', 'PEN', 'UYU', 'VEF', 'NGN', 'NAD', 'TND', 'DZD', 'KES', 'VND', 'BYN'];
+
+    $current_language = (auth()->check()) ? auth()->user()->language : \App::getLocale();
+
+    $currencyRepository = new \CommerceGuys\Intl\Currency\CurrencyRepository;
+
+    $currencies = $currencyRepository->getAll($current_language);
+
+    $return = [];
+
+    foreach ($currencies as $currency_code => $currency) {
+
+      if (in_array($currency_code, $availableCurrencies)) {
+        if ($flat_array) {
+          $return[$currency_code] = $currency->getName() . ' (' . $currency_code . ')';
+        } else {
+          $return[$currency_code] = ['name' => $currency->getName()];
+        }
+      }
+    }
+    return $return;
+  }
+
+  /**
    * Get language from browser
    */
 

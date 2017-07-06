@@ -34,33 +34,14 @@
             </div>
 
             <div class="form-group">
-              <label for="name">{{ trans('global.price_numeric') }} <sup>*</sup></label>
-              <input type="number" class="form-control" name="price1" value="{{ $plan->price1 }}" required autocomplete="off"<?php if($plan->id == 1)echo ' disabled'; ?>>
-            </div>
-
-            <div class="form-group">
-              <label for="name">{{ trans('global.price_string') }} <sup>*</sup> <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('global.price_string_help') }}">&#xE887;</i></label>
-              <input type="text" class="form-control" name="price1_string" value="{{ $plan->price1_string }}" required autocomplete="off"<?php if($plan->id == 1)echo ' disabled'; ?>>
-            </div>
-
-            <div class="form-group">
-              <label for="name">{{ trans('global.price_period') }}</label>
-              <input type="text" class="form-control" name="price1_period_string" value="{{ $plan->price1_period_string }}" autocomplete="off"<?php if($plan->id == 1)echo ' disabled'; ?>>
-            </div>
-
-            <div class="form-group">
-              <label for="name">{{ trans('global.subtitle') }}</label>
-              <input type="text" class="form-control" name="price1_subtitle" value="{{ $plan->price1_subtitle }}" autocomplete="off"<?php if($plan->id == 1)echo ' disabled'; ?>>
-            </div>
-
-            <div class="form-group">
-              <label for="order_url">{{ trans('global.order_url') }}</label>
-              <input type="text" class="form-control" name="order_url" id="order_url" value="{{ $plan->order_url }}" autocomplete="off"<?php if($plan->id == 1)echo ' disabled'; ?>>
-            </div>
-
-            <div class="form-group">
-              <label for="upgrade_url">{{ trans('global.upgrade_url') }}</label>
-              <input type="text" class="form-control" name="upgrade_url" id="upgrade_url" value="{{ $plan->upgrade_url }}" autocomplete="off"<?php if($plan->id == 1)echo ' disabled'; ?>>
+              <?php
+                echo Former::select('currency')
+                  ->class('select2-required form-control')
+                  ->name('currency')
+                  ->options($currencies)
+                  ->forceValue($plan->currency)
+                  ->label(trans('global.currency'));
+                ?>
             </div>
 
             <div class="form-group" style="margin-top:20px">
@@ -79,6 +60,61 @@
 
           </fieldset>
         </div>
+
+            <ul class="nav nav-tabs navtab-custom">
+              <li class="active"><a href="#monthly" data-toggle="tab" aria-expanded="false">{{ trans('global.monthly') }}</a></li>
+              <li><a href="#annual" data-toggle="tab" aria-expanded="false">{{ trans('global.annual') }}</a></li>
+            </ul>
+
+            <div class="tab-content" style="padding-bottom:10px">
+              <div class="tab-pane active" id="monthly">
+
+                <div class="form-group">
+                  <label for="monthly_price">{{ trans('global.price') }} <sup>*</sup></label>
+                  <input type="text" class="form-control" name="monthly_price" value="{{ $plan->monthly_price }}" required autocomplete="off" placeholder="11.25">
+                </div>
+
+                <div class="form-group">
+                  <label for="monthly_remote_product_id">{{ trans('global.remote_product_id') }}</label>
+                  <input type="text" class="form-control" name="monthly_remote_product_id" value="{{ $plan->monthly_remote_product_id }}" autocomplete="off" placeholder="">
+                </div>
+
+                <div class="form-group">
+                  <label for="monthly_order_url">{{ trans('global.order_url') }}</label>
+                  <input type="text" class="form-control" name="monthly_order_url" id="monthly_order_url" value="{{ $plan->monthly_order_url }}" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                  <label for="monthly_upgrade_url">{{ trans('global.upgrade_url') }}</label>
+                  <input type="text" class="form-control" name="monthly_upgrade_url" id="monthly_upgrade_url" value="{{ $plan->monthly_upgrade_url }}" autocomplete="off">
+                </div>
+
+              </div>
+              <div class="tab-pane" id="annual">
+
+                <div class="form-group">
+                  <label for="annual_price">{{ trans('global.price') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('global.annual_price_help') }}">&#xE887;</i></label>
+                  <input type="text" class="form-control" name="annual_price" value="{{ $plan->annual_price }}" required autocomplete="off" placeholder="9">
+                </div>
+
+                <div class="form-group">
+                  <label for="annual_remote_product_id">{{ trans('global.remote_product_id') }}</label>
+                  <input type="text" class="form-control" name="annual_remote_product_id" value="{{ $plan->annual_remote_product_id }}" autocomplete="off" placeholder="">
+                </div>
+
+
+                <div class="form-group">
+                  <label for="annual_order_url">{{ trans('global.order_url') }}</label>
+                  <input type="text" class="form-control" name="annual_order_url" id="annual_order_url" value="{{ $plan->annual_order_url }}" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                  <label for="annual_upgrade_url">{{ trans('global.upgrade_url') }}</label>
+                  <input type="text" class="form-control" name="annual_upgrade_url" id="annual_upgrade_url" value="{{ $plan->annual_upgrade_url }}" autocomplete="off">
+                </div>
+
+              </div>
+            </div>
 
       </div>
 

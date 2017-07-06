@@ -10,7 +10,7 @@ return array(
 
 	"module_name" => "Email Campaign",
 	"module_name_plural" => "Email Campaigns",
-	"module_name_plan" => "Email Templates",
+	"module_name_plan" => "Email Campaigns",
 	"module_desc" => "Autoresponders, mailings and automated email cycles.",
 
 	/*
@@ -20,9 +20,9 @@ return array(
 	*/
 
   "transactional_email" => "Transactional email|Transactional emails",
-  "transactional_email_desc" => "A response to a form submit. An opt-in, thank you or other autoresponder.",
+  "transactional_email_desc" => "Send an auto-responder after a form is submitted. An opt-in request or thank you.",
   "marketing_email" => "Marketing email|Marketing emails",
-  "marketing_email_desc" => "Marketing emails are timed and sent strategically to your recipient list.",
+  "marketing_email_desc" => "Marketing emails are timed and sent strategically to your recipient list(s).",
   "drip_campaign" => "Drip campaign|Drip campaign emails",
   "drip_campaign_desc" => "Drip campaigns are a sequence of emails delivered in a specific order.",
 

@@ -8,6 +8,6 @@ return [
      */
 
     'key' => env('AVANGATE_KEY', ''),
-    'debug_mail' => ''
+    'debug_mail' => env('AVANGATE_DEBUG_MAIL', '')
 ];
 

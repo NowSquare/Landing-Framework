@@ -14,7 +14,9 @@ class Plan extends Model
 
   protected $casts = [
     'limitations' => 'json',
-    'extra' => 'json'
+    'extra' => 'json',
+    'monthly_price_currencies' => 'json',
+    'annual_price_currencies' => 'json'
   ];
 
   public function getLimitationsAttribute($key) {

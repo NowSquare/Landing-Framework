@@ -17,7 +17,7 @@ class PropertiesDatabaseSeeder extends Seeder
         Model::unguard();
 
         // $this->call("OthersTableSeeder");
-
+/*
         $PROPERTY_TYPES = [
           'apartment',
           'room',
@@ -163,6 +163,6 @@ class PropertiesDatabaseSeeder extends Seeder
             'name' => $property_garage
           ]);
         }
-
+*/
     }
 }

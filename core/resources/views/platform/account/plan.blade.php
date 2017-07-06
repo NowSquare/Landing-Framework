@@ -36,22 +36,31 @@ $col_span = 'col-md-12';
 
 if ($plan_count == 2) $col_span = 'col-md-6';
 if ($plan_count%3 == 0) $col_span = 'col-md-4';
-if ($plan_count%4 == 0) $col_span = 'col-md-3';
-
+if ($plan_count%4 == 0) $col_span = 'col-md-4';
 
 if (! empty($default_plan) && $default_plan->active == 1) {
 ?>
         <article class="pricing-column {{ $col_span }}" style="margin-bottom: 0">
-<?php if ($default_plan->ribbon != '') { ?>
-            <div class="ribbon"><span>{{ $default_plan->ribbon }}</span></div>
+<?php if (auth()->user()->plan_id == $default_plan->id) { ?>
+            <div class="ribbon"><span>{{ trans('global.current') }}</span></div>
 <?php } ?>
             <div class="inner-box card-box">
-                <div class="plan-header text-center"<?php if ($default_plan->price1_subtitle != '') echo ' style="padding-bottom:23px"'; ?>>
+                <div class="plan-header text-center"<?php if ($default_plan->description != '') echo ' style="padding-bottom:23px"'; ?>>
                     <h3 class="plan-title">{!! $default_plan->name !!}</h3>
-                    <h2 class="plan-price">{!! $default_plan->price1_string !!}</h2>
-                    <div class="plan-duration"><?php echo (\Lang::has('global.' . $default_plan->price1_period_string)) ? trans('global.' . $default_plan->price1_period_string) : $default_plan->price1_period_string; ?></div>
-<?php if ($default_plan->price1_subtitle != '') { ?>
-                    <h4 class="m-b-0">{!! $default_plan->price1_subtitle !!}</h4>
+                    <h2 class="plan-price price-monthly"><?php echo $currencyFormatter->formatCurrency($default_plan->monthly_price, $currencyRepository->get($default_plan->currency, auth()->user()->language)); ?></h2>
+                    <h2 class="plan-price price-annual"><?php echo $currencyFormatter->formatCurrency($default_plan->annual_price, $currencyRepository->get($default_plan->currency, auth()->user()->language)); ?></h2>
+                    <div class="plan-duration">
+
+{{ trans('global.monthly') }}
+<label class="switch">
+  <input type="checkbox" class="price_switch" checked>
+  <div class="slider round"></div>
+</label>
+{{ trans('global.annual') }}
+
+                    </div>
+<?php if ($default_plan->description != '') { ?>
+                    <h4 class="m-b-0">{!! $default_plan->description !!}</h4>
 <?php } else { ?>
 <?php } ?>
                 </div>
@@ -63,14 +72,26 @@ foreach($items as $item) {
 
     $max = ($item['in_plan_amount']) ? ' (' . $default_plan->limitations[$item['namespace']]['max'] . ')' : '';
 ?>
-                 <li><?php echo ($default_plan->limitations[$item['namespace']]['visible'] == 1) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
+                 <li class="plan-item"><?php echo ($default_plan->limitations[$item['namespace']]['visible'] == 1) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
 <?php 
     if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
       foreach ($item['extra_plan_config_string'] as $config => $value) {
         $val = (isset($default_plan->limitations[$item['namespace']][$config])) ? $default_plan->limitations[$item['namespace']][$config] : '-';
+        if (is_numeric($val)) $val = $decimalFormatter->format($val);
 ?>
-                 <li>{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</li>
+                 <li><span class="sub">{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</span></li>
 <?php 
+      }
+    }
+
+    if (isset($item['extra_plan_config_boolean']) && count($item['extra_plan_config_boolean']) > 0) { 
+      foreach ($item['extra_plan_config_boolean'] as $config => $value) {
+        $val = (isset($default_plan->limitations[$item['namespace']][$config]) && $default_plan->limitations[$item['namespace']][$config]== 1) ? '<i class="ti-check text-success" style="font-size:12px; top:-1px; position:relative"></i>' : '<i class="ti-na text-danger" style="font-size:12px; top:-1px; position:relative"></i>';
+        if ($config != 'edit_html') {
+?>
+                 <li><span class="sub">{!! $val . ' ' . trans($item['namespace'] . '::global.' . $config) !!}</span></li>
+<?php 
+        }
       }
     }
   } 
@@ -92,6 +113,8 @@ if (\Auth::user()->plan_id == $default_plan->id) {
   $order_url = (isset($default_plan->order_url)) ? $default_plan->order_url . '&CUSTOMERID=' . \Auth::user()->id : '';
 
   $btn_text = trans('global.order_now');
+  $btn_text = (\Auth::user()->plan->order > $default_plan->order) ? trans('global.downgrade') : trans('global.upgrade');
+
   $btn_link = ($order_url != '') ? $order_url : 'javascript:void(0);';
   $btn_target = '';
   //$btn_target = ($order_url != '') ? '_blank' : '';
@@ -103,9 +126,6 @@ if (\Auth::user()->plan_id == $default_plan->id) {
   $btn_class = 'warning';
 }
 
-if (\Platform\Controllers\Core\Reseller::get()->avangate_affiliate != '') $btn_link .= '&AVGAFFILIATE=' . \Platform\Controllers\Core\Reseller::get()->avangate_affiliate;
-
-if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurchaseUrl(\'' . $btn_link . '\');';
 ?>
                     <a href="{{ $btn_link }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($disabled || \Auth::user()->plan_id == $default_plan->id || $btn_link == 'javascript:void(0);') echo ' disabled'; ?><?php if ($btn_target != '') echo ' target="' . $btn_target . '"'; ?>>{{ $btn_text }}</a>
                 </div>
@@ -116,11 +136,23 @@ if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurc
   // Default free plan
 ?>
         <article class="pricing-column {{ $col_span }}" style="margin-bottom: 0">
+<?php if (auth()->user()->plan_id == null) { ?>
+            <div class="ribbon"><span>{{ trans('global.current') }}</span></div>
+<?php } ?>
             <div class="inner-box card-box">
                 <div class="plan-header text-center">
                     <h3 class="plan-title">&nbsp;</h3>
                     <h2 class="plan-price">{{ trans('global.free') }}</h2>
-                    <div class="plan-duration">&nbsp;</div>
+                    <div class="plan-duration">
+
+{{ trans('global.monthly') }}
+<label class="switch">
+  <input type="checkbox" class="price_switch" checked>
+  <div class="slider round"></div>
+</label>
+{{ trans('global.annual') }}
+
+                    </div>
                 </div>
                 <ul class="plan-stats list-unstyled text-center">
 <?php
@@ -129,15 +161,27 @@ foreach($items as $item) {
 
     $max = ($item['in_free_plan_default_amount'] && $item['in_free_plan']) ? ' (' . $item['in_free_plan_default_amount'] . ')' : '';
 ?>
-                 <li><?php echo ($item['in_free_plan']) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
+                 <li class="plan-item"><?php echo ($item['in_free_plan']) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
 <?php 
     if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
       foreach ($item['extra_plan_config_string'] as $config => $value) {
         $val = (isset($plan->limitations[$item['namespace']][$config])) ? $plan->limitations[$item['namespace']][$config] : '-';
+        if (is_numeric($val)) $val = $decimalFormatter->format($val);
 ?>
-                 <li>{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</li>
+                 <li><span class="sub">{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</span></li>
 
 <?php 
+      }
+    }
+
+    if (isset($item['extra_plan_config_boolean']) && count($item['extra_plan_config_boolean']) > 0) { 
+      foreach ($item['extra_plan_config_boolean'] as $config => $value) {
+        $val = (isset($plan->limitations[$item['namespace']][$config]) && $plan->limitations[$item['namespace']][$config]== 1) ? '<i class="ti-check text-success" style="font-size:12px; top:-1px; position:relative"></i>' : '<i class="ti-na text-danger" style="font-size:12px; top:-1px; position:relative"></i>';
+        if ($config != 'edit_html') {
+?>
+                 <li><span class="sub">{!! $val . ' ' . trans($item['namespace'] . '::global.' . $config) !!}</span></li>
+<?php 
+        }
       }
     }
   } 
@@ -172,16 +216,26 @@ if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurc
 foreach($plans as $plan) {
 ?>
         <article class="pricing-column {{ $col_span }}" style="margin-bottom: 0">
-<?php if ($plan->ribbon != '') { ?>
-            <div class="ribbon"><span>{{ $plan->ribbon }}</span></div>
+<?php if (auth()->user()->plan_id == $plan->id) { ?>
+            <div class="ribbon"><span>{{ trans('global.current') }}</span></div>
 <?php } ?>
             <div class="inner-box card-box">
-                <div class="plan-header text-center"<?php if ($plan->price1_subtitle != '') echo ' style="padding-bottom:23px"'; ?>>
+                <div class="plan-header text-center"<?php if ($plan->description != '') echo ' style="padding-bottom:23px"'; ?>>
                     <h3 class="plan-title">{!! $plan->name !!}</h3>
-                    <h2 class="plan-price">{!! $plan->price1_string !!}</h2>
-                    <div class="plan-duration"><?php echo (\Lang::has('global.' . $plan->price1_period_string)) ? trans('global.' . $plan->price1_period_string) : $plan->price1_period_string; ?></div>
-<?php if ($plan->price1_subtitle != '') { ?>
-                    <h4 class="m-b-0">{!! $plan->price1_subtitle !!}</h4>
+                    <h2 class="plan-price price-monthly"><?php echo $currencyFormatter->formatCurrency($plan->monthly_price, $currencyRepository->get($plan->currency, auth()->user()->language)); ?></h2>
+                    <h2 class="plan-price price-annual"><?php echo $currencyFormatter->formatCurrency($plan->annual_price, $currencyRepository->get($plan->currency, auth()->user()->language)); ?></h2>
+                    <div class="plan-duration">
+
+{{ trans('global.monthly') }}
+<label class="switch">
+  <input type="checkbox" class="price_switch" checked>
+  <div class="slider round"></div>
+</label>
+{{ trans('global.annual') }}
+
+                    </div>
+<?php if ($plan->description != '') { ?>
+                    <h4 class="m-b-0">{!! $plan->description !!}</h4>
 <?php } else { ?>
 <?php } ?>
                 </div>
@@ -193,15 +247,27 @@ foreach($items as $item) {
 
     $max = ($item['in_plan_amount'] && $plan->limitations[$item['namespace']]['visible'] == 1) ? ' (' . $plan->limitations[$item['namespace']]['max'] . ')' : '';
 ?>
-                 <li><?php echo ($plan->limitations[$item['namespace']]['visible'] == 1) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
+                 <li class="plan-item"><?php echo ($plan->limitations[$item['namespace']]['visible'] == 1) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
 <?php 
     if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
       foreach ($item['extra_plan_config_string'] as $config => $value) {
         $val = (isset($plan->limitations[$item['namespace']][$config])) ? $plan->limitations[$item['namespace']][$config] : '-';
+        if (is_numeric($val)) $val = $decimalFormatter->format($val);
 ?>
-                 <li>{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</li>
+                 <li><span class="sub">{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</span></li>
 
 <?php 
+      }
+    }
+
+    if (isset($item['extra_plan_config_boolean']) && count($item['extra_plan_config_boolean']) > 0) { 
+      foreach ($item['extra_plan_config_boolean'] as $config => $value) {
+        $val = (isset($plan->limitations[$item['namespace']][$config]) && $plan->limitations[$item['namespace']][$config]== 1) ? '<i class="ti-check text-success" style="font-size:12px; top:-1px; position:relative"></i>' : '<i class="ti-na text-danger" style="font-size:12px; top:-1px; position:relative"></i>';
+        if ($config != 'edit_html') {
+?>
+                 <li><span class="sub">{!! $val . ' ' . trans($item['namespace'] . '::global.' . $config) !!}</span></li>
+<?php 
+        }
       }
     }
   } 
@@ -213,32 +279,50 @@ foreach($items as $item) {
 <?php
 
 if (\Auth::user()->plan_id == $plan->id) {
-  $btn_text = trans('global.current_plan');
+  $btn_text_monthly = trans('global.current_plan');
+  $btn_text_annual = trans('global.current_plan');
+
   $btn_link = 'javascript:void(0);';
   $btn_target = '';
   $disabled = false;
   $btn_class = 'primary';
 } elseif (! $disabled) {
 
-  $order_url = (isset($plan->order_url)) ? $plan->order_url . '&CUSTOMERID=' . \Auth::user()->id : '';
+  $monthly_order_url = (isset($plan->monthly_order_url)) ? $plan->monthly_order_url . '&CUSTOMERID=' . \Auth::user()->id : '';
+  $monthly_upgrade_url = (isset($plan->monthly_upgrade_url)) ? $plan->monthly_upgrade_url . '&CUSTOMERID=' . \Auth::user()->id : '';
+  $annual_order_url = (isset($plan->annual_order_url)) ? $plan->annual_order_url . '&CUSTOMERID=' . \Auth::user()->id : '';
+  $annual_upgrade_url = (isset($plan->annual_upgrade_url)) ? $plan->annual_upgrade_url . '&CUSTOMERID=' . \Auth::user()->id : '';
 
-  $btn_text = trans('global.order_now');
-  $btn_link = ($order_url != '') ? $order_url : 'javascript:void(0);';
+  //$btn_text = trans('global.order_now');
+  //$btn_text = (\Auth::user()->plan->order > $plan->order) ? trans('global.downgrade') : trans('global.upgrade');
+  $btn_text_monthly = trans('global.order_1_month');
+  $btn_text_annual = trans('global.order_1_year');
+
+  $btn_link_monthly = 'javascript:void(0);';
+  $btn_link_annual = 'javascript:void(0);';
+
+  if ($monthly_order_url != '') $btn_link_monthly = 'javascript:openExternalPurchaseUrl(\'' . $monthly_order_url . $payment_link_suffix . '\');';
+  if ($annual_order_url != '') $btn_link_annual = 'javascript:openExternalPurchaseUrl(\'' . $annual_order_url . $payment_link_suffix . '\');';
+
   $btn_target = '';
   //$btn_target = ($order_url != '') ? '_blank' : '';
   $btn_class = 'warning';
 } else {
-  $btn_text = trans('global.order_now');
+  $btn_text_monthly = trans('global.order_1_month');
+  $btn_text_annual = trans('global.order_1_year');
+
   $btn_link = 'javascript:void(0);';
   $btn_target = '';
   $btn_class = 'warning';
 }
 
-if (\Platform\Controllers\Core\Reseller::get()->avangate_affiliate != '') $btn_link .= '&AVGAFFILIATE=' . \Platform\Controllers\Core\Reseller::get()->avangate_affiliate;
-
-if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurchaseUrl(\'' . $btn_link . '\');';
 ?>
-                    <a href="{{ $btn_link }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($disabled || \Auth::user()->plan_id == $plan->id || $btn_link == 'javascript:void(0);') echo ' disabled'; ?><?php if ($btn_target != '') echo ' target="' . $btn_target . '"'; ?>>{{ $btn_text }}</a>
+                    <div class="order-btn-monthly">
+                      <a href="{{ $btn_link_monthly }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($disabled || \Auth::user()->plan_id == $plan->id || $btn_link_monthly == 'javascript:void(0);') echo ' disabled'; ?><?php if ($btn_target != '') echo ' target="' . $btn_target . '"'; ?>>{{ $btn_text_monthly }}</a>
+                    </div>
+                    <div class="order-btn-annual">
+                      <a href="{{ $btn_link_annual }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($disabled || \Auth::user()->plan_id == $plan->id || $btn_link_annual == 'javascript:void(0);') echo ' disabled'; ?><?php if ($btn_target != '') echo ' target="' . $btn_target . '"'; ?>>{{ $btn_text_annual }}</a>
+                   </div>
                 </div>
             </div>
         </article>
@@ -252,7 +336,107 @@ if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurc
   </div>
 
 </div>
+<style type="text/css">
+  .price-monthly,
+  .order-btn-monthly {
+    display: none;
+  }
+  span.sub {
+    font-size: 15px;
+    font-weight: bold;
+  }
+  li.plan-item {
+    font-size: 18px;
+  }
+  .pricing-column .plan-header {
+    padding-bottom: 0 !important;
+  }
+
+  .plan-duration {
+    margin-top: 30px;
+    text-transform: uppercase;
+  }
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-bottom: -7px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #138dfa;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #138dfa;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #138dfa;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
 <script>
+
+$('.price_switch').change(function() {
+    if (this.checked) {
+      $('.price_switch').prop('checked', true);
+      $('.price-monthly').hide();
+      $('.price-annual').show();
+      $('.order-btn-monthly').hide();
+      $('.order-btn-annual').show();
+    } else {
+      $('.price_switch').prop('checked', false);
+      $('.price-monthly').show();
+      $('.price-annual').hide();
+      $('.order-btn-monthly').show();
+      $('.order-btn-annual').hide();
+    }
+});
+
+  
 function openExternalPurchaseUrl(url) {
 
   swal({

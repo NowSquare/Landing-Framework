@@ -61,6 +61,11 @@ Once the configuration file has been created, you may update the Supervisor conf
 
 For more information on Supervisor, consult the [Supervisor documentation](http://supervisord.org/index.html).
 
+### Troubleshooting
+You can try to restart the service with this command:
+
+`service supervisor restart`
+
 ## Mailgun webhooks
 To track email clicks and opens, we have to configure Mailgun webhooks. Log in to your Mailgun account, click *Webhooks* and enter the following URL for all events you want to track:
 

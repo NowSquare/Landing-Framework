@@ -182,6 +182,15 @@ class AccountController extends \App\Http\Controllers\Controller {
       return $value['order'];
     }));
 
-    return view('platform.account.plan', compact('user', 'plans', 'default_plan', 'items'));
+    $currencyRepository = new \CommerceGuys\Intl\Currency\CurrencyRepository;
+    $numberFormatRepository = new \CommerceGuys\Intl\NumberFormat\NumberFormatRepository;
+    $numberFormat = $numberFormatRepository->get(auth()->user()->language);
+    $decimalFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat);
+    $currencyFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat, \CommerceGuys\Intl\Formatter\NumberFormatter::CURRENCY);
+
+    $payment_link_suffix = (\Platform\Controllers\Core\Reseller::get()->avangate_affiliate != '') ? '&AVGAFFILIATE=' . \Platform\Controllers\Core\Reseller::get()->avangate_affiliate : '';
+    if (env('PAYMENT_TEST', false)) $payment_link_suffix .= '&DOTEST=1';
+
+    return view('platform.account.plan', compact('user', 'plans', 'default_plan', 'items', 'currencyRepository', 'decimalFormatter', 'currencyFormatter', 'payment_link_suffix'));
   }
 }
