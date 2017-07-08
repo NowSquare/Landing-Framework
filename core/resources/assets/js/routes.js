@@ -131,9 +131,9 @@ $(function() {
           (typeof showDeviceSelection == 'undefined' || ! showDeviceSelection) &&
           (typeof showEditButtons == 'undefined' || ! showEditButtons)
         ) {
-          $('#funnel_selector').show();
+          $('#funnel_selector,#language_selector').show();
         } else {
-          $('#funnel_selector').hide();
+          $('#funnel_selector,#language_selector').hide();
         }
 
         $('.navigation-menu li').removeClass('active');

@@ -34,7 +34,7 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-  "enter_name_text" => "Enter a name for your form. You can change this at any time.",
+  "enter_name_text" => "Enter a name for your form. You can change this later.",
   "form_style" => "Form style",
   "normal" => "Normal",
   "rounded_shadow" => "Rounded shadow",
@@ -53,7 +53,7 @@ return array(
   "unknown_error" => "Unknown Error",
   "unknown_error_text" => "Sorry, something went wrong. Please contact the site owner if the problem persists.",
   "demo" => "Demo",
-  "demo_text" => "This form was not submitted because you are logged in.",
+  "demo_text" => "This form was not submitted, because you are logged in.",
   "rate_limit_error" => "Error",
   "rate_limit_error_text" => "Submission was too fast after previous entry. Please wait before posting again.",
 

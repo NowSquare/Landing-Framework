@@ -105,7 +105,6 @@ return array(
   "modules" => "Modules",
   "enter_name" => "Enter name",
   "please_enter_value" => "Please enter a value!",
-
   "new_first" => "Newest first",
   "old_first" => "Oldest first",
   "high_conversion_first" => "Highest conversion first",
@@ -272,8 +271,6 @@ return array(
   "to" => "To",
   "from_name" => "From Name",
   "from_email" => "From Email",
-  "" => "",
-  "" => "",
 
   /*
    |--------------------------------------------------------------------------

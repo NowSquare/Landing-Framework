@@ -135,7 +135,7 @@ foreach($funnels as $funnel) {
 // Only show language dropdown if there's more than one language available
 if (count($languages) > 1) {
 ?>
-          <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">{{ $current_language }} </a>
+          <li class="dropdown" id="language_selector"> <a href="javascript:void(0);" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">{{ $current_language }} </a>
             <ul class="dropdown-menu">
 <?php foreach($languages as $code => $language) { ?>
               <li><a href="{{ url('platform?lang=' . $code) }}">{{ $language }}</a></li>

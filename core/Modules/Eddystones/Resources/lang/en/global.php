@@ -24,7 +24,7 @@ return array(
   "namespace_id" => "Namespace ID",
   "namespace_id_help" => "Eddystone UID beacons have a 10-byte (20 characters) namespace id. You can find this in the web dashboard or app of the beacon manufacturer. Also, make sure the UID protocol is enabled.",
   "instance_id" => "Instance ID",
-  "instance_id_help" => "Eddystone UID beacons have a 6-byte (12 characters) namespace id. You can find this in the web dashboard or app of the beacon manufacturer. Also, make sure the UID protocol is enabled.",
+  "instance_id_help" => "Eddystone UID beacons have a 6-byte (12 characters) instance id. You can find this in the web dashboard or app of the beacon manufacturer. Also, make sure the UID protocol is enabled.",
   "" => "",
 
 	/*
@@ -34,9 +34,9 @@ return array(
 	*/
 
   "eddystone_explanation" => "About Eddystone beacons",
-  "eddystone_explanation1" => "Eddystone beacons can broadcast <a href=\"https://developers.google.com/nearby/notifications/overview\" class=\"link\" target=\"_blank\">Nearby Notifications</a> to Android phones in range of the beacon. This technology is currently limited to phones with Android 4.4 and newer. Google is evolving integration with Android with every update, but the good part is that users don't need an app to receive notifications. Notifications will show up in the notification shade when a phone is in range of an Eddystone beacon.",
-  "eddystone_explanation2" => "You need Eddystone beacons that support the UID protocol in order to use this feature. A list of manufacturers can be found on this <a href=\"https://developers.google.com/beacons/eddystone\" target=\"_blank\">Eddystone page</a>.",
-  "eddystone_explanation3" => "Though physical web beacons can be detected by iOS devices with Chrome installed, this does not apply to Nearby Notifications. These are (currently) only supported by Android.",
+  "eddystone_explanation1" => "Eddystone beacons can broadcast <a href=\"https://developers.google.com/nearby/notifications/overview\" class=\"link\" target=\"_blank\">Nearby Notifications</a> to Android phones in range of the beacon. This technology is currently limited to phones with Android 4.4 and newer. Google is evolving integration with Android with every update, and the good part is that users don't need an app to receive notifications. Notifications will show up in the notification shade as long as a phone is in range of the Eddystone beacon.",
+  "eddystone_explanation2" => "You need Eddystone beacons that support the UID protocol. This <a href=\"https://developers.google.com/beacons/eddystone\" target=\"_blank\">Eddystone page</a> contains a list of manufacturers.",
+  "eddystone_explanation3" => "Though <a href=\"https://google.github.io/physical-web/\" class=\"link\" target=\"_blank\">Physical Web</a> beacons can be detected by iOS devices with Chrome installed, this does not apply to Nearby Notifications. These are only supported by Android.",
   "id" => "ID",
   "notification" => "Notification",
   "notifications" => "Notifications",
