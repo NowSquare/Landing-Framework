@@ -120,19 +120,6 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::get('elfinder/tinymce', '\Platform\Controllers\App\MediaController@showTinyMCE');
   });
 
-  // For owners
-  Route::group(['middleware' => 'role:owner'], function () {
-
-    // Reseller management
-    Route::get('platform/admin/resellers', '\Platform\Controllers\App\ResellerController@showResellers');
-    Route::get('platform/admin/resellers/data', '\Platform\Controllers\App\ResellerController@getResellerData');
-    Route::get('platform/admin/reseller/new', '\Platform\Controllers\App\ResellerController@showNewReseller');
-    Route::post('platform/admin/reseller/new', '\Platform\Controllers\App\ResellerController@postNewReseller');
-    Route::get('platform/admin/reseller/edit', '\Platform\Controllers\App\ResellerController@showEditReseller');
-    Route::post('platform/admin/reseller/update', '\Platform\Controllers\App\ResellerController@postReseller');
-    Route::post('platform/admin/reseller/delete', '\Platform\Controllers\App\ResellerController@postResellerDelete');
-  });
-
   // For owners and admins
   Route::group(['middleware' => 'role:owner,reseller,admin'], function () {
 
@@ -147,8 +134,17 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::get('platform/admin/user/login-as/{sl}', '\Platform\Controllers\App\UserController@getLoginAs');
   });
 
-  // For owners and admins
-  Route::group(['middleware' => 'role:owner,admin'], function () {
+  // For owners only
+  Route::group(['middleware' => 'role:owner'], function () {
+
+    // Reseller management
+    Route::get('platform/admin/resellers', '\Platform\Controllers\App\ResellerController@showResellers');
+    Route::get('platform/admin/resellers/data', '\Platform\Controllers\App\ResellerController@getResellerData');
+    Route::get('platform/admin/reseller/new', '\Platform\Controllers\App\ResellerController@showNewReseller');
+    Route::post('platform/admin/reseller/new', '\Platform\Controllers\App\ResellerController@postNewReseller');
+    Route::get('platform/admin/reseller/edit', '\Platform\Controllers\App\ResellerController@showEditReseller');
+    Route::post('platform/admin/reseller/update', '\Platform\Controllers\App\ResellerController@postReseller');
+    Route::post('platform/admin/reseller/delete', '\Platform\Controllers\App\ResellerController@postResellerDelete');
 
     // New user is owner only
     Route::get('platform/admin/user/new', '\Platform\Controllers\App\UserController@showNewUser');

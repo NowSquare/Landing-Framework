@@ -310,7 +310,9 @@ class UserController extends \App\Http\Controllers\Controller {
       $plans = null;
     }
 
-    return view('platform.admin.users.user-new', compact('resellers', 'plans', 'plans_list'));
+    $default_plan = \App\Plan::where('active', 1)->where('default', 1)->first();
+
+    return view('platform.admin.users.user-new', compact('resellers', 'plans', 'plans_list', 'default_plan'));
   }
 
   /**
@@ -370,9 +372,9 @@ class UserController extends \App\Http\Controllers\Controller {
        echo $validator->messages()->first();
        die();
     } else {
-      $sl = request()->input('sl', NULL);
+      $sl = request()->input('sl', null);
   
-      if($sl != NULL) {
+      if($sl != null) {
         $data = Core\Secure::string2array($sl);
         $user_id = $data['user_id'];
       } else {
@@ -391,9 +393,9 @@ class UserController extends \App\Http\Controllers\Controller {
    * Delete avatar
    */
   public function postDeleteAvatar() {
-    $sl = request()->input('sl', NULL);
+    $sl = request()->input('sl', null);
 
-    if($sl != NULL) {
+    if($sl != null) {
       $data = Core\Secure::string2array($sl);
       $user_id = $data['user_id'];
     } else {
@@ -401,7 +403,7 @@ class UserController extends \App\Http\Controllers\Controller {
     }
 
     $user = \App\User::find($user_id);
-    $user->avatar = STAPLER_NULL;
+    $user->avatar = STAPLER_null;
     $user->save();
 
     return response()->json(['src' => $user->getAvatar()]);
@@ -422,7 +424,9 @@ class UserController extends \App\Http\Controllers\Controller {
       'active' => (bool) request()->input('active', false),
       'role' =>request()->input('role'),
       'plan_id' =>request()->input('plan_id', null),
-      'reseller_id' =>request()->input('reseller_id', Core\Reseller::get()->id)
+      'reseller_id' =>request()->input('reseller_id', Core\Reseller::get()->id),
+      'trial_ends_at' =>request()->input('trial_ends_at', null),
+      'expires' =>request()->input('expires', null)
     );
 
     $rules = array(
@@ -457,6 +461,8 @@ class UserController extends \App\Http\Controllers\Controller {
 
       if (\Gate::allows('owner-management')) {
         $user->reseller_id = $input['reseller_id'];
+        $user->trial_ends_at = ($input['trial_ends_at'] != null) ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $input['trial_ends_at'], \Auth::user()->timezone)->tz('UTC') : null;
+        $user->expires = ($input['expires'] != null) ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $input['expires'], \Auth::user()->timezone)->tz('UTC') : null;
       } else {
         $user->reseller_id = Core\Reseller::get()->id;
       }
@@ -519,8 +525,10 @@ class UserController extends \App\Http\Controllers\Controller {
         'active' => (bool) request()->input('active', false),
         'mail_login' => (bool) request()->input('mail_login', false),
         'role' =>request()->input('role'),
-        'plan_id' =>request()->input('plan_id', NULL),
-        'reseller_id' =>request()->input('reseller_id', NULL)
+        'plan_id' =>request()->input('plan_id', null),
+        'reseller_id' =>request()->input('reseller_id', null),
+        'trial_ends_at' =>request()->input('trial_ends_at', null),
+        'expires' =>request()->input('expires', null)
       );
 
       $rules = array(
@@ -555,6 +563,8 @@ class UserController extends \App\Http\Controllers\Controller {
 
           if (\Gate::allows('owner-management')) {
             $user->reseller_id = $input['reseller_id'];
+            $user->trial_ends_at = ($input['trial_ends_at'] != null) ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $input['trial_ends_at'], \Auth::user()->timezone)->tz('UTC') : null;
+            $user->expires = ($input['expires'] != null) ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $input['expires'], \Auth::user()->timezone)->tz('UTC') : null;
           }
         }
 
@@ -604,7 +614,7 @@ class UserController extends \App\Http\Controllers\Controller {
       $qs = Core\Secure::string2array($sl);
       $user = \App\User::find($qs['user_id']);
 
-      if ($user->reseller_id != NULL)
+      if ($user->reseller_id != null)
       {
         // Set session to redirect to in case of logout
         $logout = Core\Secure::array2string(['user_id' => \Auth::user()->id]);
@@ -711,7 +721,7 @@ class UserController extends \App\Http\Controllers\Controller {
       $count = \App\User::leftJoin('resellers as r', 'r.id', '=', 'reseller_id')
         ->select(array('users.*', 'r.name as reseller_name', 'r.favicon as favicon'))
         ->whereRaw($sql_reseller)->whereRaw($sql_role)
-        ->where('parent_id', '=', NULL)
+        ->where('parent_id', '=', null)
         ->where(function ($query) use($q) {
           $query->orWhere('email', 'like', '%' . $q . '%')
           ->orWhere('role', 'like', '%' . $q . '%')
@@ -724,7 +734,7 @@ class UserController extends \App\Http\Controllers\Controller {
         ->leftJoin('resellers as r', 'r.id', '=', 'reseller_id')
         ->select(array('users.*', 'r.name as reseller_name', 'r.favicon as favicon'))
         ->whereRaw($sql_reseller)->whereRaw($sql_role)
-        ->where('parent_id', '=', NULL)
+        ->where('parent_id', '=', null)
         ->where(function ($query) use($q) {
           $query->orWhere('email', 'like', '%' . $q . '%')
           ->orWhere('role', 'like', '%' . $q . '%')
@@ -735,8 +745,8 @@ class UserController extends \App\Http\Controllers\Controller {
     }
     else
     {
-      $count = \App\User::leftJoin('resellers as r', 'r.id', '=', 'reseller_id')->whereRaw($sql_reseller)->whereRaw($sql_role)->where('parent_id', '=', NULL)->select(array('users.*', 'r.name as reseller_name', 'r.favicon as favicon'))->count();
-      $oData = \App\User::orderBy($aColumn[$order_by], $order)->leftJoin('resellers as r', 'r.id', '=', 'reseller_id')->whereRaw($sql_reseller)->whereRaw($sql_role)->where('parent_id', '=', NULL)->select(array('users.*', 'r.name as reseller_name', 'r.favicon as favicon'))->take($length)->skip($start)->get();
+      $count = \App\User::leftJoin('resellers as r', 'r.id', '=', 'reseller_id')->whereRaw($sql_reseller)->whereRaw($sql_role)->where('parent_id', '=', null)->select(array('users.*', 'r.name as reseller_name', 'r.favicon as favicon'))->count();
+      $oData = \App\User::orderBy($aColumn[$order_by], $order)->leftJoin('resellers as r', 'r.id', '=', 'reseller_id')->whereRaw($sql_reseller)->whereRaw($sql_role)->where('parent_id', '=', null)->select(array('users.*', 'r.name as reseller_name', 'r.favicon as favicon'))->take($length)->skip($start)->get();
     }
 
     if($length == -1) $length = $count;
@@ -745,10 +755,10 @@ class UserController extends \App\Http\Controllers\Controller {
     $recordsFiltered = $count;
 
     foreach($oData as $row) {
-      $expires = ($row->expires == NULL) ? '-' : $row->expires->format('Y-m-d');
-      $last_login = ($row->last_login == NULL) ? '' : $row->last_login->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
-      $trial_ends_at = ($row->trial_ends_at == NULL) ? '-' : $row->trial_ends_at->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
-      $expires = ($row->expires == NULL) ? '-' : $row->expires->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
+      $expires = ($row->expires == null) ? '-' : $row->expires->format('Y-m-d');
+      $last_login = ($row->last_login == null) ? '' : $row->last_login->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
+      $trial_ends_at = ($row->trial_ends_at == null) ? '-' : $row->trial_ends_at->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
+      $expires = ($row->expires == null) ? '-' : $row->expires->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
       $undeletable = ($row->id == 1) ? 1 : 0;
 
       $plan = ($row->plan == null) ? trans('global.free') : $row->plan->name;
