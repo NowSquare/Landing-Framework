@@ -699,9 +699,9 @@ class UserController extends \App\Http\Controllers\Controller {
     $data = array();
 
     if (\Gate::allows('owner-management')) {
-      $aColumn = array('reseller_name', 'name', 'email', 'role', 'plan', 'logins', 'last_login', 'users.created_at', 'users.active');
+      $aColumn = array('reseller_name', 'name', 'email', 'role', 'plan', 'logins', 'last_login', 'users.created_at', 'users.trial_ends_at', 'users.expires', 'users.active');
     } else {      
-      $aColumn = array('name', 'email', 'role', 'plan', 'logins', 'last_login', 'users.created_at', 'users.active');
+      $aColumn = array('name', 'email', 'role', 'plan', 'logins', 'last_login', 'users.created_at', 'users.trial_ends_at', 'users.expires', 'users.active');
     }
 
     if($q != '')
@@ -745,6 +745,8 @@ class UserController extends \App\Http\Controllers\Controller {
     foreach($oData as $row) {
       $expires = ($row->expires == NULL) ? '-' : $row->expires->format('Y-m-d');
       $last_login = ($row->last_login == NULL) ? '' : $row->last_login->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
+      $trial_ends_at = ($row->trial_ends_at == NULL) ? '-' : $row->trial_ends_at->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
+      $expires = ($row->expires == NULL) ? '-' : $row->expires->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s');
       $undeletable = ($row->id == 1) ? 1 : 0;
 
       $plan = ($row->plan == null) ? trans('global.free') : $row->plan->name;
@@ -769,6 +771,8 @@ class UserController extends \App\Http\Controllers\Controller {
         'role' => trans('global.roles.' . $row->role),
         'logins' => $row->logins,
         'last_login' => $last_login,
+        'trial_ends_at' => $trial_ends_at,
+        'expires' => $expires,
         'active' => $row->active,
         'created_at' => $row->created_at->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s'),
         'sl' => Core\Secure::array2string(array('user_id' => $row->id)),

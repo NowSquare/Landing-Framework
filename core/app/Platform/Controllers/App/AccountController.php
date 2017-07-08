@@ -148,8 +148,11 @@ class AccountController extends \App\Http\Controllers\Controller {
 
   public function showPlan() {
     $user = \Auth::user();
-    $plans = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 0)->orderBy('order', 'asc')->get();
-    $default_plan = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 1)->first();
+    //$plans = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 0)->orderBy('order', 'asc')->get();
+    //$default_plan = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 1)->first();
+
+    $plans = \App\Plan::where('active', 1)->where('default', 0)->orderBy('order', 'asc')->get();
+    $default_plan = \App\Plan::where('active', 1)->where('default', 1)->first();
 
     $modules = \Module::enabled();
     $items = [];
@@ -188,9 +191,17 @@ class AccountController extends \App\Http\Controllers\Controller {
     $decimalFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat);
     $currencyFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat, \CommerceGuys\Intl\Formatter\NumberFormatter::CURRENCY);
 
-    $payment_link_suffix = (\Platform\Controllers\Core\Reseller::get()->avangate_affiliate != '') ? '&AVGAFFILIATE=' . \Platform\Controllers\Core\Reseller::get()->avangate_affiliate : '';
+    $reseller = \Platform\Controllers\Core\Reseller::get();
+
+    $payment_link_suffix = ($reseller->avangate_affiliate != '') ? '&AVGAFFILIATE=' . $reseller->avangate_affiliate : '';
     if (env('PAYMENT_TEST', false)) $payment_link_suffix .= '&DOTEST=1';
 
-    return view('platform.account.plan', compact('user', 'plans', 'default_plan', 'items', 'currencyRepository', 'decimalFormatter', 'currencyFormatter', 'payment_link_suffix'));
+    if ($user->trial_ends_at != NULL || $user->expires != NULL) {
+      $expiration_string = ($user->trial_ends_at != NULL) ? trans('global.trial_expires_in', ['datetime' => '<span data-moment="fromNowDateTime">' . $user->trial_ends_at->timezone($user->timezone)->format('Y-m-d H:i:s') . '</span>']) : trans('global.subscription_expires_in', ['datetime' => '<span data-moment="fromNowDateTime">' . $user->expires->timezone($user->timezone)->format('Y-m-d H:i:s') . '</span>']);
+    } else {
+      $expiration_string = '';
+    }
+
+    return view('platform.account.plan', compact('user', 'plans', 'default_plan', 'items', 'expiration_string', 'currencyRepository', 'decimalFormatter', 'currencyFormatter', 'reseller', 'payment_link_suffix'));
   }
 }

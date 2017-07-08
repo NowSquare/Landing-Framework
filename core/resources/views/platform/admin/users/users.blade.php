@@ -60,15 +60,21 @@ var admin_users_table = $('#dt-table-admin_users').DataTable({
   }, {
     data: "email"
   }, {
-    data: "plan",
-    sortable: false
-  }, {
     data: "role",
     sortable: false
   }, {
     data: "logins"
   }, {
     data: "last_login",
+    width: 90
+  }, {
+    data: "trial_ends_at",
+    width: 90
+  }, {
+    data: "plan",
+    sortable: false
+  }, {
+    data: "expires",
     width: 90
   }, {
     data: "created_at",
@@ -98,7 +104,7 @@ var admin_users_table = $('#dt-table-admin_users').DataTable({
       render: function (data, type, row) {
         return '<div data-moment="fromNowDateTime">' + data + '</div>';
       },
-      targets: [<?php echo (\Gate::allows('owner-management')) ? '6, 7' : '5, 6'; ?>] /* Column to re-render */
+      targets: [<?php echo (\Gate::allows('owner-management')) ? '5, 6, 7, 9' : '4, 5, 7, 8'; ?>] /* Column to re-render */
     },
     {
       render: function (data, type, row) {
@@ -124,7 +130,7 @@ var admin_users_table = $('#dt-table-admin_users').DataTable({
           return '<div class="text-center"><i class="fa fa-times" aria-hidden="true"></i></div>';
         }
       },
-      targets: <?php echo (\Gate::allows('owner-management')) ? '8' : '7'; ?>
+      targets: <?php echo (\Gate::allows('owner-management')) ? '10' : '9'; ?>
     },
     {
       render: function (data, type, row) {
@@ -136,7 +142,7 @@ var admin_users_table = $('#dt-table-admin_users').DataTable({
           '<a href="javascript:void(0);" class="btn btn-xs btn-danger' + btn_delete + '" data-toggle="tooltip" title="{{ trans('global.delete') }}"' + disabled + '><i class="fa fa-trash"></i></a>' + 
           '</div></div>';
       },
-      targets: <?php echo (\Gate::allows('owner-management')) ? '9' : '8'; ?> /* Column to re-render */
+      targets: <?php echo (\Gate::allows('owner-management')) ? '11' : '10'; ?> /* Column to re-render */
     },
   ],
   language: {
@@ -169,10 +175,12 @@ $('#dt-table-admin_users_wrapper .dataTables_filter input').attr('placeholder', 
 <?php if (\Gate::allows('owner-management')) { ?><th class="text-center">{{ trans('global.reseller') }}</th><?php } ?>
         <th>{{ trans('global.name') }}</th>
         <th>{{ trans('global.email') }}</th>
-        <th>{{ trans('global.plan') }}</th>
         <th>{{ trans('global.role') }}</th>
         <th class="text-center">{{ trans('global.logins') }}</th>
         <th>{{ trans('global.last_login') }}</th>
+        <th>{{ trans('global.trial') }}</th>
+        <th>{{ trans('global.plan') }}</th>
+        <th>{{ trans('global.expires') }}</th>
         <th>{{ trans('global.created') }}</th>
         <th class="text-center">{{ trans('global.active') }}</th>
         <th class="text-center">{{ trans('global.actions') }}</th>

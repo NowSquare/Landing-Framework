@@ -145,6 +145,10 @@ class ResellerController extends \App\Http\Controllers\Controller {
         $user->is_reseller_id = $reseller->id;
         $user->reseller_id = $reseller->id;
         $user->role = 'reseller';
+        $user->expires = null;
+        $user->expires_reminders_sent = 0;
+        $user->trial_ends_at = null;
+        $user->trial_ends_reminders_sent = 0;
         $user->save();
 
         $response = array(
@@ -268,6 +272,10 @@ class ResellerController extends \App\Http\Controllers\Controller {
           $user->is_reseller_id = $qs['reseller_id'];
           $user->reseller_id = $qs['reseller_id'];
           $user->role = 'reseller';
+          $user->expires = null;
+          $user->expires_reminders_sent = 0;
+          $user->trial_ends_at = null;
+          $user->trial_ends_reminders_sent = 0;
           $user->save();
         }
 

@@ -139,14 +139,20 @@ Route::group(['middleware' => 'auth:web'], function () {
     // User management
     Route::get('platform/admin/users', '\Platform\Controllers\App\UserController@showUsers');
     Route::get('platform/admin/users/data', '\Platform\Controllers\App\UserController@getUserData');
-    Route::get('platform/admin/user/new', '\Platform\Controllers\App\UserController@showNewUser');
-    Route::post('platform/admin/user/new', '\Platform\Controllers\App\UserController@postNewUser');
     Route::get('platform/admin/user/edit', '\Platform\Controllers\App\UserController@showEditUser');
     Route::post('platform/admin/user/update', '\Platform\Controllers\App\UserController@postUser');
     Route::post('platform/admin/user/delete', '\Platform\Controllers\App\UserController@postUserDelete');
     Route::post('platform/admin/user/upload-avatar', '\Platform\Controllers\App\UserController@postAvatar');
     Route::post('platform/admin/user/delete-avatar', '\Platform\Controllers\App\UserController@postDeleteAvatar');
     Route::get('platform/admin/user/login-as/{sl}', '\Platform\Controllers\App\UserController@getLoginAs');
+  });
+
+  // For owners and admins
+  Route::group(['middleware' => 'role:owner,admin'], function () {
+
+    // New user is owner only
+    Route::get('platform/admin/user/new', '\Platform\Controllers\App\UserController@showNewUser');
+    Route::post('platform/admin/user/new', '\Platform\Controllers\App\UserController@postNewUser');
 
     // Plan management
     Route::get('platform/admin/plans', '\Platform\Controllers\App\PlanController@showPlans');

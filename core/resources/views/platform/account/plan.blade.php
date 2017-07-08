@@ -8,6 +8,10 @@
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('global.account') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('global.plan') }}</a>
+<?php if ($expiration_string != '') { ?>
+            <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">{!! $expiration_string !!}</a>
+<?php } ?>
           </div>
         </div>
       </nav>
@@ -201,10 +205,6 @@ if (\Auth::user()->plan_id == 0) {
   $btn_link = 'javascript:void(0);';
   $btn_class = 'default';
 }
-
-if (\Platform\Controllers\Core\Reseller::get()->avangate_affiliate != '') $btn_link .= '&AVGAFFILIATE=' . \Platform\Controllers\Core\Reseller::get()->avangate_affiliate;
-
-if ($btn_link != 'javascript:void(0);') $btn_link = 'javascript:openExternalPurchaseUrl(\'' . $btn_link . '\');';
 ?>
                     <a href="{{ $btn_link }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light" disabled>{{ $btn_text }}</a>
                 </div>

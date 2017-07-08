@@ -78,8 +78,8 @@ foreach ($active_modules as $module) {
               <li role="separator" class="divider"><hr></li>
               <li class="dropdown-header text-muted">{{ trans('global.admin') }}</li>
               <li><a href="#/admin/users"><i class="mi people m-r-5"></i> {{ trans('global.users') }}</a></li>
-              <li><a href="#/admin/plans"><i class="mi card_membership m-r-5"></i> {{ trans('global.plans') }}</a></li>
 <?php if (Gate::allows('owner-management')) { ?>
+              <li><a href="#/admin/plans"><i class="mi card_membership m-r-5"></i> {{ trans('global.plans') }}</a></li>
               <li><a href="#/admin/resellers"><i class="mi card_travel m-r-5"></i> {{ trans('global.resellers') }}</a></li>
 <?php } ?>
 <?php } ?>

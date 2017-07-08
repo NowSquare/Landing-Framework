@@ -61,7 +61,8 @@ class User extends Authenticatable implements StaplerableInterface
       return $this->plan->name;
     } else {
       // Check for default plan (will be used instead of free)
-      $default_plan = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 1)->first();
+      //$default_plan = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 1)->first();
+      $default_plan = \App\Plan::where('active', 1)->where('default', 1)->first();
       return (empty($default_plan)) ? trans('global.free') : $default_plan->name;
     }
   }
@@ -73,7 +74,8 @@ class User extends Authenticatable implements StaplerableInterface
       return $this->attributes['plan_id'];
     } else {
       // Check for default plan (will be used instead of free)
-      $default_plan = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 1)->first();
+      //$default_plan = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 1)->first();
+      $default_plan = \App\Plan::where('active', 1)->where('default', 1)->first();
       return (empty($default_plan)) ? NULL : $default_plan->id;
     }
   }
@@ -101,7 +103,8 @@ class User extends Authenticatable implements StaplerableInterface
   public function plan() {
     if ($this->attributes['plan_id'] == null) {
       // Check for default plan (will be used instead of free)
-      $default_plan = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 1)->first();
+      //$default_plan = \App\Plan::where('reseller_id', Core\Reseller::get()->id)->where('active', 1)->where('default', 1)->first();
+      $default_plan = \App\Plan::where('active', 1)->where('default', 1)->first();
       if (! empty($default_plan)) $this->attributes['plan_id'] = $default_plan->id;
     }
 

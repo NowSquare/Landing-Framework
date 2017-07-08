@@ -318,6 +318,10 @@ return array(
   "plans" => "Plans",
   "full_access" => "Full access",
   "free" => "Free",
+  "trial" => "Trial",
+  "trial_expires_in" => "Your trial expires in :datetime",
+  "subscription_expires_in" => "Your subscription expires in :datetime",
+  "expires" => "Expires",
   "default_plan" => "Default plan",
   "default_info" => "New users start with the default plan. If there is no default plan, a user will start with a free plan with no permissions. There can be only one default plan.",
   "per_month" => "Per month",
@@ -477,7 +481,7 @@ return array(
   // New user registration
   "new_user_subject" => "Thank you for trying :product_name!",
   "new_user_mail_line1" => "Thanks for trying :product_name. Your :trial_days day trial has started.",
-  "new_user_cta" => "Get started with Rapid Marketing",
+  "new_user_cta" => "Start with Rapid Marketing",
   "new_user_mail_line2" => "Take us for a spin, and please email us at :support_email if you experience any issues.",
 
    // General Member
