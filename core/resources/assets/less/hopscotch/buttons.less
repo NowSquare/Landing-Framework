@@ -1,7 +1,7 @@
 div.hopscotch-bubble .hopscotch-nav-button {
   /* borrowed from katy styles */
   font-weight:bold;
-  border-width:1px;
+  border-width:0px;
   border-style:solid;
   cursor:pointer;
   margin:0;
@@ -22,7 +22,7 @@ div.hopscotch-bubble .hopscotch-nav-button {
   *display:inline;
   vertical-align:middle;
 
-  .round-corners(2px);
+  //.round-corners(3px);
   .box-sizing();
 
   &:hover {
@@ -39,16 +39,22 @@ div.hopscotch-bubble .hopscotch-nav-button {
     color: #fff;
     margin: 0 0 0 10px; /* HS specific*/
     text-shadow: 0 1px 1px rgba(0,0,0,0.35);
+    background-color: #138dfa;
+
+    &:hover {
+      background-color: #0580ee;
+    }
   }
 
   &.prev {
     background-color:#f2f2f2;
     border-color:#a7a7a7;
-    color:#444;
+    color:#333;
     text-shadow:0 1px 1px rgba(255,255,255,0.75);
+    background-color: #dae6ec;
 
     &:hover {
-      background-color:#e8e8e8;
+      background-color: #c2ced4;
     }
   }
 }

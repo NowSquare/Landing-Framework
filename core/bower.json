@@ -35,7 +35,7 @@
     "mustache.js": "^2.3.0",
     "notifyjs": "^0.4.2",
     "bootstrap-timepicker": "^0.5.2",
-    "hopscotch": "^0.2.7",
+    "hopscotch": "^0.3.1",
     "datatables-rowreorder": "^1.2.0",
     "circliful": "^1.0.2",
     "jquery-throttle-debounce": "*",

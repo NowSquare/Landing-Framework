@@ -228,7 +228,7 @@ gulp.task('scripts', function() {
       'bower_components/notifyjs/dist/notify.js',
       'bower_components/notifyjs/dist/styles/metro/notify-metro.js',
       'bower_components/bootstrap-timepicker/js/bootstrap-timepicker.js',
-      /*'bower_components/hopscotch/dist/js/hopscotch.js',*/
+      'bower_components/hopscotch/dist/js/hopscotch.js',
       'bower_components/circliful/js/jquery.circliful.js',
       'bower_components/jquery-throttle-debounce/jquery.ba-throttle-debounce.js',
       'bower_components/fontawesome-iconpicker/dist/js/fontawesome-iconpicker.js',

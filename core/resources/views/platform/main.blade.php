@@ -65,7 +65,7 @@ foreach ($active_modules as $module) {
 
       <div class="menu-extras">
         <ul class="nav navbar-nav navbar-right pull-right">
-          <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true"><img src="{{ \Auth::user()->getAvatar() }}" class="img-circle avatar"> </a>
+          <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle waves-effect waves-light profile" data-toggle="dropdown" aria-expanded="true" id="account_dropdown"><img src="{{ \Auth::user()->getAvatar() }}" class="img-circle avatar"> </a>
             <ul class="dropdown-menu">
               <li class="dropdown-header" style="font-size: 1.5rem">{{ \Auth::user()->name }}</li>
               <li class="dropdown-header text-muted">{{ \Auth::user()->email }}</li>
@@ -207,6 +207,42 @@ $(function() {
       selectFunnel(funnel);
     }
   });
+
+<?php if (auth()->user()->trial_ends_at != null) { ?>
+  var show_trial_tour = getCookie('show_trial_tour{{ auth()->user()->id }}');
+
+  if (show_trial_tour !== 'no') {
+    var trial_tour = {
+      id: "account-message",
+      showPrevButton: true,
+      i18n: {
+        doneBtn: "{{ trans('global.got_it') }}"
+      },
+      steps: [
+        {
+          title: "{!! trans('global.trial_expires_in', ['datetime' => '<span id=\"fromNowDateTimeTrial\">' . auth()->user()->trial_ends_at->timezone(auth()->user()->timezone)->format('Y-m-d H:i:s') . '</span>']) !!}",
+          content: "{!! trans('global.trial_tour') !!}",
+          target: document.querySelector("#account_dropdown"),
+          placement: "bottom",
+          xOffset: -225,
+          arrowOffset: 235
+        }
+      ],
+      onShow: function() {
+        var date = $('#fromNowDateTimeTrial').text();
+
+        if (moment(date, 'YYYY-MM-DD HH:mm:ss').isValid()) {
+          $('#fromNowDateTimeTrial').html('<abbr data-toggle="tooltip" title="' + moment(date).format(_lang['date_time_notation']) + '">' + moment(date, 'YYYY-MM-DD HH:mm:ss').fromNow() + '</abbr>');
+        }
+      },
+      onEnd: function() {
+        setCookie('show_trial_tour{{ auth()->user()->id }}', 'no', 1);
+      }
+    };
+
+    hopscotch.startTour(trial_tour);
+  }
+<?php } ?>
 
 <?php if (1==2 && \Auth::user()->logins <= 1) { ?>
 
