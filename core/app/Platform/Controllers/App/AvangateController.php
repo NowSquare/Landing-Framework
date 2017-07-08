@@ -77,7 +77,7 @@ class AvangateController extends \App\Http\Controllers\Controller {
       {
         $remote_id = \Request::get('AVANGATE_CUSTOMER_REFERENCE', '');
   
-        $user = \User::where('id', $user_id)->first();
+        $user = \App\User::where('id', $user_id)->first();
         
         if (! empty($user))
         {
@@ -85,21 +85,30 @@ class AvangateController extends \App\Http\Controllers\Controller {
 
           $user_email = $user->email;
           $user->remote_id = $remote_id;
+          $user->trial_ends_at = null;
+          $user->trial_ends_reminders_sent = 0;
   
-          if ($EXPIRATION_DATE != '') $user->expires = $EXPIRATION_DATE;
+          if ($EXPIRATION_DATE != '') $user->expires = $EXPIRATION_DATE . ' ' . date('H:i:s');
   
-          $plans = \App\Plan::orderBy('sort', 'asc')->get();
+          $plans = \App\Plan::orderBy('order', 'asc')->get();
   
           if ($DISABLED == 0 && $EXPIRED == 0) {
             // Switch plan
             $plan_id = 0;
 
             foreach ($plans as $plan) {
-              $settings = json_decode($plan->settings);
-              $product_id = $plan->remote_product_id1;
-              if ($product_id == $LICENSE_PRODUCT)
-              {
-                $action .= ' but  ' . $plan->id . ' is found in the plans loop, ';
+              //$settings = json_decode($plan->settings);
+              $monthly_remote_product_id = $plan->monthly_remote_product_id;
+              $annual_remote_product_id = $plan->annual_remote_product_id;
+
+              if ($monthly_remote_product_id == $LICENSE_PRODUCT) {
+                $action .= ' but  ' . $plan->id . ' is found in the plans loop (monthly), ';
+                $plan_id = $plan->id;
+                break;
+              }
+
+              if ($annual_remote_product_id == $LICENSE_PRODUCT) {
+                $action .= ' but  ' . $plan->id . ' is found in the plans loop (annual), ';
                 $plan_id = $plan->id;
                 break;
               }
@@ -135,7 +144,7 @@ class AvangateController extends \App\Http\Controllers\Controller {
             $user->plan_id = $plans{0}->id;
             //$user->expires = NULL;
           }
-
+/*
           $user->settings = \App\Core\Settings::json(array(
             'EMAIL' => $EMAIL,
             'COUNTRY' => $COUNTRY,
@@ -143,7 +152,7 @@ class AvangateController extends \App\Http\Controllers\Controller {
             'LICENSE_CODE' => $LICENSE_CODE,
             'LICENSE_PRODUCT' => $LICENSE_PRODUCT
           ), $user->settings);
-  
+  */
           $user->save();
         }
       }

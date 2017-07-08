@@ -71,6 +71,9 @@ To track email clicks and opens, we have to configure Mailgun webhooks. Log in t
 
 `https://try.landingframework.com/ec/mg/event`
 
+## Google Beacon Platform
+Create a json configuration file for the Google Beacon Platform and upload the json file to /core/storage/app/google_keys/.
+
 ## Based on Laravel
 
 Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.

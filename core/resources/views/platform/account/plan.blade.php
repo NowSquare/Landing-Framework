@@ -112,8 +112,8 @@ if (\Auth::user()->plan_id == $default_plan->id) {
 
   $order_url = (isset($default_plan->order_url)) ? $default_plan->order_url . '&CUSTOMERID=' . \Auth::user()->id : '';
 
-  $btn_text = trans('global.order_now');
-  $btn_text = (\Auth::user()->plan->order > $default_plan->order) ? trans('global.downgrade') : trans('global.upgrade');
+  $btn_text = trans('global.expired');
+  //$btn_text = (\Auth::user()->plan->order > $default_plan->order) ? trans('global.downgrade') : trans('global.upgrade');
 
   $btn_link = ($order_url != '') ? $order_url : 'javascript:void(0);';
   $btn_target = '';
@@ -282,7 +282,9 @@ if (\Auth::user()->plan_id == $plan->id) {
   $btn_text_monthly = trans('global.current_plan');
   $btn_text_annual = trans('global.current_plan');
 
-  $btn_link = 'javascript:void(0);';
+  $btn_link_monthly = 'javascript:void(0);';
+  $btn_link_annual = 'javascript:void(0);';
+
   $btn_target = '';
   $disabled = false;
   $btn_class = 'primary';
@@ -307,6 +309,17 @@ if (\Auth::user()->plan_id == $plan->id) {
   $btn_target = '';
   //$btn_target = ($order_url != '') ? '_blank' : '';
   $btn_class = 'warning';
+
+  /*
+  if (\Auth::user()->plan->order > $plan->order) {
+    $disabled = true;
+
+    $btn_text_monthly = trans('global.order_1_month');
+    $btn_text_annual = trans('global.order_1_year');
+
+    $btn_link_monthly = 'javascript:void(0);';
+    $btn_link_annual = 'javascript:void(0);';
+  }*/
 } else {
   $btn_text_monthly = trans('global.order_1_month');
   $btn_text_annual = trans('global.order_1_year');

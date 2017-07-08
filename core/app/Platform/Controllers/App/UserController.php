@@ -19,10 +19,131 @@ class UserController extends \App\Http\Controllers\Controller {
    */
 
   /**
-   * Check if there are accounts expiring and/or ending
+   * Check for accounts that have been expired
    */
-  public static function checkExpiringAccounts()
+  public static function checkExpiredAccounts()
   {
+    $now = \Carbon\Carbon::now()->tz('UTC')->format('Y-m-d H:i:s');
+    $yesterday = \Carbon\Carbon::now()->addDays(-1)->tz('UTC')->format('Y-m-d H:i:s');
+    $two_days_ago = \Carbon\Carbon::now()->addDays(-2)->tz('UTC')->format('Y-m-d H:i:s');
+    $three_days_ago = \Carbon\Carbon::now()->addDays(-3)->tz('UTC')->format('Y-m-d H:i:s');
+    $three_days_before_expiration = \Carbon\Carbon::now()->addDays(-12)->tz('UTC')->format('Y-m-d H:i:s');
+    $two_weeks_ago = \Carbon\Carbon::now()->addDays(-15)->tz('UTC')->format('Y-m-d H:i:s'); // Two weeks + one day
+
+    // Account expired yesterday
+    $users = \App\User::where('active', true)
+      ->whereNull('is_reseller_id')
+      ->where('expires', '<', $yesterday)
+      ->where('expires', '>', $two_days_ago)
+      ->where('expires_reminders_sent', 0)
+      ->get();
+
+    foreach ($users as $user) {
+      $user->expires_reminders_sent = 1;
+      $user->save();
+      //echo 'Your account expired yesterday';
+
+      // Set language
+      app()->setLocale($user->language);
+
+      // Get reseller
+      $reseller = Core\Reseller::get($user->reseller_id);
+
+      $mail_from = $reseller->mail_from_address;
+      $mail_from_name = $reseller->mail_from_name;
+      $subject = trans('global.account_expired_yesterday_subject', ['product_name' => $reseller->name]);
+      $body_line1 = trans('global.account_expired_yesterday_mail_line1', ['product_name' => $reseller->name]);
+      $body_line2 = trans('global.account_expired_yesterday_mail_line2', ['product_name' => $reseller->name]);
+      $body_cta = trans('global.account_expired_yesterday_cta');
+      $body_cta_link = url('login');
+
+      $user->notify(new SendEmail($mail_from, $mail_from_name, $subject, $body_line1, $body_line2, $body_cta, $body_cta_link));
+    }
+
+    // Account deleted in 3 days
+    $users = \App\User::where('active', true)
+      ->whereNull('is_reseller_id')
+      ->where('expires', '<', $three_days_before_expiration)
+      ->where('expires', '>', $two_weeks_ago)
+      ->where('expires_reminders_sent', 1)
+      ->get();
+
+    foreach ($users as $user) {
+      $user->expires_reminders_sent = 2;
+      $user->save();
+      //echo 'Your account is deleted in 3 days';
+
+      // Set language
+      app()->setLocale($user->language);
+
+      // Get reseller
+      $reseller = Core\Reseller::get($user->reseller_id);
+
+      $mail_from = $reseller->mail_from_address;
+      $mail_from_name = $reseller->mail_from_name;
+      $subject = trans('global.account_deleted_in_3_days_subject', ['product_name' => $reseller->name]);
+      $body_line1 = trans('global.account_deleted_in_3_days_mail_line1', ['product_name' => $reseller->name]);
+      $body_line2 = trans('global.account_deleted_in_3_days_mail_line2', ['product_name' => $reseller->name]);
+      $body_cta = trans('global.account_deleted_in_3_days_cta');
+      $body_cta_link = url('login');
+
+      $user->notify(new SendEmail($mail_from, $mail_from_name, $subject, $body_line1, $body_line2, $body_cta, $body_cta_link));
+    }
+
+    // Account deleted
+    $users = \App\User::where('active', true)
+      ->whereNull('is_reseller_id')
+      ->where('expires', '<', $two_weeks_ago)
+      ->where('expires_reminders_sent', 2)
+      ->get();
+
+    foreach ($users as $user) {
+
+      // User hash
+      $user_hash = Core\Secure::staticHash($user->id);
+
+      // Delete uploads
+      $user_upload_dir = public_path() . '/public/uploads/' . $user_hash;
+      \File::deleteDirectory($user_upload_dir);
+
+      // Delete landing page files
+      \Storage::disk('public')->deleteDirectory('/landingpages/site/' . $user_hash);
+
+      // Delete form files
+      \Storage::disk('public')->deleteDirectory('/forms/form/' . $user_hash);
+
+      // Delete email files
+      \Storage::disk('public')->deleteDirectory('/emails/email/' . $user_hash);
+
+      // Delete Eddystones
+      $eddystones = \Modules\Eddystones\Http\Controllers\Eddystone::listBeacons($user->id);
+
+      foreach($eddystones['beacons'] as $eddystone) {
+        $beaconName = $eddystone->getBeaconName();
+        $response = \Modules\Eddystones\Http\Controllers\Eddystone::deleteBeacon($beaconName);
+      }
+
+      //echo 'Your account has been deleted';
+
+      // Set language
+      app()->setLocale($user->language);
+
+      // Get reseller
+      $reseller = Core\Reseller::get($user->reseller_id);
+
+      $mail_from = $reseller->mail_from_address;
+      $mail_from_name = $reseller->mail_from_name;
+      $subject = trans('global.account_deleted_subject', ['product_name' => $reseller->name]);
+      $body_line1 = trans('global.account_deleted_mail_line1', ['product_name' => $reseller->name]);
+      $body_line2 = trans('global.account_deleted_mail_line2', ['product_name' => $reseller->name]);
+      $body_cta = trans('global.account_deleted_cta');
+      $body_cta_link = url('register');
+
+      $user->notify(new SendEmail($mail_from, $mail_from_name, $subject, $body_line1, $body_line2, $body_cta, $body_cta_link));
+
+      // Delete user
+      $user->forceDelete();
+    }
   }
 
   /**
@@ -30,7 +151,6 @@ class UserController extends \App\Http\Controllers\Controller {
    */
   public static function checkExpiringTrials()
   {
-    // Check users where trial expires in 3 days
     $now = \Carbon\Carbon::now()->tz('UTC')->format('Y-m-d H:i:s');
     $tomorrow = \Carbon\Carbon::now()->addDays(1)->tz('UTC')->format('Y-m-d H:i:s');
     $in_two_days = \Carbon\Carbon::now()->addDays(2)->tz('UTC')->format('Y-m-d H:i:s');

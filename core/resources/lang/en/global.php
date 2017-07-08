@@ -330,6 +330,7 @@ return array(
   "order_1_year" => "Order 1 year",
   "upgrade" => "Upgrade",
   "downgrade" => "Downgrade",
+  "expired" => "Expired",
   "order_url" => "Order url",
   "upgrade_url" => "Upgrade url",
   "current_plan" => "Current plan",
@@ -515,5 +516,23 @@ return array(
   "trial_has_ended_subject" => "Your :product_name trial has ended",
   "trial_has_ended_mail_line1" => "Thanks for trying :product_name. Your account and all associated data has been deleted. But no worries, you're always welcome to create a new account!",
   "trial_has_ended_cta" => "Create a new account",
-  "trial_has_ended_mail_line2" => "Again, thank you for trying :product_name. We know it's an investment of your time, and we appreciate you giving us a chance."
+  "trial_has_ended_mail_line2" => "Again, thank you for trying :product_name. We know it's an investment of your time, and we appreciate you giving us a chance.",
+
+  // Account expired yesterday
+  "account_expired_yesterday_subject" => "Your :product_name account has expired",
+  "account_expired_yesterday_mail_line1" => "Thanks for using :product_name. We'd love to keep you as a customer, but we respect your decision. Your account and all associated data will be deleted after 14 days. You can prevent this by ordering a new subscription.",
+  "account_expired_yesterday_cta" => "Prevent account removal",
+  "account_expired_yesterday_mail_line2" => "Regardless of your choice, we want to say thank you for using :product_name!",
+
+  // Account will be deleted in 3 days
+  "account_deleted_in_3_days_subject" => "Your :product_name account will be deleted",
+  "account_deleted_in_3_days_mail_line1" => "We'd love to keep you as a customer, but your account and all associated data will be deleted in 3 days. This can not be undone. However, you can still prevent this by ordering a new subscription.",
+  "account_deleted_in_3_days_cta" => "Prevent account removal",
+  "account_deleted_in_3_days_mail_line2" => "Regardless of your choice, we want to say thank you for using :product_name!",
+
+  // Account has been deleted
+  "account_deleted_subject" => "Your :product_name account has been deleted",
+  "account_deleted_mail_line1" => "We're sorry to see you go. All the best and you're always welcome back!",
+  "account_deleted_cta" => "Create a new account",
+  "account_deleted_mail_line2" => "Thanks again for using :product_name."
 );
