@@ -21,6 +21,10 @@ class Localization extends \App\Http\Controllers\Controller {
     $lang_path = base_path() . '/resources/lang/';
     $lang_dirs = \File::directories($lang_path);
 
+    usort($lang_dirs, function ($dir1, $dir2) {
+      return $dir1 <=> $dir2;
+    });
+
     foreach($lang_dirs as $lang)
     {
       $language = include $lang . '/i18n.php';
@@ -38,6 +42,10 @@ class Localization extends \App\Http\Controllers\Controller {
   {
     $current_language = \App::getLocale();
     $languages = \File::directories(base_path() . '/resources/lang/');
+
+    usort($languages, function ($dir1, $dir2) {
+      return $dir1 <=> $dir2;
+    });
 
     $return = array();
     foreach($languages as $language)

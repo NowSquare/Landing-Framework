@@ -16,7 +16,7 @@ class Localization
      */
     public function handle($request, Closure $next)
     {
-      $lang = $request->input('lang', null);
+      $lang = $request->input('set_lang', null);
 
       if ($request->user()) {
         if ($lang != null && $lang != $request->user()->language) {

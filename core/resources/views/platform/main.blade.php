@@ -138,7 +138,7 @@ if (count($languages) > 1) {
           <li class="dropdown" id="language_selector"> <a href="javascript:void(0);" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">{{ $current_language }} </a>
             <ul class="dropdown-menu">
 <?php foreach($languages as $code => $language) { ?>
-              <li><a href="{{ url('platform?lang=' . $code) }}">{{ $language }}</a></li>
+              <li><a href="{{ url('platform?set_lang=' . $code) }}">{{ $language }}</a></li>
 <?php } ?>
             </ul>
           </li>
