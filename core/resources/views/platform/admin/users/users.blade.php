@@ -17,7 +17,7 @@
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('global.users') }}</a>
           </div>
-
+<?php if (Gate::allows('owner-management')) { ?>
           <div class="collapse navbar-collapse" id="bs-title-navbar">
 
             <div class="navbar-form navbar-right">
@@ -25,6 +25,7 @@
             </div>
 
           </div>
+<?php } ?>
         </div>
       </nav>
     
@@ -104,13 +105,13 @@ var admin_users_table = $('#dt-table-admin_users').DataTable({
       render: function (data, type, row) {
         return '<div data-moment="fromNowDateTime">' + data + '</div>';
       },
-      targets: [<?php echo (\Gate::allows('owner-management')) ? '5, 6, 7, 9' : '4, 5, 7, 8'; ?>] /* Column to re-render */
+      targets: [<?php echo (\Gate::allows('owner-management')) ? '5, 6, 8, 9' : '4, 5, 7, 8'; ?>] /* Column to re-render */
     },
     {
       render: function (data, type, row) {
         return '<div class="text-center">' + data + '</div>';
       },
-      targets: [<?php echo (\Gate::allows('owner-management')) ? '5' : '4'; ?>] /* Column to re-render */
+      targets: [<?php echo (\Gate::allows('owner-management')) ? '4' : '3'; ?>] /* Column to re-render */
     },
     {
       render: function (data, type, row) {
@@ -139,7 +140,9 @@ var admin_users_table = $('#dt-table-admin_users').DataTable({
         return '<div class="row-actions-wrap"><div class="text-center row-actions" data-sl="' + data + '">' + 
           '<a href="<?php echo url('platform/admin/user/login-as') ?>/' + data + '" class="btn btn-xs btn-primary row-btn-login" data-toggle="tooltip" title="{{ trans('global.login') }}"><i class="fa fa-sign-in"></i></a> ' + 
           '<a href="#/admin/user/' + data + '" class="btn btn-xs btn-inverse row-btn-edit" data-toggle="tooltip" title="{{ trans('global.edit') }}"><i class="fa fa-pencil"></i></a> ' + 
+<?php if (\Gate::allows('owner-management')) { ?>
           '<a href="javascript:void(0);" class="btn btn-xs btn-danger' + btn_delete + '" data-toggle="tooltip" title="{{ trans('global.delete') }}"' + disabled + '><i class="fa fa-trash"></i></a>' + 
+<?php } ?>
           '</div></div>';
       },
       targets: <?php echo (\Gate::allows('owner-management')) ? '11' : '10'; ?> /* Column to re-render */
@@ -178,7 +181,7 @@ $('#dt-table-admin_users_wrapper .dataTables_filter input').attr('placeholder', 
         <th>{{ trans('global.role') }}</th>
         <th class="text-center">{{ trans('global.logins') }}</th>
         <th>{{ trans('global.last_login') }}</th>
-        <th>{{ trans('global.trial') }}</th>
+        <th>{{ trans('global.trial_expires') }}</th>
         <th>{{ trans('global.plan') }}</th>
         <th>{{ trans('global.expires') }}</th>
         <th>{{ trans('global.created') }}</th>

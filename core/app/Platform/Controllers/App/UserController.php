@@ -622,6 +622,8 @@ class UserController extends \App\Http\Controllers\Controller {
    */
   public function postUserDelete()
   {
+    if (! \Gate::allows('owner-management')) return;
+
     $sl = request()->input('sl', '');
 
     if($sl != '')
@@ -699,9 +701,9 @@ class UserController extends \App\Http\Controllers\Controller {
     $data = array();
 
     if (\Gate::allows('owner-management')) {
-      $aColumn = array('reseller_name', 'name', 'email', 'role', 'plan', 'logins', 'last_login', 'users.created_at', 'users.trial_ends_at', 'users.expires', 'users.active');
+      $aColumn = array('reseller_name', 'name', 'email', 'role', 'logins', 'last_login', 'users.trial_ends_at', 'plan', 'users.expires', 'users.created_at', 'users.active');
     } else {      
-      $aColumn = array('name', 'email', 'role', 'plan', 'logins', 'last_login', 'users.created_at', 'users.trial_ends_at', 'users.expires', 'users.active');
+      $aColumn = array('name', 'email', 'role', 'logins', 'last_login', 'users.trial_ends_at', 'plan', 'users.expires', 'users.created_at', 'users.active');
     }
 
     if($q != '')
