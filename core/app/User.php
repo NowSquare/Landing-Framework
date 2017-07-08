@@ -68,7 +68,7 @@ class User extends Authenticatable implements StaplerableInterface
   }
 
   public function getPlanIdAttribute() {
-    return ($this->attributes['plan_id'] != NULL) ? $this->attributes['plan_id'] : 0;
+    //return ($this->attributes['plan_id'] != NULL) ? $this->attributes['plan_id'] : 0;
 
     if ($this->attributes['plan_id'] != NULL) {
       return $this->attributes['plan_id'];
