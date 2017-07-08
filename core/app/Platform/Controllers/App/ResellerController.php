@@ -92,6 +92,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
       'mail_password' => request()->input('mail_password', null),
       'mail_mailgun_domain' => request()->input('mail_mailgun_domain', null),
       'mail_mailgun_secret' => request()->input('mail_mailgun_secret', null),
+      'avangate_affiliate' => request()->input('avangate_affiliate', null),
       'avangate_key' => request()->input('avangate_key', null)
     );
 
@@ -135,6 +136,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
       $reseller->mail_password = $input['mail_password'];
       $reseller->mail_mailgun_domain = $input['mail_mailgun_domain'];
       $reseller->mail_mailgun_secret = $input['mail_mailgun_secret'];
+      $reseller->avangate_affiliate = $input['avangate_affiliate'];
       $reseller->avangate_key = $input['avangate_key'];
 
       if($reseller->save())
@@ -210,6 +212,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
         'mail_password' => request()->input('mail_password', null),
         'mail_mailgun_domain' => request()->input('mail_mailgun_domain', null),
         'mail_mailgun_secret' => request()->input('mail_mailgun_secret', null),
+        'avangate_affiliate' => request()->input('avangate_affiliate', null),
         'avangate_key' => request()->input('avangate_key', null)
       );
 
@@ -250,6 +253,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
         $reseller->mail_password = $input['mail_password'];
         $reseller->mail_mailgun_domain = $input['mail_mailgun_domain'];
         $reseller->mail_mailgun_secret = $input['mail_mailgun_secret'];
+        $reseller->avangate_affiliate = $input['avangate_affiliate'];
         $reseller->avangate_key = $input['avangate_key'];
 
         if ($qs['reseller_id'] > 1) {

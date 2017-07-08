@@ -219,8 +219,14 @@
           <div class="tab-pane" id="avangate">
             <fieldset>
               <div class="form-group">
-                <label for="avangate_key">{{ trans('global.key') }}</label>
-                <input type="text" class="form-control" name="avangate_key" id="avangate_key" value="{{ $reseller->avangate_key }}" autocomplete="off">
+                <label for="avangate_affiliate">{{ trans('global.affiliate_id') }}</label>
+                <input type="text" class="form-control" name="avangate_affiliate" id="avangate_affiliate" autocomplete="off" value="{{ $reseller->avangate_affiliate }}">
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-group">
+                <label for="avangate_key">{{ trans('global.key') }} (not fully implemented yet)</label>
+                <input type="text" class="form-control" name="avangate_key" id="avangate_key" autocomplete="off" value="{{ $reseller->avangate_key }}">
               </div>
             </fieldset>
           </div>

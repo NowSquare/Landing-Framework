@@ -42,7 +42,7 @@ class CreateUsersTable extends Migration
       $table->string('logo_square', 250)->nullable();
       $table->boolean('avangate_sandbox')->default(false);
       $table->text('avangate_key')->nullable();
-      $table->string('avangate_affiliate', 250)->nullable();
+      $table->string('avangate_affiliate', 64)->nullable();
       $table->boolean('stripe_sandbox')->default(false);
       $table->text('stripe_key')->nullable();
       $table->text('stripe_secret')->nullable();

@@ -319,8 +319,10 @@ return array(
   "full_access" => "Full access",
   "free" => "Free",
   "trial" => "Trial",
-  "trial_expires_in" => "Your trial expires in :datetime",
-  "subscription_expires_in" => "Your subscription expires in :datetime",
+  "trial_tour" => "To update your subscription or see all available plans, click here and choose 'Plan'.",
+  "trial_expires" => "Trial expires",
+  "trial_expires_in" => "Your trial expires :datetime",
+  "subscription_expires_in" => "Your subscription expires :datetime",
   "expires" => "Expires",
   "default_plan" => "Default plan",
   "default_info" => "New users start with the default plan. If there is no default plan, a user will start with a free plan with no permissions. There can be only one default plan.",
@@ -387,6 +389,7 @@ return array(
   "mailgun_domain" => "Mailgun domain",
   "mailgun_secret" => "Mailgun secret",
   "key" => "Key",
+  "affiliate_id" => "Affiliate ID",
 
   /*
    |--------------------------------------------------------------------------
