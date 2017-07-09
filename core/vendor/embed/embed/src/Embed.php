@@ -3,25 +3,65 @@
 namespace Embed;
 
 use Embed\Adapters\Adapter;
-use Embed\Http\Url;
-use Embed\Http\DispatcherInterface;
 use Embed\Http\CurlDispatcher;
+use Embed\Http\DispatcherInterface;
+use Embed\Http\Url;
 
 abstract class Embed
 {
     /**
+     * @var array
+     */
+    public static $default_config = [
+        'min_image_width' => 1,
+        'min_image_height' => 1,
+        'images_blacklist' => [],
+        'url_blacklist' => [
+            '?&ns_campaign=*',
+            '?&ns_source=*',
+            '?&utm_campaign=*',
+            '?&utm_medium=*',
+            '?&utm_source=*',
+        ],
+        'choose_bigger_image' => false,
+
+        'html' => [
+            'max_images' => -1,
+            'external_images' => false
+        ],
+
+        'oembed' => [
+            'parameters' => [],
+            'embedly_key' => null,
+            'iframely_key' => null,
+        ],
+
+        'google' => [
+            'key' => null,
+        ],
+
+        'soundcloud' => [
+            'key' => null,
+        ],
+    ];
+
+    /**
      * Gets the info from an url.
      *
      * @param Url|string $url
-     * @param array              $config
-     * @param DispatcherInterface|null              $dispatcher
+     * @param array|null $config
+     * @param DispatcherInterface|null $dispatcher
      *
      * @return Adapter
      */
-    public static function create($url, array $config = [], DispatcherInterface $dispatcher = null)
+    public static function create($url, array $config = null, DispatcherInterface $dispatcher = null)
     {
         if (!($url instanceof Url)) {
             $url = Url::create($url);
+        }
+
+        if ($config === null) {
+            $config = self::$default_config;
         }
 
         if ($dispatcher === null) {
@@ -37,7 +77,13 @@ abstract class Embed
         $to = preg_replace('|^(\w+://)|', '', rtrim($info->url, '/'));
 
         if ($from !== $to && empty($info->code)) {
-            return self::process(Url::create($info->url), $config, $dispatcher);
+            
+            //accept new result if valid
+            try {
+                return self::process(Url::create($info->url), $config, $dispatcher);
+            } catch (\Exception $e) {
+                return $info;
+            }
         }
 
         return $info;
@@ -74,7 +120,7 @@ abstract class Embed
         if (Adapters\Webpage::check($response)) {
             return new Adapters\Webpage($response, $config, $dispatcher);
         }
-
+        
         if ($response->getError() === null) {
             $exception = new Exceptions\InvalidUrlException(sprintf("Invalid url '%s' (Status code %s)", (string) $url, $response->getStatusCode()));
         } else {
@@ -84,6 +130,5 @@ abstract class Embed
         $exception->setResponse($response);
 
         throw $exception;
-        
     }
 }

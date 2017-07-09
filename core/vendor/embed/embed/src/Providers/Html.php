@@ -252,6 +252,7 @@ class Html extends Provider
                     case 'alternate':
                         switch ($link->getAttribute('type')) {
                             case 'application/atom+xml':
+                            case 'application/json':
                             case 'application/rdf+xml':
                             case 'application/rss+xml':
                             case 'application/xml':
@@ -357,7 +358,7 @@ class Html extends Provider
                         try {
                             $href = $url->createAbsolute($parent->getAttribute('href'));
                         } catch (Exception $exception) {
-                            //silenced error
+                            continue 2;
                         }
 
                         if (!self::imageIsValid($href, $url, $externalImages)) {
