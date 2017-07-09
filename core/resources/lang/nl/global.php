@@ -23,7 +23,7 @@ return array(
   "save_changes" => "Wijzigingen opslaan",
   "select" => "Kies",
   "create" => "Maak",
-  "create_new" => "Maak een nieuwe...",
+  "create_new" => "Maak nieuw(e)...",
   "add" => "Toevoegen",
   "got_it" => "Begrepen!",
   "submit" => "Verstuur",
@@ -70,6 +70,8 @@ return array(
   "link" => "Link",
   "oops" => "Oeps...",
   "or" => "Of",
+  "published" => "Gepubliceerd",
+  "not_published" => "Niet gepubliceerd",
 
   /*
    |--------------------------------------------------------------------------
@@ -344,8 +346,12 @@ return array(
   "click_here_for_more_info" => "Klik <a href=\":link\" style=\"text-decoration:underline\">hier</a> voor meer informatie.",
   "price" => "Prijs",
   "currency" => "Valuta",
+  "month" => "Maand",
   "monthly" => "Maandelijks",
+  "monthly_abbr" => "p.m.",
+  "per_month" => "Per maand",
   "remote_product_id" => "Remote product id",
+  "year" => "Jaar",
   "annual" => "Jaarlijks",
   "annual_price_help" => "Voer de maandelijkse prijs in indien een abonnement voor een jaar wordt gekocht.",
   "current" => "Huidig",
@@ -474,72 +480,68 @@ return array(
   "mail_closing" => "Bedankt voor het gebruiken van :product_name.",
   "mail_greeting" => "Hallo :name,",
   "mail_footer" => "Rapid Marketing Tools",
-  "mail_copy_action_text" => "Als u problemen hebt met het klikken op de knop \":actionText\", kopieer en plak de onderstaande URL in uw webbrowser:",
+  "mail_copy_action_text" => "Als u niet op de knop \":actionText\" kunt klikken, kopieer en plak de onderstaande URL in uw webbrowser:",
   "mail_signature" => "-- Het :product_name team",
 
   // User created credentials
   "send_credentials_subject" => "Welkom bij :product_name",
-  "send_credentials_mail_line1" => "An account has been created for you at :domain.<br><br>You can login with the following credentials.<br><br>Email: <strong>:email</strong><br>Password: <strong>:password</strong>",
+  "send_credentials_mail_line1" => "Er is een account voor u gemaakt op :domain.<br><br>U kunt zich aanmelden met de volgende gegevens.<br><br>E-mail: <strong>:email</strong><br>Wachtwoord: <strong>:password</strong>",
 
   // New user registration
-  "new_user_subject" => "Thank you for trying :product_name!",
-  "new_user_mail_line1" => "Thanks for trying :product_name. Your :trial_days day trial has started.",
-  "new_user_cta" => "Start with Rapid Marketing",
-  "new_user_mail_line2" => "Take us for a spin, and please email us at :support_email if you experience any issues.",
+  "new_user_subject" => "Bedankt voor het uitproberen van :product_name!",
+  "new_user_mail_line1" => "Bedankt voor het uitproberen van :product_name. Uw proefabonnement van :trial_days dagen is ingegaan.",
+  "new_user_cta" => "Begin met Rapid Marketing",
+  "new_user_mail_line2" => "Probeer alles rustig uit, en stuur mail naar :support_email als u tegen zaken aanloopt.",
 
    // General Member
-  "member_mail_closing" => "Thank you for using our service!",
+  "member_mail_closing" => "Bedankt voor het gebruik maken van onze service!",
 
   // Reset password
-  "reset_password_subject" => "Reset your :product_name password",
-  "reset_password_mail_line1" => "Please click the link below to choose a new password.",
-  "reset_password" => "Reset Password",
+  "reset_password_subject" => "Reset uw :product_name wachtwoord",
+  "reset_password_mail_line1" => "Klik op de onderstaande link om een nieuw wachtwoord in te stellen.",
+  "reset_password" => "Reset wachtwoord",
 
   // User updated, new password
-  "new_password_subject" => "Your new :product_name password",
-  "new_password_mail_line1" => "A new password has been set for your account: <strong>:password</strong>",
-
-  // User created credentials
-  "send_credentials_subject" => "Welcome to :product_name",
-  "send_credentials_mail_line1" => "An account has been created for you at :domain.<br><br>You can login with the following credentials.<br><br>Email: <strong>:email</strong><br>Password: <strong>:password</strong>",
+  "new_password_subject" => "Uw nieuwe :product_name wachtwoord",
+  "new_password_mail_line1" => "Er is een nieuw wachtwoord ingesteld voor uw account: <strong>:password</strong>",
 
   // Member created credentials
-  "member_registration_subject" => "Welcome to :product_name",
-  "member_registration_mail_line1" => "Your password is <strong>:password</strong>. You can login with the credentials below and change your password after logging in.<br><br>Email: <strong>:email</strong><br>Password: <strong>:password</strong>",
+  "member_registration_subject" => "Welkom bij :product_name",
+  "member_registration_mail_line1" => "U kunt zich aanmelden met de volgende gegevens.<br><br>E-mail: <strong>:email</strong><br>Wachtwoord: <strong>:password</strong>",
 
   // Trial ends in 3 days
-  "trial_ends_in_3_days_subject" => "Your :product_name trial ends in 3 days",
-  "trial_ends_in_3_days_mail_line1" => "Thanks for trying :product_name. This is a kind reminder your trial expires in 3 days. When your trial expires, all data will be deleted permanently.",
-  "trial_ends_in_3_days_cta" => "Upgrade your account",
-  "trial_ends_in_3_days_mail_line2" => "Regardless of your choice, we want to say thank you for trying :product_name. We know it's an investment of your time, and we appreciate you giving us a chance.",
+  "trial_ends_in_3_days_subject" => "Uw :product_name proefabonnement eindigt over 3 dagen",
+  "trial_ends_in_3_days_mail_line1" => "Bedankt voor het uitproberen van :product_name. Dit is een vriendelijke herinnering dat uw proefabonnement over 3 dagen verloopt. Wanneer de proeftijd vervalt, worden alle gegevens permanent verwijderd.",
+  "trial_ends_in_3_days_cta" => "Upgrade abonnement",
+  "trial_ends_in_3_days_mail_line2" => "Ongeacht uw keuze, willen we u bedanken voor het proberen van :product_name. We weten dat het een investering is van uw tijd, en we waarderen het dat u ons een kans geeft.",
 
   // Trial ends tomorrow
-  "trial_ends_tomorrow_subject" => "Your :product_name trial ends tomorrow",
-  "trial_ends_tomorrow_mail_line1" => "This is a kind reminder your :product_name account expires tomorrow. When your trial expires, all data will be deleted permanently. This can not be undone.",
-  "trial_ends_tomorrow_cta" => "Upgrade your account",
-  "trial_ends_tomorrow_mail_line2" => "Regardless of your choice, we want to say thank you for trying :product_name. We know it's an investment of your time, and we appreciate you giving us a chance.",
+  "trial_ends_tomorrow_subject" => "Uw :product_name proefabonnement eindigt morgen",
+  "trial_ends_tomorrow_mail_line1" => "Dit is een vriendelijke herinnering dat uw :product_name proefabonnement morgen afloopt. Wanneer de proeftijd vervalt, worden alle gegevens permanent verwijderd. Dit kan niet ongedaan gemaakt worden.",
+  "trial_ends_tomorrow_cta" => "Upgrade abonnement",
+  "trial_ends_tomorrow_mail_line2" => "Ongeacht uw keuze, willen we u bedanken voor het proberen van :product_name. We weten dat het een investering is van uw tijd, en we waarderen het dat u ons een kans geeft.",
 
   // Trial has ended
-  "trial_has_ended_subject" => "Your :product_name trial has ended",
-  "trial_has_ended_mail_line1" => "Thanks for trying :product_name. Your account and all associated data has been deleted. But no worries, you're always welcome to create a new account!",
-  "trial_has_ended_cta" => "Create a new account",
-  "trial_has_ended_mail_line2" => "Again, thank you for trying :product_name. We know it's an investment of your time, and we appreciate you giving us a chance.",
+  "trial_has_ended_subject" => "Uw :product_name proefabonnement is verlopen",
+  "trial_has_ended_mail_line1" => "Bedankt voor het uitproberen van :product_name. Your account and all associated data has been deleted. But no worries, you're always welcome to create a new account!",
+  "trial_has_ended_cta" => "Registreer opnieuw",
+  "trial_has_ended_mail_line2" => "Nogmaals bedankt voor het proberen van :product_name. We weten dat het een investering is van uw tijd, en we waarderen het dat u ons een kans heeft gegeven.",
 
   // Account expired yesterday
-  "account_expired_yesterday_subject" => "Your :product_name account has expired",
-  "account_expired_yesterday_mail_line1" => "Thanks for using :product_name. We'd love to keep you as a customer, but we respect your decision. Your account and all associated data will be deleted after 14 days. You can prevent this by ordering a new subscription.",
-  "account_expired_yesterday_cta" => "Prevent account removal",
-  "account_expired_yesterday_mail_line2" => "Regardless of your choice, we want to say thank you for using :product_name!",
+  "account_expired_yesterday_subject" => "Uw :product_name abonnement is verlopen",
+  "account_expired_yesterday_mail_line1" => "Bedankt voor het gebruik maken van :product_name. We zouden u graag als klant houden, maar respecteren uw besluit. Uw account en alle bijbehorende gegevens worden over 14 dagen verwijderd. U kunt dit voorkomen door een abonnement te nemen.",
+  "account_expired_yesterday_cta" => "Neem abonnement",
+  "account_expired_yesterday_mail_line2" => "Ongeacht uw keuze, willen we u bedanken voor het gebruik maken van :product_name!",
 
   // Account will be deleted in 3 days
-  "account_deleted_in_3_days_subject" => "Your :product_name account will be deleted",
-  "account_deleted_in_3_days_mail_line1" => "We'd love to keep you as a customer, but your account and all associated data will be deleted in 3 days. This can not be undone. However, you can still prevent this by ordering a new subscription.",
-  "account_deleted_in_3_days_cta" => "Prevent account removal",
-  "account_deleted_in_3_days_mail_line2" => "Regardless of your choice, we want to say thank you for using :product_name!",
+  "account_deleted_in_3_days_subject" => "Uw :product_name account wordt verwijderd",
+  "account_deleted_in_3_days_mail_line1" => "We zouden u graag als klant houden, maar uw account en alle gegevens worden over 3 dagen verwijderd. Dit kan niet ongedaan gemaakt worden. U kunt dit echter nog steeds voorkomen door een abonnement te nemen.",
+  "account_deleted_in_3_days_cta" => "Neem abonnement",
+  "account_deleted_in_3_days_mail_line2" => "Ongeacht uw keuze, willen we u bedanken voor het gebruik maken van :product_name!",
 
   // Account has been deleted
-  "account_deleted_subject" => "Your :product_name account has been deleted",
-  "account_deleted_mail_line1" => "We're sorry to see you go. All the best and you're always welcome back!",
-  "account_deleted_cta" => "Create a new account",
-  "account_deleted_mail_line2" => "Thanks again for using :product_name."
+  "account_deleted_subject" => "Uw :product_name account is verwijderd",
+  "account_deleted_mail_line1" => "We vinden het jammar dat uw gaat. We wensen u al het beste en uw bent altijd welkom terug!",
+  "account_deleted_cta" => "Registreer opnieuw",
+  "account_deleted_mail_line2" => "Nogmaals bedankt voor het gebruiken van :product_name."
 );

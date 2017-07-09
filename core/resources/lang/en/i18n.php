@@ -9,5 +9,6 @@ return array(
 	*/
 
 	"language_title" => "English",
-	"language_code" => "en"
+	"language_code" => "en",
+	"default_currency" => "USD"
 );

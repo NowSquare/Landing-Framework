@@ -42,7 +42,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Trial',
             'currency' => 'USD',
             'monthly_price' => '0',
+            'monthly_price_currencies' => '{
+              "EUR": "0"
+            }',
             'annual_price' => '0',
+            'annual_price_currencies' => '{
+              "EUR": "0"
+            }',
             'active' => true,
             'default' => true,
             'limitations' => '{
@@ -62,10 +68,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Quick Start',
             'currency' => 'USD',
             'monthly_price' => '11.25',
+            'monthly_price_currencies' => '{
+              "EUR": "11"
+            }',
             'monthly_remote_product_id' => '4714689',
             'monthly_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714689&QTY=1&SHORT_FORM=1',
             'monthly_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714689',
             'annual_price' => '9',
+            'annual_price_currencies' => '{
+              "EUR": "9"
+            }',
             'annual_remote_product_id' => '4714690',
             'annual_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714690&QTY=1&SHORT_FORM=1',
             'annual_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714690',
@@ -87,10 +99,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Basic',
             'currency' => 'USD',
             'monthly_price' => '23.75',
+            'monthly_price_currencies' => '{
+              "EUR": "23"
+            }',
             'monthly_remote_product_id' => '4714691',
             'monthly_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714691&QTY=1&SHORT_FORM=1',
             'monthly_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714691',
             'annual_price' => '19',
+            'annual_price_currencies' => '{
+              "EUR": "19"
+            }',
             'annual_remote_product_id' => '4714692',
             'annual_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714692&QTY=1&SHORT_FORM=1',
             'annual_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714692',
@@ -112,10 +130,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Enhanced',
             'currency' => 'USD',
             'monthly_price' => '48.75',
+            'monthly_price_currencies' => '{
+              "EUR": "47"
+            }',
             'monthly_remote_product_id' => '4714693',
             'monthly_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714693&QTY=1&SHORT_FORM=1',
             'monthly_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714693',
             'annual_price' => '39',
+            'annual_price_currencies' => '{
+              "EUR": "39"
+            }',
             'annual_remote_product_id' => '4714694',
             'annual_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714694&QTY=1&SHORT_FORM=1',
             'annual_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714694',
@@ -137,10 +161,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Advanced',
             'currency' => 'USD',
             'monthly_price' => '73.75',
+            'monthly_price_currencies' => '{
+              "EUR": "69"
+            }',
             'monthly_remote_product_id' => '4714695',
             'monthly_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714695&QTY=1&SHORT_FORM=1',
             'monthly_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714695',
             'annual_price' => '59',
+            'annual_price_currencies' => '{
+              "EUR": "59"
+            }',
             'annual_remote_product_id' => '4714696',
             'annual_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714696&QTY=1&SHORT_FORM=1',
             'annual_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714696',
@@ -162,10 +192,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Major',
             'currency' => 'USD',
             'monthly_price' => '123.75',
+            'monthly_price_currencies' => '{
+              "EUR": "119"
+            }',
             'monthly_remote_product_id' => '4714697',
             'monthly_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714697&QTY=1&SHORT_FORM=1',
             'monthly_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714697',
             'annual_price' => '99',
+            'annual_price_currencies' => '{
+              "EUR": "99"
+            }',
             'annual_remote_product_id' => '4714698',
             'annual_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714698&QTY=1&SHORT_FORM=1',
             'annual_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714698',
@@ -187,10 +223,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Extreme',
             'currency' => 'USD',
             'monthly_price' => '186.25',
+            'monthly_price_currencies' => '{
+              "EUR": "169"
+            }',
             'monthly_remote_product_id' => '4714699',
             'monthly_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714699&QTY=1&SHORT_FORM=1',
             'monthly_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714699',
             'annual_price' => '149',
+            'annual_price_currencies' => '{
+              "EUR": "139"
+            }',
             'annual_remote_product_id' => '4714700',
             'annual_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714700&QTY=1&SHORT_FORM=1',
             'annual_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714700',
@@ -212,10 +254,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Ultimate',
             'currency' => 'USD',
             'monthly_price' => '248.75',
+            'monthly_price_currencies' => '{
+              "EUR": "229"
+            }',
             'monthly_remote_product_id' => '4714701',
             'monthly_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714701&QTY=1&SHORT_FORM=1',
             'monthly_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714701',
             'annual_price' => '199',
+            'annual_price_currencies' => '{
+              "EUR": "189"
+            }',
             'annual_remote_product_id' => '4714702',
             'annual_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714702&QTY=1&SHORT_FORM=1',
             'annual_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714702',
@@ -237,10 +285,16 @@ class DatabaseSeeder extends Seeder
             'name' => 'Enterprise',
             'currency' => 'USD',
             'monthly_price' => '473.75',
+            'monthly_price_currencies' => '{
+              "EUR": "429"
+            }',
             'monthly_remote_product_id' => '4714703',
             'monthly_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714703&QTY=1&SHORT_FORM=1',
             'monthly_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714703',
             'annual_price' => '379',
+            'annual_price_currencies' => '{
+              "EUR": "349"
+            }',
             'annual_remote_product_id' => '4714704',
             'annual_order_url' => 'https://secure.avangate.com/order/checkout.php?PRODS=4714704&QTY=1&SHORT_FORM=1',
             'annual_upgrade_url' => 'https://secure.avangate.com/order/upgrade.php?PROD=4714704',

@@ -138,7 +138,7 @@ if (count($languages) > 1) {
           <li class="dropdown" id="language_selector"> <a href="javascript:void(0);" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="true">{{ $current_language }} </a>
             <ul class="dropdown-menu">
 <?php foreach($languages as $code => $language) { ?>
-              <li><a href="{{ url('platform?set_lang=' . $code) }}">{{ $language }}</a></li>
+              <li><a href="javascript:void(0);" onclick="setLanguage('{{ $code }}')">{{ $language }}</a></li>
 <?php } ?>
             </ul>
           </li>
@@ -160,10 +160,38 @@ if (count($languages) > 1) {
 var funnel_count = {{ $funnels->count() }};
 var selected_funnel = "{{ $selected_funnel }}";
 
+
+/**
+ * Change language
+ */
+
+function setLanguage(code) {
+  blockUI();
+
+  var jqxhr = $.ajax({
+    url: "{{ url('platform/language') }}",
+    data: {set_lang: code, _token: '<?= csrf_token() ?>'},
+    method: 'POST'
+  })
+  .done(function(data) {
+    document.location.reload();
+  })
+  .fail(function() {
+    console.log('error');
+  })
+  .always(function() {
+    unblockUI();
+  });
+}
+
 $(function() {
 
   if (funnel_count == 0) {
     createFunnel(true);
+  } else {
+<?php if (auth()->user()->trial_ends_at != null) { ?>
+showTrialTour();
+<?php } ?>
   }
 
   $('.select2-topnav').select2({
@@ -208,7 +236,9 @@ $(function() {
     }
   });
 
+
 <?php if (auth()->user()->trial_ends_at != null) { ?>
+function showTrialTour() {
   var show_trial_tour = getCookie('show_trial_tour{{ auth()->user()->id }}');
 
   if (show_trial_tour !== 'no') {
@@ -242,6 +272,7 @@ $(function() {
 
     hopscotch.startTour(trial_tour);
   }
+}
 <?php } ?>
 
 <?php if (1==2 && \Auth::user()->logins <= 1) { ?>
@@ -302,10 +333,10 @@ function selectFunnel(funnel) {
 function createFunnel(first_funnel) {
   first_funnel = (typeof first_funnel === 'undefined') ? false : first_funnel;
   var showCancelButton = (first_funnel) ? false : true;
-  var text = (first_funnel) ? "{{ trans('global.create_first_funnel_text') }}" : "{{ trans('global.create_funnel_text') }}";
+  var text = (first_funnel) ? "{!! trans('global.create_first_funnel_text') !!}" : "{!! trans('global.create_funnel_text') !!}";
 
   swal({
-    title: '{{ trans('global.create_funnel') }}',
+    title: "{!! trans('global.create_funnel') !!}",
     text: text,
     input: 'text',
     allowOutsideClick: false,

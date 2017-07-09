@@ -28,7 +28,7 @@ return array(
   "move" => "Verplaats",
   "move_up" => "Omhoog",
   "move_down" => "Omlaag",
-  "insert" => "Voeg in",
+  "insert" => "Voeg blok in",
   "above" => "Boven dit blok",
   "below" => "Onder dit blok",
   "edit" => "Bewerk",

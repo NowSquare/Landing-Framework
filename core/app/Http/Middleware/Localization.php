@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use \Platform\Controllers\Core;
 
 class Localization
 {
@@ -25,6 +26,10 @@ class Localization
           $request->user()->save();
         }
         app()->setLocale($request->user()->language);
+      } else {
+        // No user logged in, use reseller default
+        $reseller = Core\Reseller::get();
+        app()->setLocale($reseller->default_language);
       }
 
       return $next($request);

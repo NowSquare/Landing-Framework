@@ -77,6 +77,9 @@ Route::group(['middleware' => 'auth:web'], function () {
   // Main layout
   Route::get('platform', '\Platform\Controllers\App\MainController@main')->name('main');
 
+  // Change language
+  Route::post('platform/language', '\Platform\Controllers\Core\Localization@postSetLanguage');
+
   /*
    |--------------------------------------------------------------------------
    | Partials

@@ -12,6 +12,14 @@ class Localization extends \App\Http\Controllers\Controller {
    */
 
   /**
+   * Change language
+   */
+  public static function postSetLanguage()
+  {
+    return response()->json(['success' => true]);
+  }
+
+  /**
    * \Platform\Controllers\Core\Localization::getLanguagesArray();
    * Return array of languages in form of [LANGUAGE_CODE] => [LANGUAGE_NAME]
    */

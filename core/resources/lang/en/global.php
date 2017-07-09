@@ -70,6 +70,8 @@ return array(
   "link" => "Link",
   "oops" => "Oops...",
   "or" => "Or",
+  "published" => "Published",
+  "not_published" => "Not published",
 
   /*
    |--------------------------------------------------------------------------
@@ -344,8 +346,12 @@ return array(
   "click_here_for_more_info" => "Click <a href=\":link\" style=\"text-decoration:underline\">here</a> for more information.",
   "price" => "Price",
   "currency" => "Currency",
+  "month" => "Month",
   "monthly" => "Monthly",
+  "monthly_abbr" => "/mo",
+  "per_month" => "Per month",
   "remote_product_id" => "Remote product id",
+  "year" => "Year",
   "annual" => "Annual",
   "annual_price_help" => "Enter the monthly price in case a subscription for one year is purchased.",
   "current" => "Current",
@@ -499,10 +505,6 @@ return array(
   "new_password_subject" => "Your new :product_name password",
   "new_password_mail_line1" => "A new password has been set for your account: <strong>:password</strong>",
 
-  // User created credentials
-  "send_credentials_subject" => "Welcome to :product_name",
-  "send_credentials_mail_line1" => "An account has been created for you at :domain.<br><br>You can login with the following credentials.<br><br>Email: <strong>:email</strong><br>Password: <strong>:password</strong>",
-
   // Member created credentials
   "member_registration_subject" => "Welcome to :product_name",
   "member_registration_mail_line1" => "Your password is <strong>:password</strong>. You can login with the credentials below and change your password after logging in.<br><br>Email: <strong>:email</strong><br>Password: <strong>:password</strong>",
@@ -510,20 +512,20 @@ return array(
   // Trial ends in 3 days
   "trial_ends_in_3_days_subject" => "Your :product_name trial ends in 3 days",
   "trial_ends_in_3_days_mail_line1" => "Thanks for trying :product_name. This is a kind reminder your trial expires in 3 days. When your trial expires, all data will be deleted permanently.",
-  "trial_ends_in_3_days_cta" => "Upgrade your account",
+  "trial_ends_in_3_days_cta" => "Upgrade account",
   "trial_ends_in_3_days_mail_line2" => "Regardless of your choice, we want to say thank you for trying :product_name. We know it's an investment of your time, and we appreciate you giving us a chance.",
 
   // Trial ends tomorrow
   "trial_ends_tomorrow_subject" => "Your :product_name trial ends tomorrow",
   "trial_ends_tomorrow_mail_line1" => "This is a kind reminder your :product_name account expires tomorrow. When your trial expires, all data will be deleted permanently. This can not be undone.",
-  "trial_ends_tomorrow_cta" => "Upgrade your account",
+  "trial_ends_tomorrow_cta" => "Upgrade account",
   "trial_ends_tomorrow_mail_line2" => "Regardless of your choice, we want to say thank you for trying :product_name. We know it's an investment of your time, and we appreciate you giving us a chance.",
 
   // Trial has ended
   "trial_has_ended_subject" => "Your :product_name trial has ended",
   "trial_has_ended_mail_line1" => "Thanks for trying :product_name. Your account and all associated data has been deleted. But no worries, you're always welcome to create a new account!",
   "trial_has_ended_cta" => "Create a new account",
-  "trial_has_ended_mail_line2" => "Again, thank you for trying :product_name. We know it's an investment of your time, and we appreciate you giving us a chance.",
+  "trial_has_ended_mail_line2" => "Again, thank you for trying :product_name. We know it's an investment of your time, and we appreciate you gave us a chance.",
 
   // Account expired yesterday
   "account_expired_yesterday_subject" => "Your :product_name account has expired",

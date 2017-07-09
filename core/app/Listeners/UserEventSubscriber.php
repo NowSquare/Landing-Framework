@@ -70,10 +70,12 @@ class UserEventSubscriber {
     $event->user->reseller_id = $reseller->id;
     //$event->user->expires = $expires;
     $event->user->trial_ends_at = $trial_ends_at;
+    $event->user->language = $reseller->default_language;
+    $event->user->timezone = $reseller->default_timezone;
     $event->user->save();
 
     // Set language
-    app()->setLocale($event->user->language);
+    app()->setLocale($reseller->default_language);
 
     $mail_from = $reseller->mail_from_address;
     $mail_from_name = $reseller->mail_from_name;

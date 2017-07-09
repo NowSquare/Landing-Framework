@@ -75,7 +75,7 @@ foreach($sites as $site) {
   // Update files
   $variant = 1;
   $storage_root = 'landingpages/site/' . \Platform\Controllers\Core\Secure::staticHash(\Platform\Controllers\Core\Secure::userId()) . '/' .  \Platform\Controllers\Core\Secure::staticHash($site->id, true) . '/' . \Platform\Controllers\Core\Secure::staticHash($page->id, true) . '/' . $variant;
-  $published = (\Storage::disk('public')->exists($storage_root . '/published/index.blade.php')) ? '<span class="badge badge-xs badge-success pull-right">published</span>' : '<span class="badge badge-xs badge-danger pull-right">not published</span>';
+  $published = (\Storage::disk('public')->exists($storage_root . '/published/index.blade.php')) ? '<span class="badge badge-xs badge-success pull-right">' . trans('global.published') . '</span>' : '<span class="badge badge-xs badge-danger pull-right">' . trans('global.not_published') . '</span>';
 ?>
     <div class="grid-item col-xs-6 col-sm-3 col-lg-3" style="max-width: 250px" id="item{{ $i }}">
 

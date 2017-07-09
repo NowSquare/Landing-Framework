@@ -22,9 +22,9 @@ return array(
   "create_eddystone" => "Nieuwe Eddystone",
   "create_eddystone_help" => "U kunt notificaties toevoegen als de Eddystone is gemaakt.",
   "namespace_id" => "Namespace ID",
-  "namespace_id_help" => "Eddystone UID beacons hebben een namespace id van 10 bytes (20 karakters). U kunt dit vinden in het web dashboard of app van de Eddystone fabrikant. Zorg er ook voor dat het UID-protocol actief is.",
+  "namespace_id_help" => "Eddystone UID beacons hebben een namespace id van 10 bytes (20 karakters). U kunt dit vinden in het web dashboard of app van de Eddystone fabrikant. Zorg er ook voor dat het UID-protocol geactiveerd is.",
   "instance_id" => "Instance ID",
-  "instance_id_help" => "Eddystone UID beacons hebben een instance id van 6 bytes (12 karakters). U kunt dit vinden in het web dashboard of app van de Eddystone fabrikant. Zorg er ook voor dat het UID-protocol actief.",
+  "instance_id_help" => "Eddystone UID beacons hebben een instance id van 6 bytes (12 karakters). U kunt dit vinden in het web dashboard of app van de Eddystone fabrikant. Zorg er ook voor dat het UID-protocol geactiveerd is.",
   "" => "",
 
 	/*

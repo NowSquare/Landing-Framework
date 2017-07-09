@@ -43,6 +43,21 @@ if ($plan_count%3 == 0) $col_span = 'col-md-4';
 if ($plan_count%4 == 0) $col_span = 'col-md-4';
 
 if (! empty($default_plan) && $default_plan->active == 1) {
+  $currency = $default_plan->currency;
+  if (trans('i18n.default_currency') != $currency && isset($default_plan->monthly_price_currencies[trans('i18n.default_currency')])) {
+    $monthly_price = $currencyFormatter->formatCurrency($default_plan->monthly_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
+  } else {
+    $monthly_price = $currencyFormatter->formatCurrency($default_plan->monthly_price, $currencyRepository->get($default_plan->currency, auth()->user()->language));
+  }
+
+  if (trans('i18n.default_currency') != $currency && isset($default_plan->annual_price_currencies[trans('i18n.default_currency')])) {
+    $annual_price = $currencyFormatter->formatCurrency($default_plan->annual_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
+  } else {
+    $annual_price = $currencyFormatter->formatCurrency($default_plan->annual_price, $currencyRepository->get($default_plan->currency, auth()->user()->language));
+  }
+
+  $monthly_price = str_replace(['.00', ',00'], '', $monthly_price);
+  $annual_price = str_replace(['.00', ',00'], '', $annual_price);
 ?>
         <article class="pricing-column {{ $col_span }}" style="margin-bottom: 0">
 <?php if (auth()->user()->plan_id == $default_plan->id) { ?>
@@ -51,16 +66,17 @@ if (! empty($default_plan) && $default_plan->active == 1) {
             <div class="inner-box card-box">
                 <div class="plan-header text-center"<?php if ($default_plan->description != '') echo ' style="padding-bottom:23px"'; ?>>
                     <h3 class="plan-title">{!! $default_plan->name !!}</h3>
-                    <h2 class="plan-price price-monthly"><?php echo $currencyFormatter->formatCurrency($default_plan->monthly_price, $currencyRepository->get($default_plan->currency, auth()->user()->language)); ?></h2>
-                    <h2 class="plan-price price-annual"><?php echo $currencyFormatter->formatCurrency($default_plan->annual_price, $currencyRepository->get($default_plan->currency, auth()->user()->language)); ?></h2>
+                    <h2 class="plan-price price-monthly"><?php echo $monthly_price; ?></h2>
+                    <h2 class="plan-price price-annual"><?php echo $annual_price; ?></h2>
+                    <p class="text-muted"><small>{{ trans('global.per_month') }}</small></p>
                     <div class="plan-duration">
 
-{{ trans('global.monthly') }}
+{{ trans('global.month') }}
 <label class="switch">
   <input type="checkbox" class="price_switch" checked>
   <div class="slider round"></div>
 </label>
-{{ trans('global.annual') }}
+{{ trans('global.year') }}
 
                     </div>
 <?php if ($default_plan->description != '') { ?>
@@ -147,14 +163,15 @@ if (\Auth::user()->plan_id == $default_plan->id) {
                 <div class="plan-header text-center">
                     <h3 class="plan-title">&nbsp;</h3>
                     <h2 class="plan-price">{{ trans('global.free') }}</h2>
+                    <p class="text-muted"><small>{{ trans('global.per_month') }}</small></p>
                     <div class="plan-duration">
 
-{{ trans('global.monthly') }}
+{{ trans('global.month') }}
 <label class="switch">
   <input type="checkbox" class="price_switch" checked>
   <div class="slider round"></div>
 </label>
-{{ trans('global.annual') }}
+{{ trans('global.year') }}
 
                     </div>
                 </div>
@@ -214,6 +231,22 @@ if (\Auth::user()->plan_id == 0) {
 }
 
 foreach($plans as $plan) {
+
+  $currency = $plan->currency;
+  if (trans('i18n.default_currency') != $currency && isset($plan->monthly_price_currencies[trans('i18n.default_currency')])) {
+    $monthly_price = $currencyFormatter->formatCurrency($plan->monthly_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
+  } else {
+    $monthly_price = $currencyFormatter->formatCurrency($plan->monthly_price, $currencyRepository->get($plan->currency, auth()->user()->language));
+  }
+
+  if (trans('i18n.default_currency') != $currency && isset($plan->annual_price_currencies[trans('i18n.default_currency')])) {
+    $annual_price = $currencyFormatter->formatCurrency($plan->annual_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
+  } else {
+    $annual_price = $currencyFormatter->formatCurrency($plan->annual_price, $currencyRepository->get($plan->currency, auth()->user()->language));
+  }
+
+  $monthly_price = str_replace(['.00', ',00'], '', $monthly_price);
+  $annual_price = str_replace(['.00', ',00'], '', $annual_price);
 ?>
         <article class="pricing-column {{ $col_span }}" style="margin-bottom: 0">
 <?php if (auth()->user()->plan_id == $plan->id) { ?>
@@ -222,16 +255,17 @@ foreach($plans as $plan) {
             <div class="inner-box card-box">
                 <div class="plan-header text-center"<?php if ($plan->description != '') echo ' style="padding-bottom:23px"'; ?>>
                     <h3 class="plan-title">{!! $plan->name !!}</h3>
-                    <h2 class="plan-price price-monthly"><?php echo $currencyFormatter->formatCurrency($plan->monthly_price, $currencyRepository->get($plan->currency, auth()->user()->language)); ?></h2>
-                    <h2 class="plan-price price-annual"><?php echo $currencyFormatter->formatCurrency($plan->annual_price, $currencyRepository->get($plan->currency, auth()->user()->language)); ?></h2>
+                    <h2 class="plan-price price-monthly"><?php echo $monthly_price; ?></h2>
+                    <h2 class="plan-price price-annual"><?php echo $annual_price; ?></h2>
+                    <p class="text-muted"><small>{{ trans('global.per_month') }}</small></p>
                     <div class="plan-duration">
 
-{{ trans('global.monthly') }}
+{{ trans('global.month') }}
 <label class="switch">
   <input type="checkbox" class="price_switch" checked>
   <div class="slider round"></div>
 </label>
-{{ trans('global.annual') }}
+{{ trans('global.year') }}
 
                     </div>
 <?php if ($plan->description != '') { ?>

@@ -13,6 +13,8 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
       'api/*',
-      'ec/mg/*'
+      'ec/mg/*',
+      'platform/language',
+      'platform/funnels/*'
     ];
 }
