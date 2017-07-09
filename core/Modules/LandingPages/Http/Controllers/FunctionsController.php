@@ -354,6 +354,18 @@ class FunctionsController extends Controller
 
           // Create thumbnail for preview if not exists
           $preview_path = base_path('../' . $local_image);
+
+          // Fallback to en language
+          if (! \File::exists($preview_path)) {
+            $lang = 'en';
+
+            // Preview screenshot
+            $local_image = $category_path . '/' . str_replace('.blade.php', '.' . $lang . '.png', $block);
+
+            // Create thumbnail for preview if not exists
+            $local_image = base_path('../' . $local_image);
+          }
+
           $preview_thumb = 'landingpages/blocks/' . $category . '/' . str_replace('.blade.php', '.' . $lang . '', $block) . '-600.jpg';
 
           $exists = Storage::disk('public')->exists($preview_thumb);
