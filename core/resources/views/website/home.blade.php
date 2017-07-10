@@ -157,6 +157,21 @@
       } );
     });
   </script>
+<?php
+if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
+?>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', '<?php echo env('GOOGLE_ANALYTICS_TRACKING_ID', '') ?>', 'auto');
+  ga('send', 'pageview');
+</script>
+<?php
+}
+?>
 </head>
 
 <body>
@@ -229,7 +244,7 @@
                 <div class="btn-container mt-3 mb-5">
                   <a class="btn btn-outline-dark-ghost btn-xlg btn-pill" href="{{ url('login') }}" role="button">{!! trans('website.header_cta') !!}</a>
                 </div>
-                <img src="{{ url('templates/assets/images/visuals/landing-screens-en.png') }}" alt="" class="img-fluid" style="margin:auto">
+                <img src="{{ url('templates/assets/images/visuals/landing-screens-' . \App::getLocale() . '.png') }}" alt="" class="img-fluid" style="margin:auto">
               </div>
             </div>
           </div>

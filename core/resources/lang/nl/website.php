@@ -9,13 +9,13 @@ return array(
 	*/
 
   "header" => "Rapid Marketing",
-  "header_01_line" => "Landing Pages, Lists, Email Automation and Eddystone beacons",
-  "header_cta" => "Get Started Now",
-  "get_started" => "Get Started",
-  "pricing" => "Pricing",
+  "header_01_line" => "Landing Pages, lijsten, auto-responders en Eddystone beacons",
+  "header_cta" => "Begin nu",
+  "get_started" => "Probeer uit",
+  "pricing" => "Prijzen",
   "login" => "Login",
-  "register" => "Register",
+  "register" => "Registreer",
   "copyright" => "&copy;",
-  "all_rights_reserved" => "All rights reserved",
+  "all_rights_reserved" => "Alle rechten voorbehouden",
   "contact" => "Contact"
 );
