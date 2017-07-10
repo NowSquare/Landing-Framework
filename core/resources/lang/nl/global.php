@@ -450,8 +450,8 @@ return array(
 
     "search_" => "Zoek...",
     "show_records" => "_MENU_ rijen", // Don't translate _MENU_; it's a variable
-    "empty_table" => "Geen data beschikbaar voor tabel",
-    "dt_info" => "Toon rijen _START_ t/m _END_ van in totaal _TOTAL_ pagina's",
+    "empty_table" => "Geen data gevonden",
+    "dt_info" => "_START_ t/m _END_ van in totaal _TOTAL_ rijen",
     "all" => "Alle",
  
   /*

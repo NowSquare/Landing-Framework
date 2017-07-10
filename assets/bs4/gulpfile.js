@@ -76,7 +76,7 @@ gulp.task('styles', function() {
     'resources/sass/sweetalert.scss',
     'bower_components/tether/src/css/tether.sass',
     /*'bower_components/tether-drop/src/css/drop-theme-basic.sass',*/
-    /*'bower_components/owl.carousel/src/scss/owl.carousel.scss',*/
+    'bower_components/owl.carousel/src/scss/owl.carousel.scss',
     'bower_components/ladda/css/ladda.scss'
   ], {
     style: 'expanded',
@@ -152,8 +152,8 @@ gulp.task('scripts', function() {
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/bluebird/js/browser/bluebird.js',
   		'bower_components/blockUI/jquery.blockUI.js',
-      /*'bower_components/owl.carousel/dist/owl.carousel.js',
-      'bower_components/particles.js/particles.js',
+      'bower_components/owl.carousel/dist/owl.carousel.js',
+      /*'bower_components/particles.js/particles.js',
       'bower_components/flat-surface-shader/deploy/fss.js',*/
 		  'bower_components/jquery.scrollTo/jquery.scrollTo.js',
       'bower_components/ladda/js/spin.js',

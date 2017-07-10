@@ -229,7 +229,7 @@ function windowPopup(url, width, height) {
 /*
  * Particles.js
  * http://vincentgarreau.com/particles.js/
- */
+ * /
 
 if (document.getElementById('particles-js-hexagon') !== null) { particlesJS.load('particles-js-hexagon', '/assets/js/particles/particles-hexagon.json'); }
 if (document.getElementById('particles-js-bubble') !== null) { particlesJS.load('particles-js-bubble', '/assets/js/particles/particles-bubble.json'); }
@@ -237,6 +237,7 @@ if (document.getElementById('particles-js-connect') !== null) { particlesJS.load
 if (document.getElementById('particles-js-diamonds') !== null) { particlesJS.load('particles-js-diamonds', '/assets/js/particles/particles-diamonds.json'); }
 if (document.getElementById('particles-js-nasa') !== null) { particlesJS.load('particles-js-nasa', '/assets/js/particles/particles-nasa.json'); }
 if (document.getElementById('particles-js-snow') !== null) { particlesJS.load('particles-js-snow', '/assets/js/particles/particles-snow.json'); }
+*/
 
 $(function($) {
 
@@ -271,12 +272,12 @@ $(function($) {
 
 	if (onMobile === true) {
 		$('a.scrollto').click(function (event) {
-		  $('html, body').scrollTo(this.hash, 0, {offset: {top: -170}, animation:  {easing: 'easeInOutCubic', duration: 0}});
+		  $('html, body').scrollTo(this.hash, 0, {offset: {top: 0}, animation:  {easing: 'easeInOutCubic', duration: 0}});
 		  event.preventDefault();
 	  });
 	} else {
 		$('a.scrollto').click(function (event) {
-		  $('html, body').scrollTo(this.hash, 1000, {offset: {top: -170}, animation:  {easing: 'easeInOutCubic', duration: 1500}});
+		  $('html, body').scrollTo(this.hash, 1000, {offset: {top: 0}, animation:  {easing: 'easeInOutCubic', duration: 1500}});
 			event.preventDefault();
 	  });
 	}
@@ -284,14 +285,14 @@ $(function($) {
   var hash = window.location.hash;
 
   if(hash) {
-    $('html, body').scrollTo(hash + '_', 1000, {offset: {top: -170}, animation:  {easing: 'easeInOutCubic', duration: 1500}});
+    $('html, body').scrollTo(hash + '_', 1000, {offset: {top: 0}, animation:  {easing: 'easeInOutCubic', duration: 1500}});
   }
 
   $(window).on('hashchange', function(e) {
     var hash = window.location.hash;
   
     if(hash) {
-      $('html, body').scrollTo(hash + '_', 1000, {offset: {top: -170}, animation:  {easing: 'easeInOutCubic', duration: 1500}});
+      $('html, body').scrollTo(hash + '_', 1000, {offset: {top: 0}, animation:  {easing: 'easeInOutCubic', duration: 1500}});
     }
   });
 
@@ -317,8 +318,8 @@ $(function($) {
    * https://owlcarousel2.github.io/OwlCarousel2/
    */
 
-	if ($('.owl-carousel').length) {
-    $('.owl-carousel').owlCarousel({
+	if ($('.vert-carousel').length) {
+    $('.vert-carousel').owlCarousel({
       loop: true,
       nav: false,
       responsive:{
@@ -339,7 +340,7 @@ $(function($) {
    * Flat Surface Shader
    * http://matthew.wagerfield.com/flat-surface-shader/
    */
-
+/*
 	if ($('.polygon-bg').length) {
     $('.polygon-bg').each(function() {
 
@@ -378,7 +379,7 @@ $(function($) {
       animateFss();
     });
 	}
-
+*/
   /*
    * Countdown timer
    */

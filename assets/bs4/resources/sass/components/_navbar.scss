@@ -24,6 +24,11 @@ $navbar-height: 4.5rem !default;
     width: 100%;
   }
 */
+
+  .nav-link {
+    border-radius: 0 !important;
+  }
+
   /* Hide default toggler */
   .navbar-toggler {
     background-image: none !important;

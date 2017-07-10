@@ -71,6 +71,9 @@ To track email clicks and opens, we have to configure Mailgun webhooks. Log in t
 
 `https://try.landingframework.com/ec/mg/event`
 
+## Avangate
+Update callback urls in Avangate account.
+
 ## Google Beacon Platform
 Create a json configuration file for the Google Beacon Platform and upload the json file to /core/storage/app/google_keys/.
 

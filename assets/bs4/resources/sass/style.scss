@@ -79,7 +79,7 @@ $enable-transitions: false;
 @import "components/jumbotron";
 @import "components/content";
 @import "components/photos";
-//@import "components/navbar";
+@import "components/navbar";
 @import "components/form";
 @import "components/footer";
 @import "components/buttons";
@@ -88,7 +88,7 @@ $enable-transitions: false;
 @import "components/social";
 //@import "components/breadcrumbs";
 //@import "components/cards";
-//@import "components/pricing";
+@import "components/pricing";
 
 /*
  * Plugins
