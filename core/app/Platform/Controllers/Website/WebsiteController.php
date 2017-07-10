@@ -59,7 +59,9 @@ class WebsiteController extends \App\Http\Controllers\Controller {
     $decimalFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat);
     $currencyFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat, \CommerceGuys\Intl\Formatter\NumberFormatter::CURRENCY);
 
-    return view('website.home', compact('reseller', 'plans', 'default_plan', 'items', 'currencyRepository', 'decimalFormatter', 'currencyFormatter'));
+    $header_image = (\File::exists(base_path() . '../../templates/assets/images/visuals/landing-screens-' . \App::getLocale() . '.png')) ? url('templates/assets/images/visuals/landing-screens-' . \App::getLocale() . '.png') : url('templates/assets/images/visuals/landing-screens-en.png');
+
+    return view('website.home', compact('header_image', 'reseller', 'plans', 'default_plan', 'items', 'currencyRepository', 'decimalFormatter', 'currencyFormatter'));
   }
 
 }

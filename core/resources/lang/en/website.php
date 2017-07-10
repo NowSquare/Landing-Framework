@@ -13,6 +13,7 @@ return array(
   "header_cta" => "Get Started Now",
   "get_started" => "Get Started",
   "pricing" => "Pricing",
+  "dashboard" => "Dashboard",
   "login" => "Login",
   "register" => "Register",
   "copyright" => "&copy;",

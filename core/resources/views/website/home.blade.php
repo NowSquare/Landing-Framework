@@ -35,10 +35,8 @@
       bottom: 2px;
     }
     .plan-card {
-      min-width: 180px;
-    }
-    .plan-card {
       font-weight: 200;
+      min-width: 180px;
     }
     .plan-card h4 {
       font-size: 1.2rem;
@@ -119,9 +117,14 @@
     .slider.round:before {
       border-radius: 50%;
     }
-    
+    .owl-stage {
+      padding: 8px 0;
+    }
     .owl-theme .owl-nav.disabled+.owl-dots {
-      margin-top: 40px;
+      margin-top: 30px;
+    }
+    .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+      background: #333;
     }
   </style>
   <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
@@ -130,6 +133,7 @@
       $('.carousel').owlCarousel({
         loop: true,
         nav: false,
+        margin: 0,
         responsive:{
           0:{
             items:1
@@ -137,7 +141,10 @@
           600:{
             items:2
           },
-          1000:{
+          900:{
+            items:3
+          },
+          1200:{
             items:4
           }
         }
@@ -188,12 +195,18 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
                 <li class="nav-item">
                   <a class="nav-link color-grey" href="#pricing">{!! trans('website.pricing') !!}</a>
                 </li>
+<?php if (auth()->check()) { ?>
+                <li class="nav-item">
+                  <a class="nav-link color-grey" href="{{ url('platform') }}">{!! trans('website.dashboard') !!}</a>
+                </li>
+<?php } else { ?>
                 <li class="nav-item">
                   <a class="nav-link color-grey" href="{{ url('login') }}">{!! trans('website.login') !!}</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link color-grey" href="{{ url('register') }}">{!! trans('website.register') !!}</a>
                 </li>
+<?php } ?>
               </ul>
             </div>
           </div>
@@ -244,7 +257,7 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
                 <div class="btn-container mt-3 mb-5">
                   <a class="btn btn-outline-dark-ghost btn-xlg btn-pill" href="{{ url('login') }}" role="button">{!! trans('website.header_cta') !!}</a>
                 </div>
-                <img src="{{ url('templates/assets/images/visuals/landing-screens-' . \App::getLocale() . '.png') }}" alt="" class="img-fluid" style="margin:auto">
+                <img src="{{ $header_image }}" alt="" class="img-fluid" style="margin:auto">
               </div>
             </div>
           </div>
@@ -378,7 +391,7 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
                 $monthly_price = str_replace( [ '.00', ',00' ], '', $monthly_price );
                 $annual_price = str_replace( [ '.00', ',00' ], '', $annual_price );
                 ?>
-              <div class="plan-card card color-blue mx-5 mx-sm-0 mr-sm-4">
+              <div class="plan-card card mdl-shadow--4dp color-blue mx-5 mx-sm-2">
                 <table class="table">
                   <thead>
                     <tr>
@@ -468,7 +481,7 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
                   <tfoot>
                     <tr>
                       <td>
-                        <a href="{{ url('register') }}" class="btn btn-secondary btn-block btn-lg">{!! trans('website.get_started') !!}</a>
+                        <a href="{{ url('register') }}" class="btn btn-outline-blue btn-block btn-lg">{!! trans('website.get_started') !!}</a>
                       </td>
                     </tr>
                   </tfoot>
@@ -496,7 +509,7 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
                 $monthly_price = str_replace( [ '.00', ',00' ], '', $monthly_price );
                 $annual_price = str_replace( [ '.00', ',00' ], '', $annual_price );
                 ?>
-              <div class="plan-card card color-secondary mx-5 mx-sm-0 mr-sm-4">
+              <div class="plan-card card mdl-shadow--4dp color-secondary mx-5 mx-sm-2">
                 <table class="table">
                   <thead>
                     <tr>
@@ -588,7 +601,7 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
                   <tfoot>
                     <tr>
                       <td>
-                        <a href="{{ url('register') }}" class="btn btn-secondary btn-block btn-lg">{!! trans('website.get_started') !!}</a>
+                        <a href="{{ url('register') }}" class="btn btn-outline-dark-ghost btn-block btn-lg">{!! trans('website.get_started') !!}</a>
                       </td>
                     </tr>
                   </tfoot>
