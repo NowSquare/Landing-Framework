@@ -10,8 +10,8 @@ return array(
 
   "header" => "Rapid Marketing",
   "header_01_line" => "Landing Pages, lijsten, auto-responders en Eddystone beacons",
-  "header_cta" => "Begin nu",
-  "get_started" => "Probeer uit",
+  "header_cta" => "Probeer gratis uit",
+  "get_started" => "Proefabonnement",
   "pricing" => "Prijzen",
   "dashboard" => "Dashboard",
   "login" => "Login",
