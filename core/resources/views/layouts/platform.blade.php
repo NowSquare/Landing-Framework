@@ -38,10 +38,17 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
 
   <!-- Scripts -->
   <script src="{{ url('assets/js/scripts.min.js') }}"></script>
-<?php if (\App::getLocale() != 'en') { ?>
-  <script src="{{ url('assets/js/moment/' . \App::getLocale() . '.js') }}"></script>
-  <script>moment.lang('{{ \App::getLocale() }}');</script>
-<?php } ?>
+<?php 
+if (\App::getLocale() != 'en') { 
+  $moment_locale_path = 'assets/js/moment/' . \App::getLocale() . '.js';
+  if (\File::exists(base_path() . '../../' . $moment_locale_path)) {
+?>
+  <script src="{{ url($moment_locale_path) }}"></script>
+  <script>moment.locale('{{ \App::getLocale() }}');</script>
+<?php
+  } 
+}
+?>
 
   <!-- Fonts -->
   <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
