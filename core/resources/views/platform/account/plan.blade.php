@@ -340,6 +340,11 @@ if (\Auth::user()->plan_id == $plan->id) {
   if ($monthly_order_url != '') $btn_link_monthly = 'javascript:openExternalPurchaseUrl(\'' . $monthly_order_url . $payment_link_suffix . '\');';
   if ($annual_order_url != '') $btn_link_annual = 'javascript:openExternalPurchaseUrl(\'' . $annual_order_url . $payment_link_suffix . '\');';
 
+  if (env('PAYMENT_TEST', false)) {
+    $btn_link_monthly = 'javascript:openExternalPurchaseUrlDemo();';
+    $btn_link_annual = 'javascript:openExternalPurchaseUrlDemo();';
+  }
+
   $btn_target = '';
   //$btn_target = ($order_url != '') ? '_blank' : '';
   $btn_class = 'warning';
@@ -496,6 +501,26 @@ function openExternalPurchaseUrl(url) {
   }).then(function (result) {
 
     window.open(url);
+
+  }, function (dismiss) {
+    // Do nothing on cancel
+    // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
+  });
+}
+
+  
+function openExternalPurchaseUrlDemo() {
+
+  swal({
+    title: "{{ trans('global.change_plan') }}", 
+    text: "{{ trans('global.upgrade_before_link') }}", 
+    showCancelButton: true,
+    cancelButtonText: "{{ trans('global.cancel') }}",
+    confirmButtonColor: "#138dfa",
+    confirmButtonText: "{{ trans('global.got_it') }}"
+  }).then(function (result) {
+
+    alert('Disabled in demo');
 
   }, function (dismiss) {
     // Do nothing on cancel
