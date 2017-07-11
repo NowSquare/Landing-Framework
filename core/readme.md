@@ -57,7 +57,6 @@ Once the configuration file has been created, you may update the Supervisor conf
 `sudo supervisorctl update`
 
 `sudo supervisorctl start name_of_your_app:*`
-`sudo supervisorctl start 0landingframework:*`
 
 For more information on Supervisor, consult the [Supervisor documentation](http://supervisord.org/index.html).
 
@@ -69,7 +68,7 @@ You can try to restart the service with this command:
 ## Mailgun webhooks
 To track email clicks and opens, we have to configure Mailgun webhooks. Log in to your Mailgun account, click *Webhooks* and enter the following URL for all events you want to track:
 
-`https://try.landingframework.com/ec/mg/event`
+`https://app.example.com/ec/mg/event`
 
 ## Avangate
 Update callback urls in Avangate account.
