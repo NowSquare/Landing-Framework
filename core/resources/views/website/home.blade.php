@@ -251,8 +251,10 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
             <div class="row">
               <div class="col-12">
 <?php /*
-                <img src="{{ $reseller->logo_square }}" style="height: 96px;" alt="{{ $reseller->name }}">*/ ?>
-                <h1 class="display-3">{!! trans('website.header') !!}</h1>
+                <img src="{{ $reseller->logo_square }}" style="height: 96px;" alt="{{ $reseller->name }}">
+                <h1 class="display-3">{!! trans('website.header') !!}</h1>*/ ?>
+                <h1 class="display-3">{!! $reseller->name !!}</h1>
+
                 <p class="lead">{!! trans('website.header_01_line') !!}</p>
                 <div class="btn-container mt-3 mb-5">
                   <a class="btn btn-outline-ghost btn-xlg btn-pill" href="{{ url('login') }}" role="button">{!! trans('website.header_cta') !!}</a>

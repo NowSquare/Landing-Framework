@@ -9,9 +9,9 @@ return array(
 	*/
 
   "header" => "Rapid Marketing",
-  "header_01_line" => "Landing Pages, Lists, Email Automation and Eddystone Beacons",
-  "header_cta" => "Get Started For Free",
-  "get_started" => "Get Started",
+  "header_01_line" => "Landing pages, lists, email automation and Eddystone beacons",
+  "header_cta" => "Get started for free",
+  "get_started" => "Get started",
   "pricing" => "Pricing",
   "dashboard" => "Dashboard",
   "login" => "Login",
