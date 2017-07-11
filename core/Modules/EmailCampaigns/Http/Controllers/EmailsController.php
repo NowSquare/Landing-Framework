@@ -716,7 +716,7 @@ class EmailsController extends Controller
           $email->last_test_email = $mailto;
           $email->save();
 
-          $job = (new SendTestEmail($mailto, $email));
+          $job = (new SendTestEmail(auth()->user(), $mailto, $email));
           dispatch($job);
 
           return response()->json([

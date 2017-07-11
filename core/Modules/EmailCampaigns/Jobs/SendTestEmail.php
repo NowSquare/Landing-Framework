@@ -13,6 +13,7 @@ class SendTestEmail implements ShouldQueue
 {
     use InteractsWithQueue, SerializesModels, Queueable;
 
+    protected $user;
     protected $mailto;
     protected $email;
 
@@ -21,8 +22,9 @@ class SendTestEmail implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($mailto, Email $email)
+    public function __construct($user, $mailto, Email $email)
     {
+        $this->user = $user;
         $this->mailto = $mailto;
         $this->email = $email;
     }
@@ -42,15 +44,17 @@ class SendTestEmail implements ShouldQueue
       $html = \Modules\EmailCampaigns\Http\Controllers\FunctionsController::parseEmail($this->mailto, $view);
       $subject = \Modules\EmailCampaigns\Http\Controllers\FunctionsController::parseString($this->mailto, $this->email->subject);
 
-      $mail_from = ($this->email->emailCampaign->mail_from == '') ? auth()->user()->email : $this->email->emailCampaign->mail_from;
-      $mail_from_name = ($this->email->emailCampaign->mail_from_name == '') ? auth()->user()->name : $this->email->emailCampaign->mail_from_name;
+      $mail_from = ($this->email->emailCampaign->mail_from == '') ? $this->user->email : $this->email->emailCampaign->mail_from;
+      $mail_from_name = ($this->email->emailCampaign->mail_from_name == '') ? $this->user->name : $this->email->emailCampaign->mail_from_name;
 
-      $response = \Mailgun::raw($html, function ($message) use ($subject, $mail_from, $mail_from_name) {
+      $mailto = $this->mailto;
+
+      $response = \Mailgun::raw($html, function ($message) use ($subject, $mail_from, $mail_from_name, $mailto) {
         $message
           ->subject($subject)
           ->from($mail_from, $mail_from_name)
           ->replyTo($mail_from, $mail_from_name)
-          ->to($this->mailto)
+          ->to($mailto)
           ->trackClicks(false)
           ->trackOpens(false);
       });
