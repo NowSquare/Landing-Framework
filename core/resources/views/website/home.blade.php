@@ -151,7 +151,6 @@
       });
 
       $( '.price_switch' ).change( function () {
-        console.log(0);
         if ( this.checked ) {
           $( '.price_switch' ).prop( 'checked', true );
           $( '.price-monthly' ).hide();
