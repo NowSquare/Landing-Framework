@@ -45,7 +45,8 @@ autorestart=true
 user=serverpilot
 numprocs=8
 redirect_stderr=true
-stdout_logfile=/srv/users/serverpilot/apps/name_of_your_app/supervisor.log``` 
+stdout_logfile=/srv/users/serverpilot/apps/name_of_your_app/supervisor.log
+``` 
 
 In this example, the `numprocs` directive will instruct Supervisor to run 8 `queue:work` processes and monitor all of them, automatically restarting them if they fail. Of course, you should change the `queue:work sqs` portion of the `command` directive to reflect your desired queue connection.
 
