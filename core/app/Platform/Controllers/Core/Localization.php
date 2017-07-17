@@ -36,7 +36,9 @@ class Localization extends \App\Http\Controllers\Controller {
     foreach($lang_dirs as $lang)
     {
       $language = include $lang . '/i18n.php';
-      $languages[$language['language_code']] = $language['language_title'];
+      if (isset($language['language_is_active']) && $language['language_is_active']) {
+        $languages[$language['language_code']] = $language['language_title'];
+      }
     }
 
     return $languages;
@@ -61,8 +63,10 @@ class Localization extends \App\Http\Controllers\Controller {
       if(\File::isFile($language . '/i18n.php'))
       {
         $i18n = include($language . '/i18n.php');
-        $active = ($i18n['language_code'] == $current_language) ? true : false;
-        $return[] = array('code' => $i18n['language_code'], 'title' => $i18n['language_title'], 'active' => $active);
+        if (isset($i18n['language_is_active']) && $i18n['language_is_active']) {
+          $active = ($i18n['language_code'] == $current_language) ? true : false;
+          $return[] = array('code' => $i18n['language_code'], 'title' => $i18n['language_title'], 'active' => $active);
+        }
       }
     }
 
