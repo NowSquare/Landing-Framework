@@ -53,11 +53,7 @@ Route::get('/', function() use($url_parts, $custom_site, $reseller) {
   } else {
 
     // Public website
-    if (env('REAL_ESTATE', false)) {
-      return App::make('\Modules\Properties\Http\Controllers\WebsiteController')->home();
-    } else {
-      return App::make('\Platform\Controllers\Website\WebsiteController')->home();
-    }
+    return App::make('\Platform\Controllers\Website\WebsiteController')->home();
   }
 });
 
