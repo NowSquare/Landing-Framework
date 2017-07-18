@@ -43,11 +43,11 @@ class Reseller extends \App\Http\Controllers\Controller {
     } else {
       $reseller = new \stdClass;
       $reseller->url = url('/');
-      $reseller->name = '';
+      $reseller->name = env('APP_NAME', config()->get('app.name'));
       $reseller->active = false;
       $reseller->favicon = url('favicon.ico');
-      $reseller->logo = url('assets/images/branding/logo-hori.svg');
-      $reseller->logo_square = url('assets/images/branding/logo-square.svg');
+      $reseller->logo = url('assets/branding/icon-light.svg');
+      $reseller->logo_square = url('assets/branding/square.svg');
       $reseller->page_title = 'Not found';
     }
     
