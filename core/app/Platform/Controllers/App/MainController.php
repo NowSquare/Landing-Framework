@@ -33,7 +33,7 @@ class MainController extends \App\Http\Controllers\Controller {
       $enabled = config($namespace . '.enabled');
       $creatable = config($namespace . '.creatable');
 
-      if ($enabled && $creatable && \Gate::allows('limitation', $namespace . '.visible')) {
+      if ($enabled && \Gate::allows('limitation', $namespace . '.visible')) {
         $active_modules[] = [
           "namespace" => $namespace,
           "icon" => config($namespace . '.icon'),
