@@ -8,10 +8,10 @@
 
   <div class="row">
     <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
-      <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($url . '?preview=1', 'QRCODE', 10, 10, [0,0,0]) }}" alt="barcode" style="width:100%;">
+      <img src="data:image/png;base64,{{ DNS2D::getBarcodePNG($url . '?preview=1&token=' . $jwt_token, 'QRCODE', 10, 10, [0,0,0]) }}" alt="barcode" style="width:100%;">
     </div>
     <div class="col-xs-12">
-      <p class="lead text-center" style="margin: 3rem 0">{{ $url }}?preview=1</p>
+      <textarea class="form-control text-center m-t-20" rows="4">{{ $url }}?preview=1&token={{ $jwt_token }}</textarea>
     </div>
 
     <div class="editor-modal-footer">

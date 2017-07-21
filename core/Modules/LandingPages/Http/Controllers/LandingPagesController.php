@@ -8,6 +8,8 @@ use Illuminate\Routing\Controller;
 use \Platform\Controllers\Core;
 use Modules\LandingPages\Http\Models;
 use Embed\Embed;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class LandingPagesController extends Controller
 {
@@ -28,7 +30,20 @@ class LandingPagesController extends Controller
           $variant = 1;
 
           if ($preview) {
-            $page = Models\Page::where('user_id', Core\Secure::userId())->where('id', $landing_page_id)->first();
+            // Check if token is set for preview
+            $token = request()->input('token', false);
+
+            if ($token !== false) { 
+              // Get user from JWT token
+              if (! $auth = JWTAuth::parseToken()) {
+                throw \Exception('JWTAuth unable to parse token from request');
+              }
+              $user = $auth->toUser();
+            } else {
+              $user = auth()->user();
+            }
+
+            $page = Models\Page::where('user_id', $user->id)->where('id', $landing_page_id)->first();
 
             if (! empty($page)) {
               $view = 'public.landingpages::' . Core\Secure::staticHash($page->user_id) . '.' . Core\Secure::staticHash($page->landing_site_id, true) . '.' . $local_domain . '.' . $variant . '.index';
@@ -800,6 +815,9 @@ class LandingPagesController extends Controller
     {
       $url = $request->input('url', '');
 
-      return view('landingpages::modals.qr', compact('url'));
+      // Create a JWT token
+      $jwt_token = JWTAuth::fromUser(auth()->user());
+
+      return view('landingpages::modals.qr', compact('url', 'jwt_token'));
     }
 }
