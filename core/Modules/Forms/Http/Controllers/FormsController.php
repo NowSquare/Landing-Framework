@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use \Platform\Controllers\Core;
 use Modules\Forms\Http\Models;
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
 
 class FormsController extends Controller
 {
@@ -25,7 +27,20 @@ class FormsController extends Controller
           $variant = 1;
 
           if ($preview) {
-            $form = Models\Form::where('user_id', Core\Secure::userId())->where('id', $form_id)->first();
+            // Check if token is set for preview
+            $token = request()->input('token', false);
+
+            if ($token !== false) { 
+              // Get user from JWT token
+              if (! $auth = JWTAuth::parseToken()) {
+                throw \Exception('JWTAuth unable to parse token from request');
+              }
+              $user = $auth->toUser();
+            } else {
+              $user = auth()->user();
+            }
+
+            $form = Models\Form::where('user_id', $user->id)->where('id', $form_id)->first();
 
             if (! empty($form)) {
               $view = 'public.forms::' . Core\Secure::staticHash($form->user_id) . '.' . $local_domain . '.' . $variant . '.index';

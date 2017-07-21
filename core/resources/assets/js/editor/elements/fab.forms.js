@@ -251,4 +251,16 @@ function lfInitFabForms() {
     // Hide dropdown
     $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
   });
+
+  /* 
+    Open QR
+  */
+
+  $('body').on('click', '.-x-el-fab-view-qr', function() {
+    lfOpenModal(_lang["url"] + '/landingpages/editor/modal/qr?url=' + lf_published_url);
+
+    // Hide dropdown
+    $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);
+  });
+
 }
