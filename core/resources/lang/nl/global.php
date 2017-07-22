@@ -97,6 +97,7 @@ return array(
   "form_not_found" => "Formulier niet gevonden",
   "page_not_published" => "Pagina niet gepubliceerd",
   "form_not_published" => "Formulier niet gepubliceerd",
+  "link_expired" => "Link is verlopen",
 
   /*
    |--------------------------------------------------------------------------

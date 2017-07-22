@@ -97,6 +97,7 @@ return array(
   "form_not_found" => "Form not found",
   "page_not_published" => "Page not published",
   "form_not_published" => "Form not published",
+  "link_expired" => "Link is expired",
 
   /*
    |--------------------------------------------------------------------------

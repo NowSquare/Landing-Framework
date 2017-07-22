@@ -38,7 +38,11 @@ class LandingPagesController extends Controller
               if (! $auth = JWTAuth::parseToken()) {
                 throw \Exception('JWTAuth unable to parse token from request');
               }
-              $user = $auth->toUser();
+              try {
+                $user = $auth->toUser();
+              } catch(\Exception $e) {
+                return response()->view('layouts.simple-message', ['icon' => '&#xE157;', 'msg' => trans('global.link_expired')], 404);
+              }
             } else {
               $user = auth()->user();
             }
