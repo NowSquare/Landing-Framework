@@ -28,6 +28,8 @@ Route::group(['middleware' => 'web', 'prefix' => 'ec', 'namespace' => 'Modules\E
 
 Route::group(['middleware' => ['web', 'funnel', 'limitation:emailcampaigns.visible'], 'prefix' => 'emailcampaigns', 'namespace' => 'Modules\EmailCampaigns\Http\Controllers'], function()
 {
+  // Secured routes
+  Route::group(['middleware' => 'auth:web'], function () {
     Route::get('/', 'EmailCampaignsController@showCampaigns');
     Route::get('create', 'EmailCampaignsController@showCreateCampaign');
     Route::post('create', 'EmailCampaignsController@postCreateCampaign');
@@ -60,4 +62,5 @@ Route::group(['middleware' => ['web', 'funnel', 'limitation:emailcampaigns.visib
 
     // Email variables
     Route::get('emails/editor/variables', 'EmailsController@getEmailVariables');
+  });
 });
