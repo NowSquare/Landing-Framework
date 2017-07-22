@@ -96,6 +96,7 @@ class FunnelController extends \App\Http\Controllers\Controller {
 
       $funnel->name = $name;
       $funnel->user_id = auth()->user()->id;
+      $funnel->api_token = str_random(60);
       //$funnel->language = (auth()->check()) ? auth()->user()->language : Core\Reseller::get()->default_language;
       //$funnel->timezone = (auth()->check()) ? auth()->user()->timezone : Core\Reseller::get()->default_timezone;
 
