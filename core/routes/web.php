@@ -67,6 +67,9 @@ Route::get('/', function() use($url_parts, $custom_site, $reseller) {
 Route::get('assets/javascript', '\Platform\Controllers\App\AssetController@appJs');
 Route::get('assets/translations', '\Platform\Controllers\App\AssetController@appJsPublic');
 
+// Thumbnails
+Route::get('platform/thumbnail', '\Platform\Controllers\Core\Thumb@getNail');
+
 // Secured web routes
 Route::group(['middleware' => 'auth:web'], function () {
 
@@ -115,6 +118,7 @@ Route::group(['middleware' => 'auth:web'], function () {
     // Media
     Route::get('platform/media/browser', '\Platform\Controllers\App\MediaController@showBrowser');
     Route::get('platform/media/picker', '\Platform\Controllers\App\MediaController@showPicker');
+    Route::get('platform/media/picker/{input_id}/{callback?}', '\Platform\Controllers\App\MediaController@popUp');
     Route::any('elfinder/connector', '\Barryvdh\Elfinder\ElfinderController@showConnector');
     Route::get('elfinder/tinymce', '\Platform\Controllers\App\MediaController@showTinyMCE');
   });
