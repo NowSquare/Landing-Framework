@@ -698,7 +698,7 @@ function unblockUI(el) {
  */
 
 function showSaved() {
-  $.Notification.notify('success', 'top right', _lang["saved"], _lang["changes_saved"]);
+  $.Notification.notify('success', 'top right', _lang["saved"], _lang["save_succes"]);
 }
 
 /*
@@ -766,65 +766,76 @@ function select2() {
     var select2_choices;
 
     $('.select2-datalist').select2({
-        allowClear: false
-      })
-      .on('select2:close', function() {
-        var el = $(this);
-        if (el.val() === "NEW") {
-          var title = el.attr('data-title');
-          var post_url = el.attr('data-post');
-          var csrf_token = el.attr('data-token');
+      allowClear: false
+    })
+    .on('select2:close', function() {
+      var el = $(this);
+      if (el.val() === "NEW") {
+        var title = el.attr('data-title');
+        var post_url = el.attr('data-post');
+        var csrf_token = el.attr('data-token');
 
-          swal({
-            title: title,
-            type: "input",
-            showCancelButton: true,
-            closeOnConfirm: false,
-            animation: "slide-from-top"
-          }).then(function (inputValue) {
-              if (inputValue === false) {
-                el.val('').trigger("change");
-                return false;
+        swal({
+          title: title,
+          input: "text",
+          showCancelButton: true,
+          closeOnConfirm: false,
+          allowOutsideClick: false,
+          animation: "slide-from-top",
+          showLoaderOnConfirm: true,
+          preConfirm: function (inputValue) {
+            return new Promise(function (resolve, reject) {
+              if (inputValue == '') {
+                reject(_lang['enter_value'])
+              } else {
+                resolve()
               }
+            })
+          },
+        }).then(function (inputValue) {
+          if (inputValue === false) {
+            el.val('').trigger("change");
+            return false;
+          }
 
-              if (inputValue === "") {
-                swal.showInputError(_lang['input_required']);
-                return false;
-              }
+          if (inputValue === "") {
+            swal.showInputError(_lang['enter_value']);
+            return false;
+          }
 
-              var request = $.ajax({
-                url: post_url,
-                type: 'post',
-                data: {
-                  inputValue: inputValue,
-                  _token: csrf_token
-                },
-                dataType: 'json'
-              });
+          var request = $.ajax({
+            url: post_url,
+            type: 'post',
+            data: {
+              inputValue: inputValue,
+              _token: csrf_token
+            },
+            dataType: 'json'
+          });
 
-              request.done(function(json) {
-                swal.close();
-                if (typeof json.id !== null) {
-                  el.append('<option value="' + json.id + '">' + inputValue + '</option>')
-                    .val(json.id);
-                } else {
-                  el.append('<option value="' + inputValue + '">' + inputValue + '</option>')
-                    .val(inputValue);
-                }
-              });
+          request.done(function(json) {
+            swal.close();
+            if (typeof json.id !== null) {
+              el.append('<option value="' + json.id + '">' + inputValue + '</option>')
+                .val(json.id);
+            } else {
+              el.append('<option value="' + inputValue + '">' + inputValue + '</option>')
+                .val(inputValue);
+            }
+          });
 
-              request.fail(function(jqXHR, textStatus) {
-                swal.close();
-                alert('Request failed, please try again (' + textStatus + ')');
-              });
+          request.fail(function(jqXHR, textStatus) {
+            swal.close();
+            alert('Request failed, please try again (' + textStatus + ')');
+          });
 
-              return false;
-            }, function (dismiss) {
-              // Do nothing on cancel
-              // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
-            });
-        }
-      });
+          return false;
+        }, function (dismiss) {
+          el.val('').trigger("change");
+          return false;
+        });
+      }
+    });
 
     $('.select2-multiple').select2();
 

@@ -22,6 +22,7 @@ return array(
 	"confirm_leaving_page" => "Het lijkt erop dat er veranderingen zijn aangebracht. Als u vertrekt voordat u opslaat, worden alle wijzigingen verloren.",
 	"yes_delete" => "Ja, verwijder",
 	"save_succes" => "Wijzigingen succesvol opgeslagen.",
+	"enter_value" => "Vul a.u.b. een waarde in.",
 	"publish_succes" => "Wijzigingen succesvol gepubliceerd.",
 	"unpublish_succes" => "Publicatie is succesvol teruggedraaid.",
   "background" => "Achtergrond",
