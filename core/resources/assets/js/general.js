@@ -444,19 +444,17 @@ function bindMediaBrowser() {
         transition: 'none', 
         fadeOut: 0,
         height: parseInt($(window).height()) + 42, 
-        onLoad:function() {
+        onOpen: function() {
+          $(window).resize(colorBoxResizer);
+        }, 
+        onLoad: function() {
           $('html, body').css('overflow', 'hidden'); // page scrollbars off
         }, 
-        onClosed:function() {
+        onClosed: function() {
+          $(window).off("resize", colorBoxResizer);
           $('html, body').css('overflow', ''); // page scrollbars on
         }
       });
-    });
-  });
-
-  $(window).on("resize", function(){
-    $.fn.colorbox.resize({
-      height: parseInt($(window).height()) + 42
     });
   });
 
@@ -469,6 +467,12 @@ function bindMediaBrowser() {
     $('#' + image_input).on('change', function() {
       updateImagePreview(self);
     });
+  });
+}
+
+function colorBoxResizer() {
+  $.fn.colorbox.resize({
+    height: parseInt($(window).height()) + 42
   });
 }
 
