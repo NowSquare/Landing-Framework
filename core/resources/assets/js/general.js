@@ -472,7 +472,8 @@ function bindMediaBrowser() {
 
 function colorBoxResizer() {
   $.fn.colorbox.resize({
-    height: parseInt($(window).height()) + 42
+    height: parseInt($(window).height()) + 42,
+    width: parseInt($(window).width())
   });
 }
 
