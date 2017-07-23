@@ -323,6 +323,45 @@ gulp.task('editor_scripts', function() {
   return mergedStream;
 });
 
+gulp.task('tinymce_scripts', function() {
+  return gulp.src([
+      'bower_components/tinymce/tinymce.js',
+      'bower_components/tinymce/plugins/media/plugin.js',
+      'bower_components/tinymce/plugins//table/plugin.js',
+      'bower_components/tinymce/plugins/anchor/plugin.js',
+      'bower_components/tinymce/plugins/advlist/plugin.js',
+      'bower_components/tinymce/plugins/lists/plugin.js',
+      'bower_components/tinymce/plugins/link/plugin.js',
+      'bower_components/tinymce/plugins/paste/plugin.js',
+      'bower_components/tinymce/plugins/contextmenu/plugin.js',
+      'bower_components/tinymce/plugins/textpattern/plugin.js',
+      'bower_components/tinymce/plugins/autolink/plugin.js',
+      'bower_components/tinymce/plugins/image/plugin.js',
+      'bower_components/tinymce/plugins/code/plugin.js',
+      'bower_components/tinymce/plugins/colorpicker/plugin.js',
+      'bower_components/tinymce/plugins/textcolor/plugin.js',
+      'bower_components/tinymce/plugins/preview/plugin.js',
+      'bower_components/tinymce/plugins/charmap/plugin.js',
+      'bower_components/tinymce/plugins/hr/plugin.js',
+      'bower_components/tinymce/plugins/fullscreen/plugin.js',
+      'bower_components/tinymce/plugins/nonbreaking/plugin.js',
+      'bower_components/tinymce/plugins/imagetools/plugin.js',
+      'bower_components/tinymce/plugins/template/plugin.js',
+      'bower_components/tinymce/plugins/save/plugin.js',
+      'bower_components/tinymce/themes/inlite/theme.js',
+      'bower_components/tinymce/themes/modern/theme.js',
+    ])
+    .pipe(concat('tinymce.js'))
+    .pipe(gulp.dest('../assets/js'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify({
+      mangle: true
+    }))
+    .pipe(gulp.dest('../assets/js'))
+    .pipe(livereload())
+    .pipe(notify({ message: 'Scripts task complete' }));
+});
+
 gulp.task('scripts_map', function() {
   return gulp.src([
       'bower_components/jvectormap/jquery-jvectormap.js',
