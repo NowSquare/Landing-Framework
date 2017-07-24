@@ -32,7 +32,7 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
 }
 ?>
 </head>
-<body>
+<body class="full-height">
 
 @yield('content')
 

@@ -30,6 +30,20 @@ function checkEditorModal() {
 */
 }
 
+/*
+ * Set body height to match browser viewport, 
+ * so clicking outside dropdowns, popovers, etc. behaves as expected
+ */
+
+$(function() {
+  function bodyFullHeight() {
+    $('body.full-height').css('min-height', parseInt($(window).height()) - 60);
+  };
+
+  $(window).resize(bodyFullHeight);
+  bodyFullHeight();
+});
+
 /**
  * Cookie helper functions
  */
