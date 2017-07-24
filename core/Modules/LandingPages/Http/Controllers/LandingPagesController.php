@@ -29,7 +29,7 @@ class LandingPagesController extends Controller
 
           $variant = 1;
 
-          if ($preview) {
+          if ($preview && auth()->check()) {
             // Check if token is set for preview
             $token = request()->input('token', false);
 
