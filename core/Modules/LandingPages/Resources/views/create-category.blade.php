@@ -147,14 +147,12 @@ $('.onClickPreview').on('click', function() {
     reposition: false,
     transition: 'none', 
     fadeOut: 0,
-    onOpen:function() {
+    onOpen: function() {
+      $(window).resize(colorBoxResizer);
       $('#colorbox').addClass('colorbox-xl');
     },
-    onLoad:function() {
-      //$('html, body').css('overflow', 'hidden'); // page scrollbars off
-    }, 
     onClosed:function() {
-      //$('html, body').css('overflow', ''); // page scrollbars on
+      $(window).off("resize", colorBoxResizer);
       $('#colorbox').removeClass('colorbox-xl');
     },
     onComplete : function() { 
