@@ -339,6 +339,7 @@ class FormsController extends Controller
       \phpQuery::selectDocument($dom);
 
       // Add demo
+      pq('head')->find('script[src]:first')->before(PHP_EOL . '<script class="-x-editor-asset" src="' . url('assets/translations?lang=' . \App::getLocale()) . '&editor=1"></script>');
       pq('head')->find('script[src]:first')->before(PHP_EOL . '<script>var lf_demo = true;</script>');
 
       $html = Core\Parser::beautifyHtml($dom);
