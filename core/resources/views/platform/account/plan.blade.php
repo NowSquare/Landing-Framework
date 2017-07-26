@@ -41,6 +41,7 @@ $col_span = 'col-md-12';
 if ($plan_count == 2) $col_span = 'col-md-6';
 if ($plan_count%3 == 0) $col_span = 'col-md-4';
 if ($plan_count%4 == 0) $col_span = 'col-md-4';
+if ($plan_count%5 == 0) $col_span = 'col-md-6';
 
 if (! empty($default_plan) && $default_plan->active == 1) {
   $currency = $default_plan->currency;
