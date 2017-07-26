@@ -58,7 +58,7 @@ var admin_plans_table = $('#dt-table-admin_plans').DataTable({
     data: "name",
     sortable: false
   }, {
-    data: "price1_string",
+    data: "price",
     width: 120,
     sortable: false
   }, {
@@ -93,6 +93,12 @@ var admin_plans_table = $('#dt-table-admin_plans').DataTable({
         return '<div data-moment="fromNowDateTime">' + data + '</div>';
       },
       targets: [3] /* Column to re-render */
+    },
+    {
+      render: function (data, type, row) {
+        return '<div class="text-right">' + data + '</div>';
+      },
+      targets: [2]
     },
     {
       render: function (data, type, row) {
@@ -177,7 +183,7 @@ $('#dt-table-admin_plans_wrapper .dataTables_filter input').attr('placeholder', 
       <tr>
         <th></th>
         <th>{{ trans('global.name') }}</th>
-        <th>{{ trans('global.price') }}</th>
+        <th class="text-right">{{ trans('global.price') }}</th>
         <th>{{ trans('global.created') }}</th>
         <th class="text-center">{{ trans('global.default') }}</th>
         <th class="text-center">{{ trans('global.active') }}</th>

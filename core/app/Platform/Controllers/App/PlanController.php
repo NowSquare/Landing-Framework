@@ -334,7 +334,7 @@ class PlanController extends \App\Http\Controllers\Controller {
     $length = $request->input('length', 10);
     $data = array();
 
-    $aColumn = array('order', 'name', 'price1', 'domain', 'created_at', 'active');
+    $aColumn = array('order', 'name', 'monthly_price', 'domain', 'created_at', 'active');
 
     if($q != '')
     {
@@ -360,20 +360,33 @@ class PlanController extends \App\Http\Controllers\Controller {
     $recordsTotal = $count;
     $recordsFiltered = $count;
 
+    $currencyRepository = new \CommerceGuys\Intl\Currency\CurrencyRepository;
+    $numberFormatRepository = new \CommerceGuys\Intl\NumberFormat\NumberFormatRepository;
+    $numberFormat = $numberFormatRepository->get(auth()->user()->language);
+    $decimalFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat);
+    $currencyFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat, \CommerceGuys\Intl\Formatter\NumberFormatter::CURRENCY);
+
     foreach($oData as $row) {
       // Make undeletable if plan has users
       $undeletable = ($row->id ==1 ) ? 1 : 0;
 
       $name = $row->name;
-      $price1_string = $row->price1_string;
       if ($row->id == 1) $name .= ' <i class="fa fa-lock" aria-hidden="true"></i>';
       if ($row->id == 1) $price1_string = '-';
+
+      if (trans('i18n.default_currency') != $row->currency && isset($row->monthly_price_currencies[trans('i18n.default_currency')])) {
+        $monthly_price = $currencyFormatter->formatCurrency($row->monthly_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
+        $annual_price = $currencyFormatter->formatCurrency($row->annual_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
+      } else {
+        $monthly_price = $currencyFormatter->formatCurrency($row->monthly_price, $currencyRepository->get($row->currency, auth()->user()->language));
+        $annual_price = $currencyFormatter->formatCurrency($row->annual_price, $currencyRepository->get($row->currency, auth()->user()->language));
+      }
 
       $data[] = array(
         'DT_RowId' => 'row_' . $row->id,
         'order' => $row->order,
         'name' => $name,
-        'price1_string' => $price1_string,
+        'price' => $monthly_price . ' / ' . $annual_price,
         'default' => $row->default,
         'active' => $row->active,
         'created_at' => $row->created_at->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s'),
