@@ -372,7 +372,6 @@ class PlanController extends \App\Http\Controllers\Controller {
 
       $name = $row->name;
       if ($row->id == 1) $name .= ' <i class="fa fa-lock" aria-hidden="true"></i>';
-      if ($row->id == 1) $price1_string = '-';
 
       if (trans('i18n.default_currency') != $row->currency && isset($row->monthly_price_currencies[trans('i18n.default_currency')])) {
         $monthly_price = $currencyFormatter->formatCurrency($row->monthly_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
@@ -382,11 +381,15 @@ class PlanController extends \App\Http\Controllers\Controller {
         $annual_price = $currencyFormatter->formatCurrency($row->annual_price, $currencyRepository->get($row->currency, auth()->user()->language));
       }
 
+      $price = $monthly_price . ' / ' . $annual_price;
+
+      if ($row->id == 1) $price = '-';
+
       $data[] = array(
         'DT_RowId' => 'row_' . $row->id,
         'order' => $row->order,
         'name' => $name,
-        'price' => $monthly_price . ' / ' . $annual_price,
+        'price' => $price,
         'default' => $row->default,
         'active' => $row->active,
         'created_at' => $row->created_at->timezone(\Auth::user()->timezone)->format('Y-m-d H:i:s'),
