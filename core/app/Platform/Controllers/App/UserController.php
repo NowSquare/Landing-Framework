@@ -555,7 +555,7 @@ class UserController extends \App\Http\Controllers\Controller {
         $user->timezone = $input['timezone'];
         $user->language = $input['language'];
 
-        if ($qs['user_id'] > 1 && array_has(trans('global.user_roles'), $user->role)) 
+        if ($qs['user_id'] > 1 && \Gate::allows('owner-management')) 
         {
           $user->plan_id = (is_numeric($input['plan_id'])) ? $input['plan_id'] : null;
           $user->active = $input['active'];
