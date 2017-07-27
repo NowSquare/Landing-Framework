@@ -524,7 +524,7 @@ class UserController extends \App\Http\Controllers\Controller {
         'new_password' => request()->input('new_password'),
         'active' => (bool) request()->input('active', false),
         'mail_login' => (bool) request()->input('mail_login', false),
-        'role' =>request()->input('role'),
+        'role' =>request()->input('role', null),
         'plan_id' =>request()->input('plan_id', null),
         'reseller_id' =>request()->input('reseller_id', null),
         'trial_ends_at' =>request()->input('trial_ends_at', null),
@@ -559,10 +559,10 @@ class UserController extends \App\Http\Controllers\Controller {
         {
           $user->plan_id = (is_numeric($input['plan_id'])) ? $input['plan_id'] : null;
           $user->active = $input['active'];
-          $user->role = $input['role'];
+          if ($input['role'] != null) $user->role = $input['role'];
 
           if (\Gate::allows('owner-management')) {
-            $user->reseller_id = $input['reseller_id'];
+            if ($input['reseller_id'] != null) $user->reseller_id = $input['reseller_id'];
             $user->trial_ends_at = ($input['trial_ends_at'] != null) ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $input['trial_ends_at'], \Auth::user()->timezone)->tz('UTC') : null;
             $user->expires = ($input['expires'] != null) ? \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $input['expires'], \Auth::user()->timezone)->tz('UTC') : null;
           }
