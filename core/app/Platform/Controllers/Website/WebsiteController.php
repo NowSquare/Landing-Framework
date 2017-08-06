@@ -59,9 +59,13 @@ class WebsiteController extends \App\Http\Controllers\Controller {
     $decimalFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat);
     $currencyFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat, \CommerceGuys\Intl\Formatter\NumberFormatter::CURRENCY);
 
-    $header_image = (\File::exists(base_path() . '../../templates/assets/images/visuals/landing-screens-' . \App::getLocale() . '.png')) ? url('templates/assets/images/visuals/landing-screens-' . \App::getLocale() . '.png') : url('templates/assets/images/visuals/landing-screens-en.png');
+    $header_gradient_start = (isset($reseller->settings['header_gradient_start'])) ? $reseller->settings['header_gradient_start'] : '#138dfa';
+    $header_gradient_end = (isset($reseller->settings['header_gradient_end'])) ? $reseller->settings['header_gradient_end'] : '#43cfd0';
+    $header_image = (isset($reseller->settings['header_image'])) ? $reseller->settings['header_image'] : '/templates/assets/images/visuals/landing-screens-en.png';
+    $header_title = (isset($reseller->settings['header_title'])) ? $reseller->settings['header_title'] : trans('website.header_01_line');
+    $header_cta = (isset($reseller->settings['header_cta'])) ? $reseller->settings['header_cta'] : trans('website.header_cta');
 
-    return view('website.home', compact('header_image', 'reseller', 'plans', 'default_plan', 'items', 'currencyRepository', 'decimalFormatter', 'currencyFormatter'));
+    return view('website.home', compact('header_gradient_start', 'header_gradient_end', 'header_image', 'header_title', 'header_cta', 'reseller', 'plans', 'default_plan', 'items', 'currencyRepository', 'decimalFormatter', 'currencyFormatter'));
   }
 
 }

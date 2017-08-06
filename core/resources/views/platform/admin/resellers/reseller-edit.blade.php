@@ -85,38 +85,104 @@
             <fieldset>
               <div class="row">
                 <div class="col-md-8">
-                  <div class="form-group">
-                    <label for="logo">{{ trans('global.logo') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('global.logo_help') }}">&#xE887;</i></label>
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="logo" name="logo" autocomplete="off" value="{{ $reseller->logo }}">
-                      <div class="input-group-btn add-on">
-                        <button type="button" class="btn btn-primary" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="logo" data-preview="logo-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
-                        <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="logo-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                  <fieldset>
+                    <legend>{{ trans('global.branding') }}</legend>
+                    <div class="form-group">
+                      <label for="logo">{{ trans('global.logo') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('global.logo_help') }}">&#xE887;</i></label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="logo" name="logo" autocomplete="off" value="{{ $reseller->logo }}">
+                        <div class="input-group-btn add-on">
+                          <button type="button" class="btn btn-primary" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="logo" data-preview="logo-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
+                          <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="logo-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="form-group">
-                    <label for="logo_square">{{ trans('global.logo_square') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('global.logo_square_help') }}">&#xE887;</i></label>
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="logo_square" name="logo_square" autocomplete="off" value="{{ $reseller->logo_square }}">
-                      <div class="input-group-btn add-on">
-                        <button type="button" class="btn btn-primary" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="logo_square" data-preview="logo_square-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
-                        <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="logo_square-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                    <div class="form-group">
+                      <label for="logo_square">{{ trans('global.logo_square') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('global.logo_square_help') }}">&#xE887;</i></label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="logo_square" name="logo_square" autocomplete="off" value="{{ $reseller->logo_square }}">
+                        <div class="input-group-btn add-on">
+                          <button type="button" class="btn btn-primary" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="logo_square" data-preview="logo_square-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
+                          <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="logo_square-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="form-group">
-                    <label for="favicon">{{ trans('global.favicon') }}</label>
-                    <div class="input-group">
-                      <input type="text" class="form-control" id="favicon" name="favicon" autocomplete="off" value="{{ $reseller->favicon }}">
-                      <div class="input-group-btn add-on">
-                        <button type="button" class="btn btn-primary" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="favicon" data-preview="favicon-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
-                        <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="favicon-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                    <div class="form-group">
+                      <label for="favicon">{{ trans('global.favicon') }}</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="favicon" name="favicon" autocomplete="off" value="{{ $reseller->favicon }}">
+                        <div class="input-group-btn add-on">
+                          <button type="button" class="btn btn-primary" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="favicon" data-preview="favicon-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
+                          <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="favicon-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
+
+                  </fieldset>
+                  <fieldset>
+                    <legend>{{ trans('global.website') }}</legend>
+
+                    <div class="form-group m-b-0">
+                      <label for="header_gradient_start">{{ trans('global.header_gradient') }}</label>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-xs-6">
+
+                        <div class="form-group">
+                          <div class="colorpicker-default input-group colorpicker-element colorpicker-component">
+                            <input type="text" name="header_gradient_start" value="{{ $header_gradient_start }}" class="form-control">
+                            <span class="input-group-btn add-on">
+                              <button class="btn btn-white" type="button" style="padding:0; background-color:#fff; border:1px solid #eee;">
+                                <i style="background-color: {{ $header_gradient_start }};height:31px;width:31px"></i>
+                              </button>
+                            </span>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="col-xs-6">
+
+                        <div class="form-group">
+                          <div class="colorpicker-default input-group colorpicker-element colorpicker-component">
+                            <input type="text" name="header_gradient_end" value="{{ $header_gradient_end }}" class="form-control">
+                            <span class="input-group-btn add-on">
+                              <button class="btn btn-white" type="button" style="padding:0; background-color:#fff; border:1px solid #eee;">
+                                <i style="background-color: {{ $header_gradient_end }};height:31px;width:31px"></i>
+                              </button>
+                            </span>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="header_image">{{ trans('global.header_image') }}</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="header_image" name="header_image" autocomplete="off" value="{{ $header_image }}">
+                        <div class="input-group-btn add-on">
+                          <button type="button" class="btn btn-primary" data-toggle="tooltip" title="{{ trans('global.browse') }}" data-type="image" data-id="header_image" data-preview="header_image-preview"> <i class="fa fa-folder-open" aria-hidden="true"></i> </button>
+                          <button type="button" class="btn btn-primary disabled" data-toggle="tooltip" title="{{ trans('global.preview') }}" id="header_image-preview"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="header_title">{{ trans('global.header_title') }}</label>
+                      <input type="text" class="form-control" name="header_title" id="header_title" value="{{ $header_title }}" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="header_cta">{{ trans('global.header_cta') }}</label>
+                      <input type="text" class="form-control" name="header_cta" id="header_cta" value="{{ $header_cta }}" autocomplete="off">
+                    </div>
+
+                  </fieldset>
+
+
                 </div>
               </div>
             </fieldset>

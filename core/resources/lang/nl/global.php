@@ -397,6 +397,12 @@ return array(
   "mailgun_secret" => "Mailgun secret",
   "key" => "Key",
   "affiliate_id" => "Affiliate ID",
+  "branding" => "Huisstijl",
+  "website" => "Website",
+  "header_image" => "Header afbeelding",
+  "header_gradient" => "Header verloop",
+  "header_title" => "Header titel",
+  "header_cta" => "Header Call-to-Action",
 
   /*
    |--------------------------------------------------------------------------

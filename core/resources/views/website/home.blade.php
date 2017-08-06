@@ -183,7 +183,7 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
 <body>
   <section>
     <div class="content text-dark content-padding">
-      <div class="content-overlay" style="background-color:#138dfa">
+      <div class="content-overlay" style="background-color:{{ $header_gradient_start }}">
         <div class="container">
           <div class="row">
             <div class="col-12 text-center col-sm-5 text-sm-left">
@@ -244,7 +244,7 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
 */ ?>
   <section>
     <div class="header text-light">
-      <div class="header-overlay" style="background: #43cfd0; background: linear-gradient(to bottom, #138dfa 0%,#43cfd0 100%);">
+      <div class="header-overlay" style="background: {{ $header_gradient_end }}; background: linear-gradient(to bottom, {{ $header_gradient_start }} 0%,{{ $header_gradient_end }} 100%);">
         <div class="container">
           <div class="header-padding-l text-center no-padding-b">
             <div class="row">
@@ -254,9 +254,9 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
                 <h1 class="display-3">{!! trans('website.header') !!}</h1>*/ ?>
                 <h1 class="display-3">{!! $reseller->name !!}</h1>
 
-                <p class="lead">{!! trans('website.header_01_line') !!}</p>
+                <p class="lead">{!! $header_title !!}</p>
                 <div class="btn-container mt-3 mb-5">
-                  <a class="btn btn-outline-ghost btn-xlg btn-pill" href="{{ url('login') }}" role="button">{!! trans('website.header_cta') !!}</a>
+                  <a class="btn btn-outline-ghost btn-xlg btn-pill" href="{{ url('login') }}" role="button">{!! $header_cta !!}</a>
                 </div>
                 <img src="{{ $header_image }}" alt="" class="img-fluid" style="margin:auto">
               </div>
@@ -619,7 +619,7 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
 
   <section>
     <div class="footer text-light flex-center-md" style="">
-      <div class="footer-overlay" style="background-color:#0b5596">
+      <div class="footer-overlay" style="background-color:{{ $header_gradient_start }}">
         <div class="container">
           <div class="row">
             <div class="col-md-12 text-center col-lg-3 text-lg-left">
