@@ -34,9 +34,9 @@ class Reseller extends \App\Http\Controllers\Controller {
     if ($reseller) {
       $reseller->url = ($reseller->domain == '*') ? url('/') : 'http://' . $reseller->domain;
       
-      if ($reseller->favicon == NULL) $reseller->favicon = url('favicon.ico');
-      if ($reseller->logo == NULL) $reseller->logo = url('assets/images/branding/logo-hori-light.svg');
-      if ($reseller->logo_square == NULL) $reseller->logo_square = url('assets/images/branding/logo-square.svg');
+      if ($reseller->favicon == NULL) $reseller->favicon = url('assets/branding/favicon.svg');
+      if ($reseller->logo == NULL) $reseller->logo = url('assets/branding/logo-hori-light.svg');
+      if ($reseller->logo_square == NULL) $reseller->logo_square = url('assets/branding/logo-square.svg');
       if ($reseller->page_title == NULL) $reseller->page_title = $reseller->name;
       if ($reseller->mail_from_address == NULL) $reseller->mail_from_address = env('MAIL_FROM_ADDRESS');
       if ($reseller->mail_from_name == NULL) $reseller->mail_from_name = env('MAIL_FROM_NAME');
@@ -45,7 +45,7 @@ class Reseller extends \App\Http\Controllers\Controller {
       $reseller->url = url('/');
       $reseller->name = env('APP_NAME', config()->get('app.name'));
       $reseller->active = false;
-      $reseller->favicon = url('favicon.ico');
+      $reseller->favicon = url('assets/branding/favicon.svg');
       $reseller->logo = url('assets/branding/icon-light.svg');
       $reseller->logo_square = url('assets/branding/square.svg');
       $reseller->page_title = 'Not found';
