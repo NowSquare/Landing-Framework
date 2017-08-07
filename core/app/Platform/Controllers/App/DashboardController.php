@@ -56,21 +56,21 @@ class DashboardController extends \App\Http\Controllers\Controller {
     }
 
     // Landing pages
-    $sites = false;
+    $sites = [];
 
     if (Gate::allows('limitation', 'landingpages.visible')) {
       $sites = \Modules\LandingPages\Http\Models\Site::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->select('landing_sites.*')->addSelect(\DB::raw('((landing_sites.conversions / landing_sites.visits) * 100) as conversion'))->orderBy('conversion', 'desc')->get();
     }
 
     // Forms
-    $forms = false;
+    $forms = [];
 
     if (Gate::allows('limitation', 'forms.visible')) {
       $forms = \Modules\Forms\Http\Models\Form::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->select('forms.*')->addSelect(\DB::raw('((forms.entries / forms.visits) * 100) as conversion'))->orderBy('conversion', 'desc')->get();
     }
 
     // Email campaigns
-    $email_campaigns = false;
+    $email_campaigns = [];
 /*
     if (Gate::allows('limitation', 'emailcampaigns.visible')) {
       $email_campaigns = \Modules\EmailCampaigns\Http\Models\EmailCampaign::where('email_campaigns.user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->leftJoin('emails', 'emails.email_campaign_id', '=', 'email_campaigns.id')->select('email_campaigns.*')->orderBy('last_sent', 'desc')->get();
