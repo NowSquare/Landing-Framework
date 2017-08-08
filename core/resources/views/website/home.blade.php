@@ -371,52 +371,44 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
           <div class="row">
 
             <div class="carousel owl-carousel owl-theme">
-
-              <?php
-              $disabled = false;
-
-              if ( !empty( $default_plan ) && $default_plan->active == 1 ) {
-                $currency = $default_plan->currency;
-                if ( trans( 'i18n.default_currency' ) != $currency && isset( $default_plan->monthly_price_currencies[ trans( 'i18n.default_currency' ) ] ) ) {
-                  $monthly_price = $currencyFormatter->formatCurrency( $default_plan->monthly_price_currencies[ trans( 'i18n.default_currency' ) ], $currencyRepository->get( trans( 'i18n.default_currency' ), $reseller->default_language ) );
-                } else {
-                  $monthly_price = $currencyFormatter->formatCurrency( $default_plan->monthly_price, $currencyRepository->get( $default_plan->currency, $reseller->default_language ) );
-                }
-
-                if ( trans( 'i18n.default_currency' ) != $currency && isset( $default_plan->annual_price_currencies[ trans( 'i18n.default_currency' ) ] ) ) {
-                  $annual_price = $currencyFormatter->formatCurrency( $default_plan->annual_price_currencies[ trans( 'i18n.default_currency' ) ], $currencyRepository->get( trans( 'i18n.default_currency' ), $reseller->default_language ) );
-                } else {
-                  $annual_price = $currencyFormatter->formatCurrency( $default_plan->annual_price, $currencyRepository->get( $default_plan->currency, $reseller->default_language ) );
-                }
-
-                $monthly_price = str_replace( [ '.00', ',00' ], '', $monthly_price );
-                $annual_price = str_replace( [ '.00', ',00' ], '', $annual_price );
-                ?>
-              <div class="plan-card card mdl-shadow--4dp color-blue mx-5 mx-sm-2">
+<?php
+$i = 0;
+foreach($all_plans as $plan) {
+  $plan_color_class = ($i == 0) ? 'blue' : 'secondary';
+?>
+              <div class="plan-card card mdl-shadow--4dp color-{{ $plan_color_class }} mx-5 mx-sm-2">
                 <table class="table">
                   <thead>
                     <tr>
                       <th>
-                        <h2>{!! $default_plan->name !!}</h2>
-                        <?php if ($default_plan->description != '') { ?>
-                        <p>{!! $default_plan->description !!}</p>
+                        <h2>{!! $plan['name'] !!}</h2>
+                        <?php if ($plan['description'] != '') { ?>
+                        <p>{!! $plan['description'] !!}</p>
                         <?php } ?>
                       </th>
                     </tr>
+                    
                     <tr class="price">
                       <th>
+<?php if ($plan['annual_price'] != null) { ?>
                         <div class="price-monthly">
-                          <?php echo $monthly_price; ?>
+                          <?php echo $plan['monthly_price']; ?>
                         </div>
                         <div class="price-annual">
-                          <?php echo $annual_price; ?>
+                          <?php echo $plan['annual_price']; ?>
                         </div>
+<?php } else { ?>
+                        <div>
+                          <?php echo $plan['monthly_price']; ?>
+                        </div>
+<?php } ?>
                       </th>
                     </tr>
                     <tr>
                       <th>
                         <p class="text-muted"><small>{{ trans('global.per_month') }}</small>
                         </p>
+ <?php if ($plan['annual_price'] != null) { ?>
                         <div class="plan-duration">
                           {{ trans('global.month') }}
                           <label class="switch">
@@ -425,177 +417,50 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
                           </label>
                           {{ trans('global.year') }}
                         </div>
+<?php } elseif ($annual_plans_exist) { ?>
+                      <div style="float: left; width:100%;height:36px"></div>
+<?php } ?>
+
 
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <?php
-                    foreach ( $items as $item ) {
-                      if ( $item[ 'creatable' ] ) {
+<?php
+foreach($plan['plan_items'] as $item) {
 
-                        $max = ( $item[ 'in_plan_amount' ] ) ? $default_plan->limitations[ $item[ 'namespace' ] ][ 'max' ] : '';
-                        ?>
+    $max = ($item['max'] != '') ? ' (' . $item['max'] . ')' : '';
+?>
                     <tr>
                       <td>
                         <h4>
-                          <?php echo ($default_plan->limitations[$item['namespace']]['visible'] == 1) ? '<span class="text-success">&#10004;</span>' : '<span class="text-danger">&#10005;</span>'; ?> {{ $item['name'] }}
-                           ({{ $max }})
+                          <?php echo ($item['visible']) ? '<span class="text-success">&#10004;</span>' : '<span class="text-danger">&#10005;</span>'; ?> {{ $item['name'] . $max }}
                         </h4>
                       </td>
                     </tr>
-                    <?php 
-    if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
-      foreach ($item['extra_plan_config_string'] as $config => $value) {
-        $val = (isset($default_plan->limitations[$item['namespace']][$config])) ? $default_plan->limitations[$item['namespace']][$config] : '-';
-        if (is_numeric($val)) $val = $decimalFormatter->format($val);
+<?php
+  foreach($item['sub_items'] as $sub_item) {
+    if ($sub_item['type'] == 'boolean') {
+      $val = ($sub_item['val']) ? '<span class="text-success">&#10004;</span>' : '<span class="text-danger">&#10005;</span>';
 ?>
                     <tr>
                       <td>
-                        <h4>{{ trans($item['namespace'] . '::global.' . $config) }}: {{ $val }}</h4>
+                        <h4>{!! $val . ' ' . $sub_item['name'] !!}</h4>
                         <hr>
                       </td>
                     </tr>
-                    <?php 
-      }
-    }
-
-    if (isset($item['extra_plan_config_boolean']) && count($item['extra_plan_config_boolean']) > 0) { 
-      foreach ($item['extra_plan_config_boolean'] as $config => $value) {
-        $val = (isset($default_plan->limitations[$item['namespace']][$config]) && $default_plan->limitations[$item['namespace']][$config] == 1) ? '<span class="text-success i-small">&#10004;</span>' : '<span class="text-danger i-small">&#10005;</span>';
-        if ($config != 'edit_html') {
+<?php
+    } else {
 ?>
                     <tr>
                       <td>
-                        <h4>{!! $val . ' ' . trans($item['namespace'] . '::global.' . $config) !!}</h4>
+                        <h4>{!! $sub_item['name'] . ': ' . $sub_item['val'] !!}</h4>
                         <hr>
                       </td> 
                     </tr>
-                    <?php 
-        }
-      }
+<?php 
     }
-  } 
-}
-?>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td>
-                        <a href="{{ url('register') }}" class="btn btn-outline-blue btn-block btn-lg">{!! trans('website.get_started') !!}</a>
-                      </td>
-                    </tr>
-                  </tfoot>
-                </table>
-              </div>
-
-              <?php
-              }
-
-              foreach ( $plans as $plan ) {
-
-                $currency = $plan->currency;
-                if ( trans( 'i18n.default_currency' ) != $currency && isset( $plan->monthly_price_currencies[ trans( 'i18n.default_currency' ) ] ) ) {
-                  $monthly_price = $currencyFormatter->formatCurrency( $plan->monthly_price_currencies[ trans( 'i18n.default_currency' ) ], $currencyRepository->get( trans( 'i18n.default_currency' ), $reseller->default_language ) );
-                } else {
-                  $monthly_price = $currencyFormatter->formatCurrency( $plan->monthly_price, $currencyRepository->get( $plan->currency, $reseller->default_language ) );
-                }
-
-                if ( trans( 'i18n.default_currency' ) != $currency && isset( $plan->annual_price_currencies[ trans( 'i18n.default_currency' ) ] ) ) {
-                  $annual_price = $currencyFormatter->formatCurrency( $plan->annual_price_currencies[ trans( 'i18n.default_currency' ) ], $currencyRepository->get( trans( 'i18n.default_currency' ), $reseller->default_language ) );
-                } else {
-                  $annual_price = $currencyFormatter->formatCurrency( $plan->annual_price, $currencyRepository->get( $plan->currency, $reseller->default_language ) );
-                }
-
-                $monthly_price = str_replace( [ '.00', ',00' ], '', $monthly_price );
-                $annual_price = str_replace( [ '.00', ',00' ], '', $annual_price );
-                ?>
-              <div class="plan-card card mdl-shadow--4dp color-secondary mx-5 mx-sm-2">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>
-                        <h2>{!! $plan->name !!}</h2>
-                        <?php if ($plan->description != '') { ?>
-                        <p>{!! $plan->description !!}</p>
-                        <?php } ?>
-                      </th>
-                    </tr>
-                    <tr class="price">
-                      <th>
-                        <div class="price-monthly">
-                          <?php echo $monthly_price; ?>
-                        </div>
-                        <div class="price-annual">
-                          <?php echo $annual_price; ?>
-                        </div>
-                      </th>
-                    </tr>
-                    <tr>
-                      <th>
-                        <p class="text-muted"><small>{{ trans('global.per_month') }}</small>
-                        </p>
-
-                        <div class="plan-duration">
-                          {{ trans('global.month') }}
-                          <label class="switch">
-                            <input type="checkbox" class="price_switch" checked>
-                            <div class="slider round"></div>
-                          </label>
-                          {{ trans('global.year') }}
-                        </div>
-
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?php
-                    foreach ( $items as $item ) {
-                      if ( $item[ 'creatable' ] ) {
-
-                        $max = ( $item[ 'in_plan_amount' ] ) ? $plan->limitations[ $item[ 'namespace' ] ][ 'max' ] : '';
-                        ?>
-                    <tr>
-                      <td>
-                        <h4>
-                          <?php echo ($plan->limitations[$item['namespace']]['visible'] == 1) ? '<span class="text-success">&#10004;</span>' : '<span class="text-danger">&#10005;</span>'; ?> {{ $item['name'] }}
-                           ({{ $max }})
-                        </h4>
-                      </td>
-                    </tr>
-
-                    <?php 
-    if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
-      foreach ($item['extra_plan_config_string'] as $config => $value) {
-        $val = (isset($plan->limitations[$item['namespace']][$config])) ? $plan->limitations[$item['namespace']][$config] : '-';
-        if (is_numeric($val)) $val = $decimalFormatter->format($val);
-?>
-                    <tr>
-                      <td>
-                        <h4>{{ trans($item['namespace'] . '::global.' . $config) }}: {{ $val }}</h4>
-                        <hr>
-                      </td>
-                    </tr>
-                    <?php 
-      }
-    }
-
-    if (isset($item['extra_plan_config_boolean']) && count($item['extra_plan_config_boolean']) > 0) { 
-      foreach ($item['extra_plan_config_boolean'] as $config => $value) {
-        $val = (isset($plan->limitations[$item['namespace']][$config]) && $plan->limitations[$item['namespace']][$config]== 1) ? '<span class="text-success i-small">&#10004;</span>' : '<span class="text-danger i-small">&#10005;</span>';
-        if ($config != 'edit_html') {
-?>
-                    <tr>
-                      <td>
-                        <h4>{!! $val . ' ' . trans($item['namespace'] . '::global.' . $config) !!}</h4>
-                        <hr>
-                      </td>
-                    </tr>
-                    <?php 
-        }
-      }
-    }
-  } 
+  }
 }
 ?>
                   </tbody>
@@ -609,6 +474,7 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
                 </table>
               </div>
 <?php
+  $i++;
 }
 ?>
             </div>

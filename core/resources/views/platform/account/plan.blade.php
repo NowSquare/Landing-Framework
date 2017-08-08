@@ -55,12 +55,12 @@ foreach($all_plans as $plan) {
                     <div class="plan-duration">
 
  <?php if ($plan['annual_price'] != null) { ?>
-{{ trans('global.month') }}
+                    {{ trans('global.month') }}
                     <label class="switch">
                       <input type="checkbox" class="price_switch" checked>
                       <div class="slider round"></div>
                     </label>
-{{ trans('global.year') }}
+                    {{ trans('global.year') }}
 <?php } elseif ($annual_plans_exist) { ?>
                       <div style="float: left; width:100%;height:52px"></div>
 <?php } ?>
