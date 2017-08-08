@@ -375,13 +375,19 @@ class PlanController extends \App\Http\Controllers\Controller {
 
       if (trans('i18n.default_currency') != $row->currency && isset($row->monthly_price_currencies[trans('i18n.default_currency')])) {
         $monthly_price = $currencyFormatter->formatCurrency($row->monthly_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
-        $annual_price = $currencyFormatter->formatCurrency($row->annual_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
+        $price = $monthly_price;
+        if (isset($row->annual_price_currencies[trans('i18n.default_currency')]) && $row->annual_price_currencies[trans('i18n.default_currency')] != null) {
+          $annual_price = $currencyFormatter->formatCurrency($row->annual_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
+          $price = $monthly_price . ' / ' . $annual_price;
+        }
       } else {
         $monthly_price = $currencyFormatter->formatCurrency($row->monthly_price, $currencyRepository->get($row->currency, auth()->user()->language));
-        $annual_price = $currencyFormatter->formatCurrency($row->annual_price, $currencyRepository->get($row->currency, auth()->user()->language));
+        $price = $monthly_price;
+        if ($row->annual_price != null) {
+          $annual_price = $currencyFormatter->formatCurrency($row->annual_price, $currencyRepository->get($row->currency, auth()->user()->language));
+          $price = $monthly_price . ' / ' . $annual_price;
+        }
       }
-
-      $price = $monthly_price . ' / ' . $annual_price;
 
       if ($row->id == 1) $price = '-';
 

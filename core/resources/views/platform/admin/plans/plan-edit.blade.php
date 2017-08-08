@@ -71,7 +71,7 @@
 
                 <div class="form-group">
                   <label for="monthly_price">{{ trans('global.price') }} <sup>*</sup></label>
-                  <input type="text" class="form-control" name="monthly_price" value="{{ $plan->monthly_price }}" required autocomplete="off" placeholder="11.25">
+                  <input type="text" class="form-control" name="monthly_price" value="{{ $plan->monthly_price }}" required autocomplete="off" placeholder="">
                 </div>
 
                 <div class="form-group">
@@ -94,7 +94,7 @@
 
                 <div class="form-group">
                   <label for="annual_price">{{ trans('global.price') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('global.annual_price_help') }}">&#xE887;</i></label>
-                  <input type="text" class="form-control" name="annual_price" value="{{ $plan->annual_price }}" required autocomplete="off" placeholder="9">
+                  <input type="text" class="form-control" name="annual_price" value="{{ $plan->annual_price }}" autocomplete="off" placeholder="">
                 </div>
 
                 <div class="form-group">

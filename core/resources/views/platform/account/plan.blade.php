@@ -1,4 +1,4 @@
-<div class="container">
+  <div class="container">
 
   <div class="row m-t">
     <div class="col-sm-12">
@@ -19,396 +19,125 @@
   </div>
 
   <div class="row">
-
     <div class="col-md-3 col-lg-2">
-
-        <div class="list-group">
-          <a href="#/profile" class="list-group-item">{{ trans('global.profile') }}</a>
-          <a href="#/plan" class="list-group-item active">{{ trans('global.plan') }}</a>
-        </div>
-  
+      <div class="list-group">
+        <a href="#/profile" class="list-group-item">{{ trans('global.profile') }}</a>
+        <a href="#/plan" class="list-group-item active">{{ trans('global.plan') }}</a>
+      </div>
     </div>
     <div class="col-md-9 col-lg-10">
       <div class="row">
         <div class="col-lg-12">
           <div class="row">
 <?php
-$plan_count = $plans->count() + 1;
+$plan_count = count($all_plans);
 
-$disabled = false;
 $col_span = 'col-md-12';
+if ($plan_count == 2 || $plan_count%5 == 0) $col_span = 'col-md-6';
+if ($plan_count%3 == 0 || $plan_count%4 == 0 || $plan_count%7 == 0) $col_span = 'col-md-4';
 
-if ($plan_count == 2) $col_span = 'col-md-6';
-if ($plan_count%3 == 0) $col_span = 'col-md-4';
-if ($plan_count%4 == 0) $col_span = 'col-md-4';
-if ($plan_count%5 == 0) $col_span = 'col-md-6';
-
-if (! empty($default_plan) && $default_plan->active == 1) {
-  $currency = $default_plan->currency;
-  if (trans('i18n.default_currency') != $currency && isset($default_plan->monthly_price_currencies[trans('i18n.default_currency')])) {
-    $monthly_price = $currencyFormatter->formatCurrency($default_plan->monthly_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
-  } else {
-    $monthly_price = $currencyFormatter->formatCurrency($default_plan->monthly_price, $currencyRepository->get($default_plan->currency, auth()->user()->language));
-  }
-
-  if (trans('i18n.default_currency') != $currency && isset($default_plan->annual_price_currencies[trans('i18n.default_currency')])) {
-    $annual_price = $currencyFormatter->formatCurrency($default_plan->annual_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
-  } else {
-    $annual_price = $currencyFormatter->formatCurrency($default_plan->annual_price, $currencyRepository->get($default_plan->currency, auth()->user()->language));
-  }
-
-  $monthly_price = str_replace(['.00', ',00'], '', $monthly_price);
-  $annual_price = str_replace(['.00', ',00'], '', $annual_price);
+foreach($all_plans as $plan) {
 ?>
-        <article class="pricing-column {{ $col_span }}" style="margin-bottom: 0">
-<?php if (auth()->user()->plan_id == $default_plan->id) { ?>
+          <article class="pricing-column {{ $col_span }}" style="margin-bottom: 0">
+<?php if ($plan['current']) { ?>
             <div class="ribbon"><span>{{ trans('global.current') }}</span></div>
 <?php } ?>
             <div class="inner-box card-box">
-                <div class="plan-header text-center"<?php if ($default_plan->description != '') echo ' style="padding-bottom:23px"'; ?>>
-                    <h3 class="plan-title">{!! $default_plan->name !!}</h3>
-                    <h2 class="plan-price price-monthly"><?php echo $monthly_price; ?></h2>
-                    <h2 class="plan-price price-annual"><?php echo $annual_price; ?></h2>
+                <div class="plan-header text-center"<?php if ($plan['description'] != '') echo ' style="padding-bottom:23px"'; ?>>
+                    <h3 class="plan-title">{!! $plan['name'] !!}</h3>
+<?php if ($plan['annual_price'] != null) { ?>
+                    <h2 class="plan-price price-monthly"><?php echo $plan['monthly_price']; ?></h2>
+                    <h2 class="plan-price price-annual"><?php echo $plan['annual_price']; ?></h2>
+<?php } else { ?>
+                    <h2 class="plan-price"><?php echo $plan['monthly_price']; ?></h2>
+<?php } ?>
                     <p class="text-muted"><small>{{ trans('global.per_month') }}</small></p>
                     <div class="plan-duration">
 
+ <?php if ($plan['annual_price'] != null) { ?>
 {{ trans('global.month') }}
-<label class="switch">
-  <input type="checkbox" class="price_switch" checked>
-  <div class="slider round"></div>
-</label>
+                    <label class="switch">
+                      <input type="checkbox" class="price_switch" checked>
+                      <div class="slider round"></div>
+                    </label>
 {{ trans('global.year') }}
+<?php } elseif ($annual_plans_exist) { ?>
+                      <div style="float: left; width:100%;height:52px"></div>
+<?php } ?>
 
                     </div>
-<?php if ($default_plan->description != '') { ?>
-                    <h4 class="m-b-0">{!! $default_plan->description !!}</h4>
+<?php if ($plan['description'] != '') { ?>
+                    <h4 class="m-b-0">{!! $plan['description'] !!}</h4>
 <?php } else { ?>
 <?php } ?>
                 </div>
 
                 <ul class="plan-stats list-unstyled text-center">
 <?php
-foreach($items as $item) {
-  if ($item['creatable']) {
+foreach($plan['plan_items'] as $item) {
 
-    $max = ($item['in_plan_amount']) ? ' (' . $default_plan->limitations[$item['namespace']]['max'] . ')' : '';
+    $max = ($item['max'] != '') ? ' (' . $item['max'] . ')' : '';
 ?>
-                 <li class="plan-item"><?php echo ($default_plan->limitations[$item['namespace']]['visible'] == 1) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
-<?php 
-    if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
-      foreach ($item['extra_plan_config_string'] as $config => $value) {
-        $val = (isset($default_plan->limitations[$item['namespace']][$config])) ? $default_plan->limitations[$item['namespace']][$config] : '-';
-        if (is_numeric($val)) $val = $decimalFormatter->format($val);
+                  <li class="plan-item"><?php echo ($item['visible']) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
+<?php
+  foreach($item['sub_items'] as $sub_item) {
+    if ($sub_item['type'] == 'boolean') {
+      $val = ($sub_item['val']) ? '<i class="ti-check text-success" style="font-size:12px; top:-1px; position:relative"></i>' : '<i class="ti-na text-danger" style="font-size:12px; top:-1px; position:relative"></i>';
 ?>
-                 <li><span class="sub">{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</span></li>
+                  <li><span class="sub">{!! $val . ' ' . $sub_item['name'] !!}</span></li>
+<?php
+    } else {
+?>
+                  <li><span class="sub">{!! $sub_item['name'] . ': ' . $sub_item['val'] !!}</span></li>
 <?php 
-      }
     }
-
-    if (isset($item['extra_plan_config_boolean']) && count($item['extra_plan_config_boolean']) > 0) { 
-      foreach ($item['extra_plan_config_boolean'] as $config => $value) {
-        $val = (isset($default_plan->limitations[$item['namespace']][$config]) && $default_plan->limitations[$item['namespace']][$config]== 1) ? '<i class="ti-check text-success" style="font-size:12px; top:-1px; position:relative"></i>' : '<i class="ti-na text-danger" style="font-size:12px; top:-1px; position:relative"></i>';
-        if ($config != 'edit_html') {
-?>
-                 <li><span class="sub">{!! $val . ' ' . trans($item['namespace'] . '::global.' . $config) !!}</span></li>
-<?php 
-        }
-      }
-    }
-  } 
+  }
 }
 ?>
                 </ul>
-
                 <div class="text-center">
-<?php
-
-if (\Auth::user()->plan_id == $default_plan->id) {
-  $btn_text = trans('global.current_plan');
-  $btn_link = 'javascript:void(0);';
-  $btn_target = '';
-  $disabled = false;
-  $btn_class = 'primary';
-} elseif (! $disabled) {
-
-  $order_url = (isset($default_plan->order_url)) ? $default_plan->order_url . '&CUSTOMERID=' . \Auth::user()->id : '';
-
-  $btn_text = trans('global.expired');
-  //$btn_text = (\Auth::user()->plan->order > $default_plan->order) ? trans('global.downgrade') : trans('global.upgrade');
-
-  $btn_link = ($order_url != '') ? $order_url : 'javascript:void(0);';
-  $btn_target = '';
-  //$btn_target = ($order_url != '') ? '_blank' : '';
-  $btn_class = 'warning';
-} else {
-  $btn_text = trans('global.order_now');
-  $btn_link = 'javascript:void(0);';
-  $btn_target = '';
-  $btn_class = 'warning';
-}
-
-?>
-                    <a href="{{ $btn_link }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($disabled || \Auth::user()->plan_id == $default_plan->id || $btn_link == 'javascript:void(0);') echo ' disabled'; ?><?php if ($btn_target != '') echo ' target="' . $btn_target . '"'; ?>>{{ $btn_text }}</a>
-                </div>
-            </div>
-        </article>
-<?php
-} else {
-  // Default free plan
-?>
-        <article class="pricing-column {{ $col_span }}" style="margin-bottom: 0">
-<?php if (auth()->user()->plan_id == null) { ?>
-            <div class="ribbon"><span>{{ trans('global.current') }}</span></div>
-<?php } ?>
-            <div class="inner-box card-box">
-                <div class="plan-header text-center">
-                    <h3 class="plan-title">&nbsp;</h3>
-                    <h2 class="plan-price">{{ trans('global.free') }}</h2>
-                    <p class="text-muted"><small>{{ trans('global.per_month') }}</small></p>
-                    <div class="plan-duration">
-
-{{ trans('global.month') }}
-<label class="switch">
-  <input type="checkbox" class="price_switch" checked>
-  <div class="slider round"></div>
-</label>
-{{ trans('global.year') }}
-
-                    </div>
-                </div>
-                <ul class="plan-stats list-unstyled text-center">
-<?php
-foreach($items as $item) {
-  if ($item['creatable']) {
-
-    $max = ($item['in_free_plan_default_amount'] && $item['in_free_plan']) ? ' (' . $item['in_free_plan_default_amount'] . ')' : '';
-?>
-                 <li class="plan-item"><?php echo ($item['in_free_plan']) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
-<?php 
-    if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
-      foreach ($item['extra_plan_config_string'] as $config => $value) {
-        $val = (isset($plan->limitations[$item['namespace']][$config])) ? $plan->limitations[$item['namespace']][$config] : '-';
-        if (is_numeric($val)) $val = $decimalFormatter->format($val);
-?>
-                 <li><span class="sub">{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</span></li>
-
-<?php 
-      }
-    }
-
-    if (isset($item['extra_plan_config_boolean']) && count($item['extra_plan_config_boolean']) > 0) { 
-      foreach ($item['extra_plan_config_boolean'] as $config => $value) {
-        $val = (isset($plan->limitations[$item['namespace']][$config]) && $plan->limitations[$item['namespace']][$config]== 1) ? '<i class="ti-check text-success" style="font-size:12px; top:-1px; position:relative"></i>' : '<i class="ti-na text-danger" style="font-size:12px; top:-1px; position:relative"></i>';
-        if ($config != 'edit_html') {
-?>
-                 <li><span class="sub">{!! $val . ' ' . trans($item['namespace'] . '::global.' . $config) !!}</span></li>
-<?php 
-        }
-      }
-    }
-  } 
-}
-?>
-                </ul>
-
-                <div class="text-center">
-<?php
-if (\Auth::user()->plan_id == 0) {
-  $btn_text = trans('global.current_plan');
-  $btn_link = 'javascript:void(0);';
-  $disabled = false;
-  $btn_class = 'primary';
-} else {
-  $btn_text = trans('global.free');
-  $btn_link = 'javascript:void(0);';
-  $btn_class = 'default';
-}
-?>
-                    <a href="{{ $btn_link }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light" disabled>{{ $btn_text }}</a>
-                </div>
-            </div>
-        </article>
-<?php
-}
-
-foreach($plans as $plan) {
-
-  $currency = $plan->currency;
-  if (trans('i18n.default_currency') != $currency && isset($plan->monthly_price_currencies[trans('i18n.default_currency')])) {
-    $monthly_price = $currencyFormatter->formatCurrency($plan->monthly_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
-  } else {
-    $monthly_price = $currencyFormatter->formatCurrency($plan->monthly_price, $currencyRepository->get($plan->currency, auth()->user()->language));
-  }
-
-  if (trans('i18n.default_currency') != $currency && isset($plan->annual_price_currencies[trans('i18n.default_currency')])) {
-    $annual_price = $currencyFormatter->formatCurrency($plan->annual_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), auth()->user()->language));
-  } else {
-    $annual_price = $currencyFormatter->formatCurrency($plan->annual_price, $currencyRepository->get($plan->currency, auth()->user()->language));
-  }
-
-  $monthly_price = str_replace(['.00', ',00'], '', $monthly_price);
-  $annual_price = str_replace(['.00', ',00'], '', $annual_price);
-?>
-        <article class="pricing-column {{ $col_span }}" style="margin-bottom: 0">
-<?php if (auth()->user()->plan_id == $plan->id) { ?>
-            <div class="ribbon"><span>{{ trans('global.current') }}</span></div>
-<?php } ?>
-            <div class="inner-box card-box">
-                <div class="plan-header text-center"<?php if ($plan->description != '') echo ' style="padding-bottom:23px"'; ?>>
-                    <h3 class="plan-title">{!! $plan->name !!}</h3>
-                    <h2 class="plan-price price-monthly"><?php echo $monthly_price; ?></h2>
-                    <h2 class="plan-price price-annual"><?php echo $annual_price; ?></h2>
-                    <p class="text-muted"><small>{{ trans('global.per_month') }}</small></p>
-                    <div class="plan-duration">
-
-{{ trans('global.month') }}
-<label class="switch">
-  <input type="checkbox" class="price_switch" checked>
-  <div class="slider round"></div>
-</label>
-{{ trans('global.year') }}
-
-                    </div>
-<?php if ($plan->description != '') { ?>
-                    <h4 class="m-b-0">{!! $plan->description !!}</h4>
-<?php } else { ?>
+                  <div class="<?php if ($plan['annual_price'] != null) { ?>order-btn-monthly<?php } ?>">
+                    <a href="{{ $plan['monthly_link'] }}" class="select-plan btn btn-{{ $plan['btn_class'] }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($plan['disabled'] || $plan['current'] || $plan['monthly_link'] == 'javascript:void(0);') echo ' disabled'; ?><?php if ($plan['btn_target'] != '') echo ' target="' . $plan['btn_target'] . '"'; ?>>{{ $plan['monthly_text'] }}</a>
+                  </div>
+<?php if ($plan['annual_price'] != null) { ?>
+                  <div class="order-btn-annual">
+                    <a href="{{ $plan['annual_link'] }}" class="select-plan btn btn-{{ $plan['btn_class'] }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($plan['disabled'] || $plan['current'] || $plan['annual_link'] == 'javascript:void(0);') echo ' disabled'; ?><?php if ($plan['btn_target'] != '') echo ' target="' . $plan['btn_target'] . '"'; ?>>{{ $plan['annual_text'] }}</a>
+                  </div>
 <?php } ?>
                 </div>
-
-                <ul class="plan-stats list-unstyled text-center">
-<?php
-foreach($items as $item) {
-  if ($item['creatable']) {
-
-    $max = ($item['in_plan_amount'] && $plan->limitations[$item['namespace']]['visible'] == 1) ? ' (' . $plan->limitations[$item['namespace']]['max'] . ')' : '';
-?>
-                 <li class="plan-item"><?php echo ($plan->limitations[$item['namespace']]['visible'] == 1) ? '<i class="ti-check text-success"></i>' : '<i class="ti-na text-danger"></i>'; ?> {{ $item['name'] . $max }}</li>
-<?php 
-    if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
-      foreach ($item['extra_plan_config_string'] as $config => $value) {
-        $val = (isset($plan->limitations[$item['namespace']][$config])) ? $plan->limitations[$item['namespace']][$config] : '-';
-        if (is_numeric($val)) $val = $decimalFormatter->format($val);
-?>
-                 <li><span class="sub">{{ trans($item['namespace'] . '::global.' . $config) . ': ' . $val }}</span></li>
-
-<?php 
-      }
-    }
-
-    if (isset($item['extra_plan_config_boolean']) && count($item['extra_plan_config_boolean']) > 0) { 
-      foreach ($item['extra_plan_config_boolean'] as $config => $value) {
-        $val = (isset($plan->limitations[$item['namespace']][$config]) && $plan->limitations[$item['namespace']][$config]== 1) ? '<i class="ti-check text-success" style="font-size:12px; top:-1px; position:relative"></i>' : '<i class="ti-na text-danger" style="font-size:12px; top:-1px; position:relative"></i>';
-        if ($config != 'edit_html') {
-?>
-                 <li><span class="sub">{!! $val . ' ' . trans($item['namespace'] . '::global.' . $config) !!}</span></li>
-<?php 
-        }
-      }
-    }
-  } 
-}
-?>
-                </ul>
-
-                <div class="text-center">
-<?php
-
-if (\Auth::user()->plan_id == $plan->id) {
-  $btn_text_monthly = trans('global.current_plan');
-  $btn_text_annual = trans('global.current_plan');
-
-  $btn_link_monthly = 'javascript:void(0);';
-  $btn_link_annual = 'javascript:void(0);';
-
-  $btn_target = '';
-  $disabled = false;
-  $btn_class = 'primary';
-} elseif (! $disabled) {
-
-  $monthly_order_url = (isset($plan->monthly_order_url)) ? $plan->monthly_order_url . '&CUSTOMERID=' . \Auth::user()->id : '';
-  $monthly_upgrade_url = (isset($plan->monthly_upgrade_url)) ? $plan->monthly_upgrade_url . '&CUSTOMERID=' . \Auth::user()->id : '';
-  $annual_order_url = (isset($plan->annual_order_url)) ? $plan->annual_order_url . '&CUSTOMERID=' . \Auth::user()->id : '';
-  $annual_upgrade_url = (isset($plan->annual_upgrade_url)) ? $plan->annual_upgrade_url . '&CUSTOMERID=' . \Auth::user()->id : '';
-
-  //$btn_text = trans('global.order_now');
-  //$btn_text = (\Auth::user()->plan->order > $plan->order) ? trans('global.downgrade') : trans('global.upgrade');
-  $btn_text_monthly = trans('global.order_1_month');
-  $btn_text_annual = trans('global.order_1_year');
-
-  $btn_link_monthly = 'javascript:void(0);';
-  $btn_link_annual = 'javascript:void(0);';
-
-  if ($monthly_order_url != '') $btn_link_monthly = 'javascript:openExternalPurchaseUrl(\'' . $monthly_order_url . $payment_link_suffix . '\');';
-  if ($annual_order_url != '') $btn_link_annual = 'javascript:openExternalPurchaseUrl(\'' . $annual_order_url . $payment_link_suffix . '\');';
-
-  if (env('PAYMENT_TEST', false)) {
-    $btn_link_monthly = 'javascript:openExternalPurchaseUrlDemo();';
-    $btn_link_annual = 'javascript:openExternalPurchaseUrlDemo();';
-  }
-
-  $btn_target = '';
-  //$btn_target = ($order_url != '') ? '_blank' : '';
-  $btn_class = 'warning';
-
-  /*
-  if (\Auth::user()->plan->order > $plan->order) {
-    $disabled = true;
-
-    $btn_text_monthly = trans('global.order_1_month');
-    $btn_text_annual = trans('global.order_1_year');
-
-    $btn_link_monthly = 'javascript:void(0);';
-    $btn_link_annual = 'javascript:void(0);';
-  }*/
-} else {
-  $btn_text_monthly = trans('global.order_1_month');
-  $btn_text_annual = trans('global.order_1_year');
-
-  $btn_link = 'javascript:void(0);';
-  $btn_target = '';
-  $btn_class = 'warning';
-}
-
-?>
-                    <div class="order-btn-monthly">
-                      <a href="{{ $btn_link_monthly }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($disabled || \Auth::user()->plan_id == $plan->id || $btn_link_monthly == 'javascript:void(0);') echo ' disabled'; ?><?php if ($btn_target != '') echo ' target="' . $btn_target . '"'; ?>>{{ $btn_text_monthly }}</a>
-                    </div>
-                    <div class="order-btn-annual">
-                      <a href="{{ $btn_link_annual }}" class="select-plan btn btn-{{ $btn_class }} btn-bordred btn-rounded waves-effect waves-light"<?php if ($disabled || \Auth::user()->plan_id == $plan->id || $btn_link_annual == 'javascript:void(0);') echo ' disabled'; ?><?php if ($btn_target != '') echo ' target="' . $btn_target . '"'; ?>>{{ $btn_text_annual }}</a>
-                   </div>
-                </div>
             </div>
-        </article>
+          </article>
 <?php
 }
 ?>
-          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 </div>
-<style type="text/css">
-  .price-monthly,
-  .order-btn-monthly {
-    display: none;
-  }
-  span.sub {
-    font-size: 15px;
-    font-weight: bold;
-  }
-  li.plan-item {
-    font-size: 18px;
-  }
-  .pricing-column .plan-header {
-    padding-bottom: 0 !important;
-  }
 
-  .plan-duration {
-    margin-top: 30px;
-    text-transform: uppercase;
-  }
+<style type="text/css">
+.price-monthly,
+.order-btn-monthly {
+  display: none;
+}
+span.sub {
+  font-size: 15px;
+  font-weight: bold;
+}
+li.plan-item {
+  font-size: 18px;
+}
+.pricing-column .plan-header {
+  padding-bottom: 0 !important;
+}
+
+.plan-duration {
+  margin-top: 30px;
+  text-transform: uppercase;
+}
 /* The switch - the box around the slider */
 .switch {
   position: relative;
@@ -472,7 +201,6 @@ input:checked + .slider:before {
 }
 </style>
 <script>
-
 $('.price_switch').change(function() {
     if (this.checked) {
       $('.price_switch').prop('checked', true);
@@ -488,7 +216,6 @@ $('.price_switch').change(function() {
       $('.order-btn-annual').hide();
     }
 });
-
   
 function openExternalPurchaseUrl(url) {
 
@@ -509,7 +236,7 @@ function openExternalPurchaseUrl(url) {
   });
 }
 
-  
+
 function openExternalPurchaseUrlDemo() {
 
   swal({
