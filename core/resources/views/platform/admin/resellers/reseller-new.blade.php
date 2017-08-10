@@ -292,11 +292,13 @@
               </div>
             </fieldset>
 
+            <br>
+
             <p class="text-muted">Only enter the secret Avangate key if you understand the consequences, you probably only want to set the affiliate ID above. The global settings for the Avangate key are set in the <code>.env</code> config file. If you enter a key below, the config file will be overriden for this reseller.</p>
-            <p>Make sure you enter the IPN and LCN urls in your Avangate dashboard (replace <code>example.com</code> with the url of the reseller):</p>
+            <p class="text-muted">Make sure you enter the IPN and LCN urls in your Avangate dashboard (replace <code>example.com</code> with the url of the reseller):</p>
             <ul class="text-muted">
-              <li>https://example.com/api/v2/avangate/ipn</li>
-              <li>https://example.com/api/v2/avangate/lcn</li>
+              <li>https://example.com/api/v1/avangate/ipn</li>
+              <li>https://example.com/api/v1/avangate/lcn</li>
             </ul>
 
             <fieldset>
@@ -309,7 +311,8 @@
 
           <div class="tab-pane" id="stripe">
             <p class="text-muted">The global Stripe settings are configured in the <code>.env</code> file. Only use these settings if this is not the main reseller.</p>
-              <p class="text-muted">Leave empty if you want to use Avangate. If you enter your Stripe keys (<strong>Stripe &gt; API &gt; Publishable key / Secret key</strong>) here, you can create plans in your Stripe account and enter the ID of these plans at the <strong>Remote product id</strong>, when editing a plan at <strong>Admin &gt; Plans</strong>. Also, add a webhook endpoint in your Stripe account (<strong>API > Webhooks > Add endpoint</strong>): <code>https://example.com/api/v1/stripe/webhook</code>.</p>
+              <p class="text-muted">Leave empty if you want to use Avangate. If you enter your Stripe keys (<strong>Stripe &gt; API &gt; Publishable key / Secret key</strong>) here, you can create plans in your Stripe account and enter the ID of these plans at the <strong>Remote product id</strong>, when editing a plan at <strong>Admin &gt; Plans</strong>.</p>
+              <p class="text-muted">Also, add a webhook endpoint in your Stripe account (<strong>API > Webhooks > Add endpoint</strong>): <code>https://example.com/api/v1/stripe/webhook</code>.</p>
             <fieldset>
               <div class="form-group">
                 <label for="stripe_key">{{ trans('global.publishable_key') }}</label>
