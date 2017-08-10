@@ -22,5 +22,5 @@ Route::group(['prefix' => 'v1'], function() {
   Route::post('avangate/ipn', '\Platform\Controllers\App\AvangateController@postIpn');
 
   // Stripe
-  Route::get('stripe/webhook', '\Platform\Controllers\App\StripeController@postWebhook');
+  Route::post('stripe/webhook', '\Platform\Controllers\App\StripeController@postWebhook');
 });
