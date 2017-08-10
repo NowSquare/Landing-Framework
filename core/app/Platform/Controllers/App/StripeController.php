@@ -1,6 +1,7 @@
 <?php namespace Platform\Controllers\App;
 
 use \Platform\Controllers\Core;
+use Carbon\Carbon;
 
 class StripeController extends \App\Http\Controllers\Controller {
 
@@ -33,44 +34,56 @@ class StripeController extends \App\Http\Controllers\Controller {
 
       \Stripe\Stripe::setApiKey($stripe_secret);
 
-      // Customer exists?
-      if (auth()->user()->stripe_id == null) {
-        // Create customer
-        $customer = \Stripe\Customer::create(array(
-          "description" => "Customer for " . auth()->user()->email,
-          "source" => $token,
-          "email" => $email
-        ));
+      $user = \App\User::where('id', auth()->user()->id)->first();
 
-        $customer_stripe_id = $customer->id;
+      if (! empty($user)) {
+        // Customer exists?
+        if ($user->stripe_id == null) {
+          // Create customer
+          $customer = \Stripe\Customer::create(array(
+            "description" => "Customer for " . $user->email,
+            "source" => $token,
+            "email" => $email
+          ));
 
-        auth()->user()->stripe_id = $customer_stripe_id;
-        auth()->user()->save();
+          $customer_stripe_id = $customer->id;
 
-      } else {
-        $customer_stripe_id = auth()->user()->stripe_id;
-      }
+          $user->stripe_id = $customer_stripe_id;
+          $user->save();
 
-      // Get Stripe plan
-      //$plan = \Stripe\Plan::retrieve($stripe_plan_id);
+        } else {
+          $customer_stripe_id = $user->stripe_id;
+        }
 
-      $subscription = \Stripe\Subscription::create([
-        'customer' => $customer_stripe_id, 
-        'items' => [
-          [
-            'plan' => $stripe_plan_id
+        // Subscribe
+        $subscription = \Stripe\Subscription::create([
+          'customer' => $customer_stripe_id, 
+          'items' => [
+            [
+              'plan' => $stripe_plan_id
+            ]
           ]
-        ]
-      ]);
+        ]);
 
-      $html = '';
-      $html .= auth()->user()->id . '<br>';
-      $html .= $plan_id;
+        if (isset($subscription->plan)) {
+          $expires = Carbon::now()->addMonths(1);
 
-      \Mail::raw($html, function ($message){
-        $message->to(config('avangate.debug_mail'))->subject('Stripe test mail');
-      });
+          if (isset($subscription->plan->interval)) {
+            $interval_count = (isset($subscription->plan->interval_count)) ? $subscription->plan->interval_count : 1;
+            switch ($subscription->plan->interval) {
+              case 'month': $expires = Carbon::now()->addMonths($interval_count); break;
+              case 'year': $expires = Carbon::now()->addYears($interval_count); break;
+            }
+          }
 
+          $user->trial_ends_at = null;
+          $user->trial_ends_reminders_sent = 0;
+          $user->expires_reminders_sent = 0;
+          $user->plan_id = $plan_id;
+          $user->expires = $expires;
+          $user->save();
+        }
+      }
     }
   }
 
@@ -80,19 +93,108 @@ class StripeController extends \App\Http\Controllers\Controller {
 
   public function postWebhook()
   {
-    $request = request()->all();
+    $reseller = Core\Reseller::get();
+    $stripe_secret = $reseller->stripe_secret;
 
-    $html = '';
+    \Stripe\Stripe::setApiKey($stripe_secret);
 
-    foreach ($request as $key => $val)
-    {
-      if (is_array($val)) $val = implode(', ', $val);
-      $html .= $key . ': ' . $val . chr(13);
+    // Retrieve the request's body and parse it as JSON
+    $input = @file_get_contents("php://input");
+    $event_json = json_decode($input);
+
+    // A customer is deleted in Stripe, set user to trial mode
+    if ($event_json->type == 'customer.deleted') {
+      $customer_stripe_id = $event_json->data->object->id;
+
+      // Find matching user
+      $user = \App\User::where('stripe_id', $customer_stripe_id)->first();
+
+      if (! empty($user)) {
+        $user->stripe_id = null;
+        $user->trial_ends_reminders_sent = 0;
+        $user->expires_reminders_sent = 0;
+        $user->plan_id = null;
+        $user->expires = Carbon::now()->addDays(14);
+        $user->save();
+      }
     }
 
-    \Mail::raw($html, function ($message){
-      $message->to(config('avangate.debug_mail'))->subject('Stripe webhook test');
-    });
+    // A subscription is created for a customer in Stripe
+    if ($event_json->type == 'customer.subscription.created') {
+      $customer_stripe_id = $event_json->data->object->customer;
+      $remote_product_id = $event_json->data->object->plan->id;
 
+      // Find matching user
+      $user = \App\User::where('stripe_id', $customer_stripe_id)->first();
+
+      // Find matching plan
+      $plan = \App\Plan::where('monthly_remote_product_id', $remote_product_id)->orWhere('annual_remote_product_id', $remote_product_id)->first();
+
+      if (! empty($user) && ! empty($plan)) {
+
+        $expires = Carbon::now()->addMonths(1);
+
+        if (isset($event_json->data->object->plan->interval)) {
+          $interval_count = (isset($event_json->data->object->plan->interval_count)) ? $event_json->data->object->plan->interval_count : 1;
+          switch ($event_json->data->object->plan->interval) {
+            case 'month': $expires = Carbon::now()->addMonths($interval_count); break;
+            case 'year': $expires = Carbon::now()->addYears($interval_count); break;
+          }
+        }
+
+        $user->trial_ends_reminders_sent = 0;
+        $user->expires_reminders_sent = 0;
+        $user->plan_id = $plan->id;
+        $user->expires = $expires;
+        $user->save();
+      }
+    }
+
+    // A subscription is updated for a customer in Stripe
+    if ($event_json->type == 'customer.subscription.updated') {
+      $customer_stripe_id = $event_json->data->object->customer;
+      $remote_product_id = $event_json->data->object->plan->id;
+
+      // Find matching user
+      $user = \App\User::where('stripe_id', $customer_stripe_id)->first();
+
+      // Find matching plan
+      $plan = \App\Plan::where('monthly_remote_product_id', $remote_product_id)->orWhere('annual_remote_product_id', $remote_product_id)->first();
+
+      if (! empty($user) && ! empty($plan)) {
+
+        $expires = Carbon::now()->addMonths(1);
+
+        if (isset($event_json->data->object->plan->interval)) {
+          $interval_count = (isset($event_json->data->object->plan->interval_count)) ? $event_json->data->object->plan->interval_count : 1;
+          switch ($event_json->data->object->plan->interval) {
+            case 'month': $expires = Carbon::now()->addMonths($interval_count); break;
+            case 'year': $expires = Carbon::now()->addYears($interval_count); break;
+          }
+        }
+
+        $user->trial_ends_reminders_sent = 0;
+        $user->expires_reminders_sent = 0;
+        $user->plan_id = $plan->id;
+        $user->expires = $expires;
+        $user->save();
+      }
+    }
+
+    // A subscription is deleted for a customer in Stripe, set user to trial mode
+    if ($event_json->type == 'customer.subscription.deleted') {
+      $customer_stripe_id = $event_json->data->object->customer;
+
+      // Find matching user
+      $user = \App\User::where('stripe_id', $customer_stripe_id)->first();
+
+      if (! empty($user)) {
+        $user->trial_ends_reminders_sent = 0;
+        $user->expires_reminders_sent = 0;
+        $user->plan_id = null;
+        $user->expires = Carbon::now()->addDays(14);
+        $user->save();
+      }
+    }
   }
 }
