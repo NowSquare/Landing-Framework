@@ -89,6 +89,7 @@ class AvangateController extends \App\Http\Controllers\Controller {
           $user->remote_id = $remote_id;
           $user->trial_ends_at = null;
           $user->trial_ends_reminders_sent = 0;
+          $user->expires_reminders_sent = 0;
   
           if ($EXPIRATION_DATE != '') $user->expires = $EXPIRATION_DATE . ' ' . date('H:i:s');
   
