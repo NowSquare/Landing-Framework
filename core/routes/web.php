@@ -79,6 +79,9 @@ Route::group(['middleware' => 'auth:web'], function () {
   // Change language
   Route::post('platform/language', '\Platform\Controllers\Core\Localization@postSetLanguage');
 
+  // Stripe
+  Route::post('platform/stripe/token', '\Platform\Controllers\App\StripeController@postToken');
+
   /*
    |--------------------------------------------------------------------------
    | Partials

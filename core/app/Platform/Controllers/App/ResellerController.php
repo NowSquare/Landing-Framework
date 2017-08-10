@@ -105,7 +105,9 @@ class ResellerController extends \App\Http\Controllers\Controller {
       'mail_mailgun_domain' => request()->input('mail_mailgun_domain', null),
       'mail_mailgun_secret' => request()->input('mail_mailgun_secret', null),
       'avangate_affiliate' => request()->input('avangate_affiliate', null),
-      'avangate_key' => request()->input('avangate_key', null)
+      'avangate_key' => request()->input('avangate_key', null),
+      'stripe_key' => request()->input('stripe_key', null),
+      'stripe_secret' => request()->input('stripe_secret', null)
     );
 
     $rules = array(
@@ -150,6 +152,8 @@ class ResellerController extends \App\Http\Controllers\Controller {
       $reseller->mail_mailgun_secret = $input['mail_mailgun_secret'];
       $reseller->avangate_affiliate = $input['avangate_affiliate'];
       $reseller->avangate_key = $input['avangate_key'];
+      $reseller->stripe_key = $input['stripe_key'];
+      $reseller->stripe_secret = $input['stripe_secret'];
       $reseller->settings = [
         'header_gradient_start' => $input['header_gradient_start'],
         'header_gradient_end' => $input['header_gradient_end'],
@@ -237,7 +241,9 @@ class ResellerController extends \App\Http\Controllers\Controller {
         'mail_mailgun_domain' => request()->input('mail_mailgun_domain', null),
         'mail_mailgun_secret' => request()->input('mail_mailgun_secret', null),
         'avangate_affiliate' => request()->input('avangate_affiliate', null),
-        'avangate_key' => request()->input('avangate_key', null)
+        'avangate_key' => request()->input('avangate_key', null),
+        'stripe_key' => request()->input('stripe_key', null),
+        'stripe_secret' => request()->input('stripe_secret', null)
       );
 
       $rules = array(
@@ -279,6 +285,8 @@ class ResellerController extends \App\Http\Controllers\Controller {
         $reseller->mail_mailgun_secret = $input['mail_mailgun_secret'];
         $reseller->avangate_affiliate = $input['avangate_affiliate'];
         $reseller->avangate_key = $input['avangate_key'];
+        $reseller->stripe_key = $input['stripe_key'];
+        $reseller->stripe_secret = $input['stripe_secret'];
 
         $reseller->settings = [
           'header_gradient_start' => $input['header_gradient_start'],

@@ -77,7 +77,8 @@
           <li class="active"><a href="#design" data-toggle="tab" aria-expanded="false">{{ trans('global.design') }}</a></li>
           <li><a href="#mail_settings" data-toggle="tab" aria-expanded="false">{{ trans('global.mail_settings') }}</a></li>
           <li><a href="#localization" data-toggle="tab" aria-expanded="false">{{ trans('global.localization') }}</a></li>
-          <li><a href="#avangate" data-toggle="tab" aria-expanded="false">Avangate</a></li>
+          <li><a href="#avangate" data-toggle="tab" aria-expanded="false">{{ trans('global.avangate') }}</a></li>
+          <li><a href="#stripe" data-toggle="tab" aria-expanded="false">{{ trans('global.stripe') }}</a></li>
         </ul>
 
         <div class="tab-content">
@@ -189,11 +190,11 @@
           </div>
 
           <div class="tab-pane" id="mail_settings">
+            <p class="text-muted">The global email settings are configured in the <code>.env</code> file. Only modify these settings for resellers other than the main reseller. In most cases you probably only want to configure the <strong>{{ trans('global.sender_name') }}</strong> and <strong>{{ trans('global.sender_address') }}</strong>.</p>
             <fieldset>
-
               <div class="form-group">
                 <?php
-                echo Former::select( 'mail_driver' )->class( 'select2-required form-control' )->name( 'mail_driver' )->forceValue( $reseller->mail_driver )->options( [ 'smtp' => 'SMTP', 'mailgun' => 'Mailgun' ] )->label( trans( 'global.driver' ) );
+                echo Former::select( 'mail_driver' )->class( 'select2-required form-control' )->name( 'mail_driver' )->forceValue( $reseller->mail_driver )->options( [ '' => '&nbsp;', 'smtp' => 'SMTP', 'mailgun' => 'Mailgun' ] )->label( trans( 'global.driver' ) );
                 ?>
                 <script>
                   $( '#mail_driver' ).on( 'change', checkMailDriver );
@@ -283,16 +284,42 @@
           </div>
 
           <div class="tab-pane" id="avangate">
+            <p class="text-muted">Enter the affiliate ID of this reseller below, in order to add it to the checkout process. Only do this for a reseller other than the main reseller. Details of the affiliate share and whether this affiliate is accepted, can be found in the Avangate dashboard.</p>
             <fieldset>
               <div class="form-group">
                 <label for="avangate_affiliate">{{ trans('global.affiliate_id') }}</label>
                 <input type="text" class="form-control" name="avangate_affiliate" id="avangate_affiliate" autocomplete="off" value="{{ $reseller->avangate_affiliate }}">
               </div>
             </fieldset>
+
+            <p class="text-muted">Only enter the secret Avangate key if you understand the consequences, you probably only want to set the affiliate ID above. The global settings for the Avangate key are set in the <code>.env</code> config file. If you enter a key below, the config file will be overriden for this reseller.</p>
+            <p>Make sure you enter the IPN and LCN urls in your Avangate dashboard (replace <code>example.com</code> with the url of the reseller):</p>
+            <ul class="text-muted">
+              <li>https://example.com/api/v2/avangate/ipn</li>
+              <li>https://example.com/api/v2/avangate/lcn</li>
+            </ul>
+
             <fieldset>
               <div class="form-group">
-                <label for="avangate_key">{{ trans('global.key') }} (not fully implemented yet)</label>
+                <label for="avangate_key">{{ trans('global.key') }}</label>
                 <input type="text" class="form-control" name="avangate_key" id="avangate_key" autocomplete="off" value="{{ $reseller->avangate_key }}">
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="tab-pane" id="stripe">
+            <p class="text-muted">The global Stripe settings are configured in the <code>.env</code> file. Only use these settings if this is not the main reseller.</p>
+              <p class="text-muted">Leave empty if you want to use Avangate. If you enter your Stripe keys (<strong>Stripe &gt; API &gt; Publishable key / Secret key</strong>) here, you can create plans in your Stripe account and enter the ID of these plans at the <strong>Remote product id</strong>, when editing a plan at <strong>Admin &gt; Plans</strong>. Also, add a webhook endpoint in your Stripe account (<strong>API > Webhooks > Add endpoint</strong>): <code>https://example.com/api/v1/stripe/webhook</code>.</p>
+            <fieldset>
+              <div class="form-group">
+                <label for="stripe_key">{{ trans('global.publishable_key') }}</label>
+                <input type="text" class="form-control" name="stripe_key" id="stripe_key" autocomplete="off" value="{{ $reseller->stripe_key }}">
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="form-group">
+                <label for="stripe_secret">{{ trans('global.secret_key') }}</label>
+                <input type="text" class="form-control" name="stripe_secret" id="stripe_secret" autocomplete="off" value="{{ $reseller->stripe_secret }}">
               </div>
             </fieldset>
           </div>

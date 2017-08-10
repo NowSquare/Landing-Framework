@@ -72,6 +72,7 @@ return array(
   "or" => "Or",
   "published" => "Published",
   "not_published" => "Not published",
+  "optional" => "Optional",
 
   /*
    |--------------------------------------------------------------------------
@@ -319,6 +320,7 @@ return array(
   "full_access" => "Full access",
   "free" => "Free",
   "trial" => "Trial",
+  "subscribe" => "Subscribe",
   "trial_tour" => "To update your subscription or see all available plans, click here and choose 'Plan'.",
   "trial_expires" => "Trial expires",
   "trial_expires_help" => "Leave empty to prevent account removal on trial expiration date.",
@@ -403,6 +405,10 @@ return array(
   "header_gradient" => "Header gradient",
   "header_title" => "Header title",
   "header_cta" => "Header Call-to-Action",
+  "publishable_key" => "Publishable key",
+  "secret_key" => "Secret key",
+  "avangate" => "Avangate",
+  "stripe" => "Stripe",
 
   /*
    |--------------------------------------------------------------------------

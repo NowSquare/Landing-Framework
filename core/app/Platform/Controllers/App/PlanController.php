@@ -461,15 +461,15 @@ class PlanController extends \App\Http\Controllers\Controller {
       return $value['order'];
     }));
 
-    $payment_link_suffix = ($reseller->avangate_affiliate != '') ? '&AVGAFFILIATE=' . $reseller->avangate_affiliate : '';
-    if (env('PAYMENT_TEST', false)) $payment_link_suffix .= '&DOTEST=1';
+    $payment_link_suffix = ($reseller->avangate_affiliate != '' && $reseller->stripe_key == null) ? '&AVGAFFILIATE=' . $reseller->avangate_affiliate : '';
+    if (env('PAYMENT_TEST', false) && $reseller->stripe_key == null) $payment_link_suffix .= '&DOTEST=1';
 
     $currencyRepository = new \CommerceGuys\Intl\Currency\CurrencyRepository;
     $numberFormatRepository = new \CommerceGuys\Intl\NumberFormat\NumberFormatRepository;
     $numberFormat = $numberFormatRepository->get($language);
     $decimalFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat);
     $currencyFormatter = new \CommerceGuys\Intl\Formatter\NumberFormatter($numberFormat, \CommerceGuys\Intl\Formatter\NumberFormatter::CURRENCY);
-    
+
     $all_plans = [];
     $disabled = false;
     $annual_plans_exist = false;
@@ -543,10 +543,8 @@ class PlanController extends \App\Http\Controllers\Controller {
         $disabled = false;
         $btn_class = 'primary';
       } elseif (! $disabled) {
-        // Add Avangate CUSTOMERID
-        $order_url = (isset($default_plan->order_url)) ? $default_plan->order_url . '&CUSTOMERID=' . $user_id : '';
         $btn_text = trans('global.expired');
-        $btn_link = ($order_url != '') ? $order_url : 'javascript:void(0);';
+        $btn_link = 'javascript:void(0);';
         $btn_target = '';
         $btn_class = 'warning';
       } else {
@@ -719,19 +717,32 @@ class PlanController extends \App\Http\Controllers\Controller {
         $disabled = false;
         $btn_class = 'primary';
       } elseif (! $disabled) {
-        // Add Avangate CUSTOMERID
-        $monthly_order_url = (isset($plan->monthly_order_url)) ? $plan->monthly_order_url . '&CUSTOMERID=' . $user_id : '';
-        $monthly_upgrade_url = (isset($plan->monthly_upgrade_url)) ? $plan->monthly_upgrade_url . '&CUSTOMERID=' . $user_id : '';
-        $annual_order_url = (isset($plan->annual_order_url)) ? $plan->annual_order_url . '&CUSTOMERID=' . $user_id : '';
-        $annual_upgrade_url = (isset($plan->annual_upgrade_url)) ? $plan->annual_upgrade_url . '&CUSTOMERID=' . $user_id : '';
+        if ($reseller->stripe_key == null) {
+          // Add Avangate CUSTOMERID
+          $monthly_order_url = (isset($plan->monthly_order_url)) ? $plan->monthly_order_url . '&CUSTOMERID=' . $user_id : '';
+          $annual_order_url = (isset($plan->annual_order_url)) ? $plan->annual_order_url . '&CUSTOMERID=' . $user_id : '';
+
+          $monthly_order_url = "'" . $monthly_order_url . $payment_link_suffix . "'";
+          $annual_order_url = "'" . $annual_order_url . $payment_link_suffix . "'";
+        } else {
+          // Stripe
+          $monthly_order_url = "'" . str_replace("'", "\'", $plan->name) . "', '" . str_replace("'", "\'", $monthly_price) . trans('global.monthly_abbr') . "', '" . $currency . "', " . ($plan->monthly_price * 100) . ", '" . str_replace("'", "\'", $plan->monthly_remote_product_id) . "', " . $plan->id . "";
+          $annual_order_url = "'" . str_replace("'", "\'", $plan->name) . "', '" . str_replace("'", "\'", $annual_price) . trans('global.monthly_abbr') . "', '" . $currency . "', " . ($plan->annual_price * 100) . ", '" . str_replace("'", "\'", $plan->annual_remote_product_id) . "', " . $plan->id . "";
+        }
+
         $btn_text_monthly = trans('global.order_1_month');
         $btn_text_annual = trans('global.order_1_year');
         if ($plan->annual_price == null) $btn_text_monthly = trans('global.order');
         $btn_link_monthly = 'javascript:void(0);';
         $btn_link_annual = 'javascript:void(0);';
 
-        if ($monthly_order_url != '') $btn_link_monthly = 'javascript:openExternalPurchaseUrl(\'' . $monthly_order_url . $payment_link_suffix . '\');';
-        if ($annual_order_url != '') $btn_link_annual = 'javascript:openExternalPurchaseUrl(\'' . $annual_order_url . $payment_link_suffix . '\');';
+        if (env('APP_DEMO', false)) {
+          if ($monthly_order_url != '') $btn_link_monthly = 'javascript:openExternalPurchaseUrlDemo(' . $monthly_order_url . ');';
+          if ($annual_order_url != '') $btn_link_annual = 'javascript:openExternalPurchaseUrlDemo(' . $annual_order_url . ');';
+        } else {
+          if ($monthly_order_url != '') $btn_link_monthly = 'javascript:openExternalPurchaseUrl(' . $monthly_order_url . ');';
+          if ($annual_order_url != '') $btn_link_annual = 'javascript:openExternalPurchaseUrl(' . $annual_order_url . ');';
+        }
 
         $btn_target = '';
         $btn_class = 'warning';

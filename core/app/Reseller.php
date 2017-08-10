@@ -27,6 +27,8 @@ class Reseller extends Model
     'mail_mailgun_domain',
     'mail_mailgun_secret',
     'avangate_key',
+    'stripe_key',
+    'stripe_secret',
   ];
 
   /**

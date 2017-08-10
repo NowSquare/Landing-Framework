@@ -147,6 +147,7 @@ class AccountController extends \App\Http\Controllers\Controller {
    */
 
   public function showPlan() {
+    $reseller = Core\Reseller::get();
     $user = auth()->user();
 
     if ($user->trial_ends_at != NULL || $user->expires != NULL) {
@@ -159,6 +160,6 @@ class AccountController extends \App\Http\Controllers\Controller {
     $all_plans = $plans['all_plans'];
     $annual_plans_exist = $plans['annual_plans_exist'];
 
-    return view('platform.account.plan', compact('user', 'all_plans', 'annual_plans_exist', 'expiration_string'));
+    return view('platform.account.plan', compact('reseller', 'user', 'all_plans', 'annual_plans_exist', 'expiration_string'));
   }
 }

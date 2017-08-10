@@ -63,7 +63,7 @@
 
             <ul class="nav nav-tabs navtab-custom">
               <li class="active"><a href="#monthly" data-toggle="tab" aria-expanded="false">{{ trans('global.monthly') }}</a></li>
-              <li><a href="#annual" data-toggle="tab" aria-expanded="false">{{ trans('global.annual') }}</a></li>
+              <li><a href="#annual" data-toggle="tab" aria-expanded="false">{{ trans('global.annual') }} ({{ trans('global.optional') }})</a></li>
             </ul>
 
             <div class="tab-content" style="padding-bottom:10px">
@@ -75,20 +75,20 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="monthly_remote_product_id">{{ trans('global.remote_product_id') }}</label>
+                  <label for="monthly_remote_product_id">{{ trans('global.remote_product_id') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Here you can enter the Avangate or Stripe ID of a product or plan.">&#xE887;</i></label>
                   <input type="text" class="form-control" name="monthly_remote_product_id" value="{{ $plan->monthly_remote_product_id }}" autocomplete="off" placeholder="">
                 </div>
 
                 <div class="form-group">
-                  <label for="monthly_order_url">{{ trans('global.order_url') }}</label>
+                  <label for="monthly_order_url">{{ trans('global.order_url') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="This is currently only used for Avangate. Enter the full order url of this plan.">&#xE887;</i></label>
                   <input type="text" class="form-control" name="monthly_order_url" id="monthly_order_url" value="{{ $plan->monthly_order_url }}" autocomplete="off">
                 </div>
-
+<?php /*
                 <div class="form-group">
                   <label for="monthly_upgrade_url">{{ trans('global.upgrade_url') }}</label>
                   <input type="text" class="form-control" name="monthly_upgrade_url" id="monthly_upgrade_url" value="{{ $plan->monthly_upgrade_url }}" autocomplete="off">
                 </div>
-
+*/ ?>
               </div>
               <div class="tab-pane" id="annual">
 
@@ -98,21 +98,21 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="annual_remote_product_id">{{ trans('global.remote_product_id') }}</label>
+                  <label for="annual_remote_product_id">{{ trans('global.remote_product_id') }}<i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="Here you can enter the Avangate or Stripe ID of a product or plan.">&#xE887;</i></label>
                   <input type="text" class="form-control" name="annual_remote_product_id" value="{{ $plan->annual_remote_product_id }}" autocomplete="off" placeholder="">
                 </div>
 
 
                 <div class="form-group">
-                  <label for="annual_order_url">{{ trans('global.order_url') }}</label>
+                  <label for="annual_order_url">{{ trans('global.order_url') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="This is currently only used for Avangate. Enter the full order url of this plan.">&#xE887;</i></label>
                   <input type="text" class="form-control" name="annual_order_url" id="annual_order_url" value="{{ $plan->annual_order_url }}" autocomplete="off">
                 </div>
-
+<?php /*
                 <div class="form-group">
                   <label for="annual_upgrade_url">{{ trans('global.upgrade_url') }}</label>
                   <input type="text" class="form-control" name="annual_upgrade_url" id="annual_upgrade_url" value="{{ $plan->annual_upgrade_url }}" autocomplete="off">
                 </div>
-
+*/ ?>
               </div>
             </div>
 

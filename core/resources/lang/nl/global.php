@@ -72,6 +72,7 @@ return array(
   "or" => "Of",
   "published" => "Gepubliceerd",
   "not_published" => "Niet gepubliceerd",
+  "optional" => "Optioneel",
 
   /*
    |--------------------------------------------------------------------------
@@ -319,6 +320,7 @@ return array(
   "full_access" => "Volledige toegang",
   "free" => "Gratis",
   "trial" => "Proefabonnement",
+  "subscribe" => "Abonneer",
   "trial_tour" => "Om uw abonnement bij te werken of alle beschikbare abonnementen te bekijken, klik hier en kies 'Abonnement'.",
   "trial_expires" => "Proefabonnement vervalt",
   "trial_expires_help" => "Laat leeg om te voorkomen dat het account verwijderd wordt op de vervaldatum.",
@@ -403,6 +405,10 @@ return array(
   "header_gradient" => "Header verloop",
   "header_title" => "Header titel",
   "header_cta" => "Header Call-to-Action",
+  "publishable_key" => "Publishable key",
+  "secret_key" => "Secret key",
+  "avangate" => "Avangate",
+  "stripe" => "Stripe",
 
   /*
    |--------------------------------------------------------------------------

@@ -200,25 +200,76 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 </style>
+<?php
+if ($reseller->stripe_key != null) {
+?>
 <script>
-$('.price_switch').change(function() {
-    if (this.checked) {
-      $('.price_switch').prop('checked', true);
-      $('.price-monthly').hide();
-      $('.price-annual').show();
-      $('.order-btn-monthly').hide();
-      $('.order-btn-annual').show();
-    } else {
-      $('.price_switch').prop('checked', false);
-      $('.price-monthly').show();
-      $('.price-annual').hide();
-      $('.order-btn-monthly').show();
-      $('.order-btn-annual').hide();
-    }
-});
-  
-function openExternalPurchaseUrl(url) {
+var selected_plan_id, selected_stripe_plan_id;
 
+var handler = StripeCheckout.configure({
+  key: '{{ $reseller->stripe_key }}',
+  locale: 'auto',
+  zipCode: false,
+  billingAddress: false,
+  token: function(token) {
+    // You can access the token ID with `token.id`.
+    // Get the token ID to your server-side code for use.
+    blockUI();
+
+    var jqxhr = $.ajax({
+      url: "{{ url('platform/stripe/token') }}",
+      data: {token: token.id, email: token.email, type: token.type, plan_id: selected_plan_id, stripe_plan_id: selected_stripe_plan_id, _token: '<?= csrf_token() ?>'},
+      method: 'POST'
+    })
+    .done(function(data) {
+      
+    })
+    .fail(function() {
+      console.log('error');
+    })
+    .always(function() {
+      unblockUI();
+    });
+  }
+}); 
+
+function openExternalPurchaseUrl(plan_name, plan_description, plan_currency, plan_amount, stripe_plan_id, plan_id) {
+  selected_stripe_plan_id = stripe_plan_id;
+  selected_plan_id = plan_id;
+  // Open Checkout with further options:
+  handler.open({
+    name: plan_name,
+    description: plan_description,
+    currency: plan_currency,
+    amount: plan_amount,
+    panelLabel: '{{ trans('global.subscribe') }}',
+  });
+
+  // Close Checkout on page navigation:
+  window.addEventListener('popstate', function() {
+    handler.close();
+  });
+}
+
+function openExternalPurchaseUrlDemo() {
+  swal({
+    title: "{{ trans('global.change_plan') }}", 
+    text: "{{ trans('global.login_demo_mode') }}", 
+    showCancelButton: false,
+    confirmButtonColor: "#138dfa",
+    confirmButtonText: "{{ trans('global.got_it') }}"
+  }).then(function (result) {
+
+
+  }, function (dismiss) {
+    // Do nothing on cancel
+    // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
+  });
+}
+</script>
+<?php } else { ?>
+<script>
+function openExternalPurchaseUrl(url) {
   swal({
     title: "{{ trans('global.change_plan') }}", 
     text: "{{ trans('global.upgrade_before_link') }}", 
@@ -236,23 +287,36 @@ function openExternalPurchaseUrl(url) {
   });
 }
 
-
 function openExternalPurchaseUrlDemo() {
-
   swal({
     title: "{{ trans('global.change_plan') }}", 
-    text: "{{ trans('global.upgrade_before_link') }}", 
-    showCancelButton: true,
-    cancelButtonText: "{{ trans('global.cancel') }}",
+    text: "{{ trans('global.login_demo_mode') }}", 
+    showCancelButton: false,
     confirmButtonColor: "#138dfa",
     confirmButtonText: "{{ trans('global.got_it') }}"
   }).then(function (result) {
-
-    alert('Disabled in demo');
 
   }, function (dismiss) {
     // Do nothing on cancel
     // dismiss can be 'cancel', 'overlay', 'close', and 'timer'
   });
 }
+</script>
+<?php } ?>
+<script>
+$('.price_switch').change(function() {
+    if (this.checked) {
+      $('.price_switch').prop('checked', true);
+      $('.price-monthly').hide();
+      $('.price-annual').show();
+      $('.order-btn-monthly').hide();
+      $('.order-btn-annual').show();
+    } else {
+      $('.price_switch').prop('checked', false);
+      $('.price-monthly').show();
+      $('.price-annual').hide();
+      $('.order-btn-monthly').show();
+      $('.order-btn-annual').hide();
+    }
+});
 </script>

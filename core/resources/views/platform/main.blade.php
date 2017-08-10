@@ -1,6 +1,9 @@
 @extends('layouts.platform')
 
 @section('head') 
+<?php if ($reseller->stripe_key != null) { ?>
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<?php } ?>
 <script type="text/javascript" src="//www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
   google.charts.load('current', {packages: ['corechart', 'line']});

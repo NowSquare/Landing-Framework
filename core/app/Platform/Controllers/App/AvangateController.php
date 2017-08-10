@@ -50,7 +50,9 @@ class AvangateController extends \App\Http\Controllers\Controller {
     $remote_hash = request()->input('HASH', '');
 
     $date = date('YmdGis');
-    $secret_key = \Config::get('avangate.key');
+
+    $reseller = Core\Reseller::get();
+    $secret_key = $reseller->avangate_key;
 
     $hmac_string = $this->array_to_string($request);
     $hash = $this->hmac($secret_key, $hmac_string);
@@ -144,15 +146,7 @@ class AvangateController extends \App\Http\Controllers\Controller {
             $user->plan_id = $plans{0}->id;
             //$user->expires = NULL;
           }
-/*
-          $user->settings = \App\Core\Settings::json(array(
-            'EMAIL' => $EMAIL,
-            'COUNTRY' => $COUNTRY,
-            'CITY' => $CITY,
-            'LICENSE_CODE' => $LICENSE_CODE,
-            'LICENSE_PRODUCT' => $LICENSE_PRODUCT
-          ), $user->settings);
-  */
+
           $user->save();
         }
       }
@@ -226,7 +220,8 @@ class AvangateController extends \App\Http\Controllers\Controller {
     $remote_hash = request()->input('HASH', '');
 
     $date = date('YmdGis');
-    $secret_key = \Config::get('avangate.key');
+    $reseller = Core\Reseller::get();
+    $secret_key = $reseller->avangate_key;
 
     $hmac_string = $this->array_to_string($request);
     $hash = $this->hmac($secret_key, $hmac_string);
