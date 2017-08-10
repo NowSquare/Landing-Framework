@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,9 +19,12 @@ class Google_Service_ShoppingContent_AccountStatus extends Google_Collection
 {
   protected $collection_key = 'dataQualityIssues';
   public $accountId;
+  protected $accountLevelIssuesType = 'Google_Service_ShoppingContent_AccountStatusAccountLevelIssue';
+  protected $accountLevelIssuesDataType = 'array';
   protected $dataQualityIssuesType = 'Google_Service_ShoppingContent_AccountStatusDataQualityIssue';
   protected $dataQualityIssuesDataType = 'array';
   public $kind;
+  public $websiteClaimed;
 
   public function setAccountId($accountId)
   {
@@ -31,10 +34,30 @@ class Google_Service_ShoppingContent_AccountStatus extends Google_Collection
   {
     return $this->accountId;
   }
+  /**
+   * @param Google_Service_ShoppingContent_AccountStatusAccountLevelIssue
+   */
+  public function setAccountLevelIssues($accountLevelIssues)
+  {
+    $this->accountLevelIssues = $accountLevelIssues;
+  }
+  /**
+   * @return Google_Service_ShoppingContent_AccountStatusAccountLevelIssue
+   */
+  public function getAccountLevelIssues()
+  {
+    return $this->accountLevelIssues;
+  }
+  /**
+   * @param Google_Service_ShoppingContent_AccountStatusDataQualityIssue
+   */
   public function setDataQualityIssues($dataQualityIssues)
   {
     $this->dataQualityIssues = $dataQualityIssues;
   }
+  /**
+   * @return Google_Service_ShoppingContent_AccountStatusDataQualityIssue
+   */
   public function getDataQualityIssues()
   {
     return $this->dataQualityIssues;
@@ -46,5 +69,13 @@ class Google_Service_ShoppingContent_AccountStatus extends Google_Collection
   public function getKind()
   {
     return $this->kind;
+  }
+  public function setWebsiteClaimed($websiteClaimed)
+  {
+    $this->websiteClaimed = $websiteClaimed;
+  }
+  public function getWebsiteClaimed()
+  {
+    return $this->websiteClaimed;
   }
 }

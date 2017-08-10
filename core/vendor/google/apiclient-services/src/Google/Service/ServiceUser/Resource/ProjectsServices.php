@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -79,9 +79,9 @@ class Google_Service_ServiceUser_Resource_ProjectsServices extends Google_Servic
    * An example valid parent would be: - projects/my-project
    * @param array $optParams Optional parameters.
    *
+   * @opt_param int pageSize Requested size of the next page of data.
    * @opt_param string pageToken Token identifying which result to start with;
    * returned by a previous list call.
-   * @opt_param int pageSize Requested size of the next page of data.
    * @return Google_Service_ServiceUser_ListEnabledServicesResponse
    */
   public function listProjectsServices($parent, $optParams = array())

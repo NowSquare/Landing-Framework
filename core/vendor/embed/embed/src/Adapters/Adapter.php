@@ -9,6 +9,7 @@ use Embed\Http\ImageResponse;
 use Embed\Http\Response;
 use Embed\Http\Url;
 use Embed\Providers\Provider;
+use Embed\Utils;
 
 /**
  * Base class extended by all adapters.
@@ -277,20 +278,29 @@ abstract class Adapter implements DataInterface
         return $code['code'];
     }
 
+    /**
+     * Returns the code as DOMNodeList elements
+     *
+     * @return \DOMNodeList|null
+     */
     public function getHtml()
     {
         $code = $this->code;
+
+        if (empty($code)) {
+            return;
+        }
 
         $errors = libxml_use_internal_errors(true);
         $entities = libxml_disable_entity_loader(true);
 
         $dom = new \DOMDocument();
-        $dom->loadHTML(trim($code));
+        $dom->loadHTML($code);
 
         libxml_use_internal_errors($errors);
         libxml_disable_entity_loader($entities);
 
-        //var_dump($dom->documentElement);
+        return Utils::xpathQuery($dom, 'descendant-or-self::body/*', false);
     }
 
     /**
@@ -301,13 +311,16 @@ abstract class Adapter implements DataInterface
         $default = (string) $this->getResponse()->getUrl();
         $blacklist = $this->getConfig('url_blacklist');
 
-        return $this->getFirstFromProviders(function (Provider $provider) use ($blacklist) {
+        //some sites returns the homepage as canonical
+        $homeUrl = $this->getResponse()->getUrl()->getAbsolute('/');
+
+        return $this->getFirstFromProviders(function (Provider $provider) use ($blacklist, $homeUrl) {
             $url = $provider->getUrl();
-            if (!empty($blacklist) &&
-                Url::create($url)->match($blacklist)
-            ) {
+
+            if ($homeUrl === $url || (!empty($blacklist) && Url::create($url)->match($blacklist))) {
                 return false;
             }
+
             return $url;
         }, $default);
     }

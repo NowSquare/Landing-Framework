@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -46,7 +46,7 @@ class Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeys exten
     return $this->call('create', array($params), "Google_Service_CloudKMS_CryptoKey");
   }
   /**
-   * Decrypt data that was protected by Encrypt. (cryptoKeys.decrypt)
+   * Decrypts data that was protected by Encrypt. (cryptoKeys.decrypt)
    *
    * @param string $name Required. The resource name of the CryptoKey to use for
    * decryption. The server will choose the appropriate version.
@@ -61,7 +61,7 @@ class Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeys exten
     return $this->call('decrypt', array($params), "Google_Service_CloudKMS_DecryptResponse");
   }
   /**
-   * Encrypt data, so that it can only be recovered by a call to Decrypt.
+   * Encrypts data, so that it can only be recovered by a call to Decrypt.
    * (cryptoKeys.encrypt)
    *
    * @param string $name Required. The resource name of the CryptoKey or
@@ -115,12 +115,12 @@ class Google_Service_CloudKMS_Resource_ProjectsLocationsKeyRingsCryptoKeys exten
    * the format `projects/locations/keyRings`.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string pageToken Optional pagination token, returned earlier via
-   * ListCryptoKeysResponse.next_page_token.
    * @opt_param int pageSize Optional limit on the number of CryptoKeys to include
    * in the response.  Further CryptoKeys can subsequently be obtained by
    * including the ListCryptoKeysResponse.next_page_token in a subsequent request.
    * If unspecified, the server will pick an appropriate default.
+   * @opt_param string pageToken Optional pagination token, returned earlier via
+   * ListCryptoKeysResponse.next_page_token.
    * @return Google_Service_CloudKMS_ListCryptoKeysResponse
    */
   public function listProjectsLocationsKeyRingsCryptoKeys($parent, $optParams = array())

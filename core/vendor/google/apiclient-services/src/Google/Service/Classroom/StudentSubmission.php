@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -15,8 +15,9 @@
  * the License.
  */
 
-class Google_Service_Classroom_StudentSubmission extends Google_Model
+class Google_Service_Classroom_StudentSubmission extends Google_Collection
 {
+  protected $collection_key = 'submissionHistory';
   public $alternateLink;
   public $assignedGrade;
   protected $assignmentSubmissionType = 'Google_Service_Classroom_AssignmentSubmission';
@@ -34,6 +35,8 @@ class Google_Service_Classroom_StudentSubmission extends Google_Model
   protected $shortAnswerSubmissionType = 'Google_Service_Classroom_ShortAnswerSubmission';
   protected $shortAnswerSubmissionDataType = '';
   public $state;
+  protected $submissionHistoryType = 'Google_Service_Classroom_SubmissionHistory';
+  protected $submissionHistoryDataType = 'array';
   public $updateTime;
   public $userId;
 
@@ -53,10 +56,16 @@ class Google_Service_Classroom_StudentSubmission extends Google_Model
   {
     return $this->assignedGrade;
   }
+  /**
+   * @param Google_Service_Classroom_AssignmentSubmission
+   */
   public function setAssignmentSubmission(Google_Service_Classroom_AssignmentSubmission $assignmentSubmission)
   {
     $this->assignmentSubmission = $assignmentSubmission;
   }
+  /**
+   * @return Google_Service_Classroom_AssignmentSubmission
+   */
   public function getAssignmentSubmission()
   {
     return $this->assignmentSubmission;
@@ -125,18 +134,30 @@ class Google_Service_Classroom_StudentSubmission extends Google_Model
   {
     return $this->late;
   }
+  /**
+   * @param Google_Service_Classroom_MultipleChoiceSubmission
+   */
   public function setMultipleChoiceSubmission(Google_Service_Classroom_MultipleChoiceSubmission $multipleChoiceSubmission)
   {
     $this->multipleChoiceSubmission = $multipleChoiceSubmission;
   }
+  /**
+   * @return Google_Service_Classroom_MultipleChoiceSubmission
+   */
   public function getMultipleChoiceSubmission()
   {
     return $this->multipleChoiceSubmission;
   }
+  /**
+   * @param Google_Service_Classroom_ShortAnswerSubmission
+   */
   public function setShortAnswerSubmission(Google_Service_Classroom_ShortAnswerSubmission $shortAnswerSubmission)
   {
     $this->shortAnswerSubmission = $shortAnswerSubmission;
   }
+  /**
+   * @return Google_Service_Classroom_ShortAnswerSubmission
+   */
   public function getShortAnswerSubmission()
   {
     return $this->shortAnswerSubmission;
@@ -148,6 +169,20 @@ class Google_Service_Classroom_StudentSubmission extends Google_Model
   public function getState()
   {
     return $this->state;
+  }
+  /**
+   * @param Google_Service_Classroom_SubmissionHistory
+   */
+  public function setSubmissionHistory($submissionHistory)
+  {
+    $this->submissionHistory = $submissionHistory;
+  }
+  /**
+   * @return Google_Service_Classroom_SubmissionHistory
+   */
+  public function getSubmissionHistory()
+  {
+    return $this->submissionHistory;
   }
   public function setUpdateTime($updateTime)
   {

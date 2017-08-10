@@ -35,7 +35,7 @@
 			elFinder.prototype.loadCss('//cdnjs.cloudflare.com/ajax/libs/jqueryui/'+uiver+'/themes/smoothness/jquery-ui.css');
 			
 			$(function() {
-				var optEeditors = {
+				var optEditors = {
 						commandsOptions: {
 							edit: {
 								editors: Array.isArray(editors)? editors : []
@@ -43,25 +43,42 @@
 						}
 					},
 					opts = {};
-				// Optional for Japanese decoder "extras/encoding-japanese.min"
-				if (window.Encoding && Encoding.convert) {
-					elFinder.prototype._options.rawStringDecoder = function(s) {
-						return Encoding.convert(s,{to:'UNICODE',type:'string'});
-					};
-				}
 				
 				// Interpretation of "elFinderConfig"
 				if (config && config.managers) {
 					$.each(config.managers, function(id, mOpts) {
-						opts = Object.assign({}, config.defaultOpts || {});
+						opts = Object.assign(opts, config.defaultOpts || {});
 						// editors marges to opts.commandOptions.edit
 						try {
 							mOpts.commandsOptions.edit.editors = mOpts.commandsOptions.edit.editors.concat(editors || []);
 						} catch(e) {
-							Object.assign(mOpts, optEeditors);
+							Object.assign(mOpts, optEditors);
 						}
 						// Make elFinder
-						$('#' + id).elfinder($.extend(true, { lang: lang }, opts, mOpts || {}));
+						$('#' + id).elfinder(
+							// 1st Arg - options
+							$.extend(true, { lang: lang }, opts, mOpts || {}),
+							// 2nd Arg - before boot up function
+							function(fm, extraObj) {
+								// `init` event callback function
+								fm.bind('init', function() {
+									// Optional for Japanese decoder "extras/encoding-japanese.min"
+									delete fm.options.rawStringDecoder;
+									if (fm.lang === 'jp') {
+										require(
+											[ 'extras/encoding-japanese.min' ],
+											function(Encoding) {
+												if (Encoding.convert) {
+													fm.options.rawStringDecoder = function(s) {
+														return Encoding.convert(s,{to:'UNICODE',type:'string'});
+													};
+												}
+											}
+										);
+									}
+								});
+							}
+						);
 					});
 				} else {
 					alert('"elFinderConfig" object is wrong.');
@@ -74,11 +91,9 @@
 			require(
 				[
 					'elfinder'
-					, 'extras/editors.default'                   // load text, image editors
+					, 'extras/editors.default.min'               // load text, image editors
 					, 'elFinderConfig'
-					, (lang !== 'en')? 'elfinder.lang' : null    // load detected language
-				//	, 'extras/quicklook.googledocs'              // optional preview for GoogleApps contents on the GoogleDrive volume
-				//	, (lang === 'jp')? 'extras/encoding-japanese.min' : null // optional Japanese decoder for archive preview
+				//	, 'extras/quicklook.googledocs.min'          // optional preview for GoogleApps contents on the GoogleDrive volume
 				],
 				start,
 				function(error) {
@@ -96,11 +111,7 @@
 		paths : {
 			'jquery'   : '//cdnjs.cloudflare.com/ajax/libs/jquery/'+(ie8? '1.12.4' : jqver)+'/jquery.min',
 			'jquery-ui': '//cdnjs.cloudflare.com/ajax/libs/jqueryui/'+uiver+'/jquery-ui.min',
-			'elfinder' : 'elfinder.min',
-			'elfinder.lang': [
-				'i18n/elfinder.'+lang,
-				'i18n/elfinder.fallback'
-			]
+			'elfinder' : 'elfinder.min'
 		},
 		waitSeconds : 10 // optional
 	});
@@ -126,7 +137,7 @@
 					}
 					,quicklook : {
 						// to enable preview with Google Docs Viewer
-						googleDocsMimes : ['application/pdf', 'image/tiff', 'application/vnd.ms-office', 'application/msword', 'application/vnd.ms-word', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet']
+						googleDocsMimes : ['application/pdf', 'image/tiff', 'application/vnd.ms-office', 'application/msword', 'application/vnd.ms-word', 'application/vnd.ms-excel', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.openxmlformats-officedocument.presentationml.presentation']
 					}
 				}
 			},

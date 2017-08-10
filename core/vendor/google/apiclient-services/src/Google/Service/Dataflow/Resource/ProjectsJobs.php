@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -25,6 +25,29 @@
  */
 class Google_Service_Dataflow_Resource_ProjectsJobs extends Google_Service_Resource
 {
+  /**
+   * List the jobs of a project across all regions. (jobs.aggregated)
+   *
+   * @param string $projectId The project which owns the jobs.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string location The location that contains this job.
+   * @opt_param string pageToken Set this to the 'next_page_token' field of a
+   * previous response to request additional results in a long list.
+   * @opt_param int pageSize If there are many jobs, limit response to at most
+   * this many. The actual number of jobs returned will be the lesser of
+   * max_responses and an unspecified server-defined limit.
+   * @opt_param string view Level of information requested in response. Default is
+   * `JOB_VIEW_SUMMARY`.
+   * @opt_param string filter The kind of filter to use.
+   * @return Google_Service_Dataflow_ListJobsResponse
+   */
+  public function aggregated($projectId, $optParams = array())
+  {
+    $params = array('projectId' => $projectId);
+    $params = array_merge($params, $optParams);
+    return $this->call('aggregated', array($params), "Google_Service_Dataflow_ListJobsResponse");
+  }
   /**
    * Creates a Cloud Dataflow job. (jobs.create)
    *
@@ -53,8 +76,8 @@ class Google_Service_Dataflow_Resource_ProjectsJobs extends Google_Service_Resou
    * @param string $jobId The job ID.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string location The location that contains this job.
    * @opt_param string view The level of information requested in response.
+   * @opt_param string location The location that contains this job.
    * @return Google_Service_Dataflow_Job
    */
   public function get($projectId, $jobId, $optParams = array())
@@ -84,12 +107,11 @@ class Google_Service_Dataflow_Resource_ProjectsJobs extends Google_Service_Resou
     return $this->call('getMetrics', array($params), "Google_Service_Dataflow_JobMetrics");
   }
   /**
-   * List the jobs of a project. (jobs.listProjectsJobs)
+   * List the jobs of a project in a given region. (jobs.listProjectsJobs)
    *
    * @param string $projectId The project which owns the jobs.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string filter The kind of filter to use.
    * @opt_param string location The location that contains this job.
    * @opt_param string pageToken Set this to the 'next_page_token' field of a
    * previous response to request additional results in a long list.
@@ -98,6 +120,7 @@ class Google_Service_Dataflow_Resource_ProjectsJobs extends Google_Service_Resou
    * max_responses and an unspecified server-defined limit.
    * @opt_param string view Level of information requested in response. Default is
    * `JOB_VIEW_SUMMARY`.
+   * @opt_param string filter The kind of filter to use.
    * @return Google_Service_Dataflow_ListJobsResponse
    */
   public function listProjectsJobs($projectId, $optParams = array())

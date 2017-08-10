@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -19,7 +19,7 @@
  * Service definition for CloudKMS (v1).
  *
  * <p>
- * Manages encryption for your cloud services the same way you do on-premise.
+ * Manages encryption for your cloud services the same way you do on-premises.
  * You can generate, use, rotate, and destroy AES256 encryption keys.</p>
  *
  * <p>
@@ -246,13 +246,13 @@ class Google_Service_CloudKMS extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
               ),
             ),'patch' => array(

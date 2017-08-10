@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -24,21 +24,35 @@ class Google_Service_ToolResults_Execution extends Google_Model
   public $executionId;
   protected $outcomeType = 'Google_Service_ToolResults_Outcome';
   protected $outcomeDataType = '';
+  protected $specificationType = 'Google_Service_ToolResults_Specification';
+  protected $specificationDataType = '';
   public $state;
   public $testExecutionMatrixId;
 
+  /**
+   * @param Google_Service_ToolResults_Timestamp
+   */
   public function setCompletionTime(Google_Service_ToolResults_Timestamp $completionTime)
   {
     $this->completionTime = $completionTime;
   }
+  /**
+   * @return Google_Service_ToolResults_Timestamp
+   */
   public function getCompletionTime()
   {
     return $this->completionTime;
   }
+  /**
+   * @param Google_Service_ToolResults_Timestamp
+   */
   public function setCreationTime(Google_Service_ToolResults_Timestamp $creationTime)
   {
     $this->creationTime = $creationTime;
   }
+  /**
+   * @return Google_Service_ToolResults_Timestamp
+   */
   public function getCreationTime()
   {
     return $this->creationTime;
@@ -51,13 +65,33 @@ class Google_Service_ToolResults_Execution extends Google_Model
   {
     return $this->executionId;
   }
+  /**
+   * @param Google_Service_ToolResults_Outcome
+   */
   public function setOutcome(Google_Service_ToolResults_Outcome $outcome)
   {
     $this->outcome = $outcome;
   }
+  /**
+   * @return Google_Service_ToolResults_Outcome
+   */
   public function getOutcome()
   {
     return $this->outcome;
+  }
+  /**
+   * @param Google_Service_ToolResults_Specification
+   */
+  public function setSpecification(Google_Service_ToolResults_Specification $specification)
+  {
+    $this->specification = $specification;
+  }
+  /**
+   * @return Google_Service_ToolResults_Specification
+   */
+  public function getSpecification()
+  {
+    return $this->specification;
   }
   public function setState($state)
   {

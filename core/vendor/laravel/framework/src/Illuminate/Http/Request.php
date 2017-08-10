@@ -252,7 +252,7 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     }
 
     /**
-     * Returns the client IP address.
+     * Get the client IP address.
      *
      * @return string
      */
@@ -262,13 +262,23 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
     }
 
     /**
-     * Returns the client IP addresses.
+     * Get the client IP addresses.
      *
      * @return array
      */
     public function ips()
     {
         return $this->getClientIps();
+    }
+
+    /**
+     * Get the client user agent.
+     *
+     * @return string
+     */
+    public function userAgent()
+    {
+        return $this->headers->get('User-Agent');
     }
 
     /**
@@ -437,9 +447,9 @@ class Request extends SymfonyRequest implements Arrayable, ArrayAccess
 
         if (is_null($route) || is_null($param)) {
             return $route;
-        } else {
-            return $route->parameter($param);
         }
+
+        return $route->parameter($param);
     }
 
     /**

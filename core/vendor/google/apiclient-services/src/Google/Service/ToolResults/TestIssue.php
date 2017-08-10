@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2016 Google Inc.
+ * Copyright 2014 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -18,8 +18,12 @@
 class Google_Service_ToolResults_TestIssue extends Google_Model
 {
   public $errorMessage;
+  public $severity;
   protected $stackTraceType = 'Google_Service_ToolResults_StackTrace';
   protected $stackTraceDataType = '';
+  public $type;
+  protected $warningType = 'Google_Service_ToolResults_Any';
+  protected $warningDataType = '';
 
   public function setErrorMessage($errorMessage)
   {
@@ -29,12 +33,48 @@ class Google_Service_ToolResults_TestIssue extends Google_Model
   {
     return $this->errorMessage;
   }
+  public function setSeverity($severity)
+  {
+    $this->severity = $severity;
+  }
+  public function getSeverity()
+  {
+    return $this->severity;
+  }
+  /**
+   * @param Google_Service_ToolResults_StackTrace
+   */
   public function setStackTrace(Google_Service_ToolResults_StackTrace $stackTrace)
   {
     $this->stackTrace = $stackTrace;
   }
+  /**
+   * @return Google_Service_ToolResults_StackTrace
+   */
   public function getStackTrace()
   {
     return $this->stackTrace;
+  }
+  public function setType($type)
+  {
+    $this->type = $type;
+  }
+  public function getType()
+  {
+    return $this->type;
+  }
+  /**
+   * @param Google_Service_ToolResults_Any
+   */
+  public function setWarning(Google_Service_ToolResults_Any $warning)
+  {
+    $this->warning = $warning;
+  }
+  /**
+   * @return Google_Service_ToolResults_Any
+   */
+  public function getWarning()
+  {
+    return $this->warning;
   }
 }

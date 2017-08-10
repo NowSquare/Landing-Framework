@@ -162,6 +162,9 @@
 			'cmdfullscreen': 'Full Screen', // from v2.1.15 added 03.08.2016
 			'cmdmove'      : 'Move', // from v2.1.15 added 21.08.2016
 			'cmdempty'     : 'Empty the folder', // from v2.1.25 added 22.06.2017
+			'cmdundo'      : 'Undo', // from v2.1.27 added 31.07.2017
+			'cmdredo'      : 'Redo', // from v2.1.27 added 31.07.2017
+			'cmdpreference': 'Preferences', // from v2.1.27 added 03.08.2017
 
 			/*********************************** buttons ***********************************/
 			'btnClose'  : 'Close',
@@ -221,6 +224,8 @@
 			'ntftrash'    : 'Doing throw in the trash', // from v2.1.24 added 2.5.2017
 			'ntfrestore'  : 'Doing restore from tha trash', // from v2.1.24 added 3.5.2017
 			'ntfchkdir'   : 'Checking destination folder', // from v2.1.24 added 3.5.2017
+			'ntfundo'     : 'Undoing previous operation', // from v2.1.27 added 31.07.2017
+			'ntfredo'     : 'Redoing previous undone', // from v2.1.27 added 31.07.2017
 
 			/*********************************** volumes *********************************/
 			'volume_Trash' : 'Trash', //from v2.1.24 added 29.4.2017
@@ -424,6 +429,10 @@
 			'TextArea'        : 'TextArea', // from v2.1.25 added 14.6.2017
 			'folderToEmpty'   : 'Empty the folder "$1".', // from v2.1.25 added 22.6.2017
 			'filderIsEmpty'   : 'There are no items in a folder "$1".', // from v2.1.25 added 22.6.2017
+			'preference'      : 'Preference', // from v2.1.26 added 28.6.2017
+			'language'        : 'Language setting', // from v2.1.26 added 28.6.2017
+			'clearBrowserData': 'Initialize the settings saved in this browser', // from v2.1.26 added 28.6.2017
+			'toolbarPref'     : 'Toolbar setting', // from v2.1.27 added 2.8.2017
 
 			/********************************** mimetypes **********************************/
 			'kindUnknown'     : 'Unknown',
