@@ -120,6 +120,9 @@ class StripeController extends \App\Http\Controllers\Controller {
     }
 
     // A subscription is created for a customer in Stripe
+
+    // Use invoice.payment_succeeded instead
+    /*
     if ($event_json->type == 'customer.subscription.created') {
       $customer_stripe_id = $event_json->data->object->customer;
       $remote_product_id = $event_json->data->object->plan->id;
@@ -137,6 +140,37 @@ class StripeController extends \App\Http\Controllers\Controller {
         if (isset($event_json->data->object->plan->interval)) {
           $interval_count = (isset($event_json->data->object->plan->interval_count)) ? $event_json->data->object->plan->interval_count : 1;
           switch ($event_json->data->object->plan->interval) {
+            case 'month': $expires = Carbon::now()->addMonths($interval_count); break;
+            case 'year': $expires = Carbon::now()->addYears($interval_count); break;
+          }
+        }
+
+        $user->trial_ends_reminders_sent = 0;
+        $user->expires_reminders_sent = 0;
+        $user->plan_id = $plan->id;
+        $user->expires = $expires;
+        $user->save();
+      }
+    }*/
+
+    // The payment has succeeded, update the expiration date
+    if ($event_json->type == 'invoice.payment_succeeded') {
+      $customer_stripe_id = $event_json->data->object->customer;  
+      $remote_product_id = $event_json->data->object->lines->data{0}->plan->id;
+
+      // Find matching user
+      $user = \App\User::where('stripe_id', $customer_stripe_id)->first();
+
+      // Find matching plan
+      $plan = \App\Plan::where('monthly_remote_product_id', $remote_product_id)->orWhere('annual_remote_product_id', $remote_product_id)->first();
+
+      if (! empty($user) && ! empty($plan)) {
+
+        $expires = Carbon::now()->addMonths(1);
+
+        if (isset($event_json->data->object->lines->data{0}->plan->interval)) {
+          $interval_count = (isset($event_json->data->object->lines->data{0}->plan->interval_count)) ? $event_json->data->object->lines->data{0}->plan->interval_count : 1;
+          switch ($event_json->data->object->lines->data{0}->plan->interval) {
             case 'month': $expires = Carbon::now()->addMonths($interval_count); break;
             case 'year': $expires = Carbon::now()->addYears($interval_count); break;
           }
