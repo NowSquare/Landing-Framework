@@ -287,7 +287,7 @@ class Eddystone extends Controller
           'notification' => $data->title,
           'url' => $data->url, 
           'targeting' => [
-            'anyOfDaysOfWeek' => $data->targeting->anyOfDaysOfWeek
+            'anyOfDaysOfWeek' => (isset($data->targeting->anyOfDaysOfWeek)) ? $data->targeting->anyOfDaysOfWeek : [1,2,3,4,5,6,7]
           ]
         ];
       }
