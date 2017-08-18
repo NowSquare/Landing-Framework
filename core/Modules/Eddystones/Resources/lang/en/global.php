@@ -46,6 +46,15 @@ return array(
   "custom_link" => "Custom link",
   "custom_link_help" => "Url must be SSL (https://).",
   "add_notification" => "Add notification",
-  "" => "",
-  "" => "",
+  "when" => "When",
+  "every_day" => "Every day",
+  "days_of_week_short" => [
+    "Mo",
+    "Tu",
+    "We",
+    "Th",
+    "Fr",
+    "Sa",
+    "Su"
+  ],
 );

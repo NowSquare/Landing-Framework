@@ -43,13 +43,14 @@
           </div>
           <fieldset class="panel-body">
 
-            <table class="table table-list" id="tbl-list">
+            <table class="table table-list table-condensed" id="tbl-list">
               <thead>
                 <tr>
                   <th style="width:160px">{{ trans('global.language') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('eddystones::global.notification_language_help') }}">&#xE887;</i></th>
                   <th>{{ trans('eddystones::global.notification') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('eddystones::global.notification_help') }}">&#xE887;</i></th>
+                  <th style="width:302px;">{{ trans('eddystones::global.when') }}</th>
                   <th>{{ trans('eddystones::global.link') }}</th>
-                  <th style="width:68px"></th>
+                  <th style="width:50px"></th>
                   <th style="width:50px"></th>
                 </tr>
               </thead>
@@ -87,7 +88,7 @@
 <script id="list_row" type="x-tmpl-mustache">
 <tr data-i="@{{ i }}" id="row@{{ i }}">
   <td>
-    <select name="language[]" class="form-control input-lg" style="max-width:150px;">
+    <select name="language[]" class="form-control" style="max-width:150px;">
 <?php 
 foreach ($languages as $language_code => $language) { 
   echo '<option value="' . $language_code . '" {{#language=' . $language_code . '}}selected{{/language=' . $language_code . '}}>' . $language['name'] . '</option>';
@@ -96,10 +97,19 @@ foreach ($languages as $language_code => $language) {
     </select>
   </td>
   <td>
-    <input type="text" class="form-control input-lg" id="notification@{{ i }}" name="notification[]" maxlength="40" autocomplete="off" value="@{{ notification }}">
+    <input type="text" class="form-control" id="notification@{{ i }}" name="notification[]" maxlength="40" autocomplete="off" value="@{{ notification }}">
   </td>
   <td>
-    <select class="form-control input-lg select-url">
+     <select multiple="multiple" class="days_of_week" data-placeholder="{{ trans('eddystones::global.every_day') }}" name="days_of_week[@{{ i }}][]">
+<?php 
+foreach (trans('eddystones::global.days_of_week_short') as $i => $day) { 
+  echo '<option value="' . ($i + 1) . '" {{#days_of_week_' . ($i + 1) . '}}selected{{/days_of_week_' . ($i + 1) . '}}>' . $day . '</option>';
+}
+?>
+     </select>
+  </td>
+  <td>
+    <select class="form-control select-url">
       <option value=""></option>
       <optgroup label="{{ trans('global.other') }}">
         <option value="custom_link" @{{#url_custom}}selected@{{/url_custom}}>{{ trans('eddystones::global.custom_link') }}</option>
@@ -121,7 +131,7 @@ foreach ($forms as $form) {
     </select>
   </td>
   <td>
-    <button type="button" class="btn btn-lg btn-info btn-popover @{{^url_custom}}display-none@{{/url_custom}} custom-url-btn" title="{{ trans('global.link') }}" data-toggle="tooltip" style="padding: 10px 16px 11px;"><i class="mi insert_link"></i></button>
+    <button type="button" class="btn btn-info btn-popover @{{^url_custom}}display-none@{{/url_custom}} custom-url-btn" title="{{ trans('global.link') }}" data-toggle="tooltip" style="padding: 4px 10px;"><i class="mi insert_link"></i></button>
 
     <div class="display-none settings-content custom-url-popover">
       <div class="form-group">
@@ -136,7 +146,7 @@ foreach ($forms as $form) {
 
   </td>
   <td align="right">
-    <button type="button" class="btn btn-lg btn-danger btn-delete" title="{{ trans('global.delete') }}" data-toggle="tooltip" style="padding: 10px 16px 11px;"><i class="mi delete"></i></button>
+    <button type="button" class="btn btn-danger btn-delete" title="{{ trans('global.delete') }}" data-toggle="tooltip" style="padding: 4px 10px;"><i class="mi delete"></i></button>
   </td>
 </tr>
 </script>
@@ -170,9 +180,6 @@ foreach ($urls as $url) {
 }
 
 ?>
-
-  var i = 0;
-
   // Parse template for speed optimization
   // Initialize before inserting existing rows
   var list_row = $('#list_row').html();
@@ -182,6 +189,16 @@ foreach ($urls as $url) {
 <?php
 $i = 0;
 foreach ($attachments as $attachment) {
+  $days_of_week = (isset($attachment['targeting']['anyOfDaysOfWeek'])) ? $attachment['targeting']['anyOfDaysOfWeek'] : [];
+  if (count($days_of_week) == 7) $days_of_week = [];
+
+  $days_of_week_1 = (in_array(1, $days_of_week)) ? 'true' : 'false';
+  $days_of_week_2 = (in_array(2, $days_of_week)) ? 'true' : 'false';
+  $days_of_week_3 = (in_array(3, $days_of_week)) ? 'true' : 'false';
+  $days_of_week_4 = (in_array(4, $days_of_week)) ? 'true' : 'false';
+  $days_of_week_5 = (in_array(5, $days_of_week)) ? 'true' : 'false';
+  $days_of_week_6 = (in_array(6, $days_of_week)) ? 'true' : 'false';
+  $days_of_week_7 = (in_array(7, $days_of_week)) ? 'true' : 'false';
 ?>
   var data = {};
   data.i = {{ $i }};
@@ -190,12 +207,21 @@ foreach ($attachments as $attachment) {
   data.url = "{{ $attachment['url'] }}";
   data.url_encoded = "{{ base64_encode($attachment['url']) }}";
   data.url_custom = ($.inArray(data.url, urls) === -1);
+  data.days_of_week = [{{ implode("], [", $days_of_week) }}];
+  data.days_of_week_1 = {{ $days_of_week_1 }};
+  data.days_of_week_2 = {{ $days_of_week_2 }};
+  data.days_of_week_3 = {{ $days_of_week_3 }};
+  data.days_of_week_4 = {{ $days_of_week_4 }};
+  data.days_of_week_5 = {{ $days_of_week_5 }};
+  data.days_of_week_6 = {{ $days_of_week_6 }};
+  data.days_of_week_7 = {{ $days_of_week_7 }};
 
   addRepeaterRow('insert', data);
 <?php
     $i++;
   }
 ?>
+  var i = {{ $i }};
 
   $('.add_item').on('click', function() {
     addRepeaterRow('new', null);
@@ -210,7 +236,14 @@ foreach ($attachments as $attachment) {
         notification: '',
         url: '',
         url_encoded: '',
-        url_custom: false
+        url_custom: false,
+        days_of_week_1: false,
+        days_of_week_2: false,
+        days_of_week_3: false,
+        days_of_week_4: false,
+        days_of_week_5: false,
+        days_of_week_6: false,
+        days_of_week_7: false
       }));
 
       $('#tbl-list tbody').append(html);
@@ -225,7 +258,14 @@ foreach ($attachments as $attachment) {
         notification: data.notification,
         url: data.url,
         url_encoded: data.url_encoded,
-        url_custom: data.url_custom
+        url_custom: data.url_custom,
+        days_of_week_1: data.days_of_week_1,
+        days_of_week_2: data.days_of_week_2,
+        days_of_week_3: data.days_of_week_3,
+        days_of_week_4: data.days_of_week_4,
+        days_of_week_5: data.days_of_week_5,
+        days_of_week_6: data.days_of_week_6,
+        days_of_week_7: data.days_of_week_7
       }));
 
       $('#tbl-list tbody').append(html);
@@ -328,6 +368,23 @@ foreach ($attachments as $attachment) {
           $(popover).popover('hide'); $(popover).next('.popover').remove();
         });
       });
+
+
+<?php
+/*
+ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ */
+?>
+      /* Days */
+      $tr.find('.days_of_week').select2({
+        "language": {
+          "noResults": function(){
+            return "{!! str_replace('"', '\"', trans('scenarios::global.no_beacons_geofences_found')) !!}";
+          }
+        }
+      });
+
+
     });
   }
 

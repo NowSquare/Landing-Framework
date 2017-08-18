@@ -285,7 +285,10 @@ class Eddystone extends Controller
         $return[] = [
           'language' => $language,
           'notification' => $data->title,
-          'url' => $data->url
+          'url' => $data->url, 
+          'targeting' => [
+            'anyOfDaysOfWeek' => $data->targeting->anyOfDaysOfWeek
+          ]
         ];
       }
       return $return;
@@ -328,7 +331,7 @@ class Eddystone extends Controller
     /**
      * Create attachment
      */
-    public static function createAttachment($beacon_name, $language, $title, $url)
+    public static function createAttachment($beacon_name, $language, $title, $url, $days_of_week = [1,2,3,4,5,6,7])
     {
       // Define scopes
       $scopes = ['https://www.googleapis.com/auth/userlocation.beacon.registry'];
@@ -350,7 +353,10 @@ class Eddystone extends Controller
 
       $data = base64_encode(json_encode([
         'title' => substr($title, 0, 40), 
-        'url' => $url
+        'url' => $url, 
+        'targeting' => [
+          'anyOfDaysOfWeek' => $days_of_week
+        ]
       ]));
       /*
       $data = base64_encode(json_encode([

@@ -46,6 +46,15 @@ return array(
   "custom_link" => "Aangepaste link",
   "custom_link_help" => "Url moet SSL zijn (https://).",
   "add_notification" => "Nieuwe notificatie toevoegen",
-  "" => "",
-  "" => "",
+  "when" => "Wanneer",
+  "every_day" => "Iedere dag",
+  "days_of_week_short" => [
+    "Ma",
+    "Di",
+    "Wo",
+    "Do",
+    "Vr",
+    "Za",
+    "Zo"
+  ]
 );

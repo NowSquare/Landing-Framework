@@ -71,6 +71,7 @@ class EddystonesController extends Controller
 
         $languages = $request->input('language', []);
         $notifications = $request->input('notification', []);
+        $days_of_weeks = $request->input('days_of_week', []);
         $urls = $request->input('url', []);
 
         // Delete all attachments
@@ -82,9 +83,12 @@ class EddystonesController extends Controller
           $language = $languages[$i];
           $notification = $notifications[$i];
           $url = $urls[$i];
+          $days_of_week = (isset($days_of_weeks[$i])) ? $days_of_weeks[$i] : [];
+
+          if (count($days_of_week) == 0) $days_of_week = [1,2,3,4,5,6,7];
 
           if ($language != '' && $notification != '' && $url != '') {
-            $result = Eddystone::createAttachment($qs['beaconName'], $language, $notification, $url);
+            $result = Eddystone::createAttachment($qs['beaconName'], $language, $notification, $url, $days_of_week);
           }
           $i++;
         }
@@ -95,7 +99,7 @@ class EddystonesController extends Controller
         if (isset($result['error']) && $result['error'] != '') {
           return response()->json(['type' => 'error', 'reset' => false, 'msg' => $result['error']]);
         } else {
-          return response()->json(['success' => true, 'msg' => trans('javascript.save_succes')]);
+          return response()->json(['success' => true, 'reset' => false, 'msg' => trans('javascript.save_succes')]);
           //return response()->json(['success' => true, 'redir' => '#/eddystones']);
         }
       }
