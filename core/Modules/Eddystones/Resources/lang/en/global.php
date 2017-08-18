@@ -44,6 +44,7 @@ return array(
   "notification_help" => "This text will show in the notification shade. Maximum of 40 characters.",
   "link" => "Link",
   "custom_link" => "Custom link",
+  "custom_link_help" => "Url must be SSL (https://).",
   "add_notification" => "Add notification",
   "" => "",
   "" => "",

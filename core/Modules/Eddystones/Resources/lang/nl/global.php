@@ -44,6 +44,7 @@ return array(
   "notification_help" => "Deze tekst wordt weergegeven in het meldingenvenster. Maximaal 40 tekens.",
   "link" => "Link",
   "custom_link" => "Aangepaste link",
+  "custom_link_help" => "Url moet SSL zijn (https://).",
   "add_notification" => "Nieuwe notificatie toevoegen",
   "" => "",
   "" => "",

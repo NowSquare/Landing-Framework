@@ -126,6 +126,7 @@ foreach ($forms as $form) {
     <div class="display-none settings-content custom-url-popover">
       <div class="form-group">
         <textarea class="form-control custom-url" name="url[]" style="width:100%;height:52px;" placeholder="https://">@{{url}}</textarea>
+        <small class="help-block">{!! trans('eddystones::global.custom_link_help') !!}</small>
       </div>
       <div class="form-group pull-right">
         <button type="button" class="btn btn-primary btn-sm btn-save"><i class="fa fa-check"></i></button>
