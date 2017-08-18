@@ -32,9 +32,8 @@ class Google_Service_AndroidManagement_Resource_Enterprises extends Google_Servi
    * @param Google_Service_AndroidManagement_Enterprise $postBody
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string signupUrlName The name of the
-   * [`SignupUrl`](/android/management/reference/rest/v1/signupUrls#SignupUrl)
-   * used to sign up for the enterprise.
+   * @opt_param string signupUrlName The name of the SignupUrl used to sign up for
+   * the enterprise.
    * @opt_param string enterpriseToken The enterprise token appended to the
    * callback URL.
    * @opt_param string projectId The id of the Google Cloud Platform project which
@@ -51,7 +50,7 @@ class Google_Service_AndroidManagement_Resource_Enterprises extends Google_Servi
    * Gets an enterprise. (enterprises.get)
    *
    * @param string $name The name of the enterprise in the form
-   * `enterprises/{enterpriseId}`
+   * enterprises/{enterpriseId}
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidManagement_Enterprise
    */
@@ -65,7 +64,7 @@ class Google_Service_AndroidManagement_Resource_Enterprises extends Google_Servi
    * Updates an enterprise. (enterprises.patch)
    *
    * @param string $name The name of the enterprise in the form
-   * `enterprises/{enterpriseId}`
+   * enterprises/{enterpriseId}
    * @param Google_Service_AndroidManagement_Enterprise $postBody
    * @param array $optParams Optional parameters.
    *

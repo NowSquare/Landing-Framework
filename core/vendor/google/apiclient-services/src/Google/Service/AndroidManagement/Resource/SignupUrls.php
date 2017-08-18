@@ -32,11 +32,10 @@ class Google_Service_AndroidManagement_Resource_SignupUrls extends Google_Servic
    *
    * @opt_param string callbackUrl The callback URL to which the admin will be
    * redirected after successfully creating an enterprise. Before redirecting
-   * there the system will add a query parameter to this URL named
-   * `enterpriseToken` which will contain an opaque token to be used for the
-   * [create enterprise](/android/management/reference/rest/v1/enterprises/create)
+   * there the system will add a query parameter to this URL named enterpriseToken
+   * which will contain an opaque token to be used for the create enterprise
    * request. The URL will be parsed then reformatted in order to add the
-   * `enterpriseToken` parameter, so there may be some minor formatting changes.
+   * enterpriseToken parameter, so there may be some minor formatting changes.
    * @opt_param string projectId The id of the Google Cloud Platform project which
    * will own the enterprise.
    * @return Google_Service_AndroidManagement_SignupUrl

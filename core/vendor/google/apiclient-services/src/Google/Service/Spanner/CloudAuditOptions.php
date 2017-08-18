@@ -17,16 +17,23 @@
 
 class Google_Service_Spanner_CloudAuditOptions extends Google_Model
 {
-  public $isReadPermissionType;
+  protected $authorizationLoggingOptionsType = 'Google_Service_Spanner_AuthorizationLoggingOptions';
+  protected $authorizationLoggingOptionsDataType = '';
   public $logName;
 
-  public function setIsReadPermissionType($isReadPermissionType)
+  /**
+   * @param Google_Service_Spanner_AuthorizationLoggingOptions
+   */
+  public function setAuthorizationLoggingOptions(Google_Service_Spanner_AuthorizationLoggingOptions $authorizationLoggingOptions)
   {
-    $this->isReadPermissionType = $isReadPermissionType;
+    $this->authorizationLoggingOptions = $authorizationLoggingOptions;
   }
-  public function getIsReadPermissionType()
+  /**
+   * @return Google_Service_Spanner_AuthorizationLoggingOptions
+   */
+  public function getAuthorizationLoggingOptions()
   {
-    return $this->isReadPermissionType;
+    return $this->authorizationLoggingOptions;
   }
   public function setLogName($logName)
   {

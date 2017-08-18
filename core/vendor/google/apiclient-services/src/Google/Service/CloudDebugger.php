@@ -123,6 +123,10 @@ class Google_Service_CloudDebugger extends Google_Service
               'path' => 'v2/debugger/debuggees',
               'httpMethod' => 'GET',
               'parameters' => array(
+                'includeInactive' => array(
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ),
                 'project' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -130,10 +134,6 @@ class Google_Service_CloudDebugger extends Google_Service
                 'clientVersion' => array(
                   'location' => 'query',
                   'type' => 'string',
-                ),
-                'includeInactive' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ),
               ),
             ),
@@ -193,19 +193,15 @@ class Google_Service_CloudDebugger extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'stripResults' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
                 'waitToken' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'action.value' => array(
+                'clientVersion' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'clientVersion' => array(
+                'action.value' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -214,6 +210,10 @@ class Google_Service_CloudDebugger extends Google_Service
                   'type' => 'boolean',
                 ),
                 'includeAllUsers' => array(
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ),
+                'stripResults' => array(
                   'location' => 'query',
                   'type' => 'boolean',
                 ),

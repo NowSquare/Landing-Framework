@@ -19,7 +19,8 @@
  * Service definition for AndroidProvisioningPartner (v1).
  *
  * <p>
- * Android Device Provisioning Partner API</p>
+ * Automates reseller integration into Zero Touch Provisioning by assigning
+ * devices to customers and creating device reports.</p>
  *
  * <p>
  * For more information about this service, see the API

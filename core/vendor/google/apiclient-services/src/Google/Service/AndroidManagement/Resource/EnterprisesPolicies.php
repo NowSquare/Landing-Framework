@@ -30,7 +30,7 @@ class Google_Service_AndroidManagement_Resource_EnterprisesPolicies extends Goog
    * currently referencing the policy. (policies.delete)
    *
    * @param string $name The name of the policy in the form
-   * `enterprises/{enterpriseId}/policies/{policyId}`
+   * enterprises/{enterpriseId}/policies/{policyId}
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidManagement_AndroidmanagementEmpty
    */
@@ -44,7 +44,7 @@ class Google_Service_AndroidManagement_Resource_EnterprisesPolicies extends Goog
    * Gets a policy. (policies.get)
    *
    * @param string $name The name of the policy in the form
-   * `enterprises/{enterpriseId}/policies/{policyId}`
+   * enterprises/{enterpriseId}/policies/{policyId}
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidManagement_Policy
    */
@@ -58,7 +58,7 @@ class Google_Service_AndroidManagement_Resource_EnterprisesPolicies extends Goog
    * Lists policies for a given enterprise. (policies.listEnterprisesPolicies)
    *
    * @param string $parent The name of the enterprise in the form
-   * `enterprises/{enterpriseId}`
+   * enterprises/{enterpriseId}
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize The requested page size. The actual page size may be
@@ -77,7 +77,7 @@ class Google_Service_AndroidManagement_Resource_EnterprisesPolicies extends Goog
    * Updates or creates a policy. (policies.patch)
    *
    * @param string $name The name of the policy in the form
-   * `enterprises/{enterpriseId}/policies/{policyId}`
+   * enterprises/{enterpriseId}/policies/{policyId}
    * @param Google_Service_AndroidManagement_Policy $postBody
    * @param array $optParams Optional parameters.
    *

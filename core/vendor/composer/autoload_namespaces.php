@@ -18,5 +18,4 @@ return array(
     'Imagine' => array($vendorDir . '/imagine/imagine/lib'),
     'Google_Service_' => array($vendorDir . '/google/apiclient-services/src'),
     'Google_' => array($vendorDir . '/google/apiclient/src'),
-    'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
 );

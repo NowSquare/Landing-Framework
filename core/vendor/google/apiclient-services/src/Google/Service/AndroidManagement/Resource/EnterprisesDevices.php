@@ -29,7 +29,7 @@ class Google_Service_AndroidManagement_Resource_EnterprisesDevices extends Googl
    * Deletes a device, which causes the device to be wiped. (devices.delete)
    *
    * @param string $name The name of the device in the form
-   * `enterprises/{enterpriseId}/devices/{deviceId}`
+   * enterprises/{enterpriseId}/devices/{deviceId}
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidManagement_AndroidmanagementEmpty
    */
@@ -43,7 +43,7 @@ class Google_Service_AndroidManagement_Resource_EnterprisesDevices extends Googl
    * Gets a device. (devices.get)
    *
    * @param string $name The name of the device in the form
-   * `enterprises/{enterpriseId}/devices/{deviceId}`
+   * enterprises/{enterpriseId}/devices/{deviceId}
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidManagement_Device
    */
@@ -54,15 +54,12 @@ class Google_Service_AndroidManagement_Resource_EnterprisesDevices extends Googl
     return $this->call('get', array($params), "Google_Service_AndroidManagement_Device");
   }
   /**
-   * Issues a command to a device. The [`Operation`](/android/management/reference
-   * /rest/v1/enterprises.devices.operations#Operation) resource returned contains
-   * a [`Command`](/android/management/reference/rest/v1/enterprises.devices/issue
-   * Command#Command) in its `metadata` field. Use the [get operation method](/and
-   * roid/management/reference/rest/v1/enterprises.devices.operations/get) to get
-   * the status of the command. (devices.issueCommand)
+   * Issues a command to a device. The Operation resource returned contains a
+   * Command in its metadata field. Use the get operation method to get the status
+   * of the command. (devices.issueCommand)
    *
    * @param string $name The name of the device in the form
-   * `enterprises/{enterpriseId}/devices/{deviceId}`
+   * enterprises/{enterpriseId}/devices/{deviceId}
    * @param Google_Service_AndroidManagement_Command $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_AndroidManagement_Operation
@@ -77,7 +74,7 @@ class Google_Service_AndroidManagement_Resource_EnterprisesDevices extends Googl
    * Lists devices for a given enterprise. (devices.listEnterprisesDevices)
    *
    * @param string $parent The name of the enterprise in the form
-   * `enterprises/{enterpriseId}`
+   * enterprises/{enterpriseId}
    * @param array $optParams Optional parameters.
    *
    * @opt_param int pageSize The requested page size. The actual page size may be
@@ -96,7 +93,7 @@ class Google_Service_AndroidManagement_Resource_EnterprisesDevices extends Googl
    * Updates a device. (devices.patch)
    *
    * @param string $name The name of the device in the form
-   * `enterprises/{enterpriseId}/devices/{deviceId}`
+   * enterprises/{enterpriseId}/devices/{deviceId}
    * @param Google_Service_AndroidManagement_Device $postBody
    * @param array $optParams Optional parameters.
    *
