@@ -95,7 +95,8 @@ class EddystonesController extends Controller
         if (isset($result['error']) && $result['error'] != '') {
           return response()->json(['type' => 'error', 'reset' => false, 'msg' => $result['error']]);
         } else {
-          return response()->json(['success' => true, 'redir' => '#/eddystones']);
+          return response()->json(['success' => true, 'msg' => trans('javascript.save_succes')]);
+          //return response()->json(['success' => true, 'redir' => '#/eddystones']);
         }
       }
     }

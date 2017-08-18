@@ -43,6 +43,7 @@ return array(
   "notification_language_help" => "Gebruikers zien alleen notificaties als deze beschikbaar zijn in de taal van hun telefoon. Zorg ervoor dat u notificaties toevoegt voor elke taal die u wilt targeten.",
   "notification_help" => "Deze tekst wordt weergegeven in het meldingenvenster. Maximaal 40 tekens.",
   "link" => "Link",
+  "custom_link" => "Aangepaste link",
   "add_notification" => "Nieuwe notificatie toevoegen",
   "" => "",
   "" => "",

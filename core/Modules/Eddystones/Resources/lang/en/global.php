@@ -43,6 +43,7 @@ return array(
   "notification_language_help" => "Users only see a notification if it's available in the language of their phone. Make sure you add notifications for every language you want to target.",
   "notification_help" => "This text will show in the notification shade. Maximum of 40 characters.",
   "link" => "Link",
+  "custom_link" => "Custom link",
   "add_notification" => "Add notification",
   "" => "",
   "" => "",

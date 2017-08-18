@@ -49,6 +49,7 @@
                   <th style="width:160px">{{ trans('global.language') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('eddystones::global.notification_language_help') }}">&#xE887;</i></th>
                   <th>{{ trans('eddystones::global.notification') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('eddystones::global.notification_help') }}">&#xE887;</i></th>
                   <th>{{ trans('eddystones::global.link') }}</th>
+                  <th style="width:68px"></th>
                   <th style="width:50px"></th>
                 </tr>
               </thead>
@@ -58,7 +59,7 @@
 
               <tfoot style="border: 1px solid #f3f3f3 !important">
                 <tr>
-                  <td colspan="5">
+                  <td colspan="6">
                     <button type="button" class="btn btn-lg btn-block btn-success add_item"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('eddystones::global.add_notification') }}</button>
                   </td>
                 </tr>
@@ -98,8 +99,11 @@ foreach ($languages as $language_code => $language) {
     <input type="text" class="form-control input-lg" id="notification@{{ i }}" name="notification[]" maxlength="40" autocomplete="off" value="@{{ notification }}">
   </td>
   <td>
-    <select name="url[]" class="form-control input-lg">
+    <select class="form-control input-lg select-url">
       <option value=""></option>
+      <optgroup label="{{ trans('global.other') }}">
+        <option value="custom_link" @{{#url_custom}}selected@{{/url_custom}}>{{ trans('eddystones::global.custom_link') }}</option>
+      </optgroup>
       <optgroup label="{{ trans('landingpages::global.module_name_plural') }}">
 <?php 
 foreach ($sites as $site) { 
@@ -116,14 +120,55 @@ foreach ($forms as $form) {
       </optgroup>
     </select>
   </td>
+  <td>
+    <button type="button" class="btn btn-lg btn-info btn-popover @{{^url_custom}}display-none@{{/url_custom}} custom-url-btn" title="{{ trans('global.link') }}" data-toggle="tooltip" style="padding: 10px 16px 11px;"><i class="mi insert_link"></i></button>
+
+    <div class="display-none settings-content custom-url-popover">
+      <div class="form-group">
+        <textarea class="form-control custom-url" name="url[]" style="width:100%;height:52px;" placeholder="https://">@{{url}}</textarea>
+      </div>
+      <div class="form-group pull-right">
+        <button type="button" class="btn btn-primary btn-sm btn-save"><i class="fa fa-check"></i></button>
+        <button type="button" class="btn btn-default btn-sm close-popover"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+
+  </td>
   <td align="right">
-    <button type="button" class="btn btn-lg btn-danger btn-delete" title="{{ trans('global.delete') }}" data-toggle="tooltip" title="{{ trans('global.delete') }}" style="margin-top:1px;"><i class="mi delete"></i></button>
+    <button type="button" class="btn btn-lg btn-danger btn-delete" title="{{ trans('global.delete') }}" data-toggle="tooltip" style="padding: 10px 16px 11px;"><i class="mi delete"></i></button>
   </td>
 </tr>
 </script>
-
+<style type="text/css">
+  .display-none {
+    display: none;
+  }
+  .popover {
+    width: 360px !important;
+    max-width: 360px !important;
+  }
+</style>
 <script>
 $(function() {
+<?php 
+// Create array with existing urls
+$urls = [];
+
+foreach ($sites as $site) { 
+  $urls[] = $site->pages->first()->url();
+}
+
+foreach ($forms as $form) { 
+  $urls[] = $form->url();
+}
+
+echo 'var urls = [];';
+
+foreach ($urls as $url) { 
+  echo 'urls.push("' . $url . '");';
+}
+
+?>
 
   var i = 0;
 
@@ -143,6 +188,7 @@ foreach ($attachments as $attachment) {
   data.notification = "{{ str_replace('"', '&quot;', $attachment['notification']) }}";
   data.url = "{{ $attachment['url'] }}";
   data.url_encoded = "{{ base64_encode($attachment['url']) }}";
+  data.url_custom = ($.inArray(data.url, urls) === -1);
 
   addRepeaterRow('insert', data);
 <?php
@@ -162,22 +208,28 @@ foreach ($attachments as $attachment) {
         language: '{{ $browser_language }}',
         notification: '',
         url: '',
-        url_encoded: ''
+        url_encoded: '',
+        url_custom: false
       }));
 
       $('#tbl-list tbody').append(html);
+      rowBindings();
+      bsTooltipsPopovers();
 
-    } else if (action == 'insert'){
+    } else if (action == 'insert') {
 
       var html = Mustache.render(list_row, mustacheBuildOptions({
         i: data.i,
         language: data.language,
         notification: data.notification,
         url: data.url,
-        url_encoded: data.url_encoded
+        url_encoded: data.url_encoded,
+        url_custom: data.url_custom
       }));
 
       $('#tbl-list tbody').append(html);
+      rowBindings();
+      bsTooltipsPopovers();
     }
   }
 
@@ -185,6 +237,98 @@ foreach ($attachments as $attachment) {
     var row = $(this).parents('tr');
     row.remove();
   });
+
+  $('#tbl-list').on('change', '.select-url', function() {
+    var $row = $(this).parents('tr');
+
+    if ($(this).val() == 'custom_link') {
+      $row.find('.custom-url-btn').show();
+    } else {
+      $row.find('.custom-url-btn').hide();
+    }
+  });
+
+  $('html').on('click', function (e) {
+    /*console.log(e.target);*/
+    $('.btn-popover').each(function () {
+      if (! $(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0 && 
+        $('.datepicker').has(e.target).length === 0 && 
+        ! $(e.target).hasClass('day') && 
+        ! $(e.target).hasClass('popover') && 
+        ! $(e.target).is('#cboxClose') && 
+        ! $(e.target).is('#cboxOverlay')) {
+
+        if (typeof $(this).popover !== 'undefined')
+        {
+          if ($(this).next('.popover').is(':visible'))
+          {
+            $(this).popover('hide');
+            $(this).next('.popover').remove();
+          }
+        }
+      }
+    });
+  });
+
+  $('#tbl-list').on('click', '.close-popover', function (e) {
+    var popover = $(this).closest('.popover').prev('.btn-popover');
+    $(popover).popover('hide');
+    $(popover).next('.popover').remove();
+  });
+
+  function rowBindings() {
+    $('table#tbl-list > tbody > tr').not('.binded').each(function() {
+      var $tr = $(this);
+      var data_i = $(this).attr('data-i');
+      $tr.addClass('binded');
+
+      // Set url when changing existing url dropdown
+      $('#row' + data_i).on('change', '.select-url', function() {
+        var url = $(this).val();
+        if (url != 'custom_link') {
+          $tr.find('.settings-content .custom-url').html(url);
+        }
+      });
+
+      /* Custom url */
+      var url_popover = $(this).find('.custom-url-popover');
+      var url_button = $(this).find('.custom-url-btn');
+
+      $(url_button).popover({
+        trigger: 'manual',
+        placement:'left', 
+        html : true, 
+        content: function() { 
+          return $(url_popover).html();
+        }
+      })
+      .click(function(e) {
+        if ($(this).next('.popover').is(':visible')) {
+          $(this).popover('hide');
+          $(this).next('.popover').remove();
+        } else {
+          $(this).popover('show'); /* show popover now it's setup */
+        }
+        e.preventDefault();
+      }).on('shown.bs.popover', function (e) {
+        var popover = $(this);
+
+        //$(this).data("bs.popover").tip().css({'max-width': '320px', 'width': '100%'});
+
+        /* Bind save */
+        $(this).next().find('.popover-content .btn-save').on('click', function() {
+          /* Get values(s) from popover */
+          var custom_url = $tr.find('.popover-content .custom-url').val();
+
+          /* Set value(s) to hidden form */
+          $tr.find('.settings-content .custom-url').html(custom_url);
+
+          /* Close popover */
+          $(popover).popover('hide'); $(popover).next('.popover').remove();
+        });
+      });
+    });
+  }
 
 });
 </script>
