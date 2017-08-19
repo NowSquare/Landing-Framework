@@ -24,7 +24,9 @@
         <ul class="nav nav-tabs navtab-custom">
           <li class="active"> <a href="#general" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="fa fa-user" aria-hidden="true"></i></span> <span class="hidden-xs">{{ trans('global.general') }}</span> </a> </li>
           <li> <a href="#localization" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="fa fa-globe" aria-hidden="true"></i></span> <span class="hidden-xs">{{ trans('global.localization') }}</span> </a> </li>
+<?php if (\Gate::allows('owner-management')) { ?>
           <li> <a href="#role" data-toggle="tab" aria-expanded="false"> <span class="visible-xs"><i class="fa fa-globe" aria-hidden="true"></i></span> <span class="hidden-xs">{{ trans('global.role') }}</span> </a> </li>
+<?php } ?>
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="general">
@@ -271,6 +273,7 @@ $time_data_value = ($datetime_value == null) ? '' : \Carbon\Carbon::parse($datet
               </div>
             </fieldset>
           </div>
+<?php if (\Gate::allows('owner-management')) { ?>
           <div class="tab-pane" id="role">
             <fieldset>
               <div class="form-group">
@@ -296,6 +299,7 @@ $time_data_value = ($datetime_value == null) ? '' : \Carbon\Carbon::parse($datet
               </div>
             </fieldset>
           </div>
+<?php } ?>
         </div>
         <div class="panel panel-inverse panel-border">
           <div class="panel-heading"></div>
