@@ -98,7 +98,7 @@ foreach ($languages as $language_code => $language) {
     </select>
   </td>
   <td>
-    <input type="text" class="form-control" id="notification@{{ i }}" name="notification[]" maxlength="40" autocomplete="off" value="@{{ notification }}">
+    <input type="text" class="form-control" id="notification@{{ i }}" name="notification[]" maxlength="40" autocomplete="off" value="@{{{ notification }}}">
   </td>
   <td>
      <select multiple="multiple" class="days_of_week" data-placeholder="{{ trans('eddystones::global.every_day') }}" name="days_of_week[@{{ i }}][]">
@@ -112,9 +112,9 @@ foreach (trans('eddystones::global.days_of_week_short') as $i => $day) {
   <td>
       <div class="time">
         <div class="form-group input-group timepicker-holder" style="width:155px; margin-bottom: 0">
-          <input type="text" class="form-control text-center timepicker-component startTimeOfDay" value="@{{time_start}}" placeholder="0:00" name="startTimeOfDay[]" maxlength="5">
+          <input type="text" class="form-control text-center timepicker-component startTimeOfDay" value="@{{startTimeOfDay}}" placeholder="0:00" name="startTimeOfDay[]" maxlength="5">
           <span class="input-group-addon text-lowercase">-</span>
-          <input type="text" class="form-control text-center timepicker-component endTimeOfDay" value="@{{time_end}}" placeholder="24:00" name="endTimeOfDay[]" maxlength="5">
+          <input type="text" class="form-control text-center timepicker-component endTimeOfDay" value="@{{endTimeOfDay}}" placeholder="24:00" name="endTimeOfDay[]" maxlength="5">
         </div>
       </div>
   </td>
