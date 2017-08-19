@@ -282,12 +282,18 @@ class Eddystone extends Controller
         $language = $attachment->getNamespacedType();
         $language = explode('/', $language)[1];
 
+        $anyOfDaysOfWeek = (isset($data->targeting) && is_array($data->targeting) && isset($data->targeting[0]->anyOfDaysOfWeek)) ? $data->targeting[0]->anyOfDaysOfWeek : [1,2,3,4,5,6,7];
+        $startTimeOfDay = (isset($data->targeting) && is_array($data->targeting) && isset($data->targeting[0]->startTimeOfDay)) ? $data->targeting[0]->startTimeOfDay : '0:00';
+        $endTimeOfDay = (isset($data->targeting) && is_array($data->targeting) && isset($data->targeting[0]->endTimeOfDay)) ? $data->targeting[0]->endTimeOfDay : '23:59';
+
         $return[] = [
           'language' => $language,
           'notification' => $data->title,
           'url' => $data->url, 
           'targeting' => [
-            'anyOfDaysOfWeek' => (isset($data->targeting->anyOfDaysOfWeek)) ? $data->targeting->anyOfDaysOfWeek : [1,2,3,4,5,6,7]
+            'anyOfDaysOfWeek' => $anyOfDaysOfWeek,
+            'startTimeOfDay' => $startTimeOfDay,
+            'endTimeOfDay' => $endTimeOfDay
           ]
         ];
       }
@@ -331,7 +337,7 @@ class Eddystone extends Controller
     /**
      * Create attachment
      */
-    public static function createAttachment($beacon_name, $language, $title, $url, $days_of_week = [1,2,3,4,5,6,7])
+    public static function createAttachment($beacon_name, $language, $title, $url, $days_of_week = [1,2,3,4,5,6,7], $startTimeOfDay, $endTimeOfDay)
     {
       // Define scopes
       $scopes = ['https://www.googleapis.com/auth/userlocation.beacon.registry'];
@@ -354,22 +360,24 @@ class Eddystone extends Controller
       $data = base64_encode(json_encode([
         'title' => substr($title, 0, 40), 
         'url' => $url, 
-        'targeting' => [
-          'anyOfDaysOfWeek' => $days_of_week
-        ]
+        'targeting' => [[
+          'anyOfDaysOfWeek' => $days_of_week,
+          'startTimeOfDay' => $startTimeOfDay,
+          'endTimeOfDay' => $endTimeOfDay
+        ]]
       ]));
       /*
       $data = base64_encode(json_encode([
         'title' => $title, 
         'url' => $url, 
-        'targeting' => [
+        'targeting' => [[
           'startDate' => '2017-06-22',
           'endDate' => '2017-07-12',
           'startTimeOfDay' => '14:40',
           'endTimeOfDay' => '17:40',
           'anyOfDaysOfWeek' => [1,2,3,4,5,6,7]
         ]
-      ]));*/
+      ]]));*/
 
       // New attachment
       $attachment = new \Google_Service_Proximitybeacon_BeaconAttachment;

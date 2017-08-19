@@ -72,6 +72,8 @@ class EddystonesController extends Controller
         $languages = $request->input('language', []);
         $notifications = $request->input('notification', []);
         $days_of_weeks = $request->input('days_of_week', []);
+        $startTimesOfDay = $request->input('startTimeOfDay', []);
+        $endTimesOfDay = $request->input('endTimeOfDay', []);
         $urls = $request->input('url', []);
 
         // Delete all attachments
@@ -84,11 +86,13 @@ class EddystonesController extends Controller
           $notification = $notifications[$i];
           $url = $urls[$i];
           $days_of_week = (isset($days_of_weeks[$i])) ? $days_of_weeks[$i] : [];
+          $startTimeOfDay = (isset($startTimesOfDay[$i])) ? $startTimesOfDay[$i] : '0:00';
+          $endTimeOfDay = (isset($endTimesOfDay[$i])) ? $endTimesOfDay[$i] : '23:59';
 
           if (count($days_of_week) == 0) $days_of_week = [1,2,3,4,5,6,7];
 
           if ($language != '' && $notification != '' && $url != '') {
-            $result = Eddystone::createAttachment($qs['beaconName'], $language, $notification, $url, $days_of_week);
+            $result = Eddystone::createAttachment($qs['beaconName'], $language, $notification, $url, $days_of_week, $startTimeOfDay, $endTimeOfDay);
           }
           $i++;
         }

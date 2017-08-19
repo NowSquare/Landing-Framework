@@ -49,6 +49,7 @@
                   <th style="width:160px">{{ trans('global.language') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('eddystones::global.notification_language_help') }}">&#xE887;</i></th>
                   <th>{{ trans('eddystones::global.notification') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('eddystones::global.notification_help') }}">&#xE887;</i></th>
                   <th style="width:302px;">{{ trans('eddystones::global.when') }}</th>
+                  <th style="width:165px"></th>
                   <th>{{ trans('eddystones::global.link') }}</th>
                   <th style="width:50px"></th>
                   <th style="width:50px"></th>
@@ -60,7 +61,7 @@
 
               <tfoot style="border: 1px solid #f3f3f3 !important">
                 <tr>
-                  <td colspan="6">
+                  <td colspan="7">
                     <button type="button" class="btn btn-lg btn-block btn-success add_item"><i class="fa fa-plus" aria-hidden="true"></i> {{ trans('eddystones::global.add_notification') }}</button>
                   </td>
                 </tr>
@@ -107,6 +108,15 @@ foreach (trans('eddystones::global.days_of_week_short') as $i => $day) {
 }
 ?>
      </select>
+  </td>
+  <td>
+      <div class="time">
+        <div class="form-group input-group timepicker-holder" style="width:155px; margin-bottom: 0">
+          <input type="text" class="form-control text-center timepicker-component startTimeOfDay" value="@{{time_start}}" placeholder="0:00" name="startTimeOfDay[]" maxlength="5">
+          <span class="input-group-addon text-lowercase">-</span>
+          <input type="text" class="form-control text-center timepicker-component endTimeOfDay" value="@{{time_end}}" placeholder="24:00" name="endTimeOfDay[]" maxlength="5">
+        </div>
+      </div>
   </td>
   <td>
     <select class="form-control select-url">
@@ -199,6 +209,9 @@ foreach ($attachments as $attachment) {
   $days_of_week_5 = (in_array(5, $days_of_week)) ? 'true' : 'false';
   $days_of_week_6 = (in_array(6, $days_of_week)) ? 'true' : 'false';
   $days_of_week_7 = (in_array(7, $days_of_week)) ? 'true' : 'false';
+
+  $startTimeOfDay = (isset($attachment['targeting']['startTimeOfDay'])) ? $attachment['targeting']['startTimeOfDay'] : '0:00';
+  $endTimeOfDay = (isset($attachment['targeting']['startTimeOfDay'])) ? $attachment['targeting']['endTimeOfDay'] : '23:59';
 ?>
   var data = {};
   data.i = {{ $i }};
@@ -215,6 +228,8 @@ foreach ($attachments as $attachment) {
   data.days_of_week_5 = {{ $days_of_week_5 }};
   data.days_of_week_6 = {{ $days_of_week_6 }};
   data.days_of_week_7 = {{ $days_of_week_7 }};
+  data.startTimeOfDay = '{{ $startTimeOfDay }}';
+  data.endTimeOfDay = '{{ $endTimeOfDay }}';
 
   addRepeaterRow('insert', data);
 <?php
@@ -243,7 +258,9 @@ foreach ($attachments as $attachment) {
         days_of_week_4: false,
         days_of_week_5: false,
         days_of_week_6: false,
-        days_of_week_7: false
+        days_of_week_7: false,
+        startTimeOfDay: '0:00',
+        endTimeOfDay: '23:59'
       }));
 
       $('#tbl-list tbody').append(html);
@@ -265,7 +282,9 @@ foreach ($attachments as $attachment) {
         days_of_week_4: data.days_of_week_4,
         days_of_week_5: data.days_of_week_5,
         days_of_week_6: data.days_of_week_6,
-        days_of_week_7: data.days_of_week_7
+        days_of_week_7: data.days_of_week_7,
+        startTimeOfDay: data.startTimeOfDay,
+        endTimeOfDay: data.endTimeOfDay
       }));
 
       $('#tbl-list tbody').append(html);
@@ -369,21 +388,45 @@ foreach ($attachments as $attachment) {
         });
       });
 
+<?php
+/*
+ * -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ * Days
+ */
+?>
+
+      $tr.find('.days_of_week').select2();
 
 <?php
 /*
- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ * Time
  */
 ?>
-      /* Days */
-      $tr.find('.days_of_week').select2({
-        "language": {
-          "noResults": function(){
-            return "{!! str_replace('"', '\"', trans('scenarios::global.no_beacons_geofences_found')) !!}";
-          }
-        }
-      });
+      /* Set dates */
+      var startTimeOfDay = $tr.find('.startTimeOfDay').val();
+      var endTimeOfDay = $tr.find('.endTimeOfDay').val();
+      if (startTimeOfDay == '') startTimeOfDay = '0:00';
+      if (endTimeOfDay == '') endTimeOfDay = '23:59';
 
+      /* Time picker */
+      var timepicker_opts = {
+        minuteStep: 1,
+        appendWidgetTo: 'body',
+        showSeconds: false,
+        showMeridian: false,
+        showInputs: false,
+        maxHours: 24,
+        orientation: $('body').hasClass('right-to-left') ? { x: 'right', y: 'auto'} : { x: 'auto', y: 'auto'}
+      };
+
+      timepicker_opts.defaultTime = startTimeOfDay;
+
+      $tr.find('.startTimeOfDay').timepicker(timepicker_opts);
+
+      timepicker_opts.defaultTime = endTimeOfDay;
+
+      $tr.find('.endTimeOfDay').timepicker(timepicker_opts);
 
     });
   }
