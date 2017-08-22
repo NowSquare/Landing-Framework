@@ -1,0 +1,27 @@
+{
+  "name": "framework",
+  "version": "1.0.0",
+  "dependencies": {
+    "bootstrap": "v4.0.0-beta",
+    "font-awesome": "^4.7.0",
+    "blockUI": "*",
+    "jquery.scrollTo": "^2.1.2",
+    "wow": "^1.1.2",
+    "ladda": "^1.0.0",
+    "parsleyjs": "^2.7.0",
+    "owl.carousel": "^2.2.1",
+    "particles.js": "^2.0.0",
+    "flat-surface-shader": "*",
+    "animatewithsass": "^3.2.2",
+    "H5F": "^1.1.1",
+    "jquery-form": "^4.2.1",
+    "spinthatshit": "^1.0.3",
+    "sweetalert": "^1.1.3",
+    "notifyjs": "^0.4.2",
+    "material-color": "^2.3.2",
+    "bootstrap-validator": "^0.11.9",
+    "sweetalert2": "^6.6.3",
+    "bluebird": "^3.5.0",
+    "tether-drop": "^1.4.2"
+  }
+}
