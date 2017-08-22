@@ -3,7 +3,7 @@
     <div class="content-overlay -x-block-bg-color" style="background-color:rgba(37,37,37,1)">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-12 col-sm-12 push-md-7 col-md-5 push-lg-6 col-lg-6 p-0">
+          <div class="col-12 col-sm-12 push-md-7 col-md-5 push-lg-6 col-lg-6 p-0 order-12">
             <div class="bg-img -x-block-bg-img min-height-500" style="background-image: url('{{ url('templates/assets/images/photos/sky-woman-clouds-vr.jpg') }}');">
             </div>
           </div>

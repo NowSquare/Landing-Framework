@@ -3,9 +3,9 @@
     <div class="content-overlay -x-block-bg-color" style="background-color:rgba(0,0,0,0.9)">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-sm-6 col-lg-4 push-lg-2 text-center">
+          <div class="col-12 col-sm-6 col-lg-4 push-lg-2 text-center ml-auto mr-auto">
             <div class="row">
-              <div class="col-6 push-3 col-sm-6 push-sm-3 col-lg-6 push-lg-3 text-center">
+              <div class="col-6 push-3 col-sm-6 push-sm-3 col-lg-6 push-lg-3 text-center ml-auto mr-auto">
                 <i class="mb-3 icon-9 color-orange -x-icon mi fingerprint" data-attachment="bottom left" data-target-attachment="top left"></i>
               </div>
               <div class="col-12">
@@ -19,9 +19,9 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-6 col-lg-4 push-lg-2 text-center">
+          <div class="col-12 col-sm-6 col-lg-4 push-lg-2 text-center ml-auto mr-auto">
             <div class="row">
-              <div class="col-6 push-3 col-sm-6 push-sm-3 col-lg-6 push-lg-3 text-center">
+              <div class="col-6 push-3 col-sm-6 push-sm-3 col-lg-6 push-lg-3 text-center ml-auto mr-auto">
                 <i class="mb-3 icon-9 color-orange -x-icon mi show_chart" data-attachment="bottom left" data-target-attachment="top left"></i>
               </div>
               <div class="col-12">

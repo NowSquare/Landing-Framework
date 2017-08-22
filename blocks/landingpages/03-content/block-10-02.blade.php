@@ -3,7 +3,7 @@
     <div class="content-overlay -x-block-bg-color" style="background-color:rgba(235,235,235,1)">
       <div class="container">
         <div class="row">
-          <div class="col-12 text-center push-sm-7 col-sm-5 text-sm-right">
+          <div class="col-12 text-center push-sm-7 col-sm-5 text-sm-right order-sm-1">
             <img src="{{ url('/templates/assets/images/logos/logo-red.svg') }}" class="-x-img" data-offset="5px 5px" data-attachment="top right" data-target-attachment="top left">
           </div>
           <div class="col-12 text-center pull-sm-5 col-sm-7 text-sm-left py-2">

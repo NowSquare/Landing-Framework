@@ -7,8 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="stylesheet" type="text/css" href="{{ url('assets/bs4/css/style.min.css') }}" />
-  <script src="{{ url('assets/bs4/js/scripts.min.js') }}"></script>
+  <link rel="stylesheet" type="text/css" href="{{ url('assets/bs4.0/css/style.min.css') }}" />
+  <script src="{{ url('assets/bs4.0/js/scripts.min.js') }}"></script>
 
   <link href="//fonts.googleapis.com/css?family=Roboto:100,200|Open+Sans:300,400,700" rel="stylesheet">
   <style type="text/css">

@@ -3,7 +3,7 @@
     <div class="content-overlay -x-block-bg-color" style="background-color:rgba(0,0,0,0.8)">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 push-md-4">
+          <div class="col-md-8 push-md-4 order-md-1">
             <div class="-x-text text-center text-md-right mb-3 mb-md-0">
               <h1>{!! trans('landingpages::block.how_can_we_help') !!}</h1>
               <p class="lead no-margin-b">{!! trans('landingpages::block.how_can_we_help_lead') !!}</p>

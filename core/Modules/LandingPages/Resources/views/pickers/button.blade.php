@@ -34,6 +34,7 @@
     float: left;
     width: 28px;
     height: 28px;
+    line-height: 18px !important;
   }
   .select-holder.selected {
     border: 2px solid #888;

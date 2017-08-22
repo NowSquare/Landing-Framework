@@ -14,7 +14,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 push-0 col-md-8 push-md-2">
+          <div class="col-12 push-0 col-md-8 push-md-2 ml-auto mr-auto">
             <div class="-x-video embed-responsive embed-responsive-16by9 mb-4">
               <iframe class="embed-responsive-item" src="{!! trans('landingpages::block.video_embed_url7') !!}" allowfullscreen=""></iframe>
             </div>

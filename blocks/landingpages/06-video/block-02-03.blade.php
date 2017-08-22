@@ -3,7 +3,7 @@
     <div class="content-overlay -x-block-bg-color" style="background-color:rgba(27,94,32,1)">
       <div class="container">
         <div class="row">
-          <div class="col-md-5 push-md-7">
+          <div class="col-md-5 push-md-7 order-md-1">
             <div class="-x-video embed-responsive embed-responsive-16by9 my-3">
               <iframe class="embed-responsive-item" src="{!! trans('landingpages::block.video_embed_url7') !!}" allowfullscreen=""></iframe>
             </div>

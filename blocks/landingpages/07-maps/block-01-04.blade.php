@@ -8,7 +8,7 @@
               <i class="d-inline icon-3 -x-icon mi place" data-offset="5px 5px" data-attachment="top right" data-target-attachment="top left"></i> <h2 class="d-inline -x-text display-4">{!! trans('landingpages::block.visit_us_here') !!}</h2>
             </div>
           </div>
-          <div class="col-12 push-lg-4 col-lg-8">
+          <div class="col-12 push-lg-4 col-lg-8 order-lg-12">
             <div class="-x-frame embed-responsive embed-responsive-16by9 mb-4 mdl-shadow--6dp">
               <iframe class="embed-responsive-item" src="{!! trans('landingpages::block.google_maps_embed01') !!}" allowfullscreen=""></iframe>
             </div>
