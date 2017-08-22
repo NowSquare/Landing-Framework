@@ -6,7 +6,7 @@
           <div class="col-12 text-center">
             <img src="{{ url('/templates/assets/images/logos/logo-white.svg') }}" class="-x-img" data-offset="5px 5px" data-attachment="top right" data-target-attachment="top left">
           </div>
-          <div class="col-12 push-0 col-md-8 push-md-2 ml-auto mr-auto">
+          <div class="col-12 col-md-8 ml-auto mr-auto">
             <div class="-x-video embed-responsive embed-responsive-16by9 my-4">
               <iframe class="embed-responsive-item" src="{!! trans('landingpages::block.video_embed_url8') !!}" allowfullscreen=""></iframe>
             </div>
@@ -19,7 +19,7 @@
             </div>
           </div>
 
-          <div class="col-12 push-0 col-md-8 push-md-2 ml-auto mr-auto">
+          <div class="col-12 col-md-8 ml-auto mr-auto">
             <div class="btn-container">
               <a class="btn btn-outline-yellow btn-xlg btn-block -x-link" data-offset="0px 5px" data-attachment="left bottom" data-target-attachment="left top" href="#" role="button">{!! trans('landingpages::block.get_full_access_now') !!}</i></a>
             </div>

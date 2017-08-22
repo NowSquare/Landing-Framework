@@ -3,12 +3,12 @@
     <div class="content-overlay -x-block-bg-color" style="background-color:rgba(0,0,0,0.9)">
       <div class="container">
         <div class="row">
-          <div class="col-6 push-3 col-sm-4 push-sm-4 col-md-4 push-md-4 col-xl-2 push-xl-5 text-center ml-auto mr-auto">
+          <div class="col-6 col-sm-4 col-md-4 col-xl-2 text-center ml-auto mr-auto">
             <img src="/templates/assets/images/icons/biotech.svg" alt="" class="-x-img img-fluid">
           </div>
         </div>
         <div class="row">
-          <div class="col-md-12 col-lg-6 push-lg-3 text-center ml-auto mr-auto">
+          <div class="col-md-12 col-lg-6 text-center ml-auto mr-auto">
             <h1 class="mt-1 -x-text">{!! trans('landingpages::block.content_01_head') !!}</h1>
             <div class="-x-text">
               <p class="lead">{!! trans('landingpages::block.content_01_line') !!}</p>

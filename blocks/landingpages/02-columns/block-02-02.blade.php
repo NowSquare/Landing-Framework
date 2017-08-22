@@ -3,9 +3,9 @@
     <div class="content-overlay -x-block-bg-color" style="background-color:rgba(0,0,0,0.9)">
       <div class="container">
         <div class="row">
-          <div class="col-12 col-sm-6 col-lg-4 push-lg-2 text-center ml-auto mr-auto">
+          <div class="col-12 col-sm-6 col-lg-4 text-center ml-auto mr-auto">
             <div class="row">
-              <div class="col-6 push-3 col-sm-6 push-sm-3 col-lg-6 push-lg-3 text-center ml-auto mr-auto">
+              <div class="col-6 col-sm-6 col-lg-6 text-center ml-auto mr-auto">
                 <img src="/templates/assets/images/icons/assistant.svg" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">
@@ -19,9 +19,9 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-sm-6 col-lg-4 push-lg-2 text-center ml-auto mr-auto">
+          <div class="col-12 col-sm-6 col-lg-4 text-center ml-auto mr-auto">
             <div class="row">
-              <div class="col-6 push-3 col-sm-6 push-sm-3 col-lg-6 push-lg-3 text-center ml-auto mr-auto">
+              <div class="col-6 col-sm-6 col-lg-6 text-center ml-auto mr-auto">
                 <img src="/templates/assets/images/icons/landscape.svg" alt="" class="-x-img img-fluid">
               </div>
               <div class="col-12">

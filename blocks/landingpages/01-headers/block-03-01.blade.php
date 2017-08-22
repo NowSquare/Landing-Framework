@@ -18,7 +18,7 @@
                 </span>
               </div>
             </div>
-            <div class="col-6 push-3 push-lg-0 col-lg-4 pull-lg-6 img-container ml-auto mr-auto">
+            <div class="col-6 push-3 push-lg-0 col-lg-4 pull-lg-6 img-container ml-xs-auto mr-auto">
               <img src="/templates/assets/images/visuals/iPhone-CutOff.png" alt="" class="img-fluid -x-img">
             </div>
           </div>

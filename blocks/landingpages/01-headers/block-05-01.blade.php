@@ -4,7 +4,7 @@
       <div class="container">
         <div class="header-padding-xl">
           <div class="row">
-            <div class="col-8 push-2 col-sm-8 push-sm-2 col-lg-6 push-lg-6 order-lg-1 ml-auto mr-auto">
+            <div class="col-8 col-sm-8 col-lg-6 push-lg-6 order-lg-1 ml-auto mr-auto">
               <img src="/templates/assets/images/visuals/iWatch-White.png" alt="" class="img-fluid -x-img">
             </div>
             <div class="col-12 col-lg-6 pull-lg-6 text-md-center text-lg-right">

@@ -4,7 +4,7 @@
       <div class="container">
         <div class="header-padding-xl">
           <div class="row">
-            <div class="col-12 col-lg-10 push-lg-1 text-center ml-auto mr-auto">
+            <div class="col-12 col-lg-10 text-center ml-auto mr-auto">
               <div class="-x-text mt-3">
                 <h1 class="display-2 mt-3">{!! trans('landingpages::block.header_05_head') !!}</h1>
                 <p class="lead">{!! trans('landingpages::block.photo_01_head') !!}</p>
