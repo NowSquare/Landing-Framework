@@ -148,6 +148,7 @@ gulp.task('scripts', function() {
   return gulp.src([
       'bower_components/jquery/dist/jquery.js',
       'bower_components/tether/dist/js/tether.js',
+      'bower_components/popper.js/dist/umd/popper.js',
       /*'bower_components/tether-drop/dist/js/drop.js',*/
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'bower_components/bluebird/js/browser/bluebird.js',
@@ -188,6 +189,7 @@ gulp.task('scripts_lite', function() {
   return gulp.src([
       'bower_components/jquery/dist/jquery.js',
       'bower_components/tether/dist/js/tether.js',
+      'bower_components/popper.js/dist/umd/popper.js',
       /*'bower_components/tether-drop/dist/js/drop.js',*/
       'bower_components/notifyjs/dist/notify.js',
       'resources/scripts/notify-metro.js'
