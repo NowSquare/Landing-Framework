@@ -4,7 +4,7 @@
       <div class="container">
         <div class="header-padding-xl">
           <div class="row">
-            <div class="col-8 push-2 text-center text-lg-left col-sm-6 push-sm-3 col-lg-4 push-lg-8">
+            <div class="col-8 push-2 text-center text-lg-left col-sm-6 push-sm-3 col-lg-4 push-lg-8 order-lg-1 ml-auto mr-auto">
               <img src="/templates/assets/images/mockups/water-bottle.png" alt="" class="img-fluid -x-img">
             </div>
             <div class="col-12 col-lg-8 pull-lg-4 text-md-center text-lg-right">
