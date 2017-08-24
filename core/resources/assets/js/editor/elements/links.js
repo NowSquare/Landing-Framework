@@ -157,8 +157,9 @@ function lfInitLinks() {
       var color = ($el.hasClass('btn')) ? 1 : 0;
       var submit = ($el.attr('type') == 'submit') ? 1 : 0;
       var form = (typeof $el.attr('data-form') !== typeof undefined && $el.attr('data-form') !== false) ? 1 : 0;
+      var vcard = (typeof $el.attr('data-vcard') !== typeof undefined && $el.attr('data-vcard') !== false) ? 1 : 0;
 
-      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/link?color=' + color + '&submit=' + submit + '&form=' + form, el_class);
+      lfOpenModal(_lang["url"] + '/landingpages/editor/modal/link?color=' + color + '&submit=' + submit + '&form=' + form + '&vcard=' + vcard, el_class);
 
       // Hide dropdown after option has been clicked
       $(this).parents('.-x-el-dropdown').trigger('mouseleave', [{immediate: true}]);

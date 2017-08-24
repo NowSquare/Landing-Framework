@@ -1,4 +1,6 @@
 <?php
+// vCard
+Route::any('vcard', 'Modules\LandingPages\Http\Controllers\VCardController@getVCard');
 
 Route::group(['middleware' => 'web', 'prefix' => 'lp', 'namespace' => 'Modules\LandingPages\Http\Controllers'], function() {
 

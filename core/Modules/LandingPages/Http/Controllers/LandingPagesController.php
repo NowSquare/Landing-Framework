@@ -579,8 +579,10 @@ class LandingPagesController extends Controller
       $color = (boolean) $request->input('color', false);
       $submit = (boolean) $request->input('submit', false);
       $form = (boolean) $request->input('form', false);
+      $vcard = (boolean) $request->input('vcard', false);
       $tab = 'url';
       if ($form) $tab = 'form';
+      if ($vcard) $tab = 'vcard';
 
       if (\Gate::allows('limitation', 'forms.visible') && ! $submit) {
         $forms = \Modules\Forms\Http\Models\Form::where('user_id', Core\Secure::userId())->where('funnel_id', Core\Secure::funnelId())->orderBy('name', 'asc')->get();

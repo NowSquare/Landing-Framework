@@ -259,6 +259,12 @@ $(function($) {
   
   lfParseSocialButtons();
 
+	/*
+	 * Init vCard links
+	 */
+  
+  initVCard();
+
   /*
    * jQuery.scrollTo
    * https://github.com/flesler/jquery.scrollTo
@@ -646,8 +652,8 @@ function processAjaxForm($form, $clone) {
         });
       }
     })
-    .fail(function() {
-      alert('Request failed, please try again (' + textStatus + ')');
+    .fail(function(e) {
+      alert('Request failed, please try again (' + e.textStatus + ')');
     })
     .always(function() {
       ladda_button.ladda('stop');
@@ -889,4 +895,18 @@ function getElementPath($el) {
   }
 
   return path;
+}
+
+/*
+ * vCard
+ */
+
+function initVCard() {
+  $('body').on('click', '.vcard-link', function() {
+    var vcard = $(this).attr('data-vcard-data');
+    vcard = JSON.parse(vcard);
+    var url = _trans['url'] + "/vcard?" + $.param(vcard, true);
+
+    document.location = url;
+  });
 }

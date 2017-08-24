@@ -259,6 +259,12 @@ $(function($) {
   
   lfParseSocialButtons();
 
+	/*
+	 * Init vCard links
+	 */
+  
+  initVCard();
+
   /*
    * jQuery.scrollTo
    * https://github.com/flesler/jquery.scrollTo
@@ -889,4 +895,18 @@ function getElementPath($el) {
   }
 
   return path;
+}
+
+/*
+ * vCard
+ */
+
+function initVCard() {
+  $('body').on('click', '.vcard-link', function() {
+    var vcard = $(this).attr('data-vcard-data');
+    vcard = JSON.parse(vcard);
+    var url = _trans['url'] + "/vcard?" + $.param(vcard, true);
+
+    document.location = url;
+  });
 }
