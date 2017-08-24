@@ -111,6 +111,7 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         'J' => 
         array (
             'JmesPath\\' => 9,
+            'JeroenDesloovere\\VCard\\' => 23,
             'Jenssegers\\Date\\' => 16,
         ),
         'I' => 
@@ -370,6 +371,10 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         array (
             0 => __DIR__ . '/..' . '/mtdowling/jmespath.php/src',
         ),
+        'JeroenDesloovere\\VCard\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jeroendesloovere/vcard/src',
+        ),
         'Jenssegers\\Date\\' => 
         array (
             0 => __DIR__ . '/..' . '/jenssegers/date/src',
@@ -604,6 +609,13 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
             'Google_' => 
             array (
                 0 => __DIR__ . '/..' . '/google/apiclient/src',
+            ),
+        ),
+        'B' => 
+        array (
+            'Behat\\Transliterator' => 
+            array (
+                0 => __DIR__ . '/..' . '/behat/transliterator/src',
             ),
         ),
     );
@@ -1019,6 +1031,8 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         'Barryvdh\\elFinderFlysystemDriver\\Driver' => __DIR__ . '/..' . '/barryvdh/elfinder-flysystem-driver/src/Driver.php',
         'Barryvdh\\elFinderFlysystemDriver\\Plugin\\GetUrl' => __DIR__ . '/..' . '/barryvdh/elfinder-flysystem-driver/src/Plugin/GetUrl.php',
         'Barryvdh\\elFinderFlysystemDriver\\Plugin\\HasDir' => __DIR__ . '/..' . '/barryvdh/elfinder-flysystem-driver/src/Plugin/HasDir.php',
+        'Behat\\Transliterator\\SyncTool' => __DIR__ . '/..' . '/behat/transliterator/src/Behat/Transliterator/SyncTool.php',
+        'Behat\\Transliterator\\Transliterator' => __DIR__ . '/..' . '/behat/transliterator/src/Behat/Transliterator/Transliterator.php',
         'Bogardo\\Mailgun\\Contracts\\Mailgun' => __DIR__ . '/..' . '/bogardo/mailgun/src/Contracts/Mailgun.php',
         'Bogardo\\Mailgun\\Facades\\Mailgun' => __DIR__ . '/..' . '/bogardo/mailgun/src/Facades/Mailgun.php',
         'Bogardo\\Mailgun\\Http\\Response' => __DIR__ . '/..' . '/bogardo/mailgun/src/Http/Response.php',
@@ -8887,6 +8901,9 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
         'Jenssegers\\Date\\Date' => __DIR__ . '/..' . '/jenssegers/date/src/Date.php',
         'Jenssegers\\Date\\DateServiceProvider' => __DIR__ . '/..' . '/jenssegers/date/src/DateServiceProvider.php',
+        'JeroenDesloovere\\VCard\\VCard' => __DIR__ . '/..' . '/jeroendesloovere/vcard/src/VCard.php',
+        'JeroenDesloovere\\VCard\\VCardException' => __DIR__ . '/..' . '/jeroendesloovere/vcard/src/VCardException.php',
+        'JeroenDesloovere\\VCard\\VCardParser' => __DIR__ . '/..' . '/jeroendesloovere/vcard/src/VCardParser.php',
         'JmesPath\\AstRuntime' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/AstRuntime.php',
         'JmesPath\\CompilerRuntime' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/CompilerRuntime.php',
         'JmesPath\\DebugRuntime' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/DebugRuntime.php',
@@ -9207,6 +9224,7 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         'Modules\\LandingPages\\Http\\Controllers\\AnalyticsController' => __DIR__ . '/../..' . '/Modules/LandingPages/Http/Controllers/AnalyticsController.php',
         'Modules\\LandingPages\\Http\\Controllers\\FunctionsController' => __DIR__ . '/../..' . '/Modules/LandingPages/Http/Controllers/FunctionsController.php',
         'Modules\\LandingPages\\Http\\Controllers\\LandingPagesController' => __DIR__ . '/../..' . '/Modules/LandingPages/Http/Controllers/LandingPagesController.php',
+        'Modules\\LandingPages\\Http\\Controllers\\VCardController' => __DIR__ . '/../..' . '/Modules/LandingPages/Http/Controllers/VCardController.php',
         'Modules\\LandingPages\\Http\\Models\\Page' => __DIR__ . '/../..' . '/Modules/LandingPages/Http/Models/Page.php',
         'Modules\\LandingPages\\Http\\Models\\Site' => __DIR__ . '/../..' . '/Modules/LandingPages/Http/Models/Site.php',
         'Modules\\LandingPages\\Http\\Models\\Stat' => __DIR__ . '/../..' . '/Modules/LandingPages/Http/Models/Stat.php',

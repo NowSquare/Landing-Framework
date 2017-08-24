@@ -7150,5 +7150,102 @@
             "portable",
             "shim"
         ]
+    },
+    {
+        "name": "behat/transliterator",
+        "version": "v1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Behat/Transliterator.git",
+            "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Behat/Transliterator/zipball/826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+            "reference": "826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "chuyskywalker/rolling-curl": "^3.1",
+            "php-yaoi/php-yaoi": "^1.0"
+        },
+        "time": "2017-04-04T11:38:05+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Behat\\Transliterator": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Artistic-1.0"
+        ],
+        "description": "String transliterator",
+        "keywords": [
+            "i18n",
+            "slug",
+            "transliterator"
+        ]
+    },
+    {
+        "name": "jeroendesloovere/vcard",
+        "version": "1.5.1",
+        "version_normalized": "1.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/jeroendesloovere/vcard.git",
+            "reference": "1cb08400b0743cc91fd8a2e63212b5277acca48e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/jeroendesloovere/vcard/zipball/1cb08400b0743cc91fd8a2e63212b5277acca48e",
+            "reference": "1cb08400b0743cc91fd8a2e63212b5277acca48e",
+            "shasum": ""
+        },
+        "require": {
+            "behat/transliterator": "~1.0",
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.6.*"
+        },
+        "time": "2017-06-27T12:23:41+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "JeroenDesloovere\\VCard\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jeroen Desloovere",
+                "email": "info@jeroendesloovere.be",
+                "homepage": "http://jeroendesloovere.be",
+                "role": "Developer"
+            }
+        ],
+        "description": "This VCard PHP class can generate a vCard with some data. When using an iOS device it will export as a .ics file because iOS devices don't support the default .vcf files.",
+        "homepage": "https://github.com/jeroendesloovere/vcard",
+        "keywords": [
+            ".vcf",
+            "generator",
+            "php",
+            "vCard"
+        ]
     }
 ]

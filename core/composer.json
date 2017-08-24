@@ -24,6 +24,7 @@
         "hashids/hashids": "^2.0",
         "intervention/image": "^2.3",
         "jenssegers/date": "^3.2",
+        "jeroendesloovere/vcard": "^1.5",
         "kalnoy/nestedset": "^4.2",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
