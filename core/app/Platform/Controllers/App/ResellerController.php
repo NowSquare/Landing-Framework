@@ -266,13 +266,11 @@ class ResellerController extends \App\Http\Controllers\Controller {
       {
         $reseller->name = $input['name'];
         $reseller->support_email = $input['support_email'];
-        $reseller->domain = $input['domain'];
         $reseller->logo = $input['logo'];
         $reseller->logo_square = $input['logo_square'];
         $reseller->favicon = $input['favicon'];
         $reseller->default_language = $input['language'];
         $reseller->default_timezone = $input['timezone'];
-
         $reseller->mail_driver = $input['mail_driver'];
         $reseller->mail_from_name = $input['mail_from_name'];
         $reseller->mail_from_address = $input['mail_from_address'];
@@ -297,6 +295,9 @@ class ResellerController extends \App\Http\Controllers\Controller {
         ];
 
         if ($qs['reseller_id'] > 1) {
+
+          // Only update the domain if it's not the primary reseller to prevent a system lock out
+          $reseller->domain = $input['domain'];
 
           // Only switch active if it's not the primary reseller
           $reseller->active = $input['active'];
