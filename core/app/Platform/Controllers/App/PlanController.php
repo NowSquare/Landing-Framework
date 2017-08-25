@@ -573,7 +573,6 @@ class PlanController extends \App\Http\Controllers\Controller {
 
     } else {
       // Default free plan
-
       // Plan items
       $plan_items = [];
       foreach($items as $item) {
@@ -583,7 +582,7 @@ class PlanController extends \App\Http\Controllers\Controller {
 
           if (isset($item['extra_plan_config_string']) && count($item['extra_plan_config_string']) > 0) { 
             foreach ($item['extra_plan_config_string'] as $config => $value) {
-              $val = (isset($plan->limitations[$item['namespace']][$config])) ? $plan->limitations[$item['namespace']][$config] : '-';
+              $val = '-';
               if (is_numeric($val)) $val = $decimalFormatter->format($val);
               $plan_sub_items[] = [
                 'type' => 'string',
@@ -595,7 +594,7 @@ class PlanController extends \App\Http\Controllers\Controller {
 
           if (isset($item['extra_plan_config_boolean']) && count($item['extra_plan_config_boolean']) > 0) { 
             foreach ($item['extra_plan_config_boolean'] as $config => $value) {
-              $val = (isset($plan->limitations[$item['namespace']][$config]) && $plan->limitations[$item['namespace']][$config]== 1) ? true : false;
+              $val = false;
               if ($config != 'edit_html') {
                 $plan_sub_items[] = [
                   'type' => 'boolean',
@@ -615,34 +614,22 @@ class PlanController extends \App\Http\Controllers\Controller {
         }
       }
 
-      if ($current_plan_id == 0) {
-        $btn_text = trans('global.current_plan');
-        $btn_link = 'javascript:void(0);';
-        $disabled = false;
-        $btn_class = 'primary';
-      } else {
-        $btn_text = trans('global.free');
-        $btn_link = 'javascript:void(0);';
-        $btn_class = 'default';
-      }
-
       $all_plans[] = [
-        'id' => $plan->id,
-        'current' => ($current_plan_id == $plan->id),
-        'name' => $plan->name,
-        'monthly_price' => $monthly_price,
-        'monthly_link' => $btn_link,
-        'monthly_text' => $btn_text,
-        'annual_price' => $annual_price,
-        'annual_link' => $btn_link,
-        'annual_text' => $btn_text,
-        'btn_target' => $btn_target,
-        'btn_class' => $btn_class,
-        'disabled' => $disabled,
-        'description' => $plan->description,
+        'id' => null,
+        'current' => null,
+        'name' => trans('global.free'),
+        'monthly_price' => 0,
+        'monthly_link' => 'javascript:void(0);',
+        'monthly_text' => trans('global.free'),
+        'annual_price' => null,
+        'annual_link' => null,
+        'annual_text' => null,
+        'btn_target' => '',
+        'btn_class' => 'default',
+        'disabled' => true,
+        'description' => '',
         'plan_items' => $plan_items
       ];
-      
     }
 
     // Other plans
