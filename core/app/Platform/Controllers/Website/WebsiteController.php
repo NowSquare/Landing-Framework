@@ -19,7 +19,7 @@ class WebsiteController extends \App\Http\Controllers\Controller {
   {
     $reseller = \Platform\Controllers\Core\Reseller::get();
 
-    $website_active = (isset($reseller->settings['website_active'])) ? $reseller->settings['website_active'] : false;
+    $website_active = (isset($reseller->settings['website_active'])) ? $reseller->settings['website_active'] : true;
 
     if (! $website_active) return redirect('login');
 
