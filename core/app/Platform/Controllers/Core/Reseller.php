@@ -21,7 +21,12 @@ class Reseller extends \App\Http\Controllers\Controller {
       if (\Auth::check()) {
         $reseller = \App\Reseller::find(\Auth::user()->reseller_id);
       } else {
-        $reseller = \App\Reseller::where('domain', \Request::getHost())->first();
+        $host = \Request::getHost();
+        $host = (starts_with($host, 'www.')) ? substr($host, 4, strlen($host) - 4) : $host;
+
+        $reseller = \App\Reseller::where('domain', $host)
+          ->orWhere('domain', 'www.' . $host)
+          ->first();
 
         if (! $reseller) {
           $reseller = \App\Reseller::where('domain', '*')->first();
