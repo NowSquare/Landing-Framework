@@ -634,6 +634,7 @@ class ComposerStaticInit2d8dcb9a1061d751a69d1cbc4732b38e
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\CheckForSsl' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForSsl.php',
         'App\\Http\\Middleware\\CheckFunnel' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckFunnel.php',
         'App\\Http\\Middleware\\CheckRole' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckRole.php',
         'App\\Http\\Middleware\\ElFinder' => __DIR__ . '/../..' . '/app/Http/Middleware/ElFinder.php',
