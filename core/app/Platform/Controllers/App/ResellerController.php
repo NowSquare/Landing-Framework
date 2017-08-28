@@ -63,13 +63,14 @@ class ResellerController extends \App\Http\Controllers\Controller {
         $users[''] = trans('global.no_users_for_reseller');
       }
 
+      $website_active = (isset($reseller->settings['website_active'])) ? $reseller->settings['website_active'] : true;
       $header_gradient_start = (isset($reseller->settings['header_gradient_start'])) ? $reseller->settings['header_gradient_start'] : '#138dfa';
       $header_gradient_end = (isset($reseller->settings['header_gradient_end'])) ? $reseller->settings['header_gradient_end'] : '#43cfd0';
       $header_image = (isset($reseller->settings['header_image'])) ? $reseller->settings['header_image'] : '/templates/assets/images/visuals/landing-screens-en.png';
       $header_title = (isset($reseller->settings['header_title'])) ? $reseller->settings['header_title'] : trans('website.header_01_line');
       $header_cta = (isset($reseller->settings['header_cta'])) ? $reseller->settings['header_cta'] : trans('website.header_cta');
 
-      return view('platform.admin.resellers.reseller-edit', compact('sl', 'reseller', 'user', 'users', 'header_gradient_start', 'header_gradient_end', 'header_image', 'header_title', 'header_cta'));
+      return view('platform.admin.resellers.reseller-edit', compact('sl', 'reseller', 'user', 'users', 'website_active', 'header_gradient_start', 'header_gradient_end', 'header_image', 'header_title', 'header_cta'));
     }
   }
 
@@ -87,6 +88,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
       'logo' => request()->input('logo', null),
       'logo_square' => request()->input('logo_square', null),
       'favicon' => request()->input('favicon', null),
+      'website_active' => (bool) request()->input('website_active', false),
       'header_gradient_start' => request()->input('header_gradient_start', null),
       'header_gradient_end' => request()->input('header_gradient_end', null),
       'header_image' => request()->input('header_image', null),
@@ -155,6 +157,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
       $reseller->stripe_key = $input['stripe_key'];
       $reseller->stripe_secret = $input['stripe_secret'];
       $reseller->settings = [
+        'website_active' => $input['website_active'],
         'header_gradient_start' => $input['header_gradient_start'],
         'header_gradient_end' => $input['header_gradient_end'],
         'header_image' => $input['header_image'],
@@ -223,6 +226,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
         'logo' => request()->input('logo', null),
         'logo_square' => request()->input('logo_square', null),
         'favicon' => request()->input('favicon', null),
+        'website_active' => (bool) request()->input('website_active', false),
         'header_gradient_start' => request()->input('header_gradient_start', null),
         'header_gradient_end' => request()->input('header_gradient_end', null),
         'header_image' => request()->input('header_image', null),
@@ -287,6 +291,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
         $reseller->stripe_secret = $input['stripe_secret'];
 
         $reseller->settings = [
+          'website_active' => $input['website_active'],
           'header_gradient_start' => $input['header_gradient_start'],
           'header_gradient_end' => $input['header_gradient_end'],
           'header_image' => $input['header_image'],

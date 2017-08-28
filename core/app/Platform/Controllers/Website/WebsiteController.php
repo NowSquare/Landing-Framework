@@ -19,6 +19,10 @@ class WebsiteController extends \App\Http\Controllers\Controller {
   {
     $reseller = \Platform\Controllers\Core\Reseller::get();
 
+    $website_active = (isset($reseller->settings['website_active'])) ? $reseller->settings['website_active'] : false;
+
+    if (! $website_active) return redirect('login');
+
     // Get all plans
     $plans = \Platform\Controllers\App\PlanController::getAllPlans();
     $all_plans = $plans['all_plans'];

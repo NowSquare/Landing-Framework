@@ -124,6 +124,14 @@
                   <fieldset>
                     <legend>{{ trans('global.website') }}</legend>
 
+                    <div class="form-group">
+                      <div class="checkbox checkbox-primary">
+                        <input name="website_active" id="website_active" type="checkbox" value="1" checked>
+                        <label for="website_active"> {{ trans('global.active') }}</label>
+                      </div>
+                    </div>
+                    <p class="text-muted m-b-30">{{ trans('global.active_website_desc') }}</p>
+
                     <div class="form-group m-b-0">
                       <label for="header_gradient_start">{{ trans('global.header_gradient') }}</label>
                     </div>

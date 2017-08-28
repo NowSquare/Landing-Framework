@@ -401,6 +401,7 @@ return array(
   "affiliate_id" => "Affiliate ID",
   "branding" => "Branding",
   "website" => "Website",
+  "active_website_desc" => "If the website is not active, the homepage will redirect to the login page.",
   "header_image" => "Header image",
   "header_gradient" => "Header gradient",
   "header_title" => "Header title",
