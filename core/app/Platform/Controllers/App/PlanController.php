@@ -478,8 +478,10 @@ class PlanController extends \App\Http\Controllers\Controller {
       $currency = $default_plan->currency;
       if (trans('i18n.default_currency') != $currency && isset($default_plan->monthly_price_currencies[trans('i18n.default_currency')])) {
         $monthly_price = $currencyFormatter->formatCurrency($default_plan->monthly_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), $language));
+        $fractionDigits = $currencyRepository->get(trans('i18n.default_currency'), $language)->getFractionDigits();
       } else {
         $monthly_price = $currencyFormatter->formatCurrency($default_plan->monthly_price, $currencyRepository->get($default_plan->currency, $language));
+        $fractionDigits = $currencyRepository->get($default_plan->currency, $language)->getFractionDigits();
       }
 
       if (trans('i18n.default_currency') != $currency && isset($default_plan->annual_price_currencies[trans('i18n.default_currency')])) {
@@ -492,8 +494,9 @@ class PlanController extends \App\Http\Controllers\Controller {
         $annual_price = null;
       }
 
-      $monthly_price = str_replace(['.00', ',00'], '', $monthly_price);
-      if ($annual_price != null) $annual_price = str_replace(['.00', ',00'], '', $annual_price);
+      $ends_with = str_repeat('0', $fractionDigits);
+      if (ends_with($monthly_price, $ends_with)) $monthly_price = substr($monthly_price, 0, strlen($monthly_price) - ($fractionDigits + 1));
+      if (ends_with($annual_price, $ends_with)) $annual_price = substr($annual_price, 0, strlen($annual_price) - ($fractionDigits + 1));
 
       // Plan items
       $plan_items = [];
@@ -637,8 +640,10 @@ class PlanController extends \App\Http\Controllers\Controller {
       $currency = $plan->currency;
       if (trans('i18n.default_currency') != $currency && isset($plan->monthly_price_currencies[trans('i18n.default_currency')])) {
         $monthly_price = $currencyFormatter->formatCurrency($plan->monthly_price_currencies[trans('i18n.default_currency')], $currencyRepository->get(trans('i18n.default_currency'), $language));
+        $fractionDigits = $currencyRepository->get(trans('i18n.default_currency'), $language)->getFractionDigits();
       } else {
         $monthly_price = $currencyFormatter->formatCurrency($plan->monthly_price, $currencyRepository->get($plan->currency, $language));
+        $fractionDigits = $currencyRepository->get($plan->currency, $language)->getFractionDigits();
       }
 
       if (trans('i18n.default_currency') != $currency && isset($plan->annual_price_currencies[trans('i18n.default_currency')])) {
@@ -651,8 +656,9 @@ class PlanController extends \App\Http\Controllers\Controller {
         $annual_price = null;
       }
 
-      $monthly_price = str_replace(['.00', ',00'], '', $monthly_price);
-      if ($annual_price != null) $annual_price = str_replace(['.00', ',00'], '', $annual_price);
+      $ends_with = str_repeat('0', $fractionDigits);
+      if (ends_with($monthly_price, $ends_with)) $monthly_price = substr($monthly_price, 0, strlen($monthly_price) - ($fractionDigits + 1));
+      if (ends_with($annual_price, $ends_with)) $annual_price = substr($annual_price, 0, strlen($annual_price) - ($fractionDigits + 1));
 
       // Plan items
       $plan_items = [];
