@@ -62,7 +62,8 @@ class UserEventSubscriber {
     $reseller = Core\Reseller::get();
 
     // Set expiration date, first check for default account
-    $default_plan = \App\Plan::where('reseller_id', $reseller->id)->where('active', 1)->where('default', 1)->first();
+    //$default_plan = \App\Plan::where('reseller_id', $reseller->id)->where('active', 1)->where('default', 1)->first();
+    $default_plan = \App\Plan::where('active', 1)->where('default', 1)->first();
     $trial_days = (! empty($default_plan) && is_numeric($default_plan->trial_days)) ? $default_plan->trial_days : 14;
     //$expires = Carbon::now()->addDays($trial_days);
     $trial_ends_at = Carbon::now()->addDays($trial_days);
