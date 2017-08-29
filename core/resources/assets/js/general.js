@@ -460,6 +460,7 @@ function bindMediaBrowser() {
         height: parseInt($(window).height()) + 42, 
         onOpen: function() {
           $(window).resize(colorBoxResizer);
+          colorBoxResizer();
         }, 
         onLoad: function() {
           $('html, body').css('overflow', 'hidden'); // page scrollbars off
