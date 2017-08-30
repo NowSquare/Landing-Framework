@@ -63,19 +63,35 @@
 
     </div>
     <div class="col-sm-5">
+<?php
+$eddystone_visual = trans('eddystones::global.eddystone_visual');
+$eddystone_explanation = trans('eddystones::global.eddystone_explanation');
+$eddystone_explanation1 = trans('eddystones::global.eddystone_explanation1');
+$eddystone_explanation2 = trans('eddystones::global.eddystone_explanation2');
+$eddystone_explanation3 = trans('eddystones::global.eddystone_explanation3');
 
+if ($eddystone_explanation != '') {
+?>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">{{ trans('eddystones::global.eddystone_explanation') }}</h3>
+          <h3 class="panel-title">{{ $eddystone_explanation }}</h3>
         </div>
         <div class="panel-body">
-          <p>{!! trans('eddystones::global.eddystone_explanation1') !!}</p>
-          <p>{!! trans('eddystones::global.eddystone_explanation2') !!}</p>
-          <p>{!! trans('eddystones::global.eddystone_explanation3') !!}</p>
-          <img src="{{ url('assets/images/visuals/eddystones.jpg') }}" class="img-responsive m-t-20">
+<?php if ($eddystone_explanation1 != '') { ?>
+          <p>{!! $eddystone_explanation1 !!}</p>
+<?php } ?>
+<?php if ($eddystone_explanation2 != '') { ?>
+          <p>{!! $eddystone_explanation2 !!}</p>
+<?php } ?>
+<?php if ($eddystone_explanation3 != '') { ?>
+          <p>{!! $eddystone_explanation3 !!}</p>
+<?php } ?>
+<?php if ($eddystone_visual != '') { ?>
+          <img src="{{ $eddystone_visual }}" class="img-responsive m-t-20">
+<?php } ?>
         </div>
       </div>
-
+<?php } ?>
     </div>
   </div>
 
