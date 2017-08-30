@@ -4,6 +4,7 @@ Homestead.yaml
 .env
 *.env
 *.bu.php
+*-override.php
 _notes
 .sass-cache
 /github-deploy-*
