@@ -69,7 +69,7 @@
 
                 <div class="form-group">
                   <label for="monthly_price">{{ trans('global.price') }} <sup>*</sup></label>
-                  <input type="text" class="form-control" name="monthly_price" value="" required autocomplete="off" placeholder="">
+                  <input type="number" step="0.01" class="form-control" name="monthly_price" value="" required autocomplete="off" placeholder="">
                 </div>
 
                 <div class="form-group">
@@ -91,7 +91,7 @@
               <div class="tab-pane" id="annual">
                 <div class="form-group">
                   <label for="annual_price">{{ trans('global.price') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('global.annual_price_help') }}">&#xE887;</i></label>
-                  <input type="text" class="form-control" name="annual_price" value="" autocomplete="off" placeholder="">
+                  <input type="number" step="0.01" class="form-control" name="annual_price" value="" autocomplete="off" placeholder="">
                 </div>
 
                 <div class="form-group">
