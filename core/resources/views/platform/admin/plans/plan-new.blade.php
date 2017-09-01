@@ -49,6 +49,24 @@
               </div>
             </div>
 
+            <div class="form-group" id="group_field" style="display:none">
+              <label for="trial_days">{{ trans('global.trial_days') }} <i class="material-icons help-icon" data-container="body" data-trigger="hover" data-toggle="popover" data-placement="top" data-content="{{ trans('global.trial_days_help') }}">&#xE887;</i></label>
+              <input type="number" class="form-control" name="trial_days" value="" autocomplete="off" placeholder="">
+            </div>
+
+<script>
+  checkTrialPeriod();
+  $('#default').on('change', checkTrialPeriod);
+
+  function checkTrialPeriod() {
+    if ($('#default').is(':checked')) {
+      $('#group_field').show();
+    } else {
+      $('#group_field').hide();
+    }
+  }
+</script>
+
             <div class="form-group" style="margin-top:20px">
               <div class="checkbox checkbox-primary">
                 <input name="active" id="active" type="checkbox" value="1" checked>

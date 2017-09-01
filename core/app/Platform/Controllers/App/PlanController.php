@@ -124,6 +124,7 @@ class PlanController extends \App\Http\Controllers\Controller {
       'annual_upgrade_url' => request()->input('annual_upgrade_url'),
       'default' => (bool) request()->input('default', false),
       'active' => (bool) request()->input('active', false),
+      'trial_days' => request()->input('trial_days', null),
       'limitations' => request()->input('limitations', [])
     );
 
@@ -133,7 +134,8 @@ class PlanController extends \App\Http\Controllers\Controller {
       'monthly_order_url' => 'nullable|url',
       'monthly_upgrade_url' => 'nullable|url',
       'annual_order_url' => 'nullable|url',
-      'annual_upgrade_url' => 'nullable|url'
+      'annual_upgrade_url' => 'nullable|url',
+      'trial_days' => 'nullable|integer|min:4'
     );
 
     $validator = \Validator::make($input, $rules);
@@ -171,6 +173,7 @@ class PlanController extends \App\Http\Controllers\Controller {
       $plan->limitations = $input['limitations'];
       $plan->default = $input['default'];
       $plan->active = $input['active'];
+      $plan->trial_days = $input['trial_days'];
 
       if($plan->save())
       {
@@ -221,6 +224,7 @@ class PlanController extends \App\Http\Controllers\Controller {
         'annual_upgrade_url' => request()->input('annual_upgrade_url'),
         'default' => (bool) request()->input('default', false),
         'active' => (bool) request()->input('active', false),
+        'trial_days' => request()->input('trial_days', null),
         'limitations' => request()->input('limitations', [])
       );
 
@@ -230,7 +234,8 @@ class PlanController extends \App\Http\Controllers\Controller {
         'monthly_order_url' => 'nullable|url',
         'monthly_upgrade_url' => 'nullable|url',
         'annual_order_url' => 'nullable|url',
-        'annual_upgrade_url' => 'nullable|url'
+        'annual_upgrade_url' => 'nullable|url',
+        'trial_days' => 'nullable|integer|min:4'
       );
 
       $validator = \Validator::make($input, $rules);
@@ -255,6 +260,7 @@ class PlanController extends \App\Http\Controllers\Controller {
         $plan->annual_remote_product_id = $input['annual_remote_product_id'];
         $plan->annual_order_url = $input['annual_order_url'];
         $plan->annual_upgrade_url = $input['annual_upgrade_url'];
+        $plan->trial_days = $input['trial_days'];
 
         if ($qs['plan_id'] != 1) {
           $plan->limitations = $input['limitations'];

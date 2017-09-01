@@ -331,6 +331,8 @@ return array(
   "expires" => "Expires",
   "default_plan" => "Default plan",
   "default_info" => "New users start with the default plan. If there is no default plan, a user will start with a free plan with no permissions. There can be only one default plan.",
+  "trial_days" => "Trial days",
+  "trial_days_help" => "A trial period can't be less than 4 days, because users get a first reminder 3 days before a trial expires. If you change this period, this will only affect new registrations. If empty, there is a default 14 day trial period.",
   "per_month" => "Per month",
   "subtitle" => "Subtitle",
   "create_plan" => "Create Plan",

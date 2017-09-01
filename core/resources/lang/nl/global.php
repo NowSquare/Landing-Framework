@@ -331,6 +331,8 @@ return array(
   "expires" => "Verloopt",
   "default_plan" => "Standaard abonnement",
   "default_info" => "Nieuwe gebruikers starten met het standaard abonnement. Als er geen standaard abonnement is, begint een gebruiker met een gratis abonnement zonder rechten. Er kan slechts één standaard abonnement zijn.",
+  "trial_days" => "Proefabonnement dagen",
+  "trial_days_help" => "Een proefabonnement kan niet korter zijn dan 4 dagen, omdat gebruikers 3 dagen voordat een abonnement verloopt een eerste melding krijgen. Als u deze periode wijzigt, geldt dit alleen voor nieuwe registraties. Indien dit veld leeg is, wordt een standaard periode van 14 dagen gehanteerd.",
   "per_month" => "Per maand",
   "subtitle" => "Subtitel",
   "create_plan" => "Nieuw abonnement",
