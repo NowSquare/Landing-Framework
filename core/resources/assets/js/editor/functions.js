@@ -311,3 +311,31 @@ function lfRemoveAttributesStartingWith(target, starts_with) {
     $target.removeAttr( attrName );
   })
 };
+
+/* 
+  Returns unique values of style properties found
+  (verbose returns a value for every element that has the style set)
+*/
+
+function styleInPage(css, verbose) {
+  if(typeof getComputedStyle== "undefined")
+  getComputedStyle= function(elem) {
+    return elem.currentStyle;
+  }
+  var who, hoo, values= [], val,
+  nodes= document.body.getElementsByTagName('*'),
+  L= nodes.length;
+  for(var i= 0; i<L; i++) {
+    who= nodes[i];
+    if(who.style){
+      hoo= '#'+(who.id || who.nodeName+'('+i+')');
+      val= who.style.fontFamily || getComputedStyle(who, '')[css];
+      if(val) {
+        if(verbose) values.push([hoo, val]);
+        else if(values.indexOf(val)== -1) values.push(val);
+        // before IE9 you need to shim Array.indexOf (shown below)
+      }
+    }
+  }
+  return values;
+}

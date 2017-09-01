@@ -64,6 +64,28 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
   outline: none !important;
 }
 
+// TinyMCE font size dropdown small toolbar
+.mce-tinymce {
+  .mce-btn-group:nth-child(2) {
+    .mce-listbox:nth-child(2) {
+      button span.mce-txt {
+        width: 34px;
+      }
+    }
+  }
+}
+
+// TinyMCE font size dropdown large toolbar
+.mce-tinymce {
+  .mce-btn-group:nth-child(3) {
+    .mce-listbox:nth-child(2) {
+      button span.mce-txt {
+        width: 34px;
+      }
+    }
+  }
+}
+
 #editor_toolbar {
   z-index: 9;
   position: fixed;

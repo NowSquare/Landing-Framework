@@ -31,6 +31,19 @@ function lfInitText() {
    * Bind TinyMCE on click text-editable
    */
   $(function() {
+
+    // Get all fonts used on page, and those to the editor
+    var font_formats_page = styleInPage('fontFamily');
+    var font_prefix = '';
+
+    for(var i= 0; i < font_formats_page.length; i++) {
+      var f = font_formats_page[i];
+      if (f.indexOf('"') == 0 && f != '"Material Icons"') {
+        var font = f.substring(f.indexOf('"') + 1,f.lastIndexOf('"'));
+        font_prefix += font + '=' + f + ';';
+      }
+    }
+
     $('body').on('click', '.-x-text', function() {
       var $el = $(this);
 
@@ -58,13 +71,15 @@ function lfInitText() {
         case 'h4':
         case 'h5':
         case 'p':
-          var toolbar = 'undo redo | bold italic link | image | forecolor';
+          var toolbar = 'undo redo | fontselect fontsizeselect | bold italic link | image | forecolor';
           var plugins = 'advlist autolink lists link image anchor media contextmenu paste colorpicker textcolor';
           break;
         default: 
-          var toolbar = 'undo redo | bold italic link | styleselect | image | bullist | forecolor';
+          var toolbar = 'undo redo | bold italic link | fontselect fontsizeselect styleselect | image | bullist | forecolor';
           var plugins = 'advlist autolink lists link image anchor code media table contextmenu paste colorpicker textcolor';
       }
+
+      var font_formats = font_prefix + 'Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;Book Antiqua=book antiqua,palatino;Comic Sans MS=comic sans ms,sans-serif;Courier New=courier new,courier;Georgia=georgia,palatino;Helvetica=helvetica;Impact=impact,chicago;Symbol=symbol;Tahoma=tahoma,arial,helvetica,sans-serif;Terminal=terminal,monaco;Times New Roman=times new roman,times;Trebuchet MS=trebuchet ms,geneva;Verdana=verdana,geneva;Webdings=webdings;Wingdings=wingdings,zapf dingbats';
 
       tinymce.init({
         selector: '#' + id,
@@ -74,7 +89,8 @@ function lfInitText() {
         schema: 'html5',
         relative_urls: false,
         apply_source_formatting: false, 
-        extended_valid_elements: 'span[style,class],script[charset|defer|language|src|type]',
+        extended_valid_elements : "@[itemscope|itemtype|itemprop|content],div,meta[*],span[style,class],link[*],script[charset|defer|language|src|type]",
+        valid_children : "+body[meta|title|link],+div[h2|span|object],+object[param|embed]",
         verify_html: false, 
         file_browser_callback: lfelFinderBrowser,
         plugins: plugins,
@@ -82,6 +98,8 @@ function lfInitText() {
         table_default_attributes: {
           class: 'table'
         },
+        font_formats: font_formats,
+        fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 15pt 16pt 18pt 20pt 21pt 22pt 24pt 26pt 28pt 36pt 48pt 54pt 72pt",
         init_instance_callback : function(editor) {
           editor.serializer.addNodeFilter('script,style', function(nodes, name) {
             var i = nodes.length, node, value, type;
