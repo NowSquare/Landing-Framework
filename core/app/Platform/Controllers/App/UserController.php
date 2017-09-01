@@ -49,6 +49,14 @@ class UserController extends \App\Http\Controllers\Controller {
       // Get reseller
       $reseller = Core\Reseller::get($user->reseller_id);
 
+      // Set url root
+      \URL::forceScheme('https');
+      if ($reseller->domain == '*') {
+        if (config('app.url') != 'http://localhost') \URL::forceRootUrl(config('app.url')); 
+      } else {
+        \URL::forceRootUrl('https://' . $reseller->domain);
+      }
+
       $mail_from = $reseller->mail_from_address;
       $mail_from_name = $reseller->mail_from_name;
       $subject = trans('global.account_expired_yesterday_subject', ['product_name' => $reseller->name]);
@@ -78,6 +86,14 @@ class UserController extends \App\Http\Controllers\Controller {
 
       // Get reseller
       $reseller = Core\Reseller::get($user->reseller_id);
+
+      // Set url root
+      \URL::forceScheme('https');
+      if ($reseller->domain == '*') {
+        if (config('app.url') != 'http://localhost') \URL::forceRootUrl(config('app.url')); 
+      } else {
+        \URL::forceRootUrl('https://' . $reseller->domain);
+      }
 
       $mail_from = $reseller->mail_from_address;
       $mail_from_name = $reseller->mail_from_name;
@@ -131,6 +147,14 @@ class UserController extends \App\Http\Controllers\Controller {
       // Get reseller
       $reseller = Core\Reseller::get($user->reseller_id);
 
+      // Set url root
+      \URL::forceScheme('https');
+      if ($reseller->domain == '*') {
+        if (config('app.url') != 'http://localhost') \URL::forceRootUrl(config('app.url')); 
+      } else {
+        \URL::forceRootUrl('https://' . $reseller->domain);
+      }
+
       $mail_from = $reseller->mail_from_address;
       $mail_from_name = $reseller->mail_from_name;
       $subject = trans('global.account_deleted_subject', ['product_name' => $reseller->name]);
@@ -175,6 +199,14 @@ class UserController extends \App\Http\Controllers\Controller {
       // Get reseller
       $reseller = Core\Reseller::get($user->reseller_id);
 
+      // Set url root
+      \URL::forceScheme('https');
+      if ($reseller->domain == '*') {
+        if (config('app.url') != 'http://localhost') \URL::forceRootUrl(config('app.url')); 
+      } else {
+        \URL::forceRootUrl('https://' . $reseller->domain);
+      }
+
       $mail_from = $reseller->mail_from_address;
       $mail_from_name = $reseller->mail_from_name;
       $subject = trans('global.trial_ends_in_3_days_subject', ['product_name' => $reseller->name]);
@@ -204,6 +236,14 @@ class UserController extends \App\Http\Controllers\Controller {
 
       // Get reseller
       $reseller = Core\Reseller::get($user->reseller_id);
+
+      // Set url root
+      \URL::forceScheme('https');
+      if ($reseller->domain == '*') {
+        if (config('app.url') != 'http://localhost') \URL::forceRootUrl(config('app.url')); 
+      } else {
+        \URL::forceRootUrl('https://' . $reseller->domain);
+      }
 
       $mail_from = $reseller->mail_from_address;
       $mail_from_name = $reseller->mail_from_name;
@@ -254,6 +294,14 @@ class UserController extends \App\Http\Controllers\Controller {
 
       // Get reseller
       $reseller = Core\Reseller::get($user->reseller_id);
+
+      // Set url root
+      \URL::forceScheme('https');
+      if ($reseller->domain == '*') {
+        if (config('app.url') != 'http://localhost') \URL::forceRootUrl(config('app.url')); 
+      } else {
+        \URL::forceRootUrl('https://' . $reseller->domain);
+      }
 
       $mail_from = $reseller->mail_from_address;
       $mail_from_name = $reseller->mail_from_name;
