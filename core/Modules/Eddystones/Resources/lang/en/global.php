@@ -8,9 +8,9 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
-	"module_name" => "Eddystone",
-	"module_name_plural" => "Eddystones",
-	"module_name_plan" => "Eddystones",
+	"module_name" => "Nearby Notifications",
+	"module_name_plural" => "Nearby Notifications",
+	"module_name_plan" => "Nearby Notifications",
 	"module_desc" => "Broadcast Nearby Notifications to Android phones.",
 
 	/*
