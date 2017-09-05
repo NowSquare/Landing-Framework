@@ -49,45 +49,11 @@
           FileBrowserDialogue.mySubmit(file.url); // pass selected file path to TinyMCE
         },
         /*
-        uiOptions: {
-          toolbar : [
-            // toolbar configuration
-            ['open'],
-            ['back', 'forward'],
-            ['reload'],
-            ['home', 'up'],
-            ['mkdir', 'mkfile', 'upload'],
-            ['info'],
-            ['quicklook'],
-            ['copy', 'cut', 'paste'],
-            ['rm'],
-            ['duplicate', 'rename', 'resize', 'edit'],
-            ['extract', 'archive'],
-            ['search'],
-            ['view'],
-            ['help']
-          ]
-        },*/
-        uiOptions: {
-          toolbar : [
-            ['back', 'forward'],
-            ['mkdir', 'upload'],
-            ['rm'],
-            ['resize'],
-            ['search']
-          ]
-        },
-        contextmenu : {
-          files  : [
-            'getfile', '|','open', '|', 'copy', 'cut', 'paste', 'duplicate', '|',
-            'rm', '|', 'edit', 'rename', '|', 'archive', 'extract', '|', 'info'
-          ]
-        },
       });
 
       $('.elfinder-button[title]').attr('data-placement', 'bottom');
       $('.elfinder-button[title]').attr('data-toggle', 'tooltip');
-      bsTooltipsPopovers();
+      bsTooltipsPopovers();https://secure.avangate.com/order/checkout.php?PRODS=4709793&QTY=1
 
       $window.resize(resizeElFinder);
       resizeElFinder();
