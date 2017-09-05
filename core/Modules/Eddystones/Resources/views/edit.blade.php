@@ -114,7 +114,7 @@ foreach (trans('eddystones::global.days_of_week_short') as $i => $day) {
         <div class="form-group input-group timepicker-holder" style="width:155px; margin-bottom: 0">
           <input type="text" class="form-control text-center timepicker-component startTimeOfDay" value="@{{startTimeOfDay}}" placeholder="0:00" name="startTimeOfDay[]" maxlength="5">
           <span class="input-group-addon text-lowercase">-</span>
-          <input type="text" class="form-control text-center timepicker-component endTimeOfDay" value="@{{endTimeOfDay}}" placeholder="24:00" name="endTimeOfDay[]" maxlength="5">
+          <input type="text" class="form-control text-center timepicker-component endTimeOfDay" value="@{{endTimeOfDay}}" placeholder="23:59" name="endTimeOfDay[]" maxlength="5">
         </div>
       </div>
   </td>
