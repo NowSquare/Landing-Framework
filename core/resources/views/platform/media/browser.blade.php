@@ -30,12 +30,45 @@
         resizable: false,
         rememberLastDir: false,
         useBrowserHistory: false,
-        commands : [
-          /*'open', */'reload', 'home', 'up', 'back', 'forward', 
-          'download', 'rm', 'rename', 'mkdir', 'upload', 'copy', 
-          'paste'/*, 'edit'*/, 'search', 'info', 'view',
-          'resize', 'sort'
-        ]
+        /*
+        uiOptions: {
+          toolbar : [
+            // toolbar configuration
+            ['open'],
+            ['back', 'forward'],
+            ['reload'],
+            ['home', 'up'],
+            ['mkdir', 'mkfile', 'upload'],
+            ['info'],
+            ['quicklook'],
+            ['copy', 'cut', 'paste'],
+            ['rm'],
+            ['duplicate', 'rename', 'resize', 'edit'],
+            ['extract', 'archive'],
+            ['search'],
+            ['view'],
+            ['help']
+          ]
+        },*/
+        uiOptions: {
+          toolbar : [
+            ['back', 'forward'],
+            ['mkdir', 'mkfile', 'upload'],
+            ['info'],
+            ['quicklook'],
+            [ 'paste'],
+            ['rm'],
+            ['duplicate', 'rename', 'resize'],
+            ['search'],
+            ['view']
+          ]
+        },
+        contextmenu : {
+          files  : [
+            'getfile', '|','open', '|', 'copy', 'cut', 'paste', 'duplicate', '|',
+            'rm', '|', 'edit', 'rename', '|', 'archive', 'extract', '|', 'info'
+          ]
+        },
       });
 
       $('.elfinder-button[title]').attr('data-toggle', 'tooltip');
