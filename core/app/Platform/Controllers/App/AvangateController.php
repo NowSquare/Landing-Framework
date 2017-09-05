@@ -33,9 +33,11 @@ class AvangateController extends \App\Http\Controllers\Controller {
       $html .= $key . ': ' . $val . chr(13);
     }
 
-    \Mail::raw($html, function ($message){
-      $message->to(config('avangate.debug_mail'))->subject('[GET] Avangate LCN GET log');
-    });
+    if (config('avangate.debug_mail', '') != '') {
+      \Mail::raw($html, function ($message){
+        $message->to(config('avangate.debug_mail'))->subject('[GET] Avangate LCN GET log');
+      });
+    }
   }
 
   /**
