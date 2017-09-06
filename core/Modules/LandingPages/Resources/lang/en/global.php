@@ -38,7 +38,7 @@ return array(
 	"create_landing_page" => "Create Landing Page",
 	"custom_domain" => "Custom domain",
 	"personal" => "Personal",
-	"personal_desc" => "Promote yourself.",
+	"personal_desc" => "Promote yourself with business cards.",
 	"business_services" => "Business & Services",
 	"business_services_desc" => "Landing pages for businesses to showcase a product or service.",
   "food_drinks" => "Food & Drinks",

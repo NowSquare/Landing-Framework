@@ -179,6 +179,13 @@ class FunctionsController extends Controller
     ];
 
     $items[] = [
+      "icon" => 'pictureprofile.svg',
+      "category" => 'personal',
+      "name" => trans('landingpages::global.personal'),
+      "desc" => trans('landingpages::global.personal_desc')
+    ];
+
+    $items[] = [
       "icon" => 'stopwatch.svg',
       "category" => 'coming_soon',
       "name" => trans('landingpages::global.coming_soon'),
@@ -191,14 +198,7 @@ class FunctionsController extends Controller
       "name" => trans('landingpages::global.thank_you'),
       "desc" => trans('landingpages::global.thank_you_desc')
     ];
-/*
-    $items[] = [
-      "icon" => 'pictureprofile.svg',
-      "category" => 'personal',
-      "name" => trans('landingpages::global.personal'),
-      "desc" => trans('landingpages::global.personal_desc')
-    ];
-*/
+
     $items[] = [
       "icon" => 'box.svg',
       "category" => 'other',

@@ -3,7 +3,7 @@
 return [
   'name' => 'Business Card 01',
   'active' => true,
-  'categories' => ['other'],
+  'categories' => ['personal'],
   'created_at' => '2017-08-24',
   'updated_at' => '2017-08-24',
   'author_name' => 'Landing Framework',

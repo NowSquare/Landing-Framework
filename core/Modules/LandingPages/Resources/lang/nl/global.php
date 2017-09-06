@@ -38,7 +38,7 @@ return array(
 	"create_landing_page" => "Nieuwe landingspagina",
 	"custom_domain" => "Eigen domein",
 	"personal" => "Persoonlijk",
-	"personal_desc" => "Promoot jezelf.",
+	"personal_desc" => "Promoot jezelf met een visitekaartje.",
 	"business_services" => "Business & Services",
 	"business_services_desc" => "Landing pages for businesses to showcase a product or service.",
   "food_drinks" => "Food & Drinks",
