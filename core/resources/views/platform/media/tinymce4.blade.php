@@ -2,7 +2,6 @@
 <html>
   <head>
   <meta charset="utf-8">
-  <title>elFinder 2.0</title>
   <style type="text/css">
   html, body {
     background-color: transparent !important;
@@ -16,18 +15,19 @@
   <script src="<?php echo url('assets/js/scripts.min.js'); ?>"></script>
   <script src="<?= url('assets/packages/elfinder/js/elfinder.min.js') ?>"></script>
   <script type="text/javascript">
-    var FileBrowserDialogue = {
-      init: function() {
-        // Here goes your code for setting your custom things onLoad.
-      },
-      mySubmit: function (URL) {
-        // pass selected file path to TinyMCE
-        parent.tinymce.activeEditor.windowManager.getParams().setUrl(URL);
 
-        // close popup window
-        parent.tinymce.activeEditor.windowManager.close();
-      }
+  var FileBrowserDialogue = {
+    init: function() {
+      // Here goes your code for setting your custom things onLoad.
+    },
+    mySubmit: function (URL) {
+      // pass selected file path to TinyMCE
+      parent.tinymce.activeEditor.windowManager.getParams().setUrl(URL);
+
+      // close popup window
+      parent.tinymce.activeEditor.windowManager.close();
     }
+  }
 
   $().ready(function() {
     var $elf
@@ -45,15 +45,27 @@
         useBrowserHistory: false,
         getFileCallback: function(file) { // editor callback
           //var path = file.url.replace('{{ url('/') }}', '');
-
           FileBrowserDialogue.mySubmit(file.url); // pass selected file path to TinyMCE
         },
-        /*
+        uiOptions: {
+          toolbar : [
+            ['back', 'forward'],
+            ['mkdir', 'upload'],
+            ['rm'],
+            ['search']
+          ]
+        },
+        contextmenu : {
+          files  : [
+            'getfile', '|','open', '|', 'copy', 'cut', 'paste', 'duplicate', '|',
+            'rm', '|', 'edit', 'rename', '|', 'archive', 'extract', '|', 'info'
+          ]
+        }
       });
 
       $('.elfinder-button[title]').attr('data-placement', 'bottom');
       $('.elfinder-button[title]').attr('data-toggle', 'tooltip');
-      bsTooltipsPopovers();https://secure.avangate.com/order/checkout.php?PRODS=4709793&QTY=1
+      bsTooltipsPopovers();
 
       $window.resize(resizeElFinder);
       resizeElFinder();
@@ -67,7 +79,6 @@
       }
     }
   });
-
 
   </script>
   </head>
