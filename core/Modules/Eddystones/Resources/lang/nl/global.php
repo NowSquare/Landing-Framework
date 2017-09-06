@@ -19,6 +19,7 @@ return array(
 	|--------------------------------------------------------------------------
 	*/
 
+  "eddystone_beacons" => "Eddystone beacons",
   "create_eddystone" => "Nieuwe Eddystone",
   "create_eddystone_help" => "U kunt notificaties toevoegen als de Eddystone is gemaakt.",
   "namespace_id" => "Namespace ID",

@@ -13,7 +13,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('eddystones::global.module_name_plural') }} ({{ $eddystones['count'] }})</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('eddystones::global.eddystone_beacons') }} ({{ $eddystones['count'] }})</a>
           </div>
 
           <div class="collapse navbar-collapse" id="bs-title-navbar">

@@ -22,7 +22,7 @@ return [
   // The order number is used for sorting purposes
   'order' => 70,
   // The icon must have a normal and active version, and it must exist in /assets/images/icons/
-  'icon' => 'antenna.svg',
+  'icon' => 'nearby.svg',
   // Internal name, don't change
   'name' => 'Eddystones'
 ];

@@ -5,7 +5,7 @@
       <nav class="navbar navbar-default card-box sub-navbar">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand link" href="#/eddystones">{{ trans('eddystones::global.module_name_plural') }}</a>
+            <a class="navbar-brand link" href="#/eddystones">{{ trans('eddystones::global.eddystone_beacons') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ $eddystone['beacon']->description }}</a>
           </div>
