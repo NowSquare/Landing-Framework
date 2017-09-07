@@ -17,11 +17,20 @@
 
 class Google_Service_CloudTrace_NetworkEvent extends Google_Model
 {
+  public $compressedMessageSize;
   public $messageId;
-  public $messageSize;
   public $time;
   public $type;
+  public $uncompressedMessageSize;
 
+  public function setCompressedMessageSize($compressedMessageSize)
+  {
+    $this->compressedMessageSize = $compressedMessageSize;
+  }
+  public function getCompressedMessageSize()
+  {
+    return $this->compressedMessageSize;
+  }
   public function setMessageId($messageId)
   {
     $this->messageId = $messageId;
@@ -29,14 +38,6 @@ class Google_Service_CloudTrace_NetworkEvent extends Google_Model
   public function getMessageId()
   {
     return $this->messageId;
-  }
-  public function setMessageSize($messageSize)
-  {
-    $this->messageSize = $messageSize;
-  }
-  public function getMessageSize()
-  {
-    return $this->messageSize;
   }
   public function setTime($time)
   {
@@ -53,5 +54,13 @@ class Google_Service_CloudTrace_NetworkEvent extends Google_Model
   public function getType()
   {
     return $this->type;
+  }
+  public function setUncompressedMessageSize($uncompressedMessageSize)
+  {
+    $this->uncompressedMessageSize = $uncompressedMessageSize;
+  }
+  public function getUncompressedMessageSize()
+  {
+    return $this->uncompressedMessageSize;
   }
 }

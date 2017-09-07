@@ -33,6 +33,7 @@ class Google_Service_AndroidManagement_Device extends Google_Collection
   protected $hardwareInfoDataType = '';
   protected $hardwareStatusSamplesType = 'Google_Service_AndroidManagement_HardwareStatus';
   protected $hardwareStatusSamplesDataType = 'array';
+  public $lastOfflineStateChangeTime;
   public $lastPolicyComplianceReportTime;
   public $lastPolicySyncTime;
   public $lastStatusReportTime;
@@ -166,6 +167,14 @@ class Google_Service_AndroidManagement_Device extends Google_Collection
   public function getHardwareStatusSamples()
   {
     return $this->hardwareStatusSamples;
+  }
+  public function setLastOfflineStateChangeTime($lastOfflineStateChangeTime)
+  {
+    $this->lastOfflineStateChangeTime = $lastOfflineStateChangeTime;
+  }
+  public function getLastOfflineStateChangeTime()
+  {
+    return $this->lastOfflineStateChangeTime;
   }
   public function setLastPolicyComplianceReportTime($lastPolicyComplianceReportTime)
   {

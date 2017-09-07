@@ -47,11 +47,11 @@ class Google_Service_Dataflow_Resource_ProjectsTemplates extends Google_Service_
    * the job belongs to.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string location The location to which to direct the request.
    * @opt_param string view The view to retrieve. Defaults to METADATA_ONLY.
    * @opt_param string gcsPath Required. A Cloud Storage path to the template from
    * which to create the job. Must be a valid Cloud Storage URL, beginning with
    * `gs://`.
-   * @opt_param string location The location to which to direct the request.
    * @return Google_Service_Dataflow_GetTemplateResponse
    */
   public function get($projectId, $optParams = array())

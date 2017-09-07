@@ -119,12 +119,11 @@ class Google_Service_Logging_Resource_BillingAccountsSinks extends Google_Servic
     return $this->call('list', array($params), "Google_Service_Logging_ListSinksResponse");
   }
   /**
-   * Updates a sink. If the named sink doesn't exist, then this method is
-   * identical to sinks.create. If the named sink does exist, then this method
-   * replaces the following fields in the existing sink with values from the new
-   * sink: destination, filter, output_version_format, start_time, and end_time.
-   * The updated filter might also have a new writer_identity; see the
-   * unique_writer_identity field. (sinks.patch)
+   * Updates a sink. This method replaces the following fields in the existing
+   * sink with values from the new sink: destination, filter,
+   * output_version_format, start_time, and end_time. The updated sink might also
+   * have a new writer_identity; see the unique_writer_identity field.
+   * (sinks.patch)
    *
    * @param string $sinkName Required. The full resource name of the sink to
    * update, including the parent resource and the sink identifier:
@@ -153,12 +152,11 @@ class Google_Service_Logging_Resource_BillingAccountsSinks extends Google_Servic
     return $this->call('patch', array($params), "Google_Service_Logging_LogSink");
   }
   /**
-   * Updates a sink. If the named sink doesn't exist, then this method is
-   * identical to sinks.create. If the named sink does exist, then this method
-   * replaces the following fields in the existing sink with values from the new
-   * sink: destination, filter, output_version_format, start_time, and end_time.
-   * The updated filter might also have a new writer_identity; see the
-   * unique_writer_identity field. (sinks.update)
+   * Updates a sink. This method replaces the following fields in the existing
+   * sink with values from the new sink: destination, filter,
+   * output_version_format, start_time, and end_time. The updated sink might also
+   * have a new writer_identity; see the unique_writer_identity field.
+   * (sinks.update)
    *
    * @param string $sinkName Required. The full resource name of the sink to
    * update, including the parent resource and the sink identifier:

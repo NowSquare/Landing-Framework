@@ -20,6 +20,7 @@ class Google_Service_AndroidProvisioningPartner_Device extends Google_Collection
   protected $collection_key = 'claims';
   protected $claimsType = 'Google_Service_AndroidProvisioningPartner_DeviceClaim';
   protected $claimsDataType = 'array';
+  public $configuration;
   public $deviceId;
   protected $deviceIdentifierType = 'Google_Service_AndroidProvisioningPartner_DeviceIdentifier';
   protected $deviceIdentifierDataType = '';
@@ -40,6 +41,14 @@ class Google_Service_AndroidProvisioningPartner_Device extends Google_Collection
   public function getClaims()
   {
     return $this->claims;
+  }
+  public function setConfiguration($configuration)
+  {
+    $this->configuration = $configuration;
+  }
+  public function getConfiguration()
+  {
+    return $this->configuration;
   }
   public function setDeviceId($deviceId)
   {

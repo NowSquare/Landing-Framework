@@ -100,6 +100,14 @@ class Google_Service_PeopleService_Resource_People extends Google_Service_Resour
    *
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string personFields **Required.** A field mask to restrict which
+   * fields on each person are returned. Valid values are:
+   *
+   * * addresses * ageRanges * biographies * birthdays * braggingRights *
+   * coverPhotos * emailAddresses * events * genders * imClients * interests *
+   * locales * memberships * metadata * names * nicknames * occupations *
+   * organizations * phoneNumbers * photos * relations * relationshipInterests *
+   * relationshipStatuses * residences * skills * taglines * urls
    * @opt_param string requestMask.includeField **Required.** Comma-separated list
    * of person fields to be included in the response. Each path should start with
    * `person.`: for example, `person.names` or `person.photos`.
@@ -113,14 +121,6 @@ class Google_Service_PeopleService_Resource_People extends Google_Service_Resour
    * [`people.connections.list`](/people/api/rest/v1/people.connections/list).
    *
    * You can include up to 50 resource names in one request.
-   * @opt_param string personFields **Required.** A field mask to restrict which
-   * fields on each person are returned. Valid values are:
-   *
-   * * addresses * ageRanges * biographies * birthdays * braggingRights *
-   * coverPhotos * emailAddresses * events * genders * imClients * interests *
-   * locales * memberships * metadata * names * nicknames * occupations *
-   * organizations * phoneNumbers * photos * relations * relationshipInterests *
-   * relationshipStatuses * residences * skills * taglines * urls
    * @return Google_Service_PeopleService_GetPeopleResponse
    */
   public function getBatchGet($optParams = array())
