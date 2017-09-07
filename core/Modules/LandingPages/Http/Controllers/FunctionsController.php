@@ -63,7 +63,7 @@ class FunctionsController extends Controller
       $bot_producer_name = (isset($botInfo['producer']['name'])) ? $botInfo['producer']['name'] : null;
       $bot_producer_url = (isset($botInfo['producer']['url'])) ? $botInfo['producer']['url'] : null;
 
-      $hash = $ip . '|' . date('Y-m-d-H') . '|' . $name . '|' . $category . '|' . $url . '|' . $producer_name . '|' . $producer_url;
+      $hash = $ip . '|' . date('Y-m-d-H') . '|' . $bot_name . '|' . $bot_category . '|' . $bot_url . '|' . $bot_producer_name . '|' . $bot_producer_url;
 
     } else {
       $clientInfo = $dd->getClient(); // holds information about browser, feed reader, media player, ...
