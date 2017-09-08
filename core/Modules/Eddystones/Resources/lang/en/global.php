@@ -10,7 +10,7 @@ return array(
 
 	"module_name" => "Nearby Notifications",
 	"module_name_plural" => "Nearby Notifications",
-	"module_name_plan" => "Nearby Notifications",
+	"module_name_plan" => "Eddystone Beacons",
 	"module_desc" => "Broadcast Nearby Notifications to Android phones.",
 
 	/*
