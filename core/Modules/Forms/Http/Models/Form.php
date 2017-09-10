@@ -36,7 +36,7 @@ class Form extends Model {
     if ($this->domain == '') {
       return url($local_domain);
     } else {
-      return '//' . $this->domain;
+      return 'http://' . $this->domain;
     }
   }
 }

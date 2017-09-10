@@ -34,7 +34,7 @@ class Page extends Model {
     if ($this->site->domain == '') {
       return url($local_domain);
     } else {
-      return '//' . $this->site->domain;
+      return 'http://' . $this->site->domain;
     }
   }
 
