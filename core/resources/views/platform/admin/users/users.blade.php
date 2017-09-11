@@ -172,7 +172,7 @@ $('#dt-table-admin_users_wrapper .dataTables_filter input').attr('placeholder', 
   <div class="row">
   <div class="col-sm-12">
     <div class="card-box table-responsive">
-    <table class="table table-striped table-bordered table-hover table-cutoff" id="dt-table-admin_users" style="width:100%">
+    <table class="table table-striped table-bordered table-hover" id="dt-table-admin_users" style="width:100%">
       <thead>
       <tr>
 <?php if (\Gate::allows('owner-management')) { ?><th class="text-center">{{ trans('global.reseller') }}</th><?php } ?>
