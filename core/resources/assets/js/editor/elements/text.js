@@ -40,10 +40,10 @@ function lfInitText() {
       var f = font_formats_page[i];
       if (f.indexOf('"') == 0 && f != '"Material Icons"') {
         var font = f.substring(f.indexOf('"') + 1,f.lastIndexOf('"'));
-        font_prefix += font + '=' + f + ';';
+        if (font != '') font_prefix += font + '=' + f + ';';
       } else if (f != '"Material Icons"') {
         var font = f.substring(0,f.indexOf(','));
-        font_prefix += font + '=' + f + ';';
+        if (font != '') font_prefix += font + '=' + f + ';';
       }
     }
 
