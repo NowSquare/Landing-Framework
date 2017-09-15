@@ -31,6 +31,25 @@ function lfInitText() {
    * Bind TinyMCE on click text-editable
    */
   $(function() {
+    // Get all -x-blocks for linking named anchors
+    var link_list = [];
+
+    $('.-x-block').each(function() {
+      var id = $(this).attr('id');
+      var title = $(this).attr('data-title');
+
+      if (typeof id !== typeof undefined && id !== false && typeof title !== typeof undefined && title !== false) { // Block has id and title
+        link_list.push({
+          title: title, 
+          value: '#' + id
+        });
+      } else if (typeof id !== typeof undefined && id !== false) { // Block only has id
+        link_list.push({
+          title: id, 
+          value: '#' + id
+        });
+      }
+    });
 
     // Get all fonts used on page, and those to the editor
     var font_formats_page = styleInPage('fontFamily');
@@ -104,6 +123,7 @@ function lfInitText() {
         },
         font_formats: font_formats,
         fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 15pt 16pt 18pt 20pt 21pt 22pt 24pt 26pt 28pt 36pt 48pt 54pt 72pt",
+        link_list: link_list,
         init_instance_callback : function(editor) {
           editor.serializer.addNodeFilter('script,style', function(nodes, name) {
             var i = nodes.length, node, value, type;
