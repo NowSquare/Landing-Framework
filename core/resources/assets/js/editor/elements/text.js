@@ -41,6 +41,9 @@ function lfInitText() {
       if (f.indexOf('"') == 0 && f != '"Material Icons"') {
         var font = f.substring(f.indexOf('"') + 1,f.lastIndexOf('"'));
         font_prefix += font + '=' + f + ';';
+      } else if (f != '"Material Icons"') {
+        var font = f.substring(0,f.indexOf(','));
+        font_prefix += font + '=' + f + ';';
       }
     }
 
@@ -79,7 +82,8 @@ function lfInitText() {
           var plugins = 'advlist autolink lists link image anchor code media table contextmenu paste colorpicker textcolor';
       }
 
-      var font_formats = font_prefix + 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier;Times New Roman=times new roman,times;Verdana=verdana,geneva';
+      //var font_formats = font_prefix + 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier;Times New Roman=times new roman,times;Verdana=verdana,geneva';
+      var font_formats = font_prefix;
 
       tinymce.init({
         selector: '#' + id,
