@@ -23,7 +23,7 @@
       } 
       h1, h2, h3, h4, h5 { 
         font-family: 'Oswald', sans-serif; 
-        font-weight: 400; color: #33691e; 
+        font-weight: 400;
       } 
       .text-light h1, .text-light h2, .text-light h3, .text-light h4, .text-light h5 { 
         color: #fff; 
