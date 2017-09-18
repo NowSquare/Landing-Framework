@@ -27,9 +27,6 @@ foreach ($active_modules as $module) {
 ?>
           <li class="has-submenu" id="module{{ $module['namespace'] }}"><a href="#/{{ $module['namespace'] }}" class="waves-effect waves-light">{{ $module['name_plural'] }}</a></li>
 <?php } ?>
-<?php if (1==2 && Gate::allows('limitation', 'media.visible')) { ?>
-          <li class="has-submenu"><a href="#/media" class="waves-effect waves-light">{{ trans('global.media') }}</a></li>
-<?php } ?>
 <?php /*
           <li class="has-submenu"> <a href="#/profile" class="waves-effect waves-light">{{ trans('global.account') }}</a></li>
 */ ?>
@@ -72,6 +69,10 @@ foreach ($active_modules as $module) {
             <ul class="dropdown-menu">
               <li class="dropdown-header" style="font-size: 1.5rem">{{ \Auth::user()->name }}</li>
               <li class="dropdown-header text-muted">{{ \Auth::user()->email }}</li>
+              <li role="separator" class="divider"><hr></li>
+<?php if (Gate::allows('limitation', 'media.visible')) { ?>
+              <li><a href="#/media"><i class="mi perm_media m-r-5"></i> {{ trans('global.media') }}</a></li>
+<?php } ?>
               <li role="separator" class="divider"><hr></li>
               <li><a href="#/profile"><i class="mi account_circle m-r-5"></i> {{ trans('global.profile') }}</a></li>
 <?php if (Gate::allows('limitation', 'account.plan_visible')) { ?>
