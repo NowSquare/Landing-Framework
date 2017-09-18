@@ -7,8 +7,8 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
 
 //@import "../../../../assets/bs4/resources/sass/fonts/iconsmind-line";
 
-$mi_path: "../bs4/fonts/material-icons" !default;
-@import "../../../../assets/bs4/resources/sass/fonts/material-icons";
+$mi_path: "../framework/1.0.0/fonts/material-icons" !default;
+@import "../../../../assets/framework/1.0.0/resources/sass/fonts/material-icons";
 
 @import "spinthatshit";
 @import "colorbox";
