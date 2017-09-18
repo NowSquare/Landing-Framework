@@ -538,7 +538,6 @@
   .navigation-menu > li > a:hover, .navigation-menu > li > a:focus {
     color: @dark !important;
   }
-
   .wrapper {
     margin-top: 80px;
   }
@@ -561,16 +560,18 @@
       }
 
       .submenu {
-        li.active > a{
+        li.active > a {
           color: #000; /*@primary;*/
         }
       }
     }
-
+    .navigation-menu > li > a:hover {
+      //color: @white !important;
+      color: #fff !important;
+    }
     .navigation-menu > li > a {
       margin-left: 0px;
     }
-
     .navigation-menu {
       float: none;
       margin: 0;
@@ -681,18 +682,4 @@
   .navbar-toggle {
     display: block;
   }
-}
-
-
-
-/* Footer */
-.footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  bottom: 0px;
-  color: #58666e;
-  text-align:left !important;
-  padding: 20px 0px;
-  position: absolute;
-  right: 0px;
-  left: 0px;
 }
