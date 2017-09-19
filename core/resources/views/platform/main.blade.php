@@ -23,33 +23,25 @@
         <ul class="navigation-menu">
 <?php /*          <li class="has-submenu"><a href="#/" class="waves-effect waves-light">{{ trans('global.dashboard') }}</a></li>*/ ?>
 <?php
+$group = false;
 foreach ($active_modules as $module) {
-?>
-          <li class="has-submenu" id="module{{ $module['namespace'] }}"><a href="#/{{ $module['namespace'] }}" class="waves-effect waves-light">{{ $module['name_plural'] }}</a></li>
-<?php } ?>
-<?php /*
-          <li class="has-submenu"> <a href="#/profile" class="waves-effect waves-light">{{ trans('global.account') }}</a></li>
-*/ ?>
-<?php /*
-<?php if (Gate::allows('admin-management')) { ?>
-          <li class="has-submenu last-elements"> <a href="javascript:void(0);" class="no-link waves-effect waves-light">{{ trans('global.admin') }}</a>
-            <ul class="submenu">
-              <li class="has-submenu">
-                <a href="javascript:void(0);">{{ trans('global.users') }}</a>
-                <ul class="submenu">
-                  <li><a href="#/admin/users">{{ trans('global.users') }}</a></li>
-                  <li><a href="#/admin/plans">{{ trans('global.plans') }}</a></li>
-<?php if (Gate::allows('owner-management')) { ?>
-                  <li role="separator" class="divider"><hr></li>
-                  <li><a href="#/admin/resellers">{{ trans('global.resellers') }}</a></li>
-<?php } ?>
-                </ul>
-              </li>
+  if ($module['group'] == ''  && $group == true) {
+    echo '</ul></li>';
+    $group = false;
+  }
 
-            </ul>
-          </li>
+  if ($module['group'] != '' && $group == false) {
+    echo '<li class="has-submenu"><a href="#/' . $module['namespace'] . '" class="no-link waves-effect waves-light">' . $module['group'] . '</a><ul class="submenu">';
+    $group = true;
+  }
+
+  if ($group) {
+    echo '<li id="module' . $module['namespace'] . '"><a href="#/' . $module['namespace'] . '">' . $module['name_plural'] . '</a></li>';
+  } else {
+    echo '<li class="has-submenu" id="module' . $module['namespace'] . '"><a href="#/' . $module['namespace'] . '" class="waves-effect waves-light">' . $module['name_plural'] . '</a></li>';
+  }
+?>
 <?php } ?>
-*/ ?>
         </ul>
       </div>
 

@@ -38,12 +38,12 @@ class MainController extends \App\Http\Controllers\Controller {
           "namespace" => $namespace,
           "icon" => config($namespace . '.icon'),
           "order" => config($namespace . '.order'),
+          "group" => \Lang::has($namespace . '::global.module_group') ? trans($namespace . '::global.module_group') : '',
           "name" => trans($namespace . '::global.module_name'),
           "name_plural" => trans($namespace . '::global.module_name_plural'),
           "desc" => trans($namespace . '::global.module_desc'),
           "url" => "#/" . $namespace . "/create"
         ];
-
       }
     }
 
