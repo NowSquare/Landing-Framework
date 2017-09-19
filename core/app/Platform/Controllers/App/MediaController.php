@@ -45,4 +45,18 @@ class MediaController extends \App\Http\Controllers\Controller {
   {
     return \View::make('platform.media.tinymce4');
   }
+
+  /**
+   * Load elFinder popup
+   */
+  public function popUp($input_id, $callback = 'processSelectedFile')
+  {
+    $dir = 'packages/elfinder';
+
+    return \View::make('platform.media.elfinder-popup', [
+      'locale' => \App::getLocale(),
+      'input_id' => $input_id,
+      'callback' => $callback
+    ]);
+  }
 }
