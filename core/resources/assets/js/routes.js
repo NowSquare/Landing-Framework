@@ -67,19 +67,10 @@ $(function() {
       '/emailcampaigns/emails/create/:sl/:template': function (sl, template) { loadRoute('emailcampaigns/emails/create/' + template + '?sl=' + sl, 'emailcampaigns'); },
       '/emailcampaigns/emails/editor/:sl': function (sl) { loadRoute('emailcampaigns/emails/editor?sl=' + sl, 'emailcampaigns', true, true); },
       '/emailcampaigns/emails/source/:sl': function (sl) { loadRoute('emailcampaigns/emails/source?sl=' + sl, 'emailcampaigns'); },
-/*
-      '/properties': function () { loadRoute('properties', 'properties'); },
-      '/properties/order/:order': function (order) { loadRoute('properties?order=' + order, 'properties'); },
-      '/properties/create': function () { loadRoute('properties/create', 'properties'); },
-      '/properties/create/:cat': function (cat) { loadRoute('properties/create/' + cat, 'properties'); },
-      '/properties/analytics/:sl': function (sl) { loadRoute('properties/analytics?sl=' + sl, 'properties'); },
-*/
 
       '/eddystones': function () { loadRoute('eddystones', 'eddystones'); },
       '/eddystones/create': function () { loadRoute('eddystones/create', 'eddystones'); },
       '/eddystones/:sl': function (sl) { loadRoute('eddystones/edit?sl=' + sl, 'eddystones'); },
-
-      /*'/beacons': function () { loadRoute('beacons', 'beacons'); },*/
 
       '/admin/plans': function () { loadRoute('platform/admin/plans'); },
       '/admin/plan': function () { loadRoute('platform/admin/plan/new', 'admin/plans'); },
