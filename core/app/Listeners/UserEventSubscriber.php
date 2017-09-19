@@ -35,10 +35,10 @@ class UserEventSubscriber {
     $event->user->last_login = Carbon::now();
     $event->user->save();
 
-    // Create user tables, prefix with `x_` to have them grouped
-    //if ($event->user->logins <= 1) {
-    //  dispatch(new \App\Jobs\CreateUserTables($event->user->id));
-    //}
+    // Run job when system owner logs in
+    if ($event->user->id == 1) {
+      dispatch(new \App\Jobs\OwnerLogin());
+    }
   }
 
   /**
