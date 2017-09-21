@@ -313,7 +313,7 @@ class EntriesController extends Controller
       }
 
       foreach($aCustomColumns as $column) {
-        $columns[$column] = \Illuminate\Support\Str::limit(strip_tags($row->entry[$column]), 20, '...');
+        $columns[$column] = (isset($row->entry[$column])) ? \Illuminate\Support\Str::limit(strip_tags($row->entry[$column]), 20, '...') : '';
       }
 
       $data[] = $columns;
