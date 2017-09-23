@@ -31,18 +31,49 @@ class OwnerLogin implements ShouldQueue
      */
     public function handle()
     {
-      // Check for new module migrations
-      \Artisan::call('module:migrate', [
-          '--force' => true,
-      ]);
+      /**
+       * Check for new module migrations
+       */
 
-      // Only seed modules once
+      // Beacons
+      if (! \Schema::hasTable('beacons')) {
+        // Migrate
+        \Artisan::call('module:migrate', [
+            'module' => 'Beacons',
+            '--force' => true,
+        ]);
+
+        // Seed
+        \Artisan::call('module:seed', [
+            'module' => 'Beacons',
+            '--force' => true,
+        ]);
+      }
+
+      // Geofences
+      if (! \Schema::hasTable('geofences')) {
+        // Migrate
+        \Artisan::call('module:migrate', [
+            'module' => 'Geofences',
+            '--force' => true,
+        ]);
+
+        // Seed
+        \Artisan::call('module:seed', [
+            'module' => 'Geofences',
+            '--force' => true,
+        ]);
+      }
 
       // Scenarios
-      $records = \DB::table('scenario_if')->first();
-      $records_exists = (empty($records)) ? false : true;
+      if (! \Schema::hasTable('scenarios')) {
+        // Migrate
+        \Artisan::call('module:migrate', [
+            'module' => 'Scenarios',
+            '--force' => true,
+        ]);
 
-      if (! $records_exists) {
+        // Seed
         \Artisan::call('module:seed', [
             'module' => 'Scenarios',
             '--force' => true,
