@@ -15,7 +15,7 @@
         {!! trans('scenarios::global.app_p2') !!}
       </p>
       <p class="lead">
-        {!! trans('scenarios::global.app_p3', ['mailto' => 'mailto:' . $reseller->support_email . '?Subject=' . rawurlencode(trans('scenarios::global.mailto_subject')) . '?Body=' . rawurlencode(trans('scenarios::global.mailto_body'))]) !!}
+        {!! trans('scenarios::global.app_p3', ['mailto' => 'mailto:' . $reseller->support_email . '?Subject=' . rawurlencode(trans('scenarios::global.mailto_subject')) . '&Body=' . rawurlencode(trans('scenarios::global.mailto_body'))]) !!}
       </p>
 
     </div>
@@ -23,14 +23,14 @@
       <img src="{{ url('assets/images/proximity/proximity-app.png') }}" class="img-responsive">
     </div>
 
-    <div style="position: fixed; left: 30px; bottom: 24px;">
+    <div style="position: fixed; left: 30px; bottom: 24px; z-index: 9999;">
       <div class="checkbox checkbox-primary">
         <input name="dont_show_again" id="dont_show_again" type="checkbox" value="1">
         <label for="dont_show_again"> {{ trans('scenarios::global.dont_show_again') }}</label>
       </div>
     </div>
 
-    <div class="editor-modal-footer" style="width:100%">
+    <div class="editor-modal-footer">
       <button type="button" class="btn btn-primary btn-material onClickClose">{{ trans('global.close') }}</button>
     </div>
 
