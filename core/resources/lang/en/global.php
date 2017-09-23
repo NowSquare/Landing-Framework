@@ -70,6 +70,8 @@ return array(
   "link" => "Link",
   "oops" => "Oops...",
   "or" => "Or",
+  "on" => "On",
+  "off" => "Off",
   "published" => "Published",
   "not_published" => "Not published",
   "optional" => "Optional",
@@ -115,6 +117,8 @@ return array(
   "low_conversion_first" => "Lowest conversion first",
   "most_visited_first" => "Most visited first",
   "least_visited_first" => "Least visited first",
+  "do_you_want_to_de_activate" => "Do you want to de-activate the :module module?",
+  "do_you_want_to_activate" => "Do you want to activate the :module module?",
 
   /*
    |--------------------------------------------------------------------------

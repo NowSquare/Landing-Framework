@@ -72,9 +72,24 @@ $(function() {
       '/eddystones/create': function () { loadRoute('eddystones/create', 'eddystones'); },
       '/eddystones/:sl': function (sl) { loadRoute('eddystones/edit?sl=' + sl, 'eddystones'); },
 
+      '/scenarios': function () { loadRoute('scenarios', 'scenarios'); },
+      '/scenarios/analytics': function () { loadRoute('scenarios/analytics', 'scenarios'); },
+      '/scenarios/analytics/:start/:end': function (start, end) { loadRoute('scenarios/analytics?start=' + start + '&end=' + end, 'scenarios'); },
+      '/scenarios/analytics/:start/:end/:filter': function (start, end, sl, filter) { loadRoute('scenarios/analytics?filter=' + filter + '&start=' + start + '&end=' + end, 'scenarios'); },
+
+      '/beacons': function () { loadRoute('beacons', 'beacons'); },
+      '/beacons/create': function () { loadRoute('beacons/create', 'beacons'); },
+      '/beacons/edit/:sl': function (sl) { loadRoute('beacons/edit?sl=' + sl, 'beacons'); },
+
+      '/geofences': function () { loadRoute('geofences', 'geofences'); },
+      '/geofences/create': function () { loadRoute('geofences/create', 'geofences'); },
+      '/geofences/edit/:sl': function (sl) { loadRoute('geofences/edit?sl=' + sl, 'geofences'); },
+
       '/admin/plans': function () { loadRoute('platform/admin/plans'); },
       '/admin/plan': function () { loadRoute('platform/admin/plan/new', 'admin/plans'); },
       '/admin/plan/:sl': function (sl) { loadRoute('platform/admin/plan/edit?sl=' + sl, 'admin/plans'); },
+
+      '/admin/modules': function () { loadRoute('platform/admin/modules'); },
 
       '/admin/resellers': function () { loadRoute('platform/admin/resellers'); },
       '/admin/reseller': function () { loadRoute('platform/admin/reseller/new', 'admin/resellers'); },

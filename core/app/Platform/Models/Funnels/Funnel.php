@@ -31,4 +31,16 @@ class Funnel extends Model {
   public function emailCampaigns() {
     return $this->hasMany('Modules\EmailCampaigns\Http\Models\EmailCampaign');
   }
+
+  public function scenarios() {
+    return $this->hasMany('Modules\Scenarios\Http\Models\Scenario');
+  }
+
+  public function beacons() {
+    return $this->hasMany('Modules\Beacons\Http\Models\Beacon');
+  }
+
+  public function geofences() {
+    return $this->hasMany('Modules\Geofences\Http\Models\Geofence');
+  }
 }

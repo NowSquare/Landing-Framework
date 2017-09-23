@@ -1,0 +1,15 @@
+{
+    "name": "landingframework/geofences",
+    "description": "",
+    "authors": [
+        {
+            "name": "Landing Framework",
+            "email": "landingframework.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\Geofences\\": ""
+        }
+    }
+}

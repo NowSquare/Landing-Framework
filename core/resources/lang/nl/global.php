@@ -70,6 +70,8 @@ return array(
   "link" => "Link",
   "oops" => "Oeps...",
   "or" => "Of",
+  "on" => "Aan",
+  "off" => "Uit",
   "published" => "Gepubliceerd",
   "not_published" => "Niet gepubliceerd",
   "optional" => "Optioneel",
@@ -115,6 +117,8 @@ return array(
   "low_conversion_first" => "Laagste conversie eerst",
   "most_visited_first" => "Meest bezocht eerst",
   "least_visited_first" => "Minst bezocht eerst",
+  "do_you_want_to_de_activate" => "Wilt u de module :module module de-activeren?",
+  "do_you_want_to_activate" => "Wilt u de module :module module activeren?",
 
   /*
    |--------------------------------------------------------------------------

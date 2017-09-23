@@ -1,0 +1,16 @@
+{
+    "name": "Scenarios",
+    "alias": "scenarios",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 80,
+    "providers": [
+        "Modules\\Scenarios\\Providers\\ScenariosServiceProvider"
+    ],
+    "aliases": [],
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

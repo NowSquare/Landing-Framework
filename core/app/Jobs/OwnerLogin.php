@@ -36,8 +36,18 @@ class OwnerLogin implements ShouldQueue
           '--force' => true,
       ]);
 
-      \Artisan::call('module:seed', [
-          '--force' => true,
-      ]);
+      // Only seed modules once
+
+      // Scenarios
+      $records = \DB::table('scenario_if')->first();
+      $records_exists = (empty($records)) ? false : true;
+
+      if (! $records_exists) {
+        \Artisan::call('module:seed', [
+            'module' => 'Scenarios',
+            '--force' => true,
+        ]);
+      }
+
     }
 }

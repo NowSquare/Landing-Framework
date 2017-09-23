@@ -8,6 +8,10 @@
 <script type="text/javascript">
   google.charts.load('current', {packages: ['corechart', 'line']});
 </script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key={{ env('GMAPS_KEY') }}&libraries=places,visualization">
+</script>
 @endsection 
 
 @section('content') 
@@ -77,6 +81,7 @@ foreach ($active_modules as $module) {
 <?php if (Gate::allows('owner-management')) { ?>
               <li><a href="#/admin/plans"><i class="mi card_membership m-r-5"></i> {{ trans('global.plans') }}</a></li>
               <li><a href="#/admin/resellers"><i class="mi card_travel m-r-5"></i> {{ trans('global.resellers') }}</a></li>
+              <li><a href="#/admin/modules"><i class="mi view_module m-r-5"></i> {{ trans('global.modules') }}</a></li>
 <?php } ?>
 <?php } ?>
               <li role="separator" class="divider"><hr></li>
