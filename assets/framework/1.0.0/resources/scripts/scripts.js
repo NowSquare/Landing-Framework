@@ -464,7 +464,7 @@ function processAjaxForm($form, $clone) {
     })
     .done(function(data) {
       if (typeof data.redir !== 'undefined') {
-        document.location = data.redir;
+        window.top.location.href = data.redir;
       } else {
         swal({
           title: data.title,
