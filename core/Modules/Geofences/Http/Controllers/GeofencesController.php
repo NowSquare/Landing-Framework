@@ -77,6 +77,12 @@ class GeofencesController extends Controller
           'msg' => trans('global.account_limit_reached'),
           'reset' => false
         ]);
+      } elseif ($geofence_count >= 100) {
+        return response()->json([
+          'type' => 'error', 
+          'msg' => trans('geofences::global.geofence_limit_reached'),
+          'reset' => false
+        ]);
       }
       $geofence = new Models\Geofence;
     }

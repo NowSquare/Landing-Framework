@@ -32,4 +32,5 @@ return array(
   "latitude" => "Latitude",
   "longitude" => "Longitude",
   "zoom" => "Zoom",
+  "geofence_limit_reached" => "You can't have more than 20 geofences in one iOS app due to iOS limitations. For Android there is a maximum of 100 geofences in one app.",
 );

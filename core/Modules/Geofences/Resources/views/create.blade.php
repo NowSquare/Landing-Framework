@@ -29,6 +29,23 @@
     <form class="ajax" id="frm" method="post" action="{{ url('geofences/geofence') }}">
       {!! csrf_field() !!}
       <div class="col-md-6">
+
+        <div class="geofence_warning_message alert alert-danger alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {!! trans('geofences::global.geofence_limit_reached') !!}
+        </div>
+
+<script>
+if( getCookie('geofence_warning_message') === 'closed' ){
+  $('.geofence_warning_message').hide();
+}
+
+$('.close').on('click', function(e) {
+  e.preventDefault();
+  setCookie('geofence_warning_message', 'closed', 30);
+});
+</script>
+
         <div class="panel panel-default">
 
           <fieldset class="panel-body">
