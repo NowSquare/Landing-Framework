@@ -32,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
           ]);
 
           // Install modules
+          /*
           \Artisan::call('module:migrate', [
               '--force' => true,
           ]);
@@ -39,6 +40,56 @@ class AppServiceProvider extends ServiceProvider
           \Artisan::call('module:seed', [
               '--force' => true,
           ]);
+          */
+
+          /**
+           * Module migrations in specific order
+           */
+
+          // Beacons
+          if (! \Schema::hasTable('beacons')) {
+            // Migrate
+            \Artisan::call('module:migrate', [
+                'module' => 'Beacons',
+                '--force' => true,
+            ]);
+
+            // Seed
+            \Artisan::call('module:seed', [
+                'module' => 'Beacons',
+                '--force' => true,
+            ]);
+          }
+
+          // Geofences
+          if (! \Schema::hasTable('geofences')) {
+            // Migrate
+            \Artisan::call('module:migrate', [
+                'module' => 'Geofences',
+                '--force' => true,
+            ]);
+
+            // Seed
+            \Artisan::call('module:seed', [
+                'module' => 'Geofences',
+                '--force' => true,
+            ]);
+          }
+
+          // Scenarios
+          if (! \Schema::hasTable('scenarios')) {
+            // Migrate
+            \Artisan::call('module:migrate', [
+                'module' => 'Scenarios',
+                '--force' => true,
+            ]);
+
+            // Seed
+            \Artisan::call('module:seed', [
+                'module' => 'Scenarios',
+                '--force' => true,
+            ]);
+          }
 
           //\Artisan::call('key:generate');
 
