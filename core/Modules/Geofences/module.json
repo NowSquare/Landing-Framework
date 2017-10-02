@@ -3,7 +3,7 @@
     "alias": "geofences",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 90,
     "providers": [
         "Modules\\Geofences\\Providers\\GeofencesServiceProvider"

@@ -3,7 +3,7 @@
     "alias": "beacons",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 100,
     "providers": [
         "Modules\\Beacons\\Providers\\BeaconsServiceProvider"
