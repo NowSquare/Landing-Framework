@@ -23,7 +23,7 @@ $social-list: (
   $social-color: nth($social, 2);
 
   .btn-#{$social-name} {
-    @include button-variant(#fff, $social-color, $social-color);
+    @include button-variant($social-color, $social-color, darken($social-color, 7.5%), darken($social-color, 10%));
   }
 
   .btn-#{$social-name}:focus {
