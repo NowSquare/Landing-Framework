@@ -77,7 +77,7 @@ $('.btn-qr').on('click', function() {
   vertical-align:middle;
 }
 .btn-fixed-width {
-  width: 44px;
+  width: 46px;
 }
 .date-start-end .input-group-addon,
 .popover-content .input-group-addon {
@@ -171,7 +171,7 @@ echo '</select>';
 ?>
     </td>
     <td>
-      <button class="btn btn-primary btn-notification btn-popover" data-toggle="tooltip" title="{{ trans('scenarios::global.notification') }}"><i class="fa fa-bell" aria-hidden="true"></i></button>
+      <button class="btn btn-primary btn-notification btn-popover" data-toggle="tooltip" title="{{ trans('scenarios::global.notification') }}"><i class="fa fa-bell" aria-hidden="true"></i> <span class="still-required"@{{#notification_exists}} style="display:none"@{{/notification_exists}}>*</span></button>
 
       <div class="settings-content notification-content">
 
@@ -193,7 +193,7 @@ echo '</select>';
 
     <td>
 
-      <button class="btn btn-primary btn-popover btn-app_image" data-toggle="tooltip" title="{{ trans('scenarios::global.app_image') }}"><i class="fa fa-picture-o"></i></button>
+      <button class="btn btn-primary btn-popover btn-app_image" data-toggle="tooltip" title="{{ trans('scenarios::global.app_image') }}"><i class="fa fa-picture-o"></i> <span class="still-required"@{{#app_image_exists}} style="display:none"@{{/app_image_exists}}>*</span></button>
       <div class="settings-content app_image-content">
 
         <span class="help-block">{!! trans('scenarios::global.app_image_help') !!}</span>
@@ -256,7 +256,7 @@ echo '</select>';
     </td>
     <td>
 
-        <button class="btn btn-primary btn-settings btn-popover btn-img btn-fixed-width" data-toggle="tooltip" title="{{ trans('scenarios::global.image') }}"><i class="fa fa-picture-o"></i></button>
+        <button class="btn btn-primary btn-settings btn-popover btn-img btn-fixed-width" data-toggle="tooltip" title="{{ trans('scenarios::global.image') }}"><i class="fa fa-picture-o"></i> <span class="still-required"@{{#scenario_image_exists}} style="display:none"@{{/scenario_image_exists}}>*</span></button>
 
         <div class="settings-content img-content">
         
@@ -286,7 +286,7 @@ echo '</select>';
           </div>
         </div>
 
-        <button class="btn btn-primary btn-settings btn-tpl btn-fixed-width" data-toggle="tooltip" title="{{ trans('scenarios::global.template') }}"><i class="fa fa-file-text-o"></i></button>
+        <button class="btn btn-primary btn-settings btn-tpl btn-fixed-width" data-toggle="tooltip" title="{{ trans('scenarios::global.template') }}"><i class="fa fa-file-text-o"></i> <span class="still-required"@{{#scenario_template_exists}} style="display:none"@{{/scenario_template_exists}}>*</span></button>
 
         <div class="settings-content tpl-content">
           <div class="show-template">@{{template}}</div>
@@ -302,7 +302,7 @@ echo '</select>';
 */ ?>
         </div>
 
-        <button class="btn btn-primary btn-settings btn-popover btn-url btn-fixed-width" data-toggle="tooltip" title="{{ trans('scenarios::global.url') }}"><i class="fa fa-link"></i></button>
+        <button class="btn btn-primary btn-settings btn-popover btn-url btn-fixed-width" data-toggle="tooltip" title="{{ trans('scenarios::global.url') }}"><i class="fa fa-link"></i> <span class="still-required"@{{#scenario_link_exists}} style="display:none"@{{/scenario_link_exists}}>*</span></button>
 
         <div class="settings-content url-content">
           <div class="form-group">
@@ -476,12 +476,21 @@ function addRepeaterRow(action, data)
 
     var show_image_thumb = (typeof data.show_image !== 'undefined' && data.show_image != '' && data.show_image != null) ? app_root + '/platform/thumbnail?w=' + thumb_width + '&h=' + thumb_height + '&t=' + thumb_type + '&img=' + data.show_image : '';
 
+    var notification_exists = (data.notification_message == null || data.notification_title == null) ? 0 : 1;
+    var app_image_exists = (data.app_image == null) ? 0 : 1;
+    var scenario_link_exists = (data.open_url == null) ? 0 : 1;
+    var scenario_image_exists = (data.show_image == null) ? 0 : 1;
+    var scenario_template_exists = (data.template == null) ? 0 : 1;
+
     var html = Mustache.render(scenario_row, mustacheBuildOptions({
       sl: data.sl,
       geofences: data.geofences,
       beacons: data.beacons,
       scenario_if: data.scenario_if_id,
       scenario_then: data.scenario_then_id,
+      scenario_link_exists: scenario_link_exists,
+      scenario_image_exists: scenario_image_exists,
+      scenario_template_exists: scenario_template_exists,
       day_of_week_mo: data.day_of_week_mo,
       day_of_week_tu: data.day_of_week_tu,
       day_of_week_we: data.day_of_week_we,
@@ -496,8 +505,10 @@ function addRepeaterRow(action, data)
       time_end: data.time_end,
       notification_title: data.notification_title,
       notification: data.notification,
+      notification_exists: notification_exists,
       app_image: data.app_image,
       app_image_thumb: app_image_thumb,
+      app_image_exists: app_image_exists,
       frequency: data.frequency,
       delay: data.delay,
       show_image: data.show_image,
@@ -532,6 +543,9 @@ function addRepeaterRow(action, data)
           beacons: {},
           scenario_if: 1,
           scenario_then: 1,
+          scenario_link_exists: 0,
+          scenario_image_exists: 0,
+          scenario_template_exists: 0,
           day_of_week_mo: 0,
           day_of_week_tu: 0,
           day_of_week_we: 0,
@@ -546,12 +560,14 @@ function addRepeaterRow(action, data)
           time_end: null,
           notification_title: '',
           notification: '',
+          notification_exists: 0,
           app_image: '',
           app_image_thumb: '',
           frequency: 0,
           delay: 0,
           show_image: '',
           show_image_thumb: '',
+          app_image_exists: 0,
           open_url: '',
           template: default_template,
         }));
@@ -572,6 +588,11 @@ function addRepeaterRow(action, data)
     var show_image_thumb = (typeof data.show_image !== 'undefined' && data.show_image != '' && data.show_image != null) ? app_root + '/platform/thumbnail?w=' + thumb_width + '&h=' + thumb_height + '&t=' + thumb_type + '&img=' + data.show_image : '';
 
     var template = (data.template == null) ? default_template : data.template;
+    var notification_exists = (data.notification_message == null || data.notification_title == null) ? 0 : 1;
+    var app_image_exists = (data.app_image == null) ? 0 : 1;
+    var scenario_link_exists = (data.open_url == null) ? 0 : 1;
+    var scenario_image_exists = (data.show_image == null) ? 0 : 1;
+    var scenario_template_exists = (data.template == null) ? 0 : 1;
 
     var html = Mustache.render(scenario_row, mustacheBuildOptions({
       i: i++,
@@ -580,6 +601,9 @@ function addRepeaterRow(action, data)
       geofences: data.geofences,
       beacons: data.beacons,
       scenario_then: data.scenario_then_id,
+      scenario_link_exists: scenario_link_exists,
+      scenario_image_exists: scenario_image_exists,
+      scenario_template_exists: scenario_template_exists,
       day_of_week_mo: data.day_of_week_mo,
       day_of_week_tu: data.day_of_week_tu,
       day_of_week_we: data.day_of_week_we,
@@ -594,12 +618,15 @@ function addRepeaterRow(action, data)
       time_end: data.time_end,
       notification_title: data.notification_title,
       notification: data.notification_message,
+      notification_exists: notification_exists,
       app_image: data.app_image,
+      app_image_thumb: app_image_thumb,
       app_image_thumb: app_image_thumb,
       frequency: data.frequency,
       delay: data.delay,
       show_image: data.show_image,
       show_image_thumb: show_image_thumb,
+      app_image_exists: app_image_exists,
       open_url: data.open_url,
       template: template
     }));
@@ -1027,7 +1054,14 @@ function rowBindings() {
           dataType: 'json'
         });
 
-        request.done(function(json) { showSaved(); });
+        request.done(function(json) { 
+          if (notification_title != '' && notification != '') {
+            btn_notification.find('.still-required').hide();
+          } else {
+            btn_notification.find('.still-required').show();
+          }
+          showSaved(); 
+        });
         request.fail(function(jqXHR, textStatus) { alert('Request failed, please try again (' + textStatus + ')'); });
       });
     });
@@ -1080,7 +1114,14 @@ function rowBindings() {
           dataType: 'json'
         });
 
-        request.done(function(json) { showSaved(); });
+        request.done(function(json) { 
+          if (show_image != '') {
+            btn_img.find('.still-required').hide();
+          } else {
+            btn_img.find('.still-required').show();
+          }
+          showSaved(); 
+        });
         request.fail(function(jqXHR, textStatus) { alert('Request failed, please try again (' + textStatus + ')'); });
       });
       
@@ -1159,7 +1200,14 @@ function rowBindings() {
           dataType: 'json'
         });
 
-        request.done(function(json) { showSaved(); });
+        request.done(function(json) { 
+          if (open_url != '') {
+            btn_url.find('.still-required').hide();
+          } else {
+            btn_url.find('.still-required').show();
+          }
+          showSaved(); 
+        });
         request.fail(function(jqXHR, textStatus) { alert('Request failed, please try again (' + textStatus + ')'); });
       });
 
@@ -1213,7 +1261,14 @@ function rowBindings() {
           dataType: 'json'
         });
 
-        request.done(function(json) { showSaved(); });
+        request.done(function(json) { 
+          if (app_image != '') {
+            btn_app_image.find('.still-required').hide();
+          } else {
+            btn_app_image.find('.still-required').show();
+          }
+          showSaved(); 
+        });
         request.fail(function(jqXHR, textStatus) { alert('Request failed, please try again (' + textStatus + ')'); });
       });
 
@@ -1236,12 +1291,11 @@ function unescapeHtml(escapedStr) {
   return child ? child.nodeValue : '';
 };
 
-function saveTemplateEditor(i, content)
-{
+function saveTemplateEditor(i, content) {
   $.colorbox.close();
 
   var $tr = $('#tbl-scenarios tr[data-i=' + i + ']');
-     var sl_scenario = $tr.attr('data-sl');
+  var sl_scenario = $tr.attr('data-sl');
 
   $tr.find('.settings-content .show-template').html(escapeHtml(content));
 
@@ -1252,13 +1306,18 @@ function saveTemplateEditor(i, content)
     dataType: 'json'
   });
 
-  request.done(function(json) { showSaved(); });
+  request.done(function(json) { 
+    if (content != '') {
+      $tr.find('.btn-tpl .still-required').hide();
+    } else {
+      $tr.find('.btn-tpl .still-required').show();
+    }
+    showSaved(); 
+  });
   request.fail(function(jqXHR, textStatus) { alert('Request failed, please try again (' + textStatus + ')'); });
 }
 
-function getTemplateContent(i)
-
-{
+function getTemplateContent(i) {
   var $tr = $('#tbl-scenarios tr[data-i=' + i + ']');
   var content = $tr.find('.settings-content .show-template').html();
   content = unescapeHtml(content);
@@ -1266,8 +1325,7 @@ function getTemplateContent(i)
   return content;
 }
 
-function checkScenarioIf($tr)
-{
+function checkScenarioIf($tr) {
   closeAllPopovers();
    var scenario = $tr.find('.scenario-if'); 
   scenario = (scenario.hasClass('select2-container')) ? scenario.select2('val') : scenario.val();
@@ -1283,8 +1341,7 @@ function checkScenarioIf($tr)
   }
 }
 
-function checkScenarioThen($tr)
-{
+function checkScenarioThen($tr) {
   closeAllPopovers();
    var scenario = $tr.find('.scenario-then'); 
   scenario = (scenario.hasClass('select2-container')) ? scenario.select2('val') : scenario.val();
@@ -1305,8 +1362,7 @@ function checkScenarioThen($tr)
   }
 }
 
-function checkScenarioTime($tr)
-{
+function checkScenarioTime($tr) {
   closeAllPopovers();
    var scenario = $tr.find('.scenario-time'); 
   scenario = (scenario.hasClass('select2-container')) ? scenario.select2('val') : scenario.val();
@@ -1321,8 +1377,7 @@ function checkScenarioTime($tr)
   }
 }
 
-function closeAllPopovers()
-{
+function closeAllPopovers() {
   $('.btn-popover').each(function () {
     if ($(this).next('div.popover:visible').length) {
       $(this).popover('hide');
@@ -1383,10 +1438,8 @@ $('#tbl-scenarios').on('click', '.img-browse', function(event) {
   return false;
 });
 
-$('#tbl-scenarios').on('click', '.img-remove', function(event)
-{
-  if(event.handled !== true)
-  {
+$('#tbl-scenarios').on('click', '.img-remove', function(event) {
+  if(event.handled !== true) {
     $('#' + $(this).attr('data-id') + '-image').html('');
     $('#' + $(this).attr('data-id')).val('');
     event.handled = true;
