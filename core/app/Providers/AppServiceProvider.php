@@ -31,20 +31,54 @@ class AppServiceProvider extends ServiceProvider
               '--force' => true,
           ]);
 
-          // Install modules
-          /*
-          \Artisan::call('module:migrate', [
-              '--force' => true,
-          ]);
-
-          \Artisan::call('module:seed', [
-              '--force' => true,
-          ]);
-          */
-
           /**
            * Module migrations in specific order
            */
+
+          // Landing Pages
+          if (! \Schema::hasTable('landing_pages')) {
+            // Migrate
+            \Artisan::call('module:migrate', [
+                'module' => 'LandingPages',
+                '--force' => true,
+            ]);
+
+            // Seed
+            \Artisan::call('module:seed', [
+                'module' => 'LandingPages',
+                '--force' => true,
+            ]);
+          }
+
+          // Forms
+          if (! \Schema::hasTable('forms')) {
+            // Migrate
+            \Artisan::call('module:migrate', [
+                'module' => 'Forms',
+                '--force' => true,
+            ]);
+
+            // Seed
+            \Artisan::call('module:seed', [
+                'module' => 'Forms',
+                '--force' => true,
+            ]);
+          }
+
+          // Email Campaigns
+          if (! \Schema::hasTable('email_campaigns')) {
+            // Migrate
+            \Artisan::call('module:migrate', [
+                'module' => 'EmailCampaigns',
+                '--force' => true,
+            ]);
+
+            // Seed
+            \Artisan::call('module:seed', [
+                'module' => 'EmailCampaigns',
+                '--force' => true,
+            ]);
+          }
 
           // Beacons
           if (! \Schema::hasTable('beacons')) {
@@ -109,6 +143,7 @@ class AppServiceProvider extends ServiceProvider
       // Make $reseller accessible in all views
       view()->share('reseller', $reseller);
       //view()->share('ip_address', \Platform\Controllers\Helper\Client::ip());
+
 
       if (isset($reseller->mail_from_address)) {
         if ($reseller->mail_from_address != '') config(['mail.from.address' => $reseller->mail_from_address]);
