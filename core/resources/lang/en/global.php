@@ -104,24 +104,6 @@ return array(
 
   /*
    |--------------------------------------------------------------------------
-   | Modules
-   |--------------------------------------------------------------------------
-   */
-
-  "modules" => "Modules",
-  "enter_name" => "Enter name",
-  "please_enter_value" => "Please enter a value!",
-  "new_first" => "Newest first",
-  "old_first" => "Oldest first",
-  "high_conversion_first" => "Highest conversion first",
-  "low_conversion_first" => "Lowest conversion first",
-  "most_visited_first" => "Most visited first",
-  "least_visited_first" => "Least visited first",
-  "do_you_want_to_de_activate" => "Do you want to de-activate the :module module?",
-  "do_you_want_to_activate" => "Do you want to activate the :module module?",
-
-  /*
-   |--------------------------------------------------------------------------
    | Forms
    |--------------------------------------------------------------------------
    */
@@ -481,6 +463,20 @@ return array(
    */
 
   "admin" => "Admin",
+  "settings_desc" => "Here you can configure system related settings. Choose an item from the left menu.",
+
+  /*
+   |--------------------------------------------------------------------------
+   | Modules
+   |--------------------------------------------------------------------------
+   */
+
+  "modules" => "Modules",
+  "modules_desc" => "Inactive modules are not used in the system. Data from de-activated modules is not affected, and will be available again when the module is re-activated.",
+  "enter_name" => "Enter name",
+  "please_enter_value" => "Please enter a value!",
+  "do_you_want_to_de_activate" => "Do you want to de-activate the :module module?",
+  "do_you_want_to_activate" => "Do you want to activate the :module module?",
  
   /*
    |--------------------------------------------------------------------------

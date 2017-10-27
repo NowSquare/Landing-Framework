@@ -1,4 +1,4 @@
-<?php
+m<?php
 
 return array(
 
@@ -101,24 +101,6 @@ return array(
   "page_not_published" => "Pagina niet gepubliceerd",
   "form_not_published" => "Formulier niet gepubliceerd",
   "link_expired" => "Link is verlopen",
-
-  /*
-   |--------------------------------------------------------------------------
-   | Modules
-   |--------------------------------------------------------------------------
-   */
-
-  "modules" => "Modules",
-  "enter_name" => "Voer naam in",
-  "please_enter_value" => "Voer a.u.b. een waarde in!",
-  "new_first" => "Nieuwste eerst",
-  "old_first" => "Oudste eerst",
-  "high_conversion_first" => "Hoogste conversie eerst",
-  "low_conversion_first" => "Laagste conversie eerst",
-  "most_visited_first" => "Meest bezocht eerst",
-  "least_visited_first" => "Minst bezocht eerst",
-  "do_you_want_to_de_activate" => "Wilt u de module :module module de-activeren?",
-  "do_you_want_to_activate" => "Wilt u de module :module module activeren?",
 
   /*
    |--------------------------------------------------------------------------
@@ -480,6 +462,21 @@ return array(
    */
 
   "admin" => "Admin",
+  "settings_desc" => "Hier kunt u systeem gerelateerde instellingen configureren. Kies een item uit het linker menu.",
+
+  /*
+   |--------------------------------------------------------------------------
+   | Modules
+   |--------------------------------------------------------------------------
+   */
+
+  "modules" => "Modules",
+  "modules_desc" => "Inactieve modules worden niet gebruikt in het systeem. Data van inactieve modules blijft behouden, en is weer zichtbaar wanneer de module weer wordt geactiveerd.",
+  "enter_name" => "Voer naam in",
+  "please_enter_value" => "Voer a.u.b. een waarde in!",
+  "least_visited_first" => "Minst bezocht eerst",
+  "do_you_want_to_de_activate" => "Wilt u de module :module module de-activeren?",
+  "do_you_want_to_activate" => "Wilt u de module :module module activeren?",
  
   /*
    |--------------------------------------------------------------------------

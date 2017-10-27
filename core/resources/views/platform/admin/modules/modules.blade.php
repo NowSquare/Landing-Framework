@@ -15,6 +15,8 @@
             </button>
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('global.admin') }}</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
+            <a class="navbar-brand" href="#/admin/settings">{{ trans('global.settings') }}</a>
+            <a class="navbar-brand no-link" href="javascript:void(0);">\</a>
             <a class="navbar-brand no-link" href="javascript:void(0);">{{ trans('global.modules') }}</a>
           </div>
 
@@ -25,7 +27,21 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-3 col-lg-2">
+
+      @include("platform.admin.settings.menu")
+
+    </div>
+
+    <div class="col-md-9 col-lg-10">
+      <div class="panel panel-inverse panel-border">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body">
+          <p class="">{!! trans('global.modules_desc') !!}</p>
+        </div>
+      </div>
+      <div class="row">
 <?php
 foreach ($items as $item) {
 ?>
@@ -50,8 +66,13 @@ foreach ($items as $item) {
 <?php
 }
 ?>
+
+      </div>
     </div>
+
+
   </div>
+
 
 </div>
 <script>

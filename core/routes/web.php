@@ -156,8 +156,11 @@ Route::group(['middleware' => 'auth:web'], function () {
     Route::get('platform/admin/user/new', '\Platform\Controllers\App\UserController@showNewUser');
     Route::post('platform/admin/user/new', '\Platform\Controllers\App\UserController@postNewUser');
 
+    // Settings
+    Route::get('platform/admin/settings', '\Platform\Controllers\App\SettingsController@showSettings');
+
     // Modules
-    Route::get('platform/admin/modules', '\Platform\Controllers\App\ModuleController@showModules');
+    Route::get('platform/admin/modules', '\Platform\Controllers\App\ModuleController@showModules')->name('modules');
     Route::post('platform/admin/modules/switch', '\Platform\Controllers\App\ModuleController@switchModule');
 
     // Plan management
