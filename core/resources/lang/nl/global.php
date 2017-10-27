@@ -344,7 +344,7 @@ return array(
   "remote_product_id" => "Remote product id",
   "year" => "Jaar",
   "annual" => "Jaarlijks",
-  "annual_price_help" => "Voer de maandelijkse prijs in indien een abonnement voor een jaar wordt gekocht.",
+  "annual_price_help" => "Voer de maandelijkse prijs in indien een abonnement voor een jaar wordt gekocht. Bijv. €10 in plaats van €120 (€10 x 12).",
   "current" => "Huidig",
   "limitations" => "Restricties",
   "maximum" => "Maximum",
