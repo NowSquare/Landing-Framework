@@ -120,7 +120,7 @@ class EddystonesController extends Controller
       $current_count = $eddystones['count'];
       $current_count_limit = \Auth::user()->plan->limitations['eddystones']['max'];
 
-      if ($current_count >= $current_count_limit) {
+      if ($current_count > $current_count_limit) {
         return response()->json([
           'type' => 'error', 
           'msg' => trans('global.account_limit_reached'),

@@ -85,7 +85,7 @@ class EmailCampaignsController extends Controller
       $current_count = Models\EmailCampaign::where('user_id', '=', Core\Secure::userId())->count();
       $current_count_limit = \Auth::user()->plan->limitations['emailcampaigns']['max'];
 
-      if ($current_count >= $current_count_limit) {
+      if ($current_count > $current_count_limit) {
         return response()->json([
           'type' => 'error', 
           'msg' => trans('global.account_limit_reached'),

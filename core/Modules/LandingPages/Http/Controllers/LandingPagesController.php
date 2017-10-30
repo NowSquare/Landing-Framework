@@ -360,7 +360,7 @@ class LandingPagesController extends Controller
       $current_count = Models\Page::where('user_id', '=', Core\Secure::userId())->count();
       $current_count_limit = \Auth::user()->plan->limitations['landingpages']['max'];
 
-      if ($current_count >= $current_count_limit) {
+      if ($current_count > $current_count_limit) {
         return response()->json([
           'type' => 'error', 
           'msg' => trans('global.account_limit_reached'),

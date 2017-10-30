@@ -381,7 +381,7 @@ class FormsController extends Controller
       $current_count = Models\Form::where('user_id', '=', Core\Secure::userId())->count();
       $current_count_limit = \Auth::user()->plan->limitations['forms']['max'];
 
-      if ($current_count >= $current_count_limit) {
+      if ($current_count > $current_count_limit) {
         return response()->json([
           'type' => 'error', 
           'msg' => trans('global.account_limit_reached'),
