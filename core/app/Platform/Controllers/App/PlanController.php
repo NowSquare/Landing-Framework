@@ -63,8 +63,7 @@ class PlanController extends \App\Http\Controllers\Controller {
   /**
    * Edit plan
    */
-  public function showEditPlan()
-  {
+  public function showEditPlan() {
     $sl = request()->input('sl', '');
 
     if($sl != '') {
@@ -109,8 +108,7 @@ class PlanController extends \App\Http\Controllers\Controller {
   /**
    * Add new plan
    */
-  public function postNewPlan()
-  {
+  public function postNewPlan() {
     $input = array(
       'name' => request()->input('name'),
       'currency' => request()->input('currency'),
@@ -202,8 +200,7 @@ class PlanController extends \App\Http\Controllers\Controller {
   /**
    * Save plan changes
    */
-  public function postPlan()
-  {
+  public function postPlan() {
     $sl = request()->input('sl', '');
 
     if($sl != '')
@@ -295,8 +292,7 @@ class PlanController extends \App\Http\Controllers\Controller {
   /**
    * Delete plan
    */
-  public function postPlanDelete()
-  {
+  public function postPlanDelete() {
     $sl = request()->input('sl', '');
 
     if($sl != '') {
@@ -313,8 +309,7 @@ class PlanController extends \App\Http\Controllers\Controller {
   /**
    * Re-order plans
    */
-  public function postPlanOrder()
-  {
+  public function postPlanOrder() {
     $rows = request()->input('rows', '');
 
     if($rows != '') {
@@ -329,8 +324,7 @@ class PlanController extends \App\Http\Controllers\Controller {
   /**
    * Get plan data
    */
-  public function getPlanData(Request $request)
-  {
+  public function getPlanData(Request $request) {
     $order_by = $request->input('order.0.column', 0);
     $order = $request->input('order.0.dir', 'asc');
     $search = $request->input('search.regex', '');
@@ -423,8 +417,7 @@ class PlanController extends \App\Http\Controllers\Controller {
   /**
    * Get all plans in one array including free/trial 
    */
-  public static function getAllPlans()
-  {
+  public static function getAllPlans() {
     $reseller = \Platform\Controllers\Core\Reseller::get();
     $user_id = (auth()->check()) ? auth()->user()->id : 0;
     $language = (auth()->check()) ? auth()->user()->language : $reseller->default_language;
@@ -467,8 +460,33 @@ class PlanController extends \App\Http\Controllers\Controller {
       return $value['order'];
     }));
 
-    $payment_link_suffix = ($reseller->avangate_affiliate != '' && $reseller->stripe_key == null) ? '&AVGAFFILIATE=' . $reseller->avangate_affiliate : '';
-    if (env('PAYMENT_TEST', false) && $reseller->stripe_key == null) $payment_link_suffix .= '&DOTEST=1';
+    // Payment provider, check if setting exists
+    if (isset($reseller->settings['payment_provider'])) {
+      $payment_provider = $reseller->settings['payment_provider'];
+    } else {
+      // Setting does not exist, check .env config
+      if (env('AVANGATE_KEY', '') != '' && $reseller->stripe_key == null) {
+        $payment_provider = 'AVANGATE';
+      } elseif ($reseller->stripe_key != null) {
+        $payment_provider = 'STRIPE';
+      }
+    }
+
+    $custom_affiliate_id = (isset($reseller->settings['custom_affiliate_id'])) ? $reseller->settings['custom_affiliate_id'] : '';
+    $user_query_parameter = (isset($reseller->settings['user_query_parameter'])) ? $reseller->settings['user_query_parameter'] : 'user_id';
+    $affiliate_query_parameter = (isset($reseller->settings['affiliate_query_parameter'])) ? $reseller->settings['affiliate_query_parameter'] : 'source';
+
+    $payment_link_suffix = '';
+
+    if ($payment_provider == 'AVANGATE') {
+      $payment_link_suffix = ($reseller->avangate_affiliate != '') ? '&AVGAFFILIATE=' . $reseller->avangate_affiliate : '';
+      if (env('PAYMENT_TEST', false)) $payment_link_suffix .= '&DOTEST=1';
+    } else {
+      // Get custom affiliate query parameter
+      if ($custom_affiliate_id != '') {
+        $payment_link_suffix .= '&' . $affiliate_query_parameter . '=' . $custom_affiliate_id;
+      }
+    }
 
     $currencyRepository = new \CommerceGuys\Intl\Currency\CurrencyRepository;
     $numberFormatRepository = new \CommerceGuys\Intl\NumberFormat\NumberFormatRepository;
@@ -716,17 +734,23 @@ class PlanController extends \App\Http\Controllers\Controller {
         $disabled = false;
         $btn_class = 'primary';
       } elseif (! $disabled) {
-        if ($reseller->stripe_key == null) {
+
+        if ($payment_provider == 'AVANGATE') {
           // Add Avangate CUSTOMERID
           $monthly_order_url = (isset($plan->monthly_order_url)) ? $plan->monthly_order_url . '&CUSTOMERID=' . $user_id : '';
           $annual_order_url = (isset($plan->annual_order_url)) ? $plan->annual_order_url . '&CUSTOMERID=' . $user_id : '';
 
           $monthly_order_url = "'" . $monthly_order_url . $payment_link_suffix . "'";
           $annual_order_url = "'" . $annual_order_url . $payment_link_suffix . "'";
-        } else {
-          // Stripe
+        } elseif ($payment_provider == 'STRIPE') {
           $monthly_order_url = "'" . str_replace("'", "\'", $plan->name) . "', '" . str_replace("'", "\'", $monthly_price) . trans('global.monthly_abbr') . "', '" . $currency . "', " . ($plan->monthly_price * 100) . ", '" . str_replace("'", "\'", $plan->monthly_remote_product_id) . "', " . $plan->id . "";
           $annual_order_url = "'" . str_replace("'", "\'", $plan->name) . "', '" . str_replace("'", "\'", $annual_price) . trans('global.monthly_abbr') . "', '" . $currency . "', " . ($plan->annual_price * 100) . ", '" . str_replace("'", "\'", $plan->annual_remote_product_id) . "', " . $plan->id . "";
+        } else {
+          $monthly_order_url = (isset($plan->monthly_order_url)) ? $plan->monthly_order_url . '&' . $user_query_parameter . '=' . $user_id : '';
+          $annual_order_url = (isset($plan->annual_order_url)) ? $plan->annual_order_url . '&' . $user_query_parameter . '=' . $user_id : '';
+
+          $monthly_order_url = "'" . $monthly_order_url . $payment_link_suffix . "'";
+          $annual_order_url = "'" . $annual_order_url . $payment_link_suffix . "'";
         }
 
         $btn_text_monthly = trans('global.order_1_month');

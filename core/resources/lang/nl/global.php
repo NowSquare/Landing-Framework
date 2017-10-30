@@ -75,6 +75,7 @@ return array(
   "published" => "Gepubliceerd",
   "not_published" => "Niet gepubliceerd",
   "optional" => "Optioneel",
+  "custom" => "Aangepast",
 
   /*
    |--------------------------------------------------------------------------

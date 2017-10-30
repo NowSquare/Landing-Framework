@@ -75,6 +75,7 @@ return array(
   "published" => "Published",
   "not_published" => "Not published",
   "optional" => "Optional",
+  "custom" => "Custom",
 
   /*
    |--------------------------------------------------------------------------
@@ -354,7 +355,7 @@ return array(
   "account_limit_reached" => "Your account limit has been reached.",
   "no_access_to_feature" => "Your current account has no access to this feature. Upgrade your account if you want to use this feature.",
   "upgrade_before_link" => "Processing the payment may take a couple of minutes. Refresh the system or login again to see your new subscription active.",
-
+ 
   /*
    |--------------------------------------------------------------------------
    | Resellers
@@ -367,19 +368,22 @@ return array(
   "edit_reseller" => "Edit reseller",
   "domain" => "Domain",
   "support_email" => "Support email address",
-  "domain_help" => "Point the CNAME of this domain to :host",
+  "domain_help" => "Point the CNAME of this domain to :host. Only the main reseller can use an asterix (*) wildcard for all incoming domains.",
+  "localization_settings_help" => "Users who register with this reseller get these localization settings when signing up. They can update these settings after registration.",
   "platform_name" => "Platform name",
   "reseller_name" => "Reseller name",
   "reseller_email" => "Reseller email",
   "account_owner" => "Account owner",
   "no_users_for_reseller" => "No users found who can be reseller",
   "active_reseller_desc" => "If a reseller is not active, none of its users can login",
+  "localization_settings_help" => "If a reseller is not active, none of its users can login",
   "logo" => "Logo",
   "logo_help" => "This is the horizontal logo used for the left top and on dark backgrounds. Use an SVG image for best results.",
   "logo_square" => "Square logo",
   "logo_square_help" => "This is the vertical logo for light backgrounds. Use an SVG image for best results.",
   "favicon" => "Favicon",
   "mail_settings" => "Mail settings",
+  "mail_settings_help" => "The global email settings are configured in the <code>core/.env</code> file. Only modify these settings for resellers other than the main reseller. In most cases you probably only want to configure the <strong>Sender name</strong> and <strong>Sender address</strong>.",
   "driver" => "Driver",
   "sender_name" => "Sender name",
   "sender_address" => "Sender address",
@@ -401,6 +405,32 @@ return array(
   "secret_key" => "Secret key",
   "avangate" => "Avangate",
   "stripe" => "Stripe",
+
+  "payment_settings" => "Payment settings",
+  "custom_payment_help" => "<p>Select <strong>Custom</strong> if you don't want to use any of the payment providers above. When <a href=\"#/admin/plans\" class=\"link\">configuring a plan</a>, you can enter the checkout url where a customer is redirected to when clicking <strong>Order</strong>.</p>",
+  "avangate_affiliate_id_desc" => "If this reseller has an Avangate affiliate ID, you can enter it below. This is only necessary if this is not the main reseller. Affiliate details are managed in the Avangate dashboard.",
+  "avangate_key_desc" => "<p>Only enter the Avangate secret key if you understand what you're doing. In most cases you probably only want to set the affiliate ID above. The global settings for the Avangate key are set in the <code>.env</code> config file. If you enter a key here, the config file will be overriden for this reseller.</p>
+            <p>Make sure you enter the IPN and LCN urls in your Avangate dashboard (replace <code>example.com</code> with the url of the reseller):</p>
+            <ul>
+              <li>https://example.com/api/v1/avangate/ipn</li>
+              <li>https://example.com/api/v1/avangate/lcn</li>
+            </ul>",
+
+  "stripe_key_desc" => "<p>The global Stripe settings can be configured in the <code>.env</code> file. You may only want to set this configuration if this is not the main reseller, otherwise this reseller will have its own Stripe payments.</p>
+              <p>If you enter your Stripe keys (<strong>Stripe &gt; API &gt; Publishable key / Secret key</strong>) here, you can create plans in your Stripe account and enter the ID of these plans at the <strong>Remote product id</strong>, when editing a plan at <strong>Admin &gt; Plans</strong>.</p>
+              <p>Also, add a webhook endpoint in your Stripe account (<strong>API > Webhooks > Add endpoint</strong>): <code>https://example.com/api/v1/stripe/webhook</code>.</p>",
+
+  "custom_affiliate_id_desc" => "<p>If the custom payment system supports affiliates, you can enter the affiliate ID of this reseller here. Custom payment methods do not automatically update the user's plan. You will have to manually change the user's plan after receiving the payment.</p>",
+
+  "custom_url_parameters" => "Custom URL parameters",
+  "custom_url_parameters_help" => "<p>The custom URL parameters are inherited from the main reseller, but can be overridden if this reseller uses a different payment method.</p>",
+  "user_query_parameter" => "User ID query parameter",
+  "user_query_parameter_desc" => "This parameter adds the user id of this system. Some payment gateways may use this.",
+
+  "affiliate_query_parameter" => "Affiliate ID query parameter",
+  "affiliate_query_parameter_desc" => "This parameter adds the affiliate ID entered above.",
+
+  "query_parameter_preview" => "/?...&<span id=\"affiliate_query_parameter_preview\">...</span>=<span id=\"custom_affiliate_id_preview\">...</span>&<span id=\"user_query_parameter_preview\">...</span>=:user_id",
 
   /*
    |--------------------------------------------------------------------------
@@ -453,11 +483,11 @@ return array(
    |--------------------------------------------------------------------------
    */
 
-    "search_" => "Search...",
-    "show_records" => "_MENU_ records", // Don't translate _MENU_; it's a variable
-    "empty_table" => "No data available in table",
-    "dt_info" => "Showing _START_ to _END_ of _TOTAL_",
-    "all" => "All",
+  "search_" => "Search...",
+  "show_records" => "_MENU_ records", // Don't translate _MENU_; it's a variable
+  "empty_table" => "No data available in table",
+  "dt_info" => "Showing _START_ to _END_ of _TOTAL_",
+  "all" => "All",
  
   /*
    |--------------------------------------------------------------------------

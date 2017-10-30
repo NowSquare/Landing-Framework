@@ -18,9 +18,6 @@ class SettingsController extends \App\Http\Controllers\Controller {
    * Show settings home
    */
   public function showSettings() {
-
     return view('platform.admin.settings.settings');
   }
-
-
 }

@@ -41,7 +41,24 @@ class ResellerController extends \App\Http\Controllers\Controller {
     $header_title = trans('website.header_01_line');
     $header_cta = trans('website.header_cta');
 
-    return view('platform.admin.resellers.reseller-new', compact('users', 'header_gradient_start', 'header_gradient_end', 'header_image', 'header_title', 'header_cta'));
+    // Payment provider, check if setting exists
+    $main_reseller = Core\Reseller::get();
+
+    if (isset($main_reseller->settings['payment_provider'])) {
+      $payment_provider = $main_reseller->settings['payment_provider'];
+    } else {
+      // Setting does not exist, check .env config
+      if (env('AVANGATE_KEY', '') != '' && $main_reseller->stripe_key == null) {
+        $payment_provider = 'AVANGATE';
+      } elseif ($main_reseller->stripe_key != null) {
+        $payment_provider = 'STRIPE';
+      }
+    }
+
+    $user_query_parameter_placeholder = (isset($main_reseller->settings['user_query_parameter'])) ? $main_reseller->settings['user_query_parameter'] : 'user_id';
+    $affiliate_query_parameter_placeholder = (isset($main_reseller->settings['affiliate_query_parameter'])) ? $main_reseller->settings['affiliate_query_parameter'] : 'source';
+
+    return view('platform.admin.resellers.reseller-new', compact('main_reseller', 'users', 'header_gradient_start', 'header_gradient_end', 'header_image', 'header_title', 'header_cta', 'payment_provider', 'user_query_parameter_placeholder', 'affiliate_query_parameter_placeholder'));
   }
 
   /**
@@ -70,7 +87,28 @@ class ResellerController extends \App\Http\Controllers\Controller {
       $header_title = (isset($reseller->settings['header_title'])) ? $reseller->settings['header_title'] : trans('website.header_01_line');
       $header_cta = (isset($reseller->settings['header_cta'])) ? $reseller->settings['header_cta'] : trans('website.header_cta');
 
-      return view('platform.admin.resellers.reseller-edit', compact('sl', 'reseller', 'user', 'users', 'website_active', 'header_gradient_start', 'header_gradient_end', 'header_image', 'header_title', 'header_cta'));
+      // Payment provider, check if setting exists
+      if (isset($reseller->settings['payment_provider'])) {
+        $payment_provider = $reseller->settings['payment_provider'];
+      } else {
+        // Setting does not exist, check .env config
+        if (env('AVANGATE_KEY', '') != '' && $reseller->stripe_key == null) {
+          $payment_provider = 'AVANGATE';
+        } elseif ($reseller->stripe_key != null) {
+          $payment_provider = 'STRIPE';
+        }
+      }
+
+      // Current (main) reseller
+      $main_reseller = Core\Reseller::get();
+
+      $user_query_parameter_placeholder = (isset($main_reseller->settings['user_query_parameter'])) ? $main_reseller->settings['user_query_parameter'] : 'user_id';
+      $affiliate_query_parameter_placeholder = (isset($main_reseller->settings['affiliate_query_parameter'])) ? $main_reseller->settings['affiliate_query_parameter'] : 'source';
+
+      $user_query_parameter = (isset($reseller->settings['user_query_parameter'])) ? $reseller->settings['user_query_parameter'] : '';
+      $affiliate_query_parameter = (isset($reseller->settings['affiliate_query_parameter'])) ? $reseller->settings['affiliate_query_parameter'] : '';
+
+      return view('platform.admin.resellers.reseller-edit', compact('sl', 'main_reseller', 'reseller', 'user', 'users', 'website_active', 'header_gradient_start', 'header_gradient_end', 'header_image', 'header_title', 'header_cta', 'payment_provider', 'user_query_parameter', 'affiliate_query_parameter', 'user_query_parameter_placeholder', 'affiliate_query_parameter_placeholder'));
     }
   }
 
@@ -109,7 +147,11 @@ class ResellerController extends \App\Http\Controllers\Controller {
       'avangate_affiliate' => request()->input('avangate_affiliate', null),
       'avangate_key' => request()->input('avangate_key', null),
       'stripe_key' => request()->input('stripe_key', null),
-      'stripe_secret' => request()->input('stripe_secret', null)
+      'stripe_secret' => request()->input('stripe_secret', null),
+      'custom_affiliate_id' => request()->input('custom_affiliate_id', null),
+      'user_query_parameter' => request()->input('user_query_parameter', null),
+      'affiliate_query_parameter' => request()->input('affiliate_query_parameter', null),
+      'payment_provider' => request()->input('payment_provider', null)
     );
 
     $rules = array(
@@ -162,7 +204,11 @@ class ResellerController extends \App\Http\Controllers\Controller {
         'header_gradient_end' => $input['header_gradient_end'],
         'header_image' => $input['header_image'],
         'header_title' => $input['header_title'],
-        'header_cta' => $input['header_cta']
+        'header_cta' => $input['header_cta'],
+        'custom_affiliate_id' => $input['custom_affiliate_id'],
+        'user_query_parameter' => $input['user_query_parameter'],
+        'affiliate_query_parameter' => $input['affiliate_query_parameter'],
+        'payment_provider' => $input['payment_provider']
       ];
 
       if($reseller->save())
@@ -247,7 +293,11 @@ class ResellerController extends \App\Http\Controllers\Controller {
         'avangate_affiliate' => request()->input('avangate_affiliate', null),
         'avangate_key' => request()->input('avangate_key', null),
         'stripe_key' => request()->input('stripe_key', null),
-        'stripe_secret' => request()->input('stripe_secret', null)
+        'stripe_secret' => request()->input('stripe_secret', null),
+        'custom_affiliate_id' => request()->input('custom_affiliate_id', null),
+        'user_query_parameter' => request()->input('user_query_parameter', null),
+        'affiliate_query_parameter' => request()->input('affiliate_query_parameter', null),
+        'payment_provider' => request()->input('payment_provider', null)
       );
 
       $rules = array(
@@ -296,7 +346,11 @@ class ResellerController extends \App\Http\Controllers\Controller {
           'header_gradient_end' => $input['header_gradient_end'],
           'header_image' => $input['header_image'],
           'header_title' => $input['header_title'],
-          'header_cta' => $input['header_cta']
+          'header_cta' => $input['header_cta'],
+          'custom_affiliate_id' => $input['custom_affiliate_id'],
+          'user_query_parameter' => $input['user_query_parameter'],
+          'affiliate_query_parameter' => $input['affiliate_query_parameter'],
+          'payment_provider' => $input['payment_provider']
         ];
 
         if ($qs['reseller_id'] > 1) {
@@ -329,19 +383,22 @@ class ResellerController extends \App\Http\Controllers\Controller {
           $user->save();
         }
 
-        if($reseller->save())
-        {
-          $response = array(
+        if($reseller->save()) {
+          $response = [
+            'type' => 'success',
+            'reset' => false, 
+            'msg' => trans('global.changes_saved')
+          ];
+          /*
+          $response = [
             'redir' => '#/admin/resellers'
-          );
-        }
-        else
-        {
-          $response = array(
+          ];*/
+        } else {
+          $response = [
             'type' => 'error',
             'reset' => false, 
             'msg' => $reseller->errors()->first()
-          );
+          ];
         }
       }
       return response()->json($response);
@@ -355,8 +412,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
   {
     $sl = request()->input('sl', '');
 
-    if($sl != '')
-    {
+    if($sl != '') {
       $qs = Core\Secure::string2array($sl);
       $response = array('result' => 'success');
 
@@ -370,8 +426,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
 
       $reseller = \App\Reseller::where('id', '>',  1)->where('id', '=',  $qs['reseller_id'])->first();
 
-      if(! empty($reseller))
-      {
+      if(! empty($reseller)) {
         $reseller = \App\Reseller::where('id', '=',  $qs['reseller_id'])->forceDelete();
 
         // Update reseller user
@@ -384,9 +439,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
 
         // Set all users from reseller to default reseller
         $update = \App\User::where('reseller_id', $qs['reseller_id'])->update(['reseller_id' => 1, 'is_reseller_id' => null, 'role' => 'user', 'plan_id' => null]);
-      }
-      else
-      {
+      } else {
         $response = array('msg' => trans('global.cant_delete_owner'));
       }
     }

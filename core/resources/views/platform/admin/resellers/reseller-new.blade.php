@@ -61,8 +61,8 @@
                 <input name="active" id="active" type="checkbox" value="1" checked>
                 <label for="active"> {{ trans('global.active') }}</label>
               </div>
+              <span class="help-block"><small>{!! trans('global.active_reseller_desc') !!}</small></span>
             </div>
-            <p class="text-muted">{{ trans('global.active_reseller_desc') }}</p>
 
           </fieldset>
         </div>
@@ -74,10 +74,9 @@
 
         <ul class="nav nav-tabs navtab-custom">
           <li class="active"><a href="#design" data-toggle="tab" aria-expanded="false">{{ trans('global.design') }}</a></li>
+          <li><a href="#payment" data-toggle="tab" aria-expanded="false">{{ trans('global.payment_settings') }}</a></li>
           <li><a href="#mail_settings" data-toggle="tab" aria-expanded="false">{{ trans('global.mail_settings') }}</a></li>
           <li><a href="#localization" data-toggle="tab" aria-expanded="false">{{ trans('global.localization') }}</a></li>
-          <li><a href="#avangate" data-toggle="tab" aria-expanded="false">{{ trans('global.avangate') }}</a></li>
-          <li><a href="#stripe" data-toggle="tab" aria-expanded="false">{{ trans('global.stripe') }}</a></li>
         </ul>
 
         <div class="tab-content">
@@ -121,16 +120,17 @@
                     </div>
 
                   </fieldset>
+                  <br>
                   <fieldset>
                     <legend>{{ trans('global.website') }}</legend>
 
-                    <div class="form-group">
+                    <div class="form-group m-b-30">
                       <div class="checkbox checkbox-primary">
                         <input name="website_active" id="website_active" type="checkbox" value="1" checked>
                         <label for="website_active"> {{ trans('global.active') }}</label>
                       </div>
+                      <span class="help-block"><small>{!! trans('global.active_website_desc') !!}</small></span>
                     </div>
-                    <p class="text-muted m-b-30">{{ trans('global.active_website_desc') }}</p>
 
                     <div class="form-group m-b-0">
                       <label for="header_gradient_start">{{ trans('global.header_gradient') }}</label>
@@ -196,12 +196,30 @@
           </div>
 
           <div class="tab-pane" id="mail_settings">
-            <p class="text-muted">The global email settings are configured in the <code>.env</code> file. Only modify these settings for resellers other than the main reseller. In most cases you probably only want to configure the <strong>{{ trans('global.sender_name') }}</strong> and <strong>{{ trans('global.sender_address') }}</strong>.</p>
+            <p class="m-b-20">{!! trans('global.mail_settings_help') !!}</p>
+
             <fieldset>
 
               <div class="form-group">
+                <label for="mail_from_name">{{ trans('global.sender_name') }}</label>
+                <input type="text" class="form-control" name="mail_from_name" id="mail_from_name" value="" autocomplete="off" placeholder="{{ $main_reseller->mail_from_name }}">
+              </div>
+
+              <div class="form-group">
+                <label for="mail_from_address">{{ trans('global.sender_address') }}</label>
+                <input type="text" class="form-control" name="mail_from_address" id="mail_from_address" value="" autocomplete="off" placeholder="{{ $main_reseller->mail_from_address }}">
+              </div>
+
+              <hr>
+
+              <div class="form-group">
                 <?php
-                echo Former::select( 'mail_driver' )->class( 'select2-required form-control' )->name( 'mail_driver' )->options( [ '' => '&nbsp;', 'smtp' => 'SMTP', 'mailgun' => 'Mailgun' ] )->label( trans( 'global.driver' ) );
+
+                echo Former::select('mail_driver')
+                  ->class('select2-required form-control')
+                  ->name('mail_driver')
+                  ->options(['' => '&nbsp;', 'sendmail' => 'Sendmail', 'smtp' => 'SMTP', 'mailgun' => 'Mailgun'])
+                  ->label(trans('global.driver'));
                 ?>
                 <script>
                   $( '#mail_driver' ).on( 'change', checkMailDriver );
@@ -234,32 +252,28 @@
 
               </div>
 
-              <div class="form-group">
-                <label for="mail_from_name">{{ trans('global.sender_name') }}</label>
-                <input type="text" class="form-control" name="mail_from_name" id="mail_from_name" value="" autocomplete="off">
-              </div>
-
-              <div class="form-group">
-                <label for="mail_from_address">{{ trans('global.sender_address') }}</label>
-                <input type="text" class="form-control" name="mail_from_address" id="mail_from_address" value="" autocomplete="off">
-              </div>
-
               <hr>
 
-              <div class="form-group">
-                <label for="mail_host">{{ trans('global.host') }}</label>
-                <input type="text" class="form-control" name="mail_host" id="mail_host" value="" autocomplete="off">
-              </div>
-
-              <div class="form-group">
-                <label for="mail_port">{{ trans('global.port') }}</label>
-                <input type="number" class="form-control" name="mail_port" id="mail_port" value="" autocomplete="off">
-              </div>
-
-              <div class="form-group">
-                <?php
-                echo Former::select( 'mail_encryption' )->class( 'select2-required form-control' )->name( 'mail_encryption' )->options( [ '' => '&nbsp;', 'tls' => 'tls', 'ssl' => 'ssl' ] )->label( trans( 'global.encryption' ) );
-                ?>
+              <div class="row">
+                <div class="col-12 col-md-6">
+                  <div class="form-group">
+                    <label for="mail_host">{{ trans('global.host') }}</label>
+                    <input type="text" class="form-control" name="mail_host" id="mail_host" value="" autocomplete="off">
+                  </div>
+                </div>
+                <div class="col-12 col-md-3">
+                  <div class="form-group">
+                    <label for="mail_port">{{ trans('global.port') }}</label>
+                    <input type="number" class="form-control" name="mail_port" id="mail_port" value="" autocomplete="off">
+                  </div>
+                </div>
+                <div class="col-12 col-md-3">
+                <div class="form-group">
+                  <?php
+                  echo Former::select( 'mail_encryption' )->class( 'select2-required form-control' )->name( 'mail_encryption' )->options( [ '' => '&nbsp;', 'tls' => 'tls', 'ssl' => 'ssl' ] )->label( trans( 'global.encryption' ) );
+                  ?>
+                </div>                 
+                </div>
               </div>
 
               <div class="form-group">
@@ -277,6 +291,8 @@
           </div>
 
           <div class="tab-pane" id="localization">
+            <p class="m-b-20">{!! trans('global.localization_settings_help') !!}</p>
+
             <fieldset>
               <div class="form-group">
                 <?php
@@ -291,48 +307,92 @@
             </fieldset>
           </div>
 
-          <div class="tab-pane" id="avangate">
-            <p class="text-muted">Enter the affiliate ID of this reseller below, in order to add it to the checkout process. Only do this for a reseller other than the main reseller. Details of the affiliate share and whether this affiliate is accepted, can be found in the Avangate dashboard.</p>
+          <div class="tab-pane" id="payment">
+
             <fieldset>
+              <legend><label><input type="radio" name="payment_provider" value="AVANGATE"<?php if ($payment_provider == 'AVANGATE') echo ' checked'; ?>> Avangate</label></legend>
+  
               <div class="form-group">
-                <label for="avangate_affiliate">{{ trans('global.affiliate_id') }}</label>
-                <input type="text" class="form-control" name="avangate_affiliate" id="avangate_affiliate" autocomplete="off">
+                <label for="avangate_affiliate">{{ trans('global.affiliate_id') }} ({{ trans('global.optional') }})</label>
+                <input type="text" class="form-control" name="avangate_affiliate" id="avangate_affiliate" autocomplete="off" value="">
+                <span class="help-block"><small>{!! trans('global.avangate_affiliate_id_desc') !!}</small></span>
               </div>
-            </fieldset>
 
-            <br>
-
-            <p class="text-muted">Only enter the secret Avangate key if you understand the consequences, you probably only want to set the affiliate ID above. The global settings for the Avangate key are set in the <code>.env</code> config file. If you enter a key below, the config file will be overriden for this reseller.</p>
-            <p class="text-muted">Make sure you enter the IPN and LCN urls in your Avangate dashboard (replace <code>example.com</code> with the url of the reseller):</p>
-            <ul class="text-muted">
-              <li>https://example.com/api/v1/avangate/ipn</li>
-              <li>https://example.com/api/v1/avangate/lcn</li>
-            </ul>
-
-            <fieldset>
               <div class="form-group">
                 <label for="avangate_key">{{ trans('global.key') }}</label>
-                <input type="text" class="form-control" name="avangate_key" id="avangate_key" autocomplete="off">
+                <input type="text" class="form-control" name="avangate_key" id="avangate_key" autocomplete="off" value="">
+                <span class="help-block"><small>{!! trans('global.avangate_key_desc') !!}</small></span>
               </div>
             </fieldset>
-          </div>
 
-          <div class="tab-pane" id="stripe">
-            <p class="text-muted">The global Stripe settings are configured in the <code>.env</code> file. Only use these settings if this is not the main reseller.</p>
-              <p class="text-muted">Leave empty if you want to use Avangate. If you enter your Stripe keys (<strong>Stripe &gt; API &gt; Publishable key / Secret key</strong>) here, you can create plans in your Stripe account and enter the ID of these plans at the <strong>Remote product id</strong>, when editing a plan at <strong>Admin &gt; Plans</strong>.</p>
-              <p class="text-muted">Also, add a webhook endpoint in your Stripe account (<strong>API > Webhooks > Add endpoint</strong>): <code>https://example.com/api/v1/stripe/webhook</code>.</p>
+            <h3 class="seperator"><span>{{ trans('global.or') }}</span></h3>
+
             <fieldset>
+              <legend><label><input type="radio" name="payment_provider" value="STRIPE"<?php if ($payment_provider == 'STRIPE') echo ' checked'; ?>> Stripe</label></legend>
+
               <div class="form-group">
                 <label for="stripe_key">{{ trans('global.publishable_key') }}</label>
                 <input type="text" class="form-control" name="stripe_key" id="stripe_key" autocomplete="off" value="">
               </div>
-            </fieldset>
-            <fieldset>
+
               <div class="form-group">
                 <label for="stripe_secret">{{ trans('global.secret_key') }}</label>
                 <input type="text" class="form-control" name="stripe_secret" id="stripe_secret" autocomplete="off" value="">
+                <span class="help-block"><small>{!! trans('global.stripe_key_desc') !!}</small></span>
               </div>
             </fieldset>
+
+            <h3 class="seperator"><span>{{ trans('global.or') }}</span></h3>
+
+            <fieldset>
+              <legend><label><input type="radio" name="payment_provider" value="CUSTOM"<?php if ($payment_provider == 'CUSTOM') echo ' checked'; ?>> {{ trans('global.custom') }}</label></legend>
+              <div class="m-b-20">
+              {!! trans('global.custom_payment_help') !!}
+              </div>
+
+              <div class="form-group">
+                <label for="custom_affiliate_id">{{ trans('global.affiliate_id') }} ({{ trans('global.optional') }})</label>
+                <input type="text" class="form-control" name="custom_affiliate_id" id="custom_affiliate_id" autocomplete="off" value="">
+                <span class="help-block"><small>{!! trans('global.custom_affiliate_id_desc') !!}</small></span>
+              </div>
+
+              <h3>{{ trans('global.custom_url_parameters') }}</h3>
+              <div class="alert alert-success"><strong>{!! trans('global.query_parameter_preview', ['user_id' => auth()->user()->id]) !!}</strong></div>
+              {!! trans('global.custom_url_parameters_help') !!}
+
+              <div class="form-group m-t-20">
+                <label for="user_query_parameter">{{ trans('global.user_query_parameter') }}</label>
+                <input type="text" class="form-control" name="user_query_parameter" id="user_query_parameter" value="" autocomplete="off" placeholder="{{ $user_query_parameter_placeholder }}">
+                <span class="help-block"><small>{!! trans('global.user_query_parameter_desc') !!}</small></span>
+              </div>
+
+              <div class="form-group">
+                <label for="affiliate_query_parameter">{{ trans('global.affiliate_query_parameter') }}</label>
+                <input type="text" class="form-control" name="affiliate_query_parameter" id="affiliate_query_parameter" value="" autocomplete="off" placeholder="{{ $affiliate_query_parameter_placeholder }}">
+                <span class="help-block"><small>{!! trans('global.affiliate_query_parameter_desc') !!}</small></span>
+              </div>
+<script>
+$('#custom_affiliate_id, #user_query_parameter, #affiliate_query_parameter').on('keyup change', updateCustomQueryParametersPreview);
+updateCustomQueryParametersPreview();
+
+function updateCustomQueryParametersPreview() {
+  var custom_affiliate_id = $('#custom_affiliate_id').val();
+  var user_query_parameter = $('#user_query_parameter').val();
+  var affiliate_query_parameter = $('#affiliate_query_parameter').val();
+
+  if (user_query_parameter == '') user_query_parameter = $('#user_query_parameter').attr('placeholder');
+  if (affiliate_query_parameter == '') affiliate_query_parameter = $('#affiliate_query_parameter').attr('placeholder');
+
+  $('#user_query_parameter_preview').text(user_query_parameter);
+  $('#affiliate_query_parameter_preview').text(affiliate_query_parameter);
+  $('#custom_affiliate_id_preview').text(custom_affiliate_id);
+  
+}
+</script>
+
+
+            </fieldset>
+
           </div>
 
         </div>
