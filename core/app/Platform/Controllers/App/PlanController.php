@@ -461,6 +461,7 @@ class PlanController extends \App\Http\Controllers\Controller {
     }));
 
     // Payment provider, check if setting exists
+    $payment_provider = 'CUSTOM';
     if (isset($reseller->settings['payment_provider'])) {
       $payment_provider = $reseller->settings['payment_provider'];
     } else {

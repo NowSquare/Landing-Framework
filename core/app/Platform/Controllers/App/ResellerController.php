@@ -44,6 +44,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
     // Payment provider, check if setting exists
     $main_reseller = Core\Reseller::get();
 
+    $payment_provider = 'CUSTOM';
     if (isset($main_reseller->settings['payment_provider'])) {
       $payment_provider = $main_reseller->settings['payment_provider'];
     } else {
@@ -88,6 +89,7 @@ class ResellerController extends \App\Http\Controllers\Controller {
       $header_cta = (isset($reseller->settings['header_cta'])) ? $reseller->settings['header_cta'] : trans('website.header_cta');
 
       // Payment provider, check if setting exists
+      $payment_provider = 'CUSTOM';
       if (isset($reseller->settings['payment_provider'])) {
         $payment_provider = $reseller->settings['payment_provider'];
       } else {
