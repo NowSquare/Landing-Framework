@@ -369,7 +369,7 @@ return array(
   "domain" => "Domain",
   "support_email" => "Support email address",
   "domain_help" => "Point the CNAME of this domain to :host. Only the main reseller can use an asterix (*) wildcard for all incoming domains.",
-  "localization_settings_help" => "Users who register with this reseller get these localization settings when signing up. They can update these settings after registration.",
+  "localization_settings_help" => "Users who register with this reseller get these localization settings when signing up. They can change this after registration.",
   "platform_name" => "Platform name",
   "reseller_name" => "Reseller name",
   "reseller_email" => "Reseller email",
