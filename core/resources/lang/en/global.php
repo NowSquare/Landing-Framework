@@ -376,7 +376,6 @@ return array(
   "account_owner" => "Account owner",
   "no_users_for_reseller" => "No users found who can be reseller",
   "active_reseller_desc" => "If a reseller is not active, none of its users can login",
-  "localization_settings_help" => "If a reseller is not active, none of its users can login",
   "logo" => "Logo",
   "logo_help" => "This is the horizontal logo used for the left top and on dark backgrounds. Use an SVG image for best results.",
   "logo_square" => "Square logo",
