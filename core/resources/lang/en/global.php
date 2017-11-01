@@ -431,6 +431,9 @@ return array(
 
   "query_parameter_preview" => "/?...&<span id=\"affiliate_query_parameter_preview\">...</span>=<span id=\"custom_affiliate_id_preview\">...</span>&<span id=\"user_query_parameter_preview\">...</span>=:user_id",
 
+  "apis" => "APIs",
+  "proximity_api_endpoint" => "Proximity API endpoint",
+
   /*
    |--------------------------------------------------------------------------
    | Users

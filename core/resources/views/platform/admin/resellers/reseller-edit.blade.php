@@ -78,6 +78,7 @@
           <li><a href="#payment" data-toggle="tab" aria-expanded="false">{{ trans('global.payment_settings') }}</a></li>
           <li><a href="#mail_settings" data-toggle="tab" aria-expanded="false">{{ trans('global.mail_settings') }}</a></li>
           <li><a href="#localization" data-toggle="tab" aria-expanded="false">{{ trans('global.localization') }}</a></li>
+          <li><a href="#apis" data-toggle="tab" aria-expanded="false">{{ trans('global.apis') }}</a></li>
         </ul>
 
         <div class="tab-content">
@@ -391,6 +392,26 @@ function updateCustomQueryParametersPreview() {
   
 }
 </script>
+
+            </fieldset>
+
+          </div>
+
+          <div class="tab-pane" id="apis">
+            <fieldset>
+
+              <div class="form-group">
+                <label for="proximity_api">{{ trans('global.proximity_api_endpoint') }}</label>
+
+                <div class="input-group m-t-10">
+                  <input type="text" class="form-control" id="proximity_api_endpoint" readonly value="{{ url('api/v1/scenarios/reseller?token=' . $reseller->api_token) }}" autocomplete="off">
+                  <span class="input-group-btn">
+                    <button type="button" class="btn waves-effect waves-light btn-secondary" onclick="$('#proximity_api_endpoint').select()"><i class="fa fa-clone" aria-hidden="true"></i></button>
+                    <button type="button" onclick="window.open('{{ url('api/v1/scenarios/reseller?token=' . $reseller->api_token) }}');" target="_blank" class="btn waves-effect waves-light btn-secondary"><i class="fa fa-link" aria-hidden="true"></i></button>
+                  </span>
+                </div>
+
+              </div>
 
             </fieldset>
 
