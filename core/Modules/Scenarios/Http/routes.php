@@ -43,6 +43,7 @@ Route::group(['middleware' => 'web', 'prefix' => 'api/v1/scenarios', 'namespace'
 
     // Scenario API
     Route::get('/', function() { return App::make('\Modules\Scenarios\Http\Controllers\ApiController')->getApiResponse(); });
+    Route::get('reseller', function() { return App::make('\Modules\Scenarios\Http\Controllers\ApiController')->getApiResponse('reseller'); });
     Route::get('account', function() { return App::make('\Modules\Scenarios\Http\Controllers\ApiController')->getApiResponse('account'); });
     Route::get('funnel', function() { return App::make('\Modules\Scenarios\Http\Controllers\ApiController')->getApiResponse('funnel'); });
 });

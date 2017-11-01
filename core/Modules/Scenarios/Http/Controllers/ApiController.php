@@ -120,7 +120,14 @@ class ApiController extends \App\Http\Controllers\Controller
       die('No token provided');
       //$funnels = \Platform\Models\Funnels\Funnel::get();
     } else {
-      if ($type == 'account') {
+      if ($type == 'reseller') {
+        $reseller = \App\Reseller::where('api_token', $token)->first();
+        if (empty($reseller)) {
+          return response()->json(['error' => 'Token not recognized']);
+        }
+        $users = \App\User::where('reseller_id', $reseller->id)->pluck('id')->toArray();
+        $funnels = \Platform\Models\Funnels\Funnel::whereIn('user_id', $users)->get();
+      } elseif ($type == 'account') {
         $user = \App\User::where('api_token', $token)->first();
         $funnels = \Platform\Models\Funnels\Funnel::where('user_id', $user->id)->get();
       } elseif ($type == 'funnel') {
