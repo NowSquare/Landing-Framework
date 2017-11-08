@@ -3,6 +3,8 @@ Homestead.json
 Homestead.yaml
 .env
 *.env
+*.log
+*.exe
 *.bu.php
 *-override.php
 _notes
