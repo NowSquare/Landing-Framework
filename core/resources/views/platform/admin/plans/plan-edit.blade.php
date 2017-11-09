@@ -150,7 +150,7 @@
               <div class="tab-pane active" id="create">
 <?php
 foreach($items as $item) {
-  if ($item['creatable']) {
+  if ($item['in_plan']) {
 ?>
                 <fieldset class="mdl-shadow--2dp" style="padding: 10px 10px 0 10px; margin-bottom: 20px;">
 
