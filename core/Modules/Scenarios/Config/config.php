@@ -12,7 +12,7 @@ return [
   // The default allowable amount for a default free plan (if applicable)
   'in_free_plan_default_amount' => 1,
   // If 'in_plan_amount', a maximum amount can be configured for a plan
-  'in_plan_amount' => true,
+  'in_plan_amount' => false,
   // Numeric, the default amount for the system owner
   'in_plan_default_amount' => 100,
   // Extra boolean options for plan with default value - make sure to update global language file with $key
