@@ -6,4 +6,4 @@ For instructions on how to install the full Landing Framework with the JavaScrip
 
 Instructions for the Landing Framework without the JavaScript and CSS build files, visit this [wiki](https://gitlab.com/NowSquare/Landing-Framework-Build/wikis/home).
 
-If you encounter bugs or have questions, please open a ticket here [https://nowsquare.freshdesk.com](https://nowsquare.freshdesk.com).
+If you encounter bugs or have questions, please open a ticket here [https://nowsquare.com/contact](https://nowsquare.com/contact).
