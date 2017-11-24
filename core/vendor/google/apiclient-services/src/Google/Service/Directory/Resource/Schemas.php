@@ -29,7 +29,7 @@ class Google_Service_Directory_Resource_Schemas extends Google_Service_Resource
    * Delete schema (schemas.delete)
    *
    * @param string $customerId Immutable ID of the G Suite account
-   * @param string $schemaKey Name or immutable Id of the schema
+   * @param string $schemaKey Name or immutable ID of the schema
    * @param array $optParams Optional parameters.
    */
   public function delete($customerId, $schemaKey, $optParams = array())
@@ -42,7 +42,7 @@ class Google_Service_Directory_Resource_Schemas extends Google_Service_Resource
    * Retrieve schema (schemas.get)
    *
    * @param string $customerId Immutable ID of the G Suite account
-   * @param string $schemaKey Name or immutable Id of the schema
+   * @param string $schemaKey Name or immutable ID of the schema
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Schema
    */
@@ -83,7 +83,7 @@ class Google_Service_Directory_Resource_Schemas extends Google_Service_Resource
    * Update schema. This method supports patch semantics. (schemas.patch)
    *
    * @param string $customerId Immutable ID of the G Suite account
-   * @param string $schemaKey Name or immutable Id of the schema.
+   * @param string $schemaKey Name or immutable ID of the schema.
    * @param Google_Service_Directory_Schema $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Schema
@@ -98,7 +98,7 @@ class Google_Service_Directory_Resource_Schemas extends Google_Service_Resource
    * Update schema (schemas.update)
    *
    * @param string $customerId Immutable ID of the G Suite account
-   * @param string $schemaKey Name or immutable Id of the schema.
+   * @param string $schemaKey Name or immutable ID of the schema.
    * @param Google_Service_Directory_Schema $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Schema

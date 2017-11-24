@@ -41,7 +41,6 @@ class Google_Service_BigQueryDataTransfer extends Google_Service
   const CLOUD_PLATFORM_READ_ONLY =
       "https://www.googleapis.com/auth/cloud-platform.read-only";
 
-  public $projects;
   public $projects_dataSources;
   public $projects_locations;
   public $projects_locations_dataSources;
@@ -65,36 +64,6 @@ class Google_Service_BigQueryDataTransfer extends Google_Service
     $this->version = 'v1';
     $this->serviceName = 'bigquerydatatransfer';
 
-    $this->projects = new Google_Service_BigQueryDataTransfer_Resource_Projects(
-        $this,
-        $this->serviceName,
-        'projects',
-        array(
-          'methods' => array(
-            'isEnabled' => array(
-              'path' => 'v1/{+name}:isEnabled',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'setEnabled' => array(
-              'path' => 'v1/{+name}:setEnabled',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),
-          )
-        )
-    );
     $this->projects_dataSources = new Google_Service_BigQueryDataTransfer_Resource_ProjectsDataSources(
         $this,
         $this->serviceName,
@@ -159,16 +128,6 @@ class Google_Service_BigQueryDataTransfer extends Google_Service
                   'required' => true,
                 ),
               ),
-            ),'isEnabled' => array(
-              'path' => 'v1/{+name}:isEnabled',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
             ),'list' => array(
               'path' => 'v1/{+name}/locations',
               'httpMethod' => 'GET',
@@ -189,16 +148,6 @@ class Google_Service_BigQueryDataTransfer extends Google_Service
                 'filter' => array(
                   'location' => 'query',
                   'type' => 'string',
-                ),
-              ),
-            ),'setEnabled' => array(
-              'path' => 'v1/{+name}:setEnabled',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'name' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
                 ),
               ),
             ),
@@ -325,11 +274,11 @@ class Google_Service_BigQueryDataTransfer extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'updateMask' => array(
+                'authorizationCode' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'authorizationCode' => array(
+                'updateMask' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -383,22 +332,22 @@ class Google_Service_BigQueryDataTransfer extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'runAttempt' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
+                ),
+                'states' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'statuses' => array(
+                'runAttempt' => array(
                   'location' => 'query',
                   'type' => 'string',
-                  'repeated' => true,
                 ),
               ),
             ),
@@ -487,10 +436,6 @@ class Google_Service_BigQueryDataTransfer extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
@@ -499,6 +444,10 @@ class Google_Service_BigQueryDataTransfer extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
               ),
             ),'patch' => array(
@@ -572,14 +521,14 @@ class Google_Service_BigQueryDataTransfer extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'statuses' => array(
+                'states' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
+                ),
+                'pageSize' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
                 ),
                 'runAttempt' => array(
                   'location' => 'query',
@@ -605,10 +554,6 @@ class Google_Service_BigQueryDataTransfer extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
@@ -617,6 +562,10 @@ class Google_Service_BigQueryDataTransfer extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,
+                ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
               ),
             ),

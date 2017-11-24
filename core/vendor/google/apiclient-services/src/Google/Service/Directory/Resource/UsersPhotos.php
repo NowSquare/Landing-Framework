@@ -28,7 +28,7 @@ class Google_Service_Directory_Resource_UsersPhotos extends Google_Service_Resou
   /**
    * Remove photos for the user (photos.delete)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param array $optParams Optional parameters.
    */
   public function delete($userKey, $optParams = array())
@@ -40,7 +40,7 @@ class Google_Service_Directory_Resource_UsersPhotos extends Google_Service_Resou
   /**
    * Retrieve photo of a user (photos.get)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_UserPhoto
    */
@@ -54,7 +54,7 @@ class Google_Service_Directory_Resource_UsersPhotos extends Google_Service_Resou
    * Add a photo for the user. This method supports patch semantics.
    * (photos.patch)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param Google_Service_Directory_UserPhoto $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_UserPhoto
@@ -68,7 +68,7 @@ class Google_Service_Directory_Resource_UsersPhotos extends Google_Service_Resou
   /**
    * Add a photo for the user (photos.update)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param Google_Service_Directory_UserPhoto $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_UserPhoto

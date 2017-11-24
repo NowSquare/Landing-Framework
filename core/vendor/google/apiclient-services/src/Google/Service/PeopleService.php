@@ -213,11 +213,11 @@ class Google_Service_PeopleService extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'requestMask.includeField' => array(
+                'personFields' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'personFields' => array(
+                'requestMask.includeField' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -273,6 +273,14 @@ class Google_Service_PeopleService extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'syncToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'personFields' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'sortOrder' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -290,14 +298,6 @@ class Google_Service_PeopleService extends Google_Service
                   'type' => 'integer',
                 ),
                 'requestMask.includeField' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'syncToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'personFields' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),

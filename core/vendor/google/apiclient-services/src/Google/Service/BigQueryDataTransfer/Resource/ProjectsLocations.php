@@ -39,21 +39,6 @@ class Google_Service_BigQueryDataTransfer_Resource_ProjectsLocations extends Goo
     return $this->call('get', array($params), "Google_Service_BigQueryDataTransfer_Location");
   }
   /**
-   * Returns true if data transfer is enabled for a project. (locations.isEnabled)
-   *
-   * @param string $name The name of the project resource in the form:
-   * `projects/{project_id}`
-   * @param Google_Service_BigQueryDataTransfer_IsEnabledRequest $postBody
-   * @param array $optParams Optional parameters.
-   * @return Google_Service_BigQueryDataTransfer_IsEnabledResponse
-   */
-  public function isEnabled($name, Google_Service_BigQueryDataTransfer_IsEnabledRequest $postBody, $optParams = array())
-  {
-    $params = array('name' => $name, 'postBody' => $postBody);
-    $params = array_merge($params, $optParams);
-    return $this->call('isEnabled', array($params), "Google_Service_BigQueryDataTransfer_IsEnabledResponse");
-  }
-  /**
    * Lists information about the supported locations for this service.
    * (locations.listProjectsLocations)
    *
@@ -71,22 +56,5 @@ class Google_Service_BigQueryDataTransfer_Resource_ProjectsLocations extends Goo
     $params = array('name' => $name);
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_BigQueryDataTransfer_ListLocationsResponse");
-  }
-  /**
-   * Enables or disables data transfer for a project. This method requires the
-   * additional scope of 'https://www.googleapis.com/auth/cloudplatformprojects'
-   * to manage the cloud project permissions. (locations.setEnabled)
-   *
-   * @param string $name The name of the project resource in the form:
-   * `projects/{project_id}`
-   * @param Google_Service_BigQueryDataTransfer_SetEnabledRequest $postBody
-   * @param array $optParams Optional parameters.
-   * @return Google_Service_BigQueryDataTransfer_BigquerydatatransferEmpty
-   */
-  public function setEnabled($name, Google_Service_BigQueryDataTransfer_SetEnabledRequest $postBody, $optParams = array())
-  {
-    $params = array('name' => $name, 'postBody' => $postBody);
-    $params = array_merge($params, $optParams);
-    return $this->call('setEnabled', array($params), "Google_Service_BigQueryDataTransfer_BigquerydatatransferEmpty");
   }
 }

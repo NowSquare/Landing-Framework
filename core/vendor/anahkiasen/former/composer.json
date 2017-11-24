@@ -40,8 +40,13 @@
     }
   },
   "extra": {
-      "branch-alias": {
-          "dev-master": "3.5.x-dev"
+    "laravel": {
+      "providers": [
+          "Former\\FormerServiceProvider"
+      ],
+      "aliases": {
+          "Former": "Former\\Facades\\Former"
       }
+    }
   }
 }

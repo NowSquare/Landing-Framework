@@ -17,9 +17,18 @@
 
 class Google_Service_Slides_TableCellProperties extends Google_Model
 {
+  public $contentAlignment;
   protected $tableCellBackgroundFillType = 'Google_Service_Slides_TableCellBackgroundFill';
   protected $tableCellBackgroundFillDataType = '';
 
+  public function setContentAlignment($contentAlignment)
+  {
+    $this->contentAlignment = $contentAlignment;
+  }
+  public function getContentAlignment()
+  {
+    return $this->contentAlignment;
+  }
   /**
    * @param Google_Service_Slides_TableCellBackgroundFill
    */

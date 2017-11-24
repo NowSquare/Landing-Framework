@@ -28,7 +28,7 @@ class Google_Service_Directory_Resource_UsersAliases extends Google_Service_Reso
   /**
    * Remove a alias for the user (aliases.delete)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param string $alias The alias to be removed
    * @param array $optParams Optional parameters.
    */
@@ -41,7 +41,7 @@ class Google_Service_Directory_Resource_UsersAliases extends Google_Service_Reso
   /**
    * Add a alias for the user (aliases.insert)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param Google_Service_Directory_Alias $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Alias
@@ -55,7 +55,7 @@ class Google_Service_Directory_Resource_UsersAliases extends Google_Service_Reso
   /**
    * List all aliases for a user (aliases.listUsersAliases)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param array $optParams Optional parameters.
    *
    * @opt_param string event Event on which subscription is intended (if
@@ -71,7 +71,7 @@ class Google_Service_Directory_Resource_UsersAliases extends Google_Service_Reso
   /**
    * Watch for changes in user aliases list (aliases.watch)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param Google_Service_Directory_Channel $postBody
    * @param array $optParams Optional parameters.
    *

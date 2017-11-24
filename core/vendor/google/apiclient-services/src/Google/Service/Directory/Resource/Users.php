@@ -28,7 +28,7 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
   /**
    * Delete user (users.delete)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param array $optParams Optional parameters.
    */
   public function delete($userKey, $optParams = array())
@@ -40,7 +40,7 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
   /**
    * retrieve user (users.get)
    *
-   * @param string $userKey Email or immutable Id of the user
+   * @param string $userKey Email or immutable ID of the user
    * @param array $optParams Optional parameters.
    *
    * @opt_param string customFieldMask Comma-separated list of schema names. All
@@ -112,7 +112,7 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
   /**
    * change admin status of a user (users.makeAdmin)
    *
-   * @param string $userKey Email or immutable Id of the user as admin
+   * @param string $userKey Email or immutable ID of the user as admin
    * @param Google_Service_Directory_UserMakeAdmin $postBody
    * @param array $optParams Optional parameters.
    */
@@ -125,7 +125,7 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
   /**
    * update user. This method supports patch semantics. (users.patch)
    *
-   * @param string $userKey Email or immutable Id of the user. If Id, it should
+   * @param string $userKey Email or immutable ID of the user. If ID, it should
    * match with id of user object
    * @param Google_Service_Directory_User $postBody
    * @param array $optParams Optional parameters.
@@ -153,7 +153,7 @@ class Google_Service_Directory_Resource_Users extends Google_Service_Resource
   /**
    * update user (users.update)
    *
-   * @param string $userKey Email or immutable Id of the user. If Id, it should
+   * @param string $userKey Email or immutable ID of the user. If ID, it should
    * match with id of user object
    * @param Google_Service_Directory_User $postBody
    * @param array $optParams Optional parameters.

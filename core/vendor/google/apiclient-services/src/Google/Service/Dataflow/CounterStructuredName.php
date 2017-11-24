@@ -19,14 +19,13 @@ class Google_Service_Dataflow_CounterStructuredName extends Google_Model
 {
   public $componentStepName;
   public $executionStepName;
+  public $inputIndex;
   public $name;
   public $origin;
   public $originNamespace;
-  public $originalShuffleStepName;
+  public $originalRequestingStepName;
   public $originalStepName;
   public $portion;
-  protected $sideInputType = 'Google_Service_Dataflow_SideInputId';
-  protected $sideInputDataType = '';
   public $workerId;
 
   public function setComponentStepName($componentStepName)
@@ -44,6 +43,14 @@ class Google_Service_Dataflow_CounterStructuredName extends Google_Model
   public function getExecutionStepName()
   {
     return $this->executionStepName;
+  }
+  public function setInputIndex($inputIndex)
+  {
+    $this->inputIndex = $inputIndex;
+  }
+  public function getInputIndex()
+  {
+    return $this->inputIndex;
   }
   public function setName($name)
   {
@@ -69,13 +76,13 @@ class Google_Service_Dataflow_CounterStructuredName extends Google_Model
   {
     return $this->originNamespace;
   }
-  public function setOriginalShuffleStepName($originalShuffleStepName)
+  public function setOriginalRequestingStepName($originalRequestingStepName)
   {
-    $this->originalShuffleStepName = $originalShuffleStepName;
+    $this->originalRequestingStepName = $originalRequestingStepName;
   }
-  public function getOriginalShuffleStepName()
+  public function getOriginalRequestingStepName()
   {
-    return $this->originalShuffleStepName;
+    return $this->originalRequestingStepName;
   }
   public function setOriginalStepName($originalStepName)
   {
@@ -92,20 +99,6 @@ class Google_Service_Dataflow_CounterStructuredName extends Google_Model
   public function getPortion()
   {
     return $this->portion;
-  }
-  /**
-   * @param Google_Service_Dataflow_SideInputId
-   */
-  public function setSideInput(Google_Service_Dataflow_SideInputId $sideInput)
-  {
-    $this->sideInput = $sideInput;
-  }
-  /**
-   * @return Google_Service_Dataflow_SideInputId
-   */
-  public function getSideInput()
-  {
-    return $this->sideInput;
   }
   public function setWorkerId($workerId)
   {

@@ -18,6 +18,7 @@
 class Google_Service_Proximitybeacon_AttachmentInfo extends Google_Model
 {
   public $data;
+  public $maxDistanceMeters;
   public $namespacedType;
 
   public function setData($data)
@@ -27,6 +28,14 @@ class Google_Service_Proximitybeacon_AttachmentInfo extends Google_Model
   public function getData()
   {
     return $this->data;
+  }
+  public function setMaxDistanceMeters($maxDistanceMeters)
+  {
+    $this->maxDistanceMeters = $maxDistanceMeters;
+  }
+  public function getMaxDistanceMeters()
+  {
+    return $this->maxDistanceMeters;
   }
   public function setNamespacedType($namespacedType)
   {

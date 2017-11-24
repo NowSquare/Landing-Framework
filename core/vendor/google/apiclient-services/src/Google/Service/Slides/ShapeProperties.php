@@ -17,6 +17,7 @@
 
 class Google_Service_Slides_ShapeProperties extends Google_Model
 {
+  public $contentAlignment;
   protected $linkType = 'Google_Service_Slides_Link';
   protected $linkDataType = '';
   protected $outlineType = 'Google_Service_Slides_Outline';
@@ -26,6 +27,14 @@ class Google_Service_Slides_ShapeProperties extends Google_Model
   protected $shapeBackgroundFillType = 'Google_Service_Slides_ShapeBackgroundFill';
   protected $shapeBackgroundFillDataType = '';
 
+  public function setContentAlignment($contentAlignment)
+  {
+    $this->contentAlignment = $contentAlignment;
+  }
+  public function getContentAlignment()
+  {
+    return $this->contentAlignment;
+  }
   /**
    * @param Google_Service_Slides_Link
    */

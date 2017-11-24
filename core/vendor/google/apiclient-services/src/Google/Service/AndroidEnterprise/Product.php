@@ -17,10 +17,11 @@
 
 class Google_Service_AndroidEnterprise_Product extends Google_Collection
 {
-  protected $collection_key = 'appVersion';
+  protected $collection_key = 'availableTracks';
   protected $appVersionType = 'Google_Service_AndroidEnterprise_AppVersion';
   protected $appVersionDataType = 'array';
   public $authorName;
+  public $availableTracks;
   public $detailsUrl;
   public $distributionChannel;
   public $iconUrl;
@@ -55,6 +56,14 @@ class Google_Service_AndroidEnterprise_Product extends Google_Collection
   public function getAuthorName()
   {
     return $this->authorName;
+  }
+  public function setAvailableTracks($availableTracks)
+  {
+    $this->availableTracks = $availableTracks;
+  }
+  public function getAvailableTracks()
+  {
+    return $this->availableTracks;
   }
   public function setDetailsUrl($detailsUrl)
   {

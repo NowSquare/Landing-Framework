@@ -49,15 +49,15 @@ class Google_Service_Slides_Resource_PresentationsPages extends Google_Service_R
    * retrieve.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string thumbnailProperties.mimeType The optional mime type of the
+   * thumbnail image.
+   *
+   * If you don't specify the mime type, the default mime type will be PNG.
    * @opt_param string thumbnailProperties.thumbnailSize The optional thumbnail
    * image size.
    *
    * If you don't specify the size, the server chooses a default size of the
    * image.
-   * @opt_param string thumbnailProperties.mimeType The optional mime type of the
-   * thumbnail image.
-   *
-   * If you don't specify the mime type, the default mime type will be PNG.
    * @return Google_Service_Slides_Thumbnail
    */
   public function getThumbnail($presentationId, $pageObjectId, $optParams = array())

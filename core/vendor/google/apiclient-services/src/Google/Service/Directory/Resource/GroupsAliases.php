@@ -28,7 +28,7 @@ class Google_Service_Directory_Resource_GroupsAliases extends Google_Service_Res
   /**
    * Remove a alias for the group (aliases.delete)
    *
-   * @param string $groupKey Email or immutable Id of the group
+   * @param string $groupKey Email or immutable ID of the group
    * @param string $alias The alias to be removed
    * @param array $optParams Optional parameters.
    */
@@ -41,7 +41,7 @@ class Google_Service_Directory_Resource_GroupsAliases extends Google_Service_Res
   /**
    * Add a alias for the group (aliases.insert)
    *
-   * @param string $groupKey Email or immutable Id of the group
+   * @param string $groupKey Email or immutable ID of the group
    * @param Google_Service_Directory_Alias $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Alias
@@ -55,7 +55,7 @@ class Google_Service_Directory_Resource_GroupsAliases extends Google_Service_Res
   /**
    * List all aliases for a group (aliases.listGroupsAliases)
    *
-   * @param string $groupKey Email or immutable Id of the group
+   * @param string $groupKey Email or immutable ID of the group
    * @param array $optParams Optional parameters.
    * @return Google_Service_Directory_Aliases
    */

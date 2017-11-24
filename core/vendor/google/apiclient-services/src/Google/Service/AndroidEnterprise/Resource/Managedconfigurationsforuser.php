@@ -75,8 +75,12 @@ class Google_Service_AndroidEnterprise_Resource_Managedconfigurationsforuser ext
     return $this->call('list', array($params), "Google_Service_AndroidEnterprise_ManagedConfigurationsForUserListResponse");
   }
   /**
-   * Adds or updates a per-user managed configuration for an app for the specified
-   * user. This method supports patch semantics.
+   * Adds or updates the managed configuration settings for an app for the
+   * specified user. If you support the Managed configurations iframe, you can
+   * apply managed configurations to a user by specifying an mcmId and its
+   * associated configuration variables (if any) in the request. Alternatively,
+   * all EMMs can apply managed configurations by passing a list of managed
+   * properties. This method supports patch semantics.
    * (managedconfigurationsforuser.patch)
    *
    * @param string $enterpriseId The ID of the enterprise.
@@ -94,8 +98,12 @@ class Google_Service_AndroidEnterprise_Resource_Managedconfigurationsforuser ext
     return $this->call('patch', array($params), "Google_Service_AndroidEnterprise_ManagedConfiguration");
   }
   /**
-   * Adds or updates a per-user managed configuration for an app for the specified
-   * user. (managedconfigurationsforuser.update)
+   * Adds or updates the managed configuration settings for an app for the
+   * specified user. If you support the Managed configurations iframe, you can
+   * apply managed configurations to a user by specifying an mcmId and its
+   * associated configuration variables (if any) in the request. Alternatively,
+   * all EMMs can apply managed configurations by passing a list of managed
+   * properties. (managedconfigurationsforuser.update)
    *
    * @param string $enterpriseId The ID of the enterprise.
    * @param string $userId The ID of the user.

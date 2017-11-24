@@ -17,10 +17,19 @@
 
 class Google_Service_FirebaseRemoteConfig_RemoteConfigCondition extends Google_Model
 {
+  public $description;
   public $expression;
   public $name;
   public $tagColor;
 
+  public function setDescription($description)
+  {
+    $this->description = $description;
+  }
+  public function getDescription()
+  {
+    return $this->description;
+  }
   public function setExpression($expression)
   {
     $this->expression = $expression;
