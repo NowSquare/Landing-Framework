@@ -14,7 +14,7 @@ body .ace_scrollbar {
 }
 </style>
 
-<div id="editor">{{ urldecode($html) }}</div>
+<div id="editor">{{ urldecode(str_replace('&quot;', '&amp;quot;', $html)) }}</div>
 
 <script src="{{ url('assets/ace/ace.js') }}" type="text/javascript" charset="utf-8"></script>
 <script>
