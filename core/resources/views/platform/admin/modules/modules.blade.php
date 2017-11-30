@@ -34,18 +34,21 @@
     </div>
 
     <div class="col-md-9 col-lg-10">
-      <div class="panel panel-inverse panel-border">
-        <div class="panel-heading">
-        </div>
-        <div class="panel-body">
-          <p class="">{!! trans('global.modules_desc') !!}</p>
-        </div>
-      </div>
-      <div class="row">
+
+      <ul class="nav nav-tabs navtab-custom">
+        <li class="active"><a href="#active" data-toggle="tab" aria-expanded="false">{{ trans('global.active') }}</a></li>
+        <li><a href="#inactive" data-toggle="tab" aria-expanded="false">{{ trans('global.inactive') }}</a></li>
+      </ul>
+
+      <div class="tab-content p-b-0">
+        <div class="tab-pane tab-pane active" id="active">
+
+          <div class="row">
 <?php
 foreach ($items as $item) {
+  if ($item['enabled']) {
 ?>
-    <div class="col-sm-6 col-lg-3">
+    <div class="col-sm-6 col-lg-4">
       <div class="card-box <?php if ($item['enabled']) echo 'widget-icon'; ?> widget-user mdl-shadow--2dp" style="border:0">
         <?php if ($item['enabled']) { ?>
         <img src="{{ url('assets/images/icons/color/' . $item['icon']) }}" alt="{{ $item['name'] }}" style="width:64px;posdition: absolute">
@@ -64,16 +67,52 @@ foreach ($items as $item) {
       </div>
     </div>
 <?php
+  }
+}
+?>
+          </div>
+        </div>
+        <div class="tab-pane tab-pane" id="inactive">
+          <div class="panel panel-inverse panel-border">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body">
+              <p class="">{!! trans('global.modules_desc') !!}</p>
+            </div>
+          </div>
+          <div class="row">
+<?php
+foreach ($items as $item) {
+  if (! $item['enabled']) {
+?>
+    <div class="col-sm-6 col-lg-4">
+      <div class="card-box <?php if ($item['enabled']) echo 'widget-icon'; ?> widget-user mdl-shadow--2dp" style="border:0">
+        <?php if ($item['enabled']) { ?>
+        <img src="{{ url('assets/images/icons/color/' . $item['icon']) }}" alt="{{ $item['name'] }}" style="width:64px;posdition: absolute">
+        <?php } ?>
+        <div class="wid-icon-info">
+          <h4 class="m-t-5 m-b-5 font-15 text-uppercase">{{ $item['name'] }}</h4>
+            <div class="text-muted">
+            {{ trans('global.off') }}
+            <label class="switch">
+              <input type="checkbox" class="module_switch" <?php if ($item['enabled']) echo 'checked'; ?> data-sl="{{ \Platform\Controllers\Core\Secure::array2string(array('namespace' => $item['namespace'])) }}" data-warning-deactivate="{!! trans('global.do_you_want_to_de_activate', ['module' => '<strong>' . $item['name'] . '</strong>']) !!}" data-warning-activate="{!! trans('global.do_you_want_to_activate', ['module' => '<strong>' . $item['name'] . '</strong>']) !!}">
+              <div class="slider round"></div>
+            </label>
+            {{ trans('global.on') }}
+          </div>
+        </div>
+      </div>
+    </div>
+<?php
+  }
 }
 ?>
 
+          </div>
+        </div>
       </div>
     </div>
-
-
   </div>
-
-
 </div>
 <script>
 $('.module_switch').on('click', function(e) {

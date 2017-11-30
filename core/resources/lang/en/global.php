@@ -31,6 +31,7 @@ return array(
   "saved" => "Saved",
   "default" => "Default",
   "active" => "Active",
+  "inactive" => "Inactive",
   "new" => "New",
   "share" => "Share",
   "view" => "View",
