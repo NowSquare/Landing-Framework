@@ -52,7 +52,15 @@ class Reseller extends \App\Http\Controllers\Controller {
       $filename = $reseller->id . '.json';
       $path = 'google_keys/';
 
-      $reseller->google_proximity_key = (\Storage::disk('local')->exists($path . $filename)) ? \Storage::disk('local')->path($path . $filename) : storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON'));
+      if (\Storage::disk('local')->exists($path . $filename)) {
+        $google_proximity_key = \Storage::disk('local')->path($path . $filename);
+      } elseif (\Storage::disk('local')->exists($path . '1.json')) {
+        $google_proximity_key = \Storage::disk('local')->path($path . '1.json');
+      } else {
+        $google_proximity_key = storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON'));
+      }
+
+      $reseller->google_proximity_key = $google_proximity_key;
     } else {
       $reseller = new \stdClass;
       $reseller->url = url('/');
