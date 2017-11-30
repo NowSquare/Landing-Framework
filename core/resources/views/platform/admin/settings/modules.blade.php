@@ -142,7 +142,7 @@ $('.module_switch').on('click', function(e) {
     blockUI();
 
     var jqxhr = $.ajax({
-      url: "{{ url('platform/admin/modules/switch') }}",
+      url: "{{ url('platform/admin/settings/modules/switch') }}",
       data: {sl: sl, checked: (checked) ? 1 : 0,  _token: '<?= csrf_token() ?>'},
       method: 'POST'
     })

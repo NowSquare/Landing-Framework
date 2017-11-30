@@ -35,7 +35,7 @@ class Reseller extends \App\Http\Controllers\Controller {
     } else {
       $reseller = \App\Reseller::where('id', $reseller_id)->first();
     }
-    
+
     if ($reseller) {
       $reseller->url = ($reseller->domain == '*') ? url('/') : 'http://' . $reseller->domain;
       
@@ -48,6 +48,11 @@ class Reseller extends \App\Http\Controllers\Controller {
       if ($reseller->avangate_key == null) $reseller->avangate_key = config()->get('avangate.key');
       if ($reseller->stripe_key == null) $reseller->stripe_key = env('STRIPE_KEY', null);
       if ($reseller->stripe_secret == null) $reseller->stripe_secret = env('STRIPE_SECRET', null);
+
+      $filename = $reseller->id . '.json';
+      $path = 'google_keys/';
+
+      $reseller->google_proximity_key = (\Storage::disk('local')->exists($path . $filename)) ? \Storage::disk('local')->path($path . $filename) : storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON'));
     } else {
       $reseller = new \stdClass;
       $reseller->url = url('/');
@@ -57,6 +62,7 @@ class Reseller extends \App\Http\Controllers\Controller {
       $reseller->logo = url('assets/branding/icon-light.svg');
       $reseller->logo_square = url('assets/branding/square.svg');
       $reseller->page_title = 'Not found';
+      $reseller->google_proximity_key = storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON'));
     }
     
     return $reseller;

@@ -28,6 +28,7 @@ return array(
   "got_it" => "Got it!",
   "submit" => "Submit",
   "changes_saved" => "Changes saved successfully.",
+  "upload_success" => "The file has been uploaded successfully.",
   "saved" => "Saved",
   "default" => "Default",
   "active" => "Active",
@@ -500,6 +501,15 @@ return array(
 
   "admin" => "Admin",
   "settings_desc" => "Here you can configure system related settings. Choose an item from the left menu.",
+ 
+  /*
+   |--------------------------------------------------------------------------
+   | Google Settings
+   |--------------------------------------------------------------------------
+   */
+
+  "json_key_file" => "Update JSON key file",
+  "google_proximity_key_help" => "Create a new service account <a href=\"https://console.developers.google.com/iam-admin/serviceaccounts/project\" target=\"_blank\">here</a>, select all <code>Proximity Beacon</code> roles and check <code>Furnish a new private key</code> to download a JSON file.",
 
   /*
    |--------------------------------------------------------------------------

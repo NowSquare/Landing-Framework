@@ -3,7 +3,7 @@
 use \Platform\Controllers\Core;
 use Illuminate\Http\Request;
 
-class ModuleController extends \App\Http\Controllers\Controller {
+class SettingsModuleController extends \App\Http\Controllers\Controller {
 
   /*
    |--------------------------------------------------------------------------
@@ -46,7 +46,7 @@ class ModuleController extends \App\Http\Controllers\Controller {
       return $value['order'];
     }));
 
-    return view('platform.admin.modules.modules', compact('items'));
+    return view('platform.admin.settings.modules', compact('items'));
   }
 
   /**

@@ -159,9 +159,13 @@ Route::group(['middleware' => 'auth:web'], function () {
     // Settings
     Route::get('platform/admin/settings', '\Platform\Controllers\App\SettingsController@showSettings');
 
-    // Modules
-    Route::get('platform/admin/modules', '\Platform\Controllers\App\ModuleController@showModules')->name('modules');
-    Route::post('platform/admin/modules/switch', '\Platform\Controllers\App\ModuleController@switchModule');
+    // Settings \ Modules
+    Route::get('platform/admin/settings/modules', '\Platform\Controllers\App\SettingsModuleController@showModules')->name('modules');
+    Route::post('platform/admin/settings/modules/switch', '\Platform\Controllers\App\SettingsModuleController@switchModule');
+
+    // Settings \ Google
+    Route::get('platform/admin/settings/google', '\Platform\Controllers\App\SettingsGoogleController@showSettings')->name('google');
+    Route::post('platform/admin/settings/google', '\Platform\Controllers\App\SettingsGoogleController@postSettings');
 
     // Plan management
     Route::get('platform/admin/plans', '\Platform\Controllers\App\PlanController@showPlans');

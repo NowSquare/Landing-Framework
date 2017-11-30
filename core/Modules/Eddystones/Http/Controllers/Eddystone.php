@@ -22,7 +22,7 @@ class Eddystone extends Controller
 
       // Register client
       $client = new \Google_Client();
-      $client->setAuthConfig(storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON')));
+      $client->setAuthConfig(Core\Reseller::get()->google_proximity_key);
       $client->setScopes($scopes);
 
       $proximitybeaconService = new \Google_Service_Proximitybeacon($client);
@@ -63,7 +63,7 @@ class Eddystone extends Controller
 
       // Register client
       $client = new \Google_Client();
-      $client->setAuthConfig(storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON')));
+      $client->setAuthConfig(Core\Reseller::get()->google_proximity_key);
       $client->setScopes($scopes);
 
       $proximitybeaconService = new \Google_Service_Proximitybeacon($client);
@@ -112,7 +112,7 @@ class Eddystone extends Controller
 
       // Register client
       $client = new \Google_Client();
-      $client->setAuthConfig(storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON')));
+      $client->setAuthConfig(Core\Reseller::get()->google_proximity_key);
       $client->setScopes($scopes);
 
       $proximitybeaconService = new \Google_Service_Proximitybeacon($client);
@@ -177,7 +177,7 @@ class Eddystone extends Controller
 
       // Register client
       $client = new \Google_Client();
-      $client->setAuthConfig(storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON')));
+      $client->setAuthConfig(Core\Reseller::get()->google_proximity_key);
       $client->setScopes($scopes);
 
       $proximitybeaconService = new \Google_Service_Proximitybeacon($client);
@@ -229,7 +229,7 @@ class Eddystone extends Controller
 
       // Register client
       $client = new \Google_Client();
-      $client->setAuthConfig(storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON')));
+      $client->setAuthConfig(Core\Reseller::get()->google_proximity_key);
       $client->setScopes($scopes);
 
       $proximitybeaconService = new \Google_Service_Proximitybeacon($client);
@@ -263,7 +263,7 @@ class Eddystone extends Controller
 
       // Register client
       $client = new \Google_Client();
-      $client->setAuthConfig(storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON')));
+      $client->setAuthConfig(Core\Reseller::get()->google_proximity_key);
       $client->setScopes($scopes);
 
       $proximitybeaconService = new \Google_Service_Proximitybeacon($client);
@@ -310,7 +310,7 @@ class Eddystone extends Controller
 
       // Register client
       $client = new \Google_Client();
-      $client->setAuthConfig(storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON')));
+      $client->setAuthConfig(Core\Reseller::get()->google_proximity_key);
       $client->setScopes($scopes);
 
       $proximitybeaconService = new \Google_Service_Proximitybeacon($client);
@@ -344,7 +344,7 @@ class Eddystone extends Controller
 
       // Register client
       $client = new \Google_Client();
-      $client->setAuthConfig(storage_path('app/google_keys/' . env('EDDYSTONE_CONFIG_JSON')));
+      $client->setAuthConfig(Core\Reseller::get()->google_proximity_key);
       $client->setScopes($scopes);
 
       $proximitybeaconService = new \Google_Service_Proximitybeacon($client);

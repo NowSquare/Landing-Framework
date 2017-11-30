@@ -90,7 +90,8 @@ $(function() {
       '/admin/plan/:sl': function (sl) { loadRoute('platform/admin/plan/edit?sl=' + sl, 'admin/plans'); },
 
       '/admin/settings': function () { loadRoute('platform/admin/settings'); },
-      '/admin/settings/modules': function () { loadRoute('platform/admin/modules'); },
+      '/admin/settings/modules': function () { loadRoute('platform/admin/settings/modules'); },
+      '/admin/settings/google': function () { loadRoute('platform/admin/settings/google'); },
 
       '/admin/resellers': function () { loadRoute('platform/admin/resellers'); },
       '/admin/reseller': function () { loadRoute('platform/admin/reseller/new', 'admin/resellers'); },
