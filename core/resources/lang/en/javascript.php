@@ -24,6 +24,7 @@ return array(
 	"saved" => "Saved",
 	"save_succes" => "Changes saved successfully.",
 	"enter_value" => "Please enter a value.",
+	"select_option" => "Select option...",
 	"publish_succes" => "Changes published successfully.",
 	"unpublish_succes" => "Page has been unpublished successfully.",
   "background" => "Background",

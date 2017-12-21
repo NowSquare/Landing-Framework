@@ -765,7 +765,8 @@ function select2() {
     });
 
     $('.select2-required').select2({
-      allowClear: false
+      allowClear: false,
+      placeholder: _lang['select_option']
     });
 
     $('.select2-required-no-search').select2({
