@@ -53,6 +53,7 @@ class CreateUsersTable extends Migration
       $table->text('braintree_private_key')->nullable();
       $table->boolean('active')->default(true);
       $table->json('settings')->nullable();
+      $table->json('meta')->nullable();
       $table->dateTime('expires')->nullable();
       $table->timestamps();
     });
