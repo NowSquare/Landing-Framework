@@ -2,9 +2,9 @@
 
 return [
   // Only enabled modules are used within the system
-  'enabled' => (env('EDDYSTONE_CONFIG_JSON', '') != '') ? true : false,
+  'enabled' => true,
   // If a module is 'creatable', it can be selected when creating a new item
-  'creatable' => (env('EDDYSTONE_CONFIG_JSON', '') != '') ? true : false,
+  'creatable' => true,
   // If a module is 'in_plan', it can be turned on or off for a plan
   'in_plan' => true,
   // If a module is 'in_free_plan', it is enabled for default free plans
