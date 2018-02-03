@@ -68,6 +68,8 @@ return array(
   "select_none" => "Select none",
   "records" => "Records",
   "order" => "Order",
+  "new_first" => "New first",
+  "old_first" => "Old first",
 	"category" => "Category",
   "link" => "Link",
   "oops" => "Oops...",
