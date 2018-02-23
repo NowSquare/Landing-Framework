@@ -40,7 +40,8 @@ class Eddystone extends Controller
 
       $beacons = $list_beacons->getBeacons();
 
-      $count = (count($beacons) == 0) ? 0 : $list_beacons->getTotalCount(); 
+      //$count = (count($beacons) == 0) ? 0 : $list_beacons->getTotalCount(); 
+      $count = count($beacons); 
 
       return [
         'count' => $count,
