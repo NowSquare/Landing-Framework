@@ -60,7 +60,7 @@ final class PhpCalculator implements Calculator
 
         $this->assertIntegerBounds($result);
 
-        return (string) $result;
+        return $this->castString($result);
     }
 
     /**
@@ -72,7 +72,7 @@ final class PhpCalculator implements Calculator
 
         $this->assertIntegerBounds($result);
 
-        return (string) $result;
+        return $this->castString($result);
     }
 
     /**
@@ -109,9 +109,9 @@ final class PhpCalculator implements Calculator
     public function round($number, $roundingMode)
     {
         if (Money::ROUND_HALF_POSITIVE_INFINITY === $roundingMode) {
-            $number = Number::fromString((string) $number);
+            $number = Number::fromNumber($number);
 
-            if ($number->isHalf() === true) {
+            if ($number->isHalf()) {
                 return $this->castInteger(ceil((string) $number));
             }
 
@@ -119,9 +119,9 @@ final class PhpCalculator implements Calculator
         }
 
         if (Money::ROUND_HALF_NEGATIVE_INFINITY === $roundingMode) {
-            $number = Number::fromString((string) $number);
+            $number = Number::fromNumber($number);
 
-            if ($number->isHalf() === true) {
+            if ($number->isHalf()) {
                 return $this->castInteger(floor((string) $number));
             }
 
@@ -137,6 +137,18 @@ final class PhpCalculator implements Calculator
     public function share($amount, $ratio, $total)
     {
         return $this->castInteger(floor($amount * $ratio / $total));
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function mod($amount, $divisor)
+    {
+        $result = $amount % $divisor;
+
+        $this->assertIntegerBounds($result);
+
+        return (string) $result;
     }
 
     /**
@@ -181,5 +193,21 @@ final class PhpCalculator implements Calculator
         if (filter_var($amount, FILTER_VALIDATE_INT) === false) {
             throw new \UnexpectedValueException('The result of arithmetic operation is not an integer');
         }
+    }
+
+    /**
+     * Casts an amount to string ensuring that the decimal separator is dot regardless of the locale.
+     *
+     * @param int|float $amount
+     *
+     * @return string
+     */
+    private function castString($amount)
+    {
+        if (is_float($amount)) {
+            return sprintf('%.14F', $amount);
+        }
+
+        return (string) $amount;
     }
 }

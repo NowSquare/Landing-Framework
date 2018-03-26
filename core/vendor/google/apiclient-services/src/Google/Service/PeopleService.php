@@ -273,10 +273,6 @@ class Google_Service_PeopleService extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'syncToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'personFields' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -293,11 +289,15 @@ class Google_Service_PeopleService extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
+                'requestMask.includeField' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
                 ),
-                'requestMask.includeField' => array(
+                'syncToken' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),

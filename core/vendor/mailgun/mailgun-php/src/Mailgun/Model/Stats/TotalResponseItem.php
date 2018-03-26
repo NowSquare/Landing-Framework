@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Mailgun
+ * Copyright (C) 2013 Mailgun
  *
  * This software may be modified and distributed under the terms
  * of the MIT license. See the LICENSE file for details.
@@ -43,9 +43,9 @@ class TotalResponseItem
     {
         return new self(
             isset($data['time']) ? new \DateTime($data['time']) : null,
-            isset($data['accepted']) ? $data['accepted'] : null,
-            isset($data['delivered']) ? $data['delivered'] : null,
-            isset($data['failed']) ? $data['failed'] : null
+            isset($data['accepted']) ? $data['accepted'] : [],
+            isset($data['delivered']) ? $data['delivered'] : [],
+            isset($data['failed']) ? $data['failed'] : []
         );
     }
 

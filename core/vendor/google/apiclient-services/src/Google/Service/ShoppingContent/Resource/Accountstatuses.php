@@ -41,9 +41,9 @@ class Google_Service_ShoppingContent_Resource_Accountstatuses extends Google_Ser
   /**
    * Retrieves the status of a Merchant Center account. (accountstatuses.get)
    *
-   * @param string $merchantId The ID of the managing account. If this account is
-   * not a multi-client account, then this parameter must be the same as
-   * accountId.
+   * @param string $merchantId The ID of the managing account. If this parameter
+   * is not the same as accountId, then this account must be a multi-client
+   * account and accountId must be the ID of a sub-account of this account.
    * @param string $accountId The ID of the account.
    * @param array $optParams Optional parameters.
    * @return Google_Service_ShoppingContent_AccountStatus

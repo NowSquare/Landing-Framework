@@ -28,6 +28,8 @@ class Session implements SessionInterface, \IteratorAggregate, \Countable
 
     private $flashName;
     private $attributeName;
+    private $data = array();
+    private $hasBeenStarted;
 
     /**
      * @param SessionStorageInterface $storage    A SessionStorageInterface instance
@@ -108,7 +110,7 @@ class Session implements SessionInterface, \IteratorAggregate, \Countable
      */
     public function clear()
     {
-        $this->storage->getBag($this->attributeName)->clear();
+        $this->getAttributeBag()->clear();
     }
 
     /**
@@ -137,6 +139,32 @@ class Session implements SessionInterface, \IteratorAggregate, \Countable
     public function count()
     {
         return count($this->getAttributeBag()->all());
+    }
+
+    /**
+     * @return bool
+     *
+     * @internal
+     */
+    public function hasBeenStarted()
+    {
+        return $this->hasBeenStarted;
+    }
+
+    /**
+     * @return bool
+     *
+     * @internal
+     */
+    public function isEmpty()
+    {
+        foreach ($this->data as &$data) {
+            if (!empty($data)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**
@@ -210,7 +238,7 @@ class Session implements SessionInterface, \IteratorAggregate, \Countable
      */
     public function registerBag(SessionBagInterface $bag)
     {
-        $this->storage->registerBag($bag);
+        $this->storage->registerBag(new SessionBagProxy($bag, $this->data, $this->hasBeenStarted));
     }
 
     /**
@@ -218,7 +246,7 @@ class Session implements SessionInterface, \IteratorAggregate, \Countable
      */
     public function getBag($name)
     {
-        return $this->storage->getBag($name);
+        return $this->storage->getBag($name)->getBag();
     }
 
     /**
@@ -240,6 +268,6 @@ class Session implements SessionInterface, \IteratorAggregate, \Countable
      */
     private function getAttributeBag()
     {
-        return $this->storage->getBag($this->attributeName);
+        return $this->getBag($this->attributeName);
     }
 }

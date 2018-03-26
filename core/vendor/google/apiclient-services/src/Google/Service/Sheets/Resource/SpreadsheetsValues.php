@@ -106,19 +106,19 @@ class Google_Service_Sheets_Resource_SpreadsheetsValues extends Google_Service_R
    * @param string $spreadsheetId The ID of the spreadsheet to retrieve data from.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string valueRenderOption How values should be represented in the
+   * output. The default render option is ValueRenderOption.FORMATTED_VALUE.
+   * @opt_param string dateTimeRenderOption How dates, times, and durations should
+   * be represented in the output. This is ignored if value_render_option is
+   * FORMATTED_VALUE. The default dateTime render option is
+   * [DateTimeRenderOption.SERIAL_NUMBER].
+   * @opt_param string ranges The A1 notation of the values to retrieve.
    * @opt_param string majorDimension The major dimension that results should use.
    *
    * For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then
    * requesting `range=A1:B2,majorDimension=ROWS` will return `[[1,2],[3,4]]`,
    * whereas requesting `range=A1:B2,majorDimension=COLUMNS` will return
    * `[[1,3],[2,4]]`.
-   * @opt_param string ranges The A1 notation of the values to retrieve.
-   * @opt_param string dateTimeRenderOption How dates, times, and durations should
-   * be represented in the output. This is ignored if value_render_option is
-   * FORMATTED_VALUE. The default dateTime render option is
-   * [DateTimeRenderOption.SERIAL_NUMBER].
-   * @opt_param string valueRenderOption How values should be represented in the
-   * output. The default render option is ValueRenderOption.FORMATTED_VALUE.
    * @return Google_Service_Sheets_BatchGetValuesResponse
    */
   public function batchGet($spreadsheetId, $optParams = array())
@@ -201,12 +201,12 @@ class Google_Service_Sheets_Resource_SpreadsheetsValues extends Google_Service_R
    * @param string $range The A1 notation of the values to retrieve.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string valueRenderOption How values should be represented in the
+   * output. The default render option is ValueRenderOption.FORMATTED_VALUE.
    * @opt_param string dateTimeRenderOption How dates, times, and durations should
    * be represented in the output. This is ignored if value_render_option is
    * FORMATTED_VALUE. The default dateTime render option is
    * [DateTimeRenderOption.SERIAL_NUMBER].
-   * @opt_param string valueRenderOption How values should be represented in the
-   * output. The default render option is ValueRenderOption.FORMATTED_VALUE.
    * @opt_param string majorDimension The major dimension that results should use.
    *
    * For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then

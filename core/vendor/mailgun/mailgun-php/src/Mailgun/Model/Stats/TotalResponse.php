@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Mailgun
+ * Copyright (C) 2013 Mailgun
  *
  * This software may be modified and distributed under the terms
  * of the MIT license. See the LICENSE file for details.
@@ -58,7 +58,7 @@ final class TotalResponse implements ApiResponse
     public static function create(array $data)
     {
         $stats = [];
-        if (isset($data['status'])) {
+        if (isset($data['stats'])) {
             foreach ($data['stats'] as $s) {
                 $stats[] = TotalResponseItem::create($s);
             }

@@ -44,6 +44,8 @@ class Google_Service_CloudBuild_Build extends Google_Collection
   public $substitutions;
   public $tags;
   public $timeout;
+  protected $timingType = 'Google_Service_CloudBuild_TimeSpan';
+  protected $timingDataType = 'map';
 
   public function setBuildTriggerId($buildTriggerId)
   {
@@ -240,5 +242,19 @@ class Google_Service_CloudBuild_Build extends Google_Collection
   public function getTimeout()
   {
     return $this->timeout;
+  }
+  /**
+   * @param Google_Service_CloudBuild_TimeSpan
+   */
+  public function setTiming($timing)
+  {
+    $this->timing = $timing;
+  }
+  /**
+   * @return Google_Service_CloudBuild_TimeSpan
+   */
+  public function getTiming()
+  {
+    return $this->timing;
   }
 }

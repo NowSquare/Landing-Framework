@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Mailgun
+ * Copyright (C) 2013 Mailgun
  *
  * This software may be modified and distributed under the terms
  * of the MIT license. See the LICENSE file for details.
@@ -20,14 +20,14 @@ class Unsubscribe
     private $address;
 
     /**
-     * @var string
-     */
-    private $tag;
-
-    /**
      * @var \DateTime
      */
     private $createdAt;
+
+    /**
+     * @var array
+     */
+    private $tags = [];
 
     /**
      * @param string $address
@@ -47,8 +47,8 @@ class Unsubscribe
     {
         $unsubscribe = new self($data['address']);
 
-        if (isset($data['tag'])) {
-            $unsubscribe->setTag($data['tag']);
+        if (isset($data['tags'])) {
+            $unsubscribe->setTags($data['tags']);
         }
         if (isset($data['created_at'])) {
             $unsubscribe->setCreatedAt(new \DateTime($data['created_at']));
@@ -66,22 +66,6 @@ class Unsubscribe
     }
 
     /**
-     * @return string
-     */
-    public function getTag()
-    {
-        return $this->tag;
-    }
-
-    /**
-     * @param string $tag
-     */
-    private function setTag($tag)
-    {
-        $this->tag = $tag;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getCreatedAt()
@@ -95,5 +79,21 @@ class Unsubscribe
     private function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @param array $tags
+     */
+    private function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }

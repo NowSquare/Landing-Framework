@@ -24,6 +24,7 @@ class Google_Service_AdExchangeBuyerII_FilterSet extends Google_Collection
   public $dealId;
   public $environment;
   public $format;
+  public $formats;
   public $name;
   public $platforms;
   protected $realtimeTimeRangeType = 'Google_Service_AdExchangeBuyerII_RealtimeTimeRange';
@@ -78,6 +79,14 @@ class Google_Service_AdExchangeBuyerII_FilterSet extends Google_Collection
   public function getFormat()
   {
     return $this->format;
+  }
+  public function setFormats($formats)
+  {
+    $this->formats = $formats;
+  }
+  public function getFormats()
+  {
+    return $this->formats;
   }
   public function setName($name)
   {

@@ -13,9 +13,9 @@
 
     "require": {
         "php": ">=5.5.9",
-        "illuminate/support": "5.2 - 5.5",
-        "illuminate/database": "5.2 - 5.5",
-        "illuminate/events": "5.2 - 5.5"
+        "illuminate/support": "5.2 - 5.6",
+        "illuminate/database": "5.2 - 5.6",
+        "illuminate/events": "5.2 - 5.6"
     },
 
     "autoload": {
@@ -28,9 +28,18 @@
         "phpunit/phpunit": "4.8.*"
     },
 
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+
     "extra": {
         "branch-alias": {
             "dev-master": "v4.2.x-dev"
+        },
+
+        "laravel": {
+            "providers": [
+                "Kalnoy\\Nestedset\\NestedSetServiceProvider"
+            ]
         }
     }
 }

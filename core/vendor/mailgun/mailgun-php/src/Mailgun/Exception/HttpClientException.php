@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Mailgun
+ * Copyright (C) 2013 Mailgun
  *
  * This software may be modified and distributed under the terms
  * of the MIT license. See the LICENSE file for details.
@@ -28,6 +28,11 @@ final class HttpClientException extends \RuntimeException implements Exception
     private $responseBody;
 
     /**
+     * @var int
+     */
+    private $responseCode;
+
+    /**
      * @param string                 $message
      * @param int                    $code
      * @param ResponseInterface|null $response
@@ -38,8 +43,9 @@ final class HttpClientException extends \RuntimeException implements Exception
 
         if ($response) {
             $this->response = $response;
+            $this->responseCode = $response->getStatusCode();
             $body = $response->getBody()->__toString();
-            if (strpos($response->getHeaderLine('Content-Type'), 'application/json') !== 0) {
+            if (0 !== strpos($response->getHeaderLine('Content-Type'), 'application/json')) {
                 $this->responseBody['message'] = $body;
             } else {
                 $this->responseBody = json_decode($body, true);
@@ -64,7 +70,7 @@ final class HttpClientException extends \RuntimeException implements Exception
 
     public static function notFound(ResponseInterface $response = null)
     {
-        return new self('The endpoint you tried to access does not exist. Check your URL.', 404, $response);
+        return new self('The endpoint you have tried to access does not exist. Check if the domain matches the domain you have configure on Mailgun.', 404, $response);
     }
 
     /**
@@ -81,5 +87,13 @@ final class HttpClientException extends \RuntimeException implements Exception
     public function getResponseBody()
     {
         return $this->responseBody;
+    }
+
+    /**
+     * @return int
+     */
+    public function getResponseCode()
+    {
+        return $this->responseCode;
     }
 }

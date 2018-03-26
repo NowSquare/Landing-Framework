@@ -160,6 +160,24 @@ class VCardTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    public function testAddPhotoContentWithJpgPhoto()
+    {
+        $return = $this->vcard->addPhotoContent(file_get_contents(__DIR__ . '/image.jpg'));
+
+        $this->assertEquals($this->vcard, $return);
+    }
+
+    /**
+     * Test adding empty photo
+     *
+     * @expectedException Exception
+     * @expectedExceptionMessage Returned data is not an image.
+     */
+    public function testAddPhotoContentWithEmptyContent()
+    {
+        $this->vcard->addPhotoContent('');
+    }
+
     public function testAddLogoWithJpgImage()
     {
         $return = $this->vcard->addLogo(__DIR__ . '/image.jpg', true);
@@ -172,6 +190,24 @@ class VCardTest extends \PHPUnit_Framework_TestCase
         $return = $this->vcard->addLogo(__DIR__ . '/image.jpg', false);
 
         $this->assertEquals($this->vcard, $return);
+    }
+
+    public function testAddLogoContentWithJpgImage()
+    {
+        $return = $this->vcard->addLogoContent(file_get_contents(__DIR__ . '/image.jpg'));
+
+        $this->assertEquals($this->vcard, $return);
+    }
+
+    /**
+     * Test adding empty photo
+     *
+     * @expectedException Exception
+     * @expectedExceptionMessage Returned data is not an image.
+     */
+    public function testAddLogoContentWithEmptyContent()
+    {
+        $this->vcard->addLogoContent('');
     }
 
     public function testAddUrl()
@@ -389,5 +425,36 @@ class VCardTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals('garcon-jeroen', $this->vcard->getFilename());
+    }
+
+    /**
+     * Test multiple labels
+     */
+    public function testMultipleLabels()
+    {
+        $this->assertSame($this->vcard, $this->vcard->addLabel('My label'));
+        $this->assertSame($this->vcard, $this->vcard->addLabel('My work label', 'WORK'));
+        $this->assertSame(2, count($this->vcard->getProperties()));
+        $this->assertContains('LABEL:My label', $this->vcard->getOutput());
+        $this->assertContains('LABEL;WORK:My work label', $this->vcard->getOutput());
+    }
+
+    public function testChunkSplitUnicode()
+    {
+        $class_handler  = new \ReflectionClass('JeroenDesloovere\VCard\VCard');
+        $method_handler = $class_handler->getMethod('chunk_split_unicode');
+        $method_handler->setAccessible(true);
+
+        $ascii_input="Lorem ipsum dolor sit amet,";
+        $ascii_output = $method_handler->invokeArgs(new VCard(), [$ascii_input,10,'|']);
+        $unicode_input='Τη γλώσσα μου έδωσαν ελληνική το σπίτι φτωχικό στις αμμουδιές του Ομήρου.';
+        $unicode_output = $method_handler->invokeArgs(new VCard(), [$unicode_input,10,'|']);
+
+        $this->assertEquals(
+            "Lorem ipsu|m dolor si|t amet,|",
+            $ascii_output);
+        $this->assertEquals(
+            "Τη γλώσσα |μου έδωσαν| ελληνική |το σπίτι φ|τωχικό στι|ς αμμουδιέ|ς του Ομήρ|ου.|",
+            $unicode_output);
     }
 }

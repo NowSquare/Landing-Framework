@@ -30,15 +30,18 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentSessions extends Google_Se
    * (sessions.deleteContexts)
    *
    * @param string $parent Required. The name of the session to delete all
-   * contexts from. Format: `projects//agent/sessions/`.
+   * contexts from. Format: `projects//agent/sessions/` or
+   * `projects//agent/runtimes//sessions/`. Note: Runtimes are under construction
+   * and will be available soon. If  is not specified we assume default 'sandbox'
+   * runtime.
    * @param array $optParams Optional parameters.
-   * @return Google_Service_Dialogflow_DialogflowEmpty
+   * @return Google_Service_Dialogflow_GoogleProtobufEmpty
    */
   public function deleteContexts($parent, $optParams = array())
   {
     $params = array('parent' => $parent);
     $params = array_merge($params, $optParams);
-    return $this->call('deleteContexts', array($params), "Google_Service_Dialogflow_DialogflowEmpty");
+    return $this->call('deleteContexts', array($params), "Google_Service_Dialogflow_GoogleProtobufEmpty");
   }
   /**
    * Processes a natural language query and returns structured, actionable data as
@@ -47,18 +50,20 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentSessions extends Google_Se
    * future queries. (sessions.detectIntent)
    *
    * @param string $session Required. The name of the session this query is sent
-   * to. Format: `projects//agent/sessions/`. It's up to the API caller to choose
-   * an appropriate session ID. It can be a random number or some type of user
-   * identifier (preferably hashed). The length of the session ID must not exceed
-   * 36 bytes.
-   * @param Google_Service_Dialogflow_DetectIntentRequest $postBody
+   * to. Format: `projects//agent/sessions/`, or
+   * `projects//agent/runtimes//sessions/`. Note: Runtimes are under construction
+   * and will be available soon. If  is not specified, we assume default 'sandbox'
+   * runtime. It's up to the API caller to choose an appropriate session ID. It
+   * can be a random number or some type of user identifier (preferably hashed).
+   * The length of the session ID must not exceed 36 bytes.
+   * @param Google_Service_Dialogflow_GoogleCloudDialogflowV2DetectIntentRequest $postBody
    * @param array $optParams Optional parameters.
-   * @return Google_Service_Dialogflow_DetectIntentResponse
+   * @return Google_Service_Dialogflow_GoogleCloudDialogflowV2DetectIntentResponse
    */
-  public function detectIntent($session, Google_Service_Dialogflow_DetectIntentRequest $postBody, $optParams = array())
+  public function detectIntent($session, Google_Service_Dialogflow_GoogleCloudDialogflowV2DetectIntentRequest $postBody, $optParams = array())
   {
     $params = array('session' => $session, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
-    return $this->call('detectIntent', array($params), "Google_Service_Dialogflow_DetectIntentResponse");
+    return $this->call('detectIntent', array($params), "Google_Service_Dialogflow_GoogleCloudDialogflowV2DetectIntentResponse");
   }
 }

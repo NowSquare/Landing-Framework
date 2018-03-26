@@ -22,6 +22,8 @@ class Google_Service_Compute_Disk extends Google_Collection
   public $description;
   protected $diskEncryptionKeyType = 'Google_Service_Compute_CustomerEncryptionKey';
   protected $diskEncryptionKeyDataType = '';
+  protected $guestOsFeaturesType = 'Google_Service_Compute_GuestOsFeature';
+  protected $guestOsFeaturesDataType = 'array';
   public $id;
   public $kind;
   public $labelFingerprint;
@@ -75,6 +77,20 @@ class Google_Service_Compute_Disk extends Google_Collection
   public function getDiskEncryptionKey()
   {
     return $this->diskEncryptionKey;
+  }
+  /**
+   * @param Google_Service_Compute_GuestOsFeature
+   */
+  public function setGuestOsFeatures($guestOsFeatures)
+  {
+    $this->guestOsFeatures = $guestOsFeatures;
+  }
+  /**
+   * @return Google_Service_Compute_GuestOsFeature
+   */
+  public function getGuestOsFeatures()
+  {
+    return $this->guestOsFeatures;
   }
   public function setId($id)
   {

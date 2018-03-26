@@ -5,6 +5,14 @@ namespace Stripe;
 /**
  * Class SubscriptionItem
  *
+ * @property string $id
+ * @property string $object
+ * @property int $created
+ * @property AttachedObject $metadata
+ * @property Plan $plan
+ * @property int $quantity
+ * @property string $subscription
+ *
  * @package Stripe
  */
 class SubscriptionItem extends ApiResource

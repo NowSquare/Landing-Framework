@@ -97,8 +97,8 @@ interface Calculator
     /**
      * Round number, use rounding mode for tie-breaker.
      *
-     * @param string $number
-     * @param int    $roundingMode
+     * @param int|float|string $number
+     * @param int              $roundingMode
      *
      * @return string
      */
@@ -114,4 +114,14 @@ interface Calculator
      * @return string
      */
     public function share($amount, $ratio, $total);
+
+    /**
+     * Get the modulus of an amount.
+     *
+     * @param string           $amount
+     * @param int|float|string $divisor
+     *
+     * @return string
+     */
+    public function mod($amount, $divisor);
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (C) 2013-2016 Mailgun
+ * Copyright (C) 2013 Mailgun
  *
  * This software may be modified and distributed under the terms
  * of the MIT license. See the LICENSE file for details.
@@ -20,6 +20,7 @@ use Mailgun\Model\Domain\IndexResponse;
 use Mailgun\Model\Domain\ShowResponse;
 use Mailgun\Model\Domain\UpdateConnectionResponse;
 use Mailgun\Model\Domain\UpdateCredentialResponse;
+use Mailgun\Model\Domain\VerifyResponse;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -73,6 +74,8 @@ class Domain extends HttpApi
      * See below for spam filtering parameter information.
      * {@link https://documentation.mailgun.com/user_manual.html#um-spam-filter}.
      *
+     * @see https://documentation.mailgun.com/en/latest/api-domains.html#domains
+     *
      * @param string $domain     Name of the domain.
      * @param string $smtpPass   Password for SMTP authentication.
      * @param string $spamAction `disable` or `tag` - inbound spam filtering.
@@ -80,20 +83,21 @@ class Domain extends HttpApi
      *
      * @return CreateResponse|array|ResponseInterface
      */
-    public function create($domain, $smtpPass, $spamAction, $wildcard)
+    public function create($domain, $smtpPass = null, $spamAction = null, $wildcard = null)
     {
         Assert::stringNotEmpty($domain);
-        Assert::stringNotEmpty($smtpPass);
-        // TODO(sean.johnson): Extended spam filter input validation.
-        Assert::stringNotEmpty($spamAction);
-        Assert::boolean($wildcard);
 
-        $params = [
-            'name' => $domain,
-            'smtp_password' => $smtpPass,
-            'spam_action' => $spamAction,
-            'wildcard' => $wildcard,
-        ];
+        $params['name'] = $domain;
+
+        // If at least smtpPass available, check for the fields spamAction wildcard
+        if (!empty($smtpPass)) {
+            // TODO(sean.johnson): Extended spam filter input validation.
+            Assert::stringNotEmpty($spamAction);
+            Assert::boolean($wildcard);
+
+            $params['smtp_password'] = $smtpPass;
+            $params['spam_action'] = $spamAction;
+        }
 
         $response = $this->httpPost('/v3/domains', $params);
 
@@ -262,5 +266,21 @@ class Domain extends HttpApi
         $response = $this->httpPut(sprintf('/v3/domains/%s/connection', $domain), $params);
 
         return $this->hydrateResponse($response, UpdateConnectionResponse::class);
+    }
+
+    /**
+     * Returns a single domain.
+     *
+     * @param string $domain Name of the domain.
+     *
+     * @return VerifyResponse|array|ResponseInterface
+     */
+    public function verify($domain)
+    {
+        Assert::stringNotEmpty($domain);
+
+        $response = $this->httpPut(sprintf('/v3/domains/%s/verify', $domain));
+
+        return $this->hydrateResponse($response, VerifyResponse::class);
     }
 }

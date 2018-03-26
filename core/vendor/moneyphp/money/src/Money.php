@@ -14,12 +14,19 @@ use Money\Calculator\PhpCalculator;
 final class Money implements \JsonSerializable
 {
     const ROUND_HALF_UP = PHP_ROUND_HALF_UP;
+
     const ROUND_HALF_DOWN = PHP_ROUND_HALF_DOWN;
+
     const ROUND_HALF_EVEN = PHP_ROUND_HALF_EVEN;
+
     const ROUND_HALF_ODD = PHP_ROUND_HALF_ODD;
+
     const ROUND_UP = 5;
+
     const ROUND_DOWN = 6;
+
     const ROUND_HALF_POSITIVE_INFINITY = 7;
+
     const ROUND_HALF_NEGATIVE_INFINITY = 8;
 
     /**
@@ -306,10 +313,6 @@ final class Money implements \JsonSerializable
         $this->assertOperand($multiplier);
         $this->assertRoundingMode($roundingMode);
 
-        if (is_float($multiplier)) {
-            $multiplier = (string) Number::fromFloat($multiplier);
-        }
-
         $product = $this->round($this->getCalculator()->multiply($this->amount, $multiplier), $roundingMode);
 
         return $this->newInstance($product);
@@ -329,17 +332,31 @@ final class Money implements \JsonSerializable
         $this->assertOperand($divisor);
         $this->assertRoundingMode($roundingMode);
 
-        if (is_float($divisor)) {
-            $divisor = (string) Number::fromFloat($divisor);
-        }
+        $divisor = (string) Number::fromNumber($divisor);
 
-        if ($this->getCalculator()->compare((string) $divisor, '0') === 0) {
+        if ($this->getCalculator()->compare($divisor, '0') === 0) {
             throw new \InvalidArgumentException('Division by zero');
         }
 
         $quotient = $this->round($this->getCalculator()->divide($this->amount, $divisor), $roundingMode);
 
         return $this->newInstance($quotient);
+    }
+
+    /**
+     * Returns a new Money object that represents
+     * the remainder after dividing the value by
+     * the given factor.
+     *
+     * @param Money $divisor
+     *
+     * @return Money
+     */
+    public function mod(Money $divisor)
+    {
+        $this->assertSameCurrency($divisor);
+
+        return new self($this->getCalculator()->mod($this->amount, $divisor->amount), $this->currency);
     }
 
     /**
@@ -374,6 +391,10 @@ final class Money implements \JsonSerializable
         }
 
         for ($i = 0; $this->getCalculator()->compare($remainder, 0) === 1; ++$i) {
+            if (!$ratios[$i]) {
+                continue;
+            }
+
             $results[$i]->amount = (string) $this->getCalculator()->add($results[$i]->amount, 1);
             $remainder = $this->getCalculator()->subtract($remainder, 1);
         }
@@ -404,8 +425,22 @@ final class Money implements \JsonSerializable
     }
 
     /**
-     * @param int|float $amount
-     * @param $rounding_mode
+     * @param Money $money
+     *
+     * @return string
+     */
+    public function ratioOf(Money $money)
+    {
+        if ($money->isZero()) {
+            throw new \InvalidArgumentException('Cannot calculate a ratio of zero');
+        }
+
+        return $this->getCalculator()->divide($this->amount, $money->amount);
+    }
+
+    /**
+     * @param string $amount
+     * @param int    $rounding_mode
      *
      * @return string
      */

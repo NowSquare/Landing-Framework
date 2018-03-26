@@ -17,11 +17,27 @@
 
 class Google_Service_Sheets_BasicChartSeries extends Google_Model
 {
+  protected $lineStyleType = 'Google_Service_Sheets_LineStyle';
+  protected $lineStyleDataType = '';
   protected $seriesType = 'Google_Service_Sheets_ChartData';
   protected $seriesDataType = '';
   public $targetAxis;
   public $type;
 
+  /**
+   * @param Google_Service_Sheets_LineStyle
+   */
+  public function setLineStyle(Google_Service_Sheets_LineStyle $lineStyle)
+  {
+    $this->lineStyle = $lineStyle;
+  }
+  /**
+   * @return Google_Service_Sheets_LineStyle
+   */
+  public function getLineStyle()
+  {
+    return $this->lineStyle;
+  }
   /**
    * @param Google_Service_Sheets_ChartData
    */

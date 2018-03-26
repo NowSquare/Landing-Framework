@@ -44,7 +44,7 @@ class Google_Service_ManufacturerCenter extends Google_Service
   public function __construct(Google_Client $client)
   {
     parent::__construct($client);
-    $this->rootUrl = 'https://manufacturers.googleapis.com/';
+    $this->rootUrl = 'https://content-manufacturers.googleapis.com/';
     $this->servicePath = '';
     $this->version = 'v1';
     $this->serviceName = 'manufacturers';

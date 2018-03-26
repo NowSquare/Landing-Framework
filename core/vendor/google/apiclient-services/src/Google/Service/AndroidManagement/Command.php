@@ -23,6 +23,7 @@ class Google_Service_AndroidManagement_Command extends Google_Collection
   public $newPassword;
   public $resetPasswordFlags;
   public $type;
+  public $userName;
 
   public function setCreateTime($createTime)
   {
@@ -63,5 +64,13 @@ class Google_Service_AndroidManagement_Command extends Google_Collection
   public function getType()
   {
     return $this->type;
+  }
+  public function setUserName($userName)
+  {
+    $this->userName = $userName;
+  }
+  public function getUserName()
+  {
+    return $this->userName;
   }
 }

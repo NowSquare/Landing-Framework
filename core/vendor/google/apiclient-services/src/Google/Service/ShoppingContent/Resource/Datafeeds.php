@@ -92,7 +92,7 @@ class Google_Service_ShoppingContent_Resource_Datafeeds extends Google_Service_R
     return $this->call('insert', array($params), "Google_Service_ShoppingContent_Datafeed");
   }
   /**
-   * Lists the datafeeds in your Merchant Center account.
+   * Lists the configurations for datafeeds in your Merchant Center account.
    * (datafeeds.listDatafeeds)
    *
    * @param string $merchantId The ID of the account that manages the datafeeds.

@@ -45,7 +45,7 @@ final class Converter
         $counterCurrencySubunit = $this->currencies->subunitFor($counterCurrency);
         $subunitDifference = $baseCurrencySubunit - $counterCurrencySubunit;
 
-        $ratio = $ratio / pow(10, $subunitDifference);
+        $ratio = (string) Number::fromFloat($ratio)->base10($subunitDifference);
 
         $counterValue = $money->multiply($ratio, $roundingMode);
 

@@ -45,6 +45,12 @@ abstract class Embed
         'soundcloud' => [
             'key' => null,
         ],
+
+        'facebook' => [
+            'key' => null,
+            'events_fields' => 'id,cover,description,end_time,name,owner,place,start_time,timezone',
+            'videos_fields' => 'id,description,embed_html',
+        ]
     ];
 
     /**
@@ -131,7 +137,7 @@ abstract class Embed
         if ($adapter::check($response)) {
             return new $adapter($response, $config, $dispatcher);
         }
-        
+
         if ($response->getError() === null) {
             $exception = new Exceptions\InvalidUrlException(sprintf("Invalid url '%s' (Status code %s)", (string) $url, $response->getStatusCode()));
         } else {

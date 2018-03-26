@@ -46,6 +46,10 @@ class Google_Service_Compute_Image extends Google_Collection
   protected $sourceImageEncryptionKeyType = 'Google_Service_Compute_CustomerEncryptionKey';
   protected $sourceImageEncryptionKeyDataType = '';
   public $sourceImageId;
+  public $sourceSnapshot;
+  protected $sourceSnapshotEncryptionKeyType = 'Google_Service_Compute_CustomerEncryptionKey';
+  protected $sourceSnapshotEncryptionKeyDataType = '';
+  public $sourceSnapshotId;
   public $sourceType;
   public $status;
 
@@ -260,6 +264,36 @@ class Google_Service_Compute_Image extends Google_Collection
   public function getSourceImageId()
   {
     return $this->sourceImageId;
+  }
+  public function setSourceSnapshot($sourceSnapshot)
+  {
+    $this->sourceSnapshot = $sourceSnapshot;
+  }
+  public function getSourceSnapshot()
+  {
+    return $this->sourceSnapshot;
+  }
+  /**
+   * @param Google_Service_Compute_CustomerEncryptionKey
+   */
+  public function setSourceSnapshotEncryptionKey(Google_Service_Compute_CustomerEncryptionKey $sourceSnapshotEncryptionKey)
+  {
+    $this->sourceSnapshotEncryptionKey = $sourceSnapshotEncryptionKey;
+  }
+  /**
+   * @return Google_Service_Compute_CustomerEncryptionKey
+   */
+  public function getSourceSnapshotEncryptionKey()
+  {
+    return $this->sourceSnapshotEncryptionKey;
+  }
+  public function setSourceSnapshotId($sourceSnapshotId)
+  {
+    $this->sourceSnapshotId = $sourceSnapshotId;
+  }
+  public function getSourceSnapshotId()
+  {
+    return $this->sourceSnapshotId;
   }
   public function setSourceType($sourceType)
   {

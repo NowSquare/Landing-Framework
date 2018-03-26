@@ -46,7 +46,8 @@ class VCard
         'email',
         'address',
         'phoneNumber',
-        'url'
+        'url',
+        'label'
     ];
 
     /**
@@ -180,6 +181,25 @@ class VCard
     }
 
     /**
+     * Add a label
+     *
+     * @param string $label
+     * @param string $type
+     *
+     * @return $this
+     */
+    public function addLabel($label, $type = '')
+    {
+        $this->setProperty(
+            'label',
+            'LABEL' . ($type !== '' ? ';' . $type : ''),
+            $label
+        );
+
+        return $this;
+    }
+
+    /**
      * Add role
      *
      * @param  string $role The role for the person.
@@ -214,6 +234,9 @@ class VCard
 
             if (array_key_exists('Content-Type', $headers)) {
                 $mimeType = $headers['Content-Type'];
+                if (is_array($mimeType)) {
+                    $mimeType = end($mimeType);
+                }
             }
         } else {
             //Local file, so inspect it directly
@@ -252,6 +275,36 @@ class VCard
             $element,
             $property,
             $value
+        );
+    }
+
+    /**
+     * Add a photo or logo (depending on property name)
+     *
+     * @param string $property LOGO|PHOTO
+     * @param string $content image content
+     * @param string $element The name of the element to set
+     */
+    private function addMediaContent($property, $content, $element)
+    {
+        $finfo = new \finfo();
+        $mimeType = $finfo->buffer($content, FILEINFO_MIME_TYPE);
+
+        if (strpos($mimeType, ';') !== false) {
+            $mimeType = strstr($mimeType, ';', true);
+        }
+        if (!is_string($mimeType) || substr($mimeType, 0, 6) !== 'image/') {
+            throw VCardException::invalidImage();
+        }
+        $fileType = strtoupper(substr($mimeType, 6));
+
+        $content = base64_encode($content);
+        $property .= ";ENCODING=b;TYPE=" . $fileType;
+
+        $this->setProperty(
+            $element,
+            $property,
+            $content
         );
     }
 
@@ -380,6 +433,23 @@ class VCard
     }
 
     /**
+     * Add Logo content
+     *
+     * @param  string $content image content
+     * @return $this
+     */
+    public function addLogoContent($content)
+    {
+        $this->addMediaContent(
+            'LOGO',
+            $content,
+            'logo'
+        );
+
+        return $this;
+    }
+
+    /**
      * Add Photo
      *
      * @param  string $url image url or filename
@@ -392,6 +462,23 @@ class VCard
             'PHOTO',
             $url,
             $include,
+            'photo'
+        );
+
+        return $this;
+    }
+
+    /**
+     * Add Photo content
+     *
+     * @param  string $content image content
+     * @return $this
+     */
+    public function addPhotoContent($content)
+    {
+        $this->addMediaContent(
+            'PHOTO',
+            $content,
             'photo'
         );
 
@@ -541,7 +628,27 @@ class VCard
         }
 
         // split, wrap and trim trailing separator
-        return substr(chunk_split($text, 73, "\r\n "), 0, -3);
+        return substr($this->chunk_split_unicode($text, 73, "\r\n "), 0, -3);
+    }
+
+    /**
+     * multibyte word chunk split
+     * @link http://php.net/manual/en/function.chunk-split.php#107711
+     * 
+     * @param  string  $body     The string to be chunked.
+     * @param  integer $chunklen The chunk length.
+     * @param  string  $end      The line ending sequence.
+     * @return string            Chunked string
+     */
+    protected function chunk_split_unicode($body, $chunklen = 76, $end = "\r\n")
+    {
+        $array = array_chunk(
+            preg_split("//u", $body, -1, PREG_SPLIT_NO_EMPTY), $chunklen);
+        $body = "";
+        foreach ($array as $item) {
+            $body .= join("", $item) . $end;
+        }
+        return $body;
     }
 
     /**
@@ -587,12 +694,7 @@ class VCard
      */
     public function getCharsetString()
     {
-        $charsetString = '';
-        if ($this->charset == 'utf-8') {
-            $charsetString = ';CHARSET=' . $this->charset;
-        }
-
-        return $charsetString;
+        return ';CHARSET=' . $this->charset;
     }
 
     /**

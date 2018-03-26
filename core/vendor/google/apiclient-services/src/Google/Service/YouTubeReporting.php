@@ -158,6 +158,10 @@ class Google_Service_YouTubeReporting extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'onBehalfOfContentOwner' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'startTimeBefore' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -177,10 +181,6 @@ class Google_Service_YouTubeReporting extends Google_Service
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
-                ),
-                'onBehalfOfContentOwner' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),
