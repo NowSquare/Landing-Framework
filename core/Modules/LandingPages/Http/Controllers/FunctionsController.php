@@ -163,6 +163,13 @@ class FunctionsController extends Controller
       "name" => trans('landingpages::global.company_pages'),
       "desc" => trans('landingpages::global.company_pages_desc')
     ];
+
+    $items[] = [
+      "icon" => 'ticket.svg',
+      "category" => 'deals',
+      "name" => trans('landingpages::global.deals'),
+      "desc" => trans('landingpages::global.deals_desc')
+    ];
 /*
     $items[] = [
       "icon" => 'chefavatar-food-grocery-kitchen-restaurant-drink.svg',

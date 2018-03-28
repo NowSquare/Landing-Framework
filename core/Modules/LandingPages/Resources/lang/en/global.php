@@ -32,8 +32,8 @@ return array(
   "company_pages_desc" => "Agency and business pages.",
   "other" => "Other",
   "other_desc" => "Various uncategorized templates.",
-  "" => "",
-  "" => "",
+  "deals" => "Deals",
+  "deals_desc" => "Deals and coupons.",
 
 	"create_landing_page" => "Create Landing Page",
 	"custom_domain" => "Custom domain",
