@@ -2,8 +2,10 @@
 
 @section('content')
 <div class="wrapper-page">
-  <div class="text-center"> <a href="{{ url('/') }}" class="logo logo-lg"><img src="{{ \Platform\Controllers\Core\Reseller::get()->logo_square }}" style="height: 128px; margin: 2rem" alt="{{ \Platform\Controllers\Core\Reseller::get()->name }}"></a> </div>
-  <form class="form-horizontal m-t-20" role="form" method="POST" action="{{ url('/login') }}">
+  <div class="text-center">
+    <a href="{{ url('/') }}" class="logo logo-lg"><img src="{{ \Platform\Controllers\Core\Reseller::get()->logo_square }}" style="height: 128px; margin: 2rem" alt="{{ \Platform\Controllers\Core\Reseller::get()->name }}"></a>
+  </div>
+  <form class="form-horizontal m-t-20 mdl-shadow--2dp" role="form" method="POST" action="{{ url('/login') }}" style="background-color: rgba(255,255,255,1); padding: 3rem">
     {{ csrf_field() }}
 <?php
 $email = (old('email') != '') ? old('email') : '';
@@ -41,7 +43,7 @@ if(config('app.demo'))
         <button class="btn btn-primary btn-custom w-md waves-effect waves-light" type="submit">{{ trans('global.log_in') }}</button>
       </div>
     </div>
-    <div class="form-group m-t-30">
+    <div class="form-group m-t-30" style="margin-bottom: 0">
       <div class="col-sm-7"> <a href="{{ url('/password/reset') }}" class="text-muted"><i class="fa fa-lock m-r-5"></i> {{ trans('global.forgot_password') }}</a> </div>
 <?php if (\Config::get('auth.allow_registration', true)) { ?>
       <div class="col-sm-5 text-right"> <a href="{{ url('/register') }}" class="text-muted">{{ trans('global.create_account') }}</a> </div>
