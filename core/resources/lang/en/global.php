@@ -80,6 +80,7 @@ return array(
   "not_published" => "Not published",
   "optional" => "Optional",
   "custom" => "Custom",
+  "session_expired" => "Your session expired. Please try again.",
 
   /*
    |--------------------------------------------------------------------------

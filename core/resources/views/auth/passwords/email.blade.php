@@ -7,6 +7,15 @@
     <a href="{{ url('/') }}" class="logo logo-lg"><img src="{{ \Platform\Controllers\Core\Reseller::get()->logo_square }}" style="height: 128px; margin: 2rem" alt="{{ \Platform\Controllers\Core\Reseller::get()->name }}"></a>
   </div>
   <form class="text-center m-t-20 mdl-shadow--2dp" role="form" method="POST" action="{{ url('/password/email') }}" style="background-color: rgba(255,255,255,1); padding: 3rem">
+    @if(session()->has('error'))
+    <div class="form-group">
+      <div class="col-xs-12">
+          <div class="alert alert-danger rounded-0" style="margin-bottom: 0">
+              {{ session()->get('error') }}
+          </div>
+      </div>
+    </div>
+    @endif
     {{ csrf_field() }}
     
     @if (session('status'))
