@@ -97,7 +97,7 @@ function lfInitText() {
           var plugins = 'advlist autolink lists link image anchor media contextmenu paste colorpicker textcolor';
           break;
         default: 
-          var toolbar = 'undo redo | bold italic link | fontselect fontsizeselect styleselect | image | bullist | forecolor';
+          var toolbar = 'undo redo | bold italic link | fontselect fontsizeselect styleselect | image | bullist | forecolor | table';
           var plugins = 'advlist autolink lists link image anchor code media table contextmenu paste colorpicker textcolor';
       }
 
