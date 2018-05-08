@@ -220,7 +220,7 @@ foreach($email_campaign->emails as $email) {
   $('#frame{{ $i }}').on('load', function() {
     resizeEditFrame();
     unblockUI('#container{{ $i }}');
-<?php if ($i == count($email)) { ?>
+<?php if ($i == count($email_campaign->emails)) { ?>
     setTimeout(function() {
       $grid.masonry('reloadItems').masonry();
     }, 200);
