@@ -146,7 +146,7 @@ class EmailsController extends Controller
           pq('head')->find('script[src]:first')->before(PHP_EOL . '<script>var sl_e = "' . $sl . '";</script>');
 */
           // Beautify html
-          $html = Core\Parser::beautifyHtml($dom);
+          $html = Core\Parser::beautifyHtml($dom, true);
 
           return response($html, 200);
 
