@@ -359,7 +359,7 @@ class Eddystone extends Controller
       //$anyOfDaysOfWeek = [1,2,3,4,5,6,7];
 
       $data = base64_encode(json_encode([
-        'title' => substr($title, 0, 40), 
+        'title' => $title, 
         'url' => $url, 
         'targeting' => [[
           'anyOfDaysOfWeek' => $days_of_week,
