@@ -13,31 +13,42 @@ class UserEventSubscriber {
    * Handle user login events.
    */
   public function onUserLogin($event) {
-    // Check if user active
-    if ($event->user->role != 'member' && $event->user->logins > 0 && $event->user->active == 0) {
-      \Auth::guard('web')->logout();
+    // Check if owner logs in
+    $is_owner = false;
+    $sl = \Session::get('logout', '');
+
+    if($sl != '') {
+      $qs = Core\Secure::string2array($sl);
+      $is_owner = (is_numeric($qs['user_id'])) ? true : false;
     }
 
-    // Check if reseller is active
-    $reseller = \App\Reseller::where('id', $event->user->reseller_id)->where('active', 1)->first();
-    if (empty($reseller)) {
-      \Auth::guard('web')->logout();
-    } 
+    if (! $is_owner) {
+      // Check if user active
+      if ($event->user->role != 'member' && $event->user->logins > 0 && $event->user->active == 0) {
+        \Auth::guard('web')->logout();
+      }
 
-    // Check if member active
-    if ($event->user->role == 'member' && $event->user->active == 0) {
-      \Auth::guard('member')->logout();
-    }
+      // Check if reseller is active
+      $reseller = \App\Reseller::where('id', $event->user->reseller_id)->where('active', 1)->first();
+      if (empty($reseller)) {
+        \Auth::guard('web')->logout();
+      } 
 
-    // Update user
-    $event->user->logins = $event->user->logins + 1;
-    $event->user->last_ip =  Helper\Client::ip();
-    $event->user->last_login = Carbon::now();
-    $event->user->save();
+      // Check if member active
+      if ($event->user->role == 'member' && $event->user->active == 0) {
+        \Auth::guard('member')->logout();
+      }
 
-    // Run job when system owner logs in
-    if ($event->user->id == 1) {
-      dispatch(new \App\Jobs\OwnerLogin());
+      // Update user
+      $event->user->logins = $event->user->logins + 1;
+      $event->user->last_ip =  Helper\Client::ip();
+      $event->user->last_login = Carbon::now();
+      $event->user->save();
+
+      // Run job when system owner logs in
+      if ($event->user->id == 1) {
+        dispatch(new \App\Jobs\OwnerLogin());
+      }
     }
   }
 
