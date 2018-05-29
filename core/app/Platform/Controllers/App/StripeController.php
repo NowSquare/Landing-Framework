@@ -188,30 +188,33 @@ class StripeController extends \App\Http\Controllers\Controller {
     if ($event_json->type == 'customer.subscription.updated') {
       $customer_stripe_id = $event_json->data->object->customer;
       $remote_product_id = $event_json->data->object->plan->id;
+      $status = $event_json->data->object->status;
 
-      // Find matching user
-      $user = \App\User::where('stripe_id', $customer_stripe_id)->first();
+      if ($status != 'canceled' && $status != 'unpaid') {
+        // Find matching user
+        $user = \App\User::where('stripe_id', $customer_stripe_id)->first();
 
-      // Find matching plan
-      $plan = \App\Plan::where('monthly_remote_product_id', $remote_product_id)->orWhere('annual_remote_product_id', $remote_product_id)->first();
+        // Find matching plan
+        $plan = \App\Plan::where('monthly_remote_product_id', $remote_product_id)->orWhere('annual_remote_product_id', $remote_product_id)->first();
 
-      if (! empty($user) && ! empty($plan)) {
+        if (! empty($user) && ! empty($plan)) {
 
-        $expires = Carbon::now()->addMonths(1);
+          $expires = Carbon::now()->addMonths(1);
 
-        if (isset($event_json->data->object->plan->interval)) {
-          $interval_count = (isset($event_json->data->object->plan->interval_count)) ? $event_json->data->object->plan->interval_count : 1;
-          switch ($event_json->data->object->plan->interval) {
-            case 'month': $expires = Carbon::now()->addMonths($interval_count); break;
-            case 'year': $expires = Carbon::now()->addYears($interval_count); break;
+          if (isset($event_json->data->object->plan->interval)) {
+            $interval_count = (isset($event_json->data->object->plan->interval_count)) ? $event_json->data->object->plan->interval_count : 1;
+            switch ($event_json->data->object->plan->interval) {
+              case 'month': $expires = Carbon::now()->addMonths($interval_count); break;
+              case 'year': $expires = Carbon::now()->addYears($interval_count); break;
+            }
           }
-        }
 
-        $user->trial_ends_reminders_sent = 0;
-        $user->expires_reminders_sent = 0;
-        $user->plan_id = $plan->id;
-        $user->expires = $expires;
-        $user->save();
+          $user->trial_ends_reminders_sent = 0;
+          $user->expires_reminders_sent = 0;
+          $user->plan_id = $plan->id;
+          $user->expires = $expires;
+          $user->save();
+        }
       }
     }
 
