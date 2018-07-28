@@ -3,7 +3,7 @@
     <div class="content-overlay -x-block-bg-color" style="background-color:rgba(255,255,255,1)">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 push-md-6">
+          <div class="col-md-6 push-md-6 order-lg-1">
             <img src="/templates/assets/images/visuals/iPhone-6S---isometric-view-right.png" alt="" class="img-fluid -x-img">
           </div>
           <div class="col-md-6 pull-md-6 text-center text-md-right">
