@@ -19,6 +19,8 @@ class Google_Service_AndroidPublisher_SubscriptionPurchase extends Google_Model
 {
   public $autoRenewing;
   public $cancelReason;
+  protected $cancelSurveyResultType = 'Google_Service_AndroidPublisher_SubscriptionCancelSurveyResult';
+  protected $cancelSurveyResultDataType = '';
   public $countryCode;
   public $developerPayload;
   public $emailAddress;
@@ -52,6 +54,20 @@ class Google_Service_AndroidPublisher_SubscriptionPurchase extends Google_Model
   public function getCancelReason()
   {
     return $this->cancelReason;
+  }
+  /**
+   * @param Google_Service_AndroidPublisher_SubscriptionCancelSurveyResult
+   */
+  public function setCancelSurveyResult(Google_Service_AndroidPublisher_SubscriptionCancelSurveyResult $cancelSurveyResult)
+  {
+    $this->cancelSurveyResult = $cancelSurveyResult;
+  }
+  /**
+   * @return Google_Service_AndroidPublisher_SubscriptionCancelSurveyResult
+   */
+  public function getCancelSurveyResult()
+  {
+    return $this->cancelSurveyResult;
   }
   public function setCountryCode($countryCode)
   {

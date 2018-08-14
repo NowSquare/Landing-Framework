@@ -36,17 +36,6 @@ class Google_Service_PeopleService_Resource_PeopleConnections extends Google_Ser
    * `people/me` is valid.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string personFields **Required.** A field mask to restrict which
-   * fields on each person are returned. Multiple fields can be specified by
-   * separating them with commas. Valid values are:
-   *
-   * * addresses * ageRanges * biographies * birthdays * braggingRights *
-   * coverPhotos * emailAddresses * events * genders * imClients * interests *
-   * locales * memberships * metadata * names * nicknames * occupations *
-   * organizations * phoneNumbers * photos * relations * relationshipInterests *
-   * relationshipStatuses * residences * skills * taglines * urls
-   * @opt_param string sortOrder The order in which the connections should be
-   * sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
    * @opt_param bool requestSyncToken Whether the response should include a sync
    * token, which can be used to get all changes since the last request. For
    * subsequent sync requests use the `sync_token` param instead. Initial sync
@@ -61,6 +50,18 @@ class Google_Service_PeopleService_Resource_PeopleConnections extends Google_Ser
    * `people.connections.list`. Only resources changed since the sync token was
    * created will be returned. Sync requests that specify `sync_token` have an
    * additional rate limit.
+   * @opt_param string personFields **Required.** A field mask to restrict which
+   * fields on each person are returned. Multiple fields can be specified by
+   * separating them with commas. Valid values are:
+   *
+   * * addresses * ageRanges * biographies * birthdays * braggingRights *
+   * coverPhotos * emailAddresses * events * genders * imClients * interests *
+   * locales * memberships * metadata * names * nicknames * occupations *
+   * organizations * phoneNumbers * photos * relations * relationshipInterests *
+   * relationshipStatuses * residences * sipAddresses * skills * taglines * urls *
+   * userDefined
+   * @opt_param string sortOrder The order in which the connections should be
+   * sorted. Defaults to `LAST_MODIFIED_ASCENDING`.
    * @return Google_Service_PeopleService_ListConnectionsResponse
    */
   public function listPeopleConnections($resourceName, $optParams = array())

@@ -73,9 +73,9 @@ class Google_Service_TPU_Resource_ProjectsLocationsNodes extends Google_Service_
    * @param string $parent The parent resource name.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param int pageSize The maximum number of items to return.
    * @opt_param string pageToken The next_page_token value returned from a
    * previous List request, if any.
-   * @opt_param int pageSize The maximum number of items to return.
    * @return Google_Service_TPU_ListNodesResponse
    */
   public function listProjectsLocationsNodes($parent, $optParams = array())

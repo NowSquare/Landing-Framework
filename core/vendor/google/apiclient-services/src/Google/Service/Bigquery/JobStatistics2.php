@@ -29,6 +29,8 @@ class Google_Service_Bigquery_JobStatistics2 extends Google_Collection
   protected $queryPlanDataType = 'array';
   protected $referencedTablesType = 'Google_Service_Bigquery_TableReference';
   protected $referencedTablesDataType = 'array';
+  protected $reservationUsageType = 'Google_Service_Bigquery_JobStatistics2ReservationUsage';
+  protected $reservationUsageDataType = 'array';
   protected $schemaType = 'Google_Service_Bigquery_TableSchema';
   protected $schemaDataType = '';
   public $statementType;
@@ -122,6 +124,20 @@ class Google_Service_Bigquery_JobStatistics2 extends Google_Collection
   public function getReferencedTables()
   {
     return $this->referencedTables;
+  }
+  /**
+   * @param Google_Service_Bigquery_JobStatistics2ReservationUsage
+   */
+  public function setReservationUsage($reservationUsage)
+  {
+    $this->reservationUsage = $reservationUsage;
+  }
+  /**
+   * @return Google_Service_Bigquery_JobStatistics2ReservationUsage
+   */
+  public function getReservationUsage()
+  {
+    return $this->reservationUsage;
   }
   /**
    * @param Google_Service_Bigquery_TableSchema

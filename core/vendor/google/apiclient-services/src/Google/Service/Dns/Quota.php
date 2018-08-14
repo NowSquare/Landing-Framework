@@ -18,6 +18,7 @@
 class Google_Service_Dns_Quota extends Google_Collection
 {
   protected $collection_key = 'whitelistedKeySpecs';
+  public $blackHoleHidesSystemZones;
   public $dnsKeysPerManagedZone;
   public $kind;
   public $managedZones;
@@ -29,6 +30,14 @@ class Google_Service_Dns_Quota extends Google_Collection
   protected $whitelistedKeySpecsType = 'Google_Service_Dns_DnsKeySpec';
   protected $whitelistedKeySpecsDataType = 'array';
 
+  public function setBlackHoleHidesSystemZones($blackHoleHidesSystemZones)
+  {
+    $this->blackHoleHidesSystemZones = $blackHoleHidesSystemZones;
+  }
+  public function getBlackHoleHidesSystemZones()
+  {
+    return $this->blackHoleHidesSystemZones;
+  }
   public function setDnsKeysPerManagedZone($dnsKeysPerManagedZone)
   {
     $this->dnsKeysPerManagedZone = $dnsKeysPerManagedZone;

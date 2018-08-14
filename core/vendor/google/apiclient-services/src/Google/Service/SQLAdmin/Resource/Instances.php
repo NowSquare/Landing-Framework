@@ -26,6 +26,25 @@
 class Google_Service_SQLAdmin_Resource_Instances extends Google_Service_Resource
 {
   /**
+   * Add a new trusted Certificate Authority (CA) version for the specified
+   * instance. Required to prepare for a certificate rotation. If a CA version was
+   * previously added but never used in a certificate rotation, this operation
+   * replaces that version. There can not be more than one CA version waiting to
+   * be rotated in. (instances.addServerCa)
+   *
+   * @param string $project Project ID of the project that contains the instance.
+   * @param string $instance Cloud SQL instance ID. This does not include the
+   * project ID.
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_SQLAdmin_Operation
+   */
+  public function addServerCa($project, $instance, $optParams = array())
+  {
+    $params = array('project' => $project, 'instance' => $instance);
+    $params = array_merge($params, $optParams);
+    return $this->call('addServerCa', array($params), "Google_Service_SQLAdmin_Operation");
+  }
+  /**
    * Creates a Cloud SQL instance as a clone of the source instance. The API is
    * not ready for Second Generation instances yet. (instances.cloneInstances)
    *
@@ -179,6 +198,25 @@ class Google_Service_SQLAdmin_Resource_Instances extends Google_Service_Resource
     return $this->call('list', array($params), "Google_Service_SQLAdmin_InstancesListResponse");
   }
   /**
+   * Lists all of the trusted Certificate Authorities (CAs) for the specified
+   * instance. There can be up to three CAs listed: the CA that was used to sign
+   * the certificate that is currently in use, a CA that has been added but not
+   * yet used to sign a certificate, and a CA used to sign a certificate that has
+   * previously rotated out. (instances.listServerCas)
+   *
+   * @param string $project Project ID of the project that contains the instance.
+   * @param string $instance Cloud SQL instance ID. This does not include the
+   * project ID.
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_SQLAdmin_InstancesListServerCasResponse
+   */
+  public function listServerCas($project, $instance, $optParams = array())
+  {
+    $params = array('project' => $project, 'instance' => $instance);
+    $params = array_merge($params, $optParams);
+    return $this->call('listServerCas', array($params), "Google_Service_SQLAdmin_InstancesListServerCasResponse");
+  }
+  /**
    * Updates settings of a Cloud SQL instance. Caution: This is not a partial
    * update, so you must include values for all the settings that you want to
    * retain. For partial updates, use patch.. This method supports patch
@@ -261,6 +299,24 @@ class Google_Service_SQLAdmin_Resource_Instances extends Google_Service_Resource
     $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
     return $this->call('restoreBackup', array($params), "Google_Service_SQLAdmin_Operation");
+  }
+  /**
+   * Rotates the server certificate to one signed by the Certificate Authority
+   * (CA) version previously added with the addServerCA method.
+   * (instances.rotateServerCa)
+   *
+   * @param string $project Project ID of the project that contains the instance.
+   * @param string $instance Cloud SQL instance ID. This does not include the
+   * project ID.
+   * @param Google_Service_SQLAdmin_InstancesRotateServerCaRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_SQLAdmin_Operation
+   */
+  public function rotateServerCa($project, $instance, Google_Service_SQLAdmin_InstancesRotateServerCaRequest $postBody, $optParams = array())
+  {
+    $params = array('project' => $project, 'instance' => $instance, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('rotateServerCa', array($params), "Google_Service_SQLAdmin_Operation");
   }
   /**
    * Starts the replication in the read replica instance. (instances.startReplica)

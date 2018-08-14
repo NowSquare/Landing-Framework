@@ -54,7 +54,7 @@ class Google_Service_Compute_Resource_GlobalForwardingRules extends Google_Servi
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified GlobalForwardingRule resource. Get a list of available
+   * Returns the specified GlobalForwardingRule resource. Gets a list of available
    * forwarding rules by making a list() request. (globalForwardingRules.get)
    *
    * @param string $project Project ID for this request.

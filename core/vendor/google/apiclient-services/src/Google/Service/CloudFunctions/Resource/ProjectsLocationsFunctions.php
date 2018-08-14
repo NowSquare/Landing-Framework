@@ -107,7 +107,7 @@ class Google_Service_CloudFunctions_Resource_ProjectsLocationsFunctions extends 
    *
    * When making a HTTP PUT request, these two headers need to be specified:
    *
-   * * `content-type: application/zip` * `x-google-content-length-range:
+   * * `content-type: application/zip` * `x-goog-content-length-range:
    * 0,104857600` (functions.generateUploadUrl)
    *
    * @param string $parent The project and location in which the Google Cloud
@@ -147,11 +147,11 @@ class Google_Service_CloudFunctions_Resource_ProjectsLocationsFunctions extends 
    * functions in all locations, use "-" in place of a location.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param int pageSize Maximum number of functions to return per call.
    * @opt_param string pageToken The value returned by the last
    * `ListFunctionsResponse`; indicates that this is a continuation of a prior
    * `ListFunctions` call, and that the system should return the next page of
    * data.
-   * @opt_param int pageSize Maximum number of functions to return per call.
    * @return Google_Service_CloudFunctions_ListFunctionsResponse
    */
   public function listProjectsLocationsFunctions($parent, $optParams = array())

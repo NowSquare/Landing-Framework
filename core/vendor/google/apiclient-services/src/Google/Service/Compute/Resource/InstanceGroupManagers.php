@@ -199,7 +199,7 @@ class Google_Service_Compute_Resource_InstanceGroupManagers extends Google_Servi
     return $this->call('deleteInstances', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns all of the details about the specified managed instance group. Get a
+   * Returns all of the details about the specified managed instance group. Gets a
    * list of available managed instance groups by making a list() request.
    * (instanceGroupManagers.get)
    *

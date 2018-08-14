@@ -27,7 +27,9 @@ class Google_Service_DLP_Resource_ProjectsJobTriggers extends Google_Service_Res
 {
   /**
    * Creates a job trigger to run DLP actions such as scanning storage for
-   * sensitive information on a set schedule. (jobTriggers.create)
+   * sensitive information on a set schedule. See
+   * https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
+   * (jobTriggers.create)
    *
    * @param string $parent The parent resource name, for example projects/my-
    * project-id.
@@ -42,7 +44,8 @@ class Google_Service_DLP_Resource_ProjectsJobTriggers extends Google_Service_Res
     return $this->call('create', array($params), "Google_Service_DLP_GooglePrivacyDlpV2JobTrigger");
   }
   /**
-   * Deletes a job trigger. (jobTriggers.delete)
+   * Deletes a job trigger. See https://cloud.google.com/dlp/docs/creating-job-
+   * triggers to learn more. (jobTriggers.delete)
    *
    * @param string $name Resource name of the project and the triggeredJob, for
    * example `projects/dlp-test-project/jobTriggers/53234423`.
@@ -56,7 +59,8 @@ class Google_Service_DLP_Resource_ProjectsJobTriggers extends Google_Service_Res
     return $this->call('delete', array($params), "Google_Service_DLP_GoogleProtobufEmpty");
   }
   /**
-   * Gets a job trigger. (jobTriggers.get)
+   * Gets a job trigger. See https://cloud.google.com/dlp/docs/creating-job-
+   * triggers to learn more. (jobTriggers.get)
    *
    * @param string $name Resource name of the project and the triggeredJob, for
    * example `projects/dlp-test-project/jobTriggers/53234423`.
@@ -70,27 +74,28 @@ class Google_Service_DLP_Resource_ProjectsJobTriggers extends Google_Service_Res
     return $this->call('get', array($params), "Google_Service_DLP_GooglePrivacyDlpV2JobTrigger");
   }
   /**
-   * Lists job triggers. (jobTriggers.listProjectsJobTriggers)
+   * Lists job triggers. See https://cloud.google.com/dlp/docs/creating-job-
+   * triggers to learn more. (jobTriggers.listProjectsJobTriggers)
    *
-   * @param string $parent The parent resource name, for example projects/my-
-   * project-id.
+   * @param string $parent The parent resource name, for example `projects/my-
+   * project-id`.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string pageToken Optional page token to continue retrieval. Comes
-   * from previous call to ListJobTriggers. `order_by` and `filter` should not
-   * change for subsequent calls, but can be omitted if token is specified.
+   * from previous call to ListJobTriggers. `order_by` field must not change for
+   * subsequent calls.
    * @opt_param string orderBy Optional comma separated list of triggeredJob
-   * fields to order by, followed by 'asc/desc' postfix, i.e. `"create_time
-   * asc,name desc,schedule_mode asc"`. This list is case-insensitive.
+   * fields to order by, followed by `asc` or `desc` postfix. This list is case-
+   * insensitive, default sorting order is ascending, redundant space characters
+   * are insignificant.
    *
-   * Example: `"name asc,schedule_mode desc, status desc"`
+   * Example: `name asc,update_time, create_time desc`
    *
-   * Supported filters keys and values are:
+   * Supported fields are:
    *
    * - `create_time`: corresponds to time the triggeredJob was created. -
    * `update_time`: corresponds to time the triggeredJob was last updated. -
-   * `name`: corresponds to JobTrigger's display name. - `status`: corresponds to
-   * the triggeredJob status.
+   * `name`: corresponds to JobTrigger's name.
    * @opt_param int pageSize Optional size of the page, can be limited by a
    * server.
    * @return Google_Service_DLP_GooglePrivacyDlpV2ListJobTriggersResponse
@@ -102,7 +107,8 @@ class Google_Service_DLP_Resource_ProjectsJobTriggers extends Google_Service_Res
     return $this->call('list', array($params), "Google_Service_DLP_GooglePrivacyDlpV2ListJobTriggersResponse");
   }
   /**
-   * Updates a job trigger. (jobTriggers.patch)
+   * Updates a job trigger. See https://cloud.google.com/dlp/docs/creating-job-
+   * triggers to learn more. (jobTriggers.patch)
    *
    * @param string $name Resource name of the project and the triggeredJob, for
    * example `projects/dlp-test-project/jobTriggers/53234423`.

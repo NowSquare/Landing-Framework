@@ -107,7 +107,7 @@ class Google_Service_Compute_Resource_TargetVpnGateways extends Google_Service_R
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified target VPN gateway. Get a list of available target VPN
+   * Returns the specified target VPN gateway. Gets a list of available target VPN
    * gateways by making a list() request. (targetVpnGateways.get)
    *
    * @param string $project Project ID for this request.

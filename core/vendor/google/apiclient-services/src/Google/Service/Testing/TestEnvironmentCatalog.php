@@ -21,6 +21,8 @@ class Google_Service_Testing_TestEnvironmentCatalog extends Google_Model
   protected $androidDeviceCatalogDataType = '';
   protected $networkConfigurationCatalogType = 'Google_Service_Testing_NetworkConfigurationCatalog';
   protected $networkConfigurationCatalogDataType = '';
+  protected $softwareCatalogType = 'Google_Service_Testing_ProvidedSoftwareCatalog';
+  protected $softwareCatalogDataType = '';
 
   /**
    * @param Google_Service_Testing_AndroidDeviceCatalog
@@ -49,5 +51,19 @@ class Google_Service_Testing_TestEnvironmentCatalog extends Google_Model
   public function getNetworkConfigurationCatalog()
   {
     return $this->networkConfigurationCatalog;
+  }
+  /**
+   * @param Google_Service_Testing_ProvidedSoftwareCatalog
+   */
+  public function setSoftwareCatalog(Google_Service_Testing_ProvidedSoftwareCatalog $softwareCatalog)
+  {
+    $this->softwareCatalog = $softwareCatalog;
+  }
+  /**
+   * @return Google_Service_Testing_ProvidedSoftwareCatalog
+   */
+  public function getSoftwareCatalog()
+  {
+    return $this->softwareCatalog;
   }
 }

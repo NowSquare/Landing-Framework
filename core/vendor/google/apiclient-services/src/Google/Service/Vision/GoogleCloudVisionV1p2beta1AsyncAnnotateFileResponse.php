@@ -15,13 +15,10 @@
  * the License.
  */
 
-class Google_Service_Vision_GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse extends Google_Collection
+class Google_Service_Vision_GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse extends Google_Model
 {
-  protected $collection_key = 'outputs';
   protected $outputConfigType = 'Google_Service_Vision_GoogleCloudVisionV1p2beta1OutputConfig';
   protected $outputConfigDataType = '';
-  protected $outputsType = 'Google_Service_Vision_GoogleCloudVisionV1p2beta1GcsDestination';
-  protected $outputsDataType = 'array';
 
   /**
    * @param Google_Service_Vision_GoogleCloudVisionV1p2beta1OutputConfig
@@ -36,19 +33,5 @@ class Google_Service_Vision_GoogleCloudVisionV1p2beta1AsyncAnnotateFileResponse 
   public function getOutputConfig()
   {
     return $this->outputConfig;
-  }
-  /**
-   * @param Google_Service_Vision_GoogleCloudVisionV1p2beta1GcsDestination
-   */
-  public function setOutputs($outputs)
-  {
-    $this->outputs = $outputs;
-  }
-  /**
-   * @return Google_Service_Vision_GoogleCloudVisionV1p2beta1GcsDestination
-   */
-  public function getOutputs()
-  {
-    return $this->outputs;
   }
 }

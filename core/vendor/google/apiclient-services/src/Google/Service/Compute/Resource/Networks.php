@@ -81,7 +81,7 @@ class Google_Service_Compute_Resource_Networks extends Google_Service_Resource
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified network. Get a list of available networks by making a
+   * Returns the specified network. Gets a list of available networks by making a
    * list() request. (networks.get)
    *
    * @param string $project Project ID for this request.

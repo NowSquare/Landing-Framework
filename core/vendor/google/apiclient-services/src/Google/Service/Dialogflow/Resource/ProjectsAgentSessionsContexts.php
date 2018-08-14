@@ -29,9 +29,7 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentSessionsContexts extends G
    * Creates a context. (contexts.create)
    *
    * @param string $parent Required. The session to create a context for. Format:
-   * `projects//agent/sessions/` or `projects//agent/runtimes//sessions/`. Note:
-   * Runtimes are under construction and will be available soon. If  is not
-   * specified, we assume default 'sandbox' runtime.
+   * `projects//agent/sessions/`.
    * @param Google_Service_Dialogflow_GoogleCloudDialogflowV2Context $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dialogflow_GoogleCloudDialogflowV2Context
@@ -46,10 +44,7 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentSessionsContexts extends G
    * Deletes the specified context. (contexts.delete)
    *
    * @param string $name Required. The name of the context to delete. Format:
-   * `projects//agent/sessions//contexts/` or
-   * `projects//agent/runtimes//sessions//contexts/`. Note: Runtimes are under
-   * construction and will be available soon. If  is not specified, we assume
-   * default 'sandbox' runtime.
+   * `projects//agent/sessions//contexts/`.
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dialogflow_GoogleProtobufEmpty
    */
@@ -63,10 +58,7 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentSessionsContexts extends G
    * Retrieves the specified context. (contexts.get)
    *
    * @param string $name Required. The name of the context. Format:
-   * `projects//agent/sessions//contexts/` or
-   * `projects//agent/runtimes//sessions//contexts/`. Note: Runtimes are under
-   * construction and will be available soon. If  is not specified, we assume
-   * default 'sandbox' runtime.
+   * `projects//agent/sessions//contexts/`.
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dialogflow_GoogleCloudDialogflowV2Context
    */
@@ -81,9 +73,7 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentSessionsContexts extends G
    * (contexts.listProjectsAgentSessionsContexts)
    *
    * @param string $parent Required. The session to list all contexts from.
-   * Format: `projects//agent/sessions/` or `projects//agent/runtimes//sessions/`.
-   * Note: Runtimes are under construction and will be available soon. If  is not
-   * specified, we assume default 'sandbox' runtime.
+   * Format: `projects//agent/sessions/`.
    * @param array $optParams Optional parameters.
    *
    * @opt_param string pageToken Optional. The next_page_token value returned from
@@ -102,10 +92,7 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentSessionsContexts extends G
    * Updates the specified context. (contexts.patch)
    *
    * @param string $name Required. The unique identifier of the context. Format:
-   * `projects//agent/sessions//contexts/`, or
-   * `projects//agent/runtimes//sessions//contexts/`. Note: Runtimes are under
-   * construction and will be available soon. The Context ID is always converted
-   * to lowercase. If  is not specified, we assume default 'sandbox' runtime.
+   * `projects//agent/sessions//contexts/`.
    * @param Google_Service_Dialogflow_GoogleCloudDialogflowV2Context $postBody
    * @param array $optParams Optional parameters.
    *

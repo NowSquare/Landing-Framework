@@ -92,6 +92,12 @@ class Google_Service_CloudMachineLearningEngine_Resource_ProjectsJobs extends Go
    * jobs.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string filter Optional. Specifies the subset of jobs to retrieve.
+   * You can filter on the value of one or more attributes of the job object. For
+   * example, retrieve jobs with a job identifier that starts with 'census':
+   * gcloud ml-engine jobs list --filter='jobId:census*' List all failed jobs with
+   * names that start with 'rnn': gcloud ml-engine jobs list --filter='jobId:rnn*
+   * AND state:FAILED' For more examples, see the guide to monitoring jobs.
    * @opt_param string pageToken Optional. A page token to request the next page
    * of results.
    *
@@ -102,12 +108,6 @@ class Google_Service_CloudMachineLearningEngine_Resource_ProjectsJobs extends Go
    * response message will contain a valid value in the `next_page_token` field.
    *
    * The default value is 20, and the maximum page size is 100.
-   * @opt_param string filter Optional. Specifies the subset of jobs to retrieve.
-   * You can filter on the value of one or more attributes of the job object. For
-   * example, retrieve jobs with a job identifier that starts with 'census':
-   * gcloud ml-engine jobs list --filter='jobId:census*' List all failed jobs with
-   * names that start with 'rnn': gcloud ml-engine jobs list --filter='jobId:rnn*
-   * AND state:FAILED' For more examples, see the guide to monitoring jobs.
    * @return Google_Service_CloudMachineLearningEngine_GoogleCloudMlV1ListJobsResponse
    */
   public function listProjectsJobs($parent, $optParams = array())

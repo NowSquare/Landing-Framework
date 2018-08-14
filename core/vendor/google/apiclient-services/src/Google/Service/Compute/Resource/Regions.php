@@ -26,7 +26,7 @@
 class Google_Service_Compute_Resource_Regions extends Google_Service_Resource
 {
   /**
-   * Returns the specified Region resource. Get a list of available regions by
+   * Returns the specified Region resource. Gets a list of available regions by
    * making a list() request. (regions.get)
    *
    * @param string $project Project ID for this request.

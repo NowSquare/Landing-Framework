@@ -26,7 +26,7 @@
 class Google_Service_Compute_Resource_Zones extends Google_Service_Resource
 {
   /**
-   * Returns the specified Zone resource. Get a list of available zones by making
+   * Returns the specified Zone resource. Gets a list of available zones by making
    * a list() request. (zones.get)
    *
    * @param string $project Project ID for this request.

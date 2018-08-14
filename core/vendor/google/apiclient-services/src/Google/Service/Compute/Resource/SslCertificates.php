@@ -53,7 +53,7 @@ class Google_Service_Compute_Resource_SslCertificates extends Google_Service_Res
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified SslCertificate resource. Get a list of available SSL
+   * Returns the specified SslCertificate resource. Gets a list of available SSL
    * certificates by making a list() request. (sslCertificates.get)
    *
    * @param string $project Project ID for this request.

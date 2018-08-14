@@ -26,7 +26,7 @@
 class Google_Service_Container_Resource_ProjectsZonesClustersNodePools extends Google_Service_Resource
 {
   /**
-   * Sets the autoscaling settings of a specific node pool.
+   * Sets the autoscaling settings for a specific node pool.
    * (nodePools.autoscaling)
    *
    * @param string $projectId Deprecated. The Google Developers Console [project
@@ -199,7 +199,7 @@ class Google_Service_Container_Resource_ProjectsZonesClustersNodePools extends G
     return $this->call('setManagement', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Sets the size of a specific node pool. (nodePools.setSize)
+   * Sets the size for a specific node pool. (nodePools.setSize)
    *
    * @param string $projectId Deprecated. The Google Developers Console [project
    * ID or project number](https://support.google.com/cloud/answer/6158840). This
@@ -222,7 +222,7 @@ class Google_Service_Container_Resource_ProjectsZonesClustersNodePools extends G
     return $this->call('setSize', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Updates the version and/or image type of a specific node pool.
+   * Updates the version and/or image type for a specific node pool.
    * (nodePools.update)
    *
    * @param string $projectId Deprecated. The Google Developers Console [project

@@ -66,10 +66,6 @@ class Google_Service_CloudDebugger_Resource_DebuggerDebuggeesBreakpoints extends
    * @param string $debuggeeId ID of the debuggee whose breakpoints to list.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string clientVersion The client version making the call. Schema:
-   * `domain/type/version` (e.g., `google.com/intellij/v1`).
-   * @opt_param string action.value Only breakpoints with the specified action
-   * will pass the filter.
    * @opt_param bool includeInactive When set to `true`, the response includes
    * active and inactive breakpoints. Otherwise, it includes only active
    * breakpoints.
@@ -84,6 +80,10 @@ class Google_Service_CloudDebugger_Resource_DebuggerDebuggeesBreakpoints extends
    * expired.  The value should be set from the last response. The error code
    * `google.rpc.Code.ABORTED` (RPC) is returned on wait timeout, which should be
    * called again with the same `wait_token`.
+   * @opt_param string clientVersion The client version making the call. Schema:
+   * `domain/type/version` (e.g., `google.com/intellij/v1`).
+   * @opt_param string action.value Only breakpoints with the specified action
+   * will pass the filter.
    * @return Google_Service_CloudDebugger_ListBreakpointsResponse
    */
   public function listDebuggerDebuggeesBreakpoints($debuggeeId, $optParams = array())

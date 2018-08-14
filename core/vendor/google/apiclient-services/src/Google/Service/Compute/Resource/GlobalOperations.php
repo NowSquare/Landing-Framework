@@ -92,7 +92,7 @@ class Google_Service_Compute_Resource_GlobalOperations extends Google_Service_Re
     return $this->call('delete', array($params));
   }
   /**
-   * Retrieves the specified Operations resource. Get a list of operations by
+   * Retrieves the specified Operations resource. Gets a list of operations by
    * making a list() request. (globalOperations.get)
    *
    * @param string $project Project ID for this request.

@@ -129,13 +129,6 @@ class Google_Service_CloudTasks_Resource_ProjectsLocationsQueues extends Google_
    * The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string pageToken A token identifying the page of results to
-   * return.
-   *
-   * To request the first page results, page_token must be empty. To request the
-   * next page of results, page_token must be the value of next_page_token
-   * returned from the previous call to ListQueues method. It is an error to
-   * switch the value of the filter while iterating through pages.
    * @opt_param int pageSize Requested page size.
    *
    * The maximum page size is 9800. If unspecified, the page size will be the
@@ -152,6 +145,13 @@ class Google_Service_CloudTasks_Resource_ProjectsLocationsQueues extends Google_
    *
    * Note that using filters might cause fewer queues than the requested_page size
    * to be returned.
+   * @opt_param string pageToken A token identifying the page of results to
+   * return.
+   *
+   * To request the first page results, page_token must be empty. To request the
+   * next page of results, page_token must be the value of next_page_token
+   * returned from the previous call to ListQueues method. It is an error to
+   * switch the value of the filter while iterating through pages.
    * @return Google_Service_CloudTasks_ListQueuesResponse
    */
   public function listProjectsLocationsQueues($parent, $optParams = array())
@@ -175,7 +175,10 @@ class Google_Service_CloudTasks_Resource_ProjectsLocationsQueues extends Google_
    * [Overview of Queue Management and queue.yaml](/cloud-tasks/docs/queue-yaml)
    * before using this method. (queues.patch)
    *
-   * @param string $name The queue name.
+   * @param string $name Caller-specified and required in CreateQueue, after which
+   * it becomes output only.
+   *
+   * The queue name.
    *
    * The queue name must have the following format:
    * `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
@@ -189,9 +192,6 @@ class Google_Service_CloudTasks_Resource_ProjectsLocationsQueues extends Google_
    * https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters
    * ([A-Za-z]), numbers ([0-9]), or   hyphens (-). The maximum length is 100
    * characters.
-   *
-   * Caller-specified and required in CreateQueue, after which it becomes output
-   * only.
    * @param Google_Service_CloudTasks_Queue $postBody
    * @param array $optParams Optional parameters.
    *

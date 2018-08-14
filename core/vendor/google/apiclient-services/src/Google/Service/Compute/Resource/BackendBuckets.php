@@ -53,8 +53,8 @@ class Google_Service_Compute_Resource_BackendBuckets extends Google_Service_Reso
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified BackendBucket resource. Get a list of available backend
-   * buckets by making a list() request. (backendBuckets.get)
+   * Returns the specified BackendBucket resource. Gets a list of available
+   * backend buckets by making a list() request. (backendBuckets.get)
    *
    * @param string $project Project ID for this request.
    * @param string $backendBucket Name of the BackendBucket resource to return.

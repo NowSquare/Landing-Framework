@@ -84,7 +84,7 @@ class Google_Service_Compute_Resource_Images extends Google_Service_Resource
     return $this->call('deprecate', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified image. Get a list of available images by making a
+   * Returns the specified image. Gets a list of available images by making a
    * list() request. (images.get)
    *
    * @param string $project Project ID for this request.

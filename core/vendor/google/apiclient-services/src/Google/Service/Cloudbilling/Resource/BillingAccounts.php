@@ -27,10 +27,10 @@ class Google_Service_Cloudbilling_Resource_BillingAccounts extends Google_Servic
 {
   /**
    * Creates a billing account. This method can only be used to create [billing
-   * subaccounts](https://cloud.google.com/billing/docs/concepts). When creating a
-   * subaccount, the current authenticated user must have the
-   * `billing.accounts.update` IAM permission on the master account, which is
-   * typically given to billing account
+   * subaccounts](https://cloud.google.com/billing/docs/concepts) for GCP
+   * resellers. When creating a subaccount, the current authenticated user must
+   * have the `billing.accounts.update` IAM permission on the master account,
+   * which is typically given to billing account
    * [administrators](https://cloud.google.com/billing/docs/how-to/billing-
    * access).
    *
@@ -91,6 +91,12 @@ class Google_Service_Cloudbilling_Resource_BillingAccounts extends Google_Servic
    *
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string pageToken A token identifying a page of results to return.
+   * This should be a `next_page_token` value returned from a previous
+   * `ListBillingAccounts` call. If unspecified, the first page of results is
+   * returned.
+   * @opt_param int pageSize Requested page size. The maximum page size is 100;
+   * this is also the default.
    * @opt_param string filter Options for how to filter the returned billing
    * accounts. Currently this only supports filtering for
    * [subaccounts](https://cloud.google.com/billing/docs/concepts) under a single
@@ -100,12 +106,6 @@ class Google_Service_Cloudbilling_Resource_BillingAccounts extends Google_Servic
    *
    * > This field is currently in > [Beta](https://cloud.google.com/terms/launch-
    * stages).
-   * @opt_param string pageToken A token identifying a page of results to return.
-   * This should be a `next_page_token` value returned from a previous
-   * `ListBillingAccounts` call. If unspecified, the first page of results is
-   * returned.
-   * @opt_param int pageSize Requested page size. The maximum page size is 100;
-   * this is also the default.
    * @return Google_Service_Cloudbilling_ListBillingAccountsResponse
    */
   public function listBillingAccounts($optParams = array())

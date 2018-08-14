@@ -107,8 +107,8 @@ class Google_Service_Compute_Resource_TargetInstances extends Google_Service_Res
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified TargetInstance resource. Get a list of available target
-   * instances by making a list() request. (targetInstances.get)
+   * Returns the specified TargetInstance resource. Gets a list of available
+   * target instances by making a list() request. (targetInstances.get)
    *
    * @param string $project Project ID for this request.
    * @param string $zone Name of the zone scoping this request.

@@ -39,6 +39,7 @@ class Google_Service_Vision extends Google_Service
   const CLOUD_VISION =
       "https://www.googleapis.com/auth/cloud-vision";
 
+  public $files;
   public $images;
   public $locations_operations;
   public $operations;
@@ -56,6 +57,20 @@ class Google_Service_Vision extends Google_Service
     $this->version = 'v1';
     $this->serviceName = 'vision';
 
+    $this->files = new Google_Service_Vision_Resource_Files(
+        $this,
+        $this->serviceName,
+        'files',
+        array(
+          'methods' => array(
+            'asyncBatchAnnotate' => array(
+              'path' => 'v1/files:asyncBatchAnnotate',
+              'httpMethod' => 'POST',
+              'parameters' => array(),
+            ),
+          )
+        )
+    );
     $this->images = new Google_Service_Vision_Resource_Images(
         $this,
         $this->serviceName,

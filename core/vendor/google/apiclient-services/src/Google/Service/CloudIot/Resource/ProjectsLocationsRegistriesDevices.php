@@ -83,6 +83,8 @@ class Google_Service_CloudIot_Resource_ProjectsLocationsRegistriesDevices extend
    * `projects/my-project/locations/us-central1/registries/my-registry`.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string deviceNumIds A list of device numerical ids. If empty, it
+   * will ignore this field. This field cannot hold more than 10,000 entries.
    * @opt_param string pageToken The value returned by the last
    * `ListDevicesResponse`; indicates that this is a continuation of a prior
    * `ListDevices` call, and that the system should return the next page of data.
@@ -96,8 +98,6 @@ class Google_Service_CloudIot_Resource_ProjectsLocationsRegistriesDevices extend
    * @opt_param string deviceIds A list of device string identifiers. If empty, it
    * will ignore this field. For example, `['device0', 'device12']`. This field
    * cannot hold more than 10,000 entries.
-   * @opt_param string deviceNumIds A list of device numerical ids. If empty, it
-   * will ignore this field. This field cannot hold more than 10,000 entries.
    * @return Google_Service_CloudIot_ListDevicesResponse
    */
   public function listProjectsLocationsRegistriesDevices($parent, $optParams = array())

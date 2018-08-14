@@ -96,6 +96,19 @@ class Google_Service_ShoppingContent_Resource_Liasettings extends Google_Service
     return $this->call('list', array($params), "Google_Service_ShoppingContent_LiasettingsListResponse");
   }
   /**
+   * Retrieves the list of POS data providers that have active settings for the
+   * all eiligible countries. (liasettings.listposdataproviders)
+   *
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_ShoppingContent_LiasettingsListPosDataProvidersResponse
+   */
+  public function listposdataproviders($optParams = array())
+  {
+    $params = array();
+    $params = array_merge($params, $optParams);
+    return $this->call('listposdataproviders', array($params), "Google_Service_ShoppingContent_LiasettingsListPosDataProvidersResponse");
+  }
+  /**
    * Updates the LIA settings of the account. This method supports patch
    * semantics. (liasettings.patch)
    *
@@ -181,6 +194,30 @@ class Google_Service_ShoppingContent_Resource_Liasettings extends Google_Service
     $params = array('merchantId' => $merchantId, 'accountId' => $accountId);
     $params = array_merge($params, $optParams);
     return $this->call('setinventoryverificationcontact', array($params), "Google_Service_ShoppingContent_LiasettingsSetInventoryVerificationContactResponse");
+  }
+  /**
+   * Sets the POS data provider for the specified country.
+   * (liasettings.setposdataprovider)
+   *
+   * @param string $merchantId The ID of the managing account. If this parameter
+   * is not the same as accountId, then this account must be a multi-client
+   * account and accountId must be the ID of a sub-account of this account.
+   * @param string $accountId The ID of the account for which to retrieve
+   * accessible Google My Business accounts.
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string country The country for which the POS data provider is
+   * selected.
+   * @opt_param string posDataProviderId The ID of POS data provider.
+   * @opt_param string posExternalAccountId The account ID by which this merchant
+   * is known to the POS data provider.
+   * @return Google_Service_ShoppingContent_LiasettingsSetPosDataProviderResponse
+   */
+  public function setposdataprovider($merchantId, $accountId, $optParams = array())
+  {
+    $params = array('merchantId' => $merchantId, 'accountId' => $accountId);
+    $params = array_merge($params, $optParams);
+    return $this->call('setposdataprovider', array($params), "Google_Service_ShoppingContent_LiasettingsSetPosDataProviderResponse");
   }
   /**
    * Updates the LIA settings of the account. (liasettings.update)

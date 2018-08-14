@@ -53,7 +53,7 @@ class Google_Service_Compute_Resource_UrlMaps extends Google_Service_Resource
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified UrlMap resource. Get a list of available URL maps by
+   * Returns the specified UrlMap resource. Gets a list of available URL maps by
    * making a list() request. (urlMaps.get)
    *
    * @param string $project Project ID for this request.

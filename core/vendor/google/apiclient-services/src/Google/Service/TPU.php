@@ -16,7 +16,7 @@
  */
 
 /**
- * Service definition for TPU (v1alpha1).
+ * Service definition for TPU (v1).
  *
  * <p>
  * TPU API provides customers with access to Google TPU technology.</p>
@@ -48,9 +48,9 @@ class Google_Service_TPU extends Google_Service
   public function __construct(Google_Client $client)
   {
     parent::__construct($client);
-    $this->rootUrl = 'https://content-tpu.googleapis.com/';
+    $this->rootUrl = 'https://tpu.googleapis.com/';
     $this->servicePath = '';
-    $this->version = 'v1alpha1';
+    $this->version = 'v1';
     $this->serviceName = 'tpu';
 
     $this->projects_locations = new Google_Service_TPU_Resource_ProjectsLocations(
@@ -60,7 +60,7 @@ class Google_Service_TPU extends Google_Service
         array(
           'methods' => array(
             'get' => array(
-              'path' => 'v1alpha1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'name' => array(
@@ -70,7 +70,7 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => 'v1alpha1/{+name}/locations',
+              'path' => 'v1/{+name}/locations',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'name' => array(
@@ -102,7 +102,7 @@ class Google_Service_TPU extends Google_Service
         array(
           'methods' => array(
             'get' => array(
-              'path' => 'v1alpha1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'name' => array(
@@ -112,13 +112,17 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => 'v1alpha1/{+parent}/acceleratorTypes',
+              'path' => 'v1/{+parent}/acceleratorTypes',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ),
+                'pageSize' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
                 ),
                 'filter' => array(
                   'location' => 'query',
@@ -132,10 +136,6 @@ class Google_Service_TPU extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
               ),
             ),
           )
@@ -148,7 +148,7 @@ class Google_Service_TPU extends Google_Service
         array(
           'methods' => array(
             'create' => array(
-              'path' => 'v1alpha1/{+parent}/nodes',
+              'path' => 'v1/{+parent}/nodes',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'parent' => array(
@@ -162,7 +162,7 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => 'v1alpha1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'name' => array(
@@ -172,7 +172,7 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => 'v1alpha1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'name' => array(
@@ -182,7 +182,7 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => 'v1alpha1/{+parent}/nodes',
+              'path' => 'v1/{+parent}/nodes',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
@@ -190,17 +190,17 @@ class Google_Service_TPU extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
                 ),
+                'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
               ),
             ),'reimage' => array(
-              'path' => 'v1alpha1/{+name}:reimage',
+              'path' => 'v1/{+name}:reimage',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'name' => array(
@@ -210,7 +210,7 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'reset' => array(
-              'path' => 'v1alpha1/{+name}:reset',
+              'path' => 'v1/{+name}:reset',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'name' => array(
@@ -220,7 +220,7 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'start' => array(
-              'path' => 'v1alpha1/{+name}:start',
+              'path' => 'v1/{+name}:start',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'name' => array(
@@ -230,7 +230,7 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'stop' => array(
-              'path' => 'v1alpha1/{+name}:stop',
+              'path' => 'v1/{+name}:stop',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'name' => array(
@@ -250,7 +250,7 @@ class Google_Service_TPU extends Google_Service
         array(
           'methods' => array(
             'cancel' => array(
-              'path' => 'v1alpha1/{+name}:cancel',
+              'path' => 'v1/{+name}:cancel',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'name' => array(
@@ -260,7 +260,7 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'delete' => array(
-              'path' => 'v1alpha1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => array(
                 'name' => array(
@@ -270,7 +270,7 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'get' => array(
-              'path' => 'v1alpha1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'name' => array(
@@ -280,7 +280,7 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => 'v1alpha1/{+name}/operations',
+              'path' => 'v1/{+name}/operations',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'name' => array(
@@ -312,7 +312,7 @@ class Google_Service_TPU extends Google_Service
         array(
           'methods' => array(
             'get' => array(
-              'path' => 'v1alpha1/{+name}',
+              'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'name' => array(
@@ -322,13 +322,17 @@ class Google_Service_TPU extends Google_Service
                 ),
               ),
             ),'list' => array(
-              'path' => 'v1alpha1/{+parent}/tensorflowVersions',
+              'path' => 'v1/{+parent}/tensorflowVersions',
               'httpMethod' => 'GET',
               'parameters' => array(
                 'parent' => array(
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ),
+                'filter' => array(
+                  'location' => 'query',
+                  'type' => 'string',
                 ),
                 'pageToken' => array(
                   'location' => 'query',
@@ -341,10 +345,6 @@ class Google_Service_TPU extends Google_Service
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
-                ),
-                'filter' => array(
-                  'location' => 'query',
-                  'type' => 'string',
                 ),
               ),
             ),

@@ -109,11 +109,12 @@ class Google_Service_Spanner_Resource_ProjectsInstancesDatabasesSessions extends
     return $this->call('delete', array($params), "Google_Service_Spanner_SpannerEmpty");
   }
   /**
-   * Executes an SQL query, returning all rows in a single reply. This method
-   * cannot be used to return a result set larger than 10 MiB; if the query yields
-   * more data than that, the query fails with a `FAILED_PRECONDITION` error.
+   * Executes an SQL statement, returning all results in a single reply. This
+   * method cannot be used to return a result set larger than 10 MiB; if the query
+   * yields more data than that, the query fails with a `FAILED_PRECONDITION`
+   * error.
    *
-   * Queries inside read-write transactions might return `ABORTED`. If this
+   * Operations inside read-write transactions might return `ABORTED`. If this
    * occurs, the application should restart the transaction from the beginning.
    * See Transaction for more details.
    *
@@ -172,6 +173,8 @@ class Google_Service_Spanner_Resource_ProjectsInstancesDatabasesSessions extends
    * @param string $database Required. The database in which to list sessions.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param int pageSize Number of sessions to be returned in the response. If
+   * 0 or less, defaults to the server's maximum allowed page size.
    * @opt_param string filter An expression for filtering the results of the
    * request. Filter rules are case insensitive. The fields eligible for filtering
    * are:
@@ -185,8 +188,6 @@ class Google_Service_Spanner_Resource_ProjectsInstancesDatabasesSessions extends
    * the label contains the string "dev".
    * @opt_param string pageToken If non-empty, `page_token` should contain a
    * next_page_token from a previous ListSessionsResponse.
-   * @opt_param int pageSize Number of sessions to be returned in the response. If
-   * 0 or less, defaults to the server's maximum allowed page size.
    * @return Google_Service_Spanner_ListSessionsResponse
    */
   public function listProjectsInstancesDatabasesSessions($database, $optParams = array())

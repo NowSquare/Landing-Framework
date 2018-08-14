@@ -15,9 +15,9 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Routing\RequestContext;
 
 class UrlMatcherTest extends TestCase
 {
@@ -42,6 +42,21 @@ class UrlMatcherTest extends TestCase
             $this->fail();
         } catch (MethodNotAllowedException $e) {
             $this->assertEquals(array('POST'), $e->getAllowedMethods());
+        }
+    }
+
+    public function testMethodNotAllowedOnRoot()
+    {
+        $coll = new RouteCollection();
+        $coll->add('foo', new Route('/', array(), array(), array(), '', array(), array('GET')));
+
+        $matcher = $this->getUrlMatcher($coll, new RequestContext('', 'POST'));
+
+        try {
+            $matcher->match('/');
+            $this->fail();
+        } catch (MethodNotAllowedException $e) {
+            $this->assertEquals(array('GET'), $e->getAllowedMethods());
         }
     }
 

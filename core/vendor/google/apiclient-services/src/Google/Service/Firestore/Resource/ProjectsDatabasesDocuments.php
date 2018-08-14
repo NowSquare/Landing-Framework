@@ -85,12 +85,12 @@ class Google_Service_Firestore_Resource_ProjectsDatabasesDocuments extends Googl
    * @param Google_Service_Firestore_Document $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string mask.fieldPaths The list of field paths in the mask. See
+   * Document.fields for a field path syntax reference.
    * @opt_param string documentId The client-assigned document ID to use for this
    * document.
    *
    * Optional. If not specified, an ID will be assigned by the service.
-   * @opt_param string mask.fieldPaths The list of field paths in the mask. See
-   * Document.fields for a field path syntax reference.
    * @return Google_Service_Firestore_Document
    */
   public function createDocument($parent, $collectionId, Google_Service_Firestore_Document $postBody, $optParams = array())
@@ -151,10 +151,6 @@ class Google_Service_Firestore_Resource_ProjectsDatabasesDocuments extends Googl
    * For example: `chatrooms` or `messages`.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string orderBy The order to sort results by. For example:
-   * `priority desc, name`.
-   * @opt_param string readTime Reads documents as they were at the given time.
-   * This may not be older than 60 seconds.
    * @opt_param bool showMissing If the list should show missing documents. A
    * missing document is a document that does not exist but has sub-documents.
    * These documents will be returned with a key but will not have fields,
@@ -167,6 +163,10 @@ class Google_Service_Firestore_Resource_ProjectsDatabasesDocuments extends Googl
    * previous List request, if any.
    * @opt_param int pageSize The maximum number of documents to return.
    * @opt_param string transaction Reads documents in a transaction.
+   * @opt_param string readTime Reads documents as they were at the given time.
+   * This may not be older than 60 seconds.
+   * @opt_param string orderBy The order to sort results by. For example:
+   * `priority desc, name`.
    * @return Google_Service_Firestore_ListDocumentsResponse
    */
   public function listProjectsDatabasesDocuments($parent, $collectionId, $optParams = array())

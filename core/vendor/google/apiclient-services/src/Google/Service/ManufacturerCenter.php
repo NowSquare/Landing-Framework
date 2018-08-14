@@ -44,7 +44,7 @@ class Google_Service_ManufacturerCenter extends Google_Service
   public function __construct(Google_Client $client)
   {
     parent::__construct($client);
-    $this->rootUrl = 'https://content-manufacturers.googleapis.com/';
+    $this->rootUrl = 'https://manufacturers.googleapis.com/';
     $this->servicePath = '';
     $this->version = 'v1';
     $this->serviceName = 'manufacturers';
@@ -84,6 +84,11 @@ class Google_Service_ManufacturerCenter extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'include' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
               ),
             ),'list' => array(
               'path' => 'v1/{+parent}/products',
@@ -93,6 +98,11 @@ class Google_Service_ManufacturerCenter extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ),
+                'include' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ),
                 'pageToken' => array(
                   'location' => 'query',

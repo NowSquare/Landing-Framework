@@ -28,6 +28,8 @@ class Google_Service_ServiceControl_AuditLog extends Google_Collection
   public $request;
   protected $requestMetadataType = 'Google_Service_ServiceControl_RequestMetadata';
   protected $requestMetadataDataType = '';
+  protected $resourceLocationType = 'Google_Service_ServiceControl_ResourceLocation';
+  protected $resourceLocationDataType = '';
   public $resourceName;
   public $response;
   public $serviceData;
@@ -108,6 +110,20 @@ class Google_Service_ServiceControl_AuditLog extends Google_Collection
   public function getRequestMetadata()
   {
     return $this->requestMetadata;
+  }
+  /**
+   * @param Google_Service_ServiceControl_ResourceLocation
+   */
+  public function setResourceLocation(Google_Service_ServiceControl_ResourceLocation $resourceLocation)
+  {
+    $this->resourceLocation = $resourceLocation;
+  }
+  /**
+   * @return Google_Service_ServiceControl_ResourceLocation
+   */
+  public function getResourceLocation()
+  {
+    return $this->resourceLocation;
   }
   public function setResourceName($resourceName)
   {

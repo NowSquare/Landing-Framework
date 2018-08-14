@@ -26,7 +26,8 @@
 class Google_Service_Pubsub_Resource_ProjectsTopics extends Google_Service_Resource
 {
   /**
-   * Creates the given topic with the given name. (topics.create)
+   * Creates the given topic with the given name. See the  resource name rules.
+   * (topics.create)
    *
    * @param string $name The name of the topic. It must have the format
    * `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter,

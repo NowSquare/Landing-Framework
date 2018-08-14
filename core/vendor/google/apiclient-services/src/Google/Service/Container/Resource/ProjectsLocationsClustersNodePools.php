@@ -30,7 +30,7 @@ class Google_Service_Container_Resource_ProjectsLocationsClustersNodePools exten
    *
    * @param string $parent The parent (project, location, cluster id) where the
    * node pool will be created. Specified in the format
-   * 'projects/locations/clusters/nodePools'.
+   * 'projects/locations/clusters'.
    * @param Google_Service_Container_CreateNodePoolRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Container_Operation
@@ -49,6 +49,8 @@ class Google_Service_Container_Resource_ProjectsLocationsClustersNodePools exten
    * 'projects/locations/clusters/nodePools'.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string nodePoolId Deprecated. The name of the node pool to delete.
+   * This field has been deprecated and replaced by the name field.
    * @opt_param string projectId Deprecated. The Google Developers Console
    * [project ID or project
    * number](https://developers.google.com/console/help/new/#projectnumber). This
@@ -58,8 +60,6 @@ class Google_Service_Container_Resource_ProjectsLocationsClustersNodePools exten
    * field has been deprecated and replaced by the name field.
    * @opt_param string clusterId Deprecated. The name of the cluster. This field
    * has been deprecated and replaced by the name field.
-   * @opt_param string nodePoolId Deprecated. The name of the node pool to delete.
-   * This field has been deprecated and replaced by the name field.
    * @return Google_Service_Container_Operation
    */
   public function delete($name, $optParams = array())
@@ -139,7 +139,7 @@ class Google_Service_Container_Resource_ProjectsLocationsClustersNodePools exten
     return $this->call('rollback', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Sets the autoscaling settings of a specific node pool.
+   * Sets the autoscaling settings for a specific node pool.
    * (nodePools.setAutoscaling)
    *
    * @param string $name The name (project, location, cluster, node pool) of the
@@ -172,7 +172,7 @@ class Google_Service_Container_Resource_ProjectsLocationsClustersNodePools exten
     return $this->call('setManagement', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Sets the size of a specific node pool. (nodePools.setSize)
+   * Sets the size for a specific node pool. (nodePools.setSize)
    *
    * @param string $name The name (project, location, cluster, node pool id) of
    * the node pool to set size. Specified in the format
@@ -188,7 +188,7 @@ class Google_Service_Container_Resource_ProjectsLocationsClustersNodePools exten
     return $this->call('setSize', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Updates the version and/or image type of a specific node pool.
+   * Updates the version and/or image type for a specific node pool.
    * (nodePools.update)
    *
    * @param string $name The name (project, location, cluster, node pool) of the

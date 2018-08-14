@@ -139,8 +139,8 @@ class Google_Service_Compute_Resource_Disks extends Google_Service_Resource
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns a specified persistent disk. Get a list of available persistent disks
-   * by making a list() request. (disks.get)
+   * Returns a specified persistent disk. Gets a list of available persistent
+   * disks by making a list() request. (disks.get)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.

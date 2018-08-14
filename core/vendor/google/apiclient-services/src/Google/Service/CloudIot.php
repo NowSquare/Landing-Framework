@@ -207,6 +207,11 @@ class Google_Service_CloudIot extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'deviceNumIds' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
+                ),
                 'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -220,11 +225,6 @@ class Google_Service_CloudIot extends Google_Service
                   'type' => 'integer',
                 ),
                 'deviceIds' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ),
-                'deviceNumIds' => array(
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,

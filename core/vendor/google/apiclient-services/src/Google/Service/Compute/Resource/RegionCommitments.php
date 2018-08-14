@@ -79,7 +79,7 @@ class Google_Service_Compute_Resource_RegionCommitments extends Google_Service_R
     return $this->call('aggregatedList', array($params), "Google_Service_Compute_CommitmentAggregatedList");
   }
   /**
-   * Returns the specified commitment resource. Get a list of available
+   * Returns the specified commitment resource. Gets a list of available
    * commitments by making a list() request. (regionCommitments.get)
    *
    * @param string $project Project ID for this request.

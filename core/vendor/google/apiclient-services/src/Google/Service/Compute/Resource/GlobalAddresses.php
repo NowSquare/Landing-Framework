@@ -53,7 +53,7 @@ class Google_Service_Compute_Resource_GlobalAddresses extends Google_Service_Res
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified address resource. Get a list of available addresses by
+   * Returns the specified address resource. Gets a list of available addresses by
    * making a list() request. (globalAddresses.get)
    *
    * @param string $project Project ID for this request.

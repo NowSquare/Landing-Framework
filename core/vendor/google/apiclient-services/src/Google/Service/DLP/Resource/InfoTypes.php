@@ -26,7 +26,9 @@
 class Google_Service_DLP_Resource_InfoTypes extends Google_Service_Resource
 {
   /**
-   * Returns sensitive information types DLP supports. (infoTypes.listInfoTypes)
+   * Returns a list of the sensitive information types that the DLP API supports.
+   * See https://cloud.google.com/dlp/docs/infotypes-reference to learn more.
+   * (infoTypes.listInfoTypes)
    *
    * @param array $optParams Optional parameters.
    *

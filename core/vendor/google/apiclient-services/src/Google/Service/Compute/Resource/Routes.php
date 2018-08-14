@@ -53,7 +53,7 @@ class Google_Service_Compute_Resource_Routes extends Google_Service_Resource
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified Route resource. Get a list of available routes by
+   * Returns the specified Route resource. Gets a list of available routes by
    * making a list() request. (routes.get)
    *
    * @param string $project Project ID for this request.

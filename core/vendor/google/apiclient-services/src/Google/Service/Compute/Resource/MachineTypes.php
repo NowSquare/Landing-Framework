@@ -78,7 +78,7 @@ class Google_Service_Compute_Resource_MachineTypes extends Google_Service_Resour
     return $this->call('aggregatedList', array($params), "Google_Service_Compute_MachineTypeAggregatedList");
   }
   /**
-   * Returns the specified machine type. Get a list of available machine types by
+   * Returns the specified machine type. Gets a list of available machine types by
    * making a list() request. (machineTypes.get)
    *
    * @param string $project Project ID for this request.

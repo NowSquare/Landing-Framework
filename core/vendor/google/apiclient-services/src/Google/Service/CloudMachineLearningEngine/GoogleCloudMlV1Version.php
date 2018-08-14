@@ -26,6 +26,7 @@ class Google_Service_CloudMachineLearningEngine_GoogleCloudMlV1Version extends G
   public $framework;
   public $isDefault;
   public $lastUseTime;
+  public $machineType;
   protected $manualScalingType = 'Google_Service_CloudMachineLearningEngine_GoogleCloudMlV1ManualScaling';
   protected $manualScalingDataType = '';
   public $name;
@@ -102,6 +103,14 @@ class Google_Service_CloudMachineLearningEngine_GoogleCloudMlV1Version extends G
   public function getLastUseTime()
   {
     return $this->lastUseTime;
+  }
+  public function setMachineType($machineType)
+  {
+    $this->machineType = $machineType;
+  }
+  public function getMachineType()
+  {
+    return $this->machineType;
   }
   /**
    * @param Google_Service_CloudMachineLearningEngine_GoogleCloudMlV1ManualScaling

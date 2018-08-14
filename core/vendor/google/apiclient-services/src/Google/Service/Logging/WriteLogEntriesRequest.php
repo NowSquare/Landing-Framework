@@ -26,8 +26,6 @@ class Google_Service_Logging_WriteLogEntriesRequest extends Google_Collection
   public $partialSuccess;
   protected $resourceType = 'Google_Service_Logging_MonitoredResource';
   protected $resourceDataType = '';
-  protected $secondaryResourceType = 'Google_Service_Logging_MonitoredResource';
-  protected $secondaryResourceDataType = '';
 
   public function setDryRun($dryRun)
   {
@@ -88,19 +86,5 @@ class Google_Service_Logging_WriteLogEntriesRequest extends Google_Collection
   public function getResource()
   {
     return $this->resource;
-  }
-  /**
-   * @param Google_Service_Logging_MonitoredResource
-   */
-  public function setSecondaryResource(Google_Service_Logging_MonitoredResource $secondaryResource)
-  {
-    $this->secondaryResource = $secondaryResource;
-  }
-  /**
-   * @return Google_Service_Logging_MonitoredResource
-   */
-  public function getSecondaryResource()
-  {
-    return $this->secondaryResource;
   }
 }

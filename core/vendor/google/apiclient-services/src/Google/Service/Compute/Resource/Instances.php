@@ -121,6 +121,9 @@ class Google_Service_Compute_Resource_Instances extends Google_Service_Resource
    * @param Google_Service_Compute_AttachedDisk $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param bool forceAttach Whether to force attach the disk even if it's
+   * currently attached to another instance. This is only available for regional
+   * disks.
    * @opt_param string requestId An optional request ID to identify requests.
    * Specify a unique request ID so that if you must retry your request, the
    * server will know to ignore the request if it has already been completed.
@@ -231,8 +234,8 @@ class Google_Service_Compute_Resource_Instances extends Google_Service_Resource
     return $this->call('detachDisk', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified Instance resource. Get a list of available instances by
-   * making a list() request. (instances.get)
+   * Returns the specified Instance resource. Gets a list of available instances
+   * by making a list() request. (instances.get)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.
@@ -290,6 +293,14 @@ class Google_Service_Compute_Resource_Instances extends Google_Service_Resource
    *
    * The request ID must be a valid UUID with the exception that zero UUID is not
    * supported (00000000-0000-0000-0000-000000000000).
+   * @opt_param string sourceInstanceTemplate Specifies instance template to
+   * create the instance.
+   *
+   * This field is optional. It can be a full or partial URL. For example, the
+   * following are all valid URLs to an instance template:   - https://www.googlea
+   * pis.com/compute/v1/projects/project/global/global/instanceTemplates/instanceT
+   * emplate  - projects/project/global/global/instanceTemplates/instanceTemplate
+   * - global/instancesTemplates/instanceTemplate
    * @return Google_Service_Compute_Operation
    */
   public function insert($project, $zone, Google_Service_Compute_Instance $postBody, $optParams = array())
@@ -741,8 +752,8 @@ class Google_Service_Compute_Resource_Instances extends Google_Service_Resource
     return $this->call('setTags', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Starts an instance that was stopped using the using the instances().stop
-   * method. For more information, see Restart an instance. (instances.start)
+   * Starts an instance that was stopped using the instances().stop method. For
+   * more information, see Restart an instance. (instances.start)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.
@@ -770,9 +781,8 @@ class Google_Service_Compute_Resource_Instances extends Google_Service_Resource
     return $this->call('start', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Starts an instance that was stopped using the using the instances().stop
-   * method. For more information, see Restart an instance.
-   * (instances.startWithEncryptionKey)
+   * Starts an instance that was stopped using the instances().stop method. For
+   * more information, see Restart an instance. (instances.startWithEncryptionKey)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.

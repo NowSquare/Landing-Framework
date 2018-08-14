@@ -20,6 +20,7 @@ class Google_Service_AndroidManagement_Command extends Google_Collection
   protected $collection_key = 'resetPasswordFlags';
   public $createTime;
   public $duration;
+  public $errorCode;
   public $newPassword;
   public $resetPasswordFlags;
   public $type;
@@ -40,6 +41,14 @@ class Google_Service_AndroidManagement_Command extends Google_Collection
   public function getDuration()
   {
     return $this->duration;
+  }
+  public function setErrorCode($errorCode)
+  {
+    $this->errorCode = $errorCode;
+  }
+  public function getErrorCode()
+  {
+    return $this->errorCode;
   }
   public function setNewPassword($newPassword)
   {

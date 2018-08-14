@@ -26,7 +26,7 @@
 class Google_Service_Compute_Resource_InterconnectLocations extends Google_Service_Resource
 {
   /**
-   * Returns the details for the specified interconnect location. Get a list of
+   * Returns the details for the specified interconnect location. Gets a list of
    * available interconnect locations by making a list() request.
    * (interconnectLocations.get)
    *

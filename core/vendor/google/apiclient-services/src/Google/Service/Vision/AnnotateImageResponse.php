@@ -18,6 +18,8 @@
 class Google_Service_Vision_AnnotateImageResponse extends Google_Collection
 {
   protected $collection_key = 'textAnnotations';
+  protected $contextType = 'Google_Service_Vision_ImageAnnotationContext';
+  protected $contextDataType = '';
   protected $cropHintsAnnotationType = 'Google_Service_Vision_CropHintsAnnotation';
   protected $cropHintsAnnotationDataType = '';
   protected $errorType = 'Google_Service_Vision_Status';
@@ -41,6 +43,20 @@ class Google_Service_Vision_AnnotateImageResponse extends Google_Collection
   protected $webDetectionType = 'Google_Service_Vision_WebDetection';
   protected $webDetectionDataType = '';
 
+  /**
+   * @param Google_Service_Vision_ImageAnnotationContext
+   */
+  public function setContext(Google_Service_Vision_ImageAnnotationContext $context)
+  {
+    $this->context = $context;
+  }
+  /**
+   * @return Google_Service_Vision_ImageAnnotationContext
+   */
+  public function getContext()
+  {
+    return $this->context;
+  }
   /**
    * @param Google_Service_Vision_CropHintsAnnotation
    */

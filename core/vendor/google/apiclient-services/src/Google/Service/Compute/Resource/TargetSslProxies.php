@@ -53,8 +53,8 @@ class Google_Service_Compute_Resource_TargetSslProxies extends Google_Service_Re
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified TargetSslProxy resource. Get a list of available target
-   * SSL proxies by making a list() request. (targetSslProxies.get)
+   * Returns the specified TargetSslProxy resource. Gets a list of available
+   * target SSL proxies by making a list() request. (targetSslProxies.get)
    *
    * @param string $project Project ID for this request.
    * @param string $targetSslProxy Name of the TargetSslProxy resource to return.
@@ -237,5 +237,38 @@ class Google_Service_Compute_Resource_TargetSslProxies extends Google_Service_Re
     $params = array('project' => $project, 'targetSslProxy' => $targetSslProxy, 'postBody' => $postBody);
     $params = array_merge($params, $optParams);
     return $this->call('setSslCertificates', array($params), "Google_Service_Compute_Operation");
+  }
+  /**
+   * Sets the SSL policy for TargetSslProxy. The SSL policy specifies the server-
+   * side support for SSL features. This affects connections between clients and
+   * the SSL proxy load balancer. They do not affect the connection between the
+   * load balancer and the backends. (targetSslProxies.setSslPolicy)
+   *
+   * @param string $project Project ID for this request.
+   * @param string $targetSslProxy Name of the TargetSslProxy resource whose SSL
+   * policy is to be set. The name must be 1-63 characters long, and comply with
+   * RFC1035.
+   * @param Google_Service_Compute_SslPolicyReference $postBody
+   * @param array $optParams Optional parameters.
+   *
+   * @opt_param string requestId An optional request ID to identify requests.
+   * Specify a unique request ID so that if you must retry your request, the
+   * server will know to ignore the request if it has already been completed.
+   *
+   * For example, consider a situation where you make an initial request and the
+   * request times out. If you make the request again with the same request ID,
+   * the server can check if original operation with the same request ID was
+   * received, and if so, will ignore the second request. This prevents clients
+   * from accidentally creating duplicate commitments.
+   *
+   * The request ID must be a valid UUID with the exception that zero UUID is not
+   * supported (00000000-0000-0000-0000-000000000000).
+   * @return Google_Service_Compute_Operation
+   */
+  public function setSslPolicy($project, $targetSslProxy, Google_Service_Compute_SslPolicyReference $postBody, $optParams = array())
+  {
+    $params = array('project' => $project, 'targetSslProxy' => $targetSslProxy, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('setSslPolicy', array($params), "Google_Service_Compute_Operation");
   }
 }

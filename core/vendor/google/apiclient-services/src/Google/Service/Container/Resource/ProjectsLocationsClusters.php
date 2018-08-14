@@ -131,14 +131,14 @@ class Google_Service_Container_Resource_ProjectsLocationsClusters extends Google
    * matches all zones and all regions.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string zone Deprecated. The name of the Google Compute Engine
-   * [zone](/compute/docs/zones#available) in which the cluster resides, or "-"
-   * for all zones. This field has been deprecated and replaced by the parent
-   * field.
    * @opt_param string projectId Deprecated. The Google Developers Console
    * [project ID or project
    * number](https://support.google.com/cloud/answer/6158840). This field has been
    * deprecated and replaced by the parent field.
+   * @opt_param string zone Deprecated. The name of the Google Compute Engine
+   * [zone](/compute/docs/zones#available) in which the cluster resides, or "-"
+   * for all zones. This field has been deprecated and replaced by the parent
+   * field.
    * @return Google_Service_Container_ListClustersResponse
    */
   public function listProjectsLocationsClusters($parent, $optParams = array())
@@ -148,7 +148,7 @@ class Google_Service_Container_Resource_ProjectsLocationsClusters extends Google
     return $this->call('list', array($params), "Google_Service_Container_ListClustersResponse");
   }
   /**
-   * Sets the addons of a specific cluster. (clusters.setAddons)
+   * Sets the addons for a specific cluster. (clusters.setAddons)
    *
    * @param string $name The name (project, location, cluster) of the cluster to
    * set addons. Specified in the format 'projects/locations/clusters'.
@@ -179,7 +179,7 @@ class Google_Service_Container_Resource_ProjectsLocationsClusters extends Google
     return $this->call('setLegacyAbac', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Sets the locations of a specific cluster. (clusters.setLocations)
+   * Sets the locations for a specific cluster. (clusters.setLocations)
    *
    * @param string $name The name (project, location, cluster) of the cluster to
    * set locations. Specified in the format 'projects/locations/clusters'.
@@ -194,7 +194,7 @@ class Google_Service_Container_Resource_ProjectsLocationsClusters extends Google
     return $this->call('setLocations', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Sets the logging service of a specific cluster. (clusters.setLogging)
+   * Sets the logging service for a specific cluster. (clusters.setLogging)
    *
    * @param string $name The name (project, location, cluster) of the cluster to
    * set logging. Specified in the format 'projects/locations/clusters'.
@@ -226,8 +226,8 @@ class Google_Service_Container_Resource_ProjectsLocationsClusters extends Google
   }
   /**
    * Used to set master auth materials. Currently supports :- Changing the admin
-   * password of a specific cluster. This can be either via password generation or
-   * explicitly set the password. (clusters.setMasterAuth)
+   * password for a specific cluster. This can be either via password generation
+   * or explicitly set the password. (clusters.setMasterAuth)
    *
    * @param string $name The name (project, location, cluster) of the cluster to
    * set auth. Specified in the format 'projects/locations/clusters'.
@@ -242,7 +242,7 @@ class Google_Service_Container_Resource_ProjectsLocationsClusters extends Google
     return $this->call('setMasterAuth', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Sets the monitoring service of a specific cluster. (clusters.setMonitoring)
+   * Sets the monitoring service for a specific cluster. (clusters.setMonitoring)
    *
    * @param string $name The name (project, location, cluster) of the cluster to
    * set monitoring. Specified in the format 'projects/locations/clusters'.
@@ -318,7 +318,7 @@ class Google_Service_Container_Resource_ProjectsLocationsClusters extends Google
     return $this->call('update', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Updates the master of a specific cluster. (clusters.updateMaster)
+   * Updates the master for a specific cluster. (clusters.updateMaster)
    *
    * @param string $name The name (project, location, cluster) of the cluster to
    * update. Specified in the format 'projects/locations/clusters'.

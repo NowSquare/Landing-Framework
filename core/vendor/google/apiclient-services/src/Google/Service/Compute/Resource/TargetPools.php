@@ -165,7 +165,7 @@ class Google_Service_Compute_Resource_TargetPools extends Google_Service_Resourc
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified target pool. Get a list of available target pools by
+   * Returns the specified target pool. Gets a list of available target pools by
    * making a list() request. (targetPools.get)
    *
    * @param string $project Project ID for this request.

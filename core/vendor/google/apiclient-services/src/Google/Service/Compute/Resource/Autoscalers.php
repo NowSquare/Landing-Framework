@@ -106,7 +106,7 @@ class Google_Service_Compute_Resource_Autoscalers extends Google_Service_Resourc
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified autoscaler resource. Get a list of available
+   * Returns the specified autoscaler resource. Gets a list of available
    * autoscalers by making a list() request. (autoscalers.get)
    *
    * @param string $project Project ID for this request.

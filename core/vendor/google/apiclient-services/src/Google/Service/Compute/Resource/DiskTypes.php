@@ -78,8 +78,8 @@ class Google_Service_Compute_Resource_DiskTypes extends Google_Service_Resource
     return $this->call('aggregatedList', array($params), "Google_Service_Compute_DiskTypeAggregatedList");
   }
   /**
-   * Returns the specified disk type. Get a list of available disk types by making
-   * a list() request. (diskTypes.get)
+   * Returns the specified disk type. Gets a list of available disk types by
+   * making a list() request. (diskTypes.get)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone for this request.

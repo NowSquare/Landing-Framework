@@ -53,8 +53,8 @@ class Google_Service_Compute_Resource_TargetTcpProxies extends Google_Service_Re
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified TargetTcpProxy resource. Get a list of available target
-   * TCP proxies by making a list() request. (targetTcpProxies.get)
+   * Returns the specified TargetTcpProxy resource. Gets a list of available
+   * target TCP proxies by making a list() request. (targetTcpProxies.get)
    *
    * @param string $project Project ID for this request.
    * @param string $targetTcpProxy Name of the TargetTcpProxy resource to return.

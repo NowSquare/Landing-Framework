@@ -106,7 +106,7 @@ class Google_Service_Compute_Resource_BackendServices extends Google_Service_Res
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified BackendService resource. Get a list of available
+   * Returns the specified BackendService resource. Gets a list of available
    * backend services by making a list() request. (backendServices.get)
    *
    * @param string $project Project ID for this request.

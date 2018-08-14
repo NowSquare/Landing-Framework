@@ -19,6 +19,8 @@ class Google_Service_AndroidManagement_Device extends Google_Collection
 {
   protected $collection_key = 'previousDeviceNames';
   public $apiLevel;
+  protected $applicationReportsType = 'Google_Service_AndroidManagement_ApplicationReport';
+  protected $applicationReportsDataType = 'array';
   public $appliedPolicyName;
   public $appliedPolicyVersion;
   public $appliedState;
@@ -64,6 +66,20 @@ class Google_Service_AndroidManagement_Device extends Google_Collection
   public function getApiLevel()
   {
     return $this->apiLevel;
+  }
+  /**
+   * @param Google_Service_AndroidManagement_ApplicationReport
+   */
+  public function setApplicationReports($applicationReports)
+  {
+    $this->applicationReports = $applicationReports;
+  }
+  /**
+   * @return Google_Service_AndroidManagement_ApplicationReport
+   */
+  public function getApplicationReports()
+  {
+    return $this->applicationReports;
   }
   public function setAppliedPolicyName($appliedPolicyName)
   {

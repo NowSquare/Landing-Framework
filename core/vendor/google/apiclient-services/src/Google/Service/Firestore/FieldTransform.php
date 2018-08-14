@@ -17,9 +17,27 @@
 
 class Google_Service_Firestore_FieldTransform extends Google_Model
 {
+  protected $appendMissingElementsType = 'Google_Service_Firestore_ArrayValue';
+  protected $appendMissingElementsDataType = '';
   public $fieldPath;
+  protected $removeAllFromArrayType = 'Google_Service_Firestore_ArrayValue';
+  protected $removeAllFromArrayDataType = '';
   public $setToServerValue;
 
+  /**
+   * @param Google_Service_Firestore_ArrayValue
+   */
+  public function setAppendMissingElements(Google_Service_Firestore_ArrayValue $appendMissingElements)
+  {
+    $this->appendMissingElements = $appendMissingElements;
+  }
+  /**
+   * @return Google_Service_Firestore_ArrayValue
+   */
+  public function getAppendMissingElements()
+  {
+    return $this->appendMissingElements;
+  }
   public function setFieldPath($fieldPath)
   {
     $this->fieldPath = $fieldPath;
@@ -27,6 +45,20 @@ class Google_Service_Firestore_FieldTransform extends Google_Model
   public function getFieldPath()
   {
     return $this->fieldPath;
+  }
+  /**
+   * @param Google_Service_Firestore_ArrayValue
+   */
+  public function setRemoveAllFromArray(Google_Service_Firestore_ArrayValue $removeAllFromArray)
+  {
+    $this->removeAllFromArray = $removeAllFromArray;
+  }
+  /**
+   * @return Google_Service_Firestore_ArrayValue
+   */
+  public function getRemoveAllFromArray()
+  {
+    return $this->removeAllFromArray;
   }
   public function setSetToServerValue($setToServerValue)
   {

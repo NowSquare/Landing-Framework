@@ -54,7 +54,7 @@ class Google_Service_Compute_Resource_HttpHealthChecks extends Google_Service_Re
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified HttpHealthCheck resource. Get a list of available HTTP
+   * Returns the specified HttpHealthCheck resource. Gets a list of available HTTP
    * health checks by making a list() request. (httpHealthChecks.get)
    *
    * @param string $project Project ID for this request.

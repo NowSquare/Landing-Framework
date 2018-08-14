@@ -58,8 +58,8 @@ class Google_Service_Compute_Resource_Snapshots extends Google_Service_Resource
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified Snapshot resource. Get a list of available snapshots by
-   * making a list() request. (snapshots.get)
+   * Returns the specified Snapshot resource. Gets a list of available snapshots
+   * by making a list() request. (snapshots.get)
    *
    * @param string $project Project ID for this request.
    * @param string $snapshot Name of the Snapshot resource to return.

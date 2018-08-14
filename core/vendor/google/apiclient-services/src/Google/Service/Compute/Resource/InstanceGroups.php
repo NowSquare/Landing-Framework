@@ -141,8 +141,8 @@ class Google_Service_Compute_Resource_InstanceGroups extends Google_Service_Reso
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified instance group. Get a list of available instance groups
-   * by making a list() request. (instanceGroups.get)
+   * Returns the specified instance group. Gets a list of available instance
+   * groups by making a list() request. (instanceGroups.get)
    *
    * @param string $project Project ID for this request.
    * @param string $zone The name of the zone where the instance group is located.

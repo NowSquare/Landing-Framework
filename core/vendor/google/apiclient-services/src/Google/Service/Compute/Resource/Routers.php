@@ -106,7 +106,7 @@ class Google_Service_Compute_Resource_Routers extends Google_Service_Resource
     return $this->call('delete', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified Router resource. Get a list of available routers by
+   * Returns the specified Router resource. Gets a list of available routers by
    * making a list() request. (routers.get)
    *
    * @param string $project Project ID for this request.

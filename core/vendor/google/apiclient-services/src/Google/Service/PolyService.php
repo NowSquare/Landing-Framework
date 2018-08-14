@@ -69,11 +69,23 @@ class Google_Service_PolyService extends Google_Service
               'path' => 'v1/assets',
               'httpMethod' => 'GET',
               'parameters' => array(
-                'pageToken' => array(
+                'format' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'curated' => array(
+                  'location' => 'query',
+                  'type' => 'boolean',
+                ),
+                'category' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
                 'maxComplexity' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -86,18 +98,6 @@ class Google_Service_PolyService extends Google_Service
                   'type' => 'string',
                 ),
                 'orderBy' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'format' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'curated' => array(
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ),
-                'category' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -121,14 +121,6 @@ class Google_Service_PolyService extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'format' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'pageToken' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'pageSize' => array(
                   'location' => 'query',
                   'type' => 'integer',
@@ -138,6 +130,14 @@ class Google_Service_PolyService extends Google_Service
                   'type' => 'string',
                 ),
                 'orderBy' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'format' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'pageToken' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),

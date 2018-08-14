@@ -136,7 +136,7 @@ class Google_Service_Compute_Resource_Subnetworks extends Google_Service_Resourc
     return $this->call('expandIpCidrRange', array($params), "Google_Service_Compute_Operation");
   }
   /**
-   * Returns the specified subnetwork. Get a list of available subnetworks list()
+   * Returns the specified subnetwork. Gets a list of available subnetworks list()
    * request. (subnetworks.get)
    *
    * @param string $project Project ID for this request.
@@ -237,9 +237,9 @@ class Google_Service_Compute_Resource_Subnetworks extends Google_Service_Resourc
   /**
    * Patches the specified subnetwork with the data included in the request. Only
    * the following fields within the subnetwork resource can be specified in the
-   * request: secondary_ip_range and allow_subnet_cidr_routes_overlap. It is also
-   * mandatory to specify the current fingeprint of the subnetwork resource being
-   * patched. (subnetworks.patch)
+   * request: secondary_ip_range, allow_subnet_cidr_routes_overlap and role. It is
+   * also mandatory to specify the current fingeprint of the subnetwork resource
+   * being patched. (subnetworks.patch)
    *
    * @param string $project Project ID for this request.
    * @param string $region Name of the region scoping this request.

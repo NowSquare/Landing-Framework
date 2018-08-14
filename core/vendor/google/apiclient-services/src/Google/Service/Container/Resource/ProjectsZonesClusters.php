@@ -26,7 +26,7 @@
 class Google_Service_Container_Resource_ProjectsZonesClusters extends Google_Service_Resource
 {
   /**
-   * Sets the addons of a specific cluster. (clusters.addons)
+   * Sets the addons for a specific cluster. (clusters.addons)
    *
    * @param string $projectId Deprecated. The Google Developers Console [project
    * ID or project number](https://support.google.com/cloud/answer/6158840). This
@@ -198,7 +198,7 @@ class Google_Service_Container_Resource_ProjectsZonesClusters extends Google_Ser
     return $this->call('list', array($params), "Google_Service_Container_ListClustersResponse");
   }
   /**
-   * Sets the locations of a specific cluster. (clusters.locations)
+   * Sets the locations for a specific cluster. (clusters.locations)
    *
    * @param string $projectId Deprecated. The Google Developers Console [project
    * ID or project number](https://support.google.com/cloud/answer/6158840). This
@@ -219,7 +219,7 @@ class Google_Service_Container_Resource_ProjectsZonesClusters extends Google_Ser
     return $this->call('locations', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Sets the logging service of a specific cluster. (clusters.logging)
+   * Sets the logging service for a specific cluster. (clusters.logging)
    *
    * @param string $projectId Deprecated. The Google Developers Console [project
    * ID or project number](https://support.google.com/cloud/answer/6158840). This
@@ -240,7 +240,7 @@ class Google_Service_Container_Resource_ProjectsZonesClusters extends Google_Ser
     return $this->call('logging', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Updates the master of a specific cluster. (clusters.master)
+   * Updates the master for a specific cluster. (clusters.master)
    *
    * @param string $projectId Deprecated. The Google Developers Console [project
    * ID or project number](https://support.google.com/cloud/answer/6158840). This
@@ -261,7 +261,7 @@ class Google_Service_Container_Resource_ProjectsZonesClusters extends Google_Ser
     return $this->call('master', array($params), "Google_Service_Container_Operation");
   }
   /**
-   * Sets the monitoring service of a specific cluster. (clusters.monitoring)
+   * Sets the monitoring service for a specific cluster. (clusters.monitoring)
    *
    * @param string $projectId Deprecated. The Google Developers Console [project
    * ID or project number](https://support.google.com/cloud/answer/6158840). This
@@ -323,8 +323,8 @@ class Google_Service_Container_Resource_ProjectsZonesClusters extends Google_Ser
   }
   /**
    * Used to set master auth materials. Currently supports :- Changing the admin
-   * password of a specific cluster. This can be either via password generation or
-   * explicitly set the password. (clusters.setMasterAuth)
+   * password for a specific cluster. This can be either via password generation
+   * or explicitly set the password. (clusters.setMasterAuth)
    *
    * @param string $projectId Deprecated. The Google Developers Console [project
    * ID or project number](https://support.google.com/cloud/answer/6158840). This
