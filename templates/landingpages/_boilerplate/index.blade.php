@@ -11,7 +11,7 @@
 			Styles
 		======================================================-->
 
-    <link rel="stylesheet" type="text/css" href="/assets/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/framework/1.0.0/css/style.min.css">
 
     <link href="//fonts.googleapis.com/css?family=Oswald:400%7CYantramanav:400" rel="stylesheet">
@@ -35,7 +35,7 @@
 		======================================================-->
 
     <script src="/assets/framework/1.0.0/js/scripts.min.js"></script>
-    <script src="/assets/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/assets/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
   </head>
   <body>

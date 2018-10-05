@@ -11,7 +11,7 @@
 			Styles
 		======================================================-->
 
-    <link rel="stylesheet" type="text/css" href="/assets/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/framework/1.0.0/css/style.min.css">
 
     <link href="//fonts.googleapis.com/css?family=Dosis:200,400|Open+Sans:300,400,700" rel="stylesheet">
@@ -33,7 +33,7 @@
 		======================================================-->
 
     <script src="/assets/framework/1.0.0/js/scripts.min.js"></script>
-    <script src="/assets/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="/assets/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
   </head>
   <body>
