@@ -1,0 +1,71 @@
+.shadow-box {
+  position: relative;
+  box-shadow: $mdl-shadow--4dp;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    box-shadow: $mdl-shadow--16dp;
+    margin-top: -3px;
+    margin-bottom: 23px;
+  }
+
+  .box-icon {
+    height: 100px;
+    margin: 20px 0;
+  }
+
+  &.box-option {
+    .portlet-body {
+      text-align: center;
+      font-size: 1.5rem;
+      min-height: 100px;
+    }
+  }
+
+  .link {
+    color: #797979;
+  }
+
+  .link:hover,
+  .link:active {
+    color: #222;
+  }
+
+  &.grid-item-content {
+    .dropdown-toggle {
+      background-color: #21252b !important;
+      color: #eee;
+      border:0;
+      padding: 2px;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      margin: 4px;
+    }
+
+    .open .dropdown-toggle,
+    .dropdown-toggle:hover {
+      background-color: /*#2c313a*/ #2c313a !important;
+      color: #fff;
+    }
+
+    .badge {
+      margin-top: 4px;
+    }
+
+    .portlet-heading {
+      background-color: #21252b;
+      padding: 2px 10px 0px;
+      .portlet-title {
+        color: #eee !important;
+        position: absolute;
+        width: calc(100% - 46px);
+      }
+    }
+    .table tr td:first-child {
+      padding: 7px 0 0 7px;
+    }
+    .table tr td:last-child {
+    }
+  }
+}

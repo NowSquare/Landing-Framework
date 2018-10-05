@@ -1,0 +1,60 @@
+div.hopscotch-bubble .hopscotch-nav-button {
+  /* borrowed from katy styles */
+  font-weight:bold;
+  border-width:0px;
+  border-style:solid;
+  cursor:pointer;
+  margin:0;
+  overflow:visible;
+  text-decoration:none !important;
+  width:auto;
+  padding:0 10px;
+  height:26px;
+  line-height:24px;
+  font-size:12px;
+  *zoom:1;
+  white-space:nowrap;
+  display:-moz-inline-stack;
+  display:inline-block;
+  vertical-align:middle;
+  *vertical-align:auto;
+  zoom:1;
+  *display:inline;
+  vertical-align:middle;
+
+  //.round-corners(3px);
+  .box-sizing();
+
+  &:hover {
+    *zoom:1;
+    .box-shadow(0, 1px, 3px, rgba(0,0,0,0.25), false);
+  }
+
+  &:active {
+    .box-shadow(0, 1px, 2px, rgba(0,0,0,0.25), true);
+  }
+
+  &.next {
+    border-color: #1b5480;
+    color: #fff;
+    margin: 0 0 0 10px; /* HS specific*/
+    text-shadow: 0 1px 1px rgba(0,0,0,0.35);
+    background-color: #138dfa;
+
+    &:hover {
+      background-color: #0580ee;
+    }
+  }
+
+  &.prev {
+    background-color:#f2f2f2;
+    border-color:#a7a7a7;
+    color:#333;
+    text-shadow:0 1px 1px rgba(255,255,255,0.75);
+    background-color: #dae6ec;
+
+    &:hover {
+      background-color: #c2ced4;
+    }
+  }
+}

@@ -1,0 +1,181 @@
+
+/* 
+ * -----------------------------------------
+ * General
+ * -----------------------------------------
+ */
+
+$brand-primary: #138dfa !default;
+$nav-logo-bg-color: #E0E0E0 !default;
+$btn-hover-bg: #24292e !default;
+$btn-hover-color: #fff !default;
+$body-bg: #fffcfe !default;
+$datatables-thead: #f1f1f1 !default;
+$head-bg: #fff !default;
+$head-color: #333 !default;
+$head-active-bg: #fff !default;
+$head-active-color: #333 !default;
+$head-hover-bg: #fff !default;
+$head-hover-color: #111 !default;
+
+/* 
+ * -----------------------------------------
+ * Material
+ * -----------------------------------------
+ */
+
+$mdl-shadow--2dp: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !default;
+$mdl-shadow--3dp: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12) !default;
+$mdl-shadow--4dp: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--6dp: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--8dp: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2) !default;
+
+/* 
+ * -----------------------------------------
+ * Custom
+ * -----------------------------------------
+ */
+ /* Media lib Hide certain buttons * /
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(4) > div:nth-child(1),
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(4) > div:nth-child(5),
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(7) > div:nth-child(3),
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(9) > div:nth-child(1),
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(10) > div:nth-child(1),
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(10) > div:nth-child(2),
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(5),
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(6),
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(10),
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(11) {
+	display: none !important;
+}
+*/
+body.elfinder-picker {
+  .ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(4),
+  .ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(7) {
+    display: none !important;
+  }
+}
+
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(4),
+.ui-widget-header.ui-corner-top.elfinder-toolbar > div:nth-child(7) {
+	.elfinder-toolbar-button-separator:nth-child(4),
+	.elfinder-toolbar-button-separator:nth-child(2) {
+		border: 0 !important;
+	}
+}
+
+.ui-front.ui-widget.ui-widget-content {
+  box-shadow: $mdl-shadow--8dp;
+}
+
+.elfinder-contextmenu {
+  .ui-state-hover {
+    .elfinder-button-icon {
+      background-image:url(../packages/elfinder/img/toolbar-light.png);
+    }
+  }
+}
+
+.ui-widget-header {
+  .ui-state-hover {
+    color:$btn-hover-color !important;
+  
+    .elfinder-button-icon {
+      background-image:url(../packages/elfinder/img/toolbar.png);
+    }
+  }
+}
+
+.ui-icon-grip-dotted-vertical {
+  margin-right: 2px;
+  top: 2px !important;
+}
+
+.elfinder-toolbar.ui-widget-header {
+  background: transparent;
+  color: #fff;
+  padding: 10px 10px 10px 5px !important;
+  border: 0;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.el-picker {
+  .elfinder-toolbar.ui-widget-header {
+    padding: 5px 8px 5px 2px !important;
+  }
+  .elfinder-button-search {
+    top: -1px;
+  }
+}
+
+@media (max-width: 568px) {
+  #elfinder {
+    .elfinder-button-search {
+      display: none !important;
+    }
+  }
+}
+
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+  padding: 5px;
+}
+
+.ui-widget-content {
+  border: 0;
+}
+
+.elfinder .elfinder-navbar {
+  background-color: #fff !important;
+  height: 100% !important;
+}
+
+.elfinder .elfinder-statusbar {
+  background: transparent;
+  color: #545454 !important;
+  border-top: 1px solid #e8e8e8;
+  padding: 5px !important;
+}
+
+.elfinder-button-search input {
+  width: 208px !important;
+  border-radius: 0px !important;
+}
+
+.elfinder-picker .elfinder .elfinder-button-search {
+  margin: 8px 50px 0 0 !important;
+}
+ 
+.ui-controlgroup-horizontal {
+  .ui-button {
+    padding: 5px !important;
+    &.ui-state-active {
+      background-color: $brand-primary !important;
+      border-color: $brand-primary !important;
+      color: #fff !important;
+    }
+  }
+}
+
+#elfinder,
+td,
+textarea,
+input {
+  color: #222 !important;
+}
+
+.elfinder-button-search .ui-front.ui-widget.ui-widget-content {
+  display: none !important;
+}
+
+.elfinder-cwd-wrapper-empty .ui-droppable .elfinder-cwd::after {
+  margin: 5px;
+}
+
+/* 
+ * -----------------------------------------
+ * Includes
+ * -----------------------------------------
+ */
+
+@import "elfinder";

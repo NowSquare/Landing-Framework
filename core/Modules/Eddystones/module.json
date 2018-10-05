@@ -1,0 +1,16 @@
+{
+    "name": "Eddystones",
+    "alias": "eddystones",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 70,
+    "providers": [
+        "Modules\\Eddystones\\Providers\\EddystonesServiceProvider"
+    ],
+    "aliases": [],
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

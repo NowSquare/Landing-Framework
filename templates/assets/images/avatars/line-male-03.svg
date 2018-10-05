@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Laag_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 70 70" width="70px" height="70px" style="enable-background:new 0 0 70 70;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#444444;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<g>
+	<g>
+		<line class="st0" x1="51" y1="58.5" x2="51" y2="64.5"/>
+		<line class="st0" x1="19" y1="58.5" x2="19" y2="64.5"/>
+	</g>
+	<g>
+		<path class="st0" d="M29,35.5v2c0,1.7-3,3-3,3l-6,3c-6,2-11,5.9-11,12v9"/>
+		<path class="st0" d="M41,35.5v2c0,1.7,3,3,3,3l6,3c6,2,11,5.9,11,12v9"/>
+	</g>
+	<path class="st0" d="M24,18.5v6l1,1c0,5,3,12,10,12s10-7,10-12l1-1v-4.2v-1.8"/>
+	<path class="st0" d="M46,18.2c0,0-17.5-0.8-18.5-5.6L24,19.5l0,0l-1-5.7c0-4.6,3.9-8.3,8.7-8.3h6.5c4.8,0,8.7,3.7,8.7,8.3L46,18.2z
+		"/>
+	<g>
+		<g>
+			<rect x="27" y="20.5" class="st0" width="6" height="4"/>
+			<rect x="37" y="20.5" class="st0" width="6" height="4"/>
+		</g>
+		<line class="st0" x1="33" y1="21.5" x2="37" y2="21.5"/>
+	</g>
+	<g>
+		<polyline class="st0" points="31.5,45.8 24.5,49.5 28.3,39.5 33.5,43.9 		"/>
+		<polyline class="st0" points="38.5,45.8 45.5,49.5 41.7,39.5 36.5,43.9 		"/>
+	</g>
+	<g>
+		<polygon class="st0" points="38.5,45.8 38.1,46.1 35,48.7 31.5,45.8 33.5,43.9 36.5,43.9 		"/>
+		<polygon class="st0" points="35,64.5 30.8,59.3 35,48.6 39.2,59.3 		"/>
+	</g>
+</g>
+</svg>

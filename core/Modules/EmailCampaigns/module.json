@@ -1,0 +1,16 @@
+{
+    "name": "EmailCampaigns",
+    "alias": "emailcampaigns",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 50,
+    "providers": [
+        "Modules\\EmailCampaigns\\Providers\\EmailCampaignsServiceProvider"
+    ],
+    "aliases": [],
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

@@ -1,0 +1,1 @@
+{{ $email_text_version }}

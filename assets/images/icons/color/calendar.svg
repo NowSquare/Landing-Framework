@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="calendar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 192 188" width="100px" height="100px" enable-background="new 0 0 192 188" xml:space="preserve">
+<g>
+	<path fill="#FCC24C" d="M0,160.1564C0,175.496,12.4532,188,27.8164,188h136.3672C179.5508,188,192,175.5352,192,160.1564V40H0
+		V160.1564z M136,56h28v28h-28V56z M136,96h28v28h-28V96z M136,136h28v28h-28V136z M100,56h28v28h-28V56z M100,96h28v28h-28V96z
+		 M100,136h28v28h-28V136z M64,56h28v28H64V56z M64,96h28v28H64V96z M64,136h28v28H64V136z M28,56h28v28H28V56z M28,96h28v28H28V96z
+		 M28,136h28v28H28V136z"/>
+	<path fill="#9AB040" d="M140,0c2.2088,0,4,1.7892,4,4v20c0,2.2108-1.7912,4-4,4h-20c-2.2088,0-4-1.7892-4-4V4
+		c0-2.2108,1.7912-4,4-4H72c2.2088,0,4,1.7892,4,4v20c0,2.2108-1.7912,4-4,4H52c-2.2088,0-4-1.7892-4-4V4c0-2.2108,1.7912-4,4-4H0
+		v32v8h192v-8V0H140z"/>
+	<path fill="#618287" d="M48,4v20c0,2.2108,1.7912,4,4,4h20c2.2088,0,4-1.7892,4-4V4c0-2.2108-1.7912-4-4-4H52
+		C49.7912,0,48,1.7892,48,4z"/>
+	<path fill="#618287" d="M116,4v20c0,2.2108,1.7912,4,4,4h20c2.2088,0,4-1.7892,4-4V4c0-2.2108-1.7912-4-4-4h-20
+		C117.7912,0,116,1.7892,116,4z"/>
+	<rect x="28" y="56" fill="#FE8657" width="28" height="28"/>
+	<rect x="64" y="56" fill="#FE8657" width="28" height="28"/>
+	<rect x="100" y="56" fill="#FE8657" width="28" height="28"/>
+	<rect x="136" y="56" fill="#FE8657" width="28" height="28"/>
+	<rect x="28" y="96" fill="#FE8657" width="28" height="28"/>
+	<rect x="64" y="96" fill="#FE8657" width="28" height="28"/>
+	<rect x="100" y="96" fill="#FE8657" width="28" height="28"/>
+	<rect x="136" y="96" fill="#FE8657" width="28" height="28"/>
+	<rect x="28" y="136" fill="#FE8657" width="28" height="28"/>
+	<rect x="64" y="136" fill="#FE8657" width="28" height="28"/>
+	<rect x="100" y="136" fill="#FE8657" width="28" height="28"/>
+	<rect x="136" y="136" fill="#FE8657" width="28" height="28"/>
+</g>
+</svg>

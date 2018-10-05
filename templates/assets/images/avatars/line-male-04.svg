@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Laag_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 70 70" width="70px" height="70px" style="enable-background:new 0 0 70 70;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#444444;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<g>
+	<path class="st0" d="M19,64.5"/>
+	<g>
+		<path class="st0" d="M29,35.5v2c0,1.7-3,3-3,3l-6,3c-6,2-11,5.9-11,12v9"/>
+		<path class="st0" d="M41,35.5v2c0,1.7,3,3,3,3l6,3c6,2,11,5.9,11,12v9"/>
+	</g>
+	<path class="st0" d="M22.5,42.5c0,3.3,5.6,6,12.5,6c6.9,0,12.5-2.7,12.5-6"/>
+	<path class="st0" d="M25,25.5c0,5,2.1,12,10,12c7.9,0,10-7,10-12"/>
+	<g>
+		<line class="st0" x1="25" y1="9.6" x2="25" y2="19.5"/>
+		<line class="st0" x1="29" y1="7.1" x2="29" y2="16.1"/>
+		<line class="st0" x1="33" y1="5.5" x2="33" y2="14.7"/>
+		<line class="st0" x1="37" y1="5.5" x2="37" y2="14.7"/>
+		<line class="st0" x1="41" y1="7.1" x2="41" y2="16.1"/>
+		<line class="st0" x1="45" y1="9.6" x2="45" y2="19.5"/>
+	</g>
+	<path class="st0" d="M19,64.5V58c0-1.2-0.3-2.3-0.7-3.4L14,45.5"/>
+	<path class="st0" d="M51,64.5V58c0-1.2,0.3-2.3,0.7-3.4l4.3-9.1"/>
+	<g>
+		<path class="st0" d="M34.8,20.2c0,0,0,7.1-6,7.1s-6-7.1-6-7.1H34.8z"/>
+		<path class="st0" d="M46.8,20.2c0,0,0,7.1-6,7.1s-6-7.1-6-7.1H46.8z"/>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,609 @@
+$mdl-shadow--2dp: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !default;
+$mdl-shadow--3dp: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12) !default;
+$mdl-shadow--4dp: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--6dp: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--8dp: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2) !default;
+
+//@import "../../../../assets/bs4/resources/sass/fonts/iconsmind-line";
+
+$mi_path: "../framework/1.0.0/fonts/material-icons" !default;
+@import "../../../../assets/framework/1.0.0/resources/sass/fonts/material-icons";
+
+@import "spinthatshit";
+@import "colorbox";
+@import "jvectormap";
+@import "bootstrap-editable";
+@import "notifyjs";
+@import "shadow-boxes";
+@import "sweet-alert2";
+
+.mdl-shadow--2dp { box-shadow: $mdl-shadow--2dp; }
+.mdl-shadow--3dp { box-shadow: $mdl-shadow--3dp; }
+.mdl-shadow--4dp { box-shadow: $mdl-shadow--4dp; }
+.mdl-shadow--6dp { box-shadow: $mdl-shadow--6dp; }
+.mdl-shadow--8dp { box-shadow: $mdl-shadow--8dp; }
+.mdl-shadow--16dp { box-shadow: $mdl-shadow--16dp; }
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(99,99,99,0.1);
+  border: 0px none #ffffff;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99,99,99,0.2);
+}
+::-webkit-scrollbar-thumb:active {
+  background: rgba(99,99,99,0.2);
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  border: 0px none #ffffff;
+}
+::-webkit-scrollbar-track:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-track:active {
+  background: #ffffff;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Always show scrollbar */
+html {
+  overflow-y: scroll;
+}
+
+/* Fix for jQuery UI sortable scroll issue */
+.table .ui-sortable {
+  overflow: auto;
+}
+
+/* Editor modal */
+html.editor-modal,
+html.editor-modal body {
+  background-color: #fff !important;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+
+html.editor-modal {
+  body, input, textarea, button, h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  padding-top: 52px;
+  padding-bottom: 52px;
+
+  &.editor-modal-scrolling {
+
+    .editor-modal-header {
+      z-index: 99999;
+      /*box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !important;*/
+      box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.15);
+      h1 {
+        margin-top: 8px;
+        font-size: 16px;
+      }
+    }
+
+    .editor-modal-footer {
+      z-index: 99999;
+      background-color: #fff;
+      box-shadow: $mdl-shadow--6dp !important;
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    
+  }
+
+  .editor-modal-header {
+    z-index: 9;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 5px 30px;
+    background-color: #fff;
+    width: 100%;
+    height: 52px;
+
+    &, h1 {
+    transition: all 0.3s ease 0s;
+    }
+  }
+
+  .editor-modal-footer {
+    z-index: 9;
+    text-align: right;
+    position: fixed;
+    /*
+    right: 30px;
+    bottom: 20px;*/
+
+    right: 0;
+    bottom: 0;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    width: 250px;
+    transition: all 0.3s ease 0s;
+
+    .btn-material {
+      &.btn-primary {
+        display: inline-block;
+        height: 36px;
+        background-color: #fff !important;
+        border: 0 !important;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        color: rgba(33,150,243,0.9) !important;
+        line-height: 36px;
+        text-align: center;
+        letter-spacing: 0.4px;
+        padding: 0 8px 0 8px;
+        margin: 6px 0px;
+        text-transform: uppercase;
+        transition: all 0.3s ease 0s;
+      }
+
+      &.btn-primary:hover,
+      &.btn-primary:active,
+      &.btn-primary:focus,
+      &.active {
+        background-color: #d9d9d9 !important /*rgba(0,0,0,0.15) !important*/;
+        box-shadow: none !important;
+      }
+    }
+  }
+}
+
+html.editor-modal body {
+  padding: 15px !important;
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(0,0,0,.5);
+
+  h1 {
+    color: rgba(0,0,0,.8);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+}
+
+.btn-close {
+  z-index: 100;
+  background: url(../images/icons/close.svg) no-repeat !important;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.3;
+}
+
+.btn-close:hover {
+  opacity: 1;
+}
+/*
+.btn-close:before, .btn-close:after {
+  position: absolute;
+  content: ' ';
+  height: 24px;
+  width: 2px;
+  left: 12px;
+  background-color: #333;
+}
+.btn-close:before {
+  transform: rotate(45deg);
+}
+
+.btn-close:after {
+  transform: rotate(-45deg);
+}*/
+
+.dropdown-menu .mi {
+  top: 4px;
+}
+
+.menu-extras {
+  .dropdown-menu>li>a {
+    padding: 3px 20px 6px;
+  }
+}
+
+h3.seperator {
+  color: #aaa;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+
+  span {
+    display: inline-block;
+    vertical-align: baseline;
+    zoom: 1;
+    *display: inline;
+    *vertical-align: auto;
+    position: relative;
+    padding: 0 15px;
+
+    &:before, &:after {
+      content: '';
+      display: block;
+      width: 2000px;
+      position: absolute;
+      top: 14px;
+      border-top: 1px solid #aaa;
+    }
+
+    &:before { right: 100%; }
+    &:after { left: 100%; }
+  }
+}
+
+// fontawesome iconpicker
+.iconpicker-popover.popover {
+  width: 458px;
+}
+
+.iconpicker-items .iconpicker-item {
+  width: 24px;
+  height: 24px;
+  padding: 6px;
+  i {
+    font-size: 24px;
+
+    &.mi {
+      top: 0;
+    }
+  }
+}
+
+// drag/drop list
+.el-dragging {
+  background-color: #fff;
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.el-placeholder {
+  background-color:#efefef;
+  height: 63px;
+  box-shadow: inset 0 6px 10px 0 rgba(0, 0, 0, 0.14), inset 0 1px 18px 0 rgba(0, 0, 0, 0.12), inset 0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.table-list {
+  .order-handle {
+    padding: 11px 0 0;
+    text-align: right;
+    cursor: ns-resize;
+  }
+  .btn-lg {
+    padding: 11px 16px 12px;
+  }
+  .icon-picker.btn-lg {
+    padding: 11px 1px 12px;
+  }
+}
+
+// Fix close button Colorbox
+#cboxTopCenter {
+  display: none !important;
+  /*
+  height: 28px;
+  background-color: #fff !important;
+  border-bottom: 1px solid #e8e8e8 !important;*/
+}
+
+#cboxClose {
+/*  background: none !important;*/
+  background: url(../images/icons/close.svg) no-repeat !important;
+  margin-top: 36px!important;
+  margin-right: 16px!important;
+  width: 20px!important;
+  height: 20px!important;
+  opacity: 0.3;
+}
+
+#cboxClose:hover {
+  opacity: 1;
+}
+/*
+#cboxClose:before, #cboxClose:after {
+  position: absolute;
+  content: ' ';
+  width: 2px;
+  background-color: #333;
+}
+#cboxClose:before {
+  height: 26px;
+  transform: rotate(45deg);
+}
+#cboxClose:after {
+  height: 24px;
+  transform: rotate(-45deg);
+}
+*/
+#colorbox,
+#cboxWrapper {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+#colorbox.colorbox-xl {
+  width: 90% !important;
+  height: 90% !important;
+  left: 5% !important;
+  top: 5% !important;
+
+  #cboxLoadedContent {
+    height: 90% !important;
+  }
+
+  #cboxClose {
+    background-color: #fff!important;
+    background: url(../images/icons/close-circle.svg) no-repeat !important;
+    border-radius: 50%;
+    width: 32px !important;
+    height: 32px !important;
+    margin-top: 28px!important;
+    margin-right: 25px!important;
+  }
+/*
+  #cboxClose:before, #cboxClose:after {
+    top: 4px;
+    left: 15px;
+  }*/
+}
+
+#cboxContent {
+  overflow: visible !important;
+}
+
+abbr[title], acronym[title] {
+  text-decoration: none !important;
+}
+
+// Colorpicker fixes
+.colorpicker.dropdown-menu {
+  padding: 4px;
+  min-width: 127px !important;
+}
+
+// Equal height columns
+.flex-holder {
+  display: flex;
+}
+
+.flex-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-eq-height {
+  flex: 1;
+}
+
+.tab-content.navtab-shadow,
+.navtab-shadow li.active > a {
+  background-color: #f7f7f7 !important;
+}
+
+// Tables
+.table-selectable {
+  tbody tr {
+    cursor: pointer;
+  }
+}
+
+.table {
+  &.table-cutoff {
+    table-layout: fixed;
+  }
+
+  &.table-cutoff td,
+  &.table-cutoff th {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &.dataTable tbody tr td:last-child {
+    padding: 7px !important;
+  }
+
+  tbody tr.success td {
+    background-color: #3bafda !important;
+    color: #fff !important;
+  }
+
+  tbody tr.success:hover td {
+    background-color: darken(#3bafda, 10) !important;
+  }
+
+  .link {
+    text-decoration: underline;
+  }
+
+  .success {
+    .link {
+      color: #fff;
+    }
+  }
+}
+
+.dataTables_processing {
+  border: 0;
+  &.panel {
+    box-shadow: none;
+  }
+}
+
+.card-box.table-responsive {
+  padding: 20px 20px 12px !important;
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
+  left: 6px !important;
+}
+
+// Make expaneded rows 100% wide
+.dataTable.collapsed {
+  ul.dtr-details {
+    width: 100%;
+  }
+}
+
+.label-table {
+  background-color: #a9b3bc;
+  font-weight: normal;
+  font-size: 12px;
+  float: left;
+  margin: 1px 2px 1px 0px;
+  padding: 4px 6px;
+}
+
+.btn-table {
+  float: left;
+  font-size: 11px;
+  margin: 1px 2px 1px;
+  padding: 1px 3px;
+  max-width: 160px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+// Flot chart legend
+td.legendColorBox {
+  padding: 2px 0 0 0;
+}
+
+td.legendLabel {
+  line-height: 15px;
+  font-size:14px;
+  padding: 3px 10px 3px 0;
+}
+
+// Google maps
+.gmap {
+  border: 1px solid #eee;
+}
+
+.gcontrols {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* 
+  Bounce animation
+*/
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(1.3) translate3d(0,0,0);
+  }
+  30% {
+    transform: scale(0.9);
+  }
+  80% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1) translate3d(0,0,0);
+  }
+}
+
+.nav .profile:hover img {
+  animation-name: bounceIn;
+  animation-duration: 300ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+// Image selector
+/* blocked background to show tranparency */
+.image-preview {
+background-color: #ffffff;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1'%3E %3Cpattern id='pattern' x='0' y='0' width='16' height='16' patternUnits='userSpaceOnUse' %3E %3Crect fill='rgba(159, 159, 159, 0.25)' x='0' width='8' height='8' y='0'/%3E %3Crect fill='rgba(159, 159, 159, 0.25)' x='8' width='8' height='8' y='8'/%3E %3C/pattern%3E %3Crect fill='url(#pattern)' x='0' y='0' width='100%' height='100%'/%3E %3C/svg%3E");
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+#target {
+  width: 345px;
+}
+
+/* Show device warning when viewport is small */
+
+#deviceWarning {
+  position: fixed;
+  display: none;
+  background-color: #222; 
+  color:#fff; 
+  width:100%;
+  height: 100%;
+  z-index:99999999;
+  top: 0;
+}
+
+#deviceWarning div {
+  padding: 2rem;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  width: 100%;
+  margin-top: -8em;
+}
+
+@media only screen and (max-width : 1024px) {
+  #deviceWarning {
+  display:table-cell;
+  }
+}

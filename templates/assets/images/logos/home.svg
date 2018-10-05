@@ -1,0 +1,17 @@
+<svg version="1.1"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+	 x="0px" y="0px" width="80px" height="80px" viewBox="0 0 216 220" style="enable-background:new 0 0 216 220;"
+	 xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+</style>
+<defs>
+</defs>
+<g>
+	<path class="st0" d="M184,0H32C14.4,0,0,14.3,0,32v156c0,17.6,14.4,32,32,32h152c17.6,0,32-14.3,32-32V32C216,14.3,201.6,0,184,0z
+		 M208,188c0,13.2-10.8,24-24,24H32c-13.2,0-24-10.8-24-24V32C8,18.8,18.8,8,32,8h152c13.2,0,24,10.8,24,24V188z"/>
+	<path class="st0" d="M110.8,33.2c-1.6-1.6-4.1-1.6-5.7,0l-64,64c-1.1,1.1-1.5,2.9-0.9,4.4c0.6,1.5,2.1,2.5,3.7,2.5h12v72
+		c0,2.2,1.8,4,4,4h32h32h32c2.2,0,4-1.8,4-4v-72h12c1.6,0,3.1-1,3.7-2.5c0.6-1.5,0.3-3.2-0.9-4.4L110.8,33.2z M96,172v-44h24v44H96z
+		 M152,172h-24v-48c0-2.2-1.8-4-4-4H92c-2.2,0-4,1.8-4,4v48H64v-68h88V172z M156,96H60h-6.3L108,41.7L162.3,96H156z"/>
+</g>
+</svg>
