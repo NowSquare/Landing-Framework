@@ -2,7 +2,7 @@
   <div class="header text-light -x-block-bg-img" style="">
     <div class="header-overlay -x-block-bg-color" style="background-color:rgba(249,89,58,1)">
       <div class="container">
-        <div class="header-padding-xl text-center no-padding-b">
+        <div class="header-padding-xl text-center pb-0">
           <div class="row">
             <div class="col-12">
               <div class="-x-text">

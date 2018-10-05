@@ -2,7 +2,7 @@
   <div class="header text-light -x-block-bg-img" style="background-image:url('/templates/assets/images/headers/closet-clothes-store-clothes-clads.jpg')">
     <div class="header-overlay -x-block-bg-color" style="background-color:rgba(0,0,0,0.7)">
       <div class="container">
-        <div class="header-padding-xl text-center no-padding-b">
+        <div class="header-padding-xl text-center pb-0">
           <div class="row">
             <div class="col-12">
               <div class="-x-text">

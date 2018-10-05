@@ -2,7 +2,7 @@
   <div class="header text-light">
     <div class="header-overlay -x-block-bg-gradient" style="background: #4776e6; background: linear-gradient(to bottom, #4776e6 0%,#8e54e9 100%);">
       <div class="container">
-        <div class="header-padding-xl text-center no-padding-b">
+        <div class="header-padding-xl text-center pb-0">
           <div class="row">
             <div class="col-12">
               <div class="-x-text">

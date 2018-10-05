@@ -2,7 +2,7 @@
   <div class="header text-light -x-block-bg-img" style="background-image:url('/templates/assets/images/headers/landscape-mountains-nature-sky.jpg')">
     <div class="header-overlay -x-block-bg-color" style="background-color:rgba(37,75,98,0.7)">
       <div class="container">
-        <div class="header-padding no-padding-b">
+        <div class="header-padding pb-0">
           <div class="row">
             <div class="col-12 text-center text-md-right">
               <div class="mb-1 mt-2 hor-spacing-md-a -x-list" data-repeat="a" data-attachment="bottom right" data-target-attachment="top right" data-dropdown-position="left">

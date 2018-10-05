@@ -2,7 +2,7 @@
   <div class="header text-light -x-block-bg-img" style="background-image:url('/templates/assets/images/headers/city-landmark-lights-night.jpg')">
     <div class="header-overlay -x-block-bg-color" style="background-color:rgba(64,46,84,0.6)">
       <div class="container">
-        <div class="header-padding-xl no-padding-b">
+        <div class="header-padding-xl pb-0">
           <div class="row">
             <div class="col-md-12 col-lg-7 push-lg-5 text-center text-lg-right order-lg-1">
               <img src="/templates/assets/images/logos/logo-icon-8ight.svg" alt="" class="mb-3 -x-img" data-offset="0px 0px" data-attachment="bottom left" data-target-attachment="top right" data-dropdown-position="left">
