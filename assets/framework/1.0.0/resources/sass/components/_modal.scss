@@ -34,11 +34,14 @@
  * Fix for iOS iframe scrolling issue
  */
 
-body.modal-open {
-  overflow: scroll !important;
-}
+@supports (-webkit-overflow-scrolling: touch) {
+  /* CSS specific to iOS devices */
+  body.modal-open {
+    overflow: scroll !important;
+  }
 
-.modal {
-  position: absolute !important;
-  bottom:  auto !important;
+  .modal {
+    position: absolute !important;
+    bottom:  auto !important;
+  }
 }
