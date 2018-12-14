@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
       })->hourly();
 
       $schedule->call(function () {
-        \Platform\Controllers\App\UserController::checkExpiringAccounts();
+        \Platform\Controllers\App\UserController::checkExpiredAccounts();
       })->hourly();
     }
 
