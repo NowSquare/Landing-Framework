@@ -495,6 +495,10 @@ return array(
   "empty_table" => "No data available in table",
   "dt_info" => "Showing _START_ to _END_ of _TOTAL_",
   "all" => "All",
+  "high_conversion_first" => "High converting first",
+  "low_conversion_first" => "Low converting first",
+  "most_visited_first" => "Most visited first",
+  "least_visited_first" => "Least visited",
  
   /*
    |--------------------------------------------------------------------------
