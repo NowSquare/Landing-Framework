@@ -19,7 +19,7 @@
  * Service definition for AndroidPublisher (v3).
  *
  * <p>
- * Lets Android application developers access their Google Play accounts.</p>
+ * Accesses Android application developers' Google Play accounts.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -233,6 +233,10 @@ class Google_Service_AndroidPublisher extends Google_Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ),
+                'ackBundleInstallationWarning' => array(
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ),
               ),
             ),

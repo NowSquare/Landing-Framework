@@ -30,7 +30,10 @@ class Google_Service_Genomics_Resource_Operations extends Google_Service_Resourc
    * makes a best effort to cancel the operation, but success is not guaranteed.
    * Clients may use Operations.GetOperation or Operations.ListOperations to check
    * whether the cancellation succeeded or the operation completed despite
-   * cancellation. (operations.cancel)
+   * cancellation. Authorization requires the following [Google
+   * IAM](https://cloud.google.com/iam) permission
+   *
+   * * `genomics.operations.cancel` (operations.cancel)
    *
    * @param string $name The name of the operation resource to be cancelled.
    * @param Google_Service_Genomics_CancelOperationRequest $postBody
@@ -44,9 +47,12 @@ class Google_Service_Genomics_Resource_Operations extends Google_Service_Resourc
     return $this->call('cancel', array($params), "Google_Service_Genomics_GenomicsEmpty");
   }
   /**
-   * Gets the latest state of a long-running operation.  Clients can use this
+   * Gets the latest state of a long-running operation. Clients can use this
    * method to poll the operation result at intervals as recommended by the API
-   * service. (operations.get)
+   * service. Authorization requires the following [Google
+   * IAM](https://cloud.google.com/iam) permission
+   *
+   * * `genomics.operations.get` (operations.get)
    *
    * @param string $name The name of the operation resource.
    * @param array $optParams Optional parameters.
@@ -60,7 +66,10 @@ class Google_Service_Genomics_Resource_Operations extends Google_Service_Resourc
   }
   /**
    * Lists operations that match the specified filter in the request.
-   * (operations.listOperations)
+   * Authorization requires the following [Google
+   * IAM](https://cloud.google.com/iam) permission
+   *
+   * * `genomics.operations.list` (operations.listOperations)
    *
    * @param string $name The name of the operation's parent resource.
    * @param array $optParams Optional parameters.

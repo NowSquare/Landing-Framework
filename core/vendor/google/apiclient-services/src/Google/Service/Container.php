@@ -19,8 +19,8 @@
  * Service definition for Container (v1).
  *
  * <p>
- * The Google Kubernetes Engine API is used for building and managing container
- * based applications, powered by the open source Kubernetes technology.</p>
+ * Builds and manages container-based applications, powered by the open source
+ * Kubernetes technology.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -120,15 +120,15 @@ class Google_Service_Container extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'projectId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'zone' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
                 'clusterId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'projectId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -142,15 +142,15 @@ class Google_Service_Container extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'projectId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'zone' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
                 'clusterId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'projectId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -322,6 +322,10 @@ class Google_Service_Container extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'projectId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'zone' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -331,10 +335,6 @@ class Google_Service_Container extends Google_Service
                   'type' => 'string',
                 ),
                 'nodePoolId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'projectId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -348,6 +348,10 @@ class Google_Service_Container extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'projectId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'zone' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -357,10 +361,6 @@ class Google_Service_Container extends Google_Service
                   'type' => 'string',
                 ),
                 'nodePoolId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'projectId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -466,15 +466,15 @@ class Google_Service_Container extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'projectId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'zone' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
                 'operationId' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
-                'projectId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
@@ -488,11 +488,11 @@ class Google_Service_Container extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'zone' => array(
+                'projectId' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),
-                'projectId' => array(
+                'zone' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),

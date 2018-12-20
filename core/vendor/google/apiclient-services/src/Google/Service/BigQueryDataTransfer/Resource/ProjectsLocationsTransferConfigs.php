@@ -96,14 +96,14 @@ class Google_Service_BigQueryDataTransfer_Resource_ProjectsLocationsTransferConf
    * be returned: `projects/{project_id}`.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string pageToken Pagination token, which can be used to request a
-   * specific page of `ListTransfersRequest` list results. For multiple-page
-   * results, `ListTransfersResponse` outputs a `next_page` token, which can be
-   * used as the `page_token` value to request the next page of list results.
    * @opt_param int pageSize Page size. The default page size is the maximum value
    * of 1000 results.
    * @opt_param string dataSourceIds When specified, only configurations of
    * requested data sources are returned.
+   * @opt_param string pageToken Pagination token, which can be used to request a
+   * specific page of `ListTransfersRequest` list results. For multiple-page
+   * results, `ListTransfersResponse` outputs a `next_page` token, which can be
+   * used as the `page_token` value to request the next page of list results.
    * @return Google_Service_BigQueryDataTransfer_ListTransferConfigsResponse
    */
   public function listProjectsLocationsTransferConfigs($parent, $optParams = array())
@@ -117,12 +117,17 @@ class Google_Service_BigQueryDataTransfer_Resource_ProjectsLocationsTransferConf
    * are not updated. (transferConfigs.patch)
    *
    * @param string $name The resource name of the transfer config. Transfer config
-   * names have the form `projects/{project_id}/transferConfigs/{config_id}`.
-   * Where `config_id` is usually a uuid, even though it is not guaranteed or
-   * required. The name is ignored when creating a transfer config.
+   * names have the form of
+   * `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The
+   * name is automatically generated based on the config_id specified in
+   * CreateTransferConfigRequest along with project_id and region. If config_id is
+   * not provided, usually a uuid, even though it is not guaranteed or required,
+   * will be generated for config_id.
    * @param Google_Service_BigQueryDataTransfer_TransferConfig $postBody
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string updateMask Required list of fields to be updated in this
+   * request.
    * @opt_param string authorizationCode Optional OAuth2 authorization code to use
    * with this transfer configuration. If it is provided, the transfer
    * configuration will be associated with the authorizing user. In order to
@@ -138,8 +143,6 @@ class Google_Service_BigQueryDataTransfer_Resource_ProjectsLocationsTransferConf
    * authorization code should be   returned in the title bar of the browser, with
    * the page text prompting   the user to copy the code and paste it in the
    * application.
-   * @opt_param string updateMask Required list of fields to be updated in this
-   * request.
    * @return Google_Service_BigQueryDataTransfer_TransferConfig
    */
   public function patch($name, Google_Service_BigQueryDataTransfer_TransferConfig $postBody, $optParams = array())

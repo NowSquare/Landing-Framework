@@ -48,8 +48,9 @@ class Google_Service_Pubsub_Resource_ProjectsSnapshots extends Google_Service_Re
    * @param string $name Optional user-provided name for this snapshot. If the
    * name is not provided in the request, the server will assign a random name for
    * this snapshot on the same project as the subscription. Note that for REST API
-   * requests, you must specify a name.  See the resource name rules. Format is
-   * `projects/{project}/snapshots/{snap}`.
+   * requests, you must specify a name.  See the
+   *
+   * resource name rules. Format is `projects/{project}/snapshots/{snap}`.
    * @param Google_Service_Pubsub_CreateSnapshotRequest $postBody
    * @param array $optParams Optional parameters.
    * @return Google_Service_Pubsub_Snapshot

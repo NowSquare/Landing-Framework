@@ -141,8 +141,9 @@ function or_chain()
  */
 function load_compiled_json($path)
 {
-    if ($compiled = @include("$path.php")) {
-        return $compiled;
+    $compiledFilepath = "{$path}.php";
+    if (is_readable($compiledFilepath)) {
+        return include($compiledFilepath);
     }
 
     if (!file_exists($path)) {
@@ -370,5 +371,20 @@ function manifest($service = null)
 
     throw new \InvalidArgumentException(
         "The service \"{$service}\" is not provided by the AWS SDK for PHP."
+    );
+}
+
+/**
+ * Checks if supplied parameter is a valid hostname
+ *
+ * @param string $hostname
+ * @return bool
+ */
+function is_valid_hostname($hostname)
+{
+    return (
+        preg_match("/^([a-z\d](-*[a-z\d])*)(\.([a-z\d](-*[a-z\d])*))*\.?$/i", $hostname)
+        && preg_match("/^.{1,253}$/", $hostname)
+        && preg_match("/^[^\.]{1,63}(\.[^\.]{0,63})*$/", $hostname)
     );
 }

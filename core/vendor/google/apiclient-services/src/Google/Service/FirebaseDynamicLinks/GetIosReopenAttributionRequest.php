@@ -19,6 +19,7 @@ class Google_Service_FirebaseDynamicLinks_GetIosReopenAttributionRequest extends
 {
   public $bundleId;
   public $requestedLink;
+  public $sdkVersion;
 
   public function setBundleId($bundleId)
   {
@@ -35,5 +36,13 @@ class Google_Service_FirebaseDynamicLinks_GetIosReopenAttributionRequest extends
   public function getRequestedLink()
   {
     return $this->requestedLink;
+  }
+  public function setSdkVersion($sdkVersion)
+  {
+    $this->sdkVersion = $sdkVersion;
+  }
+  public function getSdkVersion()
+  {
+    return $this->sdkVersion;
   }
 }

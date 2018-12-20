@@ -19,6 +19,7 @@ class Google_Service_Testing_IosXcTest extends Google_Model
 {
   protected $testsZipType = 'Google_Service_Testing_FileReference';
   protected $testsZipDataType = '';
+  public $xcodeVersion;
   protected $xctestrunType = 'Google_Service_Testing_FileReference';
   protected $xctestrunDataType = '';
 
@@ -35,6 +36,14 @@ class Google_Service_Testing_IosXcTest extends Google_Model
   public function getTestsZip()
   {
     return $this->testsZip;
+  }
+  public function setXcodeVersion($xcodeVersion)
+  {
+    $this->xcodeVersion = $xcodeVersion;
+  }
+  public function getXcodeVersion()
+  {
+    return $this->xcodeVersion;
   }
   /**
    * @param Google_Service_Testing_FileReference

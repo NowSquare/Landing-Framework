@@ -15,16 +15,10 @@
  * the License.
  */
 
-class Google_Service_CloudFilestore_FileShareConfig extends Google_Collection
+class Google_Service_CloudFilestore_FileShareConfig extends Google_Model
 {
-  protected $collection_key = 'protocols';
   public $capacityGb;
-  public $deleted;
-  public $enabled;
-  protected $exportsType = 'Google_Service_CloudFilestore_Export';
-  protected $exportsDataType = 'array';
   public $name;
-  public $protocols;
 
   public function setCapacityGb($capacityGb)
   {
@@ -34,36 +28,6 @@ class Google_Service_CloudFilestore_FileShareConfig extends Google_Collection
   {
     return $this->capacityGb;
   }
-  public function setDeleted($deleted)
-  {
-    $this->deleted = $deleted;
-  }
-  public function getDeleted()
-  {
-    return $this->deleted;
-  }
-  public function setEnabled($enabled)
-  {
-    $this->enabled = $enabled;
-  }
-  public function getEnabled()
-  {
-    return $this->enabled;
-  }
-  /**
-   * @param Google_Service_CloudFilestore_Export
-   */
-  public function setExports($exports)
-  {
-    $this->exports = $exports;
-  }
-  /**
-   * @return Google_Service_CloudFilestore_Export
-   */
-  public function getExports()
-  {
-    return $this->exports;
-  }
   public function setName($name)
   {
     $this->name = $name;
@@ -71,13 +35,5 @@ class Google_Service_CloudFilestore_FileShareConfig extends Google_Collection
   public function getName()
   {
     return $this->name;
-  }
-  public function setProtocols($protocols)
-  {
-    $this->protocols = $protocols;
-  }
-  public function getProtocols()
-  {
-    return $this->protocols;
   }
 }

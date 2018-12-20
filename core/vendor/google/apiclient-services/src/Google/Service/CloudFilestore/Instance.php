@@ -24,8 +24,6 @@ class Google_Service_CloudFilestore_Instance extends Google_Collection
   protected $fileSharesType = 'Google_Service_CloudFilestore_FileShareConfig';
   protected $fileSharesDataType = 'array';
   public $labels;
-  public $loggingService;
-  public $monitoringService;
   public $name;
   protected $networksType = 'Google_Service_CloudFilestore_NetworkConfig';
   protected $networksDataType = 'array';
@@ -78,22 +76,6 @@ class Google_Service_CloudFilestore_Instance extends Google_Collection
   public function getLabels()
   {
     return $this->labels;
-  }
-  public function setLoggingService($loggingService)
-  {
-    $this->loggingService = $loggingService;
-  }
-  public function getLoggingService()
-  {
-    return $this->loggingService;
-  }
-  public function setMonitoringService($monitoringService)
-  {
-    $this->monitoringService = $monitoringService;
-  }
-  public function getMonitoringService()
-  {
-    return $this->monitoringService;
   }
   public function setName($name)
   {

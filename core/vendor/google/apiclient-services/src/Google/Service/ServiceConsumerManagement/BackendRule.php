@@ -20,6 +20,7 @@ class Google_Service_ServiceConsumerManagement_BackendRule extends Google_Model
   public $address;
   public $deadline;
   public $minDeadline;
+  public $operationDeadline;
   public $selector;
 
   public function setAddress($address)
@@ -45,6 +46,14 @@ class Google_Service_ServiceConsumerManagement_BackendRule extends Google_Model
   public function getMinDeadline()
   {
     return $this->minDeadline;
+  }
+  public function setOperationDeadline($operationDeadline)
+  {
+    $this->operationDeadline = $operationDeadline;
+  }
+  public function getOperationDeadline()
+  {
+    return $this->operationDeadline;
   }
   public function setSelector($selector)
   {

@@ -22,7 +22,6 @@ class Google_Service_CloudFilestore_NetworkConfig extends Google_Collection
   public $modes;
   public $network;
   public $reservedIpRange;
-  public $subnetwork;
 
   public function setIpAddresses($ipAddresses)
   {
@@ -55,13 +54,5 @@ class Google_Service_CloudFilestore_NetworkConfig extends Google_Collection
   public function getReservedIpRange()
   {
     return $this->reservedIpRange;
-  }
-  public function setSubnetwork($subnetwork)
-  {
-    $this->subnetwork = $subnetwork;
-  }
-  public function getSubnetwork()
-  {
-    return $this->subnetwork;
   }
 }

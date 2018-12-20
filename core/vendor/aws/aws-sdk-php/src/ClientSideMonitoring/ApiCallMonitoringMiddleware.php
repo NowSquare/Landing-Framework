@@ -15,6 +15,37 @@ class ApiCallMonitoringMiddleware extends AbstractMonitoringMiddleware
 {
 
     /**
+     * Standard middleware wrapper function with CSM options passed in.
+     *
+     * @param callable $credentialProvider
+     * @param mixed  $options
+     * @param string $region
+     * @param string $service
+     * @return callable
+     */
+    public static function wrap(
+        callable $credentialProvider,
+        $options,
+        $region,
+        $service
+    ) {
+        return function (callable $handler) use (
+            $credentialProvider,
+            $options,
+            $region,
+            $service
+        ) {
+            return new static(
+                $handler,
+                $credentialProvider,
+                $options,
+                $region,
+                $service
+            );
+        };
+    }
+
+    /**
      * {@inheritdoc}
      */
     public static function getRequestData(RequestInterface $request)
@@ -30,12 +61,14 @@ class ApiCallMonitoringMiddleware extends AbstractMonitoringMiddleware
         if ($klass instanceof ResultInterface) {
             return [
                 'AttemptCount' => self::getResultAttemptCount($klass),
+                'MaxRetriesExceeded' => 0,
             ];
         }
 
         if ($klass instanceof \Exception) {
             return [
                 'AttemptCount' => self::getExceptionAttemptCount($klass),
+                'MaxRetriesExceeded' => self::getMaxRetriesExceeded($klass),
             ];
         }
 
@@ -63,6 +96,14 @@ class ApiCallMonitoringMiddleware extends AbstractMonitoringMiddleware
         return $attemptCount;
     }
 
+    private static function getMaxRetriesExceeded($klass)
+    {
+        if ($klass instanceof AwsException && $klass->isMaxRetriesExceeded()) {
+            return 1;
+        }
+        return 0;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -85,7 +126,6 @@ class ApiCallMonitoringMiddleware extends AbstractMonitoringMiddleware
     ) {
         $event = parent::populateResultEventData($result, $event);
         $event['Latency'] = (int) (floor(microtime(true) * 1000) - $event['Timestamp']);
-        unset($event['Region']);
         return $event;
     }
 }

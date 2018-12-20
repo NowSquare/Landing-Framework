@@ -65,9 +65,7 @@ class Google_Service_CloudIAP_Resource_ProjectsIapWeb extends Google_Service_Res
   }
   /**
    * Returns permissions that a caller has on the Identity-Aware Proxy protected
-   * resource. If the resource does not exist or the caller does not have
-   * Identity-Aware Proxy permissions a [google.rpc.Code.PERMISSION_DENIED] will
-   * be returned. More information about managing access via IAP can be found at:
+   * resource. More information about managing access via IAP can be found at:
    * https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
    * (iap_web.testIamPermissions)
    *

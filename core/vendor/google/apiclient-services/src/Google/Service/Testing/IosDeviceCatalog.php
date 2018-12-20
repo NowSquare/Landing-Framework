@@ -17,13 +17,15 @@
 
 class Google_Service_Testing_IosDeviceCatalog extends Google_Collection
 {
-  protected $collection_key = 'versions';
+  protected $collection_key = 'xcodeVersions';
   protected $modelsType = 'Google_Service_Testing_IosModel';
   protected $modelsDataType = 'array';
   protected $runtimeConfigurationType = 'Google_Service_Testing_IosRuntimeConfiguration';
   protected $runtimeConfigurationDataType = '';
   protected $versionsType = 'Google_Service_Testing_IosVersion';
   protected $versionsDataType = 'array';
+  protected $xcodeVersionsType = 'Google_Service_Testing_XcodeVersion';
+  protected $xcodeVersionsDataType = 'array';
 
   /**
    * @param Google_Service_Testing_IosModel
@@ -66,5 +68,19 @@ class Google_Service_Testing_IosDeviceCatalog extends Google_Collection
   public function getVersions()
   {
     return $this->versions;
+  }
+  /**
+   * @param Google_Service_Testing_XcodeVersion
+   */
+  public function setXcodeVersions($xcodeVersions)
+  {
+    $this->xcodeVersions = $xcodeVersions;
+  }
+  /**
+   * @return Google_Service_Testing_XcodeVersion
+   */
+  public function getXcodeVersions()
+  {
+    return $this->xcodeVersions;
   }
 }

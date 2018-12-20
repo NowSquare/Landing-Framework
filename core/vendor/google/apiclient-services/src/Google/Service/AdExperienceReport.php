@@ -19,7 +19,7 @@
  * Service definition for AdExperienceReport (v1).
  *
  * <p>
- * View Ad Experience Report data, and get a list of sites that have a
+ * Views Ad Experience Report data, and gets a list of sites that have a
  * significant number of annoying ads.</p>
  *
  * <p>

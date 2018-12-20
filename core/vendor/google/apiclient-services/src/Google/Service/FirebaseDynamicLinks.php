@@ -94,6 +94,10 @@ class Google_Service_FirebaseDynamicLinks extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'sdkVersion' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
                 'durationDays' => array(
                   'location' => 'query',
                   'type' => 'string',

@@ -13,6 +13,7 @@ class File extends Adapter
 {
     private static $contentTypes = [
         'video/ogg' => ['video', 'videoHtml'],
+        'video/quicktime' => ['video', 'videoHtml'],
         'application/ogg' => ['video', 'videoHtml'],
         'video/ogv' => ['video', 'videoHtml'],
         'video/webm' => ['video', 'videoHtml'],
@@ -81,6 +82,9 @@ class File extends Adapter
 
             case 'google':
                 return Utils::google($this->url);
+
+            case 'imageHtml':
+                return Utils::imageHtml($this->url, 'Remote file', $this->imageWidth, $this->imageHeight);
         }
     }
 

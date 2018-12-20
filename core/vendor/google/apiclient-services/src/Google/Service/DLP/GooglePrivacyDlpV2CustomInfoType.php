@@ -22,6 +22,7 @@ class Google_Service_DLP_GooglePrivacyDlpV2CustomInfoType extends Google_Collect
   protected $detectionRulesDataType = 'array';
   protected $dictionaryType = 'Google_Service_DLP_GooglePrivacyDlpV2Dictionary';
   protected $dictionaryDataType = '';
+  public $exclusionType;
   protected $infoTypeType = 'Google_Service_DLP_GooglePrivacyDlpV2InfoType';
   protected $infoTypeDataType = '';
   public $likelihood;
@@ -59,6 +60,14 @@ class Google_Service_DLP_GooglePrivacyDlpV2CustomInfoType extends Google_Collect
   public function getDictionary()
   {
     return $this->dictionary;
+  }
+  public function setExclusionType($exclusionType)
+  {
+    $this->exclusionType = $exclusionType;
+  }
+  public function getExclusionType()
+  {
+    return $this->exclusionType;
   }
   /**
    * @param Google_Service_DLP_GooglePrivacyDlpV2InfoType

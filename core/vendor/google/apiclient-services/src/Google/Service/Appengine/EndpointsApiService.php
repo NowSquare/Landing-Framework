@@ -18,6 +18,7 @@
 class Google_Service_Appengine_EndpointsApiService extends Google_Model
 {
   public $configId;
+  public $disableTraceSampling;
   public $name;
   public $rolloutStrategy;
 
@@ -28,6 +29,14 @@ class Google_Service_Appengine_EndpointsApiService extends Google_Model
   public function getConfigId()
   {
     return $this->configId;
+  }
+  public function setDisableTraceSampling($disableTraceSampling)
+  {
+    $this->disableTraceSampling = $disableTraceSampling;
+  }
+  public function getDisableTraceSampling()
+  {
+    return $this->disableTraceSampling;
   }
   public function setName($name)
   {

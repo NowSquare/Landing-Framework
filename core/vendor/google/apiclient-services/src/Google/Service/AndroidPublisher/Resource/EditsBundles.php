@@ -51,6 +51,10 @@ class Google_Service_AndroidPublisher_Resource_EditsBundles extends Google_Servi
    * being updated; for example, "com.spiffygame".
    * @param string $editId Unique identifier for this edit.
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param bool ackBundleInstallationWarning Must be set to true if the
+   * bundle installation may trigger a warning on user devices (for example, if
+   * installation size may be over a threshold, typically 100 MB).
    * @return Google_Service_AndroidPublisher_Bundle
    */
   public function upload($packageName, $editId, $optParams = array())

@@ -25,6 +25,7 @@ class Google_Service_CloudMachineLearningEngine_GoogleCloudMlV1PredictionInput e
   public $inputPaths;
   public $maxWorkerCount;
   public $modelName;
+  public $outputDataFormat;
   public $outputPath;
   public $region;
   public $runtimeVersion;
@@ -85,6 +86,14 @@ class Google_Service_CloudMachineLearningEngine_GoogleCloudMlV1PredictionInput e
   public function getModelName()
   {
     return $this->modelName;
+  }
+  public function setOutputDataFormat($outputDataFormat)
+  {
+    $this->outputDataFormat = $outputDataFormat;
+  }
+  public function getOutputDataFormat()
+  {
+    return $this->outputDataFormat;
   }
   public function setOutputPath($outputPath)
   {

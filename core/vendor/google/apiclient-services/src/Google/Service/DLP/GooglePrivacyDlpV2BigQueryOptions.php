@@ -18,6 +18,8 @@
 class Google_Service_DLP_GooglePrivacyDlpV2BigQueryOptions extends Google_Collection
 {
   protected $collection_key = 'identifyingFields';
+  protected $excludedFieldsType = 'Google_Service_DLP_GooglePrivacyDlpV2FieldId';
+  protected $excludedFieldsDataType = 'array';
   protected $identifyingFieldsType = 'Google_Service_DLP_GooglePrivacyDlpV2FieldId';
   protected $identifyingFieldsDataType = 'array';
   public $rowsLimit;
@@ -26,6 +28,20 @@ class Google_Service_DLP_GooglePrivacyDlpV2BigQueryOptions extends Google_Collec
   protected $tableReferenceType = 'Google_Service_DLP_GooglePrivacyDlpV2BigQueryTable';
   protected $tableReferenceDataType = '';
 
+  /**
+   * @param Google_Service_DLP_GooglePrivacyDlpV2FieldId
+   */
+  public function setExcludedFields($excludedFields)
+  {
+    $this->excludedFields = $excludedFields;
+  }
+  /**
+   * @return Google_Service_DLP_GooglePrivacyDlpV2FieldId
+   */
+  public function getExcludedFields()
+  {
+    return $this->excludedFields;
+  }
   /**
    * @param Google_Service_DLP_GooglePrivacyDlpV2FieldId
    */

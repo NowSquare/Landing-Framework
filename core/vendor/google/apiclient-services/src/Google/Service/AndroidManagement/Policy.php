@@ -68,6 +68,8 @@ class Google_Service_AndroidManagement_Policy extends Google_Collection
   public $openNetworkConfiguration;
   public $outgoingBeamDisabled;
   public $outgoingCallsDisabled;
+  protected $passwordPoliciesType = 'Google_Service_AndroidManagement_PasswordRequirements';
+  protected $passwordPoliciesDataType = 'array';
   protected $passwordRequirementsType = 'Google_Service_AndroidManagement_PasswordRequirements';
   protected $passwordRequirementsDataType = '';
   protected $permissionGrantsType = 'Google_Service_AndroidManagement_PermissionGrant';
@@ -493,6 +495,20 @@ class Google_Service_AndroidManagement_Policy extends Google_Collection
   public function getOutgoingCallsDisabled()
   {
     return $this->outgoingCallsDisabled;
+  }
+  /**
+   * @param Google_Service_AndroidManagement_PasswordRequirements
+   */
+  public function setPasswordPolicies($passwordPolicies)
+  {
+    $this->passwordPolicies = $passwordPolicies;
+  }
+  /**
+   * @return Google_Service_AndroidManagement_PasswordRequirements
+   */
+  public function getPasswordPolicies()
+  {
+    return $this->passwordPolicies;
   }
   /**
    * @param Google_Service_AndroidManagement_PasswordRequirements

@@ -21,6 +21,7 @@ class Google_Service_Testing_IosVersion extends Google_Collection
   public $id;
   public $majorVersion;
   public $minorVersion;
+  public $supportedXcodeVersionIds;
   public $tags;
 
   public function setId($id)
@@ -46,6 +47,14 @@ class Google_Service_Testing_IosVersion extends Google_Collection
   public function getMinorVersion()
   {
     return $this->minorVersion;
+  }
+  public function setSupportedXcodeVersionIds($supportedXcodeVersionIds)
+  {
+    $this->supportedXcodeVersionIds = $supportedXcodeVersionIds;
+  }
+  public function getSupportedXcodeVersionIds()
+  {
+    return $this->supportedXcodeVersionIds;
   }
   public function setTags($tags)
   {

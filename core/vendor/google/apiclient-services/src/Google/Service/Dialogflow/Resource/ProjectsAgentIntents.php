@@ -83,10 +83,13 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentIntents extends Google_Ser
     return $this->call('create', array($params), "Google_Service_Dialogflow_GoogleCloudDialogflowV2Intent");
   }
   /**
-   * Deletes the specified intent. (intents.delete)
+   * Deletes the specified intent and its direct or indirect followup intents.
+   * (intents.delete)
    *
-   * @param string $name Required. The name of the intent to delete. Format:
-   * `projects//agent/intents/`.
+   * @param string $name Required. The name of the intent to delete. If this
+   * intent has direct or indirect followup intents, we also delete them.
+   *
+   * Format: `projects//agent/intents/`.
    * @param array $optParams Optional parameters.
    * @return Google_Service_Dialogflow_GoogleProtobufEmpty
    */
@@ -103,13 +106,13 @@ class Google_Service_Dialogflow_Resource_ProjectsAgentIntents extends Google_Ser
    * `projects//agent/intents/`.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string intentView Optional. The resource view to apply to the
+   * returned intent.
    * @opt_param string languageCode Optional. The language to retrieve training
    * phrases, parameters and rich messages for. If not specified, the agent's
    * default language is used. [More than a dozen
    * languages](https://dialogflow.com/docs/reference/language) are supported.
    * Note: languages must be enabled in the agent, before they can be used.
-   * @opt_param string intentView Optional. The resource view to apply to the
-   * returned intent.
    * @return Google_Service_Dialogflow_GoogleCloudDialogflowV2Intent
    */
   public function get($name, $optParams = array())

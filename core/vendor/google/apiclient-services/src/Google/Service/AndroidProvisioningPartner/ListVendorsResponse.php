@@ -19,6 +19,7 @@ class Google_Service_AndroidProvisioningPartner_ListVendorsResponse extends Goog
 {
   protected $collection_key = 'vendors';
   public $nextPageToken;
+  public $totalSize;
   protected $vendorsType = 'Google_Service_AndroidProvisioningPartner_Company';
   protected $vendorsDataType = 'array';
 
@@ -29,6 +30,14 @@ class Google_Service_AndroidProvisioningPartner_ListVendorsResponse extends Goog
   public function getNextPageToken()
   {
     return $this->nextPageToken;
+  }
+  public function setTotalSize($totalSize)
+  {
+    $this->totalSize = $totalSize;
+  }
+  public function getTotalSize()
+  {
+    return $this->totalSize;
   }
   /**
    * @param Google_Service_AndroidProvisioningPartner_Company

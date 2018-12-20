@@ -18,9 +18,26 @@
 class Google_Service_AndroidEnterprise_ProductPolicy extends Google_Collection
 {
   protected $collection_key = 'tracks';
+  protected $autoInstallPolicyType = 'Google_Service_AndroidEnterprise_AutoInstallPolicy';
+  protected $autoInstallPolicyDataType = '';
   public $productId;
+  public $trackIds;
   public $tracks;
 
+  /**
+   * @param Google_Service_AndroidEnterprise_AutoInstallPolicy
+   */
+  public function setAutoInstallPolicy(Google_Service_AndroidEnterprise_AutoInstallPolicy $autoInstallPolicy)
+  {
+    $this->autoInstallPolicy = $autoInstallPolicy;
+  }
+  /**
+   * @return Google_Service_AndroidEnterprise_AutoInstallPolicy
+   */
+  public function getAutoInstallPolicy()
+  {
+    return $this->autoInstallPolicy;
+  }
   public function setProductId($productId)
   {
     $this->productId = $productId;
@@ -28,6 +45,14 @@ class Google_Service_AndroidEnterprise_ProductPolicy extends Google_Collection
   public function getProductId()
   {
     return $this->productId;
+  }
+  public function setTrackIds($trackIds)
+  {
+    $this->trackIds = $trackIds;
+  }
+  public function getTrackIds()
+  {
+    return $this->trackIds;
   }
   public function setTracks($tracks)
   {

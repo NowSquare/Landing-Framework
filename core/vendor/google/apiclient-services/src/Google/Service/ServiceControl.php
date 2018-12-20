@@ -19,8 +19,8 @@
  * Service definition for ServiceControl (v1).
  *
  * <p>
- * Google Service Control provides control plane functionality to managed
- * services, such as logging, monitoring, and status checks.</p>
+ * Provides control plane functionality to managed services, such as logging,
+ * monitoring, and status checks.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -79,38 +79,8 @@ class Google_Service_ServiceControl extends Google_Service
                   'required' => true,
                 ),
               ),
-            ),'endReconciliation' => array(
-              'path' => 'v1/services/{serviceName}:endReconciliation',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'serviceName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'releaseQuota' => array(
-              'path' => 'v1/services/{serviceName}:releaseQuota',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'serviceName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
             ),'report' => array(
               'path' => 'v1/services/{serviceName}:report',
-              'httpMethod' => 'POST',
-              'parameters' => array(
-                'serviceName' => array(
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ),
-              ),
-            ),'startReconciliation' => array(
-              'path' => 'v1/services/{serviceName}:startReconciliation',
               'httpMethod' => 'POST',
               'parameters' => array(
                 'serviceName' => array(

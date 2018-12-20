@@ -19,8 +19,7 @@
  * Service definition for Indexing (v3).
  *
  * <p>
- * The Indexing API allows developers to share the life cycle of a Web Document
- * with Google.</p>
+ * Notifies Google when your web pages change.</p>
  *
  * <p>
  * For more information about this service, see the API
@@ -31,7 +30,9 @@
  */
 class Google_Service_Indexing extends Google_Service
 {
-
+  /** Submit data to Google for indexing. */
+  const INDEXING =
+      "https://www.googleapis.com/auth/indexing";
 
   public $urlNotifications;
   

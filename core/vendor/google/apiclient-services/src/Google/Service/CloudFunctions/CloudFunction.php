@@ -39,6 +39,7 @@ class Google_Service_CloudFunctions_CloudFunction extends Google_Model
   public $timeout;
   public $updateTime;
   public $versionId;
+  public $vpcConnector;
 
   public function setAvailableMemoryMb($availableMemoryMb)
   {
@@ -209,5 +210,13 @@ class Google_Service_CloudFunctions_CloudFunction extends Google_Model
   public function getVersionId()
   {
     return $this->versionId;
+  }
+  public function setVpcConnector($vpcConnector)
+  {
+    $this->vpcConnector = $vpcConnector;
+  }
+  public function getVpcConnector()
+  {
+    return $this->vpcConnector;
   }
 }

@@ -19,9 +19,9 @@
  * Service definition for CloudNaturalLanguage (v1).
  *
  * <p>
- * Provides natural language understanding technologies to developers. Examples
- * include sentiment analysis, entity recognition, entity sentiment analysis,
- * and text annotations.</p>
+ * Provides natural language understanding technologies, such as sentiment
+ * analysis, entity recognition, entity sentiment analysis, and other text
+ * annotations, to developers.</p>
  *
  * <p>
  * For more information about this service, see the API

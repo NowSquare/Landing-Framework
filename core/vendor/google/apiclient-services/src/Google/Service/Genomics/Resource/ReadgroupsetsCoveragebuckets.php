@@ -40,9 +40,6 @@ class Google_Service_Genomics_Resource_ReadgroupsetsCoveragebuckets extends Goog
    * which coverage is requested.
    * @param array $optParams Optional parameters.
    *
-   * @opt_param string pageToken The continuation token, which is used to page
-   * through large result sets. To get the next page of results, set this
-   * parameter to the value of `nextPageToken` from the previous response.
    * @opt_param int pageSize The maximum number of results to return in a single
    * page. If unspecified, defaults to 1024. The maximum value is 2048.
    * @opt_param string start The start position of the range on the reference,
@@ -60,6 +57,9 @@ class Google_Service_Genomics_Resource_ReadgroupsetsCoveragebuckets extends Goog
    * @opt_param string end The end position of the range on the reference, 0-based
    * exclusive. If specified, `referenceName` must also be specified. If unset or
    * 0, defaults to the length of the reference.
+   * @opt_param string pageToken The continuation token, which is used to page
+   * through large result sets. To get the next page of results, set this
+   * parameter to the value of `nextPageToken` from the previous response.
    * @return Google_Service_Genomics_ListCoverageBucketsResponse
    */
   public function listReadgroupsetsCoveragebuckets($readGroupSetId, $optParams = array())

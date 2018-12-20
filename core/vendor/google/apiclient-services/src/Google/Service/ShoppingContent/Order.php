@@ -19,6 +19,8 @@ class Google_Service_ShoppingContent_Order extends Google_Collection
 {
   protected $collection_key = 'shipments';
   public $acknowledged;
+  protected $billingAddressType = 'Google_Service_ShoppingContent_OrderAddress';
+  protected $billingAddressDataType = '';
   public $channelType;
   protected $customerType = 'Google_Service_ShoppingContent_OrderCustomer';
   protected $customerDataType = '';
@@ -32,8 +34,6 @@ class Google_Service_ShoppingContent_Order extends Google_Collection
   public $merchantOrderId;
   protected $netAmountType = 'Google_Service_ShoppingContent_Price';
   protected $netAmountDataType = '';
-  protected $paymentMethodType = 'Google_Service_ShoppingContent_OrderPaymentMethod';
-  protected $paymentMethodDataType = '';
   public $paymentStatus;
   public $placedDate;
   protected $promotionsType = 'Google_Service_ShoppingContent_OrderPromotion';
@@ -56,6 +56,20 @@ class Google_Service_ShoppingContent_Order extends Google_Collection
   public function getAcknowledged()
   {
     return $this->acknowledged;
+  }
+  /**
+   * @param Google_Service_ShoppingContent_OrderAddress
+   */
+  public function setBillingAddress(Google_Service_ShoppingContent_OrderAddress $billingAddress)
+  {
+    $this->billingAddress = $billingAddress;
+  }
+  /**
+   * @return Google_Service_ShoppingContent_OrderAddress
+   */
+  public function getBillingAddress()
+  {
+    return $this->billingAddress;
   }
   public function setChannelType($channelType)
   {
@@ -152,20 +166,6 @@ class Google_Service_ShoppingContent_Order extends Google_Collection
   public function getNetAmount()
   {
     return $this->netAmount;
-  }
-  /**
-   * @param Google_Service_ShoppingContent_OrderPaymentMethod
-   */
-  public function setPaymentMethod(Google_Service_ShoppingContent_OrderPaymentMethod $paymentMethod)
-  {
-    $this->paymentMethod = $paymentMethod;
-  }
-  /**
-   * @return Google_Service_ShoppingContent_OrderPaymentMethod
-   */
-  public function getPaymentMethod()
-  {
-    return $this->paymentMethod;
   }
   public function setPaymentStatus($paymentStatus)
   {

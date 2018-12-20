@@ -45,7 +45,8 @@ class Google_Service_CloudTalentSolution_Resource_ProjectsCompanies extends Goog
     return $this->call('create', array($params), "Google_Service_CloudTalentSolution_Company");
   }
   /**
-   * Deletes specified company. (companies.delete)
+   * Deletes specified company. Prerequisite: The company has no jobs associated
+   * with it. (companies.delete)
    *
    * @param string $name Required.
    *

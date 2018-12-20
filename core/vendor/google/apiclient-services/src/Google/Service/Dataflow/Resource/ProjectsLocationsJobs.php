@@ -91,6 +91,7 @@ class Google_Service_Dataflow_Resource_ProjectsLocationsJobs extends Google_Serv
    * @param string $location The location that contains this job.
    * @param array $optParams Optional parameters.
    *
+   * @opt_param string filter The kind of filter to use.
    * @opt_param string pageToken Set this to the 'next_page_token' field of a
    * previous response to request additional results in a long list.
    * @opt_param int pageSize If there are many jobs, limit response to at most
@@ -98,7 +99,6 @@ class Google_Service_Dataflow_Resource_ProjectsLocationsJobs extends Google_Serv
    * max_responses and an unspecified server-defined limit.
    * @opt_param string view Level of information requested in response. Default is
    * `JOB_VIEW_SUMMARY`.
-   * @opt_param string filter The kind of filter to use.
    * @return Google_Service_Dataflow_ListJobsResponse
    */
   public function listProjectsLocationsJobs($projectId, $location, $optParams = array())
@@ -106,6 +106,22 @@ class Google_Service_Dataflow_Resource_ProjectsLocationsJobs extends Google_Serv
     $params = array('projectId' => $projectId, 'location' => $location);
     $params = array_merge($params, $optParams);
     return $this->call('list', array($params), "Google_Service_Dataflow_ListJobsResponse");
+  }
+  /**
+   * Snapshot the state of a streaming job. (jobs.snapshot)
+   *
+   * @param string $projectId The project which owns the job to be snapshotted.
+   * @param string $location The location that contains this job.
+   * @param string $jobId The job to be snapshotted.
+   * @param Google_Service_Dataflow_SnapshotJobRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return Google_Service_Dataflow_Snapshot
+   */
+  public function snapshot($projectId, $location, $jobId, Google_Service_Dataflow_SnapshotJobRequest $postBody, $optParams = array())
+  {
+    $params = array('projectId' => $projectId, 'location' => $location, 'jobId' => $jobId, 'postBody' => $postBody);
+    $params = array_merge($params, $optParams);
+    return $this->call('snapshot', array($params), "Google_Service_Dataflow_Snapshot");
   }
   /**
    * Updates the state of an existing Cloud Dataflow job. (jobs.update)

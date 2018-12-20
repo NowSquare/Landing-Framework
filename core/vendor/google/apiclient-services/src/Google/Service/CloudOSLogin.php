@@ -69,6 +69,14 @@ class Google_Service_CloudOSLogin extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'projectId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'systemId' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
               ),
             ),'importSshPublicKey' => array(
               'path' => 'v1/{+parent}:importSshPublicKey',

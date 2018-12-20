@@ -149,7 +149,8 @@ class Google_Service_Logging_Resource_OrganizationsSinks extends Google_Service_
    * destination,filter,includeChildren At some point in the future, behavior will
    * be removed and specifying an empty updateMask will be an error.For a detailed
    * FieldMask definition, see https://developers.google.com/protocol-
-   * buffers/docs/reference/google.protobuf#FieldMaskExample: updateMask=filter.
+   * buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
+   * updateMask=filter.
    * @return Google_Service_Logging_LogSink
    */
   public function patch($sinkName, Google_Service_Logging_LogSink $postBody, $optParams = array())
@@ -190,7 +191,8 @@ class Google_Service_Logging_Resource_OrganizationsSinks extends Google_Service_
    * destination,filter,includeChildren At some point in the future, behavior will
    * be removed and specifying an empty updateMask will be an error.For a detailed
    * FieldMask definition, see https://developers.google.com/protocol-
-   * buffers/docs/reference/google.protobuf#FieldMaskExample: updateMask=filter.
+   * buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample:
+   * updateMask=filter.
    * @return Google_Service_Logging_LogSink
    */
   public function update($sinkName, Google_Service_Logging_LogSink $postBody, $optParams = array())
