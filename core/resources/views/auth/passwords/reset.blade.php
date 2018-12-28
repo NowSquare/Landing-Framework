@@ -1,5 +1,18 @@
 @extends('layouts.platform')
 
+@section('head')
+<style type="text/css">
+  html {
+    background-position: left top;
+    background-size: cover;
+    background-image: url({{ url('assets/images/backgrounds/full01.jpg') }});
+  }
+  body {
+    background: transparent;
+  }
+</style>
+@endsection
+
 @section('content')
 <div class="wrapper-page">
   <div class="text-center"> <a href="{{ url('/') }}" class="logo logo-lg"><img src="{{ \Platform\Controllers\Core\Reseller::get()->logo_square }}" style="height: 128px; margin: 2rem" alt="{{ \Platform\Controllers\Core\Reseller::get()->name }}"></a> </div>

@@ -1,5 +1,18 @@
 @extends('layouts.platform')
 
+@section('head')
+<style type="text/css">
+  html {
+    background-position: left top;
+    background-size: cover;
+    background-image: url({{ url('assets/images/backgrounds/full01.jpg') }});
+  }
+  body {
+    background: transparent;
+  }
+</style>
+@endsection
+
 @section('content')
 <div class="wrapper-page">
   <div class="text-center"> <a href="{{ url('/') }}" class="logo logo-lg"><img src="{{ \Platform\Controllers\Core\Reseller::get()->logo_square }}" style="height: 128px; margin: 2rem" alt="{{ \Platform\Controllers\Core\Reseller::get()->name }}"></a> </div>
@@ -40,7 +53,7 @@
       </div>
     </div>
     <div class="form-group m-t-30" style="margin-bottom: 0">
-      <div class="col-sm-12 text-center"> <a href="{{ url('/login') }}" class="text-muted">{{ trans('global.already_have_account') }}</a> </div>
+      <div class="col-sm-12 text-center"> <a href="{{ url('/login') }}" class="text-muted" style="text-decoration: underline">{{ trans('global.already_have_account') }}</a> </div>
     </div>
   </form>
 </div>

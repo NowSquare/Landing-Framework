@@ -1,6 +1,18 @@
 @extends('layouts.platform') 
 
-<!-- Main Content --> 
+@section('head')
+<style type="text/css">
+  html {
+    background-position: left top;
+    background-size: cover;
+    background-image: url({{ url('assets/images/backgrounds/full01.jpg') }});
+  }
+  body {
+    background: transparent;
+  }
+</style>
+@endsection
+
 @section('content')
 <div class="wrapper-page">
   <div class="text-center">
@@ -32,9 +44,9 @@
       </div>
       @if ($errors->has('email')) <span class="help-block"> <strong>{{ $errors->first('email') }}</strong> </span> @endif
     </div>
-    <div class="form-group m-t-30" style="margin-bottom: 40px">
-      <div class="col-sm-6 text-left"> <a href="{{ url('/login') }}" class="text-muted"><i class="fa fa-sign-in m-r-5"></i> {{ trans('global.log_in') }}</a> </div>
-      <div class="col-sm-6 text-right"> <a href="{{ url('/register') }}" class="text-muted">{{ trans('global.create_account') }}</a> </div>
+    <div class="form-group m-t-30 row" style="margin-bottom: 0px">
+      <div class="col-sm-6 text-left"> <a href="{{ url('/login') }}" class="text-muted" style="text-decoration: underline">{{ trans('global.log_in') }}</a> </div>
+      <div class="col-sm-6 text-right"> <a href="{{ url('/register') }}" class="text-muted" style="text-decoration: underline">{{ trans('global.create_account') }}</a> </div>
     </div>
   </form>
 </div>
