@@ -3,7 +3,7 @@
     "alias": "eddystones",
     "description": "",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "order": 70,
     "providers": [
         "Modules\\Eddystones\\Providers\\EddystonesServiceProvider"
