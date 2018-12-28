@@ -53,7 +53,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
 */
 
 .mce-edit-focus {
-  outline: 1px solid #138dfa !important;
+  outline: 1px solid #146eff !important;
 }
 
 .mce-menu-item .mce-ico, .mce-menu-item .mce-text {
@@ -282,7 +282,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
     position: absolute !important;
     list-style: none !important;
     background-color: #fff !important;
-    width: 150px !important;
+    width: 165px !important;
     z-index: 90010 !important;
     box-shadow: $mdl-shadow--3dp !important;
     margin: 0 !important;
@@ -291,7 +291,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
   }
 
   ul {
-    left: 150px !important;
+    left: 165px !important;
   }
 
   &.-x-el-dropdown-top-right {
@@ -305,7 +305,7 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
   &.-x-el-dropdown-left,
   &.-x-el-dropdown-top-left {
     ul {
-      left: -150px !important;
+      left: -165px !important;
     }
     .-x-el-caret {
       border-width: 5px 5px 5px 0 !important;
@@ -411,12 +411,12 @@ $mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0
 
 .-x-el-dropdown.-x-el-dropdown-fab {
   ul {
-    width: 175px !important;
-    left: -175px !important;
+    width: 225px !important;
+    left: -225px !important;
   }
   &.-x-el-dropdown-top-right {
     ul {
-      left: 150px !important;
+      left: 165px !important;
     }
   }
 }

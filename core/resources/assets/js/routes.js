@@ -81,6 +81,10 @@ $(function() {
       '/beacons/create': function () { loadRoute('beacons/create', 'beacons'); },
       '/beacons/edit/:sl': function (sl) { loadRoute('beacons/edit?sl=' + sl, 'beacons'); },
 
+      '/modals': function () { loadRoute('modals', 'modals'); },
+      '/modals/create': function () { loadRoute('modals/create', 'modals'); },
+      '/modals/edit/:sl': function (sl) { loadRoute('modals/edit?sl=' + sl, 'modals'); },
+
       '/geofences': function () { loadRoute('geofences', 'geofences'); },
       '/geofences/create': function () { loadRoute('geofences/create', 'geofences'); },
       '/geofences/edit/:sl': function (sl) { loadRoute('geofences/edit?sl=' + sl, 'geofences'); },
