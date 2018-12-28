@@ -51,7 +51,7 @@ if(config('app.demo'))
       <div class="col-md-12">
         <input id="password" type="password" class="form-control" name="password" value="{{ $password }}" placeholder="{{ trans('global.password') }}" required>
         <i class="material-icons form-control-feedback l-h-34">&#xE0DA;</i> @if ($errors->has('password')) <span class="help-block"> <strong>{{ $errors->first('password') }}</strong> </span> @endif 
-        <span class="help-block text-right"><a href="{{ url('/password/reset') }}" class="text-muted"><small>{{ trans('global.forgot_password') }}</small></a></span>
+        <span class="help-block text-right"><a href="{{ url('/password/reset') }}" class="text-muted" tabindex="-1"><small>{{ trans('global.forgot_password') }}</small></a></span>
       </div>
     </div>
     <div class="form-group m-t-20 m-b-0">
