@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             'logo' => '/assets/branding/icon-light.svg',
             'logo_square' => '/assets/branding/square.svg',
             'favicon' => '/assets/branding/favicon.ico',
+            'settings' => '{
+              "website_active": false
+            }',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ]);
