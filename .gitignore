@@ -32,3 +32,4 @@ _notes
 /core/vendor/**/LICENSE
 /blocks/_src
 /assets/bs4/images
+mix-manifest.json
