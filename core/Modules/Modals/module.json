@@ -1,0 +1,16 @@
+{
+    "name": "Modals",
+    "alias": "modals",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 50,
+    "providers": [
+        "Modules\\Modals\\Providers\\ModalsServiceProvider"
+    ],
+    "aliases": [],
+    "files": [
+        "start.php"
+    ],
+    "requires": []
+}

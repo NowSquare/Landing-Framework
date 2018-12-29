@@ -80,6 +80,21 @@ class AppServiceProvider extends ServiceProvider
             ]);
           }
 
+          // Modals
+          if (! \Schema::hasTable('modals')) {
+            // Migrate
+            \Artisan::call('module:migrate', [
+                'module' => 'Modals',
+                '--force' => true,
+            ]);
+
+            // Seed
+            \Artisan::call('module:seed', [
+                'module' => 'Modals',
+                '--force' => true,
+            ]);
+          }
+
           // Beacons
           if (! \Schema::hasTable('beacons')) {
             // Migrate

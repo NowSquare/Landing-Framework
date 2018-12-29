@@ -38,6 +38,7 @@ if (env('GOOGLE_ANALYTICS_TRACKING_ID', '') != '') {
 
   <!-- Scripts -->
   <script src="{{ url('assets/js/scripts.min.js') }}"></script>
+  <script src="{{ url('modal/scripts.js') }}"></script>
 <?php 
 if (\App::getLocale() != 'en') { 
   $moment_locale_path = 'assets/js/moment/' . \App::getLocale() . '.js';

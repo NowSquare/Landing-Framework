@@ -1,4 +1,4 @@
-const { mix } = require('laravel-mix');
+const mix = require('laravel-mix');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,5 +11,38 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.disableNotifications();
+
+mix.setPublicPath('../');
+
+mix.options({
+    processCssUrls: false,
+    postCss: [require('autoprefixer')],
+    uglify: {
+      uglifyOptions: {
+        warnings: false,
+        parse: {},
+        compress: {},
+        mangle: true,
+        output: null,
+        toplevel: true,
+        nameCache: null,
+        ie8: true,
+        keep_fnames: false,
+      }
+    },
+});
+
+mix
+	 /* Lead assets */
+   .js('resources/js/leads.js', '../modal/scripts.js')
+   .sass('resources/sass/leads.scss', '../modal/style.css', {
+      outputStyle: 'compressed'
+    })
+
+	 /* Lead modal assets */
+   .js('resources/js/lead-modal.js', '../modal/modal.js')
+   .sass('resources/sass/lead-modal.scss', '../modal/modal.css', {
+      outputStyle: 'compressed'
+    })
+;

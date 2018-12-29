@@ -1,0 +1,47 @@
+/*
+ * Config
+ */
+
+$css-prefix: '-lm-' !default;
+
+$mdl-shadow--2dp: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12) !default;
+$mdl-shadow--3dp: 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.2), 0 1px 8px 0 rgba(0, 0, 0, 0.12) !default;
+$mdl-shadow--4dp: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--6dp: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--8dp: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2) !default;
+$mdl-shadow--xlarge: 0 26px 34px 5px rgba(0, 0, 0, 0.02), 0 12px 40px 7px rgba(0, 0, 0, 0.06), 0 12px 20px -7px rgba(0, 0, 0, 0.1) !default;
+
+/*
+ * Animate with Sass
+ */
+
+@import "../../node_modules/animatewithsass/_properties";
+//@import "../../node_modules/animatewithsass/_fading-entrances/_fadeInDown.scss";
+@import "../../node_modules/animatewithsass/_fading-entrances/_fadeIn.scss";
+//@import "../../node_modules/animatewithsass/_fading-exits/_fadeOutDown.scss";
+@import "../../node_modules/animatewithsass/_fading-exits/_fadeOut.scss";
+@import "../../node_modules/animatewithsass/_lightspeed/_lightSpeedIn.scss";
+@import "../../node_modules/animatewithsass/_lightspeed/_lightSpeedOut.scss";
+@import "../../node_modules/animatewithsass/_bouncing-entrances/_bounceInDown.scss";
+@import "../../node_modules/animatewithsass/_bouncing-entrances/_bounceIn.scss";
+@import "../../node_modules/animatewithsass/_bouncing-entrances/_bounceInUp.scss";
+@import "../../node_modules/animatewithsass/_bouncing-exits/_bounceOutDown.scss";
+@import "../../node_modules/animatewithsass/_bouncing-exits/_bounceOut.scss";
+//@import "../../node_modules/animatewithsass/_zooming-entrances/_zoomIn.scss";
+//@import "../../node_modules/animatewithsass/_rotating-entrances/_rotateIn.scss";
+
+
+@import "Leads/Modal.scss";
+
+
+/*
+ * Shadows
+ */
+
+.#{$css-prefix}shadow--2dp { box-shadow: $mdl-shadow--2dp; }
+.#{$css-prefix}shadow--3dp { box-shadow: $mdl-shadow--3dp; }
+.#{$css-prefix}shadow--4dp { box-shadow: $mdl-shadow--4dp; }
+.#{$css-prefix}shadow--6dp { box-shadow: $mdl-shadow--6dp; }
+.#{$css-prefix}shadow--8dp { box-shadow: $mdl-shadow--8dp; }
+.#{$css-prefix}shadow--16dp { box-shadow: $mdl-shadow--16dp; }

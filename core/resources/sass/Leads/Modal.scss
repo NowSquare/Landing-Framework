@@ -1,0 +1,283 @@
+/*
+ * Config
+ */
+$btn-close-light-color: #fff !default;
+$btn-close-dark-color: #000 !default;
+$btn-close-margin: 18px !default;
+$btn-close-radius: 36px !default;
+$btn-close-size: 18px !default;
+$btn-close-stroke: 2px !default;
+$min-content-margin: ($btn-close-radius + (2 * $btn-close-margin)) !default;
+
+// Lock body
+body[data#{$css-prefix}body] {
+  overflow: hidden;
+  * {
+    z-index: 1;
+  }
+}
+
+##{$css-prefix}root {
+
+  /* Backdrop */
+  .#{$css-prefix}backdrop {
+    //overflow-x: scroll;
+    //overflow-y: scroll;
+    overflow: auto;
+    z-index: 100000000;
+
+    position: fixed;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: flex-start;
+
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+
+    .#{$css-prefix}loader {
+      margin: auto;
+      display: inline-block;
+      position: relative;
+      width: 64px;
+      height: 64px;
+    }
+    .#{$css-prefix}loader div {
+      box-sizing: border-box;
+      display: block;
+      position: absolute;
+      width: 51px;
+      height: 51px;
+      margin: 3px;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      animation: #{$css-prefix}loader 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-color: #fff transparent transparent transparent;
+    }
+    .#{$css-prefix}loader div:nth-child(1) {
+      animation-delay: -0.45s;
+    }
+    .#{$css-prefix}loader div:nth-child(2) {
+      animation-delay: -0.3s;
+    }
+    .#{$css-prefix}loader div:nth-child(3) {
+      animation-delay: -0.15s;
+    }
+    @keyframes #{$css-prefix}loader {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  .#{$css-prefix}content {
+    position: relative;
+    display: flex;
+    //flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: flex-start;
+    align-self: stretch;
+
+    margin: 0 auto 0 auto;
+    width: 640px;
+    height: 480px;
+    z-index: 100000010;
+
+    object {
+      flex: 1;
+      z-index: 100000100;
+      align-self: stretch;
+      min-width: 640px;
+      min-height: 480px;
+      width: 640px;
+      height: 480px;
+    }
+
+    .#{$css-prefix}btn-close {
+      position: absolute;
+      right: 0;
+      display: inline-block;
+      opacity: 0.6;
+      margin: $btn-close-size / 2;
+      z-index: 100000110;
+      border: 0;
+      width: $btn-close-size;
+      height: $btn-close-size;
+      background: transparent;
+      cursor: pointer;
+
+      &:focus {
+        outline:none;
+      }
+
+      &:after {
+        width: $btn-close-size;
+        height: $btn-close-stroke;
+        //background-color: $btn-close-light-color;
+        content: "";
+        left: 50%;
+        top: 50%;
+        margin-left: -($btn-close-size / 2);
+        margin-top: -($btn-close-stroke / 2);
+        position: absolute;
+        @include transform(rotate(-45deg));
+      }
+
+      &:before {
+        left: 50%;
+        top: 50%;
+        margin-left: -($btn-close-size / 2);
+        margin-top: -($btn-close-stroke / 2);
+        width: $btn-close-size;
+        height: $btn-close-stroke;
+        //background-color: $btn-close-light-color;
+        content: "";
+        position: absolute;
+        @include transform(rotate(45deg));
+      }
+    }
+
+    .#{$css-prefix}btn-close:hover {
+      opacity: 1;
+    }
+
+    &.#{$css-prefix}fullscreen,
+    &.#{$css-prefix}fullscreen object {
+      top: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  /* Modal position right bottom */
+  .#{$css-prefix}backdrop.#{$css-prefix}right-bottom {
+    overflow: hidden;
+    justify-content: flex-end;
+    .#{$css-prefix}content {
+      align-self: flex-end;
+      margin-bottom: 15px;
+      margin-right: 15px;
+    }
+  }
+
+  /*
+   * Animations
+   */
+
+  .#{$css-prefix}fadeIn {
+    @include fadeIn(
+      $count: 1, 
+      $duration: 0.8s, 
+      $delay: 0s, 
+      $function: bounce, 
+      $fill: 'both', 
+      $visibility: 'hidden'
+    );
+  }
+
+  .#{$css-prefix}fadeOut {
+    @include fadeOut(
+      $count: 1, 
+      $duration: 0.3s, 
+      $delay: 0s, 
+      $function: bounce, 
+      $fill: 'both', 
+      $visibility: 'hidden'
+    );
+  }
+
+  .#{$css-prefix}bounceIn {
+    @include bounceIn(
+      $count: 1, 
+      $duration: 0.8s, 
+      $delay: 0s, 
+      $function: bounce, 
+      $fill: 'both', 
+      $visibility: 'hidden'
+    );
+  }
+
+  .#{$css-prefix}bounceInUp {
+    @include bounceInUp(
+      $count: 1, 
+      $duration: 0.8s, 
+      $delay: 0s, 
+      $function: bounce, 
+      $fill: 'both', 
+      $visibility: 'hidden'
+    );
+  }
+
+  .#{$css-prefix}bounceInDown {
+    @include bounceInDown(
+      $count: 1, 
+      $duration: 0.8s, 
+      $delay: 0s, 
+      $function: bounce, 
+      $fill: 'both', 
+      $visibility: 'hidden'
+    );
+  }
+
+  .#{$css-prefix}bounceOut {
+    @include bounceOut(
+      $count: 1, 
+      $duration: 0.8s, 
+      $delay: 0s, 
+      $function: bounce, 
+      $fill: 'both', 
+      $visibility: 'hidden'
+    );
+  }
+
+  .#{$css-prefix}bounceOutDown {
+    @include bounceOutDown(
+      $count: 1, 
+      $duration: 0.8s, 
+      $delay: 0s, 
+      $function: bounce, 
+      $fill: 'both', 
+      $visibility: 'hidden'
+    );
+  }
+
+  .#{$css-prefix}lightSpeedIn {
+    @include lightSpeedIn(
+      $count: 1, 
+      $duration: 0.9s, 
+      $delay: 0s, 
+      $function: bounce, 
+      $fill: 'both', 
+      $visibility: 'hidden'
+    );
+  }
+
+  .#{$css-prefix}lightSpeedOut {
+    @include lightSpeedOut(
+      $count: 1, 
+      $duration: 0.9s, 
+      $delay: 0s, 
+      $function: bounce, 
+      $fill: 'both', 
+      $visibility: 'hidden'
+    );
+  }
+}
