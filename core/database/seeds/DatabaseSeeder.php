@@ -53,6 +53,7 @@ class DatabaseSeeder extends Seeder
             'limitations' => '{
               "forms": {"max": "2", "visible": "1", "edit_html": "1", "max_entries": "10"}, 
               "media": {"visible": "1"}, "account": {"plan_visible": "1"}, 
+              "modals": {"max": "2", "visible": "1"}, 
               "eddystones": {"max": "1", "visible": "1"}, 
               "landingpages": {"max": "2", "visible": "1", "edit_html": "1", "custom_domain": "0"}, 
               "emailcampaigns": {"max": "2", "visible": "1"}
@@ -73,6 +74,7 @@ class DatabaseSeeder extends Seeder
             'limitations' => '{
               "forms": {"max": "5", "visible": "1", "edit_html": "1", "max_entries": "500"}, 
               "media": {"visible": "1"}, "account": {"plan_visible": "1"}, 
+              "modals": {"max": "5", "visible": "1"}, 
               "eddystones": {"max": "5", "visible": "1"}, 
               "landingpages": {"max": "5", "visible": "1", "edit_html": "1", "custom_domain": "1"}, 
               "emailcampaigns": {"max": "5", "visible": "1"}
@@ -93,6 +95,7 @@ class DatabaseSeeder extends Seeder
             'limitations' => '{
               "forms": {"max": "10", "visible": "1", "edit_html": "1", "max_entries": "1200"}, 
               "media": {"visible": "1"}, "account": {"plan_visible": "1"}, 
+              "modals": {"max": "10", "visible": "1"}, 
               "eddystones": {"max": "10", "visible": "1"}, 
               "landingpages": {"max": "10", "visible": "1", "edit_html": "1", "custom_domain": "1"}, 
               "emailcampaigns": {"max": "10", "visible": "1"}
@@ -113,6 +116,7 @@ class DatabaseSeeder extends Seeder
             'limitations' => '{
               "forms": {"max": "30", "visible": "1", "edit_html": "1", "max_entries": "2500"}, 
               "media": {"visible": "1"}, "account": {"plan_visible": "1"}, 
+              "modals": {"max": "30", "visible": "1"}, 
               "eddystones": {"max": "30", "visible": "1"}, 
               "landingpages": {"max": "30", "visible": "1", "edit_html": "1", "custom_domain": "1"}, 
               "emailcampaigns": {"max": "30", "visible": "1"}
@@ -133,6 +137,7 @@ class DatabaseSeeder extends Seeder
             'limitations' => '{
               "forms": {"max": "50", "visible": "1", "edit_html": "1", "max_entries": "5000"}, 
               "media": {"visible": "1"}, "account": {"plan_visible": "1"}, 
+              "modals": {"max": "50", "visible": "1"}, 
               "eddystones": {"max": "50", "visible": "1"}, 
               "landingpages": {"max": "50", "visible": "1", "edit_html": "1", "custom_domain": "1"}, 
               "emailcampaigns": {"max": "50", "visible": "1"}
@@ -153,6 +158,7 @@ class DatabaseSeeder extends Seeder
             'limitations' => '{
               "forms": {"max": "90", "visible": "1", "edit_html": "1", "max_entries": "10000"}, 
               "media": {"visible": "1"}, "account": {"plan_visible": "1"}, 
+              "modals": {"max": "90", "visible": "1"}, 
               "eddystones": {"max": "90", "visible": "1"}, 
               "landingpages": {"max": "90", "visible": "1", "edit_html": "1", "custom_domain": "1"}, 
               "emailcampaigns": {"max": "90", "visible": "1"}
@@ -173,6 +179,7 @@ class DatabaseSeeder extends Seeder
             'limitations' => '{
               "forms": {"max": "150", "visible": "1", "edit_html": "1", "max_entries": "15000"}, 
               "media": {"visible": "1"}, "account": {"plan_visible": "1"}, 
+              "modals": {"max": "150", "visible": "1"}, 
               "eddystones": {"max": "150", "visible": "1"}, 
               "landingpages": {"max": "150", "visible": "1", "edit_html": "1", "custom_domain": "1"}, 
               "emailcampaigns": {"max": "150", "visible": "1"}
@@ -193,6 +200,7 @@ class DatabaseSeeder extends Seeder
             'limitations' => '{
               "forms": {"max": "200", "visible": "1", "edit_html": "1", "max_entries": "20000"}, 
               "media": {"visible": "1"}, "account": {"plan_visible": "1"}, 
+              "modals": {"max": "200", "visible": "1"}, 
               "eddystones": {"max": "200", "visible": "1"}, 
               "landingpages": {"max": "200", "visible": "1", "edit_html": "1", "custom_domain": "1"}, 
               "emailcampaigns": {"max": "200", "visible": "1"}
@@ -213,6 +221,7 @@ class DatabaseSeeder extends Seeder
             'limitations' => '{
               "forms": {"max": "400", "visible": "1", "edit_html": "1", "max_entries": "40000"}, 
               "media": {"visible": "1"}, "account": {"plan_visible": "1"}, 
+              "modals": {"max": "400", "visible": "1"}, 
               "eddystones": {"max": "400", "visible": "1"}, 
               "landingpages": {"max": "400", "visible": "1", "edit_html": "1", "custom_domain": "1"}, 
               "emailcampaigns": {"max": "400", "visible": "1"}
